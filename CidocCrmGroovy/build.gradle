@@ -1,0 +1,27 @@
+plugins {
+    id 'groovy'
+}
+
+group 'CidocCrmGroovy'
+version '1.0-SNAPSHOT'
+
+
+apply plugin: 'groovy'
+compileGroovy.groovyOptions.configurationScript = file('gradle/config/groovyc.groovy')
+
+repositories {
+    mavenCentral()
+    maven {url "https://raw.github.com/neo4j-contrib/m2/master/releases" }
+}
+
+dependencies {
+    compile "org.codehaus.groovy:groovy-all:2.4.15"
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile "org.neo4j:neo4j-ogm-core:3.1.2"
+    runtime "org.neo4j:neo4j-ogm-bolt-driver:3.1.2"
+    testCompile group: 'org.slf4j', name: 'slf4j-simple', version: '1.6.1'
+    testCompile "org.spockframework:spock-core:1.2-groovy-2.4"
+    testCompile group: 'org.neo4j.contrib', name: 'neo4j-spock-extension', version: '0.9'
+    
+    }
+
