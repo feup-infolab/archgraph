@@ -1,17 +1,24 @@
 package cidoc
 
-
+import cidoc.nodeEntities.E22_E33
+import cidoc.nodeEntities.E22_E38
+import cidoc.nodeEntities.E28_Conceptual_Object
+import cidoc.nodeEntities.E33_Linguistic_Object
+import cidoc.nodeEntities.E35_Title
 import cidoc.nodeEntities.E41_Appellation
 import cidoc.nodeEntities.E52_Time_Span
 import cidoc.nodeEntities.E53_Place
+import cidoc.nodeEntities.E55_Type
 import cidoc.nodeEntities.E5_Event
+import cidoc.nodeEntities.E7_Activity
+import cidoc.nodeEntities.E84_E33
 import groovy.transform.TypeChecked
 import org.neo4j.ogm.session.Session
 import org.neo4j.ogm.config.Configuration
 import org.neo4j.ogm.session.SessionFactory
 import org.neo4j.ogm.transaction.Transaction
 
-@TypeChecked
+//@TypeChecked
 class Loader {
 
     private final SessionFactory sessionFactory
@@ -30,12 +37,13 @@ class Loader {
         Session session = sessionFactory.openSession()
         session.purgeDatabase()
 
-        load(session)
+        loadApocalipse(session)
 
     }
 
-    private void load (Session session) {
+    private void loadFEUP(Session session){
         Transaction txn = session.beginTransaction()
+
         E52_Time_Span e52= new E52_Time_Span()
         E52_Time_Span e52_2= new E52_Time_Span()
         E52_Time_Span e52_3= new E52_Time_Span()
@@ -77,6 +85,95 @@ class Loader {
         session.save(e41)
         session.save(e41_2)
         session.save(e41_3)
+
+        txn.commit()
+    }
+
+    private void loadApocalipse (Session session) {
+        Transaction txn = session.beginTransaction()
+        E22_E33 e22E33 = new E22_E33()
+        E22_E33 e22E33_2 = new E22_E33()
+
+        E84_E33 e84E33 = new E84_E33()
+
+        E22_E38 e22E38 = new E22_E38()
+
+        E55_Type e55 = new E55_Type()
+        E55_Type e55_2 = new E55_Type()
+        E55_Type e55_3 = new E55_Type()
+        E55_Type e55_4 = new E55_Type()
+
+
+        E35_Title e35 = new E35_Title()
+        E35_Title e35_2 = new E35_Title()
+        E35_Title e35_3 = new E35_Title()
+        E35_Title e35_4 = new E35_Title()
+
+        E33_Linguistic_Object e33 = new E33_Linguistic_Object()
+
+        E28_Conceptual_Object e28 = new E28_Conceptual_Object()
+
+        E7_Activity e7  = new E7_Activity()
+
+        e22E33.setName("Record Set")
+        e22E33_2.setName("Record Set")
+
+        e84E33.setName("Record")
+
+        e22E38.setName("Miniature")
+
+        e55.setName("Fonds")
+        e55_2.setName("Sub-group")
+        e55_3.setName("Item")
+        e55_4.setName("Copy")
+
+        e35.setName("Monastery of Lorvao")
+        e35_2.setName("Scriptorium")
+        e35_3.setName("Apocalypse of Lorvao")
+        e35_4.setName("The Harvest and the vintage")
+
+        e33.setName("Commentarium in Apocalypsin")
+
+        e28.setName("Revelation 14:14-20")
+
+        e7.setName("Harvesting")
+
+        e22E33.p2.add(e55)
+        e22E33.p102.add(e35)
+
+        e22E33_2.p46.add(e22E33)
+        e22E33_2.p106.add(e22E33)
+        e22E33_2.p2.add(e55_2)
+        e22E33_2.p102.add(e35_2)
+
+        e84E33.p46.add(e22E33_2)
+        e84E33.p106.add(e22E33_2)
+        e84E33.p46.add(e22E38)
+        e84E33.p106.add(e22E38)
+        e84E33.p130.add(e33)
+        e84E33.p2.add(e55_4)
+        e84E33.p2.add(e55_3)
+        e84E33.p102.add(e35_3)
+
+        e22E38.p102.add(e35_4)
+        e22E38.p62.add(e28)
+        e22E38.p62.add(e7)
+
+        session.save(e22E33)
+        session.save(e22E33_2)
+        session.save(e84E33)
+        session.save(e22E38)
+        session.save(e55)
+        session.save(e55_2)
+        session.save(e55_3)
+        session.save(e55_4)
+        session.save(e35)
+        session.save(e35_2)
+        session.save(e35_3)
+        session.save(e35_4)
+        session.save(e28)
+        session.save(e7)
+
 
         txn.commit()
 

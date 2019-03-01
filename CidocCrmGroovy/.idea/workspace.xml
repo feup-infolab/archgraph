@@ -22,7 +22,40 @@
         <task path="$PROJECT_DIR$">
           <activation />
         </task>
-        <projects_view />
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="CidocCrmGroovy" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="CidocCrmGroovy" type="f1a62948:ProjectNode" />
+                <item name="Source Sets" type="e897c970:GradleViewContributor$SourceSetsNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="CidocCrmGroovy" type="f1a62948:ProjectNode" />
+                <item name="Source Sets" type="e897c970:GradleViewContributor$SourceSetsNode" />
+                <item name="test" type="396b929e:GradleViewContributor$SourceSetNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="CidocCrmGroovy" type="f1a62948:ProjectNode" />
+                <item name="Source Sets" type="e897c970:GradleViewContributor$SourceSetsNode" />
+                <item name="test" type="396b929e:GradleViewContributor$SourceSetNode" />
+                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="CidocCrmGroovy" type="f1a62948:ProjectNode" />
+                <item name="Run Configurations" type="7b0102dc:RunConfigurationsNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
       </state>
     </system>
   </component>
@@ -30,131 +63,136 @@
     <session id="-951405079">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="5" />
+          <entry key="project.closed" value="8" />
+          <entry key="project.open.time.11" value="1" />
           <entry key="project.open.time.29" value="1" />
+          <entry key="project.open.time.30" value="1" />
+          <entry key="project.open.time.31" value="1" />
           <entry key="project.open.time.35" value="1" />
+          <entry key="project.open.time.51" value="1" />
           <entry key="project.open.time.6" value="1" />
           <entry key="project.open.time.7" value="1" />
           <entry key="project.open.time.8" value="2" />
-          <entry key="project.opened" value="6" />
+          <entry key="project.opened" value="10" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="bat" value="1" />
-          <entry key="gradle" value="13" />
-          <entry key="gradlew" value="1" />
-          <entry key="groovy" value="161" />
+          <entry key="bat" value="2" />
+          <entry key="gradle" value="15" />
+          <entry key="gradlew" value="2" />
+          <entry key="groovy" value="169" />
           <entry key="java" value="13" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Groovy" value="174" />
+          <entry key="Groovy" value="292" />
           <entry key="JAVA" value="13" />
-          <entry key="PLAIN_TEXT" value="2" />
+          <entry key="PLAIN_TEXT" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="gradle" value="42" />
-          <entry key="groovy" value="3387" />
+          <entry key="gradle" value="65" />
+          <entry key="groovy" value="3521" />
           <entry key="java" value="267" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Groovy" value="3429" />
+          <entry key="Groovy" value="6495" />
           <entry key="JAVA" value="267" />
+          <entry key="PLAIN_TEXT" value="2" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/groovy/NodeEntitiesTest.groovy">
+        <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeEntities/E41_Appellation.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" selection-start-line="1" selection-end-line="1" />
+            <state relative-caret-position="85">
+              <caret line="6" column="26" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/build.gradle">
+        <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeEntities/E42_Identifier.groovy">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="5" column="11" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
+              <folding>
+                <element signature="e#28#68#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeEntities/E52_Time_Span.groovy">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeEntities/E53_Place.groovy">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeEntities/E55_Type.groovy">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="8" selection-start-line="8" selection-end-line="8" />
+              <folding>
+                <element signature="e#28#62#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeEntities/E84_E33.groovy">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="153">
-              <caret line="9" column="86" selection-start-line="9" selection-start-column="86" selection-end-line="9" selection-end-column="86" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gradle/config/groovyc.groovy">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="1" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/Loader.groovy">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="61" column="23" lean-forward="true" selection-start-line="61" selection-start-column="23" selection-end-line="61" selection-end-column="23" />
+              <caret line="9" selection-start-line="9" selection-end-line="9" />
               <folding>
-                <element signature="e#16#57#0" expanded="true" />
+                <element signature="e#28#75#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeEntities/E74_Group.groovy">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+              <folding>
+                <element signature="e#28#63#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeEntities/Entity.groovy">
+        <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/Loader.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="18" column="21" lean-forward="true" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeEntities/E41_Appellation.groovy">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="26" lean-forward="true" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
+            <state relative-caret-position="150">
+              <caret line="157" column="30" lean-forward="true" selection-start-line="157" selection-start-column="30" selection-end-line="157" selection-end-column="30" />
               <folding>
-                <element signature="e#28#69#0" expanded="true" />
+                <element signature="e#15#48#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/settings.gradle">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="2" selection-start-column="2" selection-end-column="2" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E2_Temporal_Entity_T.groovy">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="18" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E52_Time_Span_T.groovy">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -162,10 +200,21 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/groovy/Test.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" selection-start-line="3" selection-end-line="3" />
+            <state>
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeEntities/E40_Legal_Body.groovy">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="6" column="63" selection-start-line="6" selection-start-column="63" selection-end-line="6" selection-end-column="63" />
+              <folding>
+                <element signature="e#28#68#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -379,9 +428,9 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="6203208489320" />
+        <entry key="$PROJECT_DIR$" value="6203914476091" />
         <entry key="$PROJECT_DIR$/.gradle" value="0" />
-        <entry key="$PROJECT_DIR$/build.gradle" value="1037744395" />
+        <entry key="$PROJECT_DIR$/build.gradle" value="3478235094" />
         <entry key="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" value="2585518924" />
         <entry key="$PROJECT_DIR$/settings.gradle" value="4265899789" />
       </map>
@@ -568,65 +617,70 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/groovy/NodeTraits/E5_Event_T.groovy" />
-        <option value="$PROJECT_DIR$/src/main/groovy/NodeTraits/E2_Temporal_Entity_T.groovy" />
-        <option value="$PROJECT_DIR$/src/main/groovy/NodeEntities/E5_Event.groovy" />
-        <option value="$PROJECT_DIR$/src/main/groovy/NodeEntities/E41_Appellation.groovy" />
-        <option value="$PROJECT_DIR$/src/main/groovy/NodeTraits/E53_Place.groovy" />
-        <option value="$PROJECT_DIR$/src/main/groovy/NodeTraits/E4_Period_T.groovy" />
-        <option value="$PROJECT_DIR$/src/main/groovy/NodeTraits/E52_Time_Span_T.groovy" />
-        <option value="$PROJECT_DIR$/src/main/groovy/NodeTraits/E1_CRM_Entity_T.groovy" />
-        <option value="$PROJECT_DIR$/src/main/groovy/NodeTraits/E70_Thing_T.groovy" />
-        <option value="$PROJECT_DIR$/src/main/groovy/NodeTraits/E53_Place_T.groovy" />
-        <option value="$PROJECT_DIR$/src/main/groovy/NodeEntities/E53_Place.groovy" />
-        <option value="$PROJECT_DIR$/src/main/groovy/Neo4jSessionFactory.groovy" />
-        <option value="$PROJECT_DIR$/src/main/groovy/Service.groovy" />
-        <option value="$PROJECT_DIR$/src/main/groovy/nodeEntities/E41_Appellation.groovy" />
-        <option value="$PROJECT_DIR$/src/main/groovy/service/E1_Crm_Entity_Service.java" />
-        <option value="$PROJECT_DIR$/src/main/groovy/GenericService.groovy" />
-        <option value="$PROJECT_DIR$/src/main/groovy/neo4j/GenericService.groovy" />
-        <option value="$PROJECT_DIR$/src/main/groovy/service/E1_Crm_Entity_Service.groovy" />
-        <option value="$PROJECT_DIR$/src/main/groovy/service/E41_Appelation_Service.groovy" />
-        <option value="$PROJECT_DIR$/src/main/groovy/service/E5_Event_Service.groovy" />
-        <option value="$PROJECT_DIR$/src/main/groovy/service/E52_Time_Span_Service.groovy" />
-        <option value="$PROJECT_DIR$/src/main/groovy/service/E53_Place_Service.java" />
-        <option value="$PROJECT_DIR$/src/main/groovy/service/E53_Place_Service.groovy" />
-        <option value="$PROJECT_DIR$/src/main/groovy/nodeTraits/E2_Temporal_Entity_T.groovy" />
-        <option value="$PROJECT_DIR$/src/main/groovy/nodeTraits/E53_Place_T.groovy" />
-        <option value="$PROJECT_DIR$/src/main/groovy/nodeEntities/Entity.groovy" />
-        <option value="$PROJECT_DIR$/src/main/groovy/loader/Loader.groovy" />
-        <option value="$PROJECT_DIR$/src/main/groovy/nodeEntities/E52_Time_Span.groovy" />
-        <option value="$PROJECT_DIR$/src/main/groovy/Loader.groovy" />
-        <option value="$PROJECT_DIR$/src/main/groovy/cidoc/nodeEntities/E1_Crm_Entity.groovy" />
-        <option value="$PROJECT_DIR$/src/main/groovy/cidoc/nodeEntities/E41_Appellation.groovy" />
-        <option value="$PROJECT_DIR$/src/main/groovy/cidoc/nodeEntities/E53_Place.groovy" />
-        <option value="$PROJECT_DIR$/src/main/groovy/cidoc/service/E1_Crm_Entity_Service.groovy" />
-        <option value="$PROJECT_DIR$/src/main/groovy/cidoc/service/E5_Event_Service.groovy" />
-        <option value="$PROJECT_DIR$/src/main/groovy/cidoc/service/E41_Appelation_Service.groovy" />
-        <option value="$PROJECT_DIR$/src/main/groovy/cidoc/service/E52_Time_Span_Service.groovy" />
-        <option value="$PROJECT_DIR$/src/main/groovy/cidoc/service/E53_Place_Service.groovy" />
-        <option value="$PROJECT_DIR$/src/main/groovy/cidoc/nodeEntities/E5_Event.groovy" />
-        <option value="$PROJECT_DIR$/src/main/groovy/cidoc/nodeEntities/Entity.groovy" />
-        <option value="$PROJECT_DIR$/src/main/groovy/cidoc/nodeEntities/E52_Time_Span.groovy" />
-        <option value="$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E52_Time_Span_T.groovy" />
-        <option value="$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E41_Appellation_T.groovy" />
-        <option value="$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E4_Period_T.groovy" />
-        <option value="$PROJECT_DIR$/src/main/groovy/ruleset.groovy" />
-        <option value="$PROJECT_DIR$/settings.gradle" />
-        <option value="$PROJECT_DIR$/src/test/groovy/Neo4JTest.groovy" />
-        <option value="$PROJECT_DIR$/src/main/groovy/Test.groovy" />
         <option value="$PROJECT_DIR$/src/test/groovy/NodeEntitiesTest.groovy" />
-        <option value="$PROJECT_DIR$/gradle/config/groovyc.groovy" />
+        <option value="$PROJECT_DIR$/src/main/groovy/Test.groovy" />
+        <option value="$PROJECT_DIR$/settings.gradle" />
         <option value="$PROJECT_DIR$/build.gradle" />
+        <option value="$PROJECT_DIR$/gradle/config/groovyc.groovy" />
+        <option value="$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E18_Physical_Thing.groovy" />
+        <option value="$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E19_Physical_Object_T.groovy" />
+        <option value="$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E89_Propositional_Object_T.groovy" />
+        <option value="$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E73_Information_Object_T.groovy" />
+        <option value="$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E33_Linguistic_Object_T.groovy" />
+        <option value="$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E55_Type_T.groovy" />
+        <option value="$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E1_CRM_Entity_T.groovy" />
+        <option value="$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E35_Title_T.groovy" />
+        <option value="$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E71_Man_Made_Thing_T.groovy" />
+        <option value="$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E22_ManMade_Object_T.groovy" />
+        <option value="$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E90_Symbolic_Object_T.groovy" />
+        <option value="$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E18_Physical_Thing_T.groovy" />
+        <option value="$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E70_Thing_T.groovy" />
+        <option value="$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E24_Physical_ManMade_Thing_T.groovy" />
+        <option value="$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E10_Transfer_of_Custody.groovy" />
+        <option value="$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E11_Modification_T.groovy" />
+        <option value="$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E63_Beginning_of_Existence.groovy" />
+        <option value="$PROJECT_DIR$/src/main/groovy/cidoc/nodeEntities/E22_E33.groovy" />
+        <option value="$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E84_Information_Carrier_T.groovy" />
+        <option value="$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E39_Actor_T.groovy" />
+        <option value="$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E40_Legal_Body_T.groovy" />
+        <option value="$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E20_Biological_Object_T.groovy" />
+        <option value="$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E21_Person_T.groovy" />
+        <option value="$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E42_Identifier_T.groovy" />
+        <option value="$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E12_Production_T.groovy" />
+        <option value="$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E7_Activity_T.groovy" />
+        <option value="$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E5_Event_T.groovy" />
+        <option value="$PROJECT_DIR$/src/main/groovy/cidoc/relationshipEntities/P14_was_carried_out_by.groovy" />
+        <option value="$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E10_Transfer_of_Custody_T.groovy" />
+        <option value="$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E74_Group_T.groovy" />
+        <option value="$PROJECT_DIR$/src/main/groovy/cidoc/nodeEntities/E55_Type.groovy" />
+        <option value="$PROJECT_DIR$/src/main/groovy/cidoc/nodeEntities/E35_Title.groovy" />
+        <option value="$PROJECT_DIR$/src/main/groovy/cidoc/nodeEntities/E84_E33.groovy" />
+        <option value="$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E36_Visual_Item_T.groovy" />
+        <option value="$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E38_Image_T.groovy" />
+        <option value="$PROJECT_DIR$/src/main/groovy/cidoc/nodeEntities/E33_Linguistic_Object.groovy" />
+        <option value="$PROJECT_DIR$/src/main/groovy/cidoc/nodeEntities/E28_Conceptual_Object.groovy" />
+        <option value="$PROJECT_DIR$/src/main/groovy/cidoc/nodeEntities/E7_Activity.groovy" />
+        <option value="$PROJECT_DIR$/src/main/groovy/cidoc/nodeEntities/E22_E38.groovy" />
+        <option value="$PROJECT_DIR$/src/main/groovy/cidoc/nodeEntities/E12_Production.groovy" />
+        <option value="$PROJECT_DIR$/src/main/groovy/cidoc/nodeEntities/E10_Transfer_of_Custody.groovy" />
+        <option value="$PROJECT_DIR$/src/main/groovy/cidoc/nodeEntities/E40_Legal_Body.groovy" />
+        <option value="$PROJECT_DIR$/src/main/groovy/cidoc/nodeEntities/E21_Person.groovy" />
+        <option value="$PROJECT_DIR$/src/main/groovy/cidoc/nodeEntities/E42_Identifier.groovy" />
+        <option value="$PROJECT_DIR$/src/main/groovy/cidoc/nodeEntities/E74_Group.groovy" />
         <option value="$PROJECT_DIR$/src/main/groovy/cidoc/Loader.groovy" />
       </list>
     </option>
   </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand />
+      <select />
+    </treeState>
+  </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="587" />
-    <option name="y" value="-17" />
-    <option name="width" value="980" />
-    <option name="height" value="1090" />
+    <option name="x" value="952" />
+    <option name="width" value="977" />
+    <option name="height" value="1088" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -653,6 +707,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -717,6 +772,28 @@
             </path>
             <path>
               <item name="CidocCrmGroovy" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CidocCrmGroovy" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="groovy" type="462c0819:PsiDirectoryNode" />
+              <item name="cidoc" type="462c0819:PsiDirectoryNode" />
+              <item name="relationshipEntities" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CidocCrmGroovy" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CidocCrmGroovy" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+            <path>
+              <item name="CidocCrmGroovy" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CidocCrmGroovy" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="groovy" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CidocCrmGroovy" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
           </expand>
@@ -724,15 +801,15 @@
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1550846083802" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1551400801461" />
     <property name="full.screen.before.presentation.mode" value="false" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -755,12 +832,30 @@
     </option>
   </component>
   <component name="RunManager" selected="Groovy.Test">
+    <configuration name="CidocCrmGroovy [compileGroovy]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--stacktrace" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="compileGroovy" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <method v="2" />
+    </configuration>
     <configuration name="CidocCrmGroovy [dependencies]" type="GradleRunConfiguration" factoryName="Gradle">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
+        <option name="scriptParameters" value="--stacktrace" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -769,7 +864,7 @@
             <option value="dependencies" />
           </list>
         </option>
-        <option name="vmOptions" />
+        <option name="vmOptions" value="" />
       </ExternalSystemSettings>
       <method v="2" />
     </configuration>
@@ -805,13 +900,15 @@
     </configuration>
     <list>
       <item itemvalue="Gradle.CidocCrmGroovy [dependencies]" />
+      <item itemvalue="Gradle.CidocCrmGroovy [compileGroovy]" />
       <item itemvalue="Groovy.Test" />
-      <item itemvalue="JUnit.NodeEntitiesTest" />
       <item itemvalue="Groovy.ruleset" />
+      <item itemvalue="JUnit.NodeEntitiesTest" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Groovy.Test" />
+        <item itemvalue="Gradle.CidocCrmGroovy [compileGroovy]" />
         <item itemvalue="JUnit.NodeEntitiesTest" />
         <item itemvalue="Groovy.ruleset" />
       </list>
@@ -849,12 +946,14 @@
     <history-entry file="NodeEntitiesTest - 2019.02.22 at 10h 11m 02s.xml">
       <configuration name="NodeEntitiesTest" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="NodeEntitiesTest - 2019.02.22 at 14h 45m 55s.xml">
+      <configuration name="NodeEntitiesTest" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="878" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1704698" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19261745" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -863,8 +962,8 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32885906" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.33154362" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.31543624" />
+      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -878,10 +977,10 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="right" id="Gradle" order="5" />
+      <window_info anchor="right" id="Gradle" order="5" weight="0.3295302" />
       <window_info anchor="right" id="Theme Preview" order="6" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
-      <window_info anchor="right" id="Maven Projects" order="8" />
+      <window_info anchor="right" id="Maven Projects" order="8" weight="0.3295302" />
     </layout>
     <layout-to-restore>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1704698" />
@@ -922,162 +1021,106 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/groovy/cidoc/Loader.groovy</url>
-          <line>28</line>
+          <line>35</line>
           <properties />
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/groovy/cidoc/Loader.groovy</url>
-          <line>23</line>
+          <line>30</line>
           <properties />
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/groovy/cidoc/Loader.groovy</url>
-          <line>60</line>
+          <line>159</line>
           <properties />
-          <option name="timeStamp" value="8" />
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/groovy/cidoc/Loader.groovy</url>
+          <line>161</line>
+          <properties />
+          <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/groovy/NodeEntities/E1_CRM_Entity.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/groovy/NodeEntities/E41_Appellation.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/groovy/NodeEntities/Entity.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/groovy/main.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/groovy/service/E1_Crm_Entity_Service.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/groovy/service/E53_Place_Service.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/service/E41_Appelation_Service.groovy" />
-    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/service/E52_Time_Span_Service.groovy" />
-    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/service/E53_Place_Service.groovy" />
-    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/neo4j/GenericService.groovy" />
-    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/jdk/internal/reflect/DelegatingConstructorAccessorImpl.java">
+    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E33_Linguistic_Object_T.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="44" selection-start-line="44" selection-end-line="44" />
+        <state relative-caret-position="34">
+          <caret line="2" column="6" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/jdk/internal/reflect/NativeConstructorAccessorImpl.java">
+    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E22_ManMade_Object_T.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="61" selection-start-line="61" selection-end-line="61" />
+        <state relative-caret-position="85">
+          <caret line="5" column="1" lean-forward="true" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/neo4j/Neo4jSessionFactory.groovy" />
-    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/service/E1_Crm_Entity_Service.groovy" />
-    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/service/E5_Event_Service.groovy" />
-    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/neo4j/Service.groovy" />
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.neo4j/neo4j-ogm-core/3.1.2/d87e56d67f6673dcec8c63fe46de402d7be7273c/neo4j-ogm-core-3.1.2-sources.jar!/org/neo4j/ogm/autoindex/AutoIndex.java">
+    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E19_Physical_Object_T.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="697">
-          <caret line="65" selection-start-line="65" selection-end-line="65" />
+        <state relative-caret-position="34">
+          <caret line="2" column="43" selection-start-line="2" selection-start-column="43" selection-end-line="2" selection-end-column="43" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.neo4j/neo4j-ogm-core/3.1.2/d87e56d67f6673dcec8c63fe46de402d7be7273c/neo4j-ogm-core-3.1.2-sources.jar!/org/neo4j/ogm/session/SessionFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="986">
-          <caret line="84" selection-start-line="84" selection-end-line="84" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.neo4j/neo4j-ogm-core/3.1.2/d87e56d67f6673dcec8c63fe46de402d7be7273c/neo4j-ogm-core-3.1.2-sources.jar!/org/neo4j/ogm/autoindex/AutoIndexManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="69" selection-start-line="69" selection-end-line="69" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/groovy/ruleset.groovy" />
-    <entry file="file://$PROJECT_DIR$/gradlew">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1496">
-          <caret line="88" column="2" selection-start-line="88" selection-start-column="2" selection-end-line="88" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gradlew.bat">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/groovy/Neo4JTest.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeEntities/E52_Time_Span.groovy">
+    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E90_Symbolic_Object_T.groovy">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
-          <caret line="8" column="35" selection-start-line="8" selection-start-column="35" selection-end-line="8" selection-end-column="35" />
-          <folding>
-            <element signature="e#28#67#0" expanded="true" />
-          </folding>
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E70_Thing_T.groovy">
+    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E73_Information_Object_T.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        <state relative-caret-position="34">
+          <caret line="2" column="6" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E72_Legal_Object_T.groovy">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
-          <caret line="2" column="47" selection-start-line="2" selection-start-column="47" selection-end-line="2" selection-end-column="47" />
+          <caret line="2" column="15" selection-start-line="2" selection-start-column="15" selection-end-line="2" selection-end-column="15" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E77_Persistent_Item_T.groovy">
+    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E18_Physical_Thing_T.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        <state relative-caret-position="221">
+          <caret line="13" column="1" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeEntities/E53_Place.groovy">
+    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E70_Thing_T.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-          <folding>
-            <element signature="e#28#63#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="136">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E53_Place_T.groovy">
+    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E24_Physical_ManMade_Thing_T.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="68" selection-start-line="7" selection-start-column="68" selection-end-line="7" selection-end-column="68" />
+        <state relative-caret-position="255">
+          <caret line="15" column="1" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E71_Man_Made_Thing_T.groovy">
+    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E11_Modification_T.groovy">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="49" selection-start-line="2" selection-start-column="49" selection-end-line="2" selection-end-column="49" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E41_Appellation_T.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="44" lean-forward="true" selection-start-line="4" selection-start-column="44" selection-end-line="4" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E_90_Symbolic_Object_T.groovy">
+    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E63_Beginning_of_Existence_T.groovy">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
-          <caret line="2" column="77" selection-start-line="2" selection-start-column="77" selection-end-line="2" selection-end-column="77" />
+          <caret line="2" column="54" selection-start-line="2" selection-start-column="54" selection-end-line="2" selection-end-column="54" />
         </state>
       </provider>
     </entry>
@@ -1088,17 +1131,132 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E1_CRM_Entity_T.groovy">
+    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E84_Information_Carrier_T.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="5" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
+        <state relative-caret-position="34">
+          <caret line="2" column="63" selection-start-line="2" selection-start-column="63" selection-end-line="2" selection-end-column="63" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E4_Period_T.groovy">
+    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E39_Actor_T.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="50" selection-start-line="2" selection-start-column="50" selection-end-line="2" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E20_Biological_Object_T.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="62" selection-start-line="2" selection-start-column="62" selection-end-line="2" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E42_Identifier_T.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="1" lean-forward="true" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E12_Production_T.groovy">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
-          <caret line="5" column="31" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="31" />
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E40_Legal_Body_T.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="45" selection-start-line="2" selection-start-column="45" selection-end-line="2" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E41_Appellation_T.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="3" lean-forward="true" selection-start-line="6" selection-start-column="3" selection-end-line="12" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E71_Man_Made_Thing_T.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="29" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E2_Temporal_Entity_T.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="1" lean-forward="true" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E5_Event_T.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="34" selection-start-line="10" selection-start-column="34" selection-end-line="10" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E7_Activity_T.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="5" lean-forward="true" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E1_CRM_Entity_T.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/relationshipEntities/P14_was_carried_out_by.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="48" selection-start-line="9" selection-start-column="48" selection-end-line="9" selection-end-column="48" />
+          <folding>
+            <element signature="e#36#71#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E21_Person_T.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="66" selection-start-line="2" selection-start-column="66" selection-end-line="2" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E10_Transfer_of_Custody_T.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="3" lean-forward="true" selection-start-line="14" selection-start-column="3" selection-end-line="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E74_Group_T.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E36_Visual_Item_T.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="59" selection-start-line="2" selection-start-column="59" selection-end-line="2" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E38_Image_T.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="1" lean-forward="true" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -1109,69 +1267,180 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E5_Event_T.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="40" selection-start-line="2" selection-start-column="40" selection-end-line="2" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeEntities/E1_Crm_Entity.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="11" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="11" />
+        <state relative-caret-position="119">
+          <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
           <folding>
             <element signature="e#28#67#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E52_Time_Span_T.groovy">
+    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeEntities/E7_Activity.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="11" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
+          <folding>
+            <element signature="e#28#65#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeEntities/E10_Transfer_of_Custody.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="4" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="4" />
+          <folding>
+            <element signature="e#28#77#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeEntities/E12_Production.groovy">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
+          <caret line="6" column="63" selection-start-line="6" selection-start-column="63" selection-end-line="6" selection-end-column="63" />
+          <folding>
+            <element signature="e#28#68#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeEntities/E21_Person.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="11" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
+          <folding>
+            <element signature="e#28#64#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeEntities/E22_E33.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="4" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
+          <folding>
+            <element signature="e#28#72#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeEntities/E28_Conceptual_Object.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="78" selection-start-line="6" selection-start-column="78" selection-end-line="6" selection-end-column="78" />
+          <folding>
+            <element signature="e#28#75#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeEntities/E22_E38.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="4" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
+          <folding>
+            <element signature="e#28#72#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeEntities/E33_Linguistic_Object.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
+          <folding>
+            <element signature="e#28#75#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeEntities/E35_Title.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+          <folding>
+            <element signature="e#28#63#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeEntities/E40_Legal_Body.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="63" selection-start-line="6" selection-start-column="63" selection-end-line="6" selection-end-column="63" />
+          <folding>
+            <element signature="e#28#68#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeEntities/E41_Appellation.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="6" column="26" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeEntities/E42_Identifier.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="11" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
+          <folding>
+            <element signature="e#28#68#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeEntities/E52_Time_Span.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeEntities/E53_Place.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
           <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E2_Temporal_Entity_T.groovy">
+    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeEntities/E55_Type.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="18" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
+        <state relative-caret-position="136">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
+          <folding>
+            <element signature="e#28#62#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/groovy/NodeEntitiesTest.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gradle/config/groovyc.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="1" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/settings.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="2" selection-start-column="2" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
+    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeEntities/E84_E33.groovy">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
-          <caret line="9" column="86" selection-start-line="9" selection-start-column="86" selection-end-line="9" selection-end-column="86" />
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+          <folding>
+            <element signature="e#28#75#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeEntities/E74_Group.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+          <folding>
+            <element signature="e#28#63#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/groovy/Test.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        <state>
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
@@ -1180,28 +1449,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/Loader.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="61" column="23" lean-forward="true" selection-start-line="61" selection-start-column="23" selection-end-line="61" selection-end-column="23" />
+        <state relative-caret-position="150">
+          <caret line="157" column="30" lean-forward="true" selection-start-line="157" selection-start-column="30" selection-end-line="157" selection-end-column="30" />
           <folding>
-            <element signature="e#16#57#0" expanded="true" />
+            <element signature="e#15#48#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeEntities/E41_Appellation.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="26" lean-forward="true" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
-          <folding>
-            <element signature="e#28#69#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeEntities/Entity.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="18" column="21" lean-forward="true" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="21" />
         </state>
       </provider>
     </entry>

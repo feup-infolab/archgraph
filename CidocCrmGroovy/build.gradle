@@ -6,8 +6,7 @@ group 'CidocCrmGroovy'
 version '1.0-SNAPSHOT'
 
 
-apply plugin: 'groovy'
-compileGroovy.groovyOptions.configurationScript = file('gradle/config/groovyc.groovy')
+
 
 repositories {
     mavenCentral()
@@ -25,3 +24,6 @@ dependencies {
     
     }
 
+compileGroovy{
+    groovyOptions.configurationScript = file("gradle/config/groovyc.groovy")
+}
