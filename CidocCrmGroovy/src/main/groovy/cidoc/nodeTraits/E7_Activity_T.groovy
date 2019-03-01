@@ -1,5 +1,7 @@
 package cidoc.nodeTraits
 
+import cidoc.nodeEntities.E55_Type
+import cidoc.relationshipEntities.P14_was_carried_out_by
 import org.neo4j.ogm.annotation.Relationship
 
 trait E7_Activity_T implements E5_Event_T{
@@ -17,6 +19,8 @@ trait E7_Activity_T implements E5_Event_T{
     ArrayList<E39_Actor_T> getP14(){
         return P14_carried_out_by
     }
+
+
 
 
 }

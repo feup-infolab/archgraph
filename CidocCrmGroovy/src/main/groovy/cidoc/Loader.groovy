@@ -1,17 +1,24 @@
 package cidoc
 
+import cidoc.nodeEntities.E10_Transfer_of_Custody
+import cidoc.nodeEntities.E12_Production
+import cidoc.nodeEntities.E21_Person
 import cidoc.nodeEntities.E22_E33
 import cidoc.nodeEntities.E22_E38
 import cidoc.nodeEntities.E28_Conceptual_Object
 import cidoc.nodeEntities.E33_Linguistic_Object
 import cidoc.nodeEntities.E35_Title
+import cidoc.nodeEntities.E40_Legal_Body
 import cidoc.nodeEntities.E41_Appellation
+import cidoc.nodeEntities.E42_Identifier
 import cidoc.nodeEntities.E52_Time_Span
 import cidoc.nodeEntities.E53_Place
 import cidoc.nodeEntities.E55_Type
 import cidoc.nodeEntities.E5_Event
+import cidoc.nodeEntities.E74_Group
 import cidoc.nodeEntities.E7_Activity
 import cidoc.nodeEntities.E84_E33
+import cidoc.relationshipEntities.P14_was_carried_out_by
 import groovy.transform.TypeChecked
 import org.neo4j.ogm.session.Session
 import org.neo4j.ogm.config.Configuration
@@ -37,7 +44,8 @@ class Loader {
         Session session = sessionFactory.openSession()
         session.purgeDatabase()
 
-        loadApocalipse(session)
+        //loadApocalipse(session)
+        loadApArchive(session)
 
     }
 
@@ -174,6 +182,128 @@ class Loader {
         session.save(e28)
         session.save(e7)
 
+
+        txn.commit()
+
+
+
+
+    }
+
+    private void loadApArchive(Session session){
+        Transaction txn = session.beginTransaction()
+        E55_Type e55 = new E55_Type()
+        E55_Type e55_2 = new E55_Type()
+        E55_Type e55_3 = new E55_Type()
+        E55_Type e55_4 = new E55_Type()
+
+        E12_Production e12 = new E12_Production()
+
+        E10_Transfer_of_Custody e10 = new E10_Transfer_of_Custody()
+
+        E84_E33 e84E33 = new E84_E33()
+
+        E35_Title e35 = new E35_Title()
+
+        E52_Time_Span e52 = new E52_Time_Span()
+        E52_Time_Span e52_2 = new E52_Time_Span()
+
+        E40_Legal_Body e40 = new E40_Legal_Body()
+        E40_Legal_Body e40_2 = new E40_Legal_Body()
+
+        E21_Person e21 = new E21_Person()
+        E21_Person e21_2 = new E21_Person()
+
+        E41_Appellation e41 = new E41_Appellation()
+        E41_Appellation e41_2 = new E41_Appellation()
+        E41_Appellation e41_3 = new E41_Appellation()
+
+        E42_Identifier e42 = new E42_Identifier()
+
+        E74_Group e74 = new E74_Group()
+
+
+
+        e55.setName("Information dessimination")
+        e55_2.setName("Preserving information")
+        e55_3.setName("Creator")
+        e55_4.setName("Material author")
+
+        e12.setName("Production of Apocalipse do Lorvão")
+        e10.setName("Transfer of Apocalipse do Lorvão")
+
+        e84E33.setName("Record")
+
+        e35.setName("Apocalipse do Lorvão")
+
+        e52.setName("31-12-1189")
+        e52_2.setName("31-12-1853")
+
+        e21.setName("Person")
+        e21_2.setName("Person")
+
+        e40.setName("Corporate body")
+        e40_2.setName("Corporate body")
+
+        e41.setName("Alexandre Herculano")
+        e41_2.setName("Real Arquivo da Torre do Tombo")
+        e41_3.setName("Egeas")
+
+        e42.setName("Ordem de Cister. Mosteiro de Lorvão. 878-1834")
+
+        e74.setName("Group")
+
+        e12.p21.add(e55)
+        e12.p21.add(e55_2)
+        e12.p108.add(e84E33)
+        e12.p4.add(e52)
+
+
+
+        e10.p21.add(e55_2)
+        e10.p30.add(e84E33)
+        e10.p4.add(e52_2)
+        e10.p11.add(e21)
+        e10.p29.add(e40_2)
+        e10.p28.add(e74)
+
+        e84E33.p102.add(e35)
+
+        e40.p1.add(e42)
+
+        e21_2.p1.add(e41_3)
+
+        e21.p1.add(e41)
+        e40_2.p1.add(e41_2)
+
+        e74.p107.add(e40)
+
+
+
+        e12.p14.add(e40)
+        e40.p14_1.add(e55_3)
+        e12.p14.add(e21_2)
+        e21_2.p14_1.add(e55_4)
+
+        session.save(e55)
+        session.save(e55_2)
+        session.save(e55_3)
+        session.save(e55_4)
+        session.save(e12)
+        session.save(e10)
+        session.save(e84E33)
+        session.save(e35)
+        session.save(e52)
+        session.save(e52_2)
+        session.save(e40)
+        session.save(e40_2)
+        session.save(e41)
+        session.save(e41_2)
+        session.save(e41_3)
+        session.save(e42)
+        session.save(e21)
+        session.save(e21_2)
+        session.save(e74)
 
         txn.commit()
 
