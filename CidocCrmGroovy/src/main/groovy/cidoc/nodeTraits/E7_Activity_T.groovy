@@ -1,7 +1,6 @@
 package cidoc.nodeTraits
 
-import cidoc.nodeEntities.E55_Type
-import cidoc.relationshipEntities.P14_was_carried_out_by
+
 import org.neo4j.ogm.annotation.Relationship
 
 trait E7_Activity_T implements E5_Event_T{

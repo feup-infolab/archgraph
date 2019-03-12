@@ -19,7 +19,6 @@ import cidoc.nodeEntities.E74_Group
 import cidoc.nodeEntities.E7_Activity
 import cidoc.nodeEntities.E84_E33
 import cidoc.relationshipEntities.P14_was_carried_out_by
-import groovy.transform.TypeChecked
 import org.neo4j.ogm.session.Session
 import org.neo4j.ogm.config.Configuration
 import org.neo4j.ogm.session.SessionFactory
@@ -30,14 +29,14 @@ class Loader {
 
     private final SessionFactory sessionFactory
 
-    static private final String SERVER_URI = "bolt://localhost:7687"
+    static private final String SERVER_URI = "bolt://localhost:11001"
     static private final String SERVER_USERNAME = "neo4j"
     static private final String SERVER_PASSWORD = "password"
 
 
     Loader() {
         Configuration configuration = new Configuration.Builder().uri(SERVER_URI).credentials(SERVER_USERNAME, SERVER_PASSWORD).build()
-        sessionFactory = new SessionFactory(configuration, "cidoc.nodeEntities")
+        sessionFactory = new SessionFactory(configuration, "cidoc.nodeEntities","cidoc.relationshipEntities")
     }
 
     void process () {
@@ -306,6 +305,7 @@ class Loader {
         session.save(e74)
 
         txn.commit()
+
 
 
 
