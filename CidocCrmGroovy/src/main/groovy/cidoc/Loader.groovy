@@ -18,7 +18,11 @@ import cidoc.nodeEntities.E5_Event
 import cidoc.nodeEntities.E74_Group
 import cidoc.nodeEntities.E7_Activity
 import cidoc.nodeEntities.E84_E33
+import cidoc.nodeEntities.Entity
+import cidoc.nodeEntities.PC14_Carried_Out_By
 import cidoc.relationshipEntities.P14_was_carried_out_by
+import org.neo4j.ogm.cypher.Filter
+import org.neo4j.ogm.cypher.Filters
 import org.neo4j.ogm.session.Session
 import org.neo4j.ogm.config.Configuration
 import org.neo4j.ogm.session.SessionFactory
@@ -46,9 +50,16 @@ class Loader {
         //loadApocalipse(session)
         loadApArchive(session)
 
+        //Iterable<Entity> en = queryTest(session)
+        //Iterable<Entity> en2 = queryForTernary(session)
+        //Iterable<Entity> en3 = queryAll(session)
+        //int t = en.size()
+        //int t2 = en2.size()
+        //int t3 = en3.size()
+
     }
 
-    private void loadFEUP(Session session){
+    static private void loadFEUP(Session session){
         Transaction txn = session.beginTransaction()
 
         E52_Time_Span e52= new E52_Time_Span()
@@ -96,7 +107,7 @@ class Loader {
         txn.commit()
     }
 
-    private void loadApocalipse (Session session) {
+    static private void loadApocalipse (Session session) {
         Transaction txn = session.beginTransaction()
         E22_E33 e22E33 = new E22_E33()
         E22_E33 e22E33_2 = new E22_E33()
@@ -189,7 +200,7 @@ class Loader {
 
     }
 
-    private void loadApArchive(Session session){
+    static private void loadApArchive(Session session){
         Transaction txn = session.beginTransaction()
         E55_Type e55 = new E55_Type()
         E55_Type e55_2 = new E55_Type()
@@ -279,10 +290,10 @@ class Loader {
 
 
 
-        e12.p14.add(e40)
-        e40.p14_1.add(e55_3)
-        e12.p14.add(e21_2)
-        e21_2.p14_1.add(e55_4)
+
+
+        e12.p14_1(e40,e55_3)
+        e12.p14_1(e21_2,e55_4)
 
         session.save(e55)
         session.save(e55_2)
@@ -311,4 +322,69 @@ class Loader {
 
 
     }
+
+    static private Iterable<Entity> queryForTernary(Session session){
+
+        String cypher = "MATCH (h)-[:P14_1_in_the_role_of]->(w:E55_Type), (t)-[:P14_1_in_the_role_of]->(w:E55_Type), (h)-[:P14_carried_out_by]->(t) return h,w,t"
+        return session.query(Entity.class,cypher,new HashMap<>(1))
+
+
+    }
+
+    static private Iterable<Entity> queryTest(Session session){
+
+        String cypher = "MATCH (h)-[:P4_has_time_span]->(w) return h,w,t"
+        return session.query(Entity.class,cypher,new HashMap<>(1))
+
+
+    }
+
+    static private Iterable<Entity> queryAll(Session session){
+
+        String cypher = "MATCH (n) return n"
+        return session.query(Entity.class,cypher,new HashMap<>(1))
+
+
+    }
+
+    static private Iterable<Entity> query1(Session session){
+
+        String cypher = "MATCH (n:E12_Production)-[:P4_has_time_span]->(o)  , (n)-[:P21_had_general_purpose]->(p) return n,o,p"
+        return session.query(Entity.class,cypher,new HashMap<>(1))
+
+
+    }
+    static private Iterable<Entity> query2(Session session){
+
+        String cypher = "MATCH (n:E10_Transfer_of_Custody)-[:P28_custody_surrendered_by]->(o)  , (o)-[:P107_has_current_or_former_member]->(p), (p)-[:P1_is_identified_by]->(q),  (n)-[:P29_custody_received_by]->(r), (r)-[s]->(t), (n)-[:P4_has_time_span]->(v) return n,o,p,q,r,t,v"
+        return session.query(Entity.class,cypher,new HashMap<>(1))
+
+
+    }
+
+    static private Iterable<Entity> query3(Session session){
+
+        String cypher = "MATCH (n)-[m]->(o)  , (n)-[:P2_has_type]->(p) where o.name = 'Apocalypse of Lorvao' return n,o,p"
+        return session.query(Entity.class,cypher,new HashMap<>(1))
+
+
+    }
+
+    static private Iterable<Entity> query4(Session session){
+
+        String cypher = "MATCH (n)-[m]->(o)  , (n)-[p]->(q), (q)-[r]->(s) where o.name = 'Apocalypse of Lorvao' AND q.name = 'Miniature' return n,o,q,s"
+        return session.query(Entity.class,cypher,new HashMap<>(1))
+
+
+    }
+
+    static private Iterable<Entity> query5(Session session){
+
+        String cypher = "MATCH (n)-[m]->(o)  , (n)-[p]->(q), (q)-[r]->(s), (s)-[:P2_has_type]->(u), (s)-[t]->(v) where o.name = 'Apocalypse of Lorvao' AND u.name = 'Fonds' return n,o,q,s,u,v"
+        return session.query(Entity.class,cypher,new HashMap<>(1))
+
+
+    }
+
+
 }
