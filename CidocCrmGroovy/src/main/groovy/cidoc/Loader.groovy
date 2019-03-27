@@ -232,6 +232,9 @@ class Loader {
 
         E74_Group e74 = new E74_Group()
 
+        PC14_Carried_Out_By pc14 = new PC14_Carried_Out_By()
+        PC14_Carried_Out_By pc14_2 = new PC14_Carried_Out_By()
+
 
 
         e55.setName("Information dessimination")
@@ -263,6 +266,9 @@ class Loader {
 
         e74.setName("Group")
 
+        pc14.setName("P14 Carried Out By")
+        pc14_2.setName("P14 Carried Out By")
+
         e12.p21.add(e55)
         e12.p21.add(e55_2)
         e12.p108.add(e84E33)
@@ -289,11 +295,19 @@ class Loader {
         e74.p107.add(e40)
 
 
+        pc14.p01 = e12
+        pc14.p02 = e40
+        pc14.p14_1 = e55_3
+
+        pc14_2.p01 = e12
+        pc14_2.p02 = e21_2
+        pc14_2.p14_1 = e55_4
 
 
 
-        e12.p14_1(e40,e55_3)
-        e12.p14_1(e21_2,e55_4)
+
+        //e12.p14_1(e40,e55_3)
+        //e12.p14_1(e21_2,e55_4)
 
         session.save(e55)
         session.save(e55_2)
@@ -314,6 +328,8 @@ class Loader {
         session.save(e21)
         session.save(e21_2)
         session.save(e74)
+        session.save(pc14)
+        session.save(pc14_2)
 
         txn.commit()
 
