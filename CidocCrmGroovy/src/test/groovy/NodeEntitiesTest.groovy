@@ -73,56 +73,7 @@ class NodeEntitiesTest {
 
     }
 
-    @Test
-    void ternaryTest() {
 
-        E7_Activity e7 = new E7_Activity()
-        E40_Legal_Body e40 = new E40_Legal_Body()
-        E55_Type e55 = new E55_Type()
-        e7.p14_1(e40,e55)
-
-        session.save(e7)
-        session.save(e40)
-        session.save(e55)
-        Collection<Entity> entities
-        entities = session.loadAll(Entity)
-        assert entities.size() == 3
-
-        Collection<E7_Activity> e7s
-        e7s = session.loadAll(E7_Activity)
-        ArrayList<E7_Activity> e7Array
-        e7Array = (E7_Activity[]) e7s.toArray()
-        Collection<E40_Legal_Body> e40s
-        e40s = session.loadAll(E40_Legal_Body)
-        ArrayList<E40_Legal_Body> e40Array
-        e40Array = (E40_Legal_Body[]) e40s.toArray()
-
-        assert e7Array.get(0).p14.get(0) == e40
-        assert e40Array.get(0).p14_1 == e55
-
-
-        E40_Legal_Body e40_2 = new E40_Legal_Body()
-        E55_Type e55_2 = new E55_Type()
-        e7.p14_1(e40_2,e55_2)
-
-        session.save(e7)
-        session.save(e40_2)
-        session.save(e55_2)
-
-        entities= session.loadAll(Entity)
-        assert entities.size() == 5
-
-        e7s = session.loadAll(E7_Activity)
-        e7Array = (E7_Activity[]) e7s.toArray()
-        e40s = session.loadAll(E40_Legal_Body)
-        e40Array = (E40_Legal_Body[]) e40s.toArray()
-
-        assert e7Array.get(0).p14.get(0) == e40
-        assert e40Array.get(0).p14_1 == e55
-
-
-
-    }
 
 
   /*  GraphDatabaseService dummy
