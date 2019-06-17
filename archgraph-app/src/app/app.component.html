@@ -1,0 +1,31 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    Welcome to {{ title }}!
+  </h1>
+</div>
+<div>
+  <template #messagecontainer>  </template>
+  <button (click)="createComponent(0,cidocEntities)">Component Test</button>
+  <button (click)="get_json()">Display Entities</button>
+  <button (click)="post_json()">Send Entities</button>
+  <table>
+    <thead>
+      <tr>           
+       <th *ngFor="let head of items[0] | keys">{{head}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of items; let i = index">           
+        <td *ngFor="let list of item | keys" >{{item[list]}}</td>
+        <button (click)='createComponent(i,cidocEntities)'>Component Test</button>
+      </tr>
+    </tbody>
+  </table>
+  <!--<ul class="list-group">
+    <li *ngFor="let object of objects" class="list-group-items">
+      <span> {{object}}</span>
+    </li>
+  </ul>!-->
+<div>
+<router-outlet></router-outlet>
