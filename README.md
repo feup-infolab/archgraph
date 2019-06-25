@@ -1,4 +1,4 @@
-# archgraph-tpdl
+# archgraph
 
 Project context
 Over the years the National Archive of Torre do Tombo has been acquiring a unique collection of historical and contemporary objects. In his possession he has original documents from the 9th century to the present day. This institution has, over the years, been describing all the cultural objects it has in its possession, and this is one of the tasks that has the most human resources allocated.
