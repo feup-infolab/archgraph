@@ -1,7 +1,6 @@
 package cidoc.nodeTraits
 
-import cidoc.nodeEntities.E1_Crm_Entity
-import cidoc.nodeEntities.E55_Type
+
 import groovy.transform.CompileStatic
 import org.neo4j.ogm.annotation.Relationship
 

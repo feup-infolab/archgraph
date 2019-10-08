@@ -4,8 +4,6 @@ import cidoc.nodeEntities.Xsd_String
 import groovy.transform.CompileStatic
 import org.neo4j.ogm.annotation.Relationship
 
-import javax.management.relation.Relation
-
 @CompileStatic
 trait E70_Thing_T implements E77_Persistent_Item_T{
 

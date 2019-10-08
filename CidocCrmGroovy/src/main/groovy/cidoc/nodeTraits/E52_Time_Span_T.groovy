@@ -1,10 +1,8 @@
 package cidoc.nodeTraits
 
 import cidoc.nodeEntities.Xsd_Date
-import cidoc.nodeEntities.Xsd_Date
 import groovy.transform.CompileStatic
 import org.neo4j.ogm.annotation.Relationship
-
 
 @CompileStatic
 trait E52_Time_Span_T implements E1_CRM_Entity_T{

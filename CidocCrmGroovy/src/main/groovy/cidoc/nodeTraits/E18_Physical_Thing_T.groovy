@@ -4,8 +4,6 @@ import cidoc.nodeEntities.Xsd_String
 import groovy.transform.CompileStatic
 import org.neo4j.ogm.annotation.Relationship
 
-import javax.management.relation.Relation
-
 @CompileStatic
 trait E18_Physical_Thing_T implements E72_Legal_Object_T, E92_Spacetime_Volume_T{
 

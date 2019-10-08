@@ -1,58 +1,29 @@
 package cidoc.nodeTraits
 
 import cidoc.nodeEntities.Xsd_String
+import com.github.eugene.kamenev.orient.graph.Vertex
 import groovy.transform.CompileStatic
-import org.neo4j.ogm.annotation.NodeEntity
-import org.neo4j.ogm.annotation.Relationship
+import lombok.Getter
 
-import javax.management.relation.Relation
-
+@Vertex
 @CompileStatic
 trait E1_CRM_Entity_T {
-
-
+    @Getter
     static Object P1_is_identified_by_t = E41_Appellation_T.class
-
-    @Relationship(type="P1_is_identified_by")
-    private ArrayList<E41_Appellation_T> P1_is_identified_by = new ArrayList<>()
-
-    ArrayList<E41_Appellation_T> getP1_is_identified_by(){
-        return P1_is_identified_by
-    }
-
+    @Getter
     static Object P2_has_type_t = E55_Type_T.class
-
-    @Relationship(type="P2_has_type")
-    private ArrayList<E55_Type_T> P2_has_type = new ArrayList<>()
-
-    ArrayList<E55_Type_T> getP2_has_type(){
-        return P2_has_type
-    }
-
-    //ArrayList<E55_Type_T> getP2_has_type(){
-    //    return P2_has_type
-    //}
-
-    @Relationship(type="AP12_has_level_of_description")
-    private ArrayList<E55_Type_T> AP12_has_level_of_description = new ArrayList<>()
-
-    ArrayList<E55_Type_T> getAP12_has_level_of_description(){
-        return AP12_has_level_of_description
-    }
+    @Getter
     static Object AP12_has_level_of_description_t = E55_Type_T.class
 
-    @Relationship(type="P3_has_note")
+    private ArrayList<E41_Appellation_T> P1_is_identified_by = new ArrayList<>()
+    private ArrayList<E55_Type_T> P2_has_type = new ArrayList<>()
+    private ArrayList<E55_Type_T> AP12_has_level_of_description = new ArrayList<>()
+
     Xsd_String P3_has_note
 
-    Xsd_String getP3_has_note(){
-        return P3_has_note
+    static mapping = {
+        P1_is_identified_by_t(edge: P1_is_identified_by_t)
+        P2_has_type(edge: P2_has_type_t)
+        AP12_has_level_of_description(edge: AP12_has_level_of_description_t)
     }
-
-    void setP3_has_note(Xsd_String p3){
-        P3_has_note = p3
-    }
-
-
-
-
 }

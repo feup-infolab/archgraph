@@ -20,14 +20,44 @@ In order to have a data validation and a cleaner implementation code, an ontolog
 
 Both Ontologies, EXT and Data Object, are not the final versions, but are both in active development.
 
-## Installation
+## Mac Installation
 
-(Mac)
-`brew install groovy gradle`
+Install Groovy and Gradle
 
-add to .bash_profile:
+```shell script
+brew install groovy gradle
+npm install tslint -g
+npm install eslint -g
+```
+
+Add to .bash_profile:
 
 ```shell script
 export GROOVY_HOME=/usr/local/Cellar/groovysdk/2.5.8/
 export PATH=${PATH}:$GROOVY_HOME/bin
 ```
+
+### Solutions to common errors 
+
+If you encounter this error:
+
+```
+ Error: Cask java11 exists in multiple taps:
+ homebrew/cask-versions/java11
+ caskroom/versions/java11
+```
+
+Run this: 
+```shell script
+brew untap homebrew/cask-versions
+brew untap caskroom/versions
+brew tap homebrew/cask-versions
+brew cask install java11
+```
+
+## IntelliJ Configuration
+
+1. Open the archgraph project. 
+2. Expand the CidocCrmGroovy folder and right click on the build.gradle file
+3. Select Import Gradle Project  
+
