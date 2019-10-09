@@ -1,5 +1,5 @@
 
-
+/*
 import cidoc.nodeEntities.E1_Crm_Entity
 import cidoc.nodeEntities.E40_Legal_Body
 import cidoc.nodeEntities.E41_Appellation
@@ -76,7 +76,7 @@ class NodeEntitiesTest {
 
 
 
-  /*  GraphDatabaseService dummy
+    GraphDatabaseService dummy
 
     def setup(){
         dummy = graphDatabaseService
@@ -136,6 +136,6 @@ class NodeEntitiesTest {
         e1.p1.size() == 1
         e1.p1.get(0) == e41
 
-    }*/
+    }
 
-}
+}*/

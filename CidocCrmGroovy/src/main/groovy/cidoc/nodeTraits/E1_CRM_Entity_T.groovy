@@ -22,8 +22,10 @@ trait E1_CRM_Entity_T {
     Xsd_String P3_has_note
 
     static mapping = {
-        P1_is_identified_by_t(edge: P1_is_identified_by_t)
+        P1_is_identified_by(edge: P1_is_identified_by_t)
         P2_has_type(edge: P2_has_type_t)
         AP12_has_level_of_description(edge: AP12_has_level_of_description_t)
     }
+
+
 }
