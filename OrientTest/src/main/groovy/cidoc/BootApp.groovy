@@ -1,5 +1,7 @@
-package cidoc;
+package cidoc
 
+import cidoc.nodeEntities.E1_CRM_Entity
+import cidoc.nodeEntities.E55_Type;
 import com.tinkerpop.blueprints.impls.orient.OrientGraphFactory;
 import groovy.transform.CompileStatic;
 import org.springframework.beans.factory.annotation.Autowired
@@ -25,7 +27,10 @@ class BootApp extends SpringBootServletInitializer implements ApplicationListene
     @Override
     void onApplicationEvent(ContextRefreshedEvent event) {
         graphFactory.withTransaction {
+            def first = new E1_CRM_Entity()
+            def second = new E55_Type()
 
+            def e = first.p2_has_type.add(second)
         }
     }
 
