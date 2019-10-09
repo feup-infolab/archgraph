@@ -1,12 +1,12 @@
 package cidoc.nodeEntities
 
 import cidoc.nodeTraits.E1_CRM_Entity_T
+import com.github.eugene.kamenev.orient.graph.Vertex
 import groovy.transform.CompileStatic
-import org.neo4j.ogm.annotation.NodeEntity
 
 
 @CompileStatic
-@NodeEntity
+@Vertex
 class E1_Crm_Entity extends Entity implements E1_CRM_Entity_T{
 
 

@@ -2,10 +2,10 @@ package cidoc.nodeEntities
 
 import cidoc.nodeTraits.E55_Type_T
 import groovy.transform.CompileStatic
-import org.neo4j.ogm.annotation.NodeEntity
+import com.github.eugene.kamenev.orient.graph.Vertex
 
 @CompileStatic
-@NodeEntity
+@Vertex
 class E55_Type extends Entity implements E55_Type_T {
 
 

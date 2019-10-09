@@ -1,11 +1,9 @@
-import cidoc.Loader
 import cidoc.nodeEntities.E1_Crm_Entity
-import com.sun.tools.javac.code.Lint
 
 E1_Crm_Entity e1 = new E1_Crm_Entity()
 println(e1.p1_is_identified_by_t)
 
-Loader l = new Loader()
+// Loader l = new Loader()
 
 //l.getAllRelations("E12_Production")
 /*ArrayList<String> s = new ArrayList<>()

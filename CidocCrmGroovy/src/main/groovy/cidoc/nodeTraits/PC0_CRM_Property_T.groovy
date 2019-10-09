@@ -2,12 +2,12 @@ package cidoc.nodeTraits
 
 
 import groovy.transform.CompileStatic
-import org.neo4j.ogm.annotation.Relationship
+
 
 @CompileStatic
 trait PC0_CRM_Property_T {
 
-    @Relationship(type="P01_has_domain")
+    
     private E1_CRM_Entity_T P01_has_domain
 
     E1_CRM_Entity_T getP01_has_domain(){
@@ -21,7 +21,7 @@ trait PC0_CRM_Property_T {
 
     static Object P01_has_domain_t = E1_CRM_Entity_T.class
 
-    @Relationship(type="P02_has_range")
+    
     private E1_CRM_Entity_T P02_has_range
 
     E1_CRM_Entity_T getP02_has_range(){

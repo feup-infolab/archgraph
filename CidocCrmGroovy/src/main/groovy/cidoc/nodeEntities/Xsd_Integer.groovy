@@ -1,10 +1,10 @@
 package cidoc.nodeEntities
 
-import org.neo4j.ogm.annotation.GeneratedValue
-import org.neo4j.ogm.annotation.Id
-import org.neo4j.ogm.annotation.NodeEntity
 
-@NodeEntity
+
+import com.github.eugene.kamenev.orient.graph.Vertex
+
+@Vertex
 class Xsd_Integer extends Entity{
 
 

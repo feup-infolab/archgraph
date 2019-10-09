@@ -1,13 +1,10 @@
-import cidoc.Loader
-import org.codehaus.jackson.JsonNode
 import ratpack.http.MutableHeaders
-import ratpack.http.client.ReceivedResponse
 import ratpack.jackson.Jackson
 
 import static ratpack.groovy.Groovy.ratpack
 
-Loader l = new Loader()
-String json = l.getJsonLd()
+//Loader l = new Loader()
+//String json = l.getJsonLd()
 
 def helloHandler
 ratpack {

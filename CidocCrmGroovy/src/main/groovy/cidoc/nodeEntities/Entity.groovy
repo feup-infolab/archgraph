@@ -1,14 +1,15 @@
 package cidoc.nodeEntities
 
 import groovy.transform.CompileStatic;
-import org.neo4j.ogm.annotation.GeneratedValue;
-import org.neo4j.ogm.annotation.Id
-import org.neo4j.ogm.annotation.NodeEntity;
+import com.github.eugene.kamenev.orient.graph.Vertex
+import javax.persistence.GeneratedValue
+import javax.persistence.Id;
 
 @CompileStatic
-@NodeEntity
+@Vertex
 abstract class Entity {
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     private Long id
 
     Long getId(){

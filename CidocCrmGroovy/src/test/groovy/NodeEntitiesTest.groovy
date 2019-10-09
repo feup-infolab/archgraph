@@ -9,12 +9,7 @@ import cidoc.nodeEntities.Entity
 import cidoc.nodeTraits.E55_Type_T
 import org.junit.Before
 import org.junit.Rule
-import org.neo4j.graphdb.GraphDatabaseService
-import org.neo4j.graphdb.NotInTransactionException
-import org.neo4j.harness.junit.Neo4jRule
-import org.neo4j.ogm.config.Configuration
-import org.neo4j.ogm.session.Session
-import org.neo4j.ogm.session.SessionFactory
+
 import spock.lang.Shared
 import spock.lang.Specification
 import spock.lang.Unroll
@@ -27,16 +22,16 @@ class NodeEntitiesTest {
 
     @Rule
     @Delegate(interfaces = false)
-    public Neo4jRule neoServer = new Neo4jRule()
+    // public Neo4jRule neoServer = new Neo4jRule()
 
-    private Session session
+    // private Session session
 
     @Before
    void setup() throws Exception{
-     Configuration configuration = new Configuration.Builder().uri(neoServer.boltURI().toString()).build()
-        SessionFactory sessionFactory = new SessionFactory(configuration, "cidoc.nodeEntities")
-        session = sessionFactory.openSession()
-        session.purgeDatabase()
+     // Configuration configuration = new Configuration.Builder().uri(neoServer.boltURI().toString()).build()
+        //SessionFactory sessionFactory = new SessionFactory(configuration, "cidoc.nodeEntities")
+        // session = sessionFactory.openSession()
+        // session.purgeDatabase()
 
 
     }

@@ -2,12 +2,12 @@ package cidoc.nodeTraits
 
 import cidoc.nodeEntities.Xsd_Date
 import groovy.transform.CompileStatic
-import org.neo4j.ogm.annotation.Relationship
+
 
 @CompileStatic
 trait E52_Time_Span_T implements E1_CRM_Entity_T{
 
-    @Relationship(type = "P86_falls_within")
+    
     private ArrayList<E52_Time_Span_T> P86_falls_within = new ArrayList<>()
 
     ArrayList<E52_Time_Span_T> getP86_falls_within(){
@@ -17,7 +17,7 @@ trait E52_Time_Span_T implements E1_CRM_Entity_T{
     static Object P86_falls_within_t = E52_Time_Span_T.class
 
 
-    @Relationship(type="AP14_has_date")
+    
     Xsd_Date AP14_has_date
 
     Xsd_Date getAP14_has_date(){
@@ -28,7 +28,7 @@ trait E52_Time_Span_T implements E1_CRM_Entity_T{
         AP14_has_date = ap14
     }
 
-    @Relationship(type="AP15_has_date_of_description")
+    
     Xsd_Date AP15_has_date_of_description
 
     Xsd_Date getAP15_has_date_of_description(){
@@ -39,7 +39,7 @@ trait E52_Time_Span_T implements E1_CRM_Entity_T{
         AP15_has_date_of_description = ap15
     }
 
-    @Relationship(type="AP16_has_production_date")
+    
     Xsd_Date AP16_has_production_date
 
     Xsd_Date getAP16_has_production_date(){
@@ -50,7 +50,7 @@ trait E52_Time_Span_T implements E1_CRM_Entity_T{
         AP16_has_production_date = ap16
     }
 
-    @Relationship(type="AP17_has_last_modification")
+    
     Xsd_Date AP17_has_last_modification
 
     Xsd_Date getAP17_has_last_modification(){

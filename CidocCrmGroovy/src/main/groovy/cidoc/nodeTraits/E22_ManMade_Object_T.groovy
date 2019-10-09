@@ -2,12 +2,12 @@ package cidoc.nodeTraits
 
 import cidoc.nodeEntities.Xsd_String
 import groovy.transform.CompileStatic
-import org.neo4j.ogm.annotation.Relationship
+
 
 @CompileStatic
 trait E22_ManMade_Object_T implements E19_Physical_Object_T,E24_Physical_ManMade_Thing_T{
 
-    @Relationship(type="AP1_has_administrative_history")
+
     Xsd_String AP1_has_administrative_history
 
     Xsd_String getAP1_has_administrative_history(){
@@ -19,7 +19,7 @@ trait E22_ManMade_Object_T implements E19_Physical_Object_T,E24_Physical_ManMade
     }
 
 
-    @Relationship(type="AP2_has_archival_history")
+
     Xsd_String AP2_has_archival_history
 
     Xsd_String getAP2_has_archival_history(){
@@ -30,7 +30,7 @@ trait E22_ManMade_Object_T implements E19_Physical_Object_T,E24_Physical_ManMade
         AP2_has_archival_history  = Ap2
     }
 
-    @Relationship(type="AP3_has_scope")
+
     Xsd_String AP3_has_scope
 
     Xsd_String getAP3_has_scope(){
@@ -41,7 +41,7 @@ trait E22_ManMade_Object_T implements E19_Physical_Object_T,E24_Physical_ManMade
         AP3_has_scope = Ap3
     }
 
-    @Relationship(type="AP4_has_access_conditions")
+
     Xsd_String AP4_has_access_conditions
 
     Xsd_String getAP4_has_access_conditions(){
@@ -53,7 +53,7 @@ trait E22_ManMade_Object_T implements E19_Physical_Object_T,E24_Physical_ManMade
     }
 
 
-    @Relationship(type="AP5_has_copies")
+
     Xsd_String AP5_has_copies
 
     Xsd_String getAP5_has_copies(){
@@ -64,7 +64,7 @@ trait E22_ManMade_Object_T implements E19_Physical_Object_T,E24_Physical_ManMade
         AP5_has_copies = Ap5
     }
 
-    @Relationship(type="AP6_has_publication_note")
+
     Xsd_String AP6_has_publication_note
 
     Xsd_String getAP6_has_publication_note(){
@@ -75,7 +75,7 @@ trait E22_ManMade_Object_T implements E19_Physical_Object_T,E24_Physical_ManMade
         AP6_has_publication_note = Ap6
     }
 
-    @Relationship(type="AP7_has_publication_note")
+
     Xsd_String AP7_has_publication_note
 
     Xsd_String getAP7_has_publication_note(){
