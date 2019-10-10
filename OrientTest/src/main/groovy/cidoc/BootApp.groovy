@@ -26,12 +26,22 @@ class BootApp extends SpringBootServletInitializer implements ApplicationListene
      */
     @Override
     void onApplicationEvent(ContextRefreshedEvent event) {
+
+
         graphFactory.withTransaction {
             def first = new E1_CRM_Entity()
             def second = new E55_Type()
+            def third = new E1_CRM_Entity()
 
-            def e = first.p2_has_type.add(second)
-        }
+            def e = first.p2_has_type.add(second)}
+
+
+            def testdb = graphFactory
+            def test = graphFactory.findAll()
+            def test3 = graphFactory.getTx().getVertices()
+            def test4 = graphFactory.getTx().getVerticesOfClass("E55_Type")
+             println(test3 + test4)
+
     }
 
 
@@ -51,6 +61,7 @@ class BootApp extends SpringBootServletInitializer implements ApplicationListene
         def factory = new OrientGraphFactory("memory:test").setupPool(1, 20)
         factory.autoStartTx = false
         graphFactory = factory
+        factory
     }
 
     @Bean

@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9d9b75f2-02d4-4f3d-a4cd-8aa0ccbfd925" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../OrientTest/src/main/groovy/cidoc/SampleController.groovy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../OrientTest/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../OrientTest/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../OrientTest/src/main/groovy/cidoc/BootApp.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/../OrientTest/src/main/groovy/cidoc/BootApp.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../OrientTest/src/main/groovy/cidoc/nodeEntities/E1_CRM_Entity.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/../OrientTest/src/main/groovy/cidoc/nodeEntities/E1_CRM_Entity.groovy" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
