@@ -6,6 +6,7 @@
       <change beforePath="$PROJECT_DIR$/../OrientTest/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../OrientTest/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../OrientTest/src/main/groovy/cidoc/BootApp.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/../OrientTest/src/main/groovy/cidoc/BootApp.groovy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../OrientTest/src/main/groovy/cidoc/nodeEntities/E1_CRM_Entity.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/../OrientTest/src/main/groovy/cidoc/nodeEntities/E1_CRM_Entity.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../OrientTest/src/main/groovy/cidoc/nodeEntities/E55_Type.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/../OrientTest/src/main/groovy/cidoc/nodeEntities/E55_Type.groovy" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

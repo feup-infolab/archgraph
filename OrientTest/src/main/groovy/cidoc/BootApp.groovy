@@ -1,7 +1,10 @@
 package cidoc
 
 import cidoc.nodeEntities.E1_CRM_Entity
-import cidoc.nodeEntities.E55_Type;
+import cidoc.nodeEntities.E55_Type
+import cidoc.nodeEntities.P2_has_type_E2
+import cidoc.nodeTraits.E55_Type_T
+import com.tinkerpop.blueprints.impls.orient.OrientGraph;
 import com.tinkerpop.blueprints.impls.orient.OrientGraphFactory;
 import groovy.transform.CompileStatic;
 import org.springframework.beans.factory.annotation.Autowired
@@ -27,20 +30,32 @@ class BootApp extends SpringBootServletInitializer implements ApplicationListene
     @Override
     void onApplicationEvent(ContextRefreshedEvent event) {
 
-
-        graphFactory.withTransaction {
+            def db = graphFactory.getNoTx().rawGraph
+            if(!db.exists()){
+                db.create()
+            }
+            def orient = new OrientGraph(db,false)
+            orient.begin()
             def first = new E1_CRM_Entity()
             def second = new E55_Type()
             def third = new E1_CRM_Entity()
 
-            def e = first.p2_has_type.add(second)}
+            first.addEdge("e",second.vertexInstance,"P2_has_type_E2")
+            //third.addEdge("e",second.vertexInstance,"P2_has_type_E2")
+            orient.addVertex(third,"class",E1_CRM_Entity.class)
+          //  orient.addVertex(second)
+            //orient.addVertex(third)
+            orient.commit()
 
 
             def testdb = graphFactory
             def test = graphFactory.findAll()
-            def test3 = graphFactory.getTx().getVertices()
-            def test4 = graphFactory.getTx().getVerticesOfClass("E55_Type")
-             println(test3 + test4)
+            def test3 = orient.countEdges()
+            def test4 = orient.countVertices()
+            def test5 = orient.getVertices().findAll()
+             println(test5)
+             println(test4)
+
 
     }
 
