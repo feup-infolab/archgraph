@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fb65529b-1592-4303-b72e-724f61e58844" name="Default Changelist" comment="OrientTest">
+      <change beforePath="$PROJECT_DIR$/../CidocCrmGroovy/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../CidocCrmGroovy/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/cidoc/BootApp.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/cidoc/BootApp.groovy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/groovy/cidoc/nodeEntities/E1_CRM_Entity.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/cidoc/nodeEntities/E1_CRM_Entity.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/cidoc/nodeEntities/E55_Type.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/cidoc/nodeEntities/E55_Type.groovy" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -164,5 +168,22 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="LAST_COMMIT_MESSAGE" value="" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/groovy/cidoc/BootApp.groovy</url>
+          <line>55</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Remote">
+        <watch expression="((OrientGraphFactory)((java.util.ArrayList)test).get(0)).used" custom="com.tinkerpop.blueprints.impls.orient.OrientGraphFactory,java.util.ArrayList" />
+        <watch expression="test5" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>
