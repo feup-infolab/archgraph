@@ -10,7 +10,7 @@ import groovy.transform.CompileStatic
 @CompileStatic
 class E1_CRM_Entity implements E1_CRM_Entity_T{
 
-    List<E55_Type> P2_has_type = new ArrayList<>()
+    List<E55_Type_T> P2_has_type = new ArrayList<>()
 
 
 
