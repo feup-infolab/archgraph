@@ -6,7 +6,7 @@ import com.github.eugene.kamenev.orient.graph.Vertex
 
 @CompileStatic
 @Vertex
-class E35_Title extends Entity implements E35_Title_T{
+class E35_Title implements E35_Title_T{
 
 
 

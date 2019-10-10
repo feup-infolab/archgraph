@@ -7,17 +7,14 @@ import cidoc.nodeTraits.E55_Type_T
 import com.github.eugene.kamenev.orient.graph.Vertex
 import groovy.transform.CompileStatic
 import lombok.Getter
+import lombok.Setter
 
 import javax.persistence.GeneratedValue
 import javax.persistence.Id
 
 @CompileStatic
 @Vertex
-class E1_Crm_Entity extends Entity implements E1_CRM_Entity_T{
-    @Id
-    @GeneratedValue
-    private Long id
-
+class E1_Crm_Entity implements E1_CRM_Entity_T{
     @Getter
     private String name
 

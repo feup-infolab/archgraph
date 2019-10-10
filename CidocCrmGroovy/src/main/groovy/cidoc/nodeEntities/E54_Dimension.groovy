@@ -6,5 +6,5 @@ import com.github.eugene.kamenev.orient.graph.Vertex
 
 @CompileStatic
 @Vertex
-class E54_Dimension extends Entity implements E54_Dimension_T {
+class E54_Dimension implements E54_Dimension_T {
 }

@@ -6,5 +6,5 @@ import groovy.transform.CompileStatic
 
 @Vertex
 @CompileStatic
-class AE1_Level_of_Description extends Entity implements AE1_Level_of_Description_T{
+class AE1_Level_of_Description implements AE1_Level_of_Description_T{
 }

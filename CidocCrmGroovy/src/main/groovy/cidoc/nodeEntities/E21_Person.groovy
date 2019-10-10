@@ -6,5 +6,5 @@ import com.github.eugene.kamenev.orient.graph.Vertex
 
 @CompileStatic
 @Vertex
-class E21_Person extends Entity implements E21_Person_T{
+class E21_Person implements E21_Person_T{
 }

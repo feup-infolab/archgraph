@@ -6,7 +6,7 @@ import com.github.eugene.kamenev.orient.graph.Vertex
 
 @CompileStatic
 @Vertex
-class E33_Linguistic_Object extends Entity implements E33_Linguistic_Object_T{
+class E33_Linguistic_Object implements E33_Linguistic_Object_T{
 
 
 }

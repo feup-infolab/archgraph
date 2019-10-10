@@ -6,5 +6,5 @@ import com.github.eugene.kamenev.orient.graph.Vertex
 
 @CompileStatic
 @Vertex
-class E42_Identifier extends Entity implements E42_Identifier_T{
+class E42_Identifier implements E42_Identifier_T{
 }

@@ -7,5 +7,5 @@ import com.github.eugene.kamenev.orient.graph.Vertex
 
 @CompileStatic
 @Vertex
-class E12_Production extends Entity implements E12_Production_T{
+class E12_Production implements E12_Production_T{
 }

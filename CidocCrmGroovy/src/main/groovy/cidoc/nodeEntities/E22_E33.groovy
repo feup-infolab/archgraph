@@ -7,7 +7,7 @@ import com.github.eugene.kamenev.orient.graph.Vertex
 
 @CompileStatic
 @Vertex
-class E22_E33 extends Entity implements E22_ManMade_Object_T, E33_Linguistic_Object_T{
+class E22_E33 implements E22_ManMade_Object_T, E33_Linguistic_Object_T{
 
     
 }

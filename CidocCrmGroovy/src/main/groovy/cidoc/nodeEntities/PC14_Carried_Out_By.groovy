@@ -7,7 +7,7 @@ import com.github.eugene.kamenev.orient.graph.Vertex
 
 @CompileStatic
 @Vertex
-class PC14_Carried_Out_By extends Entity implements PC14_Carried_Out_By_T{
+class PC14_Carried_Out_By implements PC14_Carried_Out_By_T{
 
 
 }

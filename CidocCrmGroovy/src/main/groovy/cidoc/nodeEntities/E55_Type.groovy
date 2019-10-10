@@ -6,7 +6,7 @@ import com.github.eugene.kamenev.orient.graph.Vertex
 
 @CompileStatic
 @Vertex
-class E55_Type extends Entity implements E55_Type_T {
+class E55_Type implements E55_Type_T {
 
 
 

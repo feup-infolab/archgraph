@@ -7,7 +7,7 @@ import com.github.eugene.kamenev.orient.graph.Vertex
 
 @CompileStatic
 @Vertex
-class E84_E33 extends Entity implements E84_Information_Carrier_T, E33_Linguistic_Object_T{
+class E84_E33 implements E84_Information_Carrier_T, E33_Linguistic_Object_T{
 
 
 }

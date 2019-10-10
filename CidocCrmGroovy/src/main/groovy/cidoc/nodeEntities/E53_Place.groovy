@@ -6,7 +6,7 @@ import com.github.eugene.kamenev.orient.graph.Vertex
 
 @CompileStatic
 @Vertex
-class E53_Place extends Entity implements E53_Place_T{
+class E53_Place implements E53_Place_T{
 
 
 }

@@ -6,6 +6,6 @@ import com.github.eugene.kamenev.orient.graph.Vertex
 
 @CompileStatic
 @Vertex
-class E28_Conceptual_Object extends Entity implements E28_Conceptual_Object_T{
+class E28_Conceptual_Object implements E28_Conceptual_Object_T{
 
 }

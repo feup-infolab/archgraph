@@ -6,5 +6,5 @@ import com.github.eugene.kamenev.orient.graph.Vertex
 
 @CompileStatic
 @Vertex
-class E40_Legal_Body extends Entity implements E40_Legal_Body_T{
+class E40_Legal_Body implements E40_Legal_Body_T{
 }

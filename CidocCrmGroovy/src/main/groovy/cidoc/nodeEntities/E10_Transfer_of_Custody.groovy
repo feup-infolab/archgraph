@@ -6,6 +6,6 @@ import groovy.transform.CompileStatic
 
 @CompileStatic
 @Vertex
-class E10_Transfer_of_Custody extends Entity implements E10_Transfer_of_Custody_T{
+class E10_Transfer_of_Custody implements E10_Transfer_of_Custody_T{
 
 }

@@ -8,7 +8,7 @@ import com.github.eugene.kamenev.orient.graph.Vertex
 
 @CompileStatic
 @Vertex
-class E52_Time_Span extends Entity implements E52_Time_Span_T {
+class E52_Time_Span implements E52_Time_Span_T {
 
 
 }
