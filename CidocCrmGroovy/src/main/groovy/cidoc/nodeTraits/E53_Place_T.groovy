@@ -5,7 +5,6 @@ import groovy.transform.CompileStatic
 
 @CompileStatic
 trait E53_Place_T implements E1_CRM_Entity_T{
-
     
     private ArrayList<E41_Appellation_T> P87_is_identified_by = new ArrayList<>()
 

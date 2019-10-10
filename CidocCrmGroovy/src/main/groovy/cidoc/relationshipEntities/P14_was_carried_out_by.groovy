@@ -8,6 +8,8 @@ import cidoc.nodeEntities.Entity
 import cidoc.nodeTraits.E39_Actor_T
 import cidoc.nodeTraits.E55_Type_T
 import cidoc.nodeTraits.E7_Activity_T
+import lombok.Getter
+import lombok.Setter
 
 import javax.persistence.GeneratedValue
 import javax.persistence.Id
@@ -15,6 +17,8 @@ import javax.persistence.Id
 class P14_was_carried_out_by {
     @Id
     @GeneratedValue
+    @Getter
+    @Setter
     private Long id
 
     // @StartNode E12_Production e7_activity_t7
@@ -22,7 +26,6 @@ class P14_was_carried_out_by {
     // @EndNode E40_Legal_Body e39_actor_t
 
     E55_Type_T p14_1_in_the_role_of
-
 
 
     P14_was_carried_out_by(){}
