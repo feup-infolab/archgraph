@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="CidocCrmGroovy_main" target="1.8" />
+      <module name="CidocCrmGroovy_test" target="1.8" />
+      <module name="com.github.feupinfolab.archgraph.main" target="11" />
+      <module name="com.github.feupinfolab.archgraph.main_main" target="1.8" />
+      <module name="com.github.feupinfolab.archgraph.main_test" target="1.8" />
+      <module name="com.github.feupinfolab.archgraph.test" target="11" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

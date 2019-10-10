@@ -2,9 +2,111 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9d9b75f2-02d4-4f3d-a4cd-8aa0ccbfd925" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../OrientTest/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../OrientTest/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OrientTest/src/main/groovy/cidoc/nodeEntities/E1_CRM_Entity.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/../OrientTest/src/main/groovy/cidoc/nodeEntities/E1_CRM_Entity.groovy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.8/fileContent/annotation-processors.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.8/fileContent/annotation-processors.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.8/fileContent/fileContent.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.8/fileContent/fileContent.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.8/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.8/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.8/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.8/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.8/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.8/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.8/taskHistory/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.8/taskHistory/taskHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.8/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.8/taskHistory/taskHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CidocCrmGroovy.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CidocCrmGroovy.ipr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CidocCrmGroovy.iws" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/Loader.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/cidoc/edges/P1_is_identified_by.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/cidoc/nodeTraits/E10_Transfer_of_Custody_T.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/cidoc/nodeTraits/E11_Modification_T.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/cidoc/nodeTraits/E12_Production_T.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/cidoc/nodeTraits/E19_Physical_Object_T.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/cidoc/nodeTraits/E20_Biological_Object_T.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/cidoc/nodeTraits/E21_Person_T.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/cidoc/nodeTraits/E24_Physical_ManMade_Thing_T.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/cidoc/nodeTraits/E28_Conceptual_Object_T.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/cidoc/nodeTraits/E2_Temporal_Entity_T.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/cidoc/nodeTraits/E33_Linguistic_Object_T.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/cidoc/nodeTraits/E35_Title_T.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/cidoc/nodeTraits/E36_Visual_Item_T.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/cidoc/nodeTraits/E38_Image_T.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/cidoc/nodeTraits/E39_Actor_T.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/cidoc/nodeTraits/E40_Legal_Body_T.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/cidoc/nodeTraits/E41_Appellation_T.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/cidoc/nodeTraits/E42_Identifier_T.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/cidoc/nodeTraits/E4_Period_T.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/cidoc/nodeTraits/E52_Time_Span_T.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/cidoc/nodeTraits/E53_Place_T.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/cidoc/nodeTraits/E54_Dimension_T.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/cidoc/nodeTraits/E55_Type_T.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/cidoc/nodeTraits/E5_Event_T.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/cidoc/nodeTraits/E63_Beginning_of_Existence_T.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/cidoc/nodeTraits/E70_Thing_T.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/cidoc/nodeTraits/E71_Man_Made_Thing_T.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/cidoc/nodeTraits/E72_Legal_Object_T.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/cidoc/nodeTraits/E73_Information_Object_T.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/cidoc/nodeTraits/E74_Group_T.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/cidoc/nodeTraits/E77_Persistent_Item_T.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/cidoc/nodeTraits/E7_Activity_T.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/cidoc/nodeTraits/E84_Information_Carrier_T.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/cidoc/nodeTraits/E89_Propositional_Object_T.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/cidoc/nodeTraits/E90_Symbolic_Object_T.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/cidoc/nodeTraits/PC0_CRM_Property_T.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/cidoc/nodeTraits/PC102_has_title.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/cidoc/nodeTraits/PC14_Carried_Out_By_T.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/cidoc/nodes/AE1_Level_of_Description.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/cidoc/nodes/E10_Transfer_of_Custody.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/cidoc/nodes/E12_Production.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/cidoc/nodes/E1_CRM_Entity.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/cidoc/nodes/E21_Person.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/cidoc/nodes/E22_E33.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/cidoc/nodes/E22_E38.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/cidoc/nodes/E28_Conceptual_Object.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/cidoc/nodes/E33_Linguistic_Object.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/cidoc/nodes/E35_Title.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/cidoc/nodes/E40_Legal_Body.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/cidoc/nodes/E41_Appellation.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/cidoc/nodes/E42_Identifier.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/cidoc/nodes/E52_Time_Span.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/cidoc/nodes/E53_Place.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/cidoc/nodes/E54_Dimension.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/cidoc/nodes/E55_Type.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/cidoc/nodes/E5_Event.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/cidoc/nodes/E74_Group.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/cidoc/nodes/E7_Activity.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/cidoc/nodes/E84_E33.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/cidoc/nodes/PC14_Carried_Out_By.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/cidoc/relationshipEntities/P14_was_carried_out_by.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.ratpack/ratpack.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.test/groovy/Neo4JTest.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.test/groovy/NodeEntitiesTest.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/Test.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/cidoc/nodeEntities/E22_ManMade_Object.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/cidoc/nodeEntities/E56_Language.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/cidoc/nodeEntities/Entity.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/cidoc/nodeEntities/Xsd_Date.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/cidoc/nodeEntities/Xsd_Integer.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/cidoc/nodeEntities/Xsd_String.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/AE1_Level_of_Description_T.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E18_Physical_Thing_T.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E1_CRM_Entity_T.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E22_ManMade_Object_T.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E56_Language_T.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E57_Material_T.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E59_Primitive_Value_T.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E60_Number_T.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/E92_Spacetime_Volume_T.groovy" beforeDir="false" />
     </list>
+    <ignored path="$PROJECT_DIR$/.gradle/" />
+    <ignored path="$PROJECT_DIR$/build/" />
+    <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,8 +119,7 @@
     </execution>
   </component>
   <component name="DefaultGradleProjectSettings">
-    <option name="testRunner" value="GRADLE" />
-    <option name="delegatedBuild" value="true" />
+    <option name="isMigrated" value="true" />
   </component>
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
@@ -36,30 +137,18 @@
             <expand>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="CidocCrmGroovy" type="f1a62948:ProjectNode" />
+                <item name="com.github.feupinfolab.archgraph" type="f1a62948:ProjectNode" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="CidocCrmGroovy" type="f1a62948:ProjectNode" />
-                <item name="Source Sets" type="e897c970:GradleViewContributor$SourceSetsNode" />
+                <item name="com.github.feupinfolab.archgraph" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="CidocCrmGroovy" type="f1a62948:ProjectNode" />
-                <item name="Source Sets" type="e897c970:GradleViewContributor$SourceSetsNode" />
-                <item name="test" type="396b929e:GradleViewContributor$SourceSetNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="CidocCrmGroovy" type="f1a62948:ProjectNode" />
-                <item name="Source Sets" type="e897c970:GradleViewContributor$SourceSetsNode" />
-                <item name="test" type="396b929e:GradleViewContributor$SourceSetNode" />
-                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="CidocCrmGroovy" type="f1a62948:ProjectNode" />
-                <item name="Run Configurations" type="7b0102dc:RunConfigurationsNode" />
+                <item name="com.github.feupinfolab.archgraph" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="application" type="c8890929:TasksNode$1" />
               </path>
             </expand>
             <select />
@@ -68,6 +157,130 @@
       </state>
     </system>
   </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E41_Appellation.groovy">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="9" column="51" lean-forward="true" selection-start-line="9" selection-start-column="51" selection-end-line="9" selection-end-column="51" />
+              <folding>
+                <element signature="e#22#63#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E42_Identifier.groovy">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="4" column="38" selection-start-line="4" selection-start-column="38" selection-end-line="4" selection-end-column="38" />
+              <folding>
+                <element signature="e#21#61#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E52_Time_Span.groovy">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="5" column="38" selection-start-line="5" selection-start-column="38" selection-end-line="5" selection-end-column="38" />
+              <folding>
+                <element signature="e#22#61#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E53_Place.groovy">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="8" column="39" lean-forward="true" selection-start-line="8" selection-start-column="39" selection-end-line="8" selection-end-column="39" />
+              <folding>
+                <element signature="e#21#56#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E54_Dimension.groovy">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="4" column="38" selection-start-line="4" selection-start-column="38" selection-end-line="4" selection-end-column="38" />
+              <folding>
+                <element signature="e#21#60#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E55_Type.groovy">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="4" column="38" selection-start-line="4" selection-start-column="38" selection-end-line="4" selection-end-column="38" />
+              <folding>
+                <element signature="e#21#55#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E56_Language.groovy">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="4" column="38" selection-start-line="4" selection-start-column="38" selection-end-line="4" selection-end-column="38" />
+              <folding>
+                <element signature="e#21#59#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E74_Group.groovy">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+              <folding>
+                <element signature="e#21#56#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E84_E33.groovy">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+              <folding>
+                <element signature="e#21#68#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/PC14_Carried_Out_By.groovy">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="5" selection-start-line="5" selection-end-line="5" />
+              <folding>
+                <element signature="e#21#66#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -75,8 +288,106 @@
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>E1_CRM_Entity</find>
+      <find>E1_Crm_Entity</find>
+      <find>p2_has_type</find>
+      <find>DBConne</find>
+      <find>package nodeEntities</find>
+      <find>package nodeTraits</find>
+      <find>default</find>
+      <find>E22_E33</find>
+      <find>package com.github.feupinfolab.archgraph.main.cidoc.nodes</find>
+      <find>package com.github.feupinfolab.archgraph.main.cidoc.nodeTraits</find>
+      <find>package com.github.feupinfolab.archgraph.main.cidoc.relationshipEntities</find>
+      <find>package com.github.feupinfolab.archgraph.main.cidoc.dobject</find>
+      <find>package cidoc.dobject</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>E1_CRM_Entity</replace>
+      <replace>package com.github.feupinfolab.archgraph.main.cidoc.nodeTraits</replace>
+      <replace>package com.github.feupinfolab.archgraph.main.cidoc.nodes</replace>
+      <replace />
+      <replace>package cidoc.nodeTraits</replace>
+      <replace>package cidoc.relationshipEntities</replace>
+      <replace>package cidoc.dobject</replace>
+      <replace>package dataobject</replace>
+    </replaceStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/main/Loader.groovy" />
+        <option value="$PROJECT_DIR$/src/main/cidoc/edges/P1_is_identified_by.groovy" />
+        <option value="$PROJECT_DIR$/src/com.github.feup-infolab.archgraph.main/cidoc/edges/P1_is_identified_by.groovy" />
+        <option value="$PROJECT_DIR$/src/com.github.feupinfolab.archgraph.main/cidoc/nodes/AE1_Level_of_Description.groovy" />
+        <option value="$PROJECT_DIR$/src/com.github.feupinfolab.archgraph.main/cidoc/nodes/E1_CRM_Entity.groovy" />
+        <option value="$PROJECT_DIR$/src/com.github.feupinfolab.archgraph.main/cidoc/nodes/E5_Event.groovy" />
+        <option value="$PROJECT_DIR$/src/test/groovy/Neo4JTest.groovy" />
+        <option value="$PROJECT_DIR$/src/com.github.feupinfolab.archgraph.main/cidoc/edges/P1_is_identified_by.groovy" />
+        <option value="$PROJECT_DIR$/src/com.github.feupinfolab.archgraph.main/cidoc/nodeTraits/AE1_Level_of_Description_T.groovy" />
+        <option value="$PROJECT_DIR$/src/com.github.feupinfolab.archgraph.main/cidoc/relationshipEntities/P14_was_carried_out_by.groovy" />
+        <option value="$PROJECT_DIR$/src/com.github.feupinfolab.archgraph.main/db/DBConnection.groovy" />
+        <option value="$PROJECT_DIR$/src/com.github.feupinfolab.archgraph.main/dobject/DataObject.groovy" />
+        <option value="$PROJECT_DIR$/src/com.github.feupinfolab.archgraph.main/dobject/Xsd_Date.groovy" />
+        <option value="$PROJECT_DIR$/src/com.github.feupinfolab.archgraph.main/dobject/Xsd_Integer.groovy" />
+        <option value="$PROJECT_DIR$/src/com.github.feupinfolab.archgraph.main/dobject/Xsd_String.groovy" />
+        <option value="$PROJECT_DIR$/src/com.github.feupinfolab.archgraph.main/Loader.groovy" />
+        <option value="$PROJECT_DIR$/src/ratpack/ratpack.groovy" />
+        <option value="$PROJECT_DIR$/settings.gradle" />
+        <option value="$PROJECT_DIR$/java/com/github/feupinfolab/archgraph/main/db/DBConnection.groovy" />
+        <option value="$PROJECT_DIR$/java/com/github/feupinfolab/archgraph/main/Loader.groovy" />
+        <option value="$PROJECT_DIR$/build.gradle" />
+        <option value="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/Loader.groovy" />
+        <option value="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodeTraits/AE1_Level_of_Description_T.groovy" />
+        <option value="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/AE1_Level_of_Description.groovy" />
+        <option value="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/relationshipEntities/P14_was_carried_out_by.groovy" />
+        <option value="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/db/DBConnection.groovy" />
+        <option value="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/edges/P1_is_identified_by.groovy" />
+        <option value="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/dobject/DataObject.groovy" />
+        <option value="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E1_CRM_Entity.groovy" />
+        <option value="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E5_Event.groovy" />
+        <option value="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E7_Activity.groovy" />
+        <option value="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E10_Transfer_of_Custody.groovy" />
+        <option value="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E12_Production.groovy" />
+        <option value="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E21_Person.groovy" />
+        <option value="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E22_E33.groovy" />
+        <option value="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E22_E38.groovy" />
+        <option value="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E22_ManMade_Object.groovy" />
+        <option value="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E28_Conceptual_Object.groovy" />
+        <option value="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E33_Linguistic_Object.groovy" />
+        <option value="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E35_Title.groovy" />
+        <option value="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E40_Legal_Body.groovy" />
+        <option value="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E41_Appellation.groovy" />
+        <option value="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E42_Identifier.groovy" />
+        <option value="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E52_Time_Span.groovy" />
+        <option value="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E53_Place.groovy" />
+        <option value="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E54_Dimension.groovy" />
+        <option value="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E55_Type.groovy" />
+        <option value="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E56_Language.groovy" />
+        <option value="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E74_Group.groovy" />
+        <option value="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E84_E33.groovy" />
+        <option value="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/PC14_Carried_Out_By.groovy" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand />
+      <select />
+    </treeState>
+  </component>
+  <component name="PhpServers">
+    <servers />
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="y" value="23" />
+    <option name="width" value="1920" />
+    <option name="height" value="1057" />
   </component>
   <component name="ProjectId" id="1RtT3llOCfiqMpjFKdL9fQLbI2s" />
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -100,6 +411,161 @@
     </entry>
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <flattenPackages ProjectPane="false" />
+      <hideEmptyPackages ProjectPane="true" />
+      <abbreviatePackageNames ProjectPane="true" />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="com.github.feupinfolab.archgraph" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CidocCrmGroovy" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+            <path>
+              <item name="com.github.feupinfolab.archgraph" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CidocCrmGroovy" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="com.github.feupinfolab.archgraph" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CidocCrmGroovy" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="groovy" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="com.github.feupinfolab.archgraph" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CidocCrmGroovy" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="groovy" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="com.github.feupinfolab.archgraph" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CidocCrmGroovy" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="groovy" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="github" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="com.github.feupinfolab.archgraph" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CidocCrmGroovy" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="groovy" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="github" type="462c0819:PsiDirectoryNode" />
+              <item name="feupinfolab" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="com.github.feupinfolab.archgraph" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CidocCrmGroovy" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="groovy" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="github" type="462c0819:PsiDirectoryNode" />
+              <item name="feupinfolab" type="462c0819:PsiDirectoryNode" />
+              <item name="archgraph" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="com.github.feupinfolab.archgraph" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CidocCrmGroovy" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="groovy" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="github" type="462c0819:PsiDirectoryNode" />
+              <item name="feupinfolab" type="462c0819:PsiDirectoryNode" />
+              <item name="archgraph" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+            <path>
+              <item name="com.github.feupinfolab.archgraph" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CidocCrmGroovy" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="groovy" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="github" type="462c0819:PsiDirectoryNode" />
+              <item name="feupinfolab" type="462c0819:PsiDirectoryNode" />
+              <item name="archgraph" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="cidoc" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="com.github.feupinfolab.archgraph" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CidocCrmGroovy" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="groovy" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="github" type="462c0819:PsiDirectoryNode" />
+              <item name="feupinfolab" type="462c0819:PsiDirectoryNode" />
+              <item name="archgraph" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="cidoc" type="462c0819:PsiDirectoryNode" />
+              <item name="edges" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="com.github.feupinfolab.archgraph" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CidocCrmGroovy" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="groovy" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="github" type="462c0819:PsiDirectoryNode" />
+              <item name="feupinfolab" type="462c0819:PsiDirectoryNode" />
+              <item name="archgraph" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="cidoc" type="462c0819:PsiDirectoryNode" />
+              <item name="nodes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="com.github.feupinfolab.archgraph" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CidocCrmGroovy" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="groovy" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="github" type="462c0819:PsiDirectoryNode" />
+              <item name="feupinfolab" type="462c0819:PsiDirectoryNode" />
+              <item name="archgraph" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="cidoc" type="462c0819:PsiDirectoryNode" />
+              <item name="nodeTraits" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="com.github.feupinfolab.archgraph" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CidocCrmGroovy" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="groovy" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="github" type="462c0819:PsiDirectoryNode" />
+              <item name="feupinfolab" type="462c0819:PsiDirectoryNode" />
+              <item name="archgraph" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="cidoc" type="462c0819:PsiDirectoryNode" />
+              <item name="relationshipEntities" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="com.github.feupinfolab.archgraph" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CidocCrmGroovy" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="groovy" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="github" type="462c0819:PsiDirectoryNode" />
+              <item name="feupinfolab" type="462c0819:PsiDirectoryNode" />
+              <item name="archgraph" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="db" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+    </panes>
+  </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SearchEverywhereHistoryKey" value="ternary&#9;null&#9;null" />
@@ -107,18 +573,28 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1559122798011" />
     <property name="full.screen.before.presentation.mode" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../OrientTest" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/dobject" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.37702128" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.annotationProcessors" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
     </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/dobject" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="service" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/groovy" />
+      <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/src/main/dobject" />
+      <recent name="$PROJECT_DIR$/src/main/cidoc" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -133,39 +609,18 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Groovy.Test">
-    <configuration name="CidocCrmGroovy [compileGroovy]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+  <component name="RunManager" selected="Gradle.CidocCrmGroovy">
+    <configuration name="CidocCrmGroovy" type="GradleRunConfiguration" factoryName="Gradle" nameIsGenerated="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--stacktrace" />
+        <option name="scriptParameters" value="" />
         <option name="taskDescriptions">
           <list />
         </option>
         <option name="taskNames">
-          <list>
-            <option value="compileGroovy" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="CidocCrmGroovy [dependencies]" type="GradleRunConfiguration" factoryName="Gradle">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--stacktrace" />
-        <option name="taskDescriptions">
           <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="dependencies" />
-          </list>
         </option>
         <option name="vmOptions" value="" />
       </ExternalSystemSettings>
@@ -194,19 +649,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ruleset" type="GroovyScriptRunConfiguration" factoryName="Groovy" temporary="true">
-      <module name="CidocCrmGroovy_main" />
-      <setting name="path" value="file://$PROJECT_DIR$/src/main/groovy/ruleset.groovy" />
-      <setting name="vmparams" value="" />
-      <setting name="params" value="" />
-      <setting name="workDir" value="file://$PROJECT_DIR$/src/main/groovy" />
-      <setting name="debug" value="false" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="NodeEntitiesTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="CidocCrmGroovy_test" />
+      <module name="com.github.feupinfolab.archgraph.test" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="NodeEntitiesTest" />
       <option name="TEST_OBJECT" value="class" />
@@ -215,10 +659,8 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Gradle.CidocCrmGroovy [dependencies]" />
-      <item itemvalue="Gradle.CidocCrmGroovy [compileGroovy]" />
+      <item itemvalue="Gradle.CidocCrmGroovy" />
       <item itemvalue="Groovy.Test" />
-      <item itemvalue="Groovy.ruleset" />
       <item itemvalue="Groovy.ratpack" />
       <item itemvalue="JUnit.NodeEntitiesTest" />
     </list>
@@ -227,8 +669,6 @@
         <item itemvalue="Groovy.Test" />
         <item itemvalue="Groovy.ratpack" />
         <item itemvalue="JUnit.NodeEntitiesTest" />
-        <item itemvalue="Gradle.CidocCrmGroovy [compileGroovy]" />
-        <item itemvalue="Groovy.ruleset" />
       </list>
     </recent_temporary>
   </component>
@@ -244,6 +684,8 @@
       <updated>1550766422902</updated>
       <workItem from="1570485197784" duration="77000" />
       <workItem from="1570485727908" duration="1953000" />
+      <workItem from="1570716955690" duration="4621000" />
+      <workItem from="1570721632716" duration="942000" />
     </task>
     <servers />
   </component>
@@ -280,7 +722,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1953000" />
+    <option name="totallyTimeSpent" value="7516000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -291,6 +733,44 @@
       <is-autoscroll-to-source value="true" />
     </todo-panel>
   </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="23" width="1920" height="1057" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2518637" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="Capture Tool" order="4" />
+      <window_info id="UI Designer" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info id="simpleUML" order="7" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32908705" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32908705" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Build" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.32908705" />
+      <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Database Changes" order="11" />
+      <window_info anchor="bottom" id="Version Control" order="12" />
+      <window_info anchor="bottom" id="Floobits" order="13" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.24973376" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Maven" order="3" weight="0.32960597" />
+      <window_info anchor="right" id="Palette" order="4" />
+      <window_info anchor="right" id="Capture Analysis" order="5" />
+      <window_info anchor="right" id="Gradle" order="6" weight="0.32960597" />
+      <window_info anchor="right" id="Database" order="7" />
+      <window_info anchor="right" id="Palette&#9;" order="8" />
+      <window_info anchor="right" id="Theme Preview" order="9" />
+    </layout>
+  </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
@@ -300,6 +780,12 @@
         <entry key="MAIN">
           <value>
             <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
               <option name="COLUMN_ORDER" />
             </State>
           </value>
@@ -325,44 +811,52 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/groovy/NodeEntitiesTest.groovy</url>
+          <url>file://$PROJECT_DIR$/src/com.github.feupinfolab.archgraph.test/groovy/NodeEntitiesTest.groovy</url>
           <line>114</line>
+          <properties />
           <option name="timeStamp" value="24" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/groovy/cidoc/Loader.groovy</url>
-          <line>256</line>
+          <url>file://$PROJECT_DIR$/src/com.github.feupinfolab.archgraph.main/Loader.groovy</url>
+          <line>257</line>
+          <properties />
           <option name="timeStamp" value="87" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/groovy/cidoc/Loader.groovy</url>
-          <line>193</line>
+          <url>file://$PROJECT_DIR$/src/com.github.feupinfolab.archgraph.main/Loader.groovy</url>
+          <line>194</line>
+          <properties />
           <option name="timeStamp" value="111" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/ratpack/ratpack.groovy</url>
-          <line>29</line>
+          <url>file://$PROJECT_DIR$/src/com.github.feupinfolab.archgraph.ratpack/ratpack.groovy</url>
+          <line>31</line>
+          <properties />
           <option name="timeStamp" value="142" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/groovy/cidoc/Loader.groovy</url>
-          <line>89</line>
+          <url>file://$PROJECT_DIR$/src/com.github.feupinfolab.archgraph.main/Loader.groovy</url>
+          <line>90</line>
+          <properties />
           <option name="timeStamp" value="145" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/groovy/cidoc/Loader.groovy</url>
-          <line>81</line>
+          <url>file://$PROJECT_DIR$/src/com.github.feupinfolab.archgraph.main/Loader.groovy</url>
+          <line>82</line>
+          <properties />
           <option name="timeStamp" value="146" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/groovy/cidoc/nodeTraits/PC0_CRM_Property_T.groovy</url>
+          <url>file://$PROJECT_DIR$/src/com.github.feupinfolab.archgraph.main/cidoc/nodeTraits/PC0_CRM_Property_T.groovy</url>
           <line>2</line>
+          <properties />
           <option name="timeStamp" value="147" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
         <breakpoint type="java-exception">
           <dependency master-id="0" />
+          <properties />
         </breakpoint>
       </default-breakpoints>
     </breakpoint-manager>
@@ -377,6 +871,10 @@
         <watch expression="((HashMap)entities).entrySet().toArray()[0]" custom="java.util.HashMap" />
       </configuration>
     </watches-manager>
+  </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="breakpointCondition">
@@ -397,6 +895,336 @@
       </expression>
     </expressions>
   </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/cidoc/nodes/E1_CRM_Entity.groovy" />
+    <entry file="file://$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.test/groovy/Neo4JTest.groovy" />
+    <entry file="file://$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/cidoc/nodes/AE1_Level_of_Description.groovy" />
+    <entry file="file://$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/cidoc/nodeTraits/AE1_Level_of_Description_T.groovy" />
+    <entry file="file://$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/cidoc/relationshipEntities/P14_was_carried_out_by.groovy" />
+    <entry file="file://$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/db/DBConnection.groovy" />
+    <entry file="file://$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/dobject/DataObject.groovy" />
+    <entry file="file://$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/dobject/Xsd_Date.groovy" />
+    <entry file="file://$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/dobject/Xsd_Integer.groovy" />
+    <entry file="file://$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.ratpack/ratpack.groovy" />
+    <entry file="file://$PROJECT_DIR$/gradlew">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="8" lean-forward="true" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gradlew.bat">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/Loader.groovy" />
+    <entry file="file://$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/cidoc/edges/P1_is_identified_by.groovy" />
+    <entry file="file://$PROJECT_DIR$/java/com.github.feupinfolab.archgraph.main/dobject/Xsd_String.groovy" />
+    <entry file="file://$PROJECT_DIR$/gradle/config/groovyc.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CidocCrmGroovy.ipr" />
+    <entry file="file://$PROJECT_DIR$/CidocCrmGroovy.iws" />
+    <entry file="file://$PROJECT_DIR$/CidocCrmGroovy.iml" />
+    <entry file="file://$PROJECT_DIR$/settings.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="53" selection-start-column="53" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" selection-start-line="24" selection-end-line="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/Loader.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="467" column="40" selection-start-line="467" selection-start-column="40" selection-end-line="467" selection-end-column="40" />
+          <folding>
+            <element signature="e#47#124#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodeTraits/AE1_Level_of_Description_T.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/relationshipEntities/P14_was_carried_out_by.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="34" selection-start-line="2" selection-start-column="34" selection-end-line="2" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/edges/P1_is_identified_by.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="64" selection-start-line="5" selection-start-column="64" selection-end-line="5" selection-end-column="64" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/AE1_Level_of_Description.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="6" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
+          <folding>
+            <element signature="e#21#71#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/db/DBConnection.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+          <folding>
+            <element signature="e#50#113#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/dataobject/DataObject.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E7_Activity.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+          <folding>
+            <element signature="e#21#58#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E1_CRM_Entity.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+          <folding>
+            <element signature="e#21#60#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E5_Event.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="6" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
+          <folding>
+            <element signature="e#21#55#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E10_Transfer_of_Custody.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="14" lean-forward="true" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
+          <folding>
+            <element signature="e#21#70#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E12_Production.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="23" selection-start-line="3" selection-start-column="23" selection-end-line="3" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E21_Person.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="7" lean-forward="true" selection-start-line="6" selection-start-column="7" selection-end-line="6" selection-end-column="7" />
+          <folding>
+            <element signature="e#21#57#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E22_E33.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+          <folding>
+            <element signature="e#21#65#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E22_E38.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+          <folding>
+            <element signature="e#21#65#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E22_ManMade_Object.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E28_Conceptual_Object.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="52" lean-forward="true" selection-start-line="4" selection-start-column="52" selection-end-line="4" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E33_Linguistic_Object.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E35_Title.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+          <folding>
+            <element signature="e#21#56#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E40_Legal_Body.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" selection-start-line="3" selection-end-line="4" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E41_Appellation.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="51" lean-forward="true" selection-start-line="9" selection-start-column="51" selection-end-line="9" selection-end-column="51" />
+          <folding>
+            <element signature="e#22#63#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E42_Identifier.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="38" selection-start-line="4" selection-start-column="38" selection-end-line="4" selection-end-column="38" />
+          <folding>
+            <element signature="e#21#61#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E52_Time_Span.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="38" selection-start-line="5" selection-start-column="38" selection-end-line="5" selection-end-column="38" />
+          <folding>
+            <element signature="e#22#61#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E53_Place.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="39" lean-forward="true" selection-start-line="8" selection-start-column="39" selection-end-line="8" selection-end-column="39" />
+          <folding>
+            <element signature="e#21#56#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E54_Dimension.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="38" selection-start-line="4" selection-start-column="38" selection-end-line="4" selection-end-column="38" />
+          <folding>
+            <element signature="e#21#60#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E55_Type.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="38" selection-start-line="4" selection-start-column="38" selection-end-line="4" selection-end-column="38" />
+          <folding>
+            <element signature="e#21#55#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E56_Language.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="38" selection-start-line="4" selection-start-column="38" selection-end-line="4" selection-end-column="38" />
+          <folding>
+            <element signature="e#21#59#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E74_Group.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+          <folding>
+            <element signature="e#21#56#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E84_E33.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+          <folding>
+            <element signature="e#21#68#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/PC14_Carried_Out_By.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+          <folding>
+            <element signature="e#21#66#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="gradleExecuteTaskHistory">
+    <option value="$PROJECT_DIR$" />
+  </component>
   <component name="masterDetails">
     <states>
       <state key="ArtifactsStructureConfigurable.UI">
@@ -405,7 +1233,7 @@
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.2" />
+                <option value="0.37702128" />
               </list>
             </option>
           </splitter-proportions>
@@ -413,11 +1241,11 @@
       </state>
       <state key="FacetStructureConfigurable.UI">
         <settings>
-          <last-edited>No facets are configured</last-edited>
+          <last-edited>Detection</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.2" />
+                <option value="0.37702128" />
               </list>
             </option>
           </splitter-proportions>
@@ -429,7 +1257,7 @@
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.2" />
+                <option value="0.37702128" />
               </list>
             </option>
           </splitter-proportions>
@@ -437,11 +1265,11 @@
       </state>
       <state key="JdkListConfigurable.UI">
         <settings>
-          <last-edited>9</last-edited>
+          <last-edited>11.0.2</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.2" />
+                <option value="0.37702128" />
               </list>
             </option>
           </splitter-proportions>
@@ -449,12 +1277,11 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>CidocCrmGroovy_main|CidocCrmGroovy</last-edited>
+          <last-edited>com.github.feupinfolab.archgraph.main|com.github.feupinfolab.archgraph</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.2" />
-                <option value="0.6" />
+                <option value="0.37702128" />
               </list>
             </option>
           </splitter-proportions>
@@ -466,7 +1293,7 @@
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.2" />
+                <option value="0.37702128" />
               </list>
             </option>
           </splitter-proportions>

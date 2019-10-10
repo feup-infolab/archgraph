@@ -12,14 +12,11 @@ plugins {
     id 'groovy'
 }
 
-group 'CidocCrmGroovy'
+group 'com.github.feupinfolab.archgraph'
 version '1.0-SNAPSHOT'
-
 
 apply plugin: "io.ratpack.ratpack-groovy"
 apply plugin: "idea"
-
-
 
 repositories {
     mavenCentral()
@@ -49,8 +46,24 @@ dependencies {
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.10.0'
     // https://mvnrepository.com/artifact/org.objectweb.asm/com.springsource.org.objectweb.asm
     compile group: 'org.objectweb.asm', name: 'com.springsource.org.objectweb.asm', version: '3.2.0'
+    // https://mvnrepository.com/artifact/com.orientechnologies/orientdb-core
+    compile group: 'com.orientechnologies', name: 'orientdb-core', version: '2.2.37'
 }
 
 compileGroovy{
     groovyOptions.configurationScript = file("gradle/config/groovyc.groovy")
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src/groovy/com/github/feupinfolab/archgraph/main', 'src/groovy/com/github/feupinfolab/archgraph/ratpack']
+        }
+    }
+
+    test {
+        java {
+            srcDirs = ['src/groovy/com/github/feupinfolab/archgraph/test']
+        }
+    }
 }
