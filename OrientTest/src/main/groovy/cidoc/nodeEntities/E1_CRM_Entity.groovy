@@ -17,7 +17,6 @@ class E1_CRM_Entity implements E1_CRM_Entity_T{
     static mapping = {
         P2_has_type(edge: P2_has_type_E2)
     }
-
 }
 
 @Edge(from = E1_CRM_Entity_T, to = E55_Type_T)
