@@ -9,12 +9,12 @@ import lombok.Getter
 @CompileStatic
 trait E1_CRM_Entity_T {
 
-    List<E55_Type_T> P2_has_type = new ArrayList<>()
+    //List<E55_Type_T> P2_has_type = new ArrayList<>()
 
 
 
     static mapping = {
-        P2_has_type(edge: P2_has_type_E)
+       // P2_has_type(edge: P2_has_type_E)
     }
 
 }

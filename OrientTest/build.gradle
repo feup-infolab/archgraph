@@ -47,6 +47,13 @@ dependencies {
     // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.1.9.RELEASE'
 
+    // https://mvnrepository.com/artifact/javax.persistence/javax.persistence-api
+    compile group: 'javax.persistence', name: 'javax.persistence-api', version: '2.2'
+    // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.10.0'
+    // https://mvnrepository.com/artifact/org.objectweb.asm/com.springsource.org.objectweb.asm
+    compile group: 'org.objectweb.asm', name: 'com.springsource.org.objectweb.asm', version: '3.2.0'
+
 }
 
 compileGroovy{

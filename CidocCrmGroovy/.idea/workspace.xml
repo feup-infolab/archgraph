@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9d9b75f2-02d4-4f3d-a4cd-8aa0ccbfd925" name="Default Changelist" comment="" />
+    <list default="true" id="9d9b75f2-02d4-4f3d-a4cd-8aa0ccbfd925" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../OrientTest/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../OrientTest/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../OrientTest/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../OrientTest/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../OrientTest/src/main/groovy/cidoc/nodeEntities/E1_CRM_Entity.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/../OrientTest/src/main/groovy/cidoc/nodeEntities/E1_CRM_Entity.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../OrientTest/src/main/groovy/cidoc/nodeTraits/E1_CRM_Entity_T.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/../OrientTest/src/main/groovy/cidoc/nodeTraits/E1_CRM_Entity_T.groovy" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
