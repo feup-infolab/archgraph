@@ -4,6 +4,10 @@
     <exclude-output/>
     <orderEntry type="inheritedJdk"/>
     <content url="file://$MODULE_DIR$/">
+      <sourceFolder url="file://$MODULE_DIR$/src/groovy" type="java-resource"/>
+      <sourceFolder url="file://$MODULE_DIR$/src/groovy/com/github/feupinfolab/archgraph/main" type="java-resource"/>
+      <sourceFolder url="file://$MODULE_DIR$/src/groovy/com/github/feupinfolab/archgraph/ratpack" type="java-resource"/>
+      <sourceFolder url="file://$MODULE_DIR$/src/groovy/com/github/feupinfolab/archgraph/test" type="java-resource"/>
       <excludeFolder url="file://$MODULE_DIR$/.gradle"/>
       <excludeFolder url="file://$MODULE_DIR$/build"/>
     </content>

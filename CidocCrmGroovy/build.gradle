@@ -1,6 +1,9 @@
 buildscript {
     repositories {
         jcenter()
+        maven { url 'http://repo.spring.io/libs-release' }
+        mavenLocal()
+        mavenCentral()
     }
     dependencies {
         classpath "io.ratpack:ratpack-gradle:1.6.1"
@@ -17,14 +20,19 @@ version '1.0-SNAPSHOT'
 
 apply plugin: "io.ratpack.ratpack-groovy"
 apply plugin: "idea"
+apply plugin: 'war'
+apply plugin: 'groovy'
+apply plugin: 'idea'
 
 repositories {
     mavenCentral()
     jcenter()
 }
 
+def groovy = '2.4.4'
+
 dependencies {
-    compile "org.codehaus.groovy:groovy-all:2.4.15"
+    compile "org.codehaus.groovy:groovy-all:${groovy}"
     testCompile group: 'junit', name: 'junit', version: '4.12'
     testCompile group: 'org.slf4j', name: 'slf4j-simple', version: '1.6.1'
     testCompile "org.spockframework:spock-core:1.2-groovy-2.4"
@@ -54,16 +62,3 @@ compileGroovy{
     groovyOptions.configurationScript = file("gradle/config/groovyc.groovy")
 }
 
-sourceSets {
-    main {
-        java {
-            srcDirs = ['src/groovy/com/github/feupinfolab/archgraph/main', 'src/groovy/com/github/feupinfolab/archgraph/ratpack']
-        }
-    }
-
-    test {
-        java {
-            srcDirs = ['src/groovy/com/github/feupinfolab/archgraph/test']
-        }
-    }
-}
