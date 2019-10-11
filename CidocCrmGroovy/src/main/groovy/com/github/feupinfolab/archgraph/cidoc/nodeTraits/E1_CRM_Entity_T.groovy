@@ -16,9 +16,9 @@ import lombok.Setter
 trait E1_CRM_Entity_T {
     String name
 
-    List<E41_Appellation_T> isIdentifiedBy = new ArrayList<>()
-    List<E55_Type_T> hasType = new LinkedList<>()
-    List<E55_Type_T> hasLevelOfDescription = new ArrayList<>()
+    List<E41_Appellation_T> isIdentifiedBy
+    List<E55_Type_T> hasType
+    List<E55_Type_T> hasLevelOfDescription
 
     Xsd_String P3_has_note
 

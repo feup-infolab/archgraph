@@ -11,5 +11,4 @@ import lombok.Setter
 @Getter
 @Setter
 class E1_CRM_Entity implements E1_CRM_Entity_T{
-
 }
