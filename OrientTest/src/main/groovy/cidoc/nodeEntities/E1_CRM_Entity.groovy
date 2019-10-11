@@ -23,6 +23,4 @@ class E1_CRM_Entity implements E1_CRM_Entity_T{
 @Edge(from = E1_CRM_Entity_T, to = E55_Type_T)
 @CompileStatic
 class P2_has_type_E2 {
-    public Date since
-
 }
