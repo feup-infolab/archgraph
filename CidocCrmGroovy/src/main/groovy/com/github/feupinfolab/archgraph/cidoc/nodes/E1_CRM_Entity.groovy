@@ -7,7 +7,7 @@ import lombok.Getter
 import lombok.Setter
 
 @CompileStatic
-@Vertex
+@Vertex(initSchema = true)
 @Getter
 @Setter
 class E1_CRM_Entity implements E1_CRM_Entity_T{

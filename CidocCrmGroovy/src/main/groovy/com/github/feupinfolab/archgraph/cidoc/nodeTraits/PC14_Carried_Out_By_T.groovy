@@ -1,9 +1,10 @@
 package com.github.feupinfolab.archgraph.cidoc.nodeTraits
 
+import com.github.eugene.kamenev.orient.graph.Vertex
 import groovy.transform.CompileStatic
 
 
-@CompileStatic
+@CompileStatic @Vertex(initSchema = true)
 trait PC14_Carried_Out_By_T extends PC0_CRM_Property_T{
 
     

@@ -6,7 +6,7 @@ import groovy.transform.CompileStatic;
 
 
 @CompileStatic
-@Vertex
+@Vertex(initSchema = true)
 class PC14_Carried_Out_By implements PC14_Carried_Out_By_T{
 
 

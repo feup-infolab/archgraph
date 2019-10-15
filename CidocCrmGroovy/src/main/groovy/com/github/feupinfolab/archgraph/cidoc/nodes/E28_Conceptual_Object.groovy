@@ -7,7 +7,7 @@ import com.github.feupinfolab.archgraph.cidoc.nodeTraits.E28_Conceptual_Object_T
 import groovy.transform.CompileStatic;
 
 @CompileStatic
-@Vertex
+@Vertex(initSchema = true)
 class E28_Conceptual_Object implements E28_Conceptual_Object_T{
 
 }

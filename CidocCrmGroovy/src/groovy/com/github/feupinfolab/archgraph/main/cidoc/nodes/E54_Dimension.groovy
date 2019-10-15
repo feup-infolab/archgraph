@@ -5,6 +5,6 @@ import com.github.eugene.kamenev.orient.graph.Vertex
 import groovy.transform.CompileStatic;
 
 @CompileStatic
-@Vertex
+@Vertex(initSchema = true)
 class E54_Dimension implements E54_Dimension_T {
 }

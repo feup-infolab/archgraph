@@ -6,7 +6,7 @@ import com.github.feupinfolab.archgraph.cidoc.nodeTraits.E74_Group_T
 import groovy.transform.CompileStatic;
 
 @CompileStatic
-@Vertex
+@Vertex(initSchema = true)
 class E74_Group implements E74_Group_T{
 
 

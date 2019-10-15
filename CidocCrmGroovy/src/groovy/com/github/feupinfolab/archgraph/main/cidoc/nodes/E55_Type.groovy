@@ -5,7 +5,7 @@ import com.github.eugene.kamenev.orient.graph.Vertex
 import groovy.transform.CompileStatic;
 
 @CompileStatic
-@Vertex
+@Vertex(initSchema = true)
 class E55_Type implements E55_Type_T {
 
 

@@ -6,7 +6,7 @@ import com.github.feupinfolab.archgraph.cidoc.nodeTraits.E55_Type_T
 import groovy.transform.CompileStatic
 
 @CompileStatic
-@Vertex
+@Vertex(initSchema = true)
 class E55_Type implements E55_Type_T {
 
 

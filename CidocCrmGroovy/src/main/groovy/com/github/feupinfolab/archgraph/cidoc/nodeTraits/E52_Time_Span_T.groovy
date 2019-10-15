@@ -2,9 +2,9 @@ package com.github.feupinfolab.archgraph.cidoc.nodeTraits
 
 import com.github.feupinfolab.archgraph.dataobject.Xsd_Date
 import groovy.transform.CompileStatic
+import com.github.eugene.kamenev.orient.graph.Vertex
 
-
-@CompileStatic
+@CompileStatic @Vertex(initSchema = true)
 trait E52_Time_Span_T implements E1_CRM_Entity_T{
 
     

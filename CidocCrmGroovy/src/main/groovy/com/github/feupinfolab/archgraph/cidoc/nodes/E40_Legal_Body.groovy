@@ -7,6 +7,6 @@ import groovy.transform.CompileStatic;
 
 
 @CompileStatic
-@Vertex
+@Vertex(initSchema = true)
 class E40_Legal_Body implements E40_Legal_Body_T{
 }

@@ -1,8 +1,10 @@
 package com.github.feupinfolab.archgraph.cidoc.nodeTraits
 
+import com.github.eugene.kamenev.orient.graph.Vertex
 import com.github.feupinfolab.archgraph.dataobject.Xsd_Integer
+import groovy.transform.CompileStatic
 
-
+@CompileStatic @Vertex(initSchema = true)
 trait E54_Dimension_T implements E1_CRM_Entity_T{
 
     

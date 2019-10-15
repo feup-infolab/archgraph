@@ -1,12 +1,13 @@
 package com.github.feupinfolab.archgraph.cidoc.nodeTraits
 
+import com.github.eugene.kamenev.orient.graph.Vertex
 import com.github.feupinfolab.archgraph.dataobject.Xsd_String
 import groovy.transform.CompileStatic
 import lombok.Getter
 import lombok.Setter
 
 
-@CompileStatic
+@CompileStatic @Vertex(initSchema = true)
 @Getter
 @Setter
 trait E22_ManMade_Object_T implements E19_Physical_Object_T, E24_Physical_ManMade_Thing_T {

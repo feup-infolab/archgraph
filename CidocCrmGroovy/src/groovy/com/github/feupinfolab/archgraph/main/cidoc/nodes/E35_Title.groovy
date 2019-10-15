@@ -6,7 +6,7 @@ import groovy.transform.CompileStatic;
 
 
 @CompileStatic
-@Vertex
+@Vertex(initSchema = true)
 class E35_Title implements E35_Title_T{
 
 

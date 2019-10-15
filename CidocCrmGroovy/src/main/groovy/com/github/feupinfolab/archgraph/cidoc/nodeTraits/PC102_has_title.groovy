@@ -1,7 +1,10 @@
 package com.github.feupinfolab.archgraph.cidoc.nodeTraits
 
+import com.github.eugene.kamenev.orient.graph.Vertex
+import groovy.transform.CompileStatic
 
 
+@CompileStatic @Vertex(initSchema = true)
 trait PC102_has_title extends PC0_CRM_Property_T {
 
     

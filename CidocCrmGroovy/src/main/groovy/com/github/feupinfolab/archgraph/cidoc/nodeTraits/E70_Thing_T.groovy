@@ -1,9 +1,10 @@
 package com.github.feupinfolab.archgraph.cidoc.nodeTraits
 
+import com.github.eugene.kamenev.orient.graph.Vertex
 import com.github.feupinfolab.archgraph.dataobject.Xsd_String
 import groovy.transform.CompileStatic
 
-@CompileStatic
+@CompileStatic @Vertex(initSchema = true)
 trait E70_Thing_T implements E77_Persistent_Item_T{
 
     

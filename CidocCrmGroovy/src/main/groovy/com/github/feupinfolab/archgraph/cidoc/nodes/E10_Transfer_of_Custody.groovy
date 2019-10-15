@@ -8,7 +8,7 @@ import groovy.transform.CompileStatic;
 
 
 @CompileStatic
-@Vertex
+@Vertex(initSchema = true)
 class E10_Transfer_of_Custody implements E10_Transfer_of_Custody_T{
 
 }

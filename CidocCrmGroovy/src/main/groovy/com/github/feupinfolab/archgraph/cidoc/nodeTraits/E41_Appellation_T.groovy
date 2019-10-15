@@ -1,9 +1,9 @@
 package com.github.feupinfolab.archgraph.cidoc.nodeTraits
-
+import com.github.eugene.kamenev.orient.graph.Vertex
 import groovy.transform.CompileStatic
 
 
-@CompileStatic
+@CompileStatic @Vertex(initSchema = true)
 trait E41_Appellation_T implements E90_Symbolic_Object_T{
 
     

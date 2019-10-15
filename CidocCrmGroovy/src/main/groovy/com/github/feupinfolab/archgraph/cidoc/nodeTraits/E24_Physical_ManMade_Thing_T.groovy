@@ -1,9 +1,10 @@
 package com.github.feupinfolab.archgraph.cidoc.nodeTraits
 
+import com.github.eugene.kamenev.orient.graph.Vertex
 import groovy.transform.CompileStatic
 
 
-@CompileStatic
+@CompileStatic @Vertex(initSchema = true)
 trait E24_Physical_ManMade_Thing_T implements E18_Physical_Thing_T,E71_Man_Made_Thing_T{
 
 
@@ -14,8 +15,4 @@ trait E24_Physical_ManMade_Thing_T implements E18_Physical_Thing_T,E71_Man_Made_
     }
 
     static Object P62_depicts_t = E1_CRM_Entity_T.class
-
-
-
-
 }

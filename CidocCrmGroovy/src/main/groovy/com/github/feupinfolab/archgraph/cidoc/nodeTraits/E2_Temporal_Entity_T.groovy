@@ -1,8 +1,9 @@
 package com.github.feupinfolab.archgraph.cidoc.nodeTraits
 
+import com.github.eugene.kamenev.orient.graph.Vertex
 import groovy.transform.CompileStatic
 
-
+@Vertex(initSchema = true)
 @CompileStatic
 trait E2_Temporal_Entity_T implements E1_CRM_Entity_T{
 

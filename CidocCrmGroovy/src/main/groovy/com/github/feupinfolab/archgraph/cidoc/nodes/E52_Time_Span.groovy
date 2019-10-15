@@ -7,7 +7,7 @@ import com.github.feupinfolab.archgraph.cidoc.nodeTraits.E52_Time_Span_T
 import groovy.transform.CompileStatic;
 
 @CompileStatic
-@Vertex
+@Vertex(initSchema = true)
 class E52_Time_Span implements E52_Time_Span_T {
 
 

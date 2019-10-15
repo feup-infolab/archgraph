@@ -5,7 +5,7 @@ import groovy.transform.CompileStatic
 import lombok.Getter
 import lombok.Setter
 
-@Vertex
+@Vertex(initSchema = true)
 @CompileStatic
 trait E1_CRM_Entity_T {
     @Getter

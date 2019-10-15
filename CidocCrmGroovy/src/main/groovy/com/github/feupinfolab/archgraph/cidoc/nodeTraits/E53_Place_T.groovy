@@ -1,9 +1,9 @@
 package com.github.feupinfolab.archgraph.cidoc.nodeTraits
 
 import groovy.transform.CompileStatic
+import com.github.eugene.kamenev.orient.graph.Vertex
 
-
-@CompileStatic
+@CompileStatic @Vertex(initSchema = true)
 trait E53_Place_T implements E1_CRM_Entity_T{
     
     private ArrayList<E41_Appellation_T> P87_is_identified_by = new ArrayList<>()

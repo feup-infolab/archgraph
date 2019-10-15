@@ -6,7 +6,7 @@ import com.github.eugene.kamenev.orient.graph.Vertex
 import groovy.transform.CompileStatic;
 
 @CompileStatic
-@Vertex
+@Vertex(initSchema = true)
 class E84_E33 implements E84_Information_Carrier_T, E33_Linguistic_Object_T{
 
 

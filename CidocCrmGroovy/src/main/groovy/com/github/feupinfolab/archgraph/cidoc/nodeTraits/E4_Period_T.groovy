@@ -1,9 +1,10 @@
 package com.github.feupinfolab.archgraph.cidoc.nodeTraits
 
+import com.github.eugene.kamenev.orient.graph.Vertex
 import groovy.transform.CompileStatic
 
 
-
+@Vertex(initSchema = true)
 @CompileStatic
 trait E4_Period_T implements E2_Temporal_Entity_T{
 

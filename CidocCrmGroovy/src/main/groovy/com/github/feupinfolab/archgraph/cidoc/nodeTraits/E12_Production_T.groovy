@@ -1,9 +1,10 @@
 package com.github.feupinfolab.archgraph.cidoc.nodeTraits
 
+import com.github.eugene.kamenev.orient.graph.Vertex
 import groovy.transform.CompileStatic
 
 
-@CompileStatic
+@CompileStatic @Vertex(initSchema = true)
 trait E12_Production_T implements E11_Modification_T, E63_Beginning_of_Existence_T{
 
 

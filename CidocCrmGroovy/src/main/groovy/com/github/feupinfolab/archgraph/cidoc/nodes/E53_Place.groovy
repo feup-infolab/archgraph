@@ -6,7 +6,7 @@ import com.github.feupinfolab.archgraph.cidoc.nodeTraits.E53_Place_T
 import groovy.transform.CompileStatic;
 
 @CompileStatic
-@Vertex
+@Vertex(initSchema = true)
 class E53_Place implements E53_Place_T{
 
 

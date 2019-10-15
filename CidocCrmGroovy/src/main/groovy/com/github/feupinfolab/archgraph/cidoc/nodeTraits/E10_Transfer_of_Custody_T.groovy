@@ -1,9 +1,10 @@
 package com.github.feupinfolab.archgraph.cidoc.nodeTraits
 
+import com.github.eugene.kamenev.orient.graph.Vertex
 import groovy.transform.CompileStatic
 
 
-@CompileStatic
+@CompileStatic @Vertex(initSchema = true)
 trait E10_Transfer_of_Custody_T implements E7_Activity_T{
 
 

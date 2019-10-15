@@ -7,7 +7,7 @@ import groovy.transform.CompileStatic;
 
 
 @CompileStatic
-@Vertex
+@Vertex(initSchema = true)
 class E33_Linguistic_Object implements E33_Linguistic_Object_T{
 
 
