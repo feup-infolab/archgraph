@@ -368,11 +368,6 @@ class Loader {
 
     }
 
-
-
-
-
-
     private String jsonToJsonLd(String json){
 
         ArrayList<E1_CRM_Entity_T> e
@@ -521,12 +516,12 @@ class Loader {
 
             e7.setName("Harvesting")
 
-            e22E33.p2_has_type.add(e55)
+            //e22E33.p2_has_type.add(e55)
             e22E33.p102_has_title.add(e35)
 
             e22E33_2.p46_is_composed_of.add(e22E33)
             e22E33_2.p106_is_composed_of.add(e22E33)
-            e22E33_2.p2_has_type.add(e55_2)
+            //e22E33_2.p2_has_type.add(e55_2)
             e22E33_2.p102_has_title.add(e35_2)
 
             e84E33.p46_is_composed_of.add(e22E33_2)
@@ -534,8 +529,8 @@ class Loader {
             e84E33.p46_is_composed_of.add(e22E38)
             e84E33.p106_is_composed_of.add(e22E38)
             e84E33.p130_shows_features_of.add(e33)
-            e84E33.p2_has_type.add(e55_4)
-            e84E33.p2_has_type.add(e55_3)
+            //e84E33.p2_has_type.add(e55_4)
+            //e84E33.p2_has_type.add(e55_3)
             e84E33.p102_has_title.add(e35_3)
 
             e22E38.p102_has_title.add(e35_4)
@@ -620,9 +615,8 @@ class Loader {
 
             e74.setName("Group")
 
-            pc14.setName("P14 Carried Out By")
-            pc14_2.setName("P14 Carried Out By")
-
+            // pc14.setName("P14 Carried Out By")
+            // pc14_2.setName("P14 Carried Out By")
 
             e52.setAP14_has_date(xsd_date)
             e52_2.setAP14_has_date(xsd_date)
@@ -645,12 +639,12 @@ class Loader {
 
             e84E33.p102_has_title.add(e35)
 
-            e40.p1_is_identified_by.add(e42)
+            e40.isIdentifiedBy.add(e42)
 
-            e21_2.p1_is_identified_by.add(e41_3)
+            e21_2.isIdentifiedBy.add(e41_3)
 
-            e21.p1_is_identified_by.add(e41)
-            e40_2.p1_is_identified_by.add(e41_2)
+            e21.isIdentifiedBy.add(e41)
+            e40_2.isIdentifiedBy.add(e41_2)
 
             e74.p107_has_current_or_former_member.add(e40)
 
@@ -735,12 +729,12 @@ class Loader {
             e52.setAP16_has_production_date(xsd)
 
             e22.getP102_has_title()
-            e22.p2_has_type.add(ae1)
-            e22.p1_is_identified_by.add(e42)
-            e22.getAP12_has_level_of_description().add(ae1)
-            e22.p1_is_identified_by.add(e42_2)
-            e22.p1_is_identified_by.add(e42_3)
-            e22.p1_is_identified_by.add(e42_4)
+            e22.hasType.add(e55)
+            e22.isIdentifiedBy.add(e42)
+            e22.hasLevelOfDescription.add(ae1)
+            e22.isIdentifiedBy.add(e42_2)
+            e22.isIdentifiedBy.add(e42_3)
+            e22.isIdentifiedBy.add(e42_4)
             e22.p102_has_title.add(e35)
 
             e22.p3_has_note = xsd_2
@@ -750,10 +744,10 @@ class Loader {
             e22.setAP7_has_publication_note(xsd_6)
             e22.setAP11_has_materials(xsd_7)
 
-            e42.p2_has_type.add(e55)
-            e42_2.p2_has_type.add(e55_2)
-            e42_3.p2_has_type.add(e55_3)
-            e42_4.p2_has_type.add(e55_4)
+            e42.hasType.add(e55)
+            e42_2.hasType.add(e55_2)
+            e42_3.hasType.add(e55_3)
+            e42_4.hasType.add(e55_4)
         }
     }
 

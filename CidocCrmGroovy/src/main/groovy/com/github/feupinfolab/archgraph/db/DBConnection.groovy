@@ -8,8 +8,8 @@ class DBConnection {
     OrientGraphFactory graphFactory
 
     public static final String DATABASE_URI = "remote:127.0.0.1/archgraph"
-    public static final String SERVER_USERNAME = "neo4j"
-    public static final String SERVER_PASSWORD = "password"
+    public static final String SERVER_USERNAME = "root"
+    public static final String SERVER_PASSWORD = "rootpwd"
 
     public static OrientGraphFactory databaseFactory() {
         // change to 'remote:host/dbname' if persistent storage needed

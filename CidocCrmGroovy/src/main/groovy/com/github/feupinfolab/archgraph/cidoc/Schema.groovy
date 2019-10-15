@@ -40,3 +40,8 @@ class Pet {
         owner edge: Owns
     }
 }
+
+//Person person = new Person();
+//Pet pet = new Pet();
+//
+//person.addToOwnedPets(pet);
