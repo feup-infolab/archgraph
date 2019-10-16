@@ -37,6 +37,13 @@ import groovy.transform.CompileStatic
 class Loader {
     static private OrientGraphFactory db = DBConnection.databaseFactory()
 
+    static void main(String[] args)
+    {
+        Loader l = new Loader()
+        l.process()
+        l.close()
+    }
+
     Loader() {
         db.getDatabase()
     }

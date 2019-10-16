@@ -1,7 +1,7 @@
 package com.github.feupinfolab.archgraph.dataobject
 
 import lombok.Getter
-import lombok.Setter;
+import lombok.Setter
 
 @Getter
 @Setter

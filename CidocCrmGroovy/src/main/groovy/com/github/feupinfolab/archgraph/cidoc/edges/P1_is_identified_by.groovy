@@ -9,5 +9,5 @@ import groovy.transform.CompileStatic
 @Edge(from = E1_CRM_Entity_T, to = E41_Appellation_T, initSchema = true)
 @CompileStatic
 class P1_is_identified_by {
-    public Date since;
+    public Date since
 }

@@ -1,4 +1,4 @@
-package com.github.feupinfolab.archgraph.cidoc;
+package com.github.feupinfolab.archgraph.cidoc
 
 import com.github.eugene.kamenev.orient.graph.Edge
 import com.github.eugene.kamenev.orient.graph.Vertex

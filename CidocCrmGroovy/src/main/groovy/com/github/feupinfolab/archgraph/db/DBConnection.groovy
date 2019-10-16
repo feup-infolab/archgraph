@@ -11,7 +11,7 @@ class DBConnection {
     public static final String SERVER_USERNAME = "root"
     public static final String SERVER_PASSWORD = "rootpwd"
 
-    public static OrientGraphFactory databaseFactory() {
+    static OrientGraphFactory databaseFactory() {
         // change to 'remote:host/dbname' if persistent storage needed
         def factory = new OrientGraphFactory(DATABASE_URI,SERVER_USERNAME, SERVER_PASSWORD).setupPool(1, 20)
         factory

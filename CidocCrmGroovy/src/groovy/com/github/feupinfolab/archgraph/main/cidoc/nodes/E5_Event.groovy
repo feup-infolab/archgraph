@@ -1,7 +1,7 @@
 package cidoc.nodes
 
 import cidoc.nodeTraits.E5_Event_T
-import groovy.transform.CompileStatic;
+import groovy.transform.CompileStatic
 
 
 

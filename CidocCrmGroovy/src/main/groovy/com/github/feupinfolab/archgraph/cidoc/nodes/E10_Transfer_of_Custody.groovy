@@ -3,7 +3,7 @@ package com.github.feupinfolab.archgraph.cidoc.nodes
 
 import com.github.eugene.kamenev.orient.graph.Vertex
 import com.github.feupinfolab.archgraph.cidoc.nodeTraits.E10_Transfer_of_Custody_T
-import groovy.transform.CompileStatic;
+import groovy.transform.CompileStatic
 
 
 

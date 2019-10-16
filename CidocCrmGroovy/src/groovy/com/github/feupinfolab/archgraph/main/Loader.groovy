@@ -889,7 +889,7 @@ class Loader {
 
     }
 
-    public Iterable<E1_CRM_Entity_T> query6(Session session, String resourceName ){
+    Iterable<E1_CRM_Entity_T> query6(Session session, String resourceName ){
 
         String cypher = "MATCH (n:" + resourceName + ")-[m]->(o)  , (n)-[p]->(q) RETURN n,p,q"
         return session.query(Entity.class,cypher,new HashMap<>(1))

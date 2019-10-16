@@ -3,8 +3,57 @@
   <component name="ChangeListManager">
     <list default="true" id="9d9b75f2-02d4-4f3d-a4cd-8aa0ccbfd925" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/Loader.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/Loader.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/AE1_Level_of_Description.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/AE1_Level_of_Description.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E10_Transfer_of_Custody.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E10_Transfer_of_Custody.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E12_Production.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E12_Production.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E21_Person.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E21_Person.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E22_E33.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E22_E33.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E22_E38.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E22_E38.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E22_ManMade_Object.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E22_ManMade_Object.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E28_Conceptual_Object.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E28_Conceptual_Object.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E33_Linguistic_Object.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E33_Linguistic_Object.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E35_Title.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E35_Title.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E40_Legal_Body.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E40_Legal_Body.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E41_Appellation.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E41_Appellation.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E42_Identifier.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E42_Identifier.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E52_Time_Span.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E52_Time_Span.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E53_Place.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E53_Place.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E54_Dimension.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E54_Dimension.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E55_Type.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E55_Type.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E56_Language.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E56_Language.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E5_Event.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E5_Event.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E74_Group.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E74_Group.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E7_Activity.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E7_Activity.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E84_E33.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E84_E33.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/PC14_Carried_Out_By.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/PC14_Carried_Out_By.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/dataobject/DataObject.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/dataobject/DataObject.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/db/DBConnection.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/groovy/com/github/feupinfolab/archgraph/main/db/DBConnection.groovy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/groovy/com/github/feupinfolab/archgraph/Loader.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/com/github/feupinfolab/archgraph/Loader.groovy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/groovy/com/github/feupinfolab/archgraph/cidoc/Schema.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/com/github/feupinfolab/archgraph/cidoc/Schema.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/com/github/feupinfolab/archgraph/cidoc/edges/P1_is_identified_by.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/com/github/feupinfolab/archgraph/cidoc/edges/P1_is_identified_by.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/com/github/feupinfolab/archgraph/cidoc/nodeTraits/E1_CRM_Entity_T.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/com/github/feupinfolab/archgraph/cidoc/nodeTraits/E1_CRM_Entity_T.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/com/github/feupinfolab/archgraph/cidoc/nodes/E10_Transfer_of_Custody.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/com/github/feupinfolab/archgraph/cidoc/nodes/E10_Transfer_of_Custody.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/com/github/feupinfolab/archgraph/cidoc/nodes/E12_Production.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/com/github/feupinfolab/archgraph/cidoc/nodes/E12_Production.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/com/github/feupinfolab/archgraph/cidoc/nodes/E21_Person.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/com/github/feupinfolab/archgraph/cidoc/nodes/E21_Person.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/com/github/feupinfolab/archgraph/cidoc/nodes/E22_E33.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/com/github/feupinfolab/archgraph/cidoc/nodes/E22_E33.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/com/github/feupinfolab/archgraph/cidoc/nodes/E22_E38.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/com/github/feupinfolab/archgraph/cidoc/nodes/E22_E38.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/com/github/feupinfolab/archgraph/cidoc/nodes/E22_ManMade_Object.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/com/github/feupinfolab/archgraph/cidoc/nodes/E22_ManMade_Object.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/com/github/feupinfolab/archgraph/cidoc/nodes/E28_Conceptual_Object.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/com/github/feupinfolab/archgraph/cidoc/nodes/E28_Conceptual_Object.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/com/github/feupinfolab/archgraph/cidoc/nodes/E33_Linguistic_Object.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/com/github/feupinfolab/archgraph/cidoc/nodes/E33_Linguistic_Object.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/com/github/feupinfolab/archgraph/cidoc/nodes/E35_Title.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/com/github/feupinfolab/archgraph/cidoc/nodes/E35_Title.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/com/github/feupinfolab/archgraph/cidoc/nodes/E40_Legal_Body.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/com/github/feupinfolab/archgraph/cidoc/nodes/E40_Legal_Body.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/com/github/feupinfolab/archgraph/cidoc/nodes/E41_Appellation.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/com/github/feupinfolab/archgraph/cidoc/nodes/E41_Appellation.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/com/github/feupinfolab/archgraph/cidoc/nodes/E42_Identifier.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/com/github/feupinfolab/archgraph/cidoc/nodes/E42_Identifier.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/com/github/feupinfolab/archgraph/cidoc/nodes/E52_Time_Span.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/com/github/feupinfolab/archgraph/cidoc/nodes/E52_Time_Span.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/com/github/feupinfolab/archgraph/cidoc/nodes/E53_Place.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/com/github/feupinfolab/archgraph/cidoc/nodes/E53_Place.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/com/github/feupinfolab/archgraph/cidoc/nodes/E54_Dimension.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/com/github/feupinfolab/archgraph/cidoc/nodes/E54_Dimension.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/com/github/feupinfolab/archgraph/cidoc/nodes/E5_Event.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/com/github/feupinfolab/archgraph/cidoc/nodes/E5_Event.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/com/github/feupinfolab/archgraph/cidoc/nodes/E74_Group.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/com/github/feupinfolab/archgraph/cidoc/nodes/E74_Group.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/com/github/feupinfolab/archgraph/cidoc/nodes/E7_Activity.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/com/github/feupinfolab/archgraph/cidoc/nodes/E7_Activity.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/com/github/feupinfolab/archgraph/cidoc/nodes/E84_E33.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/com/github/feupinfolab/archgraph/cidoc/nodes/E84_E33.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/com/github/feupinfolab/archgraph/cidoc/nodes/PC14_Carried_Out_By.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/com/github/feupinfolab/archgraph/cidoc/nodes/PC14_Carried_Out_By.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/com/github/feupinfolab/archgraph/dataobject/DataObject.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/com/github/feupinfolab/archgraph/dataobject/DataObject.groovy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/groovy/com/github/feupinfolab/archgraph/db/DBConnection.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/com/github/feupinfolab/archgraph/db/DBConnection.groovy" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -145,7 +194,20 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Gradle.CidocCrmGroovy [build]">
+  <component name="RunManager" selected="Application.Loader">
+    <configuration name="Loader" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.github.feupinfolab.archgraph.Loader" />
+      <module name="com.github.feupinfolab.archgraph.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.github.feupinfolab.archgraph.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="CidocCrmGroovy [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -219,9 +281,11 @@
       <item itemvalue="Groovy.Test" />
       <item itemvalue="Groovy.ratpack" />
       <item itemvalue="JUnit.NodeEntitiesTest" />
+      <item itemvalue="Application.Loader" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Loader" />
         <item itemvalue="Gradle.CidocCrmGroovy [build]" />
         <item itemvalue="Groovy.Test" />
         <item itemvalue="Groovy.ratpack" />
@@ -250,7 +314,7 @@
       <workItem from="1571149940829" duration="503000" />
       <workItem from="1571150523609" duration="19000" />
       <workItem from="1571150667941" duration="2562000" />
-      <workItem from="1571179284732" duration="2825000" />
+      <workItem from="1571179284732" duration="4485000" />
     </task>
     <task id="LOCAL-00001" summary="Project structure cleanup.&#10;Same error as before">
       <created>1570807675702</created>

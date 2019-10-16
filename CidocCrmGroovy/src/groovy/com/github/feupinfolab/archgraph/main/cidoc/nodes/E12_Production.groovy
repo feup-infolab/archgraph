@@ -1,6 +1,6 @@
 package cidoc.nodes
 
-import cidoc.nodeTraits.E12_Production_T;
+import cidoc.nodeTraits.E12_Production_T
 import groovy.transform.CompileStatic
 import com.github.eugene.kamenev.orient.graph.Vertex
 
