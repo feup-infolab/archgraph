@@ -20,7 +20,8 @@ class Loader {
                 E55_Type_T.class,
                 P2_has_type.class))
 
-        OrientGraphFactory graphFactory = DBConnection.memoryFactory()
+        OrientGraphFactory graphFactory = DBConnection.databaseFactory()
+        // OrientGraphFactory graphFactory = DBConnection.memoryFactory()
 
         TxFactory graph = new OrientTransactionFactoryImpl(graphFactory, false, "com.syncleus.ferma.ext.orientdb.model")
 
@@ -38,13 +39,13 @@ class Loader {
             println ("Deu asneira: " + e.getMessage())
         }
 
-        try (Tx tx = graph.tx()) {
-            tx.getGraph().getFramedVerticesExplicit(E1_CRM_Entity_T.class).collect {
-                (entity) -> {
-                    println("Found E1_CRM_Entity with name: " + entity.getClass().getName())
-                }
-            }
-        }
+//        try (Tx tx = graph.tx()) {
+//            tx.getGraph().getFramedVerticesExplicit(E1_CRM_Entity_T.class).collect {
+//                (entity) -> {
+//                    println("Found E1_CRM_Entity with name: " + entity)
+//                }
+//            }
+//        }
 
         //println(e55Again)
         //List<E55_Type_T> e55Again = e1Again.getHasTypeE55()

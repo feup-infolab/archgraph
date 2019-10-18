@@ -14,6 +14,7 @@ class DBConnection {
     static OrientGraphFactory databaseFactory() {
         // change to 'remote:host/dbname' if persistent storage needed
         def factory = new OrientGraphFactory(DATABASE_URI,SERVER_USERNAME, SERVER_PASSWORD).setupPool(1, 20)
+        factory.getDatabase(true, true)
         factory
     }
 
