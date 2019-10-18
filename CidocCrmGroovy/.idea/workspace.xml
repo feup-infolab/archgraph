@@ -276,12 +276,12 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Application.Loader" />
       <item itemvalue="Gradle.CidocCrmGroovy" />
       <item itemvalue="Gradle.CidocCrmGroovy [build]" />
       <item itemvalue="Groovy.Test" />
       <item itemvalue="Groovy.ratpack" />
       <item itemvalue="JUnit.NodeEntitiesTest" />
-      <item itemvalue="Application.Loader" />
     </list>
     <recent_temporary>
       <list>
