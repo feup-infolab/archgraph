@@ -6,14 +6,20 @@ plugins {
 group 'TestFerma'
 version '1.0-SNAPSHOT'
 
-sourceCompatibility = 1.8
-
 repositories {
     mavenCentral()
 }
 
+sourceCompatibility = '12'
+targetCompatibility = '12'
+
+ext {
+    groovyVersion = '3.0.0-beta-3'
+}
+
+
 dependencies {
-    compile 'org.codehaus.groovy:groovy-all:2.3.11'
+    compile "org.codehaus.groovy:groovy-all:${groovyVersion}"
     testCompile group: 'junit', name: 'junit', version: '4.12'
 
     // https://mvnrepository.com/artifact/com.syncleus.ferma/ferma
@@ -31,10 +37,4 @@ dependencies {
 
     // https://mvnrepository.com/artifact/com.syncleus.ferma/ferma-orientdb
     compile group: 'com.syncleus.ferma', name: 'ferma-orientdb', version: '3.0.1'
-
-
-
-
-
-
 }
