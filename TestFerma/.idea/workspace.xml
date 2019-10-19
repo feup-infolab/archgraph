@@ -2,23 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1092b851-cafa-48a0-8430-324f182a1197" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CidocCrmGroovy/.idea/libraries/Gradle__org_codehaus_groovy_groovy_1_8_9.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CidocCrmGroovy/.idea/modules/com.github.feupinfolab.archgraph.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../CidocCrmGroovy/.idea/modules/com.github.feupinfolab.archgraph.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CidocCrmGroovy/.idea/modules/com.github.feupinfolab.archgraph.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../CidocCrmGroovy/.idea/modules/com.github.feupinfolab.archgraph.main.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CidocCrmGroovy/.idea/modules/com.github.feupinfolab.archgraph.test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../CidocCrmGroovy/.idea/modules/com.github.feupinfolab.archgraph.test.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CidocCrmGroovy/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../CidocCrmGroovy/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/Loader.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/db/DBConnection.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/edges/P2_has_type.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/nodeTraits/E1_CRM_Entity_T$Trait$Helper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/nodeTraits/E1_CRM_Entity_T.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/nodeTraits/E55_Type_T$Trait$Helper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/nodeTraits/E55_Type_T.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/groovy/db/DBConnection.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/db/DBConnection.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../docker-compose.yml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -89,7 +76,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
@@ -160,7 +147,7 @@
       <workItem from="1571410405061" duration="8996000" />
       <workItem from="1571420688944" duration="1280000" />
       <workItem from="1571437528146" duration="294000" />
-      <workItem from="1571438018080" duration="1632000" />
+      <workItem from="1571438018080" duration="4707000" />
     </task>
     <servers />
   </component>

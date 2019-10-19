@@ -15,6 +15,7 @@ targetCompatibility = '13'
 
 ext {
     groovyVersion = '3.0.0-beta-3'
+    orientdbVersion = '3.0.24'
 }
 
 
@@ -25,12 +26,13 @@ dependencies {
     // https://mvnrepository.com/artifact/com.syncleus.ferma/ferma
     compile group: 'com.syncleus.ferma', name: 'ferma', version: '3.0.3'
 
-
     compile "com.tinkerpop.gremlin:gremlin-groovy:2.6.0"
 
     // https://mvnrepository.com/artifact/org.apache.tinkerpop/tinkergraph-gremlin
     compile group: 'org.apache.tinkerpop', name: 'tinkergraph-gremlin', version: '3.2.4'
 
+    // https://mvnrepository.com/artifact/com.orientechnologies/orientdb-gremlin
+    compile "com.orientechnologies:orientdb-gremlin:${orientdbVersion}"
 
     // https://mvnrepository.com/artifact/org.slf4j/slf4j-simple
     testCompile group: 'org.slf4j', name: 'slf4j-simple', version: '1.6.1'

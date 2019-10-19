@@ -9,10 +9,10 @@ services:
       - "2480:2480"
     environment:
       - ORIENTDB_ROOT_PASSWORD=rootpwd
-    volumes:
-      - ./volumes/orientdb/config:/orientdb/config
-      - ./volumes/orientdb/databases:/orientdb/databases
-      - ./volumes/orientdb/backups:/orientdb/backup
+    # volumes:
+    #   - ./volumes/orientdb/config:/orientdb/config
+    #   - ./volumes/orientdb/databases:/orientdb/databases
+    #   - ./volumes/orientdb/backups:/orientdb/backup
     networks:
       - archgraph-docker-deployment
     restart: on-failure
