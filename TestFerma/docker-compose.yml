@@ -1,20 +1,24 @@
 version: '3.3'
 
 services:
-  orientdb:
-    container_name: archgraph-orientdb
-    image: orientdb:3.0.1
-    ports:
-      - "2424:2424"
-      - "2480:2480"
-    environment:
-      - ORIENTDB_ROOT_PASSWORD=rootpwd
-    volumes:
-      - ./volumes/orientdb/config:/orientdb/config
-      - ./volumes/orientdb/databases:/orientdb/databases
-      - ./volumes/orientdb/backups:/orientdb/backup
+  orientdb3:
+    image: orientdb:3.0.24
     networks:
-      - archgraph-docker-deployment
+      - default
+    environment:
+      ORIENTDB_ROOT_PASSWORD: "rootpwd"
+      ORIENTDB_NODE_NAME: "odb1"
+      ORIENTDB_OPTS_MEMORY: "-Xms4G -Xmx4G"
+    ports:
+      - 2480:2480
+      - 2424:2424
+    volumes:
+      # - ./volumes/orientdb/config:/orientdb/config
+      # - ./volumes/orientdb/databases:/orientdb/databases
+      - ./volumes/orientdb/backups:/orientdb/backup
+    logging:
+      driver: json-file
+      options:
+        max-size: "200k"
+        max-file: "10"
     restart: on-failure
-networks:
-  archgraph-docker-deployment: {}
