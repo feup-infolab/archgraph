@@ -27,8 +27,8 @@ class Loader {
 
         try {
             Tx tx = graph.tx()
-            E1_CRM_Entity_T e1 = (E1_CRM_Entity_T) tx.getGraph().addFramedVertex(E1_CRM_Entity_T.class as Class<Object>)
-            E55_Type_T e55 = (E55_Type_T) tx.getGraph().addFramedVertex(E55_Type_T.class as Class<Object>)
+            E1_CRM_Entity_T e1 = (E1_CRM_Entity_T) tx.getGraph().addFramedVertex(E1_CRM_Entity_T.class)
+            E55_Type_T e55 = (E55_Type_T) tx.getGraph().addFramedVertex(E55_Type_T.class)
             e1.setName("E1")
             e55.setName("E55")
             e1.addHasType(e55, new DefaultClassInitializer(P2_has_type.class))

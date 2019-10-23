@@ -38,4 +38,7 @@ dependencies {
 
     // https://mvnrepository.com/artifact/com.syncleus.ferma/ferma-orientdb
     compile group: 'com.syncleus.ferma', name: 'ferma-orientdb', version: '3.0.1'
+
+    // https://mvnrepository.com/artifact/org.projectlombok/lombok
+    compile group: 'org.projectlombok', name: 'lombok', version: '1.18.10'
 }

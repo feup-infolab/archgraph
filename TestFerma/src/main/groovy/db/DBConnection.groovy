@@ -16,12 +16,20 @@ class DBConnection {
 	public static final String DATABASE_URI = "remote:"+DATABASE_HOST+ "/" + DATABASE_NAME
 	public static final String SERVER_USERNAME = "root"
 	public static final String SERVER_PASSWORD = "rootpwd"
+	public static final boolean DESTROY_ON_STARTUP = true;
 
 	static OrientGraphFactory databaseFactory() {
 		if(!databaseExists)
 		{
+			OrientDB orientDB = new OrientDB(DATABASE_URI,SERVER_USERNAME, SERVER_PASSWORD, OrientDBConfig.defaultConfig());
+			if(DESTROY_ON_STARTUP)
+			{
+				if(orientDB.exists(DATABASE_NAME))
+				{
+					orientDB.drop(DATABASE_NAME);
+				}
+			}
 			// create database if not exists
-			OrientDB orientDB = new OrientDB("remote:localhost",SERVER_USERNAME, SERVER_PASSWORD, OrientDBConfig.defaultConfig());
 			orientDB.createIfNotExists(DATABASE_NAME, ODatabaseType.PLOCAL);
 			orientDB.close();
 			databaseExists = true;
