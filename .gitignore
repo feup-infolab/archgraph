@@ -7,3 +7,9 @@ build
 .floo
 
 volumes
+
+CidocCrmGroovy/out
+OrientTest/out
+TestFerma/out
+
+**/.idea**
