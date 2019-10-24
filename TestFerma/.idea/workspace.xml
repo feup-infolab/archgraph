@@ -2,16 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1092b851-cafa-48a0-8430-324f182a1197" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../OrientTest/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../OrientTest/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OrientTest/src/main/groovy/cidoc/BootApp.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/../OrientTest/src/main/groovy/cidoc/BootApp.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OrientTest/src/main/groovy/cidoc/nodeEntities/E1_CRM_Entity.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/../OrientTest/src/main/groovy/cidoc/nodeEntities/E1_CRM_Entity.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OrientTest/src/main/groovy/cidoc/nodeEntities/E55_Type.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/../OrientTest/src/main/groovy/cidoc/nodeEntities/E55_Type.groovy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/groovy/nodes/E1_CRM_Entity.groovy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/groovy/nodes/E55_Type.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CidocCrmGroovy/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../CidocCrmGroovy/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/groovy/Loader.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/Loader.groovy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/groovy/db/DBConnection.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/db/DBConnection.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/groovy/nodeTraits/E1_CRM_Entity_T.groovy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/groovy/nodeTraits/E55_Type_T.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/edges/P2_has_type.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/nodes/P2_has_type.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/nodeTraits/E1_CRM_Entity_T.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/nodeTraits/E1_CRM_Entity_T.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/nodeTraits/E55_Type_T.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/nodeTraits/E55_Type_T.groovy" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -76,13 +78,18 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.annotationProcessors" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\nunof\OneDrive\Documents\archgraph\TestFerma\src\main\java" />
+    </key>
   </component>
   <component name="RunAnythingCache">
     <option name="myCommands">
@@ -103,7 +110,7 @@
   </component>
   <component name="RunManager" selected="Application.Loader">
     <configuration name="Loader" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="12" />
+      <option name="ALTERNATIVE_JRE_PATH" value="C:/Program Files/Java/jdk-13.0.1" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="Loader" />
       <module name="TestFerma.main" />
@@ -156,8 +163,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.TestFerma [run]" />
         <item itemvalue="Application.Loader" />
+        <item itemvalue="Gradle.TestFerma [run]" />
         <item itemvalue="Gradle.TestFerma [build]" />
       </list>
     </recent_temporary>
@@ -217,23 +224,18 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/groovy/Loader.groovy</url>
-          <line>62</line>
+          <line>65</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/groovy/db/DBConnection.groovy</url>
-          <line>38</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/groovy/Loader.groovy</url>
-          <line>30</line>
+          <line>33</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/groovy/Loader.groovy</url>
-          <line>28</line>
-          <option name="timeStamp" value="8" />
+          <line>32</line>
+          <option name="timeStamp" value="11" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

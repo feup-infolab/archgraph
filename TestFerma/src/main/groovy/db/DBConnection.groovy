@@ -12,7 +12,7 @@ class DBConnection {
 	static databaseExists = false;
 
 	public static final String DATABASE_NAME = "archgraph"
-	public static final String DATABASE_HOST = "127.0.0.1"
+	public static final String DATABASE_HOST = "dendro-builder.fe.up.pt"
 	public static final String DATABASE_URI = "remote:"+DATABASE_HOST+ "/" + DATABASE_NAME
 	public static final String SERVER_USERNAME = "root"
 	public static final String SERVER_PASSWORD = "rootpwd"
