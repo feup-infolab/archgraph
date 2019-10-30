@@ -1,4 +1,4 @@
-module.exports.mixin = {
+module.exports = {
     sayHi() {
       console.log(`Hello ${this.name}`);
     },

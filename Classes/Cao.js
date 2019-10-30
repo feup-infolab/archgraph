@@ -7,15 +7,18 @@ class Cao extends Animal{
         super(raca);
       this.name = name;
     }
-  }
+  
 
-  function getName() {
+   getName() {
       return this.name
   }
-  Cao.prototype = Object.create(Animal.prototype);
-  // copy the methods
-  Object.assign(Cao.prototype, Mixin.mixin);
-  
-  // now User can say hi
-  new Cao("Dude").sayHi(); // Hello Dude!
+}
+  Object.assign(Cao.prototype, Animal.prototype, Mixin);
+ /*var cao =new Cao("raça","Dude") 
 
+  console.log(cao.getRaca());
+  cao.sayHi()// Hello Dude! 
+  //
+  console.log(Cao.prototype)*/
+
+module.exports= Cao
