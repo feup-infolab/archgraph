@@ -1,8 +1,8 @@
-
 Database = require('arangojs').Database;
-db = new Database('http://127.0.0.1:8529');
-var Cao= require('./Classes/Cao.js');
 
+void async function() {
+
+db = new Database('http://127.0.0.1:8529');
 
 db.useBasicAuth('root', 'openSesame')
 
@@ -11,9 +11,7 @@ db.createDatabase('arangoDB2').then(
   err => console.error('Failed to create database:', err.response.body.errorMessage)
 );
 
-db.useDatabase('arangoDB');
-CollectionAnimal = db.collection('Animal');
-CollectionCao = db.collection('Cao');
+db.useDatabase('arangoDB2');
 
 e1Collection = db.collection('E1_CRM_Entity');
 e1Collection.create().then(
@@ -42,7 +40,7 @@ const graph = db.graph("graph");
 
 graph.create({
 	edgeDefinitions: [{
-		collection: 'P2_has_type'
+		collection: 'P2_has_type',
 		from: ['E1_CRM_Entity'],
 		to: ['E55_Type']
 	}]
@@ -51,23 +49,35 @@ graph.create({
   err => console.error('Failed to create Graph:', err.response.body.errorMessage)
 );
 
-graph.addVertexCollection('E1_CRM_Entity');
+//graph.addVertexCollection('E1_CRM_Entity');
 
-graph.addVertexCollection('E55_Type');
+//graph.addVertexCollection('E55_Type');
 
 
 const col1 = graph.vertexCollection("E1_CRM_Entity");
 const col2 = graph.vertexCollection("E55_Type");
 const edge1 = graph.edgeCollection("P2_has_type");
 
-const crmEntity = col1.save({ name: "E1" });
-const crmType = col2.save({ name: "E55" });
+const crmEntity = await col1.save({ name: "E1" });
+
+console.log("Created " + crmEntity.vertex._id);
+
+const crmType = await col2.save({ name: "E55" });
+
+console.log("Created " + crmType.vertex._id);
+//console.log("Created E55Types/" + crmType["_id"]);
+
 
 const edge = edge1.save(
 	{name: "P2"},
-	"E1_CRM_Entity/" + crmEntity._key,
-	"E55_Type/" + crmType._key
+	crmEntity.vertex._id,
+	crmType.vertex._id
+).then(
+  () => console.log('Edge P2 document created'),
+  err => console.error('Failed to create Edge P2 from ' + crmEntity._id + ' '+ crmType._id +  ':', err.response.body.errorMessage)
 );
+}();
+
 
 
 
