@@ -15,7 +15,7 @@ db.useDatabase('arangoDB');
 CollectionAnimal = db.collection('Animal');
 CollectionCao = db.collection('Cao');
 
-/*
+
 CollectionAnimal.create().then(
   () => console.log('Collection Animal created'),
   err => console.error('Failed to create collection:', err.response.body.errorMessage)
@@ -24,7 +24,7 @@ CollectionAnimal.create().then(
 CollectionCao.create().then(
   () => console.log('Collection Cao created'),
   err => console.error('Failed to create collection:', err.response.body.errorMessage)
-);*/
+);
 
 var cao =new Cao("raça","Dude") 
   cao.sayHi()// Hello Dude! 
