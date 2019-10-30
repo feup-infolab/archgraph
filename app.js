@@ -26,6 +26,12 @@ e55Collection.create().then(
   err => console.error('Failed to create collection:', err.response.body.errorMessage)
 );
 
+e2Collection = db.collection('E2');
+e2Collection.create().then(
+  () => console.log('Collection created'),
+  err => console.error('Failed to create collection:', err.response.body.errorMessage)
+);
+
 
 const p2Collection = db.edgeCollection('P2_has_type');
 
@@ -51,11 +57,12 @@ graph.create({
 
 //graph.addVertexCollection('E1_CRM_Entity');
 
-//graph.addVertexCollection('E55_Type');
+graph.addVertexCollection('E2');
 
 
 const col1 = graph.vertexCollection("E1_CRM_Entity");
 const col2 = graph.vertexCollection("E55_Type");
+const col3 = graph.vertexCollection("E2");
 const edge1 = graph.edgeCollection("P2_has_type");
 
 const crmEntity = await col1.save({ name: "E1" });
@@ -63,6 +70,8 @@ const crmEntity = await col1.save({ name: "E1" });
 console.log("Created " + crmEntity.vertex._id);
 
 const crmType = await col2.save({ name: "E55" });
+
+const twoTy = await col3.save({ name : "E2"})
 
 console.log("Created " + crmType.vertex._id);
 //console.log("Created E55Types/" + crmType["_id"]);
@@ -76,7 +85,20 @@ const edge = edge1.save(
   () => console.log('Edge P2 document created'),
   err => console.error('Failed to create Edge P2 from ' + crmEntity._id + ' '+ crmType._id +  ':', err.response.body.errorMessage)
 );
+
+const edge2 = edge1.save(
+  {name: "P2"},
+  crmEntity.vertex._id,
+  twoTy.vertex._id
+).then(
+  () => console.log('Edge P2 document created'),
+  err => console.error('Failed to create Edge P2 from ' + crmEntity._id + ' '+ crmType._id +  ':', err.response.body.errorMessage)
+);
+
+
 }();
+
+
 
 
 
