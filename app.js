@@ -1,7 +1,7 @@
 
 Database = require('arangojs').Database;
 db = new Database('http://127.0.0.1:8529');
-var Cao= require('./Classes/Cao.js');
+var Cao = require('./Classes/Cao.js');
 
 
 db.useBasicAuth('root', 'openSesame')

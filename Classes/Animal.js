@@ -1,11 +1,11 @@
 class Animal{
-    constructor(raca) {
-      this.raca = raca;
-    }
+  constructor(raca) {
+    this.raca = raca;
+  }
 
-     getRaca() {
-        return this.raca;
-        } 
+  getRaca() {
+    return this.raca;
+    } 
 
 }
 
