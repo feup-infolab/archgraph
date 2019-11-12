@@ -1,4 +1,4 @@
-var OrientDB = require('orientjs');
+//var OrientDB = require('orientjs');
 var ODatabase = require('orientjs').ODatabase;
 var db = new ODatabase({
     host: 'localhost',
@@ -59,13 +59,16 @@ db["class"].update({
 var idade = 10;
 var hitters = db.query('SELECT * FROM Player WHERE idade >= :idade ', { params: {
         idade: idade
-    }, limit: 20 }).then(function (players) {
+    }, limit: 20 })
+    .then(function (players) {
     console.log(players);
+})["catch"](function (error) {
+    console.log(error.message);
 });
 //close database
 /*
-  db.close()
+db.close()
 .then(function(){
   console.log('closed');
 });
-});*/
+*/
