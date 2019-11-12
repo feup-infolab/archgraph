@@ -14,6 +14,10 @@ class TerribleCountry(StructuredNode):
     code2 = StringProperty(unique_index=True, required=True)
 
 
+class BestCountry(Country):
+    code3 = StringProperty(unique_index=True, required=True)
+
+
 class Person(StructuredNode):
     uid = UniqueIdProperty()
     name = StringProperty(unique_index=True)
@@ -29,5 +33,6 @@ jim.save()  # Update, (with validation)
 var = jim.id  # neo4j internal id
 germany = Country(code='DE').save()
 germany2 = TerribleCountry(code2='DE2').save()
+superGermany = BestCountry(code='DE', code3='SuperDE').save()
 jim.country.connect(germany)
-jim.country.connect(germany2)
+jim.country.connect(superGermany)
