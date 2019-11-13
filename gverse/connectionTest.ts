@@ -1,4 +1,7 @@
+
 //var OrientDB = require('orientjs');
+
+
 var ODatabase = require('orientjs').ODatabase;
 
 var db = new ODatabase({
@@ -9,15 +12,10 @@ var db = new ODatabase({
   name:     'DatabaseGraph'
 });
 
-//create class
-db.class.create('Player', 'V')
-.then(
-  function(player){
-      console.log('Created Vertex Class: ' + player.name);
-})
-.catch(function(error){
-  console.log("Didn't create class:", error.message)
-}) 
+
+
+
+/*
 
 //getting class
 var player = db.class.get('Player')
@@ -89,13 +87,30 @@ var hitters = db.query(
 .catch(function(error){
   console.log(error.message)
 })
-
-
-
-//close database
-/*
-db.close()
-.then(function(){
-  console.log('closed');
-});
 */
+
+async function func() {
+  var result =[]
+  //create class
+  result.push(await db.class.create('player', 'V'))
+  result.push(await db.class.create('player1', 'V'))
+  //get classes
+  console.log('getClasses')
+  result.push(await db.class.get('player'))
+  result.push(await db.class.get('player1'))
+
+  //close database
+  await db.close()
+  return result;
+}
+func()
+.then(
+  function(result){
+    result.forEach(element => {
+      console.log(element.name)
+    });
+})
+.catch(function(error){
+  console.log(error.message)
+  db.close()
+}) 
