@@ -6,33 +6,31 @@ from neomodel import (config, StructuredNode, StringProperty, IntegerProperty,
 config.DATABASE_URL = 'bolt://neo4j:password@localhost:7687'
 
 
-class Country(StructuredNode):
-    code = StringProperty(unique_index=True, required=True)
+class E28_Conceptual_Object(StructuredNode):
+    conProp = StringProperty(unique_index=True, required=True)
 
 
-class TerribleCountry(StructuredNode):
-    code2 = StringProperty(unique_index=True, required=True)
+class E55_Type(E28_Conceptual_Object):
+    typeName = StringProperty(unique_index=True, required=True)
 
 
-class BestCountry(Country):
-    code3 = StringProperty(unique_index=True, required=True)
+class E56_Language(E55_Type):
+    languageName = StringProperty(unique_index=True, required=True)
 
 
-class Person(StructuredNode):
+class E1_CRM_Entity(StructuredNode):
     uid = UniqueIdProperty()
     name = StringProperty(unique_index=True)
-    age = IntegerProperty(index=True, default=0)
 
     # traverse outgoing IS_FROM relations, inflate to Country objects
-    country = RelationshipTo(Country, 'IS_FROM')
+    hasType = RelationshipTo(E55_Type, 'P2_has_type')
 
 
-jim = Person(name='Jim', age=3).save()  # Create
-jim.age = 4
-jim.save()  # Update, (with validation)
-var = jim.id  # neo4j internal id
-germany = Country(code='DE').save()
-germany2 = TerribleCountry(code2='DE2').save()
-superGermany = BestCountry(code='DE', code3='SuperDE').save()
-jim.country.connect(germany)
-jim.country.connect(superGermany)
+e1 = E1_CRM_Entity(name='E1_CRM test').save()  # Create
+var = e1.id  # neo4j internal id
+type1 = E55_Type(typeName='Type Example', conProp="Proof of Hierarchy").save()
+conObj = E28_Conceptual_Object(conProp='Conceptual Object Property').save()
+lan = E56_Language(typeName='Language Example', languageName='Language Example', conProp="Con Obj Proof").save()
+e1.hasType.connect(type1)
+e1.hasType.connect(lan)
+e1.hasType.connect(conObj)
