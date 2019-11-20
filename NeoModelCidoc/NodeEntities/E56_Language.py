@@ -1,7 +1,9 @@
 from neomodel import (config, StructuredNode, StringProperty, IntegerProperty,
                       UniqueIdProperty, RelationshipTo)
-from NodeEntities.E1_CRM_Entity import E1_CRM_Entity
+from NodeEntities.E55_Type import E55_Type
 
 
-class E77_Persistent_Item(E1_CRM_Entity):
+class E56_Language(E55_Type):
     pass
+
+

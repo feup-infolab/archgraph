@@ -3,5 +3,5 @@ from neomodel import (config, StructuredNode, StringProperty, IntegerProperty,
 from NodeEntities.E70_Thing import E70_Thing
 
 
-class E72_Legal_Object(StructuredNode, E70_Thing):
+class E72_Legal_Object(E70_Thing):
     pass
