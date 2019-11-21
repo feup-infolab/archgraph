@@ -100,4 +100,8 @@ class TestNeoModel(unittest.TestCase):
         # Creation of second relationship, should raise exception
         self.assertRaises(AttemptedCardinalityViolation, e1_2.testCardinality.connect, e24_3)
 
+   # def test_ternary_relationship(self):
+        # Test to check ternary functioning
+
+
 
