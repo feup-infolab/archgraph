@@ -1,10 +1,12 @@
+import datetime
 import unittest
 
 from NodeEntities.E55_Type import E55_Type, E1_CRM_Entity
 from NodeEntities.E18_Physical_Thing import E18_Physical_Thing
 from NodeEntities.E24_Physical_Man_Made_Thing import E24_Physical_Man_Made_Thing
+from NodeEntities.E52_Time_Span import E52_Time_Span
 from neomodel import (config, StructuredNode, StringProperty, IntegerProperty,
-                      UniqueIdProperty, RelationshipTo, OUTGOING, Traversal)
+                      UniqueIdProperty, RelationshipTo, OUTGOING, Traversal, DeflateError)
 
 config.DATABASE_URL = 'bolt://neo4j:password@localhost:7687'
 e1 = E1_CRM_Entity(name="test").save()
@@ -49,7 +51,21 @@ class TestRelatioships(unittest.TestCase):
     def test_multiple_inheritance_queries(self):
         # Test if multiple levels of inheritance is detected
         found_e24 = E18_Physical_Thing.nodes.get(name="e24")
-        self.assertAlmostEqual(found_e24.id,e24.id)
+        self.assertAlmostEqual(found_e24.id, e24.id)
+
+    def test_data_property_types(self):
+        # Test if data properties are stored using correct data properties
+        future_date = datetime.datetime(2020, 5, 17)
+        print(future_date)
+        e52 = E52_Time_Span(name="e52", date=future_date).save()
+        returnede52 = E52_Time_Span.nodes.get(date=future_date)
+        self.assertAlmostEqual(e52.id, returnede52.id)
+        self.assertRaises(DeflateError, E52_Time_Span(name="e52", date="shouldn't work").save)
+
+
+
+
+
 
 
 
