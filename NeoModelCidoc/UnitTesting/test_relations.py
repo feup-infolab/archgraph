@@ -19,7 +19,7 @@ e18_2 = E18_Physical_Thing(name="e18_2").save()
 e24 = E24_Physical_Man_Made_Thing(name="e24").save()
 
 
-class TestRelatioships(unittest.TestCase):
+class TestNeoModel(unittest.TestCase):
     def test_basic_relationship(self):
         # Tests creation of basic relationships
         # Creates 2 P2_Has_Type Relationships that connect A E1 instance to a E55 and that E55 to another
@@ -66,17 +66,23 @@ class TestRelatioships(unittest.TestCase):
         # Test if data properties are stored using correct data properties
         future_date = datetime.datetime(2020, 5, 17)
         e52 = E52_Time_Span(name="e52", date=future_date).save()
+        # Querying the database by data property
         returned_e52 = E52_Time_Span.nodes.get(date=future_date)
         self.assertAlmostEqual(e52.id, returned_e52.id)
+        # Check if exception is raised if wrong type of data property is created
         self.assertRaises(DeflateError, E52_Time_Span(name="e52", date="shouldn't work").save)
 
     def test_expand_graph_3_levels(self):
         # Test if traversals can be done for 3 levels
+        # Creation of traversal that can go into any node (since E1 is the basis for all cidoc nodes)
         definition = dict(node_class=E1_CRM_Entity, direction=OUTGOING, relation_type=None, model=None)
         relations_traversal = Traversal(e1, E1_CRM_Entity.__label__, definition)
+        # Creation of traversal to 2nd level
         all_relations = relations_traversal.all()
         relations_traversal2 = Traversal(relations_traversal, E1_CRM_Entity.__label__, definition)
+        # Creation of traversal to 3rd level
         all_relations2 = relations_traversal2.all()
+        # Confirmation of the traversal destinations
         for p in all_relations:
             self.assertAlmostEqual(p.id, e55.id)
         for p in all_relations2:
@@ -84,10 +90,14 @@ class TestRelatioships(unittest.TestCase):
 
     def test_cardinality(self):
         # Test if cardinality holds
+        # A placeholder relationship was created with cardinality One
+        # Three nodes created, in order to check if it's possible to break the cardinality constraint
         e1_2 = E1_CRM_Entity(name="cardTest").save()
         e24_2 = E24_Physical_Man_Made_Thing(name="test4").save()
         e24_3 = E24_Physical_Man_Made_Thing(name="test5").save()
+        # Creation of first relationship, shouldn't break
         e1_2.testCardinality.connect(e24_2)
+        # Creation of second relationship, should raise exception
         self.assertRaises(AttemptedCardinalityViolation, e1_2.testCardinality.connect, e24_3)
 
 
