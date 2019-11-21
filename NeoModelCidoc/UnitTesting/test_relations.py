@@ -6,6 +6,9 @@ from NodeEntities.E18_Physical_Thing import E18_Physical_Thing
 from NodeEntities.E24_Physical_Man_Made_Thing import E24_Physical_Man_Made_Thing
 from NodeEntities.E52_Time_Span import E52_Time_Span
 from NodeEntities.E72_Legal_Object import E72_Legal_Object
+from NodeEntities.E39_Actor import E39_Actor
+from NodeProperties.PC14_Carried_Out_By import PC14_Carried_Out_By
+from NodeEntities.E7_Activity import E7_Activity
 from neomodel import (config, StructuredNode, StringProperty, IntegerProperty,
                       UniqueIdProperty, RelationshipTo, OUTGOING, Traversal, DeflateError,
                       AttemptedCardinalityViolation)
@@ -100,8 +103,25 @@ class TestNeoModel(unittest.TestCase):
         # Creation of second relationship, should raise exception
         self.assertRaises(AttemptedCardinalityViolation, e1_2.testCardinality.connect, e24_3)
 
-   # def test_ternary_relationship(self):
+    def test_ternary_relationship(self):
         # Test to check ternary functioning
+        # Creation of both domain and range class instances
+        e39 = E39_Actor(name="e39").save()
+        e7 = E7_Activity(name="e7").save()
+        e55_4 = E55_Type(name="e55").save()
+        # Creation of property entity instance
+        pc14 = PC14_Carried_Out_By(name="PC14").save()
+        # Creation of relations for property
+        pc14.hasDomain.connect(e7)
+        pc14.hasRange.connect(e39)
+        pc14.inTheRoleOf.connect(e55)
+        # Retrieval of node
+        returned_pc14 = PC14_Carried_Out_By.nodes.get(name="PC14")
+        self.assertTrue('PC0_CRM_Property' in returned_pc14.labels())
+        # When serialization is complete test how to remove it through verification
+
+
+
 
 
 
