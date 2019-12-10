@@ -1,7 +1,7 @@
 
 Database = require('arangojs').Database;
 db = new Database('http://127.0.0.1:8529');
-var Cao = require('./Classes/Cao.js');
+var Cao = require('./Classes/E24PhysicalHuman_MadeThing.js/index.js.js.js.js');
 
 
 db.useBasicAuth('root', 'openSesame')
@@ -26,7 +26,7 @@ CollectionCao.create().then(
   err => console.error('Failed to create collection:', err.response.body.errorMessage)
 );
 
-var cao =new Cao("raça","Dude") 
+var cao = new Cao("raça","Dude") 
   cao.sayHi()// Hello Dude! 
   //
   console.log(Cao.prototype)
