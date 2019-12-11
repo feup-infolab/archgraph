@@ -12,6 +12,9 @@ from NodeEntities.E7_Activity import E7_Activity
 from neomodel import (config, StructuredNode, StringProperty, IntegerProperty,
                       UniqueIdProperty, RelationshipTo, OUTGOING, Traversal, DeflateError,
                       AttemptedCardinalityViolation)
+import json
+
+from utils.JsonEncoder import MyEncoder
 
 config.DATABASE_URL = 'bolt://neo4j:password@localhost:7687'
 e1 = E1_CRM_Entity(name="test").save()
@@ -26,8 +29,10 @@ class TestNeoModel(unittest.TestCase):
     def test_basic_relationship(self):
         # Tests creation of basic relationships
         # Creates 2 P2_Has_Type Relationships that connect A E1 instance to a E55 and that E55 to another
-        e55.hasType.connect(e1)
+        rel = e55.hasType.connect(e1)
         e55_2.hasType.connect(e55)
+        print(json.dumps(e55_2.hasType.relationship(e55).to_json()))
+        print(json.dumps(e55_2.hasType.relationship(e55).__properties__))
         # Obtains origin of relationship
         all_types = e55.hasType.filter(name="test2")
         # Check if Node is the correct one
