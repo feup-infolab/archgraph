@@ -14,11 +14,13 @@ from neomodel import (config, StructuredNode, StringProperty, IntegerProperty,
                       AttemptedCardinalityViolation)
 import json
 
-from utils.JsonEncoder import MyEncoder
+from utils.JsonEncoder import MyEncoder, json_merge
 
 config.DATABASE_URL = 'bolt://neo4j:password@localhost:7687'
 e1 = E1_CRM_Entity(name="test").save()
+e1_2 = E1_CRM_Entity(name="test").save()
 e55 = E55_Type(name="test2").save()
+e55.hasType.connect(e1_2)
 e55_2 = E55_Type(name="test3").save()
 e18 = E18_Physical_Thing(name="e18").save()
 e18_2 = E18_Physical_Thing(name="e18_2").save()
@@ -29,10 +31,8 @@ class TestNeoModel(unittest.TestCase):
     def test_basic_relationship(self):
         # Tests creation of basic relationships
         # Creates 2 P2_Has_Type Relationships that connect A E1 instance to a E55 and that E55 to another
-        rel = e55.hasType.connect(e1)
+        e55.hasType.connect(e1)
         e55_2.hasType.connect(e55)
-        print(json.dumps(e55_2.hasType.relationship(e55).to_json()))
-        print(json.dumps(e55_2.hasType.relationship(e55).__properties__))
         # Obtains origin of relationship
         all_types = e55.hasType.filter(name="test2")
         # Check if Node is the correct one
@@ -125,8 +125,21 @@ class TestNeoModel(unittest.TestCase):
         self.assertTrue('PC0_CRM_Property' in returned_pc14.labels())
         # When serialization is complete test how to remove it through verification
 
-
-
-
-
-
+    def test_serialization(self):
+        # Test to check if serialization works
+        # Obtaining Json
+        json_a = json.dumps(e55.to_json())
+        json_b = json.dumps(e55.hasType.relationship(e1_2).to_json())
+        # Merge of json documents
+        json_c = json_merge(json_a, json_b)
+        # Printing the json for easy verification
+        print(json_a)
+        print(json_b)
+        print(json_c)
+        # Verification
+        self.assertEqual(json_a, "{\"E55_Type\": {\"name\": \"test2\", \"id\": " + str(e55.id) + "}}")
+        self.assertEqual(json_b, "{\"P2_has_type\": {\"id\": " + str(e55.hasType.relationship(e1_2).id) + ", \"start_node\": {\"name\": \"test\", \"id\": " + str(e1_2.id) + "}, \"end_node\": {\"name\": \"test2\", \"id\": " + str(e55.id) + "}}}")
+        self.assertEqual(json_c, "{\"E55_Type\": {\"name\": \"test2\", \"id\": " + str(e55.id) + "},\"P2_has_type\": "
+                                                                                                 "{\"id\": " + str(
+            e55.hasType.relationship(e1_2).id) + ", \"start_node\": {\"name\": \"test\", \"id\": " + str(
+            e1_2.id) + "}, \"end_node\": {\"name\": \"test2\", \"id\": " + str(e55.id) + "}}}")
