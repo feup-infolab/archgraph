@@ -3,6 +3,8 @@ Database = require('arangojs').Database;
 void async function() {
 
 db = new Database('http://127.0.0.1:8529');
+var Cao = require('./Classes/E24PhysicalHuman_MadeThing.js/index.js.js.js.js');
+
 
 db.useBasicAuth('root', 'openSesame')
 
@@ -99,13 +101,16 @@ const edge2 = edge1.save(
 }();
 
 
-
-
-
-
-
-
 /*
+db.useDatabase('arangoDB');
+CollectionAnimal = db.collection('Animal');
+CollectionCao = db.collection('Cao');
+
+
+CollectionAnimal.create().then(
+  () => console.log('Collection Animal created'),
+  err => console.error('Failed to create collection:', err.response.body.errorMessage)
+);
 
 CollectionCao.create().then(
   () => console.log('Collection Cao created'),
@@ -113,7 +118,8 @@ CollectionCao.create().then(
 );
 
 var cao =new Cao("raça","Dude") 
-  cao.sayHi()// Hello Dude! 
+
+cao.sayHi()// Hello Dude! 
   //
   console.log(Cao.prototype)
 
