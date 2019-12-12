@@ -2,7 +2,6 @@ package cidoc
 
 import cidoc.nodeEntities.E1_CRM_Entity
 import cidoc.nodeEntities.E55_Type
-import cidoc.nodeEntities.P2_has_type_E2
 import cidoc.nodeTraits.E55_Type_T
 import com.tinkerpop.blueprints.impls.orient.OrientGraph;
 import com.tinkerpop.blueprints.impls.orient.OrientGraphFactory;
@@ -40,7 +39,6 @@ class BootApp extends SpringBootServletInitializer implements ApplicationListene
             def second = new E55_Type()
             def third = new E1_CRM_Entity()
 
-            first.addEdge("e",second.vertexInstance,"P2_has_type_E2")
             //third.addEdge("e",second.vertexInstance,"P2_has_type_E2")
             orient.addVertex(third,"class",E1_CRM_Entity.class)
           //  orient.addVertex(second)

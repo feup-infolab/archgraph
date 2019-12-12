@@ -3,16 +3,16 @@ version: '3.3'
 services:
   orientdb:
     container_name: archgraph-orientdb
-    image: orientdb:2.2.37
+    image: orientdb:3.0.24
     ports:
       - "2424:2424"
       - "2480:2480"
     environment:
       - ORIENTDB_ROOT_PASSWORD=rootpwd
-    volumes:
-      - ./volumes/orientdb/config:/orientdb/config
-      - ./volumes/orientdb/databases:/orientdb/databases
-      - ./volumes/orientdb/backups:/orientdb/backup
+    # volumes:
+    #   - ./volumes/orientdb/config:/orientdb/config
+    #   - ./volumes/orientdb/databases:/orientdb/databases
+    #   - ./volumes/orientdb/backups:/orientdb/backup
     networks:
       - archgraph-docker-deployment
     restart: on-failure

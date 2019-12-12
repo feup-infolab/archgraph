@@ -10,12 +10,4 @@ import groovy.transform.CompileStatic
 class E55_Type implements E55_Type_T{
 
     List<E1_CRM_Entity_T> P2_is_type_of = new ArrayList<>()
-
-
-
-
-    static mapping = {
-        P2_is_type_of(edge: P2_has_type_E2)
-    }
-
 }

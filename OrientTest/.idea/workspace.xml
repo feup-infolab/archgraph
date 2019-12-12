@@ -2,37 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fb65529b-1592-4303-b72e-724f61e58844" name="Default Changelist" comment="OrientTest">
-      <change afterPath="$PROJECT_DIR$/../CidocCrmGroovy/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/edges/AP12_has_level_of_description.groovy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../CidocCrmGroovy/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/edges/P2_has_type.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CidocCrmGroovy/.gradle/4.8/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../CidocCrmGroovy/.gradle/4.8/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CidocCrmGroovy/.gradle/4.8/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../CidocCrmGroovy/.gradle/4.8/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CidocCrmGroovy/.gradle/4.8/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../CidocCrmGroovy/.gradle/4.8/fileHashes/resourceHashesCache.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CidocCrmGroovy/.gradle/4.8/taskHistory/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../CidocCrmGroovy/.gradle/4.8/taskHistory/taskHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CidocCrmGroovy/.gradle/4.8/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../CidocCrmGroovy/.gradle/4.8/taskHistory/taskHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CidocCrmGroovy/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../CidocCrmGroovy/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CidocCrmGroovy/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../CidocCrmGroovy/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CidocCrmGroovy/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CidocCrmGroovy/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CidocCrmGroovy/.idea/gradle.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CidocCrmGroovy/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CidocCrmGroovy/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CidocCrmGroovy/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CidocCrmGroovy/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CidocCrmGroovy/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../CidocCrmGroovy/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CidocCrmGroovy/com.github.feupinfolab.archgraph.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../CidocCrmGroovy/com.github.feupinfolab.archgraph.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CidocCrmGroovy/src/groovy/com/github/feupinfolab/archgraph/main/Loader.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/../CidocCrmGroovy/src/groovy/com/github/feupinfolab/archgraph/main/Loader.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CidocCrmGroovy/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/edges/P1_is_identified_by.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/../CidocCrmGroovy/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/edges/P1_is_identified_by.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CidocCrmGroovy/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodeTraits/E18_Physical_Thing_T.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/../CidocCrmGroovy/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodeTraits/E18_Physical_Thing_T.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CidocCrmGroovy/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodeTraits/E22_ManMade_Object_T.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/../CidocCrmGroovy/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodeTraits/E22_ManMade_Object_T.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CidocCrmGroovy/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodeTraits/E52_Time_Span_T.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/../CidocCrmGroovy/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodeTraits/E52_Time_Span_T.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CidocCrmGroovy/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodeTraits/E54_Dimension_T.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/../CidocCrmGroovy/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodeTraits/E54_Dimension_T.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CidocCrmGroovy/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodeTraits/E70_Thing_T.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/../CidocCrmGroovy/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodeTraits/E70_Thing_T.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CidocCrmGroovy/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E1_CRM_Entity.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/../CidocCrmGroovy/src/groovy/com/github/feupinfolab/archgraph/main/cidoc/nodes/E1_CRM_Entity.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CidocCrmGroovy/src/groovy/com/github/feupinfolab/archgraph/main/dataobject/Xsd_Integer.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/../CidocCrmGroovy/src/groovy/com/github/feupinfolab/archgraph/main/dataobject/Xsd_Integer.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CidocCrmGroovy/src/groovy/com/github/feupinfolab/archgraph/ratpack/ratpack.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/../CidocCrmGroovy/src/groovy/com/github/feupinfolab/archgraph/ratpack/ratpack.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CidocCrmGroovy/src/groovy/com/github/feupinfolab/archgraph/test/groovy/Neo4JTest.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/../CidocCrmGroovy/src/groovy/com/github/feupinfolab/archgraph/test/groovy/Neo4JTest.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/cidoc/BootApp.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/cidoc/BootApp.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/cidoc/nodeEntities/E1_CRM_Entity.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/cidoc/nodeEntities/E1_CRM_Entity.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/cidoc/nodeEntities/E55_Type.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/cidoc/nodeEntities/E55_Type.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TestFerma/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../TestFerma/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TestFerma/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../TestFerma/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TestFerma/src/main/groovy/Loader.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/../TestFerma/src/main/groovy/Loader.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TestFerma/src/main/groovy/db/DBConnection.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/../TestFerma/src/main/groovy/db/DBConnection.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TestFerma/src/main/groovy/nodeTraits/E1_CRM_Entity_T.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TestFerma/src/main/groovy/nodeTraits/E55_Type_T.groovy" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -54,6 +33,18 @@
       <ProjectState />
     </projectState>
   </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
   <component name="FavoritesManager">
     <favorites_list name="OrientTest" />
   </component>
@@ -67,24 +58,13 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="MavenProjectNavigator">
-    <treeState>
-      <expand />
-      <select />
-    </treeState>
-  </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="y" value="23" />
-    <option name="width" value="1920" />
-    <option name="height" value="1057" />
-  </component>
   <component name="ProjectId" id="1Rxu4XCAmsrhOxG09PajPlqLFTc" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../TestFerma" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -171,6 +151,13 @@
       <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
       <method v="2" />
     </configuration>
+    <configuration name="BootApp" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="OrientTest.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="cidoc.BootApp" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -184,49 +171,9 @@
       <updated>1570620877041</updated>
       <workItem from="1570800714883" duration="113000" />
       <workItem from="1570800890467" duration="10000" />
+      <workItem from="1571831010588" duration="1942000" />
     </task>
     <servers />
-  </component>
-  <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="123000" />
-  </component>
-  <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1920" height="1057" extended-state="6" />
-    <layout>
-      <window_info id="Designer" />
-      <window_info id="Image Layers" />
-      <window_info id="Capture Tool" />
-      <window_info id="UI Designer" />
-      <window_info id="simpleUML" />
-      <window_info id="Web" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="0" weight="0.25" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Build" />
-      <window_info anchor="bottom" id="Database Changes" />
-      <window_info anchor="bottom" id="Floobits" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info anchor="bottom" id="Terminal" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info active="true" anchor="right" id="Maven" visible="true" weight="0.32960597" />
-      <window_info anchor="right" id="Palette" />
-      <window_info anchor="right" id="Capture Analysis" />
-      <window_info anchor="right" id="Gradle" />
-      <window_info anchor="right" id="Database" />
-      <window_info anchor="right" id="Palette&#9;" />
-      <window_info anchor="right" id="Theme Preview" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-    </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -247,12 +194,6 @@
         <entry key="MAIN">
           <value>
             <State>
-              <option name="RECENTLY_FILTERED_USER_GROUPS">
-                <collection />
-              </option>
-              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
-                <collection />
-              </option>
               <option name="COLUMN_ORDER" />
             </State>
           </value>
