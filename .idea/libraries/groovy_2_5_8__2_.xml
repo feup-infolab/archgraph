@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="groovy-2.5.8 (2)">
+    <CLASSES>
+      <root url="file:///usr/local/Cellar/groovy/2.5.8/libexec/lib" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file:///usr/local/Cellar/groovy/2.5.8/libexec/lib" recursive="false" />
+  </library>
+</component>
