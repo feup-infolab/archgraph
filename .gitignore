@@ -1,14 +1,20 @@
-# Compiled class file
-*.class
+# Ignore Gradle project-specific cache directory
+.gradle
 
-# Log file
-*.log
+# Ignore Gradle build output directory
+build
 
-# BlueJ files
-*.ctxt
+.floo
 
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
+volumes
+
+
+CidocCrmGroovy/out
+OrientTest/out
+TestFerma/out
+
+# dependencies
+node_modules
 
 # Package Files #
 *.jar
@@ -23,3 +29,6 @@
 hs_err_pid*
 
 node_modules/
+
+**/.idea**
+
