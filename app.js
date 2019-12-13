@@ -1,16 +1,121 @@
+<<<<<<< HEAD
 
 Database = require('arangojs').Database;
 db = new Database('http://127.0.0.1:8529');
 var Cao = require('./Classes/Cao.js');
+=======
+Database = require('arangojs').Database;
+
+void async function() {
+
+db = new Database('http://127.0.0.1:8529');
+var Cao = require('./Classes/E24PhysicalHuman_MadeThing.js/index.js.js.js.js');
+>>>>>>> master
 
 
 db.useBasicAuth('root', 'openSesame')
 
+<<<<<<< HEAD
 db.createDatabase('arangoDB').then(
+=======
+db.createDatabase('arangoDB2').then(
+>>>>>>> master
   () => console.log('Database created'),
   err => console.error('Failed to create database:', err.response.body.errorMessage)
 );
 
+<<<<<<< HEAD
+=======
+db.useDatabase('arangoDB2');
+
+e1Collection = db.collection('E1_CRM_Entity');
+e1Collection.create().then(
+  () => console.log('Collection created'),
+  err => console.error('Failed to create collection:', err.response.body.errorMessage)
+);
+
+
+e55Collection = db.collection('E55_Type');
+e55Collection.create().then(
+  () => console.log('Collection created'),
+  err => console.error('Failed to create collection:', err.response.body.errorMessage)
+);
+
+e2Collection = db.collection('E2');
+e2Collection.create().then(
+  () => console.log('Collection created'),
+  err => console.error('Failed to create collection:', err.response.body.errorMessage)
+);
+
+
+const p2Collection = db.edgeCollection('P2_has_type');
+
+p2Collection.create({
+	waitForSync: true
+}).then(
+  () => console.log('Edge Collection created'),
+  err => console.error('Failed to create edge collection:', err.response.body.errorMessage)
+);
+
+const graph = db.graph("graph");
+
+graph.create({
+	edgeDefinitions: [{
+		collection: 'P2_has_type',
+		from: ['E1_CRM_Entity'],
+		to: ['E55_Type']
+	}]
+}).then(
+  () => console.log('Graph created'),
+  err => console.error('Failed to create Graph:', err.response.body.errorMessage)
+);
+
+//graph.addVertexCollection('E1_CRM_Entity');
+
+graph.addVertexCollection('E2');
+
+
+const col1 = graph.vertexCollection("E1_CRM_Entity");
+const col2 = graph.vertexCollection("E55_Type");
+const col3 = graph.vertexCollection("E2");
+const edge1 = graph.edgeCollection("P2_has_type");
+
+const crmEntity = await col1.save({ name: "E1" });
+
+console.log("Created " + crmEntity.vertex._id);
+
+const crmType = await col2.save({ name: "E55" });
+
+const twoTy = await col3.save({ name : "E2"})
+
+console.log("Created " + crmType.vertex._id);
+//console.log("Created E55Types/" + crmType["_id"]);
+
+
+const edge = edge1.save(
+	{name: "P2"},
+	crmEntity.vertex._id,
+	crmType.vertex._id
+).then(
+  () => console.log('Edge P2 document created'),
+  err => console.error('Failed to create Edge P2 from ' + crmEntity._id + ' '+ crmType._id +  ':', err.response.body.errorMessage)
+);
+
+const edge2 = edge1.save(
+  {name: "P2"},
+  crmEntity.vertex._id,
+  twoTy.vertex._id
+).then(
+  () => console.log('Edge P2 document created'),
+  err => console.error('Failed to create Edge P2 from ' + crmEntity._id + ' '+ crmType._id +  ':', err.response.body.errorMessage)
+);
+
+
+}();
+
+
+/*
+>>>>>>> master
 db.useDatabase('arangoDB');
 CollectionAnimal = db.collection('Animal');
 CollectionCao = db.collection('Cao');
@@ -27,7 +132,12 @@ CollectionCao.create().then(
 );
 
 var cao =new Cao("raça","Dude") 
+<<<<<<< HEAD
   cao.sayHi()// Hello Dude! 
+=======
+
+cao.sayHi()// Hello Dude! 
+>>>>>>> master
   //
   console.log(Cao.prototype)
 
