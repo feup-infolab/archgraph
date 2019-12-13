@@ -1,7 +1,21 @@
 {
   "compilerOptions": {
+<<<<<<< HEAD
+    "module": "commonjs",
+    "target": "es2015",
+    "sourceMap": true,
+    "moduleResolution": "node",
+    "noImplicitAny": false,
+    "lib": ["es2015"]
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}
+=======
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "target": "ES5"
   }
 }
+>>>>>>> master

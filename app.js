@@ -1,18 +1,31 @@
+<<<<<<< HEAD
+
+Database = require('arangojs').Database;
+db = new Database('http://127.0.0.1:8529');
+var Cao = require('./Classes/Cao.js');
+=======
 Database = require('arangojs').Database;
 
 void async function() {
 
 db = new Database('http://127.0.0.1:8529');
 var Cao = require('./Classes/E24PhysicalHuman_MadeThing.js/index.js.js.js.js');
+>>>>>>> master
 
 
 db.useBasicAuth('root', 'openSesame')
 
+<<<<<<< HEAD
+db.createDatabase('arangoDB').then(
+=======
 db.createDatabase('arangoDB2').then(
+>>>>>>> master
   () => console.log('Database created'),
   err => console.error('Failed to create database:', err.response.body.errorMessage)
 );
 
+<<<<<<< HEAD
+=======
 db.useDatabase('arangoDB2');
 
 e1Collection = db.collection('E1_CRM_Entity');
@@ -102,6 +115,7 @@ const edge2 = edge1.save(
 
 
 /*
+>>>>>>> master
 db.useDatabase('arangoDB');
 CollectionAnimal = db.collection('Animal');
 CollectionCao = db.collection('Cao');
@@ -118,8 +132,12 @@ CollectionCao.create().then(
 );
 
 var cao =new Cao("raça","Dude") 
+<<<<<<< HEAD
+  cao.sayHi()// Hello Dude! 
+=======
 
 cao.sayHi()// Hello Dude! 
+>>>>>>> master
   //
   console.log(Cao.prototype)
 
