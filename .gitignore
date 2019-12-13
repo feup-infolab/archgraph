@@ -6,8 +6,12 @@ build
 
 .floo
 
+#dependencies
+NeoModelCidoc/venv
+node_modules
 volumes
 
+<<<<<<< HEAD
 
 CidocCrmGroovy/out
 OrientTest/out
@@ -17,6 +21,13 @@ CidocCrmGroovy/.gradle
 # dependencies
 node_modules
 NeoModelCidoc/venv/*
+=======
+#out
+CidocCrmGroovy/out
+OrientTest/out
+TestFerma/out
+# dependencies
+>>>>>>> ArangoDB-test1
 
 # Package Files #
 *.jar
@@ -26,7 +37,10 @@ NeoModelCidoc/venv/*
 *.zip
 *.tar.gz
 *.rar
+<<<<<<< HEAD
 *.idea
+=======
+>>>>>>> ArangoDB-test1
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
