@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="50578acc-67bd-4408-868d-fe366f48247b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Routes/routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/pyvenv.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/venv/pyvenv.cfg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../archgraph-app/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../archgraph-app/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../archgraph-app/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../archgraph-app/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../archgraph-app/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../archgraph-app/src/app/app-routing.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -28,8 +23,10 @@
   <component name="ProjectId" id="1UnadYZybdsl187F9TY2ZXwLigr" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="ToolWindowVersion Control.ShowToolbar" value="false" />
+    <property name="full.screen.before.presentation.mode" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../archgraph-app" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="preferences.customizations" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -72,7 +69,7 @@
     </recent_temporary>
   </component>
   <component name="SvnConfiguration">
-    <configuration />
+    <configuration>C:\Users\lazar\AppData\Roaming\Subversion</configuration>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -83,6 +80,9 @@
       <updated>1575995941507</updated>
     </task>
     <servers />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.cfg" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">

@@ -62,7 +62,7 @@ const httpOptions = {
   		<div style="height:20px"></div>
   	</div>
   <div>
-  
+
   </div>
   `,
 })
@@ -76,7 +76,7 @@ export class MessageComponent{
   @Output() onJson = new EventEmitter<Object>();
   @Output() onArray = new EventEmitter<Array<CidocEntity>>();
   @Output() onTable = new EventEmitter<{}[]>();
- 
+
 
 
   possibleRelationsArray: String[]=[];
@@ -99,7 +99,7 @@ export class MessageComponent{
   changeJson(){
   	this.json[this.index]["_label"] = "Test"
   	this.entityArray[this.index].name = "Test"
-  	this.tableArray[this.index]["Label"] = "Test" 
+  	this.tableArray[this.index]["Label"] = "Test"
   	this.setJson()
   }
 
@@ -108,7 +108,7 @@ export class MessageComponent{
   	this.entityArray[this.index].name = val
   	this.tableArray[this.index]["Label"] = val
 
-  	this.setJson() 
+  	this.setJson()
   }
 
   changeId(val){
@@ -174,7 +174,7 @@ export class MessageComponent{
   	}
   	}
 
-  	
+
 
   	this.setJson()
   }
