@@ -1,6 +1,9 @@
 import datetime
 import unittest
 
+from NodeEntities.E35_Title import E35_Title
+from NodeEntities.E53_Place import E53_Place
+from NodeEntities.E70_Thing import E70_Thing
 from NodeEntities.E55_Type import E55_Type, E1_CRM_Entity
 from NodeEntities.E18_Physical_Thing import E18_Physical_Thing
 from NodeEntities.E24_Physical_Man_Made_Thing import E24_Physical_Man_Made_Thing
@@ -9,6 +12,7 @@ from NodeEntities.E72_Legal_Object import E72_Legal_Object
 from NodeEntities.E39_Actor import E39_Actor
 from NodeProperties.PC14_Carried_Out_By import PC14_Carried_Out_By
 from NodeEntities.E7_Activity import E7_Activity
+from NodeEntities.E21_Person import E21_Person
 from neomodel import (config, StructuredNode, StringProperty, IntegerProperty,
                       UniqueIdProperty, RelationshipTo, OUTGOING, Traversal, DeflateError,
                       AttemptedCardinalityViolation)
@@ -127,19 +131,48 @@ class TestNeoModel(unittest.TestCase):
 
     def test_serialization(self):
         # Test to check if serialization works
+        # Creation of nodes
+        e21 = E21_Person(name="Roberto").save()
+        e55_3 = E55_Type(name="Bibliotecario").save()
+        # Creation of relationship
+        e55_3.hasType.connect(e21)
         # Obtaining Json
-        json_a = json.dumps(e55.to_json())
-        json_b = json.dumps(e55.hasType.relationship(e1_2).to_json())
+        json_a = json.dumps(e21.to_json())
+        json_b = json.dumps(e55_3.to_json())
+        json_c = json.dumps(e55_3.hasType.relationship(e21).to_json())
         # Merge of json documents
-        json_c = json_merge(json_a, json_b)
+        json_d = json_merge(json_merge(json_a, json_b), json_c)
         # Printing the json for easy verification
         print(json_a)
         print(json_b)
         print(json_c)
+        print(json_d)
         # Verification
-        self.assertEqual(json_a, "{\"E55_Type\": {\"name\": \"test2\", \"id\": " + str(e55.id) + "}}")
-        self.assertEqual(json_b, "{\"P2_has_type\": {\"id\": " + str(e55.hasType.relationship(e1_2).id) + ", \"start_node\": {\"name\": \"test\", \"id\": " + str(e1_2.id) + "}, \"end_node\": {\"name\": \"test2\", \"id\": " + str(e55.id) + "}}}")
-        self.assertEqual(json_c, "{\"E55_Type\": {\"name\": \"test2\", \"id\": " + str(e55.id) + "},\"P2_has_type\": "
+        self.assertEqual(json_a, "{\"E21_Person\": {\"name\": \"Roberto\", \"id\": " + str(e21.id) + "}}")
+        self.assertEqual(json_b, "{\"E55_Type\": {\"name\": \"Bibliotecario\", \"id\": " + str(e55_3.id) + "}}")
+        self.assertEqual(json_c, "{\"P2_has_type\": {\"id\": " + str(e55_3.hasType.relationship(e21).id) + ", "
+                                                                                                           "\"start_node\": {\"name\": \"Roberto\", \"id\": "
+                         + str(e21.id) + "}, \"end_node\": {\"name\": \"Bibliotecario\", \"id\": " + str(e55_3.id)
+                         + "}}}")
+        self.assertEqual(json_d, "{\"E21_Person\": {\"name\": \"Roberto\", \"id\": " + str(e21.id) +
+                         "},\"E55_Type\": {\"name\": \"Bibliotecario\", \"id\": " + str(e55_3.id) + "},\"P2_has_type\": "
                                                                                                  "{\"id\": " + str(
-            e55.hasType.relationship(e1_2).id) + ", \"start_node\": {\"name\": \"test\", \"id\": " + str(
-            e1_2.id) + "}, \"end_node\": {\"name\": \"test2\", \"id\": " + str(e55.id) + "}}}")
+            e55_3.hasType.relationship(e21).id) + ", \"start_node\": {\"name\": \"Roberto\", \"id\": " + str(
+            e21.id) + "}, \"end_node\": {\"name\": \"Bibliotecario\", \"id\": " + str(e55_3.id) + "}}}")
+
+    def test_case(self):
+        # Define nodes to use
+        e24_2 = E24_Physical_Man_Made_Thing(name="Monumento").save()
+        e35 = E35_Title(name="Torre Eiffel").save()
+        e53 = E53_Place(name="Paris").save()
+        e70 = E70_Thing(name="Torre").save()
+        e1_7 = E1_CRM_Entity(name="E1 de Teste").save()
+
+        # Definition of Relations
+        e24_2.occupies.connect(e53)
+        e24_2.has_title.connect(e35)
+        e24_2.showsFeaturesOf.connect(e70)
+
+        # Exception Raised on Illegal Relation
+        self.assertRaises(ValueError, e24_2.showsFeaturesOf.connect, e1_7)
+

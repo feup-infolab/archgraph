@@ -9,6 +9,9 @@ class TestCardinality(StructuredRelCl):
     pass
 
 
+
+
+
 class E1_CRM_Entity(StructuredNode):
     name = StringProperty(unique_index=True, required=True)
     testCardinality = RelationshipTo('E1_CRM_Entity', 'Cardinality_Relationship', cardinality=One,
@@ -18,4 +21,4 @@ class E1_CRM_Entity(StructuredNode):
         return {
             self.__class__.__name__: self.__properties__
 
-            }
+        }
