@@ -1,11 +1,8 @@
 from neomodel import (config, StructuredNode, StringProperty, IntegerProperty,
                       UniqueIdProperty, RelationshipTo)
-from NodeEntities.E70_Thing import E70_Thing
-from NodeProperties.StructuredRelCl import StructuredRelCl
+
+from NodeEntities.E28_Conceptual_Object import E28_Conceptual_Object
 
 
-
-
-
-class E71_Man_Made_Thing(E70_Thing):
+class E89_Propositional_Object(E28_Conceptual_Object):
     pass
