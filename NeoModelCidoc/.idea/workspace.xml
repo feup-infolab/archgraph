@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="50578acc-67bd-4408-868d-fe366f48247b" name="Default Changelist" comment="">
+    <list default="true" id="50578acc-67bd-4408-868d-fe366f48247b" name="Default Changelist" comment="files">
+      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/NeoModelCidoc.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/NeoModelCidoc.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -21,24 +23,20 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="ProjectId" id="1UnadYZybdsl187F9TY2ZXwLigr" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="ToolWindowVersion Control.ShowToolbar" value="false" />
     <property name="full.screen.before.presentation.mode" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../archgraph-app" />
-    <property name="settings.editor.selected.configurable" value="preferences.customizations" />
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PythonContentEntriesConfigurable" />
   </component>
   <component name="RunManager">
     <configuration name="routes" type="PythonConfigurationType" factoryName="Python" temporary="true">
@@ -68,6 +66,18 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
   <component name="SvnConfiguration">
     <configuration>C:\Users\lazar\AppData\Roaming\Subversion</configuration>
   </component>
@@ -79,6 +89,14 @@
       <option name="presentableId" value="Default" />
       <updated>1575995941507</updated>
     </task>
+    <task id="LOCAL-00001" summary="data object modeling completed">
+      <created>1580769658362</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1580769658362</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -96,5 +114,51 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="data object modeling completed" />
+    <option name="LAST_COMMIT_MESSAGE" value="data object modeling completed" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="552" y="178" key="#Notifications" timestamp="1580769910557">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="178" key="#Notifications/0.0.1920.1040@0.0.1920.1040" timestamp="1580769910557" />
+    <state x="584" y="122" width="1336" height="812" key="CommitChangelistDialog2" timestamp="1580772093173">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="584" y="122" width="1336" height="812" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1580772093173" />
+    <state x="368" y="94" key="DiffContextDialog" timestamp="1580771916592">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="368" y="94" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1580771916592" />
+    <state width="1899" height="282" key="GridCell.Tab.0.bottom" timestamp="1580751306398">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1580751306398" />
+    <state width="1899" height="282" key="GridCell.Tab.0.center" timestamp="1580751306398">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1580751306398" />
+    <state width="1899" height="282" key="GridCell.Tab.0.left" timestamp="1580751306398">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1580751306398" />
+    <state width="1899" height="282" key="GridCell.Tab.0.right" timestamp="1580751306398">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1580751306398" />
+    <state x="1236" y="238" key="RollbackChangesDialog" timestamp="1580770067260">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="1236" y="238" key="RollbackChangesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1580770067260" />
+    <state x="461" y="162" key="SettingsEditor" timestamp="1580772286739">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="461" y="162" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1580772286739" />
+    <state x="552" y="241" key="Vcs.Push.Dialog.v2" timestamp="1580769819104">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="241" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1580769819104" />
   </component>
 </project>
