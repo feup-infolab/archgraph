@@ -3,5 +3,6 @@ from neomodel import (config, StructuredNode, StringProperty, IntegerProperty,
 from json import JSONEncoder
 from DataObject.GeospatialCoordinates import GeospatialCoordinates
 
+
 class Polygon(GeospatialCoordinates):
     pass

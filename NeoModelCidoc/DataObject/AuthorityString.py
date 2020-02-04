@@ -3,5 +3,6 @@ from neomodel import (config, StructuredNode, StringProperty, IntegerProperty,
 from json import JSONEncoder
 from DataObject.String import String
 
+
 class AuthorityString(String):
     pass

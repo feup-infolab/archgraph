@@ -16,7 +16,7 @@ chrome-profiler-events*.json
 speed-measure-plugin*.json
 
 # IDEs and editors
-/neo_model_cidoc/.idea
+/NeoModelCidoc/.idea
 /.idea
 .project
 .classpath

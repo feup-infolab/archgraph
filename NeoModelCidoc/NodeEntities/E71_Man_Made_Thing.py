@@ -4,8 +4,5 @@ from NodeEntities.E70_Thing import E70_Thing
 from NodeProperties.StructuredRelCl import StructuredRelCl
 
 
-
-
-
 class E71_Man_Made_Thing(E70_Thing):
     pass
