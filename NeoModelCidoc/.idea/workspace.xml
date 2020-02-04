@@ -1,26 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="50578acc-67bd-4408-868d-fe366f48247b" name="Default Changelist" comment="files">
-      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/NeoModelCidoc.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/NeoModelCidoc.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="50578acc-67bd-4408-868d-fe366f48247b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DataObject/Approximate.py" beforeDir="false" afterPath="$PROJECT_DIR$/DataObject/Approximate.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataObject/AuthorityFile.py" beforeDir="false" afterPath="$PROJECT_DIR$/DataObject/AuthorityFile.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataObject/AuthorityString.py" beforeDir="false" afterPath="$PROJECT_DIR$/DataObject/AuthorityString.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataObject/DataObject.py" beforeDir="false" afterPath="$PROJECT_DIR$/DataObject/DataObject.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DataObject/Instant.py" beforeDir="false" afterPath="$PROJECT_DIR$/DataObject/Instant.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DataObject/Interval.py" beforeDir="false" afterPath="$PROJECT_DIR$/DataObject/Interval.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataObject/Latitude.py" beforeDir="false" afterPath="$PROJECT_DIR$/DataObject/Latitude.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataObject/Longitude.py" beforeDir="false" afterPath="$PROJECT_DIR$/DataObject/Longitude.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DataObject/PersonName.py" beforeDir="false" afterPath="$PROJECT_DIR$/DataObject/PersonName.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataObject/Polygon.py" beforeDir="false" afterPath="$PROJECT_DIR$/DataObject/Polygon.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DataObject/RegexString.py" beforeDir="false" afterPath="$PROJECT_DIR$/DataObject/RegexString.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DataObject/String.py" beforeDir="false" afterPath="$PROJECT_DIR$/DataObject/String.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NodeEntities/E18_Physical_Thing.py" beforeDir="false" afterPath="$PROJECT_DIR$/NodeEntities/E18_Physical_Thing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NodeEntities/E1_CRM_Entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/NodeEntities/E1_CRM_Entity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NodeEntities/E71_Man_Made_Thing.py" beforeDir="false" afterPath="$PROJECT_DIR$/NodeEntities/E71_Man_Made_Thing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UnitTesting/test_relations.py" beforeDir="false" afterPath="$PROJECT_DIR$/UnitTesting/test_relations.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +43,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunManager" selected="Python tests.Unittests for test_relations.TestNeoModel.test_multiple_inheritance_queries">
+  <component name="RunManager" selected="Python tests.Unittests for test_relations.TestNeoModel.test_data_interval">
     <configuration name="Unittests for test_relations.TestNeoModel" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="NeoModelCidoc" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -69,7 +58,7 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for test_relations.TestNeoModel.test_case" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests for test_relations.TestNeoModel.test_data_interval" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="NeoModelCidoc" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -79,11 +68,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_relations.TestNeoModel.test_case&quot;" />
+      <option name="_new_target" value="&quot;test_relations.TestNeoModel.test_data_interval&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for test_relations.TestNeoModel.test_diamond_problem" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests for test_relations.TestNeoModel.test_data_property_types" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="NeoModelCidoc" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -93,7 +82,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_relations.TestNeoModel.test_diamond_problem&quot;" />
+      <option name="_new_target" value="&quot;test_relations.TestNeoModel.test_data_property_types&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
@@ -127,11 +116,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.Unittests for test_relations.TestNeoModel.test_data_interval" />
+        <item itemvalue="Python tests.Unittests for test_relations.TestNeoModel.test_data_property_types" />
         <item itemvalue="Python tests.Unittests for test_relations.TestNeoModel.test_multiple_inheritance_queries" />
         <item itemvalue="Python tests.Unittests for test_relations.TestNeoModel" />
         <item itemvalue="Python tests.Unittests for test_relations.TestNeoModel.test_illegal_relationship" />
-        <item itemvalue="Python tests.Unittests for test_relations.TestNeoModel.test_diamond_problem" />
-        <item itemvalue="Python tests.Unittests for test_relations.TestNeoModel.test_case" />
       </list>
     </recent_temporary>
   </component>
@@ -172,7 +161,14 @@
       <option name="project" value="LOCAL" />
       <updated>1580772574559</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="added cardinality to relationships">
+      <created>1580826655697</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1580826655697</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -194,37 +190,38 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="data object modeling completed" />
     <MESSAGE value="files" />
-    <option name="LAST_COMMIT_MESSAGE" value="files" />
+    <MESSAGE value="added cardinality to relationships" />
+    <option name="LAST_COMMIT_MESSAGE" value="added cardinality to relationships" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="178" key="#Notifications" timestamp="1580769910557">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="178" key="#Notifications/0.0.1920.1040@0.0.1920.1040" timestamp="1580769910557" />
-    <state x="584" y="122" width="1336" height="812" key="CommitChangelistDialog2" timestamp="1580772861462">
+    <state x="584" y="122" width="1336" height="812" key="CommitChangelistDialog2" timestamp="1580829183154">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="584" y="122" width="1336" height="812" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1580772861462" />
-    <state x="368" y="94" key="DiffContextDialog" timestamp="1580771916592">
+    <state x="584" y="122" width="1336" height="812" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1580829183154" />
+    <state x="368" y="94" key="DiffContextDialog" timestamp="1580829179784">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="368" y="94" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1580771916592" />
-    <state width="1899" height="232" key="GridCell.Tab.0.bottom" timestamp="1580825006831">
+    <state x="368" y="94" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1580829179784" />
+    <state width="1501" height="293" key="GridCell.Tab.0.bottom" timestamp="1580828889749">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="232" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1580825006831" />
-    <state width="1899" height="232" key="GridCell.Tab.0.center" timestamp="1580825006831">
+    <state width="1501" height="293" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1580828889749" />
+    <state width="1501" height="293" key="GridCell.Tab.0.center" timestamp="1580828889748">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="232" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1580825006831" />
-    <state width="1899" height="232" key="GridCell.Tab.0.left" timestamp="1580825006831">
+    <state width="1501" height="293" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1580828889748" />
+    <state width="1501" height="293" key="GridCell.Tab.0.left" timestamp="1580828889748">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="232" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1580825006831" />
-    <state width="1899" height="232" key="GridCell.Tab.0.right" timestamp="1580825006831">
+    <state width="1501" height="293" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1580828889748" />
+    <state width="1501" height="293" key="GridCell.Tab.0.right" timestamp="1580828889749">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="232" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1580825006831" />
+    <state width="1501" height="293" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1580828889749" />
     <state x="1236" y="238" key="RollbackChangesDialog" timestamp="1580770067260">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -233,10 +230,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="162" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1580772847531" />
-    <state x="552" y="241" key="Vcs.Push.Dialog.v2" timestamp="1580772579553">
+    <state x="552" y="241" key="Vcs.Push.Dialog.v2" timestamp="1580826659733">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="241" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1580772579553" />
+    <state x="552" y="241" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1580826659733" />
     <state x="769" y="436" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1580772602883">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
