@@ -44,3 +44,11 @@ Thumbs.db
 
 # Node Modules
 node_modules/
+
+#ignore env stuff
+
+/backend/env/bin
+/backend/env/include
+/backend/env/lib
+/backend/env/man
+

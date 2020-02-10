@@ -1,6 +1,13 @@
 #!/bin/bash
 
-brew install python3
+# clean dependencies
+rm -rf backend/env/bin
+rm -rf backend/env/include
+rm -rf backend/env/lib
+rm -rf backend/env/man
+
+brew install python3 || brew upgrade python3
+
 # install venv
 python3 -m venv env
 # activate venv
