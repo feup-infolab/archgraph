@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.route("/create")
 def create():
-    return "create "
+    return "create"
 
 
 @app.route("/<uid>/update")

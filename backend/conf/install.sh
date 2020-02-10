@@ -1,7 +1,8 @@
 #!/bin/bash
 
+brew install python3
 # install venv
-python3.7 -m venv env
+python3 -m venv env
 # activate venv
 source env/bin/activate
 # install pip
