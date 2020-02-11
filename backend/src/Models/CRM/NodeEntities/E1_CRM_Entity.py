@@ -1,18 +1,18 @@
 from neomodel import (config, StructuredNode, StringProperty, IntegerProperty,
-                      UniqueIdProperty, RelationshipTo, One)
+                      UniqueIdProperty, RelationshipTo, One, RelationshipFrom)
 from json import JSONEncoder
 
-from src.Models.CRM.NodeProperties.StructuredRelCl import StructuredRelCl
+from NodeEntities.StructuredRelCl import StructuredRelCl
 
 
-class TestCardinality(StructuredRelCl):
+class P14_carried_out_by(StructuredRelCl):
     pass
 
 
 class E1_CRM_Entity(StructuredNode):
     name = StringProperty(unique_index=True, required=True)
-    testCardinality = RelationshipTo('E1_CRM_Entity', 'Cardinality_Relationship', cardinality=One,
-                                     model=TestCardinality)
+    carried_out_by = RelationshipFrom('E7_Activity', 'P14_carried_out_by',
+                                     model=P14_carried_out_by)
 
     def to_json(self):
         return {

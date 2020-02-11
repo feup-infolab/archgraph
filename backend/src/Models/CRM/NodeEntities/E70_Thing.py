@@ -1,7 +1,7 @@
 from neomodel import (config, StructuredNode, StringProperty, IntegerProperty,
                       UniqueIdProperty, RelationshipTo, RelationshipFrom)
 from NodeEntities.E77_Persistent_Item import E77_Persistent_Item
-from src.Models.CRM.NodeProperties.StructuredRelCl import StructuredRelCl
+from NodeEntities.StructuredRelCl import StructuredRelCl
 
 
 class P130_shows_features_of(StructuredRelCl):

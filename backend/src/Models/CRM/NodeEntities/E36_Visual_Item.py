@@ -1,7 +1,7 @@
 from neomodel import (config, StructuredNode, StringProperty, IntegerProperty,
                       UniqueIdProperty, RelationshipTo, StructuredRel)
 from NodeEntities.E73_Information_Object import E73_Information_Object
-from src.Models.CRM.NodeProperties.StructuredRelCl import StructuredRelCl
+from NodeEntities.StructuredRelCl import StructuredRelCl
 
 
 class P65_shows_visual_item(StructuredRelCl):

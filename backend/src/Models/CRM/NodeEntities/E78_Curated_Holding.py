@@ -1,8 +1,7 @@
 from neomodel import (config, StructuredNode, StringProperty, IntegerProperty,
                       UniqueIdProperty, RelationshipTo)
-from NodeEntities.E70_Thing import E70_Thing
-from NodeEntities.StructuredRelCl import StructuredRelCl
+from NodeEntities.E24_Physical_Man_Made_Thing import E24_Physical_Man_Made_Thing
 
 
-class E71_Man_Made_Thing(E70_Thing):
+class E78_Curated_Holding(E24_Physical_Man_Made_Thing):
     pass
