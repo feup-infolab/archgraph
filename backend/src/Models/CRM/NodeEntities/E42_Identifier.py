@@ -2,7 +2,7 @@ from neomodel import (config, StructuredNode, StringProperty, IntegerProperty,
                       UniqueIdProperty, RelationshipTo, One, RelationshipFrom)
 from NodeEntities.E41_Appellation import E41_Appellation
 
-from NodeEntities.StructuredRelCl import StructuredRelCl
+from src.Models.CRM.NodeProperties.StructuredRelCl import StructuredRelCl
 
 
 class P48_has_preferred_identifier(StructuredRelCl):

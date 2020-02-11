@@ -1,7 +1,7 @@
 from neomodel import (config, StructuredNode, StringProperty, IntegerProperty,
                       UniqueIdProperty, RelationshipTo, One, RelationshipFrom)
 from NodeEntities.E2_Temporal_Entity import E2_Temporal_Entity
-from NodeEntities.StructuredRelCl import StructuredRelCl
+from src.Models.CRM.NodeProperties.StructuredRelCl import StructuredRelCl
 
 
 class P9_consists_of(StructuredRelCl):

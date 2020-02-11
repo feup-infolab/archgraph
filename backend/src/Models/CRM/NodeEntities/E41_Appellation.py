@@ -2,7 +2,7 @@ from neomodel import (config, StructuredNode, StringProperty, IntegerProperty,
                       UniqueIdProperty, RelationshipTo, One, RelationshipFrom)
 from NodeEntities.E90_Symbolic_Object import E90_Symbolic_Object
 
-from NodeEntities.StructuredRelCl import StructuredRelCl
+from src.Models.CRM.NodeProperties.StructuredRelCl import StructuredRelCl
 
 
 class P1_is_identified_by(StructuredRelCl):

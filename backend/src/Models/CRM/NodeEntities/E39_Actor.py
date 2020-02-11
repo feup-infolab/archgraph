@@ -1,7 +1,7 @@
 from neomodel import RelationshipFrom
 
 from NodeEntities.E77_Persistent_Item import E77_Persistent_Item
-from NodeEntities.StructuredRelCl import StructuredRelCl
+from src.Models.CRM.NodeProperties.StructuredRelCl import StructuredRelCl
 
 
 class P11_had_participant(StructuredRelCl):

@@ -1,7 +1,7 @@
 from neomodel import (config, StructuredNode, StringProperty, IntegerProperty,
                       UniqueIdProperty, RelationshipTo, DateTimeProperty, One, RelationshipFrom)
 from NodeEntities.E1_CRM_Entity import E1_CRM_Entity
-from NodeEntities.StructuredRelCl import StructuredRelCl
+from src.Models.CRM.NodeProperties.StructuredRelCl import StructuredRelCl
 
 
 class P4_has_time_span(StructuredRelCl):

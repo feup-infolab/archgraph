@@ -2,7 +2,7 @@ from neomodel import (config, StructuredNode, StringProperty, IntegerProperty,
                       UniqueIdProperty, RelationshipTo, DateTimeProperty, RelationshipFrom)
 from NodeEntities.E33_Linguistic_Object import E33_Linguistic_Object
 from NodeEntities.E71_Man_Made_Thing import E71_Man_Made_Thing
-from NodeEntities.StructuredRelCl import StructuredRelCl
+from src.Models.CRM.NodeProperties.StructuredRelCl import StructuredRelCl
 
 
 class P102_has_title(StructuredRelCl):

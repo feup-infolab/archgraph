@@ -2,7 +2,7 @@ from neomodel import (config, StructuredNode, StringProperty, IntegerProperty,
                       UniqueIdProperty, RelationshipTo, RelationshipFrom)
 from NodeEntities.E28_Conceptual_Object import E28_Conceptual_Object
 from NodeEntities.E1_CRM_Entity import E1_CRM_Entity
-from NodeEntities.StructuredRelCl import StructuredRelCl
+from src.Models.CRM.NodeProperties.StructuredRelCl import StructuredRelCl
 
 
 class P2_has_type(StructuredRelCl):
