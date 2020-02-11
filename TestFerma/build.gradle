@@ -1,0 +1,40 @@
+plugins {
+    id 'groovy'
+    id 'java'
+}
+
+group 'TestFerma'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.codehaus.groovy:groovy-all:2.3.11'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+
+    // https://mvnrepository.com/artifact/com.syncleus.ferma/ferma
+    compile group: 'com.syncleus.ferma', name: 'ferma', version: '3.0.3'
+
+
+    compile "com.tinkerpop.gremlin:gremlin-groovy:2.6.0"
+
+    // https://mvnrepository.com/artifact/org.apache.tinkerpop/tinkergraph-gremlin
+    compile group: 'org.apache.tinkerpop', name: 'tinkergraph-gremlin', version: '3.2.4'
+
+
+    // https://mvnrepository.com/artifact/org.slf4j/slf4j-simple
+    testCompile group: 'org.slf4j', name: 'slf4j-simple', version: '1.6.1'
+
+    // https://mvnrepository.com/artifact/com.syncleus.ferma/ferma-orientdb
+    compile group: 'com.syncleus.ferma', name: 'ferma-orientdb', version: '3.0.1'
+
+
+
+
+
+
+}

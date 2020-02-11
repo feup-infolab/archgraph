@@ -2,7 +2,7 @@ from neomodel import (config, StructuredNode, StringProperty, IntegerProperty,
                       UniqueIdProperty, RelationshipTo,One, RelationshipFrom)
 from json import JSONEncoder
 from DataObject.DataObject import DataObject
-from NodeProperties.StructuredRelCl import StructuredRelCl
+from NodeEntities.StructuredRelCl import StructuredRelCl
 
 
 class String(DataObject):

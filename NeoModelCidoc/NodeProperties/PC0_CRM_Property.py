@@ -1,7 +1,7 @@
 from neomodel import (config, StructuredNode, StringProperty, IntegerProperty,
                       UniqueIdProperty, RelationshipTo, One)
 from NodeEntities.E1_CRM_Entity import E1_CRM_Entity
-from NodeProperties.StructuredRelCl import StructuredRelCl
+from NodeEntities.StructuredRelCl import StructuredRelCl
 
 
 class P01_has_domain(StructuredRelCl):

@@ -1,0 +1,4 @@
+package cidoc
+
+class Loader {
+}

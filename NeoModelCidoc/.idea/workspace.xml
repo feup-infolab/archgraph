@@ -2,15 +2,77 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="50578acc-67bd-4408-868d-fe366f48247b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/NodeEntities/E10_Transfer_of_Custody.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeEntities/E11_Modification.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeEntities/E12_Production.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeEntities/E13_Attribute_Assignment.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeEntities/E14_Condition_Assessment.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeEntities/E15_Identifier_Assignment.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeEntities/E16_Measurement.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeEntities/E17_Type_Assignment.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeEntities/E22_Human_Made_Object.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeEntities/E25_Human_Made_Feature.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeEntities/E26_Physical_Feature.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeEntities/E27_Site.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeEntities/E29_Design_or_Procedure.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeEntities/E30_Right.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeEntities/E31_Document.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeEntities/E32_Authority_Document.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeEntities/E34_Inscription.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeEntities/E37_Mark.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeEntities/E3_Condition_State.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeEntities/E41_Appellation.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeEntities/E42_Identifier.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeEntities/E54_Dimension.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeEntities/E58_Measurement_Unit.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeEntities/E63_Beggining_of_Existence.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeEntities/E64_End_of_Existence.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeEntities/E65_Creation.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeEntities/E66_Formation.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeEntities/E67_Birth.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeEntities/E68_Dissolution.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeEntities/E6_Destruction.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeEntities/E70_Death.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeEntities/E74_Group.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeEntities/E78_Curated_Holding.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeEntities/E79_Part_Addition.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeEntities/E80_Part_Removal.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeEntities/E81_Transformation.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeEntities/E83_Type_Creation.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeEntities/E85_Joining.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeEntities/E86_Leaving.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeEntities/E87_Curation_Activity.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeEntities/E8_Acquisition.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeEntities/E93_Presence.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeEntities/E96_Purchase.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeEntities/E97_Monetary_Amount.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeEntities/E98_Currency.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeEntities/E99_Product_Type.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeEntities/E9_Move.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeEntities/StructuredRelCl.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DataObject/Approximate.py" beforeDir="false" afterPath="$PROJECT_DIR$/DataObject/Approximate.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataObject/Instant.py" beforeDir="false" afterPath="$PROJECT_DIR$/DataObject/Instant.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataObject/Interval.py" beforeDir="false" afterPath="$PROJECT_DIR$/DataObject/Interval.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DataObject/PersonName.py" beforeDir="false" afterPath="$PROJECT_DIR$/DataObject/PersonName.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DataObject/RegexString.py" beforeDir="false" afterPath="$PROJECT_DIR$/DataObject/RegexString.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DataObject/String.py" beforeDir="false" afterPath="$PROJECT_DIR$/DataObject/String.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UnitTesting/test_relations.py" beforeDir="false" afterPath="$PROJECT_DIR$/UnitTesting/test_relations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NodeEntities/E18_Physical_Thing.py" beforeDir="false" afterPath="$PROJECT_DIR$/NodeEntities/E18_Physical_Thing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NodeEntities/E1_CRM_Entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/NodeEntities/E1_CRM_Entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NodeEntities/E2_Temporal_Entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/NodeEntities/E2_Temporal_Entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NodeEntities/E35_Title.py" beforeDir="false" afterPath="$PROJECT_DIR$/NodeEntities/E35_Title.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NodeEntities/E36_Visual_Item.py" beforeDir="false" afterPath="$PROJECT_DIR$/NodeEntities/E36_Visual_Item.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NodeEntities/E39_Actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/NodeEntities/E39_Actor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NodeEntities/E4_Period.py" beforeDir="false" afterPath="$PROJECT_DIR$/NodeEntities/E4_Period.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NodeEntities/E52_Time_Span.py" beforeDir="false" afterPath="$PROJECT_DIR$/NodeEntities/E52_Time_Span.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NodeEntities/E53_Place.py" beforeDir="false" afterPath="$PROJECT_DIR$/NodeEntities/E53_Place.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NodeEntities/E55_Type.py" beforeDir="false" afterPath="$PROJECT_DIR$/NodeEntities/E55_Type.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NodeEntities/E70_Thing.py" beforeDir="false" afterPath="$PROJECT_DIR$/NodeEntities/E70_Thing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NodeEntities/E71_Man_Made_Thing.py" beforeDir="false" afterPath="$PROJECT_DIR$/NodeEntities/E71_Man_Made_Thing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NodeEntities/E77_Persistent_Item.py" beforeDir="false" afterPath="$PROJECT_DIR$/NodeEntities/E77_Persistent_Item.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NodeEntities/E92_Spacetime_Volume.py" beforeDir="false" afterPath="$PROJECT_DIR$/NodeEntities/E92_Spacetime_Volume.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NodeProperties/PC0_CRM_Property.py" beforeDir="false" afterPath="$PROJECT_DIR$/NodeProperties/PC0_CRM_Property.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NodeProperties/PC14_Carried_Out_By.py" beforeDir="false" afterPath="$PROJECT_DIR$/NodeProperties/PC14_Carried_Out_By.py" afterDir="false" />
     </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -40,8 +102,25 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="ToolWindowVersion Control.ShowToolbar" value="false" />
     <property name="full.screen.before.presentation.mode" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/NodeEntities" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\nunof\OneDrive\Documents\archgraph\NeoModelCidoc\NodeEntities" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
   </component>
   <component name="RunManager" selected="Python tests.Unittests for test_relations.TestNeoModel.test_data_interval">
     <configuration name="Unittests for test_relations.TestNeoModel" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
@@ -123,18 +202,6 @@
         <item itemvalue="Python tests.Unittests for test_relations.TestNeoModel.test_illegal_relationship" />
       </list>
     </recent_temporary>
-  </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
-      <list>
-        <serviceView>
-          <treeState>
-            <expand />
-            <select />
-          </treeState>
-        </serviceView>
-      </list>
-    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration>C:\Users\lazar\AppData\Roaming\Subversion</configuration>

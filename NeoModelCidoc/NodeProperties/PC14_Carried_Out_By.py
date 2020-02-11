@@ -4,7 +4,7 @@ from NodeProperties.PC0_CRM_Property import PC0_CRM_Property, P01_has_domain, P0
 from NodeEntities.E7_Activity import E7_Activity
 from NodeEntities.E39_Actor import E39_Actor
 from NodeEntities.E55_Type import E55_Type
-from NodeProperties.StructuredRelCl import StructuredRelCl
+from NodeEntities.StructuredRelCl import StructuredRelCl
 
 
 class P14_1_in_the_role_of(StructuredRelCl):

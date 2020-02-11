@@ -1,0 +1,24 @@
+{
+  "name": "arangojs",
+  "version": "3.4.2",
+  "description": "Imagem Docker",
+  "main": "app.js",
+  "dependencies": {
+    "arangojs": "^5.8.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "npm test",
+    "start": "node app.js"
+  },
+  "author": "Lázaro Costa",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/feup-infolab/archgraph.git"
+  },
+  "bugs": {
+    "url": "https://github.com/feup-infolab/archgraph/issues"
+  },
+  "homepage": "https://github.com/feup-infolab/archgraph#readme"
+}
