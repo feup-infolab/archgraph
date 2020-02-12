@@ -9,5 +9,10 @@ class P2_has_type(StructuredRelCl):
     pass
 
 
+class P137_exemplifies(StructuredRelCl):
+    pass
+
+
 class E55_Type(E28_Conceptual_Object):
     hasType = RelationshipFrom(E1_CRM_Entity, 'P2_has_type', model=P2_has_type)
+    exemplifies = RelationshipFrom(E1_CRM_Entity, 'P137_exemplifies', model=P137_exemplifies)
