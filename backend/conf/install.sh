@@ -1,6 +1,15 @@
 #!/bin/bash
 
-brew cask install miniconda || brew cask upgrade miniconda
+if [ "$(uname)" == "Darwin" ]; then
+    # Do something under Mac OS X platform
+    brew cask install miniconda || brew cask upgrade miniconda
+elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+    # Do something under GNU/Linux platform
+    wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
+    chmod +x Miniconda3-latest-Linux-x86_64.sh
+    ./Miniconda3-latest-Linux-x86_64.sh
+fi
+
 conda create -y -n archgraph python=3.7 anaconda
 conda activate archgraph
 conda init
@@ -14,7 +23,7 @@ pip install --upgrade pip
 # (optional) install any requirements of your current app in this venv
 pip install -r requirements.txt
 # Get location of python interpreter
-echo "Python is at: ---> $(which python) <---"
+echo "Python interpreter is at: ---> $(which python) <---"
 
 exit 0
 
