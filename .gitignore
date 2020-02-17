@@ -1,9 +1,9 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # compiled output
-/frontend/dist
-/frontend/tmp
-/frontend/out-tsc
+/public/frontend/dist
+/public/frontend/tmp
+/public/frontend/out-tsc
 # Only exists if Bazel was run
 /bazel-out
 

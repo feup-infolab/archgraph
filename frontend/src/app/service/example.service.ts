@@ -18,7 +18,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class ExampleService {
-  Url = 'http://localhost:3000/';  // URL to web api
+  Url = 'http://localhost:3000/';  // URL to public api
   private handleError: HandleError;
 
   constructor(private http: HttpClient) {
