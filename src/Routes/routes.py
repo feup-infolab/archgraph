@@ -1,11 +1,10 @@
 from flask import Flask
 
 
-app = Flask(__name__,
-            static_url_path='',
-            static_folder='public',
-            template_folder='src/Views'
+app = Flask(
+    __name__, static_url_path="", static_folder="public", template_folder="src/Views"
 )
+
 
 @app.route("/create")
 def create():

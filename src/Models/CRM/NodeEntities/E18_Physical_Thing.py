@@ -1,5 +1,12 @@
-from neomodel import (config, StructuredNode, StringProperty, IntegerProperty,
-                      UniqueIdProperty, RelationshipTo, RelationshipFrom)
+from neomodel import (
+    config,
+    StructuredNode,
+    StringProperty,
+    IntegerProperty,
+    UniqueIdProperty,
+    RelationshipTo,
+    RelationshipFrom,
+)
 from NodeEntities.E72_Legal_Object import E72_Legal_Object
 from src.Models.CRM.NodeProperties.StructuredRelCl import StructuredRelCl
 
@@ -17,6 +24,10 @@ class P13_destroyed(StructuredRelCl):
 
 
 class E18_Physical_Thing(E72_Legal_Object):
-    isComposedOf = RelationshipFrom('E18_Physical_Thing', 'P46_is_composed_of', model=P46_is_composed_of)
-    took_place_on_or_within = RelationshipFrom('E4_Period', 'P8_took_place_on_or_within', model=P8_took_place_on_or_within)
-    destroyed = RelationshipFrom('E6_Destruction', 'P13_destroyed', model=P13_destroyed)
+    isComposedOf = RelationshipFrom(
+        "E18_Physical_Thing", "P46_is_composed_of", model=P46_is_composed_of
+    )
+    took_place_on_or_within = RelationshipFrom(
+        "E4_Period", "P8_took_place_on_or_within", model=P8_took_place_on_or_within
+    )
+    destroyed = RelationshipFrom("E6_Destruction", "P13_destroyed", model=P13_destroyed)

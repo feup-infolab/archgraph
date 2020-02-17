@@ -1,5 +1,11 @@
-from neomodel import (config, StructuredNode, StringProperty, IntegerProperty,
-                      UniqueIdProperty, RelationshipTo)
+from neomodel import (
+    config,
+    StructuredNode,
+    StringProperty,
+    IntegerProperty,
+    UniqueIdProperty,
+    RelationshipTo,
+)
 from NodeEntities.E73_Information_Object import E73_Information_Object
 
 

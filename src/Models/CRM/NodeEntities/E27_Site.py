@@ -1,5 +1,12 @@
-from neomodel import (config, StructuredNode, StringProperty, IntegerProperty,
-                      UniqueIdProperty, RelationshipTo, StructuredRel)
+from neomodel import (
+    config,
+    StructuredNode,
+    StringProperty,
+    IntegerProperty,
+    UniqueIdProperty,
+    RelationshipTo,
+    StructuredRel,
+)
 from NodeEntities.E26_Physical_Feature import E26_Physical_Feature
 
 

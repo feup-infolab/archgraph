@@ -11,5 +11,3 @@ def json_merge(json_a, json_b):
     json_a = json_a[:-1] + "," + json_b[1:]
 
     return json_a
-
-

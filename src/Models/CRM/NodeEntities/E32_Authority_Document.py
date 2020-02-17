@@ -1,5 +1,11 @@
-from neomodel import (config, StructuredNode, StringProperty, IntegerProperty,
-                      UniqueIdProperty, RelationshipTo)
+from neomodel import (
+    config,
+    StructuredNode,
+    StringProperty,
+    IntegerProperty,
+    UniqueIdProperty,
+    RelationshipTo,
+)
 from NodeEntities.E31_Document import E31_Document
 
 

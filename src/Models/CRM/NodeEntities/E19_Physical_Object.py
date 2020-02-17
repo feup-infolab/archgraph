@@ -1,5 +1,12 @@
-from neomodel import (config, StructuredNode, StringProperty, IntegerProperty,
-                      UniqueIdProperty, RelationshipTo, RelationshipFrom)
+from neomodel import (
+    config,
+    StructuredNode,
+    StringProperty,
+    IntegerProperty,
+    UniqueIdProperty,
+    RelationshipTo,
+    RelationshipFrom,
+)
 
 from NodeEntities.E18_Physical_Thing import E18_Physical_Thing
 
