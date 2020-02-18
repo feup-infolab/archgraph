@@ -8,6 +8,8 @@ from neomodel import (
     RelationshipFrom,
 )
 from src.Models.CRM.v5_0_2.NodeEntities.E72_Legal_Object import E72_Legal_Object
+from src.Models.CRM.v5_0_2.NodeEntities.E4_Period import E4_Period
+from src.Models.CRM.v5_0_2.NodeEntities.E6_Destruction import E6_Destruction
 from neomodel import StructuredRel
 
 
@@ -28,6 +30,6 @@ class E18_Physical_Thing(E72_Legal_Object):
         "E18_Physical_Thing", "P46_is_composed_of", model=P46_is_composed_of
     )
     took_place_on_or_within = RelationshipFrom(
-        "E4_Period", "P8_took_place_on_or_within", model=P8_took_place_on_or_within
+        E4_Period, "P8_took_place_on_or_within", model=P8_took_place_on_or_within
     )
-    destroyed = RelationshipFrom("E6_Destruction", "P13_destroyed", model=P13_destroyed)
+    destroyed = RelationshipFrom(E6_Destruction, "P13_destroyed", model=P13_destroyed)

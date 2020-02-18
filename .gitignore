@@ -51,4 +51,5 @@ node_modules/
 /backend/env/include
 /backend/env/lib
 /backend/env/man
+/volumes/
 
