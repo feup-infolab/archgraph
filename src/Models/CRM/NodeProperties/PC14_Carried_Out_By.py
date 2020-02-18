@@ -12,9 +12,9 @@ from src.Models.CRM.NodeProperties.PC0_CRM_Property import (
     P01_has_domain,
     P02_has_range,
 )
-from NodeEntities.E7_Activity import E7_Activity
-from NodeEntities.E39_Actor import E39_Actor
-from NodeEntities.E55_Type import E55_Type
+from src.Models.CRM.NodeEntities.E7_Activity import E7_Activity
+from src.Models.CRM.NodeEntities.E39_Actor import E39_Actor
+from src.Models.CRM.NodeEntities.E55_Type import E55_Type
 from src.Models.CRM.NodeProperties.StructuredRelCl import StructuredRelCl
 
 

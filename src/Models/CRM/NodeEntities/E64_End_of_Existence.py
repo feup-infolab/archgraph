@@ -7,7 +7,7 @@ from neomodel import (
     RelationshipTo,
     One,
 )
-from NodeEntities.E5_Event import E5_Event
+from src.Models.CRM.NodeEntities.E5_Event import E5_Event
 
 
 class E64_End_of_Existence(E5_Event):

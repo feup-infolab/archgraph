@@ -7,7 +7,7 @@ from neomodel import (
     RelationshipTo,
     One,
 )
-from NodeEntities.E13_Attribute_Assignment import E13_Attribute_Assignment
+from src.Models.CRM.NodeEntities.E13_Attribute_Assignment import E13_Attribute_Assignment
 
 
 class E14_Condition_Assessment(E13_Attribute_Assignment):

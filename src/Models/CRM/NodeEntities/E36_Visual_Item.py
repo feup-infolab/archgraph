@@ -7,7 +7,7 @@ from neomodel import (
     RelationshipTo,
     StructuredRel,
 )
-from NodeEntities.E73_Information_Object import E73_Information_Object
+from src.Models.CRM.NodeEntities.E73_Information_Object import E73_Information_Object
 from src.Models.CRM.NodeProperties.StructuredRelCl import StructuredRelCl
 
 

@@ -7,7 +7,7 @@ from neomodel import (
     RelationshipTo,
     One,
 )
-from NodeEntities.E63_Beggining_of_Existence import E63_Beggining_of_Existence
+from src.Models.CRM.NodeEntities.E63_Beggining_of_Existence import E63_Beggining_of_Existence
 
 
 class E67_Birth(E63_Beggining_of_Existence):

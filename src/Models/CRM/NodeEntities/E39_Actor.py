@@ -1,6 +1,6 @@
 from neomodel import RelationshipFrom
 
-from NodeEntities.E77_Persistent_Item import E77_Persistent_Item
+from src.Models.CRM.NodeEntities.E77_Persistent_Item import E77_Persistent_Item
 from src.Models.CRM.NodeProperties.StructuredRelCl import StructuredRelCl
 
 

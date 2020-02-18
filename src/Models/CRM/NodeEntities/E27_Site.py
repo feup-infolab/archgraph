@@ -7,7 +7,7 @@ from neomodel import (
     RelationshipTo,
     StructuredRel,
 )
-from NodeEntities.E26_Physical_Feature import E26_Physical_Feature
+from src.Models.CRM.NodeEntities.E26_Physical_Feature import E26_Physical_Feature
 
 
 class E27_Site(E26_Physical_Feature):

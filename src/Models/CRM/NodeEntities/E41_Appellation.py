@@ -8,7 +8,7 @@ from neomodel import (
     One,
     RelationshipFrom,
 )
-from NodeEntities.E90_Symbolic_Object import E90_Symbolic_Object
+from src.Models.CRM.NodeEntities.E90_Symbolic_Object import E90_Symbolic_Object
 
 from src.Models.CRM.NodeProperties.StructuredRelCl import StructuredRelCl
 

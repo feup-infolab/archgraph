@@ -8,7 +8,7 @@ from neomodel import (
     One,
     RelationshipFrom,
 )
-from NodeEntities.E41_Appellation import E41_Appellation
+from src.Models.CRM.NodeEntities.E41_Appellation import E41_Appellation
 
 from src.Models.CRM.NodeProperties.StructuredRelCl import StructuredRelCl
 

@@ -8,8 +8,8 @@ from neomodel import (
     DateTimeProperty,
     RelationshipFrom,
 )
-from NodeEntities.E33_Linguistic_Object import E33_Linguistic_Object
-from NodeEntities.E71_Man_Made_Thing import E71_Man_Made_Thing
+from src.Models.CRM.NodeEntities.E33_Linguistic_Object import E33_Linguistic_Object
+from src.Models.CRM.NodeEntities.E71_Man_Made_Thing import E71_Man_Made_Thing
 from src.Models.CRM.NodeProperties.StructuredRelCl import StructuredRelCl
 
 

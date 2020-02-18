@@ -6,7 +6,7 @@ from neomodel import (
     UniqueIdProperty,
     RelationshipTo,
 )
-from NodeEntities.E55_Type import E55_Type
+from src.Models.CRM.NodeEntities.E55_Type import E55_Type
 
 
 class E56_Language(E55_Type):

@@ -8,7 +8,7 @@ from neomodel import (
     UniqueIdProperty,
     RelationshipTo,
 )
-from NodeEntities.E71_Man_Made_Thing import E71_Man_Made_Thing
+from src.Models.CRM.NodeEntities.E71_Man_Made_Thing import E71_Man_Made_Thing
 
 
 class E28_Conceptual_Object(E71_Man_Made_Thing):

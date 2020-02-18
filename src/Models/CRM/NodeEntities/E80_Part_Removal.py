@@ -7,7 +7,7 @@ from neomodel import (
     RelationshipTo,
     One,
 )
-from NodeEntities.E11_Modification import E11_Modification
+from src.Models.CRM.NodeEntities.E11_Modification import E11_Modification
 
 
 class E79_Part_Removal(E11_Modification):

@@ -7,7 +7,7 @@ from neomodel import (
     RelationshipTo,
     One,
 )
-from NodeEntities.E1_CRM_Entity import E1_CRM_Entity
+from src.Models.CRM.NodeEntities.E1_CRM_Entity import E1_CRM_Entity
 
 
 class E54_Dimension(E1_CRM_Entity):

@@ -6,7 +6,7 @@ from neomodel import (
     UniqueIdProperty,
     RelationshipTo,
 )
-from NodeEntities.E70_Thing import E70_Thing
+from src.Models.CRM.NodeEntities.E70_Thing import E70_Thing
 from src.Models.CRM.NodeProperties.StructuredRelCl import StructuredRelCl
 
 

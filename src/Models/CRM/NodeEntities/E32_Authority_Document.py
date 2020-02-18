@@ -6,7 +6,7 @@ from neomodel import (
     UniqueIdProperty,
     RelationshipTo,
 )
-from NodeEntities.E31_Document import E31_Document
+from src.Models.CRM.NodeEntities.E31_Document import E31_Document
 
 
 class E32_Authority_Document(E31_Document):

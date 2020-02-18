@@ -7,7 +7,7 @@ from neomodel import (
     RelationshipTo,
     RelationshipFrom,
 )
-from NodeEntities.E72_Legal_Object import E72_Legal_Object
+from src.Models.CRM.NodeEntities.E72_Legal_Object import E72_Legal_Object
 from src.Models.CRM.NodeProperties.StructuredRelCl import StructuredRelCl
 
 

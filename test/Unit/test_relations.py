@@ -1,18 +1,18 @@
 import datetime
 import unittest
 
-from NodeEntities.E35_Title import E35_Title
-from NodeEntities.E53_Place import E53_Place
-from NodeEntities.E70_Thing import E70_Thing
-from NodeEntities.E55_Type import E55_Type, E1_CRM_Entity
-from NodeEntities.E18_Physical_Thing import E18_Physical_Thing
-from NodeEntities.E24_Physical_Man_Made_Thing import E24_Physical_Man_Made_Thing
-from NodeEntities.E52_Time_Span import E52_Time_Span
-from NodeEntities.E72_Legal_Object import E72_Legal_Object
-from NodeEntities.E39_Actor import E39_Actor
+from src.Models.CRM.NodeEntities.E35_Title import E35_Title
+from src.Models.CRM.NodeEntities.E53_Place import E53_Place
+from src.Models.CRM.NodeEntities.E70_Thing import E70_Thing
+from src.Models.CRM.NodeEntities.E55_Type import E55_Type, E1_CRM_Entity
+from src.Models.CRM.NodeEntities.E18_Physical_Thing import E18_Physical_Thing
+from src.Models.CRM.NodeEntities.E24_Physical_Man_Made_Thing import E24_Physical_Man_Made_Thing
+from src.Models.CRM.NodeEntities.E52_Time_Span import E52_Time_Span
+from src.Models.CRM.NodeEntities.E72_Legal_Object import E72_Legal_Object
+from src.Models.CRM.NodeEntities.E39_Actor import E39_Actor
 from src.Models.CRM.NodeProperties.PC14_Carried_Out_By import PC14_Carried_Out_By
-from NodeEntities.E7_Activity import E7_Activity
-from NodeEntities.E21_Person import E21_Person
+from src.Models.CRM.NodeEntities.E7_Activity import E7_Activity
+from src.Models.CRM.NodeEntities.E21_Person import E21_Person
 from neomodel import (config, StructuredNode, StringProperty, IntegerProperty,
                       UniqueIdProperty, RelationshipTo, OUTGOING, Traversal, DeflateError,
                       AttemptedCardinalityViolation)

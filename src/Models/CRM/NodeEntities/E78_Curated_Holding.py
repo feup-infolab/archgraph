@@ -6,7 +6,7 @@ from neomodel import (
     UniqueIdProperty,
     RelationshipTo,
 )
-from NodeEntities.E24_Physical_Man_Made_Thing import E24_Physical_Man_Made_Thing
+from src.Models.CRM.NodeEntities.E24_Physical_Man_Made_Thing import E24_Physical_Man_Made_Thing
 
 
 class E78_Curated_Holding(E24_Physical_Man_Made_Thing):

@@ -7,7 +7,7 @@ from neomodel import (
     RelationshipTo,
 )
 
-from NodeEntities.E28_Conceptual_Object import E28_Conceptual_Object
+from src.Models.CRM.NodeEntities.E28_Conceptual_Object import E28_Conceptual_Object
 
 
 class E89_Propositional_Object(E28_Conceptual_Object):

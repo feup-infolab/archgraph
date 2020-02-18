@@ -7,8 +7,8 @@ from neomodel import (
     RelationshipTo,
     RelationshipFrom,
 )
-from NodeEntities.E28_Conceptual_Object import E28_Conceptual_Object
-from NodeEntities.E1_CRM_Entity import E1_CRM_Entity
+from src.Models.CRM.NodeEntities.E28_Conceptual_Object import E28_Conceptual_Object
+from src.Models.CRM.NodeEntities.E1_CRM_Entity import E1_CRM_Entity
 from src.Models.CRM.NodeProperties.StructuredRelCl import StructuredRelCl
 
 

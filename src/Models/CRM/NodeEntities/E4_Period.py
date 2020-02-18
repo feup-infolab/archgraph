@@ -8,7 +8,7 @@ from neomodel import (
     One,
     RelationshipFrom,
 )
-from NodeEntities.E2_Temporal_Entity import E2_Temporal_Entity
+from src.Models.CRM.NodeEntities.E2_Temporal_Entity import E2_Temporal_Entity
 from src.Models.CRM.NodeProperties.StructuredRelCl import StructuredRelCl
 
 

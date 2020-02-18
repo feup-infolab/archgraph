@@ -9,7 +9,7 @@ from neomodel import (
     RelationshipTo,
     One,
 )
-from NodeEntities.E8_Acquisition import E8_Acquisition
+from src.Models.CRM.NodeEntities.E8_Acquisition import E8_Acquisition
 
 
 class E96_Purchase(E8_Acquisition):

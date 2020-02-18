@@ -7,7 +7,7 @@ from neomodel import (
     RelationshipTo,
     One,
 )
-from NodeEntities.E64_End_of_Existence import E64_End_of_Existence
+from src.Models.CRM.NodeEntities.E64_End_of_Existence import E64_End_of_Existence
 
 
 class E69_Death(E64_End_of_Existence):

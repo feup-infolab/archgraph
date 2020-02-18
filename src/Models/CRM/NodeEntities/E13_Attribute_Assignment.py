@@ -7,7 +7,7 @@ from neomodel import (
     RelationshipTo,
     One,
 )
-from NodeEntities.E7_Activity import E7_Activity
+from src.Models.CRM.NodeEntities.E7_Activity import E7_Activity
 
 
 class E13_Attribute_Assignment(E7_Activity):

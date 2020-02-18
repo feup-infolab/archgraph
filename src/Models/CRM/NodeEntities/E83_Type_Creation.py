@@ -7,7 +7,7 @@ from neomodel import (
     RelationshipTo,
     One,
 )
-from NodeEntities.E65_Creation import E65_Creation
+from src.Models.CRM.NodeEntities.E65_Creation import E65_Creation
 
 
 class E83_Type_Creation(E65_Creation):

@@ -8,7 +8,7 @@ from neomodel import (
     RelationshipFrom,
 )
 
-from NodeEntities.E18_Physical_Thing import E18_Physical_Thing
+from src.Models.CRM.NodeEntities.E18_Physical_Thing import E18_Physical_Thing
 
 
 class E19_Physical_Object(E18_Physical_Thing):

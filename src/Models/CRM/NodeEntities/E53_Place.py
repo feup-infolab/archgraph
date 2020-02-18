@@ -8,8 +8,8 @@ from neomodel import (
     DateTimeProperty,
     RelationshipFrom,
 )
-from NodeEntities.E1_CRM_Entity import E1_CRM_Entity
-from NodeEntities.E18_Physical_Thing import E18_Physical_Thing
+from src.Models.CRM.NodeEntities.E1_CRM_Entity import E1_CRM_Entity
+from src.Models.CRM.NodeEntities.E18_Physical_Thing import E18_Physical_Thing
 from src.Models.CRM.NodeProperties.StructuredRelCl import StructuredRelCl
 
 

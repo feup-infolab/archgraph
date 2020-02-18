@@ -7,7 +7,7 @@ from neomodel import (
     RelationshipTo,
     DateTimeProperty,
 )
-from NodeEntities.E73_Information_Object import E73_Information_Object
+from src.Models.CRM.NodeEntities.E73_Information_Object import E73_Information_Object
 
 
 class E33_Linguistic_Object(E73_Information_Object):

@@ -7,8 +7,8 @@ from neomodel import (
     RelationshipTo,
     One,
 )
-from NodeEntities.E55_Type import E55_Type
-from NodeEntities.E58_Measurement_Unit import E58_Measurement_Unit
+from src.Models.CRM.NodeEntities.E55_Type import E55_Type
+from src.Models.CRM.NodeEntities.E58_Measurement_Unit import E58_Measurement_Unit
 
 
 class E98_Currency(E55_Type, E58_Measurement_Unit):

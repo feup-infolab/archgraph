@@ -6,7 +6,7 @@ from neomodel import (
     UniqueIdProperty,
     RelationshipTo,
 )
-from NodeEntities.E39_Actor import E39_Actor
+from src.Models.CRM.NodeEntities.E39_Actor import E39_Actor
 
 
 class E74_Group(E39_Actor):

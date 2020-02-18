@@ -7,7 +7,7 @@ from neomodel import (
     RelationshipTo,
     One,
 )
-from NodeEntities.E54_Dimension import E54_Dimension
+from src.Models.CRM.NodeEntities.E54_Dimension import E54_Dimension
 
 
 class E97_Monetary_Amount(E54_Dimension):

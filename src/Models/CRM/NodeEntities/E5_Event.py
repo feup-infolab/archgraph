@@ -7,7 +7,7 @@ from neomodel import (
     RelationshipTo,
     One,
 )
-from NodeEntities.E4_Period import E4_Period
+from src.Models.CRM.NodeEntities.E4_Period import E4_Period
 
 
 class E5_Event(E4_Period):
