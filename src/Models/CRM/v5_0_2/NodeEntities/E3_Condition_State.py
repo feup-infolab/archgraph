@@ -10,10 +10,10 @@ from neomodel import (
 )
 from src.Models.CRM.v5_0_2.NodeEntities.E2_Temporal_Entity import E2_Temporal_Entity
 
-from neomodel import StructuredRel
+from src.Models.CRM.NodeProperties.StructuredRelCl import StructuredRelCl
 
 
-class P5_consists_of(StructuredRel):
+class P5_consists_of(StructuredRelCl):
     pass
 
 

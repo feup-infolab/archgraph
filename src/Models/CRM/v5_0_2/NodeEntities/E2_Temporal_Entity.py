@@ -12,63 +12,63 @@ from src.Models.CRM.v5_0_2.NodeEntities.E1_CRM_Entity import E1_CRM_Entity
 from neomodel import StructuredRel
 
 
-class P114_is_equal_in_time_to(StructuredRel):
+class P114_is_equal_in_time_to(StructuredRelCl):
     pass
 
 
-class P115_finishes(StructuredRel):
+class P115_finishes(StructuredRelCl):
     pass
 
 
-class P116_starts(StructuredRel):
+class P116_starts(StructuredRelCl):
     pass
 
 
-class P117_occurs_during(StructuredRel):
+class P117_occurs_during(StructuredRelCl):
     pass
 
 
-class P118_overlaps_in_time_with(StructuredRel):
+class P118_overlaps_in_time_with(StructuredRelCl):
     pass
 
 
-class P119_meets_in_time_with(StructuredRel):
+class P119_meets_in_time_with(StructuredRelCl):
     pass
 
 
-class P120_occurs_before(StructuredRel):
+class P120_occurs_before(StructuredRelCl):
     pass
 
 
-class P173_starts_before_or_at_the_end_of(StructuredRel):
+class P173_starts_before_or_at_the_end_of(StructuredRelCl):
     pass
 
 
-class P174_starts_before(StructuredRel):
+class P174_starts_before(StructuredRelCl):
     pass
 
 
-class P175_starts_before_or_with_the_start_of(StructuredRel):
+class P175_starts_before_or_with_the_start_of(StructuredRelCl):
     pass
 
 
-class P176_starts_before_the_start_of(StructuredRel):
+class P176_starts_before_the_start_of(StructuredRelCl):
     pass
 
 
-class P182_ends_before_or_at_the_start_of(StructuredRel):
+class P182_ends_before_or_at_the_start_of(StructuredRelCl):
     pass
 
 
-class P183_ends_before_the_start_of(StructuredRel):
+class P183_ends_before_the_start_of(StructuredRelCl):
     pass
 
 
-class P184_ends_before_or_wit_the_end_of(StructuredRel):
+class P184_ends_before_or_wit_the_end_of(StructuredRelCl):
     pass
 
 
-class P185_ends_before_the_end_of(StructuredRel):
+class P185_ends_before_the_end_of(StructuredRelCl):
     pass
 
 
