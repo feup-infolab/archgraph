@@ -1,5 +1,14 @@
-from neomodel import (config, StructuredNode, StringProperty, IntegerProperty,
-                      UniqueIdProperty, RelationshipTo,One,  RelationshipFrom, One)
+from neomodel import (
+    config,
+    StructuredNode,
+    StringProperty,
+    IntegerProperty,
+    UniqueIdProperty,
+    RelationshipTo,
+    One,
+    RelationshipFrom,
+    One,
+)
 from json import JSONEncoder
 from DataObject.Date import Date
 from NodeProperties.StructuredRelCl import StructuredRelCl
@@ -10,4 +19,6 @@ class xsdDateTime(StructuredRelCl):
 
 
 class Instant(Date):
-    timestamp = RelationshipFrom('Instant', 'xsdDateTime', cardinality=One, model=xsdDateTime)
+    timestamp = RelationshipFrom(
+        "Instant", "xsdDateTime", cardinality=One, model=xsdDateTime
+    )

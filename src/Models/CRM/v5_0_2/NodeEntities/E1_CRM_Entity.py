@@ -10,12 +10,14 @@ from neomodel import (
 )
 
 from src.GCF.decorators.OntologyClass import ontology_class
-from ..NodeProperties.PC14_Carried_Out_By import PC14_Carried_Out_By
+from ..NodeProperties.P2_has_type import P2_has_type
 
-# @ontology_class
+
+@ontology_class
 class E1_CRM_Entity(StructuredNode):
 
-    name = StringProperty(unique_index=True, required=True)
+    hasType = RelationshipFrom(
+        ".E1_CRM_Entity.E1_CRM_Entity", "P2_has_type", model=P2_has_type
+    )
 
-    def to_json(self):
-        return {self.__class__.__name__: self.__properties__}
+    name = StringProperty(unique_index=True, required=True)
