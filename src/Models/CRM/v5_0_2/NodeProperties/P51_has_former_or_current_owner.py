@@ -1,4 +1,4 @@
-from src.Models.CRM.NodeProperties.StructuredRelCl import StructuredRelCl
+from neomodel import StructuredRel
 
 
 class P49_has_former_or_current_owner(StructuredRel):

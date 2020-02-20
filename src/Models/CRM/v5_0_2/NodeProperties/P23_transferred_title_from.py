@@ -1,4 +1,4 @@
-from src.Models.CRM.NodeProperties.StructuredRelCl import StructuredRelCl
+from neomodel import StructuredRel
 
 
 class P23_transferred_title_from(StructuredRel):

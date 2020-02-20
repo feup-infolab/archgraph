@@ -1,4 +1,4 @@
-from src.Models.CRM.NodeProperties.StructuredRelCl import StructuredRelCl
+from neomodel import StructuredRel
 
 
 class P33_used_specific_technique(StructuredRel):

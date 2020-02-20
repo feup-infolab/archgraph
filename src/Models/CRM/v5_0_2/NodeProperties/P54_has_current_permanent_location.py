@@ -1,4 +1,4 @@
-from src.Models.CRM.NodeProperties.StructuredRelCl import StructuredRelCl
+from neomodel import StructuredRel
 
 
 class P54_has_current_permanent_location(StructuredRel):

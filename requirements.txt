@@ -45,3 +45,4 @@ black==19.10b0
 coverage==5.0
 yolk3k==0.9
 inject==4.0.0
+py2neo==4.3.0

@@ -1,5 +1,5 @@
 from neomodel import StructuredRel
 
 
-class P31_has_modified(StructuredRel):
+class P130_shows_features_of(StructuredRel):
     pass

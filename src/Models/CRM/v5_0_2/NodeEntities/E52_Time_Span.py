@@ -20,7 +20,7 @@ class P4_has_time_span(StructuredRel):
 class E52_Time_Span(E1_CRM_Entity):
     date = DateTimeProperty(unique_index=True, required=True)
     has_time_span = RelationshipFrom(
-        "E2_Temporal_Entity",
+        ".E2_Temporal_Entity.E2_Temporal_Entity",
         "P4_has_time_span",
         cardinality=One,
         model=P4_has_time_span,

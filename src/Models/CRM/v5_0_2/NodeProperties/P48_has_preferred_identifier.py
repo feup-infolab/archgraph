@@ -1,4 +1,4 @@
-from src.Models.CRM.NodeProperties.StructuredRelCl import StructuredRelCl
+from neomodel import StructuredRel
 
 
 class P48_has_preferred_identifier(StructuredRel):

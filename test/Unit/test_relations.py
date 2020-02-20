@@ -10,16 +10,23 @@ from src.Models.CRM.v5_0_2.NodeEntities.E18_Physical_Thing import E18_Physical_T
 from src.Models.CRM.v5_0_2.NodeEntities.E24_Physical_Man_Made_Thing import E24_Physical_Man_Made_Thing
 from src.Models.CRM.v5_0_2.NodeEntities.E52_Time_Span import E52_Time_Span
 from src.Models.CRM.v5_0_2.NodeEntities.E72_Legal_Object import E72_Legal_Object
+from src.Models.CRM.v5_0_2.NodeEntities.E71_Man_Made_Thing import E71_Man_Made_Thing
 from src.Models.CRM.v5_0_2.NodeEntities.E39_Actor import E39_Actor
 from src.Models.CRM.v5_0_2.NodeEntities.E7_Activity import E7_Activity
 from src.Models.CRM.v5_0_2.NodeEntities.E21_Person import E21_Person
+from src.Models.CRM.v5_0_2.NodeEntities.E2_Temporal_Entity import E2_Temporal_Entity
 from src.Models.CRM.v5_0_2.NodeProperties.PC14_Carried_Out_By import PC14_Carried_Out_By
 
 from neomodel import (config, OUTGOING, Traversal, DeflateError,
                       AttemptedCardinalityViolation)
+
+from src.GCF.utils.db import clean_database
+
 import json
 
 from src.Utils.JsonEncoder import json_merge
+
+clean_database()
 
 config.DATABASE_URL = 'bolt://neo4j:password@localhost:7687'
 e1 = E1_CRM_Entity(name="test").save()
@@ -60,7 +67,7 @@ class TestNeoModel(unittest.TestCase):
 
     def test_illegal_relationship(self):
         # Tests creation of illegal relationships, by raising of exception
-        self.assertRaises(ValueError, e18.isComposedOf.connect, e1)
+        self.assertRaises(ValueError, e18.is_composed_of.connect, e1)
 
     def test_diamond_problem(self):
         # Tests if E24 that inherits showsFeaturesOf from both it's superclasses (P130, that E70 has from which E71
@@ -105,13 +112,13 @@ class TestNeoModel(unittest.TestCase):
         # Test if cardinality holds
         # A placeholder relationship was created with cardinality One
         # Three nodes created, in order to check if it's possible to break the cardinality constraint
-        e1_2 = E1_CRM_Entity(name="cardTest").save()
-        e24_2 = E24_Physical_Man_Made_Thing(name="test4").save()
-        e24_3 = E24_Physical_Man_Made_Thing(name="test5").save()
+        e2_1 = E2_Temporal_Entity(name="instante_1").save()
+        e2_2 = E2_Temporal_Entity(name="instante_2").save()
+        e2_3 = E2_Temporal_Entity(name="instante_3").save()
         # Creation of first relationship, shouldn't break
-        e1_2.testCardinality.connect(e24_2)
+        e2_1.is_equal_in_time_to.connect(e2_2)
         # Creation of second relationship, should raise exception
-        self.assertRaises(AttemptedCardinalityViolation, e1_2.testCardinality.connect, e24_3)
+        self.assertRaises(AttemptedCardinalityViolation, e2_1.is_equal_in_time_to.connect, e2_3)
 
     def test_ternary_relationship(self):
         # Test to check ternary functioning
@@ -163,17 +170,17 @@ class TestNeoModel(unittest.TestCase):
 
     def test_case(self):
         # Define nodes to use
-        e24_2 = E24_Physical_Man_Made_Thing(name="Monumento").save()
-        e35 = E35_Title(name="Torre Eiffel").save()
-        e53 = E53_Place(name="Paris").save()
-        e70 = E70_Thing(name="Torre").save()
-        e1_7 = E1_CRM_Entity(name="E1 de Teste").save()
+        monumento = E70_Thing(name="Monumento").save()
+        titulo_torre_eiffel = E35_Title(name="Torre Eiffel").save()
+        paris = E53_Place(name="Paris").save()
+        torre_eiffel = E24_Physical_Man_Made_Thing(name="Torre Eiffel").save()
+        uma_entidade_qualquer = E1_CRM_Entity(name="E1 de Teste").save()
 
         # Definition of Relations
-        e24_2.occupies.connect(e53)
-        e24_2.has_title.connect(e35)
-        e24_2.showsFeaturesOf.connect(e70)
+        torre_eiffel.occupies.connect(paris)
+        torre_eiffel.has_title.connect(titulo_torre_eiffel)
+        torre_eiffel.showsFeaturesOf.connect(monumento)
 
         # Exception Raised on Illegal Relation
-        self.assertRaises(ValueError, e24_2.showsFeaturesOf.connect, e1_7)
+        self.assertRaises(ValueError, torre_eiffel.showsFeaturesOf.connect, uma_entidade_qualquer)
 
