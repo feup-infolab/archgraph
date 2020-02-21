@@ -1,19 +1,11 @@
-from neomodel import (
-    config,
-    StructuredNode,
-    StringProperty,
-    IntegerProperty,
-    UniqueIdProperty,
-    RelationshipTo,
-    DateTimeProperty,
-    RelationshipFrom,
-)
-from src.Models.CRM.v5_0_2.NodeEntities.E33_Linguistic_Object import (
-    E33_Linguistic_Object,
-)
-from src.Models.CRM.v5_0_2.NodeEntities.E71_Man_Made_Thing import E71_Man_Made_Thing
-from neomodel import StructuredRel
+from neomodel import (DateTimeProperty, IntegerProperty, RelationshipFrom,
+                      RelationshipTo, StringProperty, StructuredNode,
+                      UniqueIdProperty, config)
 
+from src.Models.CRM.v5_0_2.NodeEntities.E33_Linguistic_Object import \
+    E33_Linguistic_Object
+from src.Models.CRM.v5_0_2.NodeEntities.E71_Man_Made_Thing import \
+    E71_Man_Made_Thing
 from src.Models.CRM.v5_0_2.NodeProperties.P102_has_title import P102_has_title
 
 

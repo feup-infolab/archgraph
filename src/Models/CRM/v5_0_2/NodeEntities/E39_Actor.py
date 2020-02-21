@@ -1,7 +1,7 @@
-from neomodel import RelationshipFrom
+from neomodel import RelationshipFrom, StructuredRel
 
-from src.Models.CRM.v5_0_2.NodeEntities.E77_Persistent_Item import E77_Persistent_Item
-from neomodel import StructuredRel
+from src.Models.CRM.v5_0_2.NodeEntities.E77_Persistent_Item import \
+    E77_Persistent_Item
 
 
 class P11_had_participant(StructuredRel):
