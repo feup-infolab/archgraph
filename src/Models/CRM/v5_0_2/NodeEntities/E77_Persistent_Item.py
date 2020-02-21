@@ -1,9 +1,6 @@
-from neomodel import (IntegerProperty, RelationshipFrom, RelationshipTo,
-                      StringProperty, StructuredNode, StructuredRel,
-                      UniqueIdProperty, config)
+from neomodel import (RelationshipFrom, StructuredRel)
 
 from src.Models.CRM.v5_0_2.NodeEntities.E1_CRM_Entity import E1_CRM_Entity
-
 from ..NodeEntities.E5_Event import E5_Event
 
 

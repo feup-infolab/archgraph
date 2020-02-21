@@ -1,6 +1,4 @@
-from neomodel import (IntegerProperty, One, RelationshipFrom, RelationshipTo,
-                      StringProperty, StructuredNode, StructuredRel,
-                      UniqueIdProperty, config)
+from neomodel import (RelationshipFrom, StructuredRel)
 
 from src.Models.CRM.v5_0_2.NodeEntities.E2_Temporal_Entity import \
     E2_Temporal_Entity

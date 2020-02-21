@@ -1,5 +1,4 @@
-from neomodel import (IntegerProperty, RelationshipFrom, RelationshipTo,
-                      StringProperty, StructuredNode, UniqueIdProperty, config)
+from neomodel import (RelationshipFrom)
 
 from src.Models.CRM.v5_0_2.NodeEntities.E77_Persistent_Item import \
     E77_Persistent_Item
