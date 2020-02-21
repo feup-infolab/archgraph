@@ -1,6 +1,6 @@
-from neomodel import (StructuredNode, StringProperty)
 from marshmallow import Schema, fields
 from marshmallow_jsonschema import JSONSchema
+from neomodel import StringProperty, StructuredNode
 
 
 class DataObject(StructuredNode):
@@ -15,4 +15,4 @@ data_object_schema = DataObjectSchema()
 
 json_schema = JSONSchema()
 json_schema.dump(data_object_schema)
-#print(json_schema.dump(data_object_schema))
+# print(json_schema.dump(data_object_schema))

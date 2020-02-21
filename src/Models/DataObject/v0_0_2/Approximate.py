@@ -1,6 +1,7 @@
-from neomodel import (DateTimeProperty)
-from src.Models.DataObject.v0_0_2.Date import Date
 from marshmallow import Schema, fields
+from neomodel import DateTimeProperty
+
+from src.Models.DataObject.v0_0_2.Date import Date
 
 
 class Approximate(Date):
