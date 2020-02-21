@@ -4,6 +4,10 @@ eval "$(conda shell.bash hook)"
 conda activate archgraph
 echo "Python interpreter is at: ---> $(which python) <---"
 
+# fix code style issues using autopep8
+# https://github.com/hhatto/autopep8
+autopep8 --aggressive -r --in-place src
+
 # format code according to black code standard
 # https://github.com/psf/black
 black src
