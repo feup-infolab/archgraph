@@ -1,13 +1,17 @@
-from neomodel import One, RelationshipFrom, StructuredRel
-
-from .Date import Date
-
-
-class xsdDateTime(StructuredRel):
-    pass
+from neomodel import (DateTimeProperty)
+from src.Models.DataObject.v0_0_2.Date import Date
+from marshmallow import Schema, fields
 
 
 class Approximate(Date):
-    approximateDateValue = RelationshipFrom(
-        "Approximate", "xsdDateTime", cardinality=One, model=xsdDateTime
-    )
+    approximateDateValue = DateTimeProperty(unique_index=True, required=True)
+
+
+class ApproximateSchema(Schema):
+    approximateDateValue = fields.Date()
+
+
+approximate = Approximate()
+approximate_schema = ApproximateSchema()
+
+approximate_schema.dump(approximate)
