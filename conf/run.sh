@@ -1,27 +1,25 @@
 #!/usr/bin/env bash
 ROOT_DIR=$(pwd)
-echo "Running at $ROOT_DIR"
 
-# maybe remove this later when conda is working correctly in path
-# (this was not working on linux without re-exporting the folder to path?)
+if [[ ! -f "README.md" ]] || [[ ! -f "requirements.txt" ]]; then
+    echo "This script should be run at the root of the project!"
+    exit 1
+fi
 
-source "$HOME/.bash_profile"
-export PATH="$HOME/miniconda/bin":$PATH
+#activate environment
+source "./conf/activate.sh"
 
 # activate nvm and use node v13
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 nvm use v13
 
-eval "$(conda shell.bash hook)"
-conda activate archgraph
-echo "Python interpreter is at: ---> $(which python) <---"
 python ./src/Routes/routes.py &
 SERVER_PID=$!
-cd "$ROOT_DIR/frontend"
+cd "$ROOT_DIR/frontend" || ( echo "folder missing " && exit 1 )
 yarn ng serve &
 CLIENT_PID=$!
-cd "$ROOT_DIR"
+cd "$ROOT_DIR" || ( echo "folder missing " && exit 1 )
 
 echo "Server running with pid $SERVER_PID and client running with pid $CLIENT_PID"
 

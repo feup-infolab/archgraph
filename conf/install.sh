@@ -1,5 +1,7 @@
 #!/bin/bash
 
+ENV_NAME="archgraph"
+
 if [ "$(uname)" == "Darwin" ]; then
     # Do something under Mac OS X platform
     brew cask install miniconda || brew cask upgrade miniconda
@@ -14,10 +16,11 @@ fi
 
 
 # run conda
-source ~/.bash_profile
+source "$HOME/.bash_profile"
 export PATH="$HOME/miniconda/bin":$PATH
-conda create -y -n archgraph python=3.7 anaconda
-conda activate archgraph
+conda remove --name "$ENV_NAME" -y --all
+conda create -y -n "$ENV_NAME" python=3.7 anaconda
+conda activate "$ENV_NAME"
 conda init bash
 
 # install pip

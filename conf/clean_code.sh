@@ -1,8 +1,14 @@
 #!/usr/bin/env bash
 
-eval "$(conda shell.bash hook)"
-conda activate archgraph
-echo "Python interpreter is at: ---> $(which python) <---"
+ROOT_DIR=$(pwd)
+
+if [ ! -f "$ROOT_DIR/README.md" ] || [ ! -f "$ROOT_DIR/requirements.txt" ]; then
+    echo "This script should be run at the root of the project!"
+    exit 1
+fi
+
+#activate environment
+source "./conf/activate.sh"
 
 # fix code style issues using autopep8
 # https://github.com/hhatto/autopep8
