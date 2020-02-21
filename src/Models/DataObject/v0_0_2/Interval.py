@@ -1,11 +1,9 @@
-from neomodel import (IntegerProperty, One, RelationshipFrom, RelationshipTo,
-                      StringProperty, StructuredNode, UniqueIdProperty, config)
+from neomodel import (One, RelationshipFrom, StructuredRel)
 
-from DataObject.Date import Date
-from NodeProperties.StructuredRelCl import StructuredRelCl
+from .Date import Date
 
 
-class xsdDateTime(StructuredRelCl):
+class xsdDateTime(StructuredRel):
     pass
 
 

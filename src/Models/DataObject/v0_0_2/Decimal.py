@@ -1,7 +1,4 @@
-from neomodel import (IntegerProperty, RelationshipFrom, RelationshipTo,
-                      StringProperty, StructuredNode, UniqueIdProperty, config)
-
-from DataObject.DataObject import DataObject
+from .DataObject import DataObject
 
 
 class Decimal(DataObject):

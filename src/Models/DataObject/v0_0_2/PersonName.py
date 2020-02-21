@@ -1,11 +1,9 @@
-from neomodel import (IntegerProperty, One, RelationshipFrom, RelationshipTo,
-                      StringProperty, StructuredNode, UniqueIdProperty, config)
+from neomodel import (One, RelationshipFrom, StructuredRel)
 
-from DataObject.AuthorityString import AuthorityString
-from NodeProperties.StructuredRelCl import StructuredRelCl
+from .AuthorityString import AuthorityString
 
 
-class xsdString(StructuredRelCl):
+class xsdString(StructuredRel):
     pass
 
 
