@@ -1,4 +1,4 @@
-from neomodel import (One, RelationshipFrom, StructuredRel)
+from neomodel import One, RelationshipFrom, StructuredRel
 
 from .String import String
 
