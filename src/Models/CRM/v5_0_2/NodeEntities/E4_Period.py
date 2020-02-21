@@ -1,15 +1,9 @@
-from neomodel import (
-    config,
-    StructuredNode,
-    StringProperty,
-    IntegerProperty,
-    UniqueIdProperty,
-    RelationshipTo,
-    One,
-    RelationshipFrom,
-)
-from src.Models.CRM.v5_0_2.NodeEntities.E2_Temporal_Entity import E2_Temporal_Entity
-from neomodel import StructuredRel
+from neomodel import (IntegerProperty, One, RelationshipFrom, RelationshipTo,
+                      StringProperty, StructuredNode, StructuredRel,
+                      UniqueIdProperty, config)
+
+from src.Models.CRM.v5_0_2.NodeEntities.E2_Temporal_Entity import \
+    E2_Temporal_Entity
 
 
 class P9_consists_of(StructuredRel):

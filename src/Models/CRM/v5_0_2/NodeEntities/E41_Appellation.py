@@ -1,16 +1,9 @@
-from neomodel import (
-    config,
-    StructuredNode,
-    StringProperty,
-    IntegerProperty,
-    UniqueIdProperty,
-    RelationshipTo,
-    One,
-    RelationshipFrom,
-)
-from src.Models.CRM.v5_0_2.NodeEntities.E90_Symbolic_Object import E90_Symbolic_Object
+from neomodel import (IntegerProperty, One, RelationshipFrom, RelationshipTo,
+                      StringProperty, StructuredNode, StructuredRel,
+                      UniqueIdProperty, config)
 
-from neomodel import StructuredRel
+from src.Models.CRM.v5_0_2.NodeEntities.E90_Symbolic_Object import \
+    E90_Symbolic_Object
 
 
 class P1_is_identified_by(StructuredRel):

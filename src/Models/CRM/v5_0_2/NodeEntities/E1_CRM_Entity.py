@@ -1,15 +1,8 @@
-from neomodel import (
-    config,
-    StructuredNode,
-    StringProperty,
-    IntegerProperty,
-    UniqueIdProperty,
-    RelationshipTo,
-    One,
-    RelationshipFrom,
-)
+from neomodel import (IntegerProperty, One, RelationshipFrom, RelationshipTo,
+                      StringProperty, StructuredNode, UniqueIdProperty, config)
 
 from src.GCF.decorators.OntologyClass import ontology_class
+
 from ..NodeProperties.P2_has_type import P2_has_type
 
 

@@ -1,5 +1,6 @@
 import importlib
 
+
 def ontology_property(cls):
 
     # package_name = ".".join([cls.__module__, cls.__name__])

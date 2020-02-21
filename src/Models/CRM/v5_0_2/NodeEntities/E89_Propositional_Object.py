@@ -1,15 +1,8 @@
-from neomodel import (
-    config,
-    StructuredNode,
-    StringProperty,
-    IntegerProperty,
-    UniqueIdProperty,
-    RelationshipTo,
-)
+from neomodel import (IntegerProperty, RelationshipTo, StringProperty,
+                      StructuredNode, UniqueIdProperty, config)
 
-from src.Models.CRM.v5_0_2.NodeEntities.E28_Conceptual_Object import (
-    E28_Conceptual_Object,
-)
+from src.Models.CRM.v5_0_2.NodeEntities.E28_Conceptual_Object import \
+    E28_Conceptual_Object
 
 
 class E89_Propositional_Object(E28_Conceptual_Object):

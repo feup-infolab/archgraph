@@ -1,18 +1,13 @@
-from neomodel import (
-    config,
-    StructuredNode,
-    StringProperty,
-    IntegerProperty,
-    UniqueIdProperty,
-    RelationshipTo,
-    RelationshipFrom,
-)
-from src.Models.CRM.v5_0_2.NodeEntities.E72_Legal_Object import E72_Legal_Object
-from src.Models.CRM.v5_0_2.NodeEntities.E6_Destruction import E6_Destruction
-from src.Models.CRM.v5_0_2.NodeProperties.P156_occupies import P156_occupies
-from src.Models.CRM.v5_0_2.NodeProperties.P7_took_place_at import P7_took_place_at
+from neomodel import (IntegerProperty, RelationshipFrom, RelationshipTo,
+                      StringProperty, StructuredNode, StructuredRel,
+                      UniqueIdProperty, config)
 
-from neomodel import StructuredRel
+from src.Models.CRM.v5_0_2.NodeEntities.E6_Destruction import E6_Destruction
+from src.Models.CRM.v5_0_2.NodeEntities.E72_Legal_Object import \
+    E72_Legal_Object
+from src.Models.CRM.v5_0_2.NodeProperties.P7_took_place_at import \
+    P7_took_place_at
+from src.Models.CRM.v5_0_2.NodeProperties.P156_occupies import P156_occupies
 
 
 class P46_is_composed_of(StructuredRel):

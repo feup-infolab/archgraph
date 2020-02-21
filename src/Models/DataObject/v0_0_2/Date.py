@@ -1,13 +1,5 @@
-from neomodel import (
-    config,
-    StructuredNode,
-    StringProperty,
-    IntegerProperty,
-    UniqueIdProperty,
-    RelationshipTo,
-    RelationshipFrom,
-)
-from json import JSONEncoder
+from neomodel import (IntegerProperty, RelationshipFrom, RelationshipTo,
+                      StringProperty, StructuredNode, UniqueIdProperty, config)
 
 from DataObject.DataObject import DataObject
 

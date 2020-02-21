@@ -1,17 +1,8 @@
-from neomodel import (
-    config,
-    StructuredNode,
-    StringProperty,
-    IntegerProperty,
-    UniqueIdProperty,
-    RelationshipTo,
-    StructuredRel,
-)
-from src.Models.CRM.v5_0_2.NodeEntities.E73_Information_Object import (
-    E73_Information_Object,
-)
+from neomodel import (IntegerProperty, RelationshipTo, StringProperty,
+                      StructuredNode, StructuredRel, UniqueIdProperty, config)
 
-from neomodel import StructuredRel
+from src.Models.CRM.v5_0_2.NodeEntities.E73_Information_Object import \
+    E73_Information_Object
 
 
 class P65_shows_visual_item(StructuredRel):

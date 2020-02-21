@@ -1,12 +1,5 @@
-from neomodel import (
-    config,
-    StructuredNode,
-    StringProperty,
-    IntegerProperty,
-    UniqueIdProperty,
-    RelationshipTo,
-    RelationshipFrom,
-)
+from neomodel import (IntegerProperty, RelationshipFrom, RelationshipTo,
+                      StringProperty, StructuredNode, UniqueIdProperty, config)
 
 from src.Models.CRM.v5_0_2.NodeEntities.E70_Thing import E70_Thing
 from src.Models.CRM.v5_0_2.NodeProperties.P102_has_title import P102_has_title
