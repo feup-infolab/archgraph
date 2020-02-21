@@ -52,4 +52,6 @@ node_modules/
 /backend/env/lib
 /backend/env/man
 /volumes/
+__pycache__
+.coverage
 
