@@ -1,5 +1,4 @@
-from neomodel import (RelationshipFrom, RelationshipTo,
-                      StructuredRel)
+from neomodel import RelationshipFrom, RelationshipTo, StructuredRel
 
 from src.Models.CRM.v5_0_2.NodeEntities.E6_Destruction import E6_Destruction
 from src.Models.CRM.v5_0_2.NodeEntities.E72_Legal_Object import \

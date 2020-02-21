@@ -1,4 +1,4 @@
-from neomodel import (RelationshipTo)
+from neomodel import RelationshipTo
 
 from src.Models.CRM.v5_0_2.NodeEntities.E33_Linguistic_Object import \
     E33_Linguistic_Object

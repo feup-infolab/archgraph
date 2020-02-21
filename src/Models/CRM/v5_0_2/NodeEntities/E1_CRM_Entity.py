@@ -1,4 +1,4 @@
-from neomodel import (RelationshipFrom, StringProperty, StructuredNode)
+from neomodel import RelationshipFrom, StringProperty, StructuredNode
 
 from src.GCF.decorators.OntologyClass import ontology_class
 from ..NodeProperties.P2_has_type import P2_has_type
