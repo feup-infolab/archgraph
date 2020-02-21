@@ -21,6 +21,7 @@ install:
   - ./conf/install.sh
 
 script:
+  - source ./conf/activate.sh
   - coverage run -m unittest discover test
   - coverage report -m
   - coveralls
