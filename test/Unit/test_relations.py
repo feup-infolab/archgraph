@@ -10,7 +10,6 @@ from src.Models.CRM.v5_0_2.NodeEntities.E18_Physical_Thing import E18_Physical_T
 from src.Models.CRM.v5_0_2.NodeEntities.E24_Physical_Man_Made_Thing import E24_Physical_Man_Made_Thing
 from src.Models.CRM.v5_0_2.NodeEntities.E52_Time_Span import E52_Time_Span
 from src.Models.CRM.v5_0_2.NodeEntities.E72_Legal_Object import E72_Legal_Object
-from src.Models.CRM.v5_0_2.NodeEntities.E71_Man_Made_Thing import E71_Man_Made_Thing
 from src.Models.CRM.v5_0_2.NodeEntities.E39_Actor import E39_Actor
 from src.Models.CRM.v5_0_2.NodeEntities.E7_Activity import E7_Activity
 from src.Models.CRM.v5_0_2.NodeEntities.E21_Person import E21_Person
@@ -131,7 +130,7 @@ class TestNeoModel(unittest.TestCase):
         # Creation of relations for property
         pc14.hasDomain.connect(e7)
         pc14.hasRange.connect(e39)
-        pc14.inTheRoleOf.connect(e55)
+        pc14.inTheRoleOf.connect(e55_4)
         # Retrieval of node
         returned_pc14 = PC14_Carried_Out_By.nodes.get(name="PC14")
         self.assertTrue('PC0_CRM_Property' in returned_pc14.labels())
