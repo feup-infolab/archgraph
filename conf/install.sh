@@ -18,18 +18,18 @@ fi
 # run conda
 source "$HOME/.bash_profile"
 export PATH="$HOME/miniconda/bin":$PATH
-conda remove --name "$ENV_NAME" -y --all
-conda create -y -n "$ENV_NAME" python=3.7 anaconda
-conda activate "$ENV_NAME"
+conda remove --quiet --name "$ENV_NAME" -y --all
+conda create --quiet -y -n "$ENV_NAME" python=3.7 anaconda
+conda activate"$ENV_NAME"
 conda init bash
 
 # install pip
 curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 python get-pip.py
 # upgrade pip to latest version
-pip install --upgrade pip
+pip install --quiet --upgrade pip
 # (optional) install any requirements of your current app in this venv
-pip install -r requirements.txt
+pip install --quiet -r requirements.txt
 # Get location of python interpreter
 echo "Python interpreter is at: ---> $(which python) <---"
 
