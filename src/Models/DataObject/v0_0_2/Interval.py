@@ -1,26 +1,21 @@
-from neomodel import (
-    config,
-    StructuredNode,
-    StringProperty,
-    IntegerProperty,
-    UniqueIdProperty,
-    RelationshipTo,
-    RelationshipFrom,
-    One,
-)
-from json import JSONEncoder
-from DataObject.Date import Date
-from NodeProperties.StructuredRelCl import StructuredRelCl
-
-
-class xsdDateTime(StructuredRelCl):
-    pass
+from neomodel import (DateTimeProperty)
+from src.Models.DataObject.v0_0_2.Date import Date
+from marshmallow import Schema, fields
+from marshmallow_jsonschema import JSONSchema
 
 
 class Interval(Date):
-    startDateValue = RelationshipFrom(
-        "Interval", "xsdDateTime", cardinality=One, model=xsdDateTime
-    )
-    endDateValue = RelationshipFrom(
-        "Interval", "xsdDateTime", cardinality=One, model=xsdDateTime
-    )
+    startDateValue = DateTimeProperty(unique_index=True, required=True)
+    endDateValue = DateTimeProperty(unique_index=True, required=True)
+
+
+class IntervalSchema(Schema):
+    startDateValue = fields.Date()
+    endDateValue = fields.Date()
+
+
+interval_schema = IntervalSchema()
+
+json_schema = JSONSchema()
+json_schema.dump(interval_schema)
+

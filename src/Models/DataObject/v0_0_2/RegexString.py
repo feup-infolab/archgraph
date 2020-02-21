@@ -1,23 +1,20 @@
-from neomodel import (
-    config,
-    StructuredNode,
-    StringProperty,
-    IntegerProperty,
-    UniqueIdProperty,
-    RelationshipTo,
-    RelationshipFrom,
-    One,
-)
-from json import JSONEncoder
-from DataObject.String import String
-from NodeProperties.StructuredRelCl import StructuredRelCl
-
-
-class xsdString(StructuredRelCl):
-    pass
+from neomodel import (RegexProperty)
+from src.Models.DataObject.v0_0_2.String import String
+from marshmallow import Schema, fields
+from marshmallow_jsonschema import JSONSchema
 
 
 class RegexString(String):
-    hasRegex = RelationshipFrom(
-        "RegexString", "xsdString", cardinality=One, model=xsdString
-    )
+    hasRegex = RegexProperty(unique_index=True, required=True)
+
+
+class RegexStringSchema(Schema):
+    hasRegex = fields.String()
+
+
+regex_string_schema = RegexStringSchema()
+
+json_schema = JSONSchema()
+json_schema.dump(regex_string_schema)
+
+

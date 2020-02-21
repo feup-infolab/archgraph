@@ -1,23 +1,18 @@
-from neomodel import (
-    config,
-    StructuredNode,
-    StringProperty,
-    IntegerProperty,
-    UniqueIdProperty,
-    RelationshipTo,
-    One,
-    RelationshipFrom,
-)
-from json import JSONEncoder
-from DataObject.DataObject import DataObject
-from NodeProperties.StructuredRelCl import StructuredRelCl
-
-
-class xsdString(StructuredRelCl):
-    pass
+from neomodel import (StringProperty)
+from src.Models.DataObject.v0_0_2.DataObject import DataObject
+from marshmallow import Schema, fields
+from marshmallow_jsonschema import JSONSchema
 
 
 class String(DataObject):
-    stringValue = RelationshipFrom(
-        "String", "xsdString", cardinality=One, model=xsdString
-    )
+    stringValue = StringProperty(unique_index=True, required=True)
+
+
+class StringSchema(Schema):
+    stringValue = fields.String()
+
+
+string_schema = StringSchema()
+
+json_schema = JSONSchema()
+json_schema.dump(string_schema)
