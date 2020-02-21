@@ -1,5 +1,6 @@
 # archgraph
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/f3070810a6f946de93967d5a78acbfc0)](https://app.codacy.com/manual/feup-infolab/archgraph?utm_source=github.com&utm_medium=referral&utm_content=feup-infolab/archgraph&utm_campaign=Badge_Grade_Dashboard)
 [![Build Status](https://travis-ci.com/feup-infolab/archgraph.svg?branch=master)](https://travis-ci.com/feup-infolab/archgraph)
 [![Coverage Status](https://coveralls.io/repos/github/feup-infolab/archgraph/badge.svg?branch=master)](https://coveralls.io/github/feup-infolab/archgraph?branch=master)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/f3070810a6f946de93967d5a78acbfc0)](https://app.codacy.com/manual/feup-infolab/archgraph?utm_source=github.com&utm_medium=referral&utm_content=feup-infolab/archgraph&utm_campaign=Badge_Grade_Dashboard)
