@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+eval "$(conda shell.bash hook)"
+conda activate archgraph
+echo "Python interpreter is at: ---> $(which python) <---"
+
 # format code according to black code standard
 # https://github.com/psf/black
 black src
