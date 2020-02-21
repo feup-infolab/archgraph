@@ -1,0 +1,16 @@
+<form [formGroup]="register" (ngSubmit)="onSubmit()">
+
+  <label>
+    Title:
+    <input type="text" formControlName="title">
+  </label>
+
+  <label>
+    Tipo:
+    <select formControlName="type">
+      <option [value]="type" *ngFor="let type of types">
+        {{type}}</option>
+    </select>
+  </label>
+  <button type="submit" >Submit</button>
+</form>
