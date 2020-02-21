@@ -1,5 +1,4 @@
 from neomodel import RelationshipFrom
-
 from src.Models.CRM.v5_0_2.NodeEntities.E77_Persistent_Item import \
     E77_Persistent_Item
 from src.Models.CRM.v5_0_2.NodeProperties.P130_shows_features_of import \

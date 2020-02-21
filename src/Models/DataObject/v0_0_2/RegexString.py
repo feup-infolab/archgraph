@@ -1,7 +1,6 @@
 from marshmallow import Schema, fields
 from marshmallow_jsonschema import JSONSchema
 from neomodel import RegexProperty
-
 from src.Models.DataObject.v0_0_2.String import String
 
 
