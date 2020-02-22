@@ -2,6 +2,8 @@ from neomodel import RelationshipFrom, RelationshipTo, StructuredRel
 from src.Models.CRM.v5_0_2.NodeEntities.E6_Destruction import E6_Destruction
 from src.Models.CRM.v5_0_2.NodeEntities.E72_Legal_Object import \
     E72_Legal_Object
+from src.Models.CRM.v5_0_2.NodeProperties import P8_took_place_on_or_within
+from src.Models.CRM.v5_0_2.NodeProperties.P13_destroyed import P13_destroyed
 from src.Models.CRM.v5_0_2.NodeProperties.P7_took_place_at import \
     P7_took_place_at
 from src.Models.CRM.v5_0_2.NodeProperties.P156_occupies import P156_occupies
@@ -11,13 +13,6 @@ class P46_is_composed_of(StructuredRel):
     pass
 
 
-class P8_took_place_on_or_within(StructuredRel):
-    pass
-
-
-class P13_destroyed(StructuredRel):
-    pass
-
 
 class E18_Physical_Thing(E72_Legal_Object):
     is_composed_of = RelationshipTo(
@@ -25,7 +20,7 @@ class E18_Physical_Thing(E72_Legal_Object):
         "P46_is_composed_of",
         model=P46_is_composed_of,
     )
-    took_place_on_or_within = RelationshipTo(
+    took_place_on_or_within = RelationshipFrom(
         ".E4_Period.E4_Period",
         "P8_took_place_on_or_within",
         model=P8_took_place_on_or_within,

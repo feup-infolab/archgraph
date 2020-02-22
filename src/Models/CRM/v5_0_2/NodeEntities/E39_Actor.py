@@ -1,14 +1,8 @@
 from neomodel import RelationshipFrom, StructuredRel
 from src.Models.CRM.v5_0_2.NodeEntities.E77_Persistent_Item import \
     E77_Persistent_Item
-
-
-class P11_had_participant(StructuredRel):
-    pass
-
-
-class P14_carried_out_by(StructuredRel):
-    pass
+from src.Models.CRM.v5_0_2.NodeProperties.P11_had_participat import P11_had_participant
+from src.Models.CRM.v5_0_2.NodeProperties.P14_carried_out_by import P14_carried_out_by
 
 
 class E39_Actor(E77_Persistent_Item):
