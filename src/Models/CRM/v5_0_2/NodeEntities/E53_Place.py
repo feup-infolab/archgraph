@@ -10,11 +10,11 @@ from src.Models.CRM.v5_0_2.NodeProperties.P53_has_current_or_former_location imp
 from src.Models.CRM.v5_0_2.NodeProperties.P54_has_current_permanent_location import P54_has_current_permanent_location
 from src.Models.CRM.v5_0_2.NodeProperties.P55_has_current_location import P55_has_current_location
 from src.Models.CRM.v5_0_2.NodeProperties.P59_has_section import P59_has_section
+from src.Models.CRM.v5_0_2.NodeProperties.P74_has_current_or_former_residence import P74_has_current_or_former_residence
 from src.Models.CRM.v5_0_2.NodeProperties.P7_took_place_at import \
     P7_took_place_at
 from src.Models.CRM.v5_0_2.NodeProperties.P156_occupies import P156_occupies
-
-
+from src.Models.CRM.v5_0_2.NodeProperties.P89_falls_within import P89_falls_within
 
 
 class E53_Place(E1_CRM_Entity):
@@ -50,3 +50,11 @@ class E53_Place(E1_CRM_Entity):
         ".E18_Physical_Thing.E18_Physical_Thing",
         "P59_has_section",
         model=P59_has_section)
+    has_current_or_former_residence = RelationshipFrom(
+        ".E39_Actor.E39_Actor",
+        "P74_has_current_or_former_residence",
+        model=P74_has_current_or_former_residence)
+    falls_within = RelationshipFrom(
+        ".E53_Place.E53_Place",
+        "P89_falls_within",
+        model=P89_falls_within)

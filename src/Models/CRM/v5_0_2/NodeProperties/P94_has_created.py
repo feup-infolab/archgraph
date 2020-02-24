@@ -1,5 +1,5 @@
 from neomodel import StructuredRel
 
 
-class P94_as_created(StructuredRel):
+class P94_has_created(StructuredRel):
     pass
