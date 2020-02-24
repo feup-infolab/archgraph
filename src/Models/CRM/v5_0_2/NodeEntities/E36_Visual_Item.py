@@ -9,6 +9,6 @@ class P65_shows_visual_item(StructuredRel):
 
 class E36_Visual_Item(E73_Information_Object):
     showsVisualItem = RelationshipTo(
-        "E24_Physical_Man_Made_Thing",
+        ".E24_Physical_Man_Made_Thing.E24_Physical_Man_Made_Thing",
         "P65_shows_visual_item",
         model=P65_shows_visual_item)

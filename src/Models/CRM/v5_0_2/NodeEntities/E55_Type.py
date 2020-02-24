@@ -6,6 +6,7 @@ from ..NodeProperties.P137_exemplifies import P137_exemplifies
 from ..NodeProperties.P21_had_general_purpose import P21_had_general_purpose
 from ..NodeProperties.P2_has_type import P2_has_type
 from ..NodeProperties.P32_used_general_technique import P32_used_general_technique
+from ..NodeProperties.P42_assigned import P42_assigned
 
 
 class E55_Type(E28_Conceptual_Object):
@@ -22,3 +23,7 @@ class E55_Type(E28_Conceptual_Object):
         "P32_used_general_technique",
         model=P32_used_general_technique
     )
+    assigned = RelationshipFrom(
+        ".E17_Type_Assignment.E17_Type_Assignment",
+        "P42_assigned",
+        model=P42_assigned)

@@ -11,3 +11,7 @@ class E29_Design_or_Procedure(E73_Information_Object):
         "P33_used_specific_technique",
         model=P33_used_specific_technique
     )
+    has_association_with = RelationshipFrom(
+        ".E29_Design_or_Procedure.E29_Design_or_Procedure",
+        "P69_has_association_with",
+        model=P69_has_association_with)

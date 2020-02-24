@@ -4,6 +4,10 @@ from src.Models.CRM.v5_0_2.NodeProperties.P15_was_influenced_by import P15_was_i
 from src.Models.CRM.v5_0_2.NodeProperties.P17_was_motivated_by import P17_was_motivated_by
 from src.Models.CRM.v5_0_2.NodeProperties.P39_measured import P39_measured
 from src.Models.CRM.v5_0_2.NodeProperties.P41_classified import P41_classified
+from src.Models.CRM.v5_0_2.NodeProperties.P62_depicts import P62_depicts
+from src.Models.CRM.v5_0_2.NodeProperties.P67_refers_to import P67_refers_to
+from src.Models.CRM.v5_0_2.NodeProperties.P70_documents import P70_documents
+from src.Models.CRM.v5_0_2.NodeProperties.P71_lists import P71_lists
 
 
 @ontology_class
@@ -25,4 +29,20 @@ class E1_CRM_Entity(StructuredNode):
         ".E17_Type_Assignment.E17_Type_Assignment",
         "P41_classified",
         model=P41_classified)
+    depicts = RelationshipFrom(
+        ".E24_Physical_Man_Made_Thing.E24_Physical_Man_Made_Thing",
+        "P62_depicts",
+        model=P62_depicts)
+    refers_to = RelationshipFrom(
+        ".E89_Propositional_Object.E89_Propositional_Object",
+        "P67_refers_to",
+        model=P67_refers_to)
+    documents = RelationshipFrom(
+        ".E31_Document.E31_Document",
+        "P70_documents",
+        model=P70_documents)
+    lists = RelationshipFrom(
+        ".E32_Authority_Document.E32_Authority_Document",
+        "P71_lists",
+        model=P71_lists)
 

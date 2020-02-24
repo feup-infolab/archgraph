@@ -2,6 +2,7 @@ from neomodel import RelationshipFrom
 
 from src.Models.CRM.v5_0_2.NodeEntities.E1_CRM_Entity import E1_CRM_Entity
 from src.Models.CRM.v5_0_2.NodeProperties.P40_observed_dimension import P40_observed_dimension
+from src.Models.CRM.v5_0_2.NodeProperties.P43_has_dimension import P43_has_dimension
 
 
 class E54_Dimension(E1_CRM_Entity):
@@ -9,3 +10,7 @@ class E54_Dimension(E1_CRM_Entity):
         ".E16_Measurement.E16_Measurement",
         "P40_observed_dimension",
         model=P40_observed_dimension)
+    has_dimension = RelationshipFrom(
+        ".E70_Thing.E70_Thing",
+        "P43_has_dimension",
+        model=P43_has_dimension)
