@@ -3,6 +3,9 @@ from src.Models.CRM.v5_0_2.NodeEntities.E6_Destruction import E6_Destruction
 from src.Models.CRM.v5_0_2.NodeEntities.E72_Legal_Object import \
     E72_Legal_Object
 from src.Models.CRM.v5_0_2.NodeProperties import P8_took_place_on_or_within
+from src.Models.CRM.v5_0_2.NodeProperties.P110_augmented import P110_augmented
+from src.Models.CRM.v5_0_2.NodeProperties.P111_added import P111_added
+from src.Models.CRM.v5_0_2.NodeProperties.P113_removed import P113_removed
 from src.Models.CRM.v5_0_2.NodeProperties.P13_destroyed import P13_destroyed
 from src.Models.CRM.v5_0_2.NodeProperties.P24_transferred_title_of import P24_transferred_title_of
 from src.Models.CRM.v5_0_2.NodeProperties.P30_transferred_custody_of import P30_transferred_custody_of
@@ -50,6 +53,16 @@ class E18_Physical_Thing(E72_Legal_Object):
         ".E14_Condition_Assessment.E14_Condition_Assessment",
         "P34_concerned",
         model=P34_concerned
+    )
+    added = RelationshipFrom(
+        ".E79_Part_Addition.E79_Part_Addition",
+        "P111_added",
+        model=P111_added
+    )
+    removed = RelationshipFrom(
+        ".E80_Part_Removal.E80_Part_Removal",
+        "P113_removed",
+        model=P113_removed
     )
 
     destroyed = RelationshipFrom(E6_Destruction, "P13_destroyed", model=P13_destroyed)
