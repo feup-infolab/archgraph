@@ -6,8 +6,6 @@ from marshmallow_jsonschema import JSONSchema
 
 from src.Models.DataObject.v0_0_2.String import String
 config.DATABASE_URL = 'bolt://neo4j:password@localhost:7687'
-
-
 app = Flask(__name__, static_url_path="")
 
 
