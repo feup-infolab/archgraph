@@ -4,7 +4,7 @@ from src.Models.CRM.v5_0_2.NodeProperties.P102_has_title import P102_has_title
 from src.Models.CRM.v5_0_2.NodeProperties.P19_was_intended_use_of import P19_was_intended_use_of
 
 
-class E71_Man_Made_Thing(E70_Thing):
+class E71_Human_Made_Thing(E70_Thing):
     has_title = RelationshipTo(
         ".E35_Title.E35_Title", "P46_has_title", model=P102_has_title)
     was_intended_use_of = RelationshipFrom(

@@ -1,5 +1,8 @@
 from neomodel import RelationshipFrom, StructuredRel
 from src.Models.CRM.v5_0_2.NodeEntities.E77_Persistent_Item import E77_Persistent_Item
+from src.Models.CRM.v5_0_2.NodeProperties.P105_right_held_by import P105_right_held_by
+from src.Models.CRM.v5_0_2.NodeProperties.P107_has_current_or_former_member import P107_has_current_or_former_member
+from src.Models.CRM.v5_0_2.NodeProperties.P109_has_current_or_former_curator import P109_has_current_or_former_curator
 from src.Models.CRM.v5_0_2.NodeProperties.P51_has_former_or_current_owner import P51_has_former_or_current_owner
 from src.Models.CRM.v5_0_2.NodeProperties.P50_has_current_keeper import P50_has_current_keeper
 from src.Models.CRM.v5_0_2.NodeProperties.P11_had_participat import P11_had_participant
@@ -46,4 +49,17 @@ class E39_Actor(E77_Persistent_Item):
         ".E18_Physical_Thing.E18_Physical_Thing",
         "P52_has_current_owner",
         model=P52_has_current_owner)
+    right_held_by = RelationshipFrom(
+        ".E72_Legal_Object.E72_Legal_Object",
+        "P105_right_held_by",
+        model=P105_right_held_by)
+    has_current_or_former_member = RelationshipFrom(
+        ".E74_Group.E74_Group",
+        "P107_has_current_or_former_member",
+        model=P107_has_current_or_former_member)
+    has_current_or_former_curator = RelationshipFrom(
+        ".E78_Collection.E78_Collection",
+        "P109_has_current_or_former_curator",
+        model=P109_has_current_or_former_curator)
+
 

@@ -9,3 +9,4 @@ class E56_Language(E55_Type):
         ".E33_Linguistic_Object.E33_Linguistic_Object",
         "P72_has_language",
         model=P72_has_language)
+

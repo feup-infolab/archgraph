@@ -2,6 +2,8 @@ from neomodel import RelationshipFrom, StructuredRel
 from src.Models.CRM.v5_0_2.NodeEntities.E1_CRM_Entity import E1_CRM_Entity
 from src.Models.CRM.v5_0_2.NodeEntities.E28_Conceptual_Object import \
     E28_Conceptual_Object
+from ..NodeProperties.P101_had_as_general_use import P101_had_as_general_use
+from ..NodeProperties.P103_was_intended_for import P103_was_intended_for
 from ..NodeProperties.P137_exemplifies import P137_exemplifies
 from ..NodeProperties.P21_had_general_purpose import P21_had_general_purpose
 from ..NodeProperties.P2_has_type import P2_has_type
@@ -27,3 +29,11 @@ class E55_Type(E28_Conceptual_Object):
         ".E17_Type_Assignment.E17_Type_Assignment",
         "P42_assigned",
         model=P42_assigned)
+    had_as_general_use = RelationshipFrom(
+        ".E70_Thing.E70_Thing",
+        "P101_had_as_general_use",
+        model=P101_had_as_general_use)
+    was_intended_for = RelationshipFrom(
+        ".E71_Human_Made_Thing.E71_Human_Made_Thing",
+        "P103_was_intended_for",
+        model=P103_was_intended_for)

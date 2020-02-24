@@ -7,7 +7,7 @@ from src.Models.CRM.v5_0_2.NodeEntities.E70_Thing import E70_Thing
 from src.Models.CRM.v5_0_2.NodeEntities.E55_Type import E55_Type
 from src.Models.CRM.v5_0_2.NodeEntities.E1_CRM_Entity import E1_CRM_Entity
 from src.Models.CRM.v5_0_2.NodeEntities.E18_Physical_Thing import E18_Physical_Thing
-from src.Models.CRM.v5_0_2.NodeEntities.E24_Physical_Man_Made_Thing import E24_Physical_Man_Made_Thing
+from src.Models.CRM.v5_0_2.NodeEntities.E24_Physical_Human_Made_Thing import E24_Physical_Human_Made_Thing
 from src.Models.CRM.v5_0_2.NodeEntities.E52_Time_Span import E52_Time_Span
 from src.Models.CRM.v5_0_2.NodeEntities.E72_Legal_Object import E72_Legal_Object
 from src.Models.CRM.v5_0_2.NodeEntities.E39_Actor import E39_Actor
@@ -35,7 +35,7 @@ e55.hasType.connect(e1_2)
 e55_2 = E55_Type(name="test3").save()
 e18 = E18_Physical_Thing(name="e18").save()
 e18_2 = E18_Physical_Thing(name="e18_2").save()
-e24 = E24_Physical_Man_Made_Thing(name="e24").save()
+e24 = E24_Physical_Human_Made_Thing(name="e24").save()
 
 
 class TestNeoModel(unittest.TestCase):
@@ -172,7 +172,7 @@ class TestNeoModel(unittest.TestCase):
         monumento = E70_Thing(name="Monumento").save()
         titulo_torre_eiffel = E35_Title(name="Torre Eiffel").save()
         paris = E53_Place(name="Paris").save()
-        torre_eiffel = E24_Physical_Man_Made_Thing(name="Torre Eiffel").save()
+        torre_eiffel = E24_Physical_Human_Made_Thing(name="Torre Eiffel").save()
         uma_entidade_qualquer = E1_CRM_Entity(name="E1 de Teste").save()
 
         # Definition of Relations
