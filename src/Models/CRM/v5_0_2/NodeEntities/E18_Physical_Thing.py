@@ -6,6 +6,8 @@ from src.Models.CRM.v5_0_2.NodeProperties import P8_took_place_on_or_within
 from src.Models.CRM.v5_0_2.NodeProperties.P13_destroyed import P13_destroyed
 from src.Models.CRM.v5_0_2.NodeProperties.P24_transferred_title_of import P24_transferred_title_of
 from src.Models.CRM.v5_0_2.NodeProperties.P30_transferred_custody_of import P30_transferred_custody_of
+from src.Models.CRM.v5_0_2.NodeProperties.P31_has_modified import P31_has_modified
+from src.Models.CRM.v5_0_2.NodeProperties.P34_concerned import P34_concerned
 from src.Models.CRM.v5_0_2.NodeProperties.P7_took_place_at import \
     P7_took_place_at
 from src.Models.CRM.v5_0_2.NodeProperties.P156_occupies import P156_occupies
@@ -40,5 +42,14 @@ class E18_Physical_Thing(E72_Legal_Object):
         ".E10_Transfer_of_Custody.E10_Transfer_of_Custody",
         "P30_transferred_custody_of",
         model=P30_transferred_custody_of)
+    has_modified = RelationshipFrom(
+        ".E11_Modification.E11_Modification",
+        "P31_has_modified",
+        model=P31_has_modified)
+    concerned = RelationshipFrom(
+        ".E14_Condition_Assessment.E14_Condition_Assessment",
+        "P34_concerned",
+        model=P34_concerned
+    )
 
     destroyed = RelationshipFrom(E6_Destruction, "P13_destroyed", model=P13_destroyed)
