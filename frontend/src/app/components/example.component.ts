@@ -17,7 +17,7 @@ export class ExampleComponent {
 
   constructor(private exampleService: ExampleService) {}
   onSubmit(): void  {
-    const dataExample: Example = {type: this.register.value.type, title: this.register.value.title} as Example;
+    const dataExample: Example = {id: 3443 } as Example;
     this.exampleService
       .sendExample(dataExample)
       .subscribe(result => console.log(result));
