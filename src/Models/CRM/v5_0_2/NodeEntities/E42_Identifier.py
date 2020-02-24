@@ -11,5 +11,4 @@ class E42_Identifier(E41_Appellation):
         "E1_CRM_Entity",
         "P48_has_preferred_identifier",
         cardinality=One,
-        model=P48_has_preferred_identifier,
-    )
+        model=P48_has_preferred_identifier)

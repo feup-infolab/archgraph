@@ -8,5 +8,5 @@ class E5_Event(E4_Period):
     had_specific_purpose = RelationshipFrom(
         ".E7_Activity.E7_Activity",
         "P20_had_specific_purpose",
-        model=P20_had_specific_purpose,
+        model=P20_had_specific_purpose
     )

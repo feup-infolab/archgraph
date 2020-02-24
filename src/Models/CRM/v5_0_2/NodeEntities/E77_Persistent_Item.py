@@ -9,5 +9,4 @@ class E77_Persistent_Item(E1_CRM_Entity):
     occurred_in_the_presence_of = RelationshipFrom(
         E5_Event,
         "P12_occurred_in_the_presence_of",
-        model=P12_occurred_in_the_presence_of,
-    )
+        model=P12_occurred_in_the_presence_of)

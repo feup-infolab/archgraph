@@ -8,5 +8,4 @@ class E92_Spacetime_Volume(E1_CRM_Entity):
         "E92_Spacetime_Volume",
         "P10_falls_within",
         cardinality=One,
-        model=P10_falls_within,
-    )
+        model=P10_falls_within)

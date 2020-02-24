@@ -9,5 +9,4 @@ class E52_Time_Span(E1_CRM_Entity):
         ".E2_Temporal_Entity.E2_Temporal_Entity",
         "P4_has_time_span",
         cardinality=One,
-        model=P4_has_time_span,
-    )
+        model=P4_has_time_span)

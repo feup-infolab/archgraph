@@ -8,5 +8,4 @@ class E41_Appellation(E90_Symbolic_Object):
         "E1_CRM_Entity",
         "P1_is_identified_by",
         cardinality=One,
-        model=P1_is_identified_by,
-    )
+        model=P1_is_identified_by)
