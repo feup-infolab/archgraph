@@ -1,5 +1,9 @@
 from neomodel import RelationshipFrom, StringProperty, StructuredNode
 from src.GCF.decorators.OntologyClass import ontology_class
+from src.Models.CRM.v5_0_2.NodeProperties.P129_is_about import P129_is_about
+from src.Models.CRM.v5_0_2.NodeProperties.P136_was_based_on import P136_was_based_on
+from src.Models.CRM.v5_0_2.NodeProperties.P140_assigned_attribute_to import P140_assigned_attribute_to
+from src.Models.CRM.v5_0_2.NodeProperties.P141_assigned import P141_assigned
 from src.Models.CRM.v5_0_2.NodeProperties.P15_was_influenced_by import P15_was_influenced_by
 from src.Models.CRM.v5_0_2.NodeProperties.P17_was_motivated_by import P17_was_motivated_by
 from src.Models.CRM.v5_0_2.NodeProperties.P39_measured import P39_measured
@@ -45,4 +49,23 @@ class E1_CRM_Entity(StructuredNode):
         ".E32_Authority_Document.E32_Authority_Document",
         "P71_lists",
         model=P71_lists)
+    is_about = RelationshipFrom(
+        ".E89_Propositional_Object.E89_Propositional_Object",
+        "P129_is_about",
+        model=P129_is_about)
+    was_based_on = RelationshipFrom(
+        ".E83_Type_Creation.E83_Type_Creation",
+        "P136_was_based_on",
+        model=P136_was_based_on
+    )
+    assigned_attribute_to = RelationshipFrom(
+        ".E13_Attribute_Assignment.E13_Attribute_Assignment",
+        "P140_assigned_attribute_to",
+        model=P140_assigned_attribute_to
+    )
+    assigned = RelationshipFrom(
+        ".E13_Attribute_Assignment.E13_Attribute_Assignment",
+        "P141_assigned",
+        model=P141_assigned
+    )
 

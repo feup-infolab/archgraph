@@ -3,6 +3,8 @@ from src.Models.CRM.v5_0_2.NodeEntities.E1_CRM_Entity import E1_CRM_Entity
 from src.Models.CRM.v5_0_2.NodeEntities.E18_Physical_Thing import \
     E18_Physical_Thing
 from src.Models.CRM.v5_0_2.NodeEntities.E4_Period import E4_Period
+from src.Models.CRM.v5_0_2.NodeProperties.P121_overlaps_with import P121_overlaps_with
+from src.Models.CRM.v5_0_2.NodeProperties.P122_borders_with import P122_borders_with
 from src.Models.CRM.v5_0_2.NodeProperties.P26_moved_to import P26_moved_to
 from src.Models.CRM.v5_0_2.NodeProperties.P27_moved_from import P27_moved_from
 from src.Models.CRM.v5_0_2.NodeProperties.P28_custody_surrenedered_by import P28_custody_surrendered_by
@@ -58,3 +60,11 @@ class E53_Place(E1_CRM_Entity):
         ".E53_Place.E53_Place",
         "P89_falls_within",
         model=P89_falls_within)
+    overlaps_with = RelationshipFrom(
+        ".E53_Place.E53_Place",
+        "P121_overlaps_with",
+        model=P121_overlaps_with)
+    borders_with = RelationshipFrom(
+        ".E53_Place.E53_Place",
+        "P122_borders_with",
+        model=P122_borders_with)

@@ -6,6 +6,8 @@ from src.Models.CRM.v5_0_2.NodeProperties import P8_took_place_on_or_within
 from src.Models.CRM.v5_0_2.NodeProperties.P110_augmented import P110_augmented
 from src.Models.CRM.v5_0_2.NodeProperties.P111_added import P111_added
 from src.Models.CRM.v5_0_2.NodeProperties.P113_removed import P113_removed
+from src.Models.CRM.v5_0_2.NodeProperties.P123_resulted_in import P123_resulted_in
+from src.Models.CRM.v5_0_2.NodeProperties.P124_transformed import P124_transformed
 from src.Models.CRM.v5_0_2.NodeProperties.P13_destroyed import P13_destroyed
 from src.Models.CRM.v5_0_2.NodeProperties.P24_transferred_title_of import P24_transferred_title_of
 from src.Models.CRM.v5_0_2.NodeProperties.P30_transferred_custody_of import P30_transferred_custody_of
@@ -64,5 +66,16 @@ class E18_Physical_Thing(E72_Legal_Object):
         "P113_removed",
         model=P113_removed
     )
+    resulted_in = RelationshipFrom(
+        ".E81_Transformation.E81_Transformation",
+        "P123_resulted_in",
+        model=P123_resulted_in
+    )
+    transformed = RelationshipFrom(
+        ".E81_Transformation.E81_Transformation",
+        "P124_transformed",
+        model=P124_transformed
+    )
+
 
     destroyed = RelationshipFrom(E6_Destruction, "P13_destroyed", model=P13_destroyed)

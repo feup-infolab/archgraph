@@ -3,6 +3,8 @@ from src.Models.CRM.v5_0_2.NodeEntities.E77_Persistent_Item import E77_Persisten
 from src.Models.CRM.v5_0_2.NodeProperties.P105_right_held_by import P105_right_held_by
 from src.Models.CRM.v5_0_2.NodeProperties.P107_has_current_or_former_member import P107_has_current_or_former_member
 from src.Models.CRM.v5_0_2.NodeProperties.P109_has_current_or_former_curator import P109_has_current_or_former_curator
+from src.Models.CRM.v5_0_2.NodeProperties.P143_joined import P143_joined
+from src.Models.CRM.v5_0_2.NodeProperties.P145_separated import P145_separated
 from src.Models.CRM.v5_0_2.NodeProperties.P51_has_former_or_current_owner import P51_has_former_or_current_owner
 from src.Models.CRM.v5_0_2.NodeProperties.P50_has_current_keeper import P50_has_current_keeper
 from src.Models.CRM.v5_0_2.NodeProperties.P11_had_participat import P11_had_participant
@@ -61,5 +63,15 @@ class E39_Actor(E77_Persistent_Item):
         ".E78_Collection.E78_Collection",
         "P109_has_current_or_former_curator",
         model=P109_has_current_or_former_curator)
+    joined = RelationshipFrom(
+        ".E85_Joining.E85_Joining",
+        "P143_joined",
+        model=P143_joined
+    )
+    separated = RelationshipFrom(
+        ".E86_Leaving.E86_Leaving",
+        "P145_separated_from",
+        model=P145_separated
+    )
 
 
