@@ -3,6 +3,7 @@ from neomodel import RelationshipFrom
 from src.Models.CRM.v5_0_2.NodeEntities.E39_Actor import E39_Actor
 from src.Models.CRM.v5_0_2.NodeProperties.P144_joined_with import P144_joined_with
 from src.Models.CRM.v5_0_2.NodeProperties.P146_separated_from import P146_separated_from
+from src.Models.CRM.v5_0_2.NodeProperties.P151_was_formed_from import P151_was_formed_from
 from src.Models.CRM.v5_0_2.NodeProperties.P95_has_formed import P95_has_formed
 from src.Models.CRM.v5_0_2.NodeProperties.P99_dissolved import P99_dissolved
 
@@ -27,4 +28,9 @@ class E74_Group(E39_Actor):
         ".E86_Leaving.E86_Leaving",
         "P146_separated_from",
         model=P146_separated_from
+    )
+    was_formed_from = RelationshipFrom(
+        ".E66_Formation.E66_Formation",
+        "P151_was_formed_from",
+        model=P151_was_formed_from
     )

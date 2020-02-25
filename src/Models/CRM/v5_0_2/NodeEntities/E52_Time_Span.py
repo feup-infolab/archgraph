@@ -1,5 +1,6 @@
 from neomodel import DateTimeProperty, One, RelationshipFrom, StructuredRel
 from src.Models.CRM.v5_0_2.NodeEntities.E1_CRM_Entity import E1_CRM_Entity
+from src.Models.CRM.v5_0_2.NodeProperties.P160_has_temporal_projection import P160_has_temporal_projection
 from src.Models.CRM.v5_0_2.NodeProperties.P4_has_time_span import P4_has_time_span
 from src.Models.CRM.v5_0_2.NodeProperties.P86_falls_within import P86_falls_within
 
@@ -15,3 +16,8 @@ class E52_Time_Span(E1_CRM_Entity):
         ".E52_Time_Span.E52_Time_Span",
         "P86_falls_within",
         model=P86_falls_within)
+    has_temporal_projection = RelationshipFrom(
+        ".E92_Spacetime_Volume.E92_Spacetime_Volume",
+        "P160_has_temporal_projection",
+        model=P160_has_temporal_projection
+    )

@@ -67,4 +67,5 @@ class E53_Place(E1_CRM_Entity):
     borders_with = RelationshipFrom(
         ".E53_Place.E53_Place",
         "P122_borders_with",
-        model=P122_borders_with)
+        model=P122_borders_with
+    )

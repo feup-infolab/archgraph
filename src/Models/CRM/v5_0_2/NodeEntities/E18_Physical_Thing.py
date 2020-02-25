@@ -9,6 +9,7 @@ from src.Models.CRM.v5_0_2.NodeProperties.P113_removed import P113_removed
 from src.Models.CRM.v5_0_2.NodeProperties.P123_resulted_in import P123_resulted_in
 from src.Models.CRM.v5_0_2.NodeProperties.P124_transformed import P124_transformed
 from src.Models.CRM.v5_0_2.NodeProperties.P13_destroyed import P13_destroyed
+from src.Models.CRM.v5_0_2.NodeProperties.P157_is_at_rest_relative_to import P157_is_at_rest_relative_to
 from src.Models.CRM.v5_0_2.NodeProperties.P24_transferred_title_of import P24_transferred_title_of
 from src.Models.CRM.v5_0_2.NodeProperties.P30_transferred_custody_of import P30_transferred_custody_of
 from src.Models.CRM.v5_0_2.NodeProperties.P31_has_modified import P31_has_modified
@@ -20,7 +21,6 @@ from src.Models.CRM.v5_0_2.NodeProperties.P156_occupies import P156_occupies
 
 class P46_is_composed_of(StructuredRel):
     pass
-
 
 
 class E18_Physical_Thing(E72_Legal_Object):
@@ -37,7 +37,9 @@ class E18_Physical_Thing(E72_Legal_Object):
         ".E53_Place.E53_Place", "P156_occupies", model=P156_occupies
     )
     took_place_at = RelationshipTo(
-        ".E53_Place.E53_Place", "P7_took_place_at", model=P7_took_place_at
+        ".E53_Place.E53_Place",
+        "P7_took_place_at",
+        model=P7_took_place_at
     )
     transferred_title_of = RelationshipFrom(
         ".E8_Acquisition.E8_Acquisition",
@@ -76,6 +78,10 @@ class E18_Physical_Thing(E72_Legal_Object):
         "P124_transformed",
         model=P124_transformed
     )
-
+    is_at_rest_relative_to = RelationshipFrom(
+        ".E53_Place.E53_Place",
+        "P157_is_at_rest_relative_to",
+        model=P157_is_at_rest_relative_to
+    )
 
     destroyed = RelationshipFrom(E6_Destruction, "P13_destroyed", model=P13_destroyed)
