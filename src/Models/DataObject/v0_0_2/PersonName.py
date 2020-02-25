@@ -12,12 +12,14 @@ class PersonName(AuthorityString):
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__)
 
+    def getSchema(self):
+        person_name_schema = PersonNameSchema()
+        json_schema = JSONSchema()
+        return json_schema.dump(person_name_schema)
+
 
 class PersonNameSchema(Schema):
-    name = fields.String()
+    name = fields.String(required=True)
 
 
-def getSchema():
-    person_name_schema = PersonNameSchema()
-    json_schema = JSONSchema()
-    json_schema.dump(person_name_schema)
+

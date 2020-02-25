@@ -1,7 +1,6 @@
 from json import dumps
-from flask import Flask, g, Response, request
+from flask import Flask, g, Response, request, jsonify
 from neomodel import (config)
-from marshmallow_jsonschema import JSONSchema
 from src.Models.DataObject.v0_0_2.String import String
 config.DATABASE_URL = 'bolt://neo4j:password@localhost:7687'
 app = Flask(__name__, static_url_path="")
@@ -10,7 +9,15 @@ app = Flask(__name__, static_url_path="")
 @app.route("/<uid>", methods=['GET'])
 def view(uid):
     returned_string = String.nodes.get(uid=uid)
-    return Response(dumps(returned_string.toJSON()), mimetype='application/json')
+    return jsonify(returned_string.toJSON())
+    # returned_string = String.nodes.get(uid=uid)
+    # return Response(dumps(returned_string.toJSON()), mimetype='application/json')
+
+
+@app.route("/schema/<uid>", methods=['GET'])
+def getSchema(uid):
+    returned_string = String.nodes.get(uid=uid)
+    return jsonify(returned_string.getSchema())
 
 
 @app.route("/create")

@@ -13,13 +13,15 @@ class Interval(Date):
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__)
 
+    def getSchema(self):
+        interval_schema = IntervalSchema()
+        json_schema = JSONSchema()
+        return json_schema.dump(interval_schema)
+
 
 class IntervalSchema(Schema):
-    startDateValue = fields.Date()
-    endDateValue = fields.Date()
+    startDateValue = fields.Date(required=True)
+    endDateValue = fields.Date(required=True)
 
 
-def getSchema():
-    interval_schema = IntervalSchema()
-    json_schema = JSONSchema()
-    json_schema.dump(interval_schema)
+

@@ -12,14 +12,15 @@ class DataObject(StructuredNode):
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__)
 
+    def getSchema(self):
+        data_object_schema = DataObjectSchema()
+        json_schema = JSONSchema()
+        return json_schema.dump(data_object_schema)
+
 
 class DataObjectSchema(Schema):
     uid = fields.String()
-    name = fields.String()
+    name = fields.String(required=True)
 
 
-def getSchema():
-    data_object_schema = DataObjectSchema()
-    json_schema = JSONSchema()
-    json_schema.dump(data_object_schema)
-    # print(json_schema.dump(data_object_schema))
+

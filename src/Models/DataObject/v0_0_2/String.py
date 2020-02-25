@@ -11,12 +11,12 @@ class String(DataObject):
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__)
 
+    def getSchema(self):
+        string_schema = StringSchema()
+        json_schema = JSONSchema()
+        return json_schema.dump(string_schema)
+
 
 class StringSchema(Schema):
-    stringValue = fields.String()
+    stringValue = fields.String(required=True)
 
-
-def getSchema():
-    string_schema = StringSchema()
-    json_schema = JSONSchema()
-    return json_schema.dump(string_schema)

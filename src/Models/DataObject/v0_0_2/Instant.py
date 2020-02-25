@@ -12,12 +12,14 @@ class Instant(Date):
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__)
 
+    def getSchema(self):
+        instant_schema = InstantSchema()
+        json_schema = JSONSchema()
+        return json_schema.dump(instant_schema)
+
 
 class InstantSchema(Schema):
-    timestamp = fields.Date()
+    timestamp = fields.Date(required=True)
 
 
-def getSchema():
-    instant_schema = InstantSchema()
-    json_schema = JSONSchema()
-    json_schema.dump(instant_schema)
+

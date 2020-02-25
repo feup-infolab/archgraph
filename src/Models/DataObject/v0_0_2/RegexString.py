@@ -11,12 +11,14 @@ class RegexString(String):
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__)
 
+    def getSchema(self):
+        regex_string_schema = RegexStringSchema()
+        json_schema = JSONSchema()
+        return json_schema.dump(regex_string_schema)
+
 
 class RegexStringSchema(Schema):
-    hasRegex = fields.String()
+    hasRegex = fields.String(required=True)
 
 
-def getSchema():
-    regex_string_schema = RegexStringSchema()
-    json_schema = JSONSchema()
-    json_schema.dump(regex_string_schema)
+
