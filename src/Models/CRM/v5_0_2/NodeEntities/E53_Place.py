@@ -5,6 +5,8 @@ from src.Models.CRM.v5_0_2.NodeEntities.E18_Physical_Thing import \
 from src.Models.CRM.v5_0_2.NodeEntities.E4_Period import E4_Period
 from src.Models.CRM.v5_0_2.NodeProperties.P121_overlaps_with import P121_overlaps_with
 from src.Models.CRM.v5_0_2.NodeProperties.P122_borders_with import P122_borders_with
+from src.Models.CRM.v5_0_2.NodeProperties.P161_has_spatial_projection import P161_has_spatial_projection
+from src.Models.CRM.v5_0_2.NodeProperties.P189_approximates import P189_approximates
 from src.Models.CRM.v5_0_2.NodeProperties.P26_moved_to import P26_moved_to
 from src.Models.CRM.v5_0_2.NodeProperties.P27_moved_from import P27_moved_from
 from src.Models.CRM.v5_0_2.NodeProperties.P28_custody_surrenedered_by import P28_custody_surrendered_by
@@ -68,4 +70,14 @@ class E53_Place(E1_CRM_Entity):
         ".E53_Place.E53_Place",
         "P122_borders_with",
         model=P122_borders_with
+    )
+    has_spatial_projection = RelationshipFrom(
+        ".E92_Spacetime_Volume.E92_Spacetime_Volume",
+        "P161_has_spatial_projection",
+        model=P161_has_spatial_projection
+    )
+    approximates = RelationshipFrom(
+        ".E53_Place.E53_Place",
+        "P189_approximates",
+        model=P189_approximates
     )

@@ -2,6 +2,7 @@ from neomodel import RelationshipFrom, StructuredRel
 from src.Models.CRM.v5_0_2.NodeEntities.E1_CRM_Entity import E1_CRM_Entity
 from src.Models.CRM.v5_0_2.NodeEntities.E28_Conceptual_Object import \
     E28_Conceptual_Object
+from ..NodeProperties.P177_assigned_property_type import P177_assigned_property_type
 from ..NodeProperties.P101_had_as_general_use import P101_had_as_general_use
 from ..NodeProperties.P103_was_intended_for import P103_was_intended_for
 from ..NodeProperties.P125_used_object_of_type import P125_used_object_of_type
@@ -66,5 +67,10 @@ class E55_Type(E28_Conceptual_Object):
         ".E55_Type.E55_Type",
         "P150_defines_typical_parts_of",
         model=P150_defines_typical_parts_of
+    )
+    assigned_property_type = RelationshipFrom(
+        ".E13_Attribute_Assignment",
+        "P177_assigned_property_type",
+        model=P177_assigned_property_type
     )
 

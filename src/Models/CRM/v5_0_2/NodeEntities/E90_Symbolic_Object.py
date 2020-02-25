@@ -7,6 +7,7 @@ from src.Models.CRM.v5_0_2.NodeEntities.E72_Legal_Object import \
 from src.Models.CRM.v5_0_2.NodeProperties.P106_is_composed_of import P106_is_composed_of
 from src.Models.CRM.v5_0_2.NodeProperties.P128_carries import P128_carries
 from src.Models.CRM.v5_0_2.NodeProperties.P142_used_constituent import P142_used_constituent
+from src.Models.CRM.v5_0_2.NodeProperties.P165_incorporates import P165_incorporates
 
 
 class E90_Symbolic_Object(E72_Legal_Object, E28_Conceptual_Object):
@@ -23,4 +24,9 @@ class E90_Symbolic_Object(E72_Legal_Object, E28_Conceptual_Object):
         ".E15_Identifier_Assignment.E15_Identifier_Assignment",
         "P142_used_constituent",
         model=P142_used_constituent
+    )
+    incorporates = RelationshipFrom(
+        ".E73_Information_Object.E73_Information_Object",
+        "P165_incorporates",
+        model=P165_incorporates
     )
