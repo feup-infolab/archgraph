@@ -1,7 +1,8 @@
+import json
+
 from marshmallow import Schema, fields
 from marshmallow_jsonschema import JSONSchema
 from neomodel import StringProperty
-import json
 from src.Models.DataObject.v0_0_2.DataObject import DataObject
 
 
@@ -19,4 +20,3 @@ class String(DataObject):
 
 class StringSchema(Schema):
     stringValue = fields.String(required=True)
-
