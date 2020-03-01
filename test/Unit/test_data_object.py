@@ -7,8 +7,6 @@ from neomodel import (config, OUTGOING, Traversal, DeflateError,
                       AttemptedCardinalityViolation)
 import json
 
-from src.Utils.JsonEncoder import json_merge
-
 config.DATABASE_URL = 'bolt://neo4j:password@localhost:7687'
 date = datetime.datetime.now().strftime("%H:%M:%S")
 
@@ -23,5 +21,5 @@ class TestString(unittest.TestCase):
         returned_string.save()
         change_returned_string = String.nodes.get(name=date)
         self.assertAlmostEqual(string.id, returned_string.id)
-        self.assertAlmostEqual(change_returned_string.stringValue, new_name)
+        self.assertEqual(change_returned_string.stringValue, new_name)
         self.assertAlmostEqual(string.id, change_returned_string.id)

@@ -21,6 +21,3 @@ class DataObject(StructuredNode):
 class DataObjectSchema(Schema):
     uid = fields.String()
     name = fields.String(required=True)
-
-
-

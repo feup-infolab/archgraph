@@ -20,6 +20,3 @@ class Instant(Date):
 
 class InstantSchema(Schema):
     timestamp = fields.Date(required=True)
-
-
-

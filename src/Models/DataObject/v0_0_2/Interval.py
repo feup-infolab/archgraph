@@ -22,6 +22,3 @@ class Interval(Date):
 class IntervalSchema(Schema):
     startDateValue = fields.Date(required=True)
     endDateValue = fields.Date(required=True)
-
-
-

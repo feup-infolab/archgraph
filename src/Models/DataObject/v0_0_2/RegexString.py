@@ -1,4 +1,5 @@
 import json
+
 from marshmallow import Schema, fields
 from marshmallow_jsonschema import JSONSchema
 from neomodel import RegexProperty
@@ -19,6 +20,3 @@ class RegexString(String):
 
 class RegexStringSchema(Schema):
     hasRegex = fields.String(required=True)
-
-
-
