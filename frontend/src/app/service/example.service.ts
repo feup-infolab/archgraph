@@ -18,13 +18,13 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class ExampleService {
-  Url = 'http://localhost:3000/';  // URL to public api
+  Url = 'http://localhost:7474/create';  // URL to public api
   private handleError: HandleError;
 
   constructor(private http: HttpClient) {
   }
 
-  sendExample(example: Example): Observable<Example> {
-    return this.http.post<Example>(this.Url, example, httpOptions);
+  sendExample(id: Example): Observable<Example> {
+    return this.http.get<Example>(this.Url, httpOptions);
   }
 }
