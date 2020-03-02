@@ -1,7 +1,10 @@
 import importlib
+from functools import \
+    wraps  # This convenience func preserves name and docstring
+
 from marshmallow import Schema, fields
 from marshmallow_jsonschema import JSONSchema
-from functools import wraps # This convenience func preserves name and docstring
+
 
 def has_json_schema(cls):
 

@@ -1,6 +1,6 @@
 import json
-from marshmallow import Schema, fields
 
+from marshmallow import Schema, fields
 from neomodel import StringProperty
 from src.Models.DataObject.v0_0_2.DataObject import DataObject
 
