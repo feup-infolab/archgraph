@@ -1,6 +1,6 @@
 from flask import Flask, jsonify
-
 from neomodel import config
+
 from src.Models.DataObject.v0_0_2.String import String
 
 config.DATABASE_URL = "bolt://neo4j:password@localhost:7687"

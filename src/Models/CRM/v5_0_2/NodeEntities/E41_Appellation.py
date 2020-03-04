@@ -1,4 +1,5 @@
 from neomodel import One, RelationshipFrom, StructuredRel
+
 from src.Models.CRM.v5_0_2.NodeEntities.E90_Symbolic_Object import \
     E90_Symbolic_Object
 

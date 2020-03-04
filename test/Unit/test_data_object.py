@@ -1,14 +1,11 @@
 import datetime
 import unittest
 
+from neomodel import (config)
+
 from src.Models.DataObject.v0_0_2.String import String
 
-from neomodel import (config, OUTGOING, Traversal, DeflateError,
-                      AttemptedCardinalityViolation)
-import json
-
 config.DATABASE_URL = 'bolt://neo4j:password@localhost:7687'
-
 
 
 class TestString(unittest.TestCase):
@@ -23,3 +20,4 @@ class TestString(unittest.TestCase):
         self.assertAlmostEqual(string.id, returned_string.id)
         self.assertEqual(change_returned_string.stringValue, new_name)
         self.assertAlmostEqual(string.id, change_returned_string.id)
+        print(string.print_schema())

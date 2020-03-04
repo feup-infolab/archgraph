@@ -1,22 +1,40 @@
 import importlib
-from functools import \
-    wraps  # This convenience func preserves name and docstring
+import json
 
-from marshmallow import Schema, fields
 from marshmallow_jsonschema import JSONSchema
 
 
+def json_serializable(cls):
+    def toJSON(self):
+        return json.dumps(self, default=lambda o: o.__dict__)
+
+    setattr(cls, "print_schema", toJSON)
+
+
 def has_json_schema(cls):
+    if not hasattr(cls, "get_schema"):
+        raise Exception(
+            "JSON-serializable Ontology classes must declare a static get_schema method"
+        )
 
-    def getSchema(self):
-        string_schema = StringSchema()
+    def print_schema(self):
         json_schema = JSONSchema()
-        return json_schema.dump(string_schema)
+        class_schema = cls.__module__
+        return json_schema.dump(class_schema)
 
-    # package_name = ".".join([cls.__module__, cls.__name__])
-    package_name = ".".join(str.split(cls.__module__, ".")[:-2])
-    module = importlib.import_module(cls.__module__ + "Schema")
+    # # este código injeta métodos de instância numa classe
+    # defaultInit = getattr(cls, '__init__')
+    #
+    # def newInit(self, *args, **kwargs):
+    #     defaultInit(self, *args, **kwargs)
+    #     setattr(self, "get_schema", get_schema)
+    #     setattr(self, "print_schema", print_schema)
+    #
+    # setattr(cls, "__init__", newInit)
 
+    setattr(cls, "print_schema", print_schema)
+
+    return cls
 
 
 def ontology_class(cls):
