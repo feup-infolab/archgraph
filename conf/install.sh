@@ -20,7 +20,7 @@ source "$HOME/.bash_profile"
 export PATH="$HOME/miniconda/bin":$PATH
 conda remove --quiet --name "$ENV_NAME" -y --all
 conda create --quiet -y -n "$ENV_NAME" python=3.7 anaconda
-conda activate"$ENV_NAME"
+conda activate "$ENV_NAME"
 conda init bash
 
 # install pip
@@ -29,7 +29,7 @@ python get-pip.py
 # upgrade pip to latest version
 pip install --quiet --upgrade pip
 # (optional) install any requirements of your current app in this venv
-pip install --quiet -r requirements.txt
+pip install -r requirements.txt
 # Get location of python interpreter
 echo "Python interpreter is at: ---> $(which python) <---"
 
