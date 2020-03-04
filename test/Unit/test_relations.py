@@ -42,6 +42,7 @@ class TestNeoModel(unittest.TestCase):
     def test_basic_relationship(self):
         # Tests creation of basic relationships
         # Creates 2 P2_Has_Type Relationships that connect A E1 instance to a E55 and that E55 to another
+
         e55.hasType.connect(e1)
         e55_2.hasType.connect(e55)
         # Obtains origin of relationship
@@ -144,6 +145,7 @@ class TestNeoModel(unittest.TestCase):
         # Creation of relationship
         e55_3.hasType.connect(e21)
         # Obtaining Json
+        e1.fu
         json_a = json.dumps(e21.to_json())
         json_b = json.dumps(e55_3.to_json())
         json_c = json.dumps(e55_3.hasType.relationship(e21).to_json())

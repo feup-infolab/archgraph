@@ -1,5 +1,8 @@
 from neomodel import StructuredRel
 
+from src.GCF.decorators.OntologyProperty import ontology_property
 
-class P1_is_identified_by(StructuredRel):
+
+@ontology_property
+class P8_took_place_on_or_within(StructuredRel):
     pass
