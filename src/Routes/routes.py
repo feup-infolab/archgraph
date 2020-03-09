@@ -1,5 +1,4 @@
-from flask import Flask, jsonify
-
+from flask import Flask, jsonify, Response
 from neomodel import config
 from src.Models.DataObject.v0_0_2.String import String
 
@@ -10,10 +9,7 @@ app = Flask(__name__, static_url_path="")
 @app.route("/<uid>", methods=["GET"])
 def view(uid):
     returned_string = String.nodes.get(uid=uid)
-    return jsonify(returned_string.toJSON())
-    # returned_string = String.nodes.get(uid=uid)
-    # return Response(dumps(returned_string.toJSON()),
-    # mimetype='application/json')
+    return Response(returned_string.toJSON(), mimetype='application/json')
 
 
 @app.route("/schema/<uid>", methods=["GET"])

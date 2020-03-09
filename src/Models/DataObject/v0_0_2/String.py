@@ -1,22 +1,27 @@
 import json
 
 from marshmallow import Schema, fields
-from marshmallow_jsonschema import JSONSchema
 from neomodel import StringProperty
 from src.Models.DataObject.v0_0_2.DataObject import DataObject
-
-
-class String(DataObject):
-    stringValue = StringProperty(unique_index=True, required=True)
-
-    def toJSON(self):
-        return json.dumps(self, default=lambda o: o.__dict__)
-
-    def getSchema(self):
-        string_schema = StringSchema()
-        json_schema = JSONSchema()
-        return json_schema.dump(string_schema)
+from src.Models.DataObject.v0_0_2.SerializeClass import SerializeClass
 
 
 class StringSchema(Schema):
     stringValue = fields.String(required=True)
+
+
+# class String(DataObject):
+#     stringValue = StringProperty(unique_index=True, required=True)
+#
+#     def __init__(self, *args, **kwargs):
+#         super().__init__(*args, **kwargs)
+#         self.list.append(self.stringValue)
+
+class String(DataObject):
+    stringValue = StringProperty(unique_index=True, required=True)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(StringSchema(), *args, **kwargs)
+        self.list.append(self.stringValue)
+
+

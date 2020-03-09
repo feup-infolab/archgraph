@@ -5,7 +5,8 @@ from src.Models.DataObject.v0_0_2.String import String
 
 from neomodel import (config, OUTGOING, Traversal, DeflateError,
                       AttemptedCardinalityViolation)
-import json
+from src.GCF.utils.db import clean_database
+clean_database()
 
 config.DATABASE_URL = 'bolt://neo4j:password@localhost:7687'
 
@@ -15,6 +16,8 @@ class TestString(unittest.TestCase):
     def test_create_update_string_Node(self):
         date = datetime.datetime.now().strftime("%H:%M:%S")
         string = String(name=date, stringValue="String_Value").save()
+        print(string.getSchema())
+        print(string.toJSON())
         returned_string = String.nodes.get(name=date)
         new_name = "new_Name"
         returned_string.stringValue = new_name
