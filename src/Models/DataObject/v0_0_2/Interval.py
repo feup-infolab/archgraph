@@ -1,20 +1,20 @@
-from marshmallow import Schema, fields
+from marshmallow import fields
 from neomodel import DateTimeProperty
-
-from src.Models.DataObject.v0_0_2 import SerializeClass
-from src.Models.DataObject.v0_0_2.Date import Date
+from src.Models.DataObject.v0_0_2.Date import Date, DateSchema
 
 
-class IntervalSchema(Schema):
+class IntervalSchema(DateSchema):
     startDateValue = fields.Date(required=True)
     endDateValue = fields.Date(required=True)
 
 
 class Interval(Date):
-    super(SerializeClass).__init__(IntervalSchema)
     startDateValue = DateTimeProperty(unique_index=True, required=True)
     endDateValue = DateTimeProperty(unique_index=True, required=True)
 
+    def __init__(self, schema=None, *args, **kwargs):
+        if schema is None:
+            schema = IntervalSchema()
 
-
-
+        super().__init__(schema, *args, **kwargs)
+        self.list.extend([self.startDateValue, self.startDateValue])
