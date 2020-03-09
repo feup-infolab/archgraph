@@ -1,22 +1,29 @@
-import json
 
-from marshmallow import Schema, fields
-from marshmallow_jsonschema import JSONSchema
-from neomodel import DateTimeProperty
-from src.Models.DataObject.v0_0_2.Date import Date
+from marshmallow import fields
+from neomodel import DateTimeProperty, config
+from src.Models.DataObject.v0_0_2.Date import Date, DateSchema
+
+config.DATABASE_URL = "bolt://neo4j:password@localhost:7687"
+
+
+class ApproximateSchema(DateSchema):
+    approximateDateValue = fields.Date(required=True)
 
 
 class Approximate(Date):
     approximateDateValue = DateTimeProperty(unique_index=True, required=True)
 
-    def toJSON(self):
-        return json.dumps(self, default=lambda o: o.__dict__)
+    def __init__(self, schema=None, *args, **kwargs):
+        if schema is None:
+            schema = ApproximateSchema()
 
-    def getSchema(self):
-        approximate_schema = ApproximateSchema()
-        json_schema = JSONSchema()
-        return json_schema.dump(approximate_schema)
+        super().__init__(schema, *args, **kwargs)
+        self.list.append(self.approximateDateValue.__str__())
 
 
-class ApproximateSchema(Schema):
-    approximateDateValue = fields.Date(required=True)
+# print(ApproximateSchema())
+# datetime_object = datetime.datetime(2020, 5, 17)
+# print(datetime_object)
+# a = Approximate(name="name", approximateDateValue=datetime_object, ).save()
+# print(a.toJSON())
+# print(a.getSchema())
