@@ -1,11 +1,12 @@
 import { browser, by, element } from 'protractor';
+import { promise as wdpromise } from 'selenium-webdriver';
 
 export class AppPage {
-  navigateTo(): Promise<unknown> {
-    return browser.get(browser.baseUrl) as Promise<unknown>;
+  navigateTo(): wdpromise.Promise<any> {
+    return browser.get('/');
   }
 
-  getTitleText(): Promise<string> {
-    return element(by.css('app-root .content span')).getText() as Promise<string>;
+  getParagraphText(): wdpromise.Promise<string> {
+    return element(by.css('app-root h1')).getText();
   }
 }
