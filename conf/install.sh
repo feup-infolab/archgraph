@@ -16,7 +16,12 @@ fi
 
 
 # run conda
-source "$HOME/.bash_profile"
+if [ "$(uname)" == "Darwin" ]; then
+      source "$HOME/.bash_profile"
+elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+    source "$HOME/.profile"
+fi
+
 export PATH="$HOME/miniconda/bin":$PATH
 conda remove --quiet --name "$ENV_NAME" -y --all
 conda create --quiet -y -n "$ENV_NAME" python=3.7 anaconda

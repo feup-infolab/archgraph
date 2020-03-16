@@ -5,7 +5,6 @@ from marshmallow_jsonschema import JSONSchema
 
 class SerializeClass:
     def __init__(self, schema):
-        self.list = []
         self.schema = schema
 
     def getSchema(self):

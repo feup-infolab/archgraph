@@ -11,7 +11,6 @@ clean_database()
 config.DATABASE_URL = 'bolt://neo4j:password@localhost:7687'
 
 
-
 class TestString(unittest.TestCase):
     def test_create_update_string_Node(self):
         date = datetime.datetime.now().strftime("%H:%M:%S")
