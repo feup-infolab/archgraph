@@ -12,4 +12,8 @@ class SerializeClass:
         return json_schema.dump(self.schema)
 
     def toJSON(self):
-        return json.dumps(self.list, default=lambda o: o.__dict__)
+        r = "{"
+        r = r + ', '.join(
+            '"{}": "{}"'.format(key, val) for key, val in self.__dict__.items() if key is not "schema")
+        r = r + "}"
+        return json.dumps(eval(r))

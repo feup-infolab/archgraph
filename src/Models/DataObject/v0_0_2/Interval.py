@@ -17,4 +17,3 @@ class Interval(Date):
             schema = IntervalSchema()
 
         super().__init__(schema, *args, **kwargs)
-        self.list.extend([self.startDateValue, self.startDateValue])

@@ -16,13 +16,3 @@ class String(DataObject):
             schema = StringSchema()
 
         super().__init__(schema, *args, **kwargs)
-        self.list.append(self.stringValue)
-
-
-# config.DATABASE_URL = 'bolt://neo4j:password@localhost:7687'
-#
-# a = String(name="new", stringValue="ola").save()
-# print(a.toJSON())
-# print(a.getSchema())
-
-# print(StringSchema())

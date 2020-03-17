@@ -15,4 +15,3 @@ class Instant(Date):
             schema = InstantSchema()
 
         super().__init__(schema, *args, **kwargs)
-        self.list.append(self.timestamp)
