@@ -20,7 +20,13 @@ from src.Models.DataObject.v0_0_2.Polygon import Polygon
 from src.Models.DataObject.v0_0_2.RegexString import RegexString
 from src.Models.DataObject.v0_0_2.String import String
 config.DATABASE_URL = "bolt://neo4j:password@localhost:7687"
+from flask_cors import CORS, cross_origin
+
 app = Flask(__name__)
+
+
+CORS(app)
+cors = CORS(app, resources={r"/*": {"origins": "*"}})
 
 
 @app.route('/favicon.ico')
@@ -63,6 +69,7 @@ def getNode(node_type, uid):
 
 
 @app.route("/<node_type>/<uid>", methods=["GET"])
+@cross_origin()
 def responseGetNode(node_type, uid):
     result = getNode(node_type, uid)
     if result is not None:

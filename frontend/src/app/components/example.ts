@@ -1,4 +1,6 @@
 export interface Example {
-  title: string;
-  type: string;
+  name: string;
+  uid: string;
+  stringValue: string;
+  id: string;
 }

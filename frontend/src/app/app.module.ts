@@ -4,19 +4,20 @@ import { MaterialDesignFrameworkModule } from 'angular7-json-schema-form';
 import { AppComponent } from './app.component';
 import {HttpClientModule} from '@angular/common/http';
 import {ExampleComponent} from './components/example.component';
-import { MyComponentComponent } from './components/my-component.component';
 import {BrowserModule} from '@angular/platform-browser';
+import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ExampleComponent,
-    MyComponentComponent
+    ExampleComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    MaterialDesignFrameworkModule
+    MaterialDesignFrameworkModule,
+    BrowserAnimationsModule,
+    NoopAnimationsModule
   ],
   providers: [MyServiceService],
   bootstrap: [ AppComponent ]
