@@ -2,12 +2,8 @@ from marshmallow import Schema, fields
 from neomodel import StringProperty, StructuredNode, UniqueIdProperty
 from src.Models.DataObject.v0_0_2.SerializeClass import SerializeClass
 
-# config.DATABASE_URL = 'bolt://neo4j:password@localhost:7687'
-# from src.GCF.utils.db import clean_database
-# clean_database()
 
-
-class DataObjectSchema(Schema):
+class Schema(Schema):
     uid = fields.String()
     name = fields.String(required=True)
 
@@ -19,14 +15,7 @@ class DataObject(StructuredNode, SerializeClass):
     def __init__(self, schema=None, *args, **kwargs):
         super().__init__(*args, **kwargs)
         if schema is None:
-            schema = DataObjectSchema()
+            schema = Schema()
 
         SerializeClass.__init__(self, schema)
         self.schema = schema
-        self.list.extend([self.uid, self.name])
-
-
-# ola =DataObject(name="ola").save()
-# ola.getSchema()
-# print(ola.toJSON())
-# ola.nodes.get(name="ola")

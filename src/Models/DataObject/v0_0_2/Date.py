@@ -1,8 +1,7 @@
-from src.Models.DataObject.v0_0_2.DataObject import (DataObject,
-                                                     DataObjectSchema)
+from src.Models.DataObject.v0_0_2.DataObject import DataObject, Schema
 
 
-class DateSchema(DataObjectSchema):
+class Schema(Schema):
     pass
 
 
@@ -11,6 +10,6 @@ class Date(DataObject):
 
     def __init__(self, schema=None, *args, **kwargs):
         if schema is None:
-            schema = DateSchema()
+            schema = Schema()
 
         super().__init__(schema, *args, **kwargs)
