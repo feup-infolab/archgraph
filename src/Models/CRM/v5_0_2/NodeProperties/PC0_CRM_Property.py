@@ -12,11 +12,9 @@ class PC0_CRM_Property(StructuredNode):
         "..NodeEntities.E1_CRM_Entity.E1_CRM_Entity",
         "P01_has_domain",
         cardinality=One,
-        model=P01_has_domain,
-    )
+        model=P01_has_domain)
     hasRange = RelationshipTo(
         "..NodeEntities.E1_CRM_Entity.E1_CRM_Entity",
         "P02_has_range",
         cardinality=One,
-        model=P02_has_range,
-    )
+        model=P02_has_range)

@@ -9,5 +9,4 @@ class PC14_Carried_Out_By(PC0_CRM_Property):
         "..NodeEntities.E55_Type.E55_Type",
         ".P14_1_in_the_role_of",
         cardinality=One,
-        model=P14_1_in_the_role_of,
-    )
+        model=P14_1_in_the_role_of)

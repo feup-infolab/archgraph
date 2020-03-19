@@ -1,5 +1,8 @@
 from neomodel import StructuredRel
 
+from src.GCF.decorators.OntologyProperty import ontology_property
 
+
+@ontology_property
 class P19_was_intended_use_of(StructuredRel):
     pass
