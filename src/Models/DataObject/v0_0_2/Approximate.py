@@ -1,9 +1,9 @@
 from marshmallow import fields
-from neomodel import DateTimeProperty, config
-from src.Models.DataObject.v0_0_2.Date import Date, DateSchema
+from neomodel import DateTimeProperty
+from src.Models.DataObject.v0_0_2.Date import Date, Schema
 
 
-class ApproximateSchema(DateSchema):
+class Schema(Schema):
     approximateDateValue = fields.Date(required=True)
 
 
@@ -12,6 +12,6 @@ class Approximate(Date):
 
     def __init__(self, schema=None, *args, **kwargs):
         if schema is None:
-            schema = ApproximateSchema()
+            schema = Schema()
 
         super().__init__(schema, *args, **kwargs)

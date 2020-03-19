@@ -2,10 +2,10 @@ import json
 
 from marshmallow import fields
 from neomodel import RegexProperty
-from src.Models.DataObject.v0_0_2.String import String, StringSchema
+from src.Models.DataObject.v0_0_2.String import Schema, String
 
 
-class RegexStringSchema(StringSchema):
+class Schema(Schema):
     hasRegex = fields.String(required=True)
 
 
@@ -13,7 +13,7 @@ class RegexString(String):
     def __init__(self, schema=None, *args, **kwargs):
 
         if schema is None:
-            schema = RegexStringSchema()
+            schema = Schema()
 
         expression = ""
         if kwargs.get("expression") is None:
@@ -24,6 +24,5 @@ class RegexString(String):
         hasRegex = RegexProperty(
             expression=expression, unique_index=True, required=True
         )
-        schema = RegexStringSchema()
 
         super().__init__(schema, *args, **kwargs)

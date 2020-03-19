@@ -1,9 +1,9 @@
 from marshmallow import fields
 from neomodel import DateTimeProperty
-from src.Models.DataObject.v0_0_2.Date import Date, DateSchema
+from src.Models.DataObject.v0_0_2.Date import Date, Schema
 
 
-class InstantSchema(DateSchema):
+class Schema(Schema):
     timestamp = fields.Date(required=True)
 
 
@@ -12,6 +12,6 @@ class Instant(Date):
 
     def __init__(self, schema=None, *args, **kwargs):
         if schema is None:
-            schema = InstantSchema()
+            schema = Schema()
 
         super().__init__(schema, *args, **kwargs)

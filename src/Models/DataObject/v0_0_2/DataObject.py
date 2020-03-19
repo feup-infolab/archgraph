@@ -3,7 +3,7 @@ from neomodel import StringProperty, StructuredNode, UniqueIdProperty
 from src.Models.DataObject.v0_0_2.SerializeClass import SerializeClass
 
 
-class DataObjectSchema(Schema):
+class Schema(Schema):
     uid = fields.String()
     name = fields.String(required=True)
 
@@ -15,7 +15,7 @@ class DataObject(StructuredNode, SerializeClass):
     def __init__(self, schema=None, *args, **kwargs):
         super().__init__(*args, **kwargs)
         if schema is None:
-            schema = DataObjectSchema()
+            schema = Schema()
 
         SerializeClass.__init__(self, schema)
         self.schema = schema

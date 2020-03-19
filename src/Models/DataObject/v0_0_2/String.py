@@ -1,10 +1,9 @@
 from marshmallow import fields
 from neomodel import StringProperty
-from src.Models.DataObject.v0_0_2.DataObject import (DataObject,
-                                                     DataObjectSchema)
+from src.Models.DataObject.v0_0_2.DataObject import DataObject, Schema
 
 
-class StringSchema(DataObjectSchema):
+class Schema(Schema):
     stringValue = fields.String(required=True)
 
 
@@ -13,6 +12,6 @@ class String(DataObject):
 
     def __init__(self, schema=None, *args, **kwargs):
         if schema is None:
-            schema = StringSchema()
+            schema = Schema()
 
         super().__init__(schema, *args, **kwargs)
