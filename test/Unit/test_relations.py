@@ -145,7 +145,6 @@ class TestNeoModel(unittest.TestCase):
         # Creation of relationship
         e55_3.hasType.connect(e21)
         # Obtaining Json
-        e1.fu
         json_a = json.dumps(e21.to_json())
         json_b = json.dumps(e55_3.to_json())
         json_c = json.dumps(e55_3.hasType.relationship(e21).to_json())

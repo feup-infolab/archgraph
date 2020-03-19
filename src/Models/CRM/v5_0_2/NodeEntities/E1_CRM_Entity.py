@@ -34,7 +34,7 @@ class E1_CRM_Entity(StructuredNode):
         "P41_classified",
         model=P41_classified)
     depicts = RelationshipFrom(
-        ".E24_Physical_Man_Made_Thing.E24_Physical_Man_Made_Thing",
+        ".E24_Physical_Human_Made_Thing.E24_Physical_Human_Made_Thing",
         "P62_depicts",
         model=P62_depicts)
     refers_to = RelationshipFrom(

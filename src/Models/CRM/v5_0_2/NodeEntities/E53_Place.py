@@ -1,7 +1,6 @@
 from neomodel import RelationshipTo, RelationshipFrom
 from src.Models.CRM.v5_0_2.NodeEntities.E1_CRM_Entity import E1_CRM_Entity
-from src.Models.CRM.v5_0_2.NodeEntities.E18_Physical_Thing import \
-    E18_Physical_Thing
+from src.Models.CRM.v5_0_2.NodeEntities.E18_Physical_Thing import E18_Physical_Thing
 from src.Models.CRM.v5_0_2.NodeEntities.E4_Period import E4_Period
 from src.Models.CRM.v5_0_2.NodeProperties.P121_overlaps_with import P121_overlaps_with
 from src.Models.CRM.v5_0_2.NodeProperties.P122_borders_with import P122_borders_with

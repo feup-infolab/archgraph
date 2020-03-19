@@ -60,7 +60,7 @@ class E39_Actor(E77_Persistent_Item):
         "P107_has_current_or_former_member",
         model=P107_has_current_or_former_member)
     has_current_or_former_curator = RelationshipFrom(
-        ".E78_Collection.E78_Collection",
+        ".E78_Curated_Holding.E78_Curated_Holding",
         "P109_has_current_or_former_curator",
         model=P109_has_current_or_former_curator)
     joined = RelationshipFrom(
