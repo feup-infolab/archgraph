@@ -1,4 +1,5 @@
 from neomodel import RelationshipFrom, RelationshipTo, StructuredRel
+from src.GCF.decorators.OntologyClass import ontology_class
 from src.Models.CRM.v5_0_2.NodeEntities.E6_Destruction import E6_Destruction
 from src.Models.CRM.v5_0_2.NodeEntities.E72_Legal_Object import \
     E72_Legal_Object
@@ -21,6 +22,7 @@ from src.Models.CRM.v5_0_2.NodeProperties.P156_occupies import P156_occupies
 
 
 
+@ontology_class
 class E18_Physical_Thing(E72_Legal_Object):
     is_composed_of = RelationshipTo(
         ".E18_Physical_Thing.E18_Physical_Thing",

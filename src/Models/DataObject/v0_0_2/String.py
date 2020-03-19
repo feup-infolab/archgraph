@@ -1,18 +1,28 @@
-from marshmallow import Schema, fields
-from marshmallow_jsonschema import JSONSchema
+from marshmallow import fields
 from neomodel import StringProperty
-from src.Models.DataObject.v0_0_2.DataObject import DataObject
+from src.Models.DataObject.v0_0_2.DataObject import (DataObject,
+                                                     DataObjectSchema)
+
+
+class StringSchema(DataObjectSchema):
+    stringValue = fields.String(required=True)
 
 
 class String(DataObject):
     stringValue = StringProperty(unique_index=True, required=True)
 
+    def __init__(self, schema=None, *args, **kwargs):
+        if schema is None:
+            schema = StringSchema()
 
-class StringSchema(Schema):
-    stringValue = fields.String()
+        super().__init__(schema, *args, **kwargs)
+        self.list.append(self.stringValue)
 
 
-string_schema = StringSchema()
+# config.DATABASE_URL = 'bolt://neo4j:password@localhost:7687'
+#
+# a = String(name="new", stringValue="ola").save()
+# print(a.toJSON())
+# print(a.getSchema())
 
-json_schema = JSONSchema()
-json_schema.dump(string_schema)
+# print(StringSchema())
