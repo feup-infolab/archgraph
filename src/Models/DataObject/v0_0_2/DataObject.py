@@ -18,4 +18,3 @@ class DataObject(StructuredNode, SerializeClass):
             schema = Schema()
 
         SerializeClass.__init__(self, schema)
-        self.schema = schema

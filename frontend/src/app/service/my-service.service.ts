@@ -9,12 +9,16 @@ import {Schema} from '../components/Schema';
 export class MyServiceService {
   baseUrl = 'http://localhost:5000/';
 
-  getDataNode(type: string, uid: string): Observable<any[]> {
-    return this.http.get<any[]>(this.baseUrl + type + '/' + uid);
+  getDataNode( uid: string): Observable<any[]> {
+    return this.http.get<any[]>(this.baseUrl + uid);
   }
 
-  getSchemaNode(type: string, uid: string): Observable<Schema> {
-    return this.http.get<Schema>(this.baseUrl + 'schema' + '/' + type + '/' + uid);
+  getSchemaNode(uid: string): Observable<Schema> {
+    return this.http.get<Schema>(this.baseUrl + 'schema' + '/' + uid);
+  }
+
+  sendNode(data): Observable<any> {
+    return this.http.post<any>(this.baseUrl + data.uid,  data);
   }
 
   constructor(private http: HttpClient) {

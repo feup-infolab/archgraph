@@ -1,5 +1,7 @@
 import os
 
+import flask
+from flask import request, make_response
 from flask import Flask, Response, jsonify, send_from_directory
 
 from flask_cors import CORS, cross_origin
@@ -44,54 +46,63 @@ def favicon():
 app = Flask(__name__, static_url_path="")
 
 
-def getNodeByUid(__class, uid):
+def getNodeByUid(uid):
     try:
-        return __class.nodes.get(uid=uid)
-    except BaseException:
+        return DataObject.nodes.get(uid=uid)
+    except:
         return None
 
 
-def getNode(node_type, uid):
-    switcher = {
-        "approximate": getNodeByUid(Approximate, uid),
-        "authorityfile": getNodeByUid(AuthorityFile, uid),
-        "authoritystring": getNodeByUid(AuthorityString, uid),
-        "boolean": getNodeByUid(Boolean, uid),
-        "dataobject": getNodeByUid(DataObject, uid),
-        "date": getNodeByUid(Date, uid),
-        "decimal": getNodeByUid(Decimal, uid),
-        "geospatialcoordinates": getNodeByUid(GeospatialCoordinates, uid),
-        "instant": getNodeByUid(Instant, uid),
-        "integer": getNodeByUid(Integer, uid),
-        "interval": getNodeByUid(Interval, uid),
-        "latitude": getNodeByUid(Latitude, uid),
-        "longitude": getNodeByUid(Longitude, uid),
-        "personname": getNodeByUid(PersonName, uid),
-        "polygon": getNodeByUid(Polygon, uid),
-        "regexstring": getNodeByUid(RegexString, uid),
-        "string": getNodeByUid(String, uid),
-    }
-    return switcher.get(node_type.lower(), "None")
+def deleteNodeByUid(uid):
+    try:
+        node = DataObject.nodes.get(uid=uid)
+        node.delete()
+        return True
+    except:
+        return None
 
 
-@app.route("/<node_type>/<uid>", methods=["GET"])
+# def getNode(node_type, uid):
+#     switcher = {
+#         "approximate": getNodeByUid(Approximate, uid),
+#         "authorityfile": getNodeByUid(AuthorityFile, uid),
+#         "authoritystring": getNodeByUid(AuthorityString, uid),
+#         "boolean": getNodeByUid(Boolean, uid),
+#         "dataobject": getNodeByUid(DataObject, uid),
+#         "date": getNodeByUid(Date, uid),
+#         "decimal": getNodeByUid(Decimal, uid),
+#         "geospatialcoordinates": getNodeByUid(GeospatialCoordinates, uid),
+#         "instant": getNodeByUid(Instant, uid),
+#         "integer": getNodeByUid(Integer, uid),
+#         "interval": getNodeByUid(Interval, uid),
+#         "latitude": getNodeByUid(Latitude, uid),
+#         "longitude": getNodeByUid(Longitude, uid),
+#         "personname": getNodeByUid(PersonName, uid),
+#         "polygon": getNodeByUid(Polygon, uid),
+#         "regexstring": getNodeByUid(RegexString, uid),
+#         "string": getNodeByUid(String, uid),
+#     }
+#     return switcher.get(node_type.lower(), "None")
+
+
+@app.route("/<uid>", methods=["GET"])
 @cross_origin()
-def responseGetNode(node_type, uid):
-    result = getNode(node_type, uid)
+def responseGetNode(uid):
+    result = getNodeByUid(uid)
     if result is not None:
         return Response(result.toJSON(), mimetype="application/json", status=200)
     else:
-        return Response("Node Does Not exists", status=400)
+        return make_response(jsonify(message="Node doesn't exists"), 404)
 
 
-@app.route("/schema/<node_type>/<uid>", methods=["GET"])
+@app.route("/schema/<uid>", methods=["GET"])
 @cross_origin()
-def responseGetSchemaNode(node_type, uid):
-    result = getNode(node_type, uid)
+def responseGetSchemaNode(uid):
+    result = getNodeByUid(uid)
     if result is not None:
         return jsonify(result.getSchema())
     else:
-        return Response("Node Does Not exists", status=400)
+        return make_response(jsonify(message="Node doesn't exists"), 404)
 
 
 @app.route("/create", methods=["POST"])
@@ -100,16 +111,25 @@ def create():
 
 
 # update node
-@app.route("/<node_type>/<uid>", methods=["POST"])
+@app.route("/<uid>", methods=["POST"])
 @cross_origin()
-def update(node_type, uid):
-    return "update %s" % uid
+def responseUpdate(uid):
+    node = getNodeByUid(uid)
+    if node is not None:
+        data = request.json
+        return jsonify(data)
+    else:
+        return make_response(jsonify(message="Node doesn't exists"), 404)
 
 
-@app.route("/<node_type>/<uid>", methods=["DELETE"])
+@app.route("/<uid>", methods=["DELETE"])
 @cross_origin()
-def delete(node_type, uid):
-    return "delete %s" % uid
+def delete(uid):
+    result = deleteNodeByUid(uid)
+    if result is not None:
+        return jsonify()
+    else:
+        return make_response(jsonify(message="Node doesn't exists"), 404)
 
 
 if __name__ == "__main__":
