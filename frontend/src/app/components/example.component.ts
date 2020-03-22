@@ -30,8 +30,8 @@ export class ExampleComponent implements OnInit {
   };
 
 ngOnInit() {
-    this.getDataNode('f40582c49afd43d7b8ac1b394d030b1c');
-    this.getSchemaNode('f40582c49afd43d7b8ac1b394d030b1c');
+    this.getDataNode('765ad6cab07c40018c79b220fa2401a4');
+    this.getSchemaNode('765ad6cab07c40018c79b220fa2401a4');
   }
 getDataNode(uid) {
     this.service.getDataNode( uid)
@@ -74,6 +74,7 @@ getSchemaNode(uid) {
 sendNode(data) {
     this.service.sendNode( data)
       .subscribe(result => {
+        this.form.data = result;
         console.log(result);
       });
   }

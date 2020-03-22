@@ -15,7 +15,7 @@ class TestString(unittest.TestCase):
         name = "stringName"
         node = String(name=name, stringValue="String_Value").save()
         print(node.getSchema())
-        print(node.toJSON())
+        print(node.encodeJSON())
         returned_node = String.nodes.get(name=name)
         new_string_value = "new_Name"
         returned_node.stringValue = new_string_value
@@ -30,7 +30,7 @@ class TestString(unittest.TestCase):
         string_value= "stringValue"
         node = RegexString(expression="r'dw'", name=name, stringValue=string_value).save()
         print(node.getSchema())
-        print(node.toJSON())
+        print(node.encodeJSON())
         returned_node = RegexString.nodes.get(name=name)
         new_string_value = "new_Name"
         returned_node.stringValue = new_string_value
@@ -45,7 +45,7 @@ class TestString(unittest.TestCase):
         datetime_object = datetime.datetime(2018, 12, 12)
         node = Approximate(name=name, approximateDateValue=datetime_object).save()
         print(node.getSchema())
-        print(node.toJSON())
+        print(node.encodeJSON())
         returned_node = Approximate.nodes.get(name=name)
         new_approximate_date_value = datetime.datetime.now()
         returned_node.approximateDateValue = new_approximate_date_value
@@ -63,7 +63,7 @@ class TestString(unittest.TestCase):
         string_value = "stringValue"
         node = PersonName(person_name=person_name, name=name, stringValue=string_value).save()
         print(node.getSchema())
-        print(node.toJSON())
+        print(node.encodeJSON())
         returned_node = PersonName.nodes.get(name=name)
         person_new_name = "person_node__new_name"
         returned_node.person_name = person_new_name
