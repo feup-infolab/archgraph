@@ -1,6 +1,10 @@
+<div style="margin: 35px;"><p>Insert your UID </p>
+  <input style="width: 300px" #box (keyup.enter)="onEnter(box.value)">
+</div>
 
 <div *ngIf="load" style="margin: 35px">
   <json-schema-form
+    *ngIf="load"
     [form]= "form"
     [options]='jsonFormOptions'
     [framework]="'bootstrap-4'"
@@ -8,7 +12,6 @@
     (formSchema)="showFormSchemaFn($event)"
     (formLayout)="showFormLayoutFn($event)"
     (isValid)="isValid($event)">
-    <p>loasasa</p>
   </json-schema-form>
 </div>
 

@@ -11,6 +11,7 @@ import {MyServiceService} from '../service/my-service.service';
 export class ExampleComponent implements OnInit {
 
   constructor(private service: MyServiceService) {  }
+  uid = '';
   name = 'Angular 7';
   jsonFormOptions = {
     loadExternalAssets: true,
@@ -28,22 +29,33 @@ export class ExampleComponent implements OnInit {
 
     ]
   };
+  onEnter(uid: string) {
+    this.uid = uid;
+    // this.form.data = {};
+    // this.form.layout = [];
+    // this.form.schema = {};
+    this.load = false;
+    this.getSchemaNode(this.uid);
+  }
 
 ngOnInit() {
-    this.getDataNode('bf6ec941005040cbaa1f48102444db90');
-    this.getSchemaNode('bf6ec941005040cbaa1f48102444db90');
+
   }
-getDataNode(uid) {
+ getDataNode(uid) {
     this.service.getDataNode( uid)
       .subscribe(result => {
         this.form.data = result;
         console.log(result);
+        this.load = true;
       });
   }
 
 getSchemaNode(uid) {
     this.service.getSchemaNode(uid)
       .subscribe(result => {
+        this.form.layout = [];
+        console.log(result);
+
         const schema = result.definitions.Schema;
         this.form.schema = schema;
         const cloneProperties = {...schema.properties};
@@ -62,7 +74,8 @@ getSchemaNode(uid) {
         //   }
 
         console.log(this.form.layout);
-        this.load = true;
+        this.getDataNode(this.uid);
+
       });
   }
 

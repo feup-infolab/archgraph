@@ -8,7 +8,7 @@ class Schema(Schema):
 
 
 class Approximate(Date):
-    approximateDateValue = DateTimeFormatProperty(format="%y-%m-%d", unique_index=True, required=True)
+    approximateDateValue = DateTimeFormatProperty(format="%Y-%m-%d", unique_index=True, required=True)
 
     def __init__(self, schema=None, *args, **kwargs):
         if schema is None:

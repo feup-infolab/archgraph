@@ -6,6 +6,7 @@ from src.Models.DataObject.v0_0_2.RegexString import RegexString
 from src.Models.DataObject.v0_0_2.String import String
 from neomodel import (config)
 from src.GCF.utils.db import clean_database
+
 config.DATABASE_URL = 'bolt://neo4j:password@localhost:7687'
 clean_database()
 
@@ -27,8 +28,8 @@ class TestString(unittest.TestCase):
 
     def test_create_update_regexString_Node(self):
         name = "RegexStringName"
-        string_value= "stringValue"
-        node = RegexString(expression="r'dw'", name=name, stringValue=string_value).save()
+        string_value = "stringValue"
+        node = RegexString(hasRegex="regex/[a-zA-Z]([a-zA-Z 0-9])*$", name=name, stringValue=string_value).save()
         print(node.getSchema())
         print(node.encodeJSON())
         returned_node = RegexString.nodes.get(name=name)
