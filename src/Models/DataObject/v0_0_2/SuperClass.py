@@ -1,4 +1,5 @@
 import json
+import datetime
 
 from marshmallow_jsonschema import JSONSchema
 
@@ -13,15 +14,16 @@ class SuperClass:
 
     # Json to string
     def encodeJSON(self):
-        r = "{"
-        r = r + ", ".join(
-            '"{}": "{}"'.format(key, val)
-            for key, val in self.__dict__.items()
-            if key is not "schema"
-            if key is not "id"
-        )
-        r = r + "}"
-        return json.dumps(eval(r))
+        data = {}
+        for key, val in self.__dict__.items():
+            if (key != "schema") and (key != "id"):
+                data[key] = val
+
+        def my_converter(o):
+            if isinstance(o, datetime.datetime):
+                return o.strftime("%Y-%m-%d")
+
+        return json.dumps(data, default=my_converter)
 
     # string to json
     def decodeJSON(self):

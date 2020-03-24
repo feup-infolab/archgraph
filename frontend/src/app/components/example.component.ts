@@ -30,8 +30,8 @@ export class ExampleComponent implements OnInit {
   };
 
 ngOnInit() {
-    this.getDataNode('765ad6cab07c40018c79b220fa2401a4');
-    this.getSchemaNode('765ad6cab07c40018c79b220fa2401a4');
+    this.getDataNode('bf6ec941005040cbaa1f48102444db90');
+    this.getSchemaNode('bf6ec941005040cbaa1f48102444db90');
   }
 getDataNode(uid) {
     this.service.getDataNode( uid)
@@ -47,12 +47,9 @@ getSchemaNode(uid) {
         const schema = result.definitions.Schema;
         this.form.schema = schema;
         const cloneProperties = {...schema.properties};
-
         delete cloneProperties.uid;
-
         Object.keys(cloneProperties).forEach((n, i) => {
-          const type = cloneProperties[n].type;
-          const object = { key: n, dataType: type};
+          const object = { key: n};
           this.form.layout.push(object);
         });
         // const button1 = {
@@ -103,3 +100,37 @@ yourValidationErrorsFn($event) {
 
 
 }
+
+// {
+//   "schema": {
+//   "properties": {
+//     "animal": {
+//       "$ref": "#/definitions/animation"
+//     }
+//   },
+//   "definitions": {
+//     "animation": {
+//       "type": "object",
+//         "properties": {
+//         "duration": {
+//           "title": "Duration",
+//             "type": "integer"
+//         },
+//         "stepper": {
+//           "title": "Stepper",
+//             "type": "string"
+//         },
+//         "then": {
+//           "title": "Then",
+//             "type": "array",
+//             "maxItems": 1,
+//             "items": {
+//             "$ref": "#/definitions/animation"
+//           },
+//           "default": []
+//         }
+//       }
+//     }
+//   }
+// }
+// }

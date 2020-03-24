@@ -95,8 +95,11 @@ def responseUpdate(uid):
     node = getNodeByUid(uid)
     if node is not None:
         data = request.json
-        node.merge_node(data)
-        return Response(node.encodeJSON(), mimetype="application/json", status=201)
+        merged = node.merge_node(data)
+        if merged:
+            return Response(node.encodeJSON(), mimetype="application/json", status=201)
+        else:
+            return make_response(jsonify(message="Unsaved node"), 404)
     else:
         return make_response(jsonify(message="Node doesn't exists"), 404)
 
