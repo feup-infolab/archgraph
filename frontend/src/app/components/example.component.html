@@ -1,10 +1,13 @@
+<div style="margin: 35px;"><p>Insert your UID </p>
+  <input style="width: 300px" #box (keyup.enter)="onEnter(box.value)">
+</div>
 
 <div *ngIf="load" style="margin: 35px">
   <json-schema-form
-    [schema]="schema"
+    *ngIf="load"
+    [form]= "form"
     [options]='jsonFormOptions'
     [framework]="'bootstrap-4'"
-    [(ngModel)]= "data"
     (onSubmit)="onSubmit($event)"
     (formSchema)="showFormSchemaFn($event)"
     (formLayout)="showFormLayoutFn($event)"

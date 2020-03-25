@@ -1,5 +1,9 @@
 export interface Schema {
   definitions: {
-    Schema: object
+    Schema: {
+      properties: {
+        uid: string
+      }
+    };
   };
 }
