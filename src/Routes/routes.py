@@ -140,4 +140,3 @@ if __name__ == "__main__":
 #     print('Created {0} of 10 as {1}'.format(x, result.inserted_id))
 # # Step 5: Tell us that you are done
 # print('finished creating 10 business reviews')
-

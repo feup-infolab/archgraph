@@ -13,14 +13,15 @@ class E42_Identifier(E41_Appellation):
         "E1_CRM_Entity",
         "P48_has_preferred_identifier",
         cardinality=One,
-        model=P48_has_preferred_identifier)
+        model=P48_has_preferred_identifier,
+    )
     assigned = RelationshipFrom(
         ".E15_Identifier_Assignment.E15_Identifier_Assignment",
         "P37_assigned",
-        model=P37_assigned
+        model=P37_assigned,
     )
     deassigned = RelationshipFrom(
         ".E15_Identifier_Assignment.E15_Identifier_Assignment",
         "P38_deassigned",
-        model=P38_deassigned
+        model=P38_deassigned,
     )

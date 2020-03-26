@@ -1,7 +1,8 @@
-from src.Models.DataObject.v0_0_2.DataObject import DataObject, Schema
+from src.Models.DataObject.v0_0_2.DataObject import (DataObject,
+                                                     DataObjectSchema)
 
 
-class Schema(Schema):
+class GeospatialCoordinatesSchema(DataObjectSchema):
     pass
 
 
@@ -10,6 +11,6 @@ class GeospatialCoordinates(DataObject):
 
     def __init__(self, schema=None, *args, **kwargs):
         if schema is None:
-            schema = Schema()
+            schema = GeospatialCoordinatesSchema()
 
         super().__init__(schema, *args, **kwargs)
