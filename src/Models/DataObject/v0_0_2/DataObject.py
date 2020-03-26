@@ -1,32 +1,48 @@
+import datetime
 from marshmallow import Schema, fields
 from neomodel import StringProperty, StructuredNode, UniqueIdProperty
-from src.Models.DataObject.v0_0_2.SerializeClass import SerializeClass
-
-# config.DATABASE_URL = 'bolt://neo4j:password@localhost:7687'
-# from src.GCF.utils.db import clean_database
-# clean_database()
+from src.Models.DataObject.v0_0_2.SuperClass import SuperClass
 
 
-class DataObjectSchema(Schema):
+class Schema(Schema):
     uid = fields.String()
     name = fields.String(required=True)
 
 
-class DataObject(StructuredNode, SerializeClass):
+class DataObject(StructuredNode, SuperClass):
     name = StringProperty(unique_index=True, required=True)
     uid = UniqueIdProperty()
 
     def __init__(self, schema=None, *args, **kwargs):
         super().__init__(*args, **kwargs)
         if schema is None:
-            schema = DataObjectSchema()
+            schema = Schema()
 
-        SerializeClass.__init__(self, schema)
-        self.schema = schema
-        self.list.extend([self.uid, self.name])
+        SuperClass.__init__(self, schema)
 
+    def merge_node(self, updated_node):
+        merged_node = dict(self.decodeJSON(), **updated_node)
+        field_type_date = self.__get_field_of_type_date()
 
-# ola =DataObject(name="ola").save()
-# ola.getSchema()
-# print(ola.toJSON())
-# ola.nodes.get(name="ola")
+        for attr, value in merged_node.items():
+            get_attr = getattr(self, attr)
+            if get_attr != value:
+                if attr in field_type_date:
+                    value = datetime.datetime.strptime(value, '%Y-%m-%d')
+                setattr(self, attr, value)
+        try:
+            self.save()
+        except:
+            return None
+        return True
+
+    # private method
+    def __get_field_of_type_date(self):
+        result = []
+        get_schema = self.getSchema()
+        properties = get_schema['definitions']['Schema']['properties']
+        for attr in properties:
+            field = properties[attr]
+            if 'format' in field:
+                result.append(field['title'])
+        return result

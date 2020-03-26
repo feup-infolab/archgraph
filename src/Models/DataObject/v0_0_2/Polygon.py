@@ -1,8 +1,8 @@
 from src.Models.DataObject.v0_0_2.GeospatialCoordinates import (
-    GeospatialCoordinates, GeospatialCoordinatesSchema)
+    GeospatialCoordinates, Schema)
 
 
-class PolygonSchema(GeospatialCoordinatesSchema):
+class Schema(Schema):
     pass
 
 
@@ -11,6 +11,6 @@ class Polygon(GeospatialCoordinates):
 
     def __init__(self, schema=None, *args, **kwargs):
         if schema is None:
-            schema = PolygonSchema()
+            schema = Schema()
 
         super().__init__(schema, *args, **kwargs)

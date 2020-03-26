@@ -1,18 +1,17 @@
 from marshmallow import fields
-from neomodel import DateTimeProperty
-from src.Models.DataObject.v0_0_2.Date import Date, DateSchema
+from neomodel import DateTimeFormatProperty
+from src.Models.DataObject.v0_0_2.Date import Date, Schema
 
 
-class InstantSchema(DateSchema):
+class Schema(Schema):
     timestamp = fields.Date(required=True)
 
 
 class Instant(Date):
-    timestamp = DateTimeProperty(unique_index=True, required=True)
+    timestamp = DateTimeFormatProperty(format="%Y-%m-%d", unique_index=True, required=True)
 
     def __init__(self, schema=None, *args, **kwargs):
         if schema is None:
-            schema = InstantSchema()
+            schema = Schema()
 
         super().__init__(schema, *args, **kwargs)
-        self.list.append(self.timestamp)
