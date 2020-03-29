@@ -17,7 +17,7 @@ from src.Models.CRM.v5_0_2.NodeEntities.E2_Temporal_Entity import E2_Temporal_En
 from src.Models.CRM.v5_0_2.NodeProperties.PC14_Carried_Out_By import PC14_Carried_Out_By
 
 from neomodel import (config, OUTGOING, Traversal, DeflateError,
-                      AttemptedCardinalityViolation)
+                      AttemptedCardinalityViolation,db)
 
 from src.GCF.utils.db import clean_database
 
@@ -183,4 +183,13 @@ class TestNeoModel(unittest.TestCase):
 
         # Exception Raised on Illegal Relation
         self.assertRaises(ValueError, torre_eiffel.showsFeaturesOf.connect, uma_entidade_qualquer)
+
+    def test_full_test(self):
+        # Testing full test searching
+        monument2 = E70_Thing(name="Monumento2").save()
+        result_index = db.cypher_query("CALL db.index.fulltext.createNodeIndex('things',['E70_Thing'],['name'])")
+        result2 = db.cypher_query("CALL db.index.fulltext.queryNodes('things','Monumento2')")
+        print(result2)
+        self.assertEqual(1, 1)
+
 
