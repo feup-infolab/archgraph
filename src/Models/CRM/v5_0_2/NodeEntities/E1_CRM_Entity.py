@@ -17,6 +17,11 @@ from src.Models.CRM.v5_0_2.NodeProperties.P71_lists import P71_lists
 @ontology_class
 class E1_CRM_Entity(StructuredNode):
     name = StringProperty(unique_index=True, required=True)
+
+
+    def full_text_ind(self):
+        result_index = self.cypher("CALL db.index.fulltext.createNodeIndex('node_entity',['" + self.__class__.__name__ + "'],['"+ self.name.__str__() +"'])")
+
     is_composed_of = RelationshipFrom(
         ".E7_Activity.E7_Activity",
         "P15_was_influenced_by",
