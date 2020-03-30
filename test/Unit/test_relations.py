@@ -17,13 +17,13 @@ from src.Models.CRM.v5_0_2.NodeEntities.E2_Temporal_Entity import E2_Temporal_En
 from src.Models.CRM.v5_0_2.NodeProperties.PC14_Carried_Out_By import PC14_Carried_Out_By
 
 from neomodel import (config, OUTGOING, Traversal, DeflateError,
-                      AttemptedCardinalityViolation,db)
+                      AttemptedCardinalityViolation, db)
 
 from src.GCF.utils.db import clean_database
 
 import json
 
-from src.Utils.JsonEncoder import json_merge,index_creation
+from src.Utils.JsonEncoder import json_merge, index_creation, search_cidoc
 
 clean_database()
 
@@ -163,8 +163,9 @@ class TestNeoModel(unittest.TestCase):
                          + str(e21.id) + "}, \"end_node\": {\"name\": \"Bibliotecario\", \"id\": " + str(e55_3.id)
                          + "}}}")
         self.assertEqual(json_d, "{\"E21_Person\": {\"name\": \"Roberto\", \"id\": " + str(e21.id) +
-                         "},\"E55_Type\": {\"name\": \"Bibliotecario\", \"id\": " + str(e55_3.id) + "},\"P2_has_type\": "
-                                                                                                 "{\"id\": " + str(
+                         "},\"E55_Type\": {\"name\": \"Bibliotecario\", \"id\": " + str(
+            e55_3.id) + "},\"P2_has_type\": "
+                        "{\"id\": " + str(
             e55_3.hasType.relationship(e21).id) + ", \"start_node\": {\"name\": \"Roberto\", \"id\": " + str(
             e21.id) + "}, \"end_node\": {\"name\": \"Bibliotecario\", \"id\": " + str(e55_3.id) + "}}}")
 
@@ -190,9 +191,10 @@ class TestNeoModel(unittest.TestCase):
         monument2 = E70_Thing(name="Monumento2").save()
         # result_index = db.cypher_query("CALL db.index.fulltext.createNodeIndex('node_entity',['E70_Thing'],['name'])")
         # index_creation()
-        results, meta = db.cypher_query("CALL db.index.fulltext.queryNodes('node_entity','Monumento~')")
 
-        for i in range(len(results)):
-            print(results[i][0]._labels)
-            print(results[i][0]._properties)
-        self.assertEqual(1,1)
+        test_results = search_cidoc("Monumento")
+
+        self.assertEqual(test_results[0].labels, {'E70_Thing', 'E77_Persistent_Item', 'E1_CRM_Entity'})
+        self.assertEqual(test_results[0].properties, {'name': 'Monumento'})
+        self.assertEqual(test_results[1].labels, {'E70_Thing', 'E77_Persistent_Item', 'E1_CRM_Entity'})
+        self.assertEqual(test_results[1].properties, {'name': 'Monumento2'})

@@ -37,3 +37,20 @@ def index_creation():
                                    "'E87_Curation_Activity' , 'E89_Propositional_Object' ,'E90_Symbolic_Object', "
                                    "'E92_Spacetime_Volume' , 'E93_Presence' , 'E96_Purchase' , 'E97_Monetary_Amount' "
                                    ", 'E98_Currency' , 'E99_Product_Type'],['name'])")
+
+
+class cidoc_search_results:
+    def __init__(self, label, property):
+        self.labels = label
+        self.properties = property
+
+
+def search_cidoc(name):
+    results, meta = db.cypher_query("CALL db.index.fulltext.queryNodes('node_entity','" + name + "~')")
+    results_list = []
+
+    for i in range(len(results)):
+        result = cidoc_search_results(results[i][0]._labels, results[i][0]._properties)
+        results_list.append(result)
+
+    return results_list
