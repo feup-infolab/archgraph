@@ -13,6 +13,10 @@ export class MyServiceService {
     return this.http.get<any[]>(this.baseUrl + uid);
   }
 
+  getSearchJson( search: string): Observable<any[]> {
+    return this.http.get<any[]>(this.baseUrl + 'search' + '/' + search);
+  }
+
   getSchemaNode(uid: string): Observable<Schema> {
     return this.http.get<Schema>(this.baseUrl + 'schema' + '/' + uid);
   }

@@ -1,8 +1,8 @@
 import importlib
+from neomodel import db
 
 
 def ontology_class(cls):
-
     # package_name = ".".join([cls.__module__, cls.__name__])
     package_name = ".".join(str.split(cls.__module__, ".")[:-2])
     module = importlib.import_module(package_name)

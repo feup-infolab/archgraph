@@ -17,13 +17,13 @@ from src.Models.CRM.v5_0_2.NodeEntities.E2_Temporal_Entity import E2_Temporal_En
 from src.Models.CRM.v5_0_2.NodeProperties.PC14_Carried_Out_By import PC14_Carried_Out_By
 
 from neomodel import (config, OUTGOING, Traversal, DeflateError,
-                      AttemptedCardinalityViolation)
+                      AttemptedCardinalityViolation, db)
 
 from src.GCF.utils.db import clean_database
 
 import json
 
-from src.Utils.JsonEncoder import json_merge
+from src.Utils.JsonEncoder import json_merge, index_creation, search_cidoc
 
 clean_database()
 
@@ -163,8 +163,9 @@ class TestNeoModel(unittest.TestCase):
                          + str(e21.id) + "}, \"end_node\": {\"name\": \"Bibliotecario\", \"id\": " + str(e55_3.id)
                          + "}}}")
         self.assertEqual(json_d, "{\"E21_Person\": {\"name\": \"Roberto\", \"id\": " + str(e21.id) +
-                         "},\"E55_Type\": {\"name\": \"Bibliotecario\", \"id\": " + str(e55_3.id) + "},\"P2_has_type\": "
-                                                                                                 "{\"id\": " + str(
+                         "},\"E55_Type\": {\"name\": \"Bibliotecario\", \"id\": " + str(
+            e55_3.id) + "},\"P2_has_type\": "
+                        "{\"id\": " + str(
             e55_3.hasType.relationship(e21).id) + ", \"start_node\": {\"name\": \"Roberto\", \"id\": " + str(
             e21.id) + "}, \"end_node\": {\"name\": \"Bibliotecario\", \"id\": " + str(e55_3.id) + "}}}")
 
@@ -184,3 +185,34 @@ class TestNeoModel(unittest.TestCase):
         # Exception Raised on Illegal Relation
         self.assertRaises(ValueError, torre_eiffel.showsFeaturesOf.connect, uma_entidade_qualquer)
 
+    def test_full_test(self):
+        # Testing full test searching and indexing
+        monument = E70_Thing(name="Monumento").save()
+        monument2 = E70_Thing(name="Monumento2").save()
+
+        # General Search Test
+        test_results = search_cidoc("Monumento")
+        # Fuzzy Search Test
+        test_results3 = search_cidoc("numento")
+        # Specific Search Test
+        test_results2 = search_cidoc('"Monumento2"')
+
+        # Results of General Search
+        self.assertEqual(test_results[0].labels, {'E70_Thing', 'E77_Persistent_Item', 'E1_CRM_Entity'})
+        self.assertEqual(test_results[0].properties, {'name': 'Monumento'})
+        self.assertEqual(test_results[1].labels, {'E70_Thing', 'E77_Persistent_Item', 'E1_CRM_Entity'})
+        self.assertEqual(test_results[1].properties, {'name': 'Monumento2'})
+        # Results of Fuzzy Search
+        self.assertEqual(test_results2[0].labels, {'E70_Thing', 'E77_Persistent_Item', 'E1_CRM_Entity'})
+        self.assertEqual(test_results2[0].properties, {'name': 'Monumento2'})
+        # Results of Specific Search
+        self.assertEqual(test_results3[0].labels, {'E70_Thing', 'E77_Persistent_Item', 'E1_CRM_Entity'})
+        self.assertEqual(test_results3[0].properties, {'name': 'Monumento'})
+
+        # Test of JSON Serialization of search result / Due to the nature of Set inside of labels is always different so labels must be found to be tested
+        json_results = test_results[0].encodeJSON()
+        start = json_results.find("[") + len("[")
+        end = json_results.find("]")
+        substring = json_results[start:end]
+
+        self.assertEqual(test_results[0].encodeJSON(), "{\"labels\": [" + substring + "], \"name\": \"Monumento\"}")

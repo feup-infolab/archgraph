@@ -24,12 +24,13 @@ from src.Models.DataObject.v0_0_2.PersonName import PersonName
 from src.Models.DataObject.v0_0_2.Polygon import Polygon
 from src.Models.DataObject.v0_0_2.RegexString import RegexString
 from src.Models.DataObject.v0_0_2.String import String
+
 # TODO nao apagar estes importes
+from src.Utils.JsonEncoder import search_cidoc
 
 config.DATABASE_URL = "bolt://neo4j:password@localhost:7687"
 
 app = Flask(__name__)
-
 
 CORS(app)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
@@ -112,6 +113,16 @@ def delete(uid):
         return make_response(jsonify(message="Successfully deleted node"), 201)
     else:
         return make_response(jsonify(message="Node doesn't exists"), 404)
+
+
+@app.route("/search/<word>", methods=["GET"])
+@cross_origin()
+def search(word):
+    result = search_cidoc(word)
+    if result is not None:
+        return Response(result[0].encodeJSON(), mimetype="application/json", status=201)
+    else:
+        return make_response(jsonify(message="Failed Search"), 404)
 
 
 if __name__ == "__main__":
