@@ -12,9 +12,11 @@ from src.Models.CRM.v5_0_2.NodeProperties.P62_depicts import P62_depicts
 from src.Models.CRM.v5_0_2.NodeProperties.P67_refers_to import P67_refers_to
 from src.Models.CRM.v5_0_2.NodeProperties.P70_documents import P70_documents
 from src.Models.CRM.v5_0_2.NodeProperties.P71_lists import P71_lists
+from src.Models.DataObject.v0_0_2.SuperClass import SuperClass
+
 
 @ontology_class
-class E1_CRM_Entity(StructuredNode):
+class E1_CRM_Entity(StructuredNode, SuperClass):
     name = StringProperty(unique_index=True, required=True)
 
     # def full_text_ind(self):

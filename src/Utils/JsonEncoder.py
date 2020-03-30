@@ -1,5 +1,9 @@
 from json import JSONEncoder
 from neomodel import db
+import json
+import datetime
+
+from src.Models.DataObject.v0_0_2.SuperClass import SuperClass
 
 
 class MyEncoder(JSONEncoder):
@@ -39,10 +43,29 @@ def index_creation():
                                    ", 'E98_Currency' , 'E99_Product_Type'],['name'])")
 
 
-class cidoc_search_results:
-    def __init__(self, label, property):
+class cidoc_search_results(SuperClass):
+    def __init__(self, label, property, schema=None):
+        super().__init__(schema)
         self.labels = label
         self.properties = property
+
+    def encodeJSON(self):
+        data = {}
+        for key, val in self.__dict__.items():
+            if (key != "schema") and (key != "id"):
+                if key == "labels":
+                    propertieslist = []
+                    for label_val in val:
+                        propertieslist.append(label_val)
+                    data[key] = propertieslist
+                if key == "properties":
+                    data["name"] = val["name"]
+
+        def my_converter(o):
+            if isinstance(o, datetime.datetime):
+                return o.strftime("%Y-%m-%d")
+
+        return json.dumps(data, default=my_converter)
 
 
 def search_cidoc(name):

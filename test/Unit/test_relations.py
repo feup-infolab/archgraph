@@ -194,6 +194,7 @@ class TestNeoModel(unittest.TestCase):
 
         test_results = search_cidoc("Monumento")
 
+        print(test_results[0].encodeJSON())
         self.assertEqual(test_results[0].labels, {'E70_Thing', 'E77_Persistent_Item', 'E1_CRM_Entity'})
         self.assertEqual(test_results[0].properties, {'name': 'Monumento'})
         self.assertEqual(test_results[1].labels, {'E70_Thing', 'E77_Persistent_Item', 'E1_CRM_Entity'})
