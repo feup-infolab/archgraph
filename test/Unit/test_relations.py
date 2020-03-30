@@ -186,9 +186,13 @@ class TestNeoModel(unittest.TestCase):
 
     def test_full_test(self):
         # Testing full test searching
+        monument = E70_Thing(name="Monumento").save()
         monument2 = E70_Thing(name="Monumento2").save()
         # result_index = db.cypher_query("CALL db.index.fulltext.createNodeIndex('node_entity',['E70_Thing'],['name'])")
-        index_creation()
-        result2 = db.cypher_query("CALL db.index.fulltext.queryNodes('node_entity','Monumento2')")
-        print(result2)
+        # index_creation()
+        results, meta = db.cypher_query("CALL db.index.fulltext.queryNodes('node_entity','Monumento~')")
+
+        for i in range(len(results)):
+            print(results[i][0]._labels)
+            print(results[i][0]._properties)
         self.assertEqual(1,1)
