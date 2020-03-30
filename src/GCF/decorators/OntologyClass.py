@@ -16,7 +16,7 @@ def ontology_class(cls):
     setattr(cls, "full_uri", module.full_uri)
 
     # add default serializer
-    def to_json(self):
+    def encodeJSON(self):
         # return {self.__class__.__name__: self.__properties__}
         ___class = {}
         data = {}
@@ -31,8 +31,6 @@ def ontology_class(cls):
 
         return json.dumps(___class, default=my_converter)
 
-    setattr(cls, "to_json", to_json)
+    setattr(cls, "encodeJSON", encodeJSON)
 
     return cls
-
-

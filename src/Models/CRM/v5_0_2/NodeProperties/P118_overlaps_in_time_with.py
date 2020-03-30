@@ -1,8 +1,8 @@
-from neomodel import StructuredRel
 from src.GCF.decorators.OntologyProperty import ontology_property
-from src.Models.CRM.v5_0_2.NodeProperties.StructuredRelCl import StructuredRelCl
+from src.Models.CRM.v5_0_2.NodeProperties.StructuredRelCl import \
+    StructuredRelCl
 
 
 @ontology_property
-class P118_overlaps_in_time_with(StructuredRel):
+class P118_overlaps_in_time_with(StructuredRelCl):
     pass

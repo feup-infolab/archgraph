@@ -1,5 +1,5 @@
-from neomodel import One, RelationshipTo, StringProperty, StructuredNode, UniqueIdProperty
-from src.Models.CRM.v5_0_2.NodeProperties.StructuredRelCl import StructuredRelCl
+from neomodel import (One, RelationshipTo, StringProperty, StructuredNode,
+                      UniqueIdProperty)
 
 from .P01_has_domain import P01_has_domain
 from .P02_has_range import P02_has_range
@@ -9,7 +9,6 @@ class PC0_CRM_Property(StructuredNode):
 
     name = StringProperty(unique_index=True, required=True)
     uid = UniqueIdProperty()
-
 
     hasDomain = RelationshipTo(
         "..NodeEntities.E1_CRM_Entity.E1_CRM_Entity",

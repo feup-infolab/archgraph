@@ -1,4 +1,5 @@
 import json
+
 from pymongo import MongoClient
 
 client = MongoClient(port=27017, username="root", password="rootpassword")
@@ -14,11 +15,11 @@ def read_file(path_file):
 
 def insert_into_mongo(content):
     result = {}
-    if type(content) == type([]):
+    if isinstance(content, type([])):
         db.reviews.insert_many(content)
         print("inserted many documents")
 
-    elif type(content) == type({}):
+    elif isinstance(content, type({})):
         result = db.reviews.insert_one(content)
         print(result.inserted_id)
 

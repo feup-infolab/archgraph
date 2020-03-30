@@ -1,13 +1,13 @@
+import os
+
 from flask import (Flask, Response, jsonify, make_response, request,
                    send_from_directory)
 
 from flask_cors import CORS, cross_origin
 from neomodel import config
-import os
-
-from src.Routes.mongo import *
 # TODO nao apagar estes importes
 from src.Models.DataObject.v0_0_2.DataObject import DataObject
+
 from src.Models.DataObject.v0_0_2.Approximate import Approximate
 from src.Models.DataObject.v0_0_2.AuthorityFile import AuthorityFile
 from src.Models.DataObject.v0_0_2.AuthorityString import AuthorityString

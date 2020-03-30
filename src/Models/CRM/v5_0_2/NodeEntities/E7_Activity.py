@@ -1,4 +1,4 @@
-from neomodel import (RelationshipFrom)
+from neomodel import RelationshipFrom
 
 from ..NodeEntities.E5_Event import E5_Event
 from ..NodeProperties.P134_continued import P134_continued

@@ -1,10 +1,11 @@
-from neomodel import One, RelationshipFrom, StructuredRel
+from neomodel import One, RelationshipFrom
 from src.Models.CRM.v5_0_2.NodeEntities.E41_Appellation import E41_Appellation
+from src.Models.CRM.v5_0_2.NodeEntities.StructuredRelCl import StructuredRelCl
 from src.Models.CRM.v5_0_2.NodeProperties.P37_assigned import P37_assigned
 from src.Models.CRM.v5_0_2.NodeProperties.P38_deassigned import P38_deassigned
 
 
-class P48_has_preferred_identifier(StructuredRel):
+class P48_has_preferred_identifier(StructuredRelCl):
     pass
 
 

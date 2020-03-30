@@ -1,4 +1,5 @@
-from neomodel import RelationshipFrom, StringProperty, StructuredNode, UniqueIdProperty
+from neomodel import (RelationshipFrom, StringProperty, StructuredNode,
+                      UniqueIdProperty)
 from src.GCF.decorators.OntologyClass import ontology_class
 from src.Models.CRM.v5_0_2.NodeProperties.P15_was_influenced_by import \
     P15_was_influenced_by
