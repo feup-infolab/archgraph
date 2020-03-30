@@ -1,4 +1,6 @@
+import datetime
 import importlib
+import json
 
 
 def ontology_class(cls):
@@ -15,8 +17,22 @@ def ontology_class(cls):
 
     # add default serializer
     def to_json(self):
-        return {self.__class__.__name__: self.__properties__}
+        # return {self.__class__.__name__: self.__properties__}
+        ___class = {}
+        data = {}
+        for key, val in self.__properties__.items():
+            if (key != "schema") and (key != "id"):
+                data[key] = val
+        ___class[self.__class__.__name__] = data
+
+        def my_converter(o):
+            if isinstance(o, datetime.datetime):
+                return o.strftime("%Y-%m-%d")
+
+        return json.dumps(___class, default=my_converter)
 
     setattr(cls, "to_json", to_json)
 
     return cls
+
+

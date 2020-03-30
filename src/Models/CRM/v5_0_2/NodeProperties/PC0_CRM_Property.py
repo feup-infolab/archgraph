@@ -1,4 +1,5 @@
 from neomodel import One, RelationshipTo, StringProperty, StructuredNode, UniqueIdProperty
+from src.Models.CRM.v5_0_2.NodeProperties.StructuredRelCl import StructuredRelCl
 
 from .P01_has_domain import P01_has_domain
 from .P02_has_range import P02_has_range

@@ -145,8 +145,8 @@ class TestNeoModel(unittest.TestCase):
         # Creation of relationship
         e55_3.hasType.connect(e21)
         # Obtaining Json
-        json_a = json.dumps(e21.to_json())
-        json_b = json.dumps(e55_3.to_json())
+        json_a = e21.to_json()
+        json_b = e55_3.to_json()
         json_c = json.dumps(e55_3.hasType.relationship(e21).to_json())
         # Merge of json documents
         json_d = json_merge(json_merge(json_a, json_b), json_c)
