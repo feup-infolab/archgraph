@@ -69,7 +69,11 @@ class cidoc_search_results(SuperClass):
 
 
 def search_cidoc(name):
-    results, meta = db.cypher_query("CALL db.index.fulltext.queryNodes('node_entity','" + name + "~')")
+
+    if name.startswith('"') and name.endswith('"'):
+        results, meta = db.cypher_query("CALL db.index.fulltext.queryNodes('node_entity','" + name + "')")
+    else:
+        results, meta = db.cypher_query("CALL db.index.fulltext.queryNodes('node_entity','" + name + "~')")
     results_list = []
 
     for i in range(len(results)):
@@ -77,3 +81,5 @@ def search_cidoc(name):
         results_list.append(result)
 
     return results_list
+
+

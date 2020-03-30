@@ -186,16 +186,28 @@ class TestNeoModel(unittest.TestCase):
         self.assertRaises(ValueError, torre_eiffel.showsFeaturesOf.connect, uma_entidade_qualquer)
 
     def test_full_test(self):
-        # Testing full test searching
+        # Testing full test searching and indexing
         monument = E70_Thing(name="Monumento").save()
         monument2 = E70_Thing(name="Monumento2").save()
-        # result_index = db.cypher_query("CALL db.index.fulltext.createNodeIndex('node_entity',['E70_Thing'],['name'])")
-        # index_creation()
 
+        # General Search Test
         test_results = search_cidoc("Monumento")
+        # Fuzzy Search Test
+        test_results3 = search_cidoc("numento")
+        # Specific Search Test
+        test_results2 = search_cidoc('"Monumento2"')
 
-        print(test_results[0].encodeJSON())
+        # Results of General Search
         self.assertEqual(test_results[0].labels, {'E70_Thing', 'E77_Persistent_Item', 'E1_CRM_Entity'})
         self.assertEqual(test_results[0].properties, {'name': 'Monumento'})
         self.assertEqual(test_results[1].labels, {'E70_Thing', 'E77_Persistent_Item', 'E1_CRM_Entity'})
         self.assertEqual(test_results[1].properties, {'name': 'Monumento2'})
+        # Results of Fuzzy Search
+        self.assertEqual(test_results2[0].labels, {'E70_Thing', 'E77_Persistent_Item', 'E1_CRM_Entity'})
+        self.assertEqual(test_results2[0].properties, {'name': 'Monumento2'})
+        # Results of Specific Search
+        self.assertEqual(test_results3[0].labels, {'E70_Thing', 'E77_Persistent_Item', 'E1_CRM_Entity'})
+        self.assertEqual(test_results3[0].properties, {'name': 'Monumento'})
+
+        # Test of JSON Serialization of search result
+        print(test_results[0].encodeJSON())
