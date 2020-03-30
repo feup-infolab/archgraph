@@ -23,7 +23,7 @@ from src.GCF.utils.db import clean_database
 
 import json
 
-from src.Utils.JsonEncoder import json_merge
+from src.Utils.JsonEncoder import json_merge,index_creation
 
 clean_database()
 
@@ -187,9 +187,8 @@ class TestNeoModel(unittest.TestCase):
     def test_full_test(self):
         # Testing full test searching
         monument2 = E70_Thing(name="Monumento2").save()
-        result_index = db.cypher_query("CALL db.index.fulltext.createNodeIndex('things',['E70_Thing'],['name'])")
-        result2 = db.cypher_query("CALL db.index.fulltext.queryNodes('things','Monumento2')")
+        # result_index = db.cypher_query("CALL db.index.fulltext.createNodeIndex('node_entity',['E70_Thing'],['name'])")
+        index_creation()
+        result2 = db.cypher_query("CALL db.index.fulltext.queryNodes('node_entity','Monumento2')")
         print(result2)
-        self.assertEqual(1, 1)
-
-
+        self.assertEqual(1,1)

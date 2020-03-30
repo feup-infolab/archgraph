@@ -1,4 +1,4 @@
-from neomodel import RelationshipFrom, StringProperty, StructuredNode
+from neomodel import RelationshipFrom, StringProperty, StructuredNode, db
 from src.GCF.decorators.OntologyClass import ontology_class
 from src.Models.CRM.v5_0_2.NodeProperties.P129_is_about import P129_is_about
 from src.Models.CRM.v5_0_2.NodeProperties.P136_was_based_on import P136_was_based_on
@@ -13,14 +13,13 @@ from src.Models.CRM.v5_0_2.NodeProperties.P67_refers_to import P67_refers_to
 from src.Models.CRM.v5_0_2.NodeProperties.P70_documents import P70_documents
 from src.Models.CRM.v5_0_2.NodeProperties.P71_lists import P71_lists
 
-
 @ontology_class
 class E1_CRM_Entity(StructuredNode):
     name = StringProperty(unique_index=True, required=True)
 
-
-    def full_text_ind(self):
-        result_index = self.cypher("CALL db.index.fulltext.createNodeIndex('node_entity',['" + self.__class__.__name__ + "'],['"+ self.name.__str__() +"'])")
+    # def full_text_ind(self):
+    #    result_index = self.cypher(
+    #        "CALL db.index.fulltext.createNodeIndex('node_entity',['" + self.__class__.__name__ + "'],['name'])")
 
     is_composed_of = RelationshipFrom(
         ".E7_Activity.E7_Activity",
@@ -73,4 +72,3 @@ class E1_CRM_Entity(StructuredNode):
         "P141_assigned",
         model=P141_assigned
     )
-
