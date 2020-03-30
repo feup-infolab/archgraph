@@ -120,7 +120,7 @@ def delete(uid):
 def search(word):
     result = search_cidoc(word)
     if result is not None:
-        return Response(result.encodeJSON(), mimetype="application/json", status=201)
+        return Response(result[0].encodeJSON(), mimetype="application/json", status=201)
     else:
         return make_response(jsonify(message="Failed Search"), 404)
 

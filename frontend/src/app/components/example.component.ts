@@ -11,6 +11,8 @@ import {MyServiceService} from '../service/my-service.service';
 export class ExampleComponent implements OnInit {
 
   constructor(private service: MyServiceService) {  }
+  searched = '';
+  searchResult = {};
   uid = '';
   name = 'Angular 7';
   jsonFormOptions = {
@@ -20,6 +22,7 @@ export class ExampleComponent implements OnInit {
   data = {};
   submittedFormData;
   load = false;
+  loadSearch = false;
   form = {
       schema: {
     },
@@ -36,6 +39,20 @@ export class ExampleComponent implements OnInit {
     // this.form.schema = {};
     this.load = false;
     this.getSchemaNode(this.uid);
+  }
+  searchDatabase(searched: string) {
+    this.searched = searched;
+    this.loadSearch = false;
+    this.getSearchJson(this.searched);
+  }
+
+  getSearchJson(search) {
+    this.service.getSearchJson( search)
+      .subscribe(result => {
+        this.searchResult = result;
+        console.log(result);
+        this.loadSearch = true;
+      });
   }
 
 ngOnInit() {
