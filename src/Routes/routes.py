@@ -122,7 +122,7 @@ def search(word):
     if result is not None:
         return Response(result.encodeJSON(), mimetype="application/json", status=201)
     else:
-        return make_response(jsonify(message="Node doesn't exists"), 404)
+        return make_response(jsonify(message="Failed Search"), 404)
 
 
 if __name__ == "__main__":
