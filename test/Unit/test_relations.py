@@ -209,5 +209,10 @@ class TestNeoModel(unittest.TestCase):
         self.assertEqual(test_results3[0].labels, {'E70_Thing', 'E77_Persistent_Item', 'E1_CRM_Entity'})
         self.assertEqual(test_results3[0].properties, {'name': 'Monumento'})
 
-        # Test of JSON Serialization of search result
-        print(test_results[0].encodeJSON())
+        # Test of JSON Serialization of search result / Due to the nature of Set inside of labels is always different so labels must be found to be tested
+        json_results = test_results[0].encodeJSON()
+        start = json_results.find("[") + len("[")
+        end = json_results.find("]")
+        substring = json_results[start:end]
+
+        self.assertEqual(test_results[0].encodeJSON(), "{\"labels\": [" + substring + "], \"name\": \"Monumento\"}")
