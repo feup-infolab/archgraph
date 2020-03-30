@@ -1,6 +1,4 @@
-from neomodel import (IntegerProperty, RelationshipFrom, RelationshipTo,
-                      StringProperty, StructuredNode, StructuredRel,
-                      UniqueIdProperty, config)
+from neomodel import (StructuredRel)
 
 
 class StructuredRelCl(StructuredRel):

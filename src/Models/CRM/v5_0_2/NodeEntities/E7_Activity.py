@@ -1,5 +1,4 @@
-from neomodel import (IntegerProperty, One, RelationshipFrom, RelationshipTo,
-                      StringProperty, StructuredNode, UniqueIdProperty, config)
+from neomodel import (RelationshipFrom)
 
 from ..NodeEntities.E5_Event import E5_Event
 from ..NodeProperties.P134_continued import P134_continued

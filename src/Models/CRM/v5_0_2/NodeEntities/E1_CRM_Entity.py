@@ -1,4 +1,4 @@
-from neomodel import RelationshipFrom, StringProperty, StructuredNode
+from neomodel import RelationshipFrom, StringProperty, StructuredNode, UniqueIdProperty
 from src.GCF.decorators.OntologyClass import ontology_class
 from src.Models.CRM.v5_0_2.NodeProperties.P15_was_influenced_by import \
     P15_was_influenced_by
@@ -21,6 +21,7 @@ from src.Models.CRM.v5_0_2.NodeProperties.P141_assigned import P141_assigned
 @ontology_class
 class E1_CRM_Entity(StructuredNode):
     name = StringProperty(unique_index=True, required=True)
+    uid = UniqueIdProperty()
     is_composed_of = RelationshipFrom(
         ".E7_Activity.E7_Activity", "P15_was_influenced_by", model=P15_was_influenced_by
     )
