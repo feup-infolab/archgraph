@@ -3,6 +3,7 @@ from src.GCF.decorators.OntologyClass import ontology_class
 from src.Models.CRM.v5_0_2.NodeEntities.E6_Destruction import E6_Destruction
 from src.Models.CRM.v5_0_2.NodeEntities.E72_Legal_Object import \
     E72_Legal_Object
+from src.Models.CRM.v5_0_2.NodeProperties.P157_is_at_rest_relative_to import P157_is_at_rest_relative_to
 from src.Models.CRM.v5_0_2.NodeProperties.P7_took_place_at import \
     P7_took_place_at
 from src.Models.CRM.v5_0_2.NodeProperties.P13_destroyed import P13_destroyed
