@@ -17,6 +17,7 @@ export class ExampleComponent implements OnInit {
   constructor(private service: MyServiceService) {  }
   searched = '';
   searchResult = {};
+  searchResultArray: Array<CidocSearch> = new Array<CidocSearch>();
   searchResultS: CidocSearch;
   searchLabels: [];
   searchName = '';
@@ -58,19 +59,21 @@ export class ExampleComponent implements OnInit {
     this.service.getSearchJson( search)
       .subscribe( result => {
         this.searchResult = result;
-        // this.searchResultString = await result.json();
         const entries = Object.entries(result);
-        for ( const [key, obj] of entries) {
-          if (key === 'name') {
-            this.searchName = obj;
-          } else if (key === 'uid') {
-            this.searchUID = obj;
-          } else if (key === 'labels') {
-            this.searchLabels = obj;
+        for ( const entry of result) {
+          const entries2 = Object.entries(entry);
+          for ( const key of Object.keys(entry)) {
+            if (key === 'name') {
+              this.searchName = entry[key];
+            } else if (key === 'uid') {
+              this.searchUID = entry[key];
+            } else if (key === 'labels') {
+              this.searchLabels = entry[key];
+            }
           }
+          this.searchResultS = new CidocSearch(this.searchName , this.searchUID , this.searchLabels);
+          this.searchResultArray.push(this.searchResultS);
         }
-        this.searchResultS = new CidocSearch(this.searchName , this.searchUID , this.searchLabels);
-        console.log(result);
         this.loadSearch = true;
       });
   }

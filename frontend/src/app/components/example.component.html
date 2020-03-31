@@ -3,14 +3,17 @@
 </div>
 
 <div *ngIf="loadSearch" style="margin: 35px">
-  <p>UID: {{searchResultS.uid}}</p>
- <p> Name: {{searchResultS.name}}</p>
-  <p>Labels:</p>
-  <ul>
-    <li *ngFor="let label of searchResultS.labels">
-      {{ label }}
-    </li>
-  </ul>
+  <tr *ngFor="let item of searchResultArray; let i = index">
+    <p>UID: {{item.uid}}</p>
+    <p> Name: {{item.name}}</p>
+    <p>Labels:</p>
+    <ul>
+      <li *ngFor="let label of item.labels">
+        {{ label }}
+      </li>
+    </ul>
+  </tr>
+
 </div>
 
 <div style="margin: 35px;"><p>Insert your UID </p>
