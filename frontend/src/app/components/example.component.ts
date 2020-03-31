@@ -2,17 +2,26 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl  } from '@angular/forms';
 import {Schema} from './Schema';
 import {MyServiceService} from '../service/my-service.service';
+import {CidocSearch} from './CidocSearch';
 
 @Component({
   selector: 'app-example',
   templateUrl: './example.component.html',
   styleUrls: ['./example.component.css']
 })
+
+
+
 export class ExampleComponent implements OnInit {
 
   constructor(private service: MyServiceService) {  }
   searched = '';
   searchResult = {};
+  searchResultArray: Array<CidocSearch> = new Array<CidocSearch>();
+  searchResultS: CidocSearch;
+  searchLabels: [];
+  searchName = '';
+  searchUID = '';
   uid = '';
   name = 'Angular 7';
   jsonFormOptions = {
@@ -48,9 +57,23 @@ export class ExampleComponent implements OnInit {
 
   getSearchJson(search) {
     this.service.getSearchJson( search)
-      .subscribe(result => {
+      .subscribe( result => {
         this.searchResult = result;
-        console.log(result);
+        const entries = Object.entries(result);
+        for ( const entry of result) {
+          const entries2 = Object.entries(entry);
+          for ( const key of Object.keys(entry)) {
+            if (key === 'name') {
+              this.searchName = entry[key];
+            } else if (key === 'uid') {
+              this.searchUID = entry[key];
+            } else if (key === 'labels') {
+              this.searchLabels = entry[key];
+            }
+          }
+          this.searchResultS = new CidocSearch(this.searchName , this.searchUID , this.searchLabels);
+          this.searchResultArray.push(this.searchResultS);
+        }
         this.loadSearch = true;
       });
   }

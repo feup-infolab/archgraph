@@ -28,6 +28,7 @@ from src.Utils.JsonEncoder import json_merge, index_creation, search_cidoc
 clean_database()
 
 config.DATABASE_URL = 'bolt://neo4j:password@localhost:7687'
+# index_creation()
 e1 = E1_CRM_Entity(name="test").save()
 e1_2 = E1_CRM_Entity(name="test").save()
 e55 = E55_Type(name="test2").save()
@@ -198,15 +199,15 @@ class TestNeoModel(unittest.TestCase):
 
         # Results of General Search
         self.assertEqual(test_results[0].labels, {'E70_Thing', 'E77_Persistent_Item', 'E1_CRM_Entity'})
-        self.assertEqual(test_results[0].properties, {'name': 'Monumento'})
+        self.assertEqual(test_results[0].properties, {'name': 'Monumento', 'uid': monument.uid})
         self.assertEqual(test_results[1].labels, {'E70_Thing', 'E77_Persistent_Item', 'E1_CRM_Entity'})
-        self.assertEqual(test_results[1].properties, {'name': 'Monumento2'})
+        self.assertEqual(test_results[1].properties, {'name': 'Monumento2', 'uid': monument2.uid})
         # Results of Fuzzy Search
         self.assertEqual(test_results2[0].labels, {'E70_Thing', 'E77_Persistent_Item', 'E1_CRM_Entity'})
-        self.assertEqual(test_results2[0].properties, {'name': 'Monumento2'})
+        self.assertEqual(test_results2[0].properties, {'name': 'Monumento2', 'uid': monument2.uid})
         # Results of Specific Search
         self.assertEqual(test_results3[0].labels, {'E70_Thing', 'E77_Persistent_Item', 'E1_CRM_Entity'})
-        self.assertEqual(test_results3[0].properties, {'name': 'Monumento'})
+        self.assertEqual(test_results3[0].properties, {'name': 'Monumento', 'uid': monument.uid})
 
         # Test of JSON Serialization of search result / Due to the nature of Set inside of labels is always different so labels must be found to be tested
         json_results = test_results[0].encodeJSON()
@@ -214,4 +215,4 @@ class TestNeoModel(unittest.TestCase):
         end = json_results.find("]")
         substring = json_results[start:end]
 
-        self.assertEqual(test_results[0].encodeJSON(), "{\"labels\": [" + substring + "], \"name\": \"Monumento\"}")
+        self.assertEqual(test_results[0].encodeJSON(), "{\"labels\": [" + substring + "], \"name\": \"Monumento\", \"uid\": \"" + monument.uid + "\"}")

@@ -118,8 +118,16 @@ def delete(uid):
 @cross_origin()
 def search(word):
     result = search_cidoc(word)
+    response_array = "["
+    response_array += result[0].encodeJSON()
+    iterresult = iter(result)
+    next(iterresult)
+    for items in iterresult:
+        response_array += ", "
+        response_array += items.encodeJSON()
+    response_array += "]"
     if result is not None:
-        return Response(result[0].encodeJSON(), mimetype="application/json", status=201)
+        return Response(response_array, mimetype="application/json", status=201)
     else:
         return make_response(jsonify(message="Failed Search"), 404)
 
