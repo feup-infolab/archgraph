@@ -13,6 +13,7 @@ export class ExampleComponent implements OnInit {
   constructor(private service: MyServiceService) {  }
   searched = '';
   searchResult = {};
+  searchResultString = '';
   uid = '';
   name = 'Angular 7';
   jsonFormOptions = {
@@ -50,6 +51,7 @@ export class ExampleComponent implements OnInit {
     this.service.getSearchJson( search)
       .subscribe(result => {
         this.searchResult = result;
+        this.searchResultString = JSON.stringify(result);
         console.log(result);
         this.loadSearch = true;
       });
