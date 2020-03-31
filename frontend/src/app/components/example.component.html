@@ -3,8 +3,9 @@
 </div>
 
 <div *ngIf="loadSearch" style="margin: 35px">
-  Name: {{searchResultS.name}}
-  <p>Heroes:</p>
+  <p>UID: {{searchResultS.uid}}</p>
+ <p> Name: {{searchResultS.name}}</p>
+  <p>Labels:</p>
   <ul>
     <li *ngFor="let label of searchResultS.labels">
       {{ label }}

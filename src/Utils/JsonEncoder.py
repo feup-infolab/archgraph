@@ -40,7 +40,7 @@ def index_creation():
                                    "'E81_Transformation' , 'E83_Type_Creation' , 'E85_Joining' , 'E86_Leaving' , "
                                    "'E87_Curation_Activity' , 'E89_Propositional_Object' ,'E90_Symbolic_Object', "
                                    "'E92_Spacetime_Volume' , 'E93_Presence' , 'E96_Purchase' , 'E97_Monetary_Amount' "
-                                   ", 'E98_Currency' , 'E99_Product_Type'],['name'])")
+                                   ", 'E98_Currency' , 'E99_Product_Type'],['name','uid'])")
 
 
 class cidoc_search_results(SuperClass):
@@ -60,6 +60,8 @@ class cidoc_search_results(SuperClass):
                     data[key] = propertieslist
                 if key == "properties":
                     data["name"] = val["name"]
+                    data["uid"] = val["uid"]
+
 
         def my_converter(o):
             if isinstance(o, datetime.datetime):

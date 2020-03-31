@@ -1,4 +1,4 @@
-from neomodel import RelationshipFrom, StringProperty, StructuredNode, db
+from neomodel import RelationshipFrom, StringProperty, StructuredNode, db, UniqueIdProperty
 from src.GCF.decorators.OntologyClass import ontology_class
 from src.Models.CRM.v5_0_2.NodeProperties.P129_is_about import P129_is_about
 from src.Models.CRM.v5_0_2.NodeProperties.P136_was_based_on import P136_was_based_on
@@ -18,7 +18,7 @@ from src.Models.DataObject.v0_0_2.SuperClass import SuperClass
 @ontology_class
 class E1_CRM_Entity(StructuredNode, SuperClass):
     name = StringProperty(unique_index=True, required=True)
-
+    uid = UniqueIdProperty()
     # def full_text_ind(self):
     #    result_index = self.cypher(
     #        "CALL db.index.fulltext.createNodeIndex('node_entity',['" + self.__class__.__name__ + "'],['name'])")

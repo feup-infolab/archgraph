@@ -20,6 +20,7 @@ export class ExampleComponent implements OnInit {
   searchResultS: CidocSearch;
   searchLabels: [];
   searchName = '';
+  searchUID = '';
   uid = '';
   name = 'Angular 7';
   jsonFormOptions = {
@@ -62,11 +63,13 @@ export class ExampleComponent implements OnInit {
         for ( const [key, obj] of entries) {
           if (key === 'name') {
             this.searchName = obj;
+          } else if (key === 'uid') {
+            this.searchUID = obj;
           } else if (key === 'labels') {
             this.searchLabels = obj;
           }
         }
-        this.searchResultS = new CidocSearch(this.searchName , this.searchLabels);
+        this.searchResultS = new CidocSearch(this.searchName , this.searchUID , this.searchLabels);
         console.log(result);
         this.loadSearch = true;
       });
