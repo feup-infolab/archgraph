@@ -22,11 +22,8 @@ from src.Models.CRM.v5_0_2.NodeProperties.P123_resulted_in import \
 from src.Models.CRM.v5_0_2.NodeProperties.P124_transformed import \
     P124_transformed
 from src.Models.CRM.v5_0_2.NodeProperties.P156_occupies import P156_occupies
-from src.Models.CRM.v5_0_2.NodeProperties.P157_is_at_rest_relative_to import \
-    P157_is_at_rest_relative_to
 
 
-@ontology_class
 class E18_Physical_Thing(E72_Legal_Object):
     is_composed_of = RelationshipTo(
         ".E18_Physical_Thing.E18_Physical_Thing",

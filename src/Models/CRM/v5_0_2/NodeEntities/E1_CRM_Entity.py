@@ -1,3 +1,4 @@
+from neomodel import RelationshipFrom, StringProperty, StructuredNode, db
 from neomodel import (RelationshipFrom, StringProperty, StructuredNode,
                       UniqueIdProperty)
 from src.GCF.decorators.OntologyClass import ontology_class
@@ -11,6 +12,7 @@ from src.Models.CRM.v5_0_2.NodeProperties.P62_depicts import P62_depicts
 from src.Models.CRM.v5_0_2.NodeProperties.P67_refers_to import P67_refers_to
 from src.Models.CRM.v5_0_2.NodeProperties.P70_documents import P70_documents
 from src.Models.CRM.v5_0_2.NodeProperties.P71_lists import P71_lists
+from src.Models.DataObject.v0_0_2.SuperClass import SuperClass
 from src.Models.CRM.v5_0_2.NodeProperties.P129_is_about import P129_is_about
 from src.Models.CRM.v5_0_2.NodeProperties.P136_was_based_on import \
     P136_was_based_on
@@ -20,7 +22,7 @@ from src.Models.CRM.v5_0_2.NodeProperties.P141_assigned import P141_assigned
 
 
 @ontology_class
-class E1_CRM_Entity(StructuredNode):
+class E1_CRM_Entity(StructuredNode, SuperClass):
     name = StringProperty(unique_index=True, required=True)
     uid = UniqueIdProperty()
     is_composed_of = RelationshipFrom(
@@ -73,3 +75,4 @@ class E1_CRM_Entity(StructuredNode):
         "P141_assigned",
         model=P141_assigned,
     )
+
