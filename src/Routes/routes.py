@@ -26,7 +26,7 @@ from src.Models.DataObject.v0_0_2.RegexString import RegexString
 from src.Models.DataObject.v0_0_2.String import String
 
 # TODO nao apagar estes importes
-from src.Utils.JsonEncoder import search_cidoc
+from src.Utils.JsonEncoder import search_cidoc, search_specific_cidoc
 
 config.DATABASE_URL = "bolt://neo4j:password@localhost:7687"
 
@@ -118,6 +118,24 @@ def delete(uid):
 @cross_origin()
 def search(word):
     result = search_cidoc(word)
+    response_array = "["
+    response_array += result[0].encodeJSON()
+    iterresult = iter(result)
+    next(iterresult)
+    for items in iterresult:
+        response_array += ", "
+        response_array += items.encodeJSON()
+    response_array += "]"
+    if result is not None:
+        return Response(response_array, mimetype="application/json", status=201)
+    else:
+        return make_response(jsonify(message="Failed Search"), 404)
+
+
+@app.route("/search_specific/<entity>/<word>", methods=["GET"])
+@cross_origin()
+def search_specific(entity, word):
+    result = search_specific_cidoc(entity, word)
     response_array = "["
     response_array += result[0].encodeJSON()
     iterresult = iter(result)
