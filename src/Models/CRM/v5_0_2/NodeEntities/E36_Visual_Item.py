@@ -1,7 +1,7 @@
 from neomodel import RelationshipFrom, RelationshipTo
 from src.Models.CRM.v5_0_2.NodeEntities.E73_Information_Object import \
     E73_Information_Object
-from src.Models.CRM.v5_0_2.NodeEntities.StructuredRelCl import StructuredRelCl
+from src.Models.CRM.v5_0_2.NodeProperties.StructuredRelCl import StructuredRelCl
 from src.Models.CRM.v5_0_2.NodeProperties.P138_represents import \
     P138_represents
 
