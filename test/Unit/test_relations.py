@@ -26,6 +26,7 @@ import json
 from src.Utils.JsonEncoder import json_merge, index_creation, search_cidoc
 
 clean_database()
+#index_creation()
 
 config.DATABASE_URL = 'bolt://neo4j:password@localhost:7687'
 # index_creation()
@@ -157,12 +158,12 @@ class TestNeoModel(unittest.TestCase):
         print(json_c)
         print(json_d)
         # Verification
-        #self.assertEqual(json_a, "{\"E21_Person\": {\"name\": \"Roberto\", \"id\": " + str(e21.id) + "}}")
-        #self.assertEqual(json_b, "{\"E55_Type\": {\"name\": \"Bibliotecario\", \"id\": " + str(e55_3.id) + "}}")
-        #self.assertEqual(json_c, "{\"P2_has_type\": {\"id\": " + str(e55_3.hasType.relationship(e21).id) + ", "
-        #                                                                                                   "\"start_node\": {\"name\": \"Roberto\", \"id\": "
-        #                 + str(e21.id) + "}, \"end_node\": {\"name\": \"Bibliotecario\", \"id\": " + str(e55_3.id)
-        #                 + "}}}")
+        self.assertEqual(json_a, "{\"E21_Person\": {\"name\": \"Roberto\", \"uid\": \"" + e21.uid + "\"}}")
+        self.assertEqual(json_b, "{\"E55_Type\": {\"name\": \"Bibliotecario\", \"uid\": \"" + e55_3.uid + "\"}}")
+        self.assertEqual(json_c, "{\"P2_has_type\": {""\"start_node\": {\"E21_Person\": {\"name\": \"Roberto\", "
+                                 "\"uid\": \"" + e21.uid + "\"}}, \"end_node\": {\"E55_Type\": {\"name\": "
+                                                           "\"Bibliotecario\", \"uid\": \"" + e55_3.uid + "\"" +
+                         "}}}}")
         #self.assertEqual(json_d, "{\"E21_Person\": {\"name\": \"Roberto\", \"id\": " + str(e21.id) +
         #                 "},\"E55_Type\": {\"name\": \"Bibliotecario\", \"id\": " + str(e55_3.id) + "},\"P2_has_type\": "
         #                                                                                        "{\"id\": " + str(
@@ -171,7 +172,7 @@ class TestNeoModel(unittest.TestCase):
 
     def test_case(self):
         # Define nodes to use
-        monumento = E70_Thing(name="Monumento").save()
+        monumento = E70_Thing(name="Monumentooo").save()
         titulo_torre_eiffel = E35_Title(name="Torre Eiffel").save()
         paris = E53_Place(name="Paris").save()
         torre_eiffel = E24_Physical_Human_Made_Thing(name="Torre Eiffel").save()
@@ -187,27 +188,28 @@ class TestNeoModel(unittest.TestCase):
 
     def test_full_test(self):
         # Testing full test searching and indexing
-        monument = E70_Thing(name="Monumento").save()
-        monument2 = E70_Thing(name="Monumento2").save()
+        monument = E70_Thing(name="Monument").save()
+        monument2 = E70_Thing(name="Monument2").save()
 
         # General Search Test
-        test_results = search_cidoc("Monumento")
+        test_results = search_cidoc("Monument")
         # Fuzzy Search Test
-        test_results3 = search_cidoc("numento")
+        test_results3 = search_cidoc("nument")
         # Specific Search Test
-        test_results2 = search_cidoc('"Monumento2"')
+        test_results2 = search_cidoc('"Monument2"')
 
         # Results of General Search
         self.assertEqual(test_results[0].labels, {'E70_Thing', 'E77_Persistent_Item', 'E1_CRM_Entity'})
-        self.assertEqual(test_results[0].properties, {'name': 'Monumento', 'uid': monument.uid})
+        self.assertEqual(test_results[0].properties, {'name': 'Monument', 'uid': monument.uid})
         self.assertEqual(test_results[1].labels, {'E70_Thing', 'E77_Persistent_Item', 'E1_CRM_Entity'})
-        self.assertEqual(test_results[1].properties, {'name': 'Monumento2', 'uid': monument2.uid})
+        self.assertEqual(test_results[1].properties, {'name': 'Monument2', 'uid': monument2.uid})
         # Results of Fuzzy Search
-        self.assertEqual(test_results2[0].labels, {'E70_Thing', 'E77_Persistent_Item', 'E1_CRM_Entity'})
-        self.assertEqual(test_results2[0].properties, {'name': 'Monumento2', 'uid': monument2.uid})
+        #self.assertEqual(test_results2[0].labels, {'E70_Thing', 'E77_Persistent_Item', 'E1_CRM_Entity'})
+        self.assertEqual(test_results2[0].properties, {'name': 'Monument2', 'uid': monument2.uid})
         # Results of Specific Search
         self.assertEqual(test_results3[0].labels, {'E70_Thing', 'E77_Persistent_Item', 'E1_CRM_Entity'})
-        self.assertEqual(test_results3[0].properties, {'name': 'Monumento', 'uid': monument.uid})
+        self.assertEqual(test_results3[0].properties, {'name': 'Monument', 'uid': monument.uid})
+
 
         # Test of JSON Serialization of search result / Due to the nature of Set inside of labels is always different so labels must be found to be tested
         json_results = test_results[0].encodeJSON()
@@ -215,4 +217,4 @@ class TestNeoModel(unittest.TestCase):
         end = json_results.find("]")
         substring = json_results[start:end]
 
-        self.assertEqual(test_results[0].encodeJSON(), "{\"labels\": [" + substring + "], \"name\": \"Monumento\", \"uid\": \"" + monument.uid + "\"}")
+        self.assertEqual(test_results[0].encodeJSON(), "{\"labels\": [" + substring + "], \"name\": \"Monument\", \"uid\": \"" + monument.uid + "\"}")
