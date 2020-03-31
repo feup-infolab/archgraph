@@ -24,6 +24,6 @@ services:
       - ./volumes/neo4j/data:/data
     networks:
       - archgraph-docker-deployment
-    restart: on-failure<
+    restart: on-failure
 networks:
   archgraph-docker-deployment: {}
