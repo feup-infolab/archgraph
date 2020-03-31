@@ -3,7 +3,13 @@
 </div>
 
 <div *ngIf="loadSearch" style="margin: 35px">
-  {{searchResultString}}
+  Name: {{searchResultS.name}}
+  <p>Heroes:</p>
+  <ul>
+    <li *ngFor="let label of searchResultS.labels">
+      {{ label }}
+    </li>
+  </ul>
 </div>
 
 <div style="margin: 35px;"><p>Insert your UID </p>
