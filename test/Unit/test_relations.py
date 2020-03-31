@@ -23,12 +23,13 @@ from src.GCF.utils.db import clean_database
 
 import json
 
-from src.Utils.JsonEncoder import json_merge, index_creation, search_cidoc
+from src.Utils.JsonEncoder import json_merge, index_creation, search_cidoc, specific_index_creation, search_specific_cidoc
 
 clean_database()
 #index_creation()
 
 config.DATABASE_URL = 'bolt://neo4j:password@localhost:7687'
+# specific_index_creation()
 # index_creation()
 e1 = E1_CRM_Entity(name="test").save()
 e1_2 = E1_CRM_Entity(name="test").save()
@@ -194,7 +195,7 @@ class TestNeoModel(unittest.TestCase):
         # General Search Test
         test_results = search_cidoc("Monument")
         # Fuzzy Search Test
-        test_results3 = search_cidoc("nument")
+        test_results3 = search_specific_cidoc("E70_Thing", "Monumento")
         # Specific Search Test
         test_results2 = search_cidoc('"Monument2"')
 
