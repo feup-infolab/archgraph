@@ -1,4 +1,4 @@
-from neomodel import RelationshipFrom, StructuredRel
+from neomodel import RelationshipFrom
 from src.Models.CRM.v5_0_2.NodeEntities.E2_Temporal_Entity import \
     E2_Temporal_Entity
 from src.Models.CRM.v5_0_2.NodeProperties.P9_consists_of import P9_consists_of

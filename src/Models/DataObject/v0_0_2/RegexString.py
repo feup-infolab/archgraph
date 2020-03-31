@@ -2,25 +2,30 @@ import json
 
 from marshmallow import fields, validate
 from neomodel import RegexProperty
-from src.Models.DataObject.v0_0_2.String import Schema, String
+from src.Models.DataObject.v0_0_2.String import String, StringSchema
 
 
-class Schema(Schema):
-    hasRegex = fields.String(required=False, validate=[
-        validate.Length(0, 71), validate.Regexp('regex/[a-zA-Z]([a-zA-Z 0-9])*$', 0, error='regex invalid'),
-        lambda x: x != "regex/"
-    ])
+class RegexStringSchema(StringSchema):
+    hasRegex = fields.String(
+        required=False,
+        validate=[
+            validate.Length(0, 71),
+            validate.Regexp("regex/[a-zA-Z]([a-zA-Z 0-9])*$", 0, error="regex invalid"),
+            lambda x: x != "regex/",
+        ],
+    )
 
 
 class RegexString(String):
     def __init__(self, schema=None, *args, **kwargs):
 
         if schema is None:
-            schema = Schema()
+            schema = RegexStringSchema()
 
         expression = ""
         if kwargs.get("expression") is None:
-            expression = 'regex/[a-zA-Z]([a-zA-Z 0-9])*$'  # TODO falta arranjar isto
+            # TODO falta arranjar isto
+            expression = "regex/[a-zA-Z]([a-zA-Z 0-9])*$"
         else:
             expression = json.dumps(kwargs.get("expression"))
 

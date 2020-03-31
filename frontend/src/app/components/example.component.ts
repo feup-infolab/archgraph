@@ -95,9 +95,10 @@ getSchemaNode(uid) {
       .subscribe(result => {
         this.form.layout = [];
         console.log(result);
-
-        const schema = result.definitions.Schema;
+        const definitions = result.definitions;
+        const schema = definitions[Object.keys(definitions)[0]];
         this.form.schema = schema;
+
         const cloneProperties = {...schema.properties};
         delete cloneProperties.uid;
         Object.keys(cloneProperties).forEach((n, i) => {
@@ -112,10 +113,7 @@ getSchemaNode(uid) {
         //     evt.preventDefault();
         //     alert('Thank you!');
         //   }
-
-        console.log(this.form.layout);
         this.getDataNode(this.uid);
-
       });
   }
 
@@ -154,36 +152,82 @@ yourValidationErrorsFn($event) {
 
 }
 
+// inline ref schema
 // {
-//   "schema": {
+//   "$id": "https://example.com/arrays.schema.json",
+//   "$schema": "http://json-schema.org/draft-07/schema#",
+//   "description": "A representation of a person, company, organization, or place",
+//   "type": "object",
 //   "properties": {
-//     "animal": {
-//       "$ref": "#/definitions/animation"
+//   "fruits": {
+//     "type": "array",
+//       "items": {
+//       "type": "string"
 //     }
 //   },
+//   "vegetables": {
+//     "type": "array",
+//       "items": { "$ref": "#/definitions/veggie" }
+//   }
+// },
 //   "definitions": {
-//     "animation": {
-//       "type": "object",
-//         "properties": {
-//         "duration": {
-//           "title": "Duration",
-//             "type": "integer"
-//         },
-//         "stepper": {
-//           "title": "Stepper",
-//             "type": "string"
-//         },
-//         "then": {
-//           "title": "Then",
-//             "type": "array",
-//             "maxItems": 1,
-//             "items": {
-//             "$ref": "#/definitions/animation"
-//           },
-//           "default": []
-//         }
+//   "veggie": {
+//     "type": "object",
+//       "required": [ "veggieName", "veggieLike" ],
+//       "properties": {
+//       "veggieName": {
+//         "type": "string",
+//           "description": "The name of the vegetable."
+//       },
+//       "veggieLike": {
+//         "type": "boolean",
+//           "description": "Do I like this vegetable?"
 //       }
 //     }
 //   }
 // }
 // }
+
+// data
+// {
+//   "fruits": [ "apple" ],
+//   "vegetables": [
+//   {
+//     "veggieName": "potato",
+//     "veggieLike": true
+//   },
+//   {
+//     "veggieName": "broccoli",
+//     "veggieLike": false
+//   }
+// ]
+// }
+
+
+
+// shema without data____________________________-
+// {
+//   $schema: 'http://json-schema.org/draft-07/schema#',
+//     type: 'object',
+//   properties: {
+//   vegetables: {
+//     $ref: '#/definitions/ola'
+//   }
+// },
+//   definitions: {
+//     ola: {
+//       type: 'object',
+//         required: [ 'veggieName' ],
+//         properties: {
+//         veggieName: {
+//           type: 'string',
+//             description: 'The name of the vegetable.'
+//         }
+//       }
+//     }
+//   }
+// };
+
+
+
+

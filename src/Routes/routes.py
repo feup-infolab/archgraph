@@ -34,6 +34,7 @@ app = Flask(__name__)
 
 CORS(app)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
+app = Flask(__name__, static_url_path="")
 
 
 @app.route("/favicon.ico")
@@ -45,17 +46,15 @@ def favicon():
     )
 
 
-app = Flask(__name__, static_url_path="")
-
-
-def getNodeByUid(uid):
+def get_node_by_uid(uid):
     try:
         return DataObject.nodes.get(uid=uid)
-    except BaseException:
+    except BaseException as e:
+        print(e)
         return None
 
 
-def deleteNodeByUid(uid):
+def delete_node_by_uid(uid):
     try:
         node = DataObject.nodes.get(uid=uid)
         node.delete()
@@ -66,8 +65,8 @@ def deleteNodeByUid(uid):
 
 @app.route("/<uid>", methods=["GET"])
 @cross_origin()
-def responseGetNode(uid):
-    result = getNodeByUid(uid)
+def response_get_node(uid):
+    result = get_node_by_uid(uid)
     if result is not None:
         return Response(result.encodeJSON(), mimetype="application/json", status=201)
     else:
@@ -76,8 +75,8 @@ def responseGetNode(uid):
 
 @app.route("/schema/<uid>", methods=["GET"])
 @cross_origin()
-def responseGetSchemaNode(uid):
-    result = getNodeByUid(uid)
+def response_get_schema_node(uid):
+    result = get_node_by_uid(uid)
     if result is not None:
         return make_response(jsonify(result.getSchema()), 201)
     else:
@@ -92,8 +91,8 @@ def create():
 # update node
 @app.route("/<uid>", methods=["POST"])
 @cross_origin()
-def responseUpdate(uid):
-    node = getNodeByUid(uid)
+def response_update(uid):
+    node = get_node_by_uid(uid)
     if node is not None:
         data = request.json
         merged = node.merge_node(data)
@@ -108,7 +107,7 @@ def responseUpdate(uid):
 @app.route("/<uid>", methods=["DELETE"])
 @cross_origin()
 def delete(uid):
-    result = deleteNodeByUid(uid)
+    result = delete_node_by_uid(uid)
     if result is not None:
         return make_response(jsonify(message="Successfully deleted node"), 201)
     else:

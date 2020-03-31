@@ -1,8 +1,8 @@
-from neomodel import StructuredRel
-
 from src.GCF.decorators.OntologyProperty import ontology_property
+from src.Models.CRM.v5_0_2.NodeProperties.StructuredRelCl import \
+    StructuredRelCl
 
 
 @ontology_property
-class P128_carries(StructuredRel):
+class P128_carries(StructuredRelCl):
     pass
