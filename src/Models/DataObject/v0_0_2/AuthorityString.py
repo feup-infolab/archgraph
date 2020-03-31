@@ -1,7 +1,7 @@
-from src.Models.DataObject.v0_0_2.String import Schema, String
+from src.Models.DataObject.v0_0_2.String import String, StringSchema
 
 
-class Schema(Schema):
+class AuthorityStringSchema(StringSchema):
     pass
 
 
@@ -10,6 +10,6 @@ class AuthorityString(String):
 
     def __init__(self, schema=None, *args, **kwargs):
         if schema is None:
-            schema = Schema()
+            schema = AuthorityStringSchema()
 
         super().__init__(schema, *args, **kwargs)
