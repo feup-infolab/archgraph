@@ -23,14 +23,16 @@ from src.GCF.utils.db import clean_database
 
 import json
 
-from src.Utils.JsonEncoder import json_merge, index_creation, search_cidoc, specific_index_creation, search_specific_cidoc
+from src.Utils.JsonEncoder import json_merge, index_creation, search_cidoc, specific_index_creation, \
+    search_specific_cidoc, index_drop, specific_index_drop
 
 clean_database()
-#index_creation()
 
 config.DATABASE_URL = 'bolt://neo4j:password@localhost:7687'
-# specific_index_creation()
-# index_creation()
+index_drop()
+specific_index_drop()
+index_creation()
+specific_index_creation()
 e1 = E1_CRM_Entity(name="test").save()
 e1_2 = E1_CRM_Entity(name="test").save()
 e55 = E55_Type(name="test2").save()
