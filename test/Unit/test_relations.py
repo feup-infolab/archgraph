@@ -1,6 +1,7 @@
 import datetime
 import unittest
 
+from src.Models.CRM.v5_0_2.NodeEntities.E22_Human_Made_Object import E22_Human_Made_Object
 from src.Models.CRM.v5_0_2.NodeEntities.E35_Title import E35_Title
 from src.Models.CRM.v5_0_2.NodeEntities.E53_Place import E53_Place
 from src.Models.CRM.v5_0_2.NodeEntities.E70_Thing import E70_Thing
@@ -179,7 +180,7 @@ class TestNeoModel(unittest.TestCase):
         uma_entidade_qualquer = E1_CRM_Entity(name="E1 de Teste").save()
 
         # Definition of Relations
-        torre_eiffel.occupies.connect(paris)
+        paris.occupies.connect(torre_eiffel)
         torre_eiffel.has_title.connect(titulo_torre_eiffel)
         torre_eiffel.showsFeaturesOf.connect(monumento)
 

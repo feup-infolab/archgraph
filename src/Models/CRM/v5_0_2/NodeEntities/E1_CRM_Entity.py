@@ -28,7 +28,7 @@ class E1_CRM_Entity(StructuredNode, SuperClass):
     #    result_index = self.cypher(
     #        "CALL db.index.fulltext.createNodeIndex('node_entity',['" + self.__class__.__name__ + "'],['name'])")
 
-    is_composed_of = RelationshipFrom(
+    was_influenced_by = RelationshipFrom(
         ".E7_Activity.E7_Activity", "P15_was_influenced_by", model=P15_was_influenced_by
     )
     was_motivated_by = RelationshipFrom(
