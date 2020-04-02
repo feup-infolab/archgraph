@@ -23,7 +23,6 @@ from src.Models.CRM.v5_0_2.NodeProperties.P141_assigned import P141_assigned
 class E1_CRM_Entity(StructuredNode, SuperClass):
     name = StringProperty(unique_index=True, required=True)
     uid = UniqueIdProperty()
-
     # def full_text_ind(self):
     #    result_index = self.cypher(
     #        "CALL db.index.fulltext.createNodeIndex('node_entity',['" + self.__class__.__name__ + "'],['name'])")

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Observable} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {Schema} from '../components/Schema';
 
@@ -8,6 +8,13 @@ import {Schema} from '../components/Schema';
 })
 export class MyServiceService {
   baseUrl = 'http://localhost:5000/';
+  shareMethod$: Observable<any>;
+  private shareMethodSubject = new Subject<any>();
+
+
+  shareMethod(data: string) {
+    this.shareMethodSubject.next(data);
+  }
 
   getDataNode( uid: string): Observable<any[]> {
     return this.http.get<any[]>(this.baseUrl + uid);
@@ -15,6 +22,10 @@ export class MyServiceService {
 
   getSearchJson( search: string): Observable<any[]> {
     return this.http.get<any[]>(this.baseUrl + 'search' + '/' + search);
+  }
+
+  getSpecificSearchJson(entity: string, search: string): Observable<any[]> {
+    return this.http.get<any[]>(this.baseUrl + 'search_specific' + '/' + entity + '/' + search);
   }
 
   getSchemaNode(uid: string): Observable<Schema> {
@@ -26,5 +37,8 @@ export class MyServiceService {
   }
 
   constructor(private http: HttpClient) {
+
+    this.shareMethod$ = this.shareMethodSubject.asObservable();
   }
+
 }
