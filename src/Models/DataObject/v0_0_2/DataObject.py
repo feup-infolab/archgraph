@@ -1,8 +1,9 @@
 import datetime
 
 from marshmallow import Schema, fields
-from neomodel import StringProperty, StructuredNode, UniqueIdProperty
+from neomodel import StringProperty, StructuredNode, UniqueIdProperty, RelationshipFrom
 from src.Models.DataObject.v0_0_2.SuperClass import SuperClass
+from src.Models.CRM.v5_0_2.NodeProperties.has_value import has_value
 
 
 class DataObjectSchema(Schema):
@@ -13,6 +14,11 @@ class DataObjectSchema(Schema):
 class DataObject(StructuredNode, SuperClass):
     name = StringProperty(unique_index=True, required=True)
     uid = UniqueIdProperty()
+    has_value = RelationshipFrom(
+        "src.Models.CRM.v5_0_2.NodeEntities.E1_CRM_Entity.E1_CRM_Entity",
+        "has_value",
+        model=has_value,
+    )
 
     def __init__(self, schema=None, *args, **kwargs):
         super().__init__(*args, **kwargs)
