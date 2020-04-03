@@ -4,5 +4,5 @@ from src.Models.CRM.v5_0_2.NodeProperties.StructuredRelCl import \
 
 
 @ontology_property
-class P108_has_produced(StructuredRelCl):
+class P108_was_produced_by(StructuredRelCl):
     pass

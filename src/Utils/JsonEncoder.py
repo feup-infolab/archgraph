@@ -13,7 +13,6 @@ class MyEncoder(JSONEncoder):
 
 def json_merge(json_a, json_b):
     json_a = json_a[:-1] + "," + json_b[1:]
-
     return json_a
 
 
@@ -116,10 +115,10 @@ class cidoc_search_results(SuperClass):
         for key, val in self.__dict__.items():
             if (key != "schema") and (key != "id"):
                 if key == "labels":
-                    propertieslist = []
+                    properties_list = []
                     for label_val in val:
-                        propertieslist.append(label_val)
-                    data[key] = propertieslist
+                        properties_list.append(label_val)
+                    data[key] = properties_list
                 if key == "properties":
                     data["name"] = val["name"]
                     data["uid"] = val["uid"]
