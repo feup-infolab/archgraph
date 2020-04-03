@@ -101,7 +101,13 @@ def specific_index_drop():
                     'E98_Currency', 'E99_Product_Type']
     for entity in entity_array:
         result_specific_index = db.cypher_query(
-            "CALL db.index.fulltext.drop('" + entity + ")")
+            "CALL db.index.fulltext.drop('" + entity + "')")
+
+
+def list_indexes():
+    result_specific_index = db.cypher_query(
+        "CALL db.indexes()")
+    return result_specific_index
 
 
 class cidoc_search_results(SuperClass):

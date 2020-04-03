@@ -18,6 +18,7 @@ from src.Models.CRM.v5_0_2.NodeEntities.E39_Actor import E39_Actor
 from src.Models.CRM.v5_0_2.NodeEntities.E7_Activity import E7_Activity
 from src.Models.CRM.v5_0_2.NodeEntities.E21_Person import E21_Person
 from src.Models.CRM.v5_0_2.NodeEntities.E2_Temporal_Entity import E2_Temporal_Entity
+from src.Models.CRM.v5_0_2.NodeEntities.E83_Type_Creation import E83_Type_Creation
 from src.Models.CRM.v5_0_2.NodeProperties.PC14_Carried_Out_By import PC14_Carried_Out_By
 
 from neomodel import (config, OUTGOING, Traversal, DeflateError,
@@ -30,24 +31,27 @@ import json
 from src.Models.DataObject.v0_0_2.Interval import Interval
 from src.Models.DataObject.v0_0_2.String import String
 from src.Utils.JsonEncoder import json_merge, index_creation, search_cidoc, specific_index_creation, \
-    search_specific_cidoc, index_drop, specific_index_drop
+    search_specific_cidoc, index_drop, specific_index_drop, list_indexes
 
 clean_database()
 
 config.DATABASE_URL = 'bolt://neo4j:password@localhost:7687'
-#index_drop()
-# specific_index_drop()
-#index_creation()
-# specific_index_creation()
-
+ref = list_indexes()
+if ref[0].__len__() != 0:
+    index_drop()
+    specific_index_drop()
+index_creation()
+specific_index_creation()
 e1 = E1_CRM_Entity(name="test").save()
 e1_2 = E1_CRM_Entity(name="test").save()
 e55 = E55_Type(name="test2").save()
 e55.hasType.connect(e1_2)
 e55_2 = E55_Type(name="test3").save()
+e7 = E7_Activity(name="e7").save()
 e18 = E18_Physical_Thing(name="e18").save()
 e18_2 = E18_Physical_Thing(name="e18_2").save()
 e24 = E24_Physical_Human_Made_Thing(name="e24").save()
+e83 = E83_Type_Creation(name="e83").save()
 
 
 class TestNeoModel(unittest.TestCase):
@@ -79,6 +83,9 @@ class TestNeoModel(unittest.TestCase):
 
     def test_illegal_relationship(self):
         # Tests creation of illegal relationships, by raising of exception
+        # e7.is_composed_of.connect(e1)
+        # e1.was_based_on.connect(e83)
+        # e83.was_based_on.connect(e1)
         self.assertRaises(ValueError, e18.is_composed_of.connect, e1)
 
     def test_diamond_problem(self):
