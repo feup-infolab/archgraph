@@ -1,15 +1,29 @@
-from neomodel import RelationshipFrom
+from neomodel import RelationshipTo
 from src.Models.CRM.v5_0_2.NodeEntities.E18_Physical_Thing import \
     E18_Physical_Thing
-from src.Models.CRM.v5_0_2.NodeProperties.P25_moved import P25_moved
+from src.Models.CRM.v5_0_2.NodeProperties.P54_has_current_permanent_location import \
+    P54_has_current_permanent_location
+from src.Models.CRM.v5_0_2.NodeProperties.P55_has_current_location import \
+    P55_has_current_location
+from src.Models.CRM.v5_0_2.NodeProperties.P56_bears_feature import \
+    P56_bears_feature
 from src.Models.CRM.v5_0_2.NodeProperties.P188_requires_production_tool import \
     P188_requires_production_tool
 
 
 class E19_Physical_Object(E18_Physical_Thing):
-    moved = RelationshipFrom(".E9_Move.E9_Move", "P25_moved", model=P25_moved)
-    requires_production_tool = RelationshipFrom(
-        ".E99_Product_Type.E99_Product_Type",
-        "P188_requires_production_tool",
-        model=P188_requires_production_tool,
+    has_current_permanent_location = RelationshipTo(
+        ".E53_Place.E53_Place",
+        "P54_has_current_permanent_location",
+        model=P54_has_current_permanent_location,
+    )
+    has_current_location = RelationshipTo(
+        ".E53_Place.E53_Place",
+        "P55_has_current_location",
+        model=P55_has_current_location,
+    )
+    bears_feature = RelationshipTo(
+        ".E26_Physical_Feature.E26_Physical_Feature",
+        "P56_bears_feature",
+        model=P56_bears_feature,
     )
