@@ -176,8 +176,8 @@ class TestNeoModel(unittest.TestCase):
         print(json_c)
         print(json_d)
         # Verification
-        #self.assertEqual(json_a, "{\"E21_Person\": {\"name\": \"Roberto\", \"uid\": \"" + e21.uid + "\"}}")
-        #self.assertEqual(json_b, "{\"E55_Type\": {\"name\": \"Bibliotecario\", \"uid\": \"" + e55_3.uid + "\"}}")
+        self.assertEqual(json_a, "{\"E21_Person\": {\"name\": \"Roberto\", \"uid\": \"" + e21.uid + "\"}}")
+        self.assertEqual(json_b, "{\"E55_Type\": {\"name\": \"Bibliotecario\", \"uid\": \"" + e55_3.uid + "\"}}")
         # self.assertEqual(json_c, "{\"P2_has_type\": {""\"start_node\": {\"E21_Person\": {\"name\": \"Roberto\", "
         #                          "\"uid\": \"" + e21.uid + "\"}}, \"end_node\": {\"E55_Type\": {\"name\": "
         #                                                    "\"Bibliotecario\", \"uid\": \"" + e55_3.uid + "\"" +

@@ -1,4 +1,4 @@
-from neomodel import (One, RelationshipFrom, RelationshipTo, StringProperty,
+from neomodel import (One, RelationshipTo, StringProperty,
                       StructuredNode, UniqueIdProperty, db)
 from src.GCF.decorators.OntologyClass import ontology_class
 from src.Models.CRM.v5_0_2.NodeProperties.has_value import has_value
