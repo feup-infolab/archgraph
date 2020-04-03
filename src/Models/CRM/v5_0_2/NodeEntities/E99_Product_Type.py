@@ -1,12 +1,19 @@
-from neomodel import RelationshipFrom
+from neomodel import RelationshipTo
 from src.Models.CRM.v5_0_2.NodeEntities.E55_Type import E55_Type
-from src.Models.CRM.v5_0_2.NodeProperties.P186_produced_thing_of_product_type import \
-    P186_produced_thing_of_product_type
+from src.Models.CRM.v5_0_2.NodeProperties.P187_has_production_plan import \
+    P187_has_production_plan
+from src.Models.CRM.v5_0_2.NodeProperties.P188_requires_production_tool import \
+    P188_requires_production_tool
 
 
 class E99_Product_Type(E55_Type):
-    produced_thing_of_product_type = RelationshipFrom(
-        ".E12_Production.E12_Production",
-        "P186_produced_thing_of_product_type",
-        model=P186_produced_thing_of_product_type,
+    requires_production_tool = RelationshipTo(
+        ".E19_Physical_Object.E19_Physical_Object",
+        "P188_requires_production_tool",
+        model=P188_requires_production_tool,
+    )
+    has_production_plan = RelationshipTo(
+        ".E29_Design_or_Procedure.E29_Design_or_Procedure",
+        "P187_has_production_plan",
+        model=P187_has_production_plan,
     )
