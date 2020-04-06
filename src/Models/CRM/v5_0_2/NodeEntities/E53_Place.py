@@ -1,3 +1,4 @@
+from marshmallow import Schema, fields
 from neomodel import RelationshipTo
 from src.Models.CRM.v5_0_2.NodeEntities.E1_CRM_Entity import E1_CRM_Entity
 from src.Models.CRM.v5_0_2.NodeProperties.P28_custody_surrenedered_by import \
@@ -24,21 +25,35 @@ from src.Models.CRM.v5_0_2.NodeProperties.P189_approximates import \
     P189_approximates
 
 
+class E53_PlaceSchema(Schema):
+    P89_falls_within = fields.List(fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E53_Place.E53_PlaceSchema"))
+    P121_overlaps_with = fields.List(fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E53_Place.E53_PlaceSchema"))
+    P122_borders_with = fields.List(fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E53_Place.E53_PlaceSchema"))
+    P189_approximates = fields.List(fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E53_Place.E53_PlaceSchema"))
+    P157_is_at_rest_relative_to = fields.List(fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E53_Place.E53_PlaceSchema"))
+
+
 class E53_Place(E1_CRM_Entity):
-    falls_within = RelationshipTo(
+    P89_falls_within = RelationshipTo(
         ".E53_Place.E53_Place", "P89_falls_within", model=P89_falls_within
     )
-    overlaps_with = RelationshipTo(
+    P121_overlaps_with = RelationshipTo(
         ".E53_Place.E53_Place", "P121_overlaps_with", model=P121_overlaps_with
     )
-    borders_with = RelationshipTo(
+    P122_borders_with = RelationshipTo(
         ".E53_Place.E53_Place", "P122_borders_with", model=P122_borders_with
     )
-    approximates = RelationshipTo(
+    P189_approximates = RelationshipTo(
         ".E53_Place.E53_Place", "P189_approximates", model=P189_approximates
     )
-    is_at_rest_relative_to = RelationshipTo(
+    P157_is_at_rest_relative_to = RelationshipTo(
         ".E18_Physical_Thing.E18_Physical_Thing",
         "P157_is_at_rest_relative_to",
         model=P157_is_at_rest_relative_to,
     )
+
+    def __init__(self, schema=None, *args, **kwargs):
+        if schema is None:
+            schema = E53_PlaceSchema()
+
+        super().__init__(schema, *args, **kwargs)
