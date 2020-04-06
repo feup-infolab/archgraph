@@ -1,7 +1,6 @@
 import datetime
 import importlib
 import json
-from neomodel import db
 
 
 def ontology_class(cls):
@@ -16,21 +15,21 @@ def ontology_class(cls):
     setattr(cls, "full_uri", module.full_uri)
 
     # add default serializer
-    def encodeJSON(self):
-        # return {self.__class__.__name__: self.__properties__}
-        ___class = {}
-        data = {}
-        for key, val in self.__properties__.items():
-            if (key != "schema") and (key != "id"):
-                data[key] = val
-        ___class[self.__class__.__name__] = data
+    # def encodeJSON(self):
+    #     # return {self.__class__.__name__: self.__properties__}
+    #     ___class = {}
+    #     data = {}
+    #     for key, val in self.__properties__.items():
+    #         if (key != "schema") and (key != "id"):
+    #             data[key] = val
+    #     ___class[self.__class__.__name__] = data
+    #
+    #     def my_converter(o):
+    #         if isinstance(o, datetime.datetime):
+    #             return o.strftime("%Y-%m-%d")
+    #
+    #     return json.dumps(___class, default=my_converter)
 
-        def my_converter(o):
-            if isinstance(o, datetime.datetime):
-                return o.strftime("%Y-%m-%d")
-
-        return json.dumps(___class, default=my_converter)
-
-    setattr(cls, "encodeJSON", encodeJSON)
+    #setattr(cls, "encodeJSON", encodeJSON)
 
     return cls

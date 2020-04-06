@@ -55,3 +55,5 @@ autopep8==1.5
 coveralls==1.11.1
 Flask-Cors==3.0.8
 pymongo==3.10.1
+neo4j==1.7.6
+

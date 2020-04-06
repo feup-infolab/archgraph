@@ -1,5 +1,6 @@
 import datetime
 import unittest
+from src.Utils.Utils import nested_json
 
 from src.Models.ArchOnto.v0_1.NodeEntities.ARE2_Formal_Title import ARE2_Formal_Title
 from src.Models.CRM.v5_0_2.NodeEntities.E12_Production import E12_Production
@@ -157,36 +158,6 @@ class TestNeoModel(unittest.TestCase):
         self.assertTrue('PC0_CRM_Property' in returned_pc14.labels())
         # When serialization is complete test how to remove it through verification
 
-    def test_serialization(self):
-        # Test to check if serialization works
-        # Creation of nodes
-        e21 = E21_Person(name="Roberto").save()
-        e55_3 = E55_Type(name="Bibliotecario").save()
-        # Creation of relationship
-        e21.hasType.connect(e55_3)
-        # Obtaining Json
-        json_a = e21.encodeJSON()
-        json_b = e55_3.encodeJSON()
-        json_c = json.dumps(e21.hasType.relationship(e55_3).encodeJSON())
-        # Merge of json documents
-        json_d = json_merge(json_merge(json_a, json_b), json_c)
-        # Printing the json for easy verification
-        print(json_a)
-        print(json_b)
-        print(json_c)
-        print(json_d)
-        # Verification
-        self.assertEqual(json_a, "{\"E21_Person\": {\"name\": \"Roberto\", \"uid\": \"" + e21.uid + "\"}}")
-        self.assertEqual(json_b, "{\"E55_Type\": {\"name\": \"Bibliotecario\", \"uid\": \"" + e55_3.uid + "\"}}")
-        # self.assertEqual(json_c, "{\"P2_has_type\": {""\"start_node\": {\"E21_Person\": {\"name\": \"Roberto\", "
-        #                          "\"uid\": \"" + e21.uid + "\"}}, \"end_node\": {\"E55_Type\": {\"name\": "
-        #                                                    "\"Bibliotecario\", \"uid\": \"" + e55_3.uid + "\"" +
-        #                  "}}}}")
-        # self.assertEqual(json_d, "{\"E21_Person\": {\"name\": \"Roberto\", \"id\": " + str(e21.id) +
-        #                 "},\"E55_Type\": {\"name\": \"Bibliotecario\", \"id\": " + str(e55_3.id) + "},\"P2_has_type\": "
-        #                                                                                        "{\"id\": " + str(
-        #    e55_3.hasType.relationship(e21).id) + ", \"start_node\": {\"name\": \"Roberto\", \"id\": " + str(
-        #    e21.id) + "}, \"end_node\": {\"name\": \"Bibliotecario\", \"id\": " + str(e55_3.id) + "}}}")
 
     def test_case(self):
         # Define nodes to use
@@ -258,4 +229,59 @@ class TestNeoModel(unittest.TestCase):
         e12.has_time_span.connect(e52)
         e22.was_produced_by.connect(e12)
 
+    def test_serialization(self):
+        startDatetime = datetime.datetime(1812, 2, 12)
+        endDatetime = datetime.datetime(1812, 2, 13)
+        e52 = E52_Time_Span(name="Production time", date=startDatetime).save()
+        e41 = E41_Appellation(name="1812-02-12").save()
 
+        node = Interval(name="1812-02-12", startDateValue=startDatetime, endDateValue=endDatetime).save()
+
+        e41.has_value.connect(node)
+        e52.is_identified_by.connect(e41)
+        json1 = {
+            "E41_Appellation": [
+                {"has_value": "DataObject"},
+
+            ]}
+        result1 = json.dumps(nested_json(e41, json1))
+        print(result1)
+
+        json2 = {"E52_Time_Span": [
+            {"P1_is_identified_by": {
+                "E41_Appellation": [
+                    {"has_value": "DataObject"},
+
+                ]}}]}
+        result2 = json.dumps(nested_json(e52, json2))
+        print(result2)
+
+        # # Test to check if serialization works
+        # # Creation of nodes
+        # e21 = E21_Person(name="Roberto").save()
+        # e55_3 = E55_Type(name="Bibliotecario").save()
+        # # Creation of relationship
+        # e21.hasType.connect(e55_3)
+        # # Obtaining Json
+        # json_a = e21.encodeJSON()
+        # json_b = e55_3.encodeJSON()
+        # json_c = json.dumps(e21.hasType.relationship(e55_3).encodeJSON())
+        # # Merge of json documents
+        # json_d = json_merge(json_merge(json_a, json_b), json_c)
+        # # Printing the json for easy verification
+        # print(json_a)
+        # print(json_b)
+        # print(json_c)
+        # # print(json_d)
+        # # Verification
+        #self.assertEqual(json_a, "{\"E21_Person\": {\"name\": \"Roberto\", \"uid\": \"" + e21.uid + "\"}}")
+        #self.assertEqual(json_b, "{\"E55_Type\": {\"name\": \"Bibliotecario\", \"uid\": \"" + e55_3.uid + "\"}}")
+        # self.assertEqual(json_c, "{\"P2_has_type\": {""\"start_node\": {\"E21_Person\": {\"name\": \"Roberto\", "
+        #                          "\"uid\": \"" + e21.uid + "\"}}, \"end_node\": {\"E55_Type\": {\"name\": "
+        #                                                    "\"Bibliotecario\", \"uid\": \"" + e55_3.uid + "\"" +
+        #                  "}}}}")
+        # self.assertEqual(json_d, "{\"E21_Person\": {\"name\": \"Roberto\", \"id\": " + str(e21.id) +
+        #                 "},\"E55_Type\": {\"name\": \"Bibliotecario\", \"id\": " + str(e55_3.id) + "},\"P2_has_type\": "
+        #                                                                                        "{\"id\": " + str(
+        #    e55_3.hasType.relationship(e21).id) + ", \"start_node\": {\"name\": \"Roberto\", \"id\": " + str(
+        #    e21.id) + "}, \"end_node\": {\"name\": \"Bibliotecario\", \"id\": " + str(e55_3.id) + "}}}")
