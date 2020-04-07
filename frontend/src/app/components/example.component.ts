@@ -1,8 +1,9 @@
 import {AfterViewInit, Component, OnChanges, OnInit, ViewChild} from '@angular/core';
 import { FormGroup, FormControl  } from '@angular/forms';
-import {Schema} from './Schema';
+import {Schema} from '../models/Schema';
+import {Utils} from '../models/Utils';
 import {MyServiceService} from '../service/my-service.service';
-import {CidocSearch} from './CidocSearch';
+import {CidocSearch} from '../models/CidocSearch';
 import {ComboBoxComponent} from '../combo-box/combo-box.component';
 
 @Component({
@@ -10,8 +11,6 @@ import {ComboBoxComponent} from '../combo-box/combo-box.component';
   templateUrl: './example.component.html',
   styleUrls: ['./example.component.css']
 })
-
-
 
 export class ExampleComponent implements OnInit {
 
@@ -148,6 +147,7 @@ getSchemaNode(uid) {
     this.service.getSchemaNode(uid)
       .subscribe(result => {
         this.form.layout = [];
+        console.log("ai ai recebi dados do servidor");
         console.log(result);
         const definitions = result.definitions;
         const schema = definitions;
@@ -187,12 +187,13 @@ getSchemaNode(uid) {
         }
         };
         const schema3 = {
-          $ref: '#/definitions/E52_Time_SpanSchema',
+          // $ref: '#/definitions/E52_Time_SpanSchema',
           $schema: 'http://json-schema.org/draft-07/schema#',
           type: 'object',
           properties: {
-            uid: {
-              $ref: '#/definitions/E52_Time_SpanSchema'
+            'bb2ca7ccfab44ee49c4594adfde91734': {
+              $ref: '#/definitions/E52_Time_SpanSchema',
+              title: 'Editing E52_Time_Span <a href=\"/bb2ca7ccfab44ee49c4594adfde91734\">teste</a>'
             }
           },
           definitions: {
@@ -226,7 +227,7 @@ getSchemaNode(uid) {
                   },
                   type: 'array'
                 },
-                uide: {
+                uid: {
                   title: 'uid',
                   type: 'string'
                 },
@@ -240,16 +241,19 @@ getSchemaNode(uid) {
             }
           }
         };
+
         this.form.schema = schema3;
 
+        let cloneSchema = {schema3};
+        cloneSchema = Utils.removeUIDs(cloneSchema);
 
-        // const cloneProperties = {...schema3.properties};
         // delete cloneProperties.uid;
-        // Object.keys(cloneProperties).forEach((n, i) => {
-        //   const object = {key: n};
-        //   this.form.layout.push(object);
-        // };
-        this.form.layout.push('*');
+        Object.keys(cloneSchema).forEach((n, i) => {
+          const object = {key: n};
+          this.form.layout.push(object);
+        };
+        //this.form.layout = ['*'];
+        // this.form.layout.push('*');
 
         // });
         // const button1 = {
@@ -262,7 +266,6 @@ getSchemaNode(uid) {
         //   }
         // this.getDataNode(this.uid);
         this.load = true;
-
       });
   }
 
