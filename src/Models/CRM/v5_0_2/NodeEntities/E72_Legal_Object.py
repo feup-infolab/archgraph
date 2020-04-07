@@ -1,15 +1,14 @@
 from marshmallow import fields, Schema
 from neomodel import RelationshipTo
 
-from src.Models.CRM.v5_0_2.NodeEntities.E39_Actor import E39_ActorSchema
-from src.Models.CRM.v5_0_2.NodeEntities.E70_Thing import E70_Thing
+from src.Models.CRM.v5_0_2.NodeEntities.E70_Thing import E70_Thing, E70_ThingSchema
 from src.Models.CRM.v5_0_2.NodeProperties.P104_is_subject_to import \
     P104_is_subject_to
 from src.Models.CRM.v5_0_2.NodeProperties.P105_right_held_by import \
     P105_right_held_by
 
 
-class E72_Legal_ObjectSchema(Schema):
+class E72_Legal_ObjectSchema(E70_ThingSchema):
     P104_is_subject_to = fields.List(fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E30_Right.E30_RightSchema"))
     P105_right_held_by = fields.List(fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E39_Actor.E39_ActorSchema"))
 

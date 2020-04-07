@@ -1,8 +1,7 @@
-from marshmallow import Schema
-from src.Models.CRM.v5_0_2.NodeEntities.E41_Appellation import E41_Appellation
+from src.Models.CRM.v5_0_2.NodeEntities.E41_Appellation import E41_Appellation, E41_AppellationSchema
 
 
-class E42_IdentifierSchema(Schema):
+class E42_IdentifierSchema(E41_AppellationSchema):
     pass
 
 

@@ -7,8 +7,6 @@ from src.Models.CRM.v5_0_2.NodeProperties.P55_has_current_location import \
     P55_has_current_location
 from src.Models.CRM.v5_0_2.NodeProperties.P56_bears_feature import \
     P56_bears_feature
-from src.Models.CRM.v5_0_2.NodeProperties.P188_requires_production_tool import \
-    P188_requires_production_tool
 
 
 class E19_Physical_Object(E18_Physical_Thing):

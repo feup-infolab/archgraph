@@ -1,6 +1,6 @@
 from marshmallow import Schema, fields
 from neomodel import RelationshipTo
-from src.Models.CRM.v5_0_2.NodeEntities.E1_CRM_Entity import E1_CRM_Entity
+from src.Models.CRM.v5_0_2.NodeEntities.E1_CRM_Entity import E1_CRM_Entity, E1_CRM_EntitySchema
 from src.Models.CRM.v5_0_2.NodeProperties.P28_custody_surrenedered_by import \
     P28_custody_surrendered_by
 from src.Models.CRM.v5_0_2.NodeProperties.P53_has_current_or_former_location import \
@@ -25,7 +25,7 @@ from src.Models.CRM.v5_0_2.NodeProperties.P189_approximates import \
     P189_approximates
 
 
-class E53_PlaceSchema(Schema):
+class E53_PlaceSchema(E1_CRM_EntitySchema):
     P89_falls_within = fields.List(fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E53_Place.E53_PlaceSchema"))
     P121_overlaps_with = fields.List(fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E53_Place.E53_PlaceSchema"))
     P122_borders_with = fields.List(fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E53_Place.E53_PlaceSchema"))

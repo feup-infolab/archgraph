@@ -5,28 +5,9 @@ from flask import (Flask, Response, jsonify, make_response, request,
 
 from flask_cors import CORS, cross_origin
 from neomodel import config
-# TODO nao apagar estes importes
-from src.Models.DataObject.v0_0_2.DataObject import DataObject
-from src.Models.DataObject.v0_0_2.Approximate import Approximate
-from src.Models.DataObject.v0_0_2.AuthorityFile import AuthorityFile
-from src.Models.DataObject.v0_0_2.AuthorityString import AuthorityString
-from src.Models.DataObject.v0_0_2.Boolean import Boolean
-from src.Models.DataObject.v0_0_2.Date import Date
-from src.Models.DataObject.v0_0_2.Decimal import Decimal
-from src.Models.DataObject.v0_0_2.GeospatialCoordinates import \
-    GeospatialCoordinates
-from src.Models.DataObject.v0_0_2.Instant import Instant
-from src.Models.DataObject.v0_0_2.Integer import Integer
-from src.Models.DataObject.v0_0_2.Interval import Interval
-from src.Models.DataObject.v0_0_2.Latitude import Latitude
-from src.Models.DataObject.v0_0_2.Longitude import Longitude
-from src.Models.DataObject.v0_0_2.PersonName import PersonName
-from src.Models.DataObject.v0_0_2.Polygon import Polygon
-from src.Models.DataObject.v0_0_2.RegexString import RegexString
-from src.Models.DataObject.v0_0_2.String import String
 
-# TODO nao apagar estes importes
 from src.Utils.JsonEncoder import search_cidoc, search_specific_cidoc
+from src.Utils.Utils import get_node_by_uid, delete_node_by_uid
 
 config.DATABASE_URL = "bolt://neo4j:password@localhost:7687"
 
@@ -44,23 +25,6 @@ def favicon():
         "favicon.ico",
         mimetype="image/vnd.microsoft.icon",
     )
-
-
-def get_node_by_uid(uid):
-    try:
-        return DataObject.nodes.get(uid=uid)
-    except BaseException as e:
-        print(e)
-        return None
-
-
-def delete_node_by_uid(uid):
-    try:
-        node = DataObject.nodes.get(uid=uid)
-        node.delete()
-        return True
-    except BaseException:
-        return None
 
 
 @app.route("/<uid>", methods=["GET"])

@@ -1,5 +1,5 @@
 from marshmallow import Schema
-from src.Models.CRM.v5_0_2.NodeEntities.E1_CRM_Entity import E1_CRM_Entity
+from src.Models.CRM.v5_0_2.NodeEntities.E1_CRM_Entity import E1_CRM_Entity, E1_CRM_EntitySchema
 
 
 class E77_Persistent_ItemSchema(Schema):

@@ -29,7 +29,7 @@
   "homepage": "https://github.com/adampenn/Angular7-json-schema-form#readme",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --poll=2000",
     "start-prod": "ng serve --prod",
     "build": "ng build --prod --base-href ./",
     "buildlib": "ng build angular7-json-schema-form --prod",

@@ -55,6 +55,7 @@ e24 = E24_Physical_Human_Made_Thing(name="e24").save()
 e83 = E83_Type_Creation(name="e83").save()
 
 
+
 class TestNeoModel(unittest.TestCase):
     def test_basic_relationship(self):
         # Tests creation of basic relationships
@@ -197,7 +198,8 @@ class TestNeoModel(unittest.TestCase):
         self.assertEqual(test_results3[0].labels, {'E70_Thing', 'E77_Persistent_Item', 'E1_CRM_Entity'})
         self.assertEqual(test_results3[0].properties, {'name': 'Monument', 'uid': monument.uid})
 
-        # Test of JSON Serialization of search result / Due to the nature of Set inside of labels is always different so labels must be found to be tested
+        # Test of JSON Serialization of search result / Due to the nature of Set inside of labels is always different
+        # so labels must be found to be tested
         json_results = test_results[0].encodeJSON()
         start = json_results.find("[") + len("[")
         end = json_results.find("]")
@@ -230,12 +232,16 @@ class TestNeoModel(unittest.TestCase):
     def test_serialization(self):
         startDatetime = datetime.datetime(1812, 2, 12)
         endDatetime = datetime.datetime(1812, 2, 13)
-        e52 = E52_Time_Span(name="Production time", date=startDatetime).save()
+
+        e52 = E52_Time_Span(name="Production time", date=datetime.datetime(1812, 2, 12)).save()
         e41 = E41_Appellation(name="1812-02-12").save()
 
         node = Interval(name="1812-02-12", startDateValue=startDatetime, endDateValue=endDatetime).save()
+        node2 = Interval(name="1812-02-12", startDateValue=startDatetime, endDateValue=endDatetime).save()
 
         e41.has_value.connect(node)
+        e41.has_value.connect(node2)
+
         e52.P1_is_identified_by.connect(e41)
         json1 = {
             "E41_Appellation": [
@@ -254,43 +260,13 @@ class TestNeoModel(unittest.TestCase):
         result2 = json.dumps(nested_json(e52, json2))
         print(result2)
 
-        print(node.getSchema())
-        print(e41.getSchema())
-
-        # # Test to check if serialization works
-        # # Creation of nodes
-        # e21 = E21_Person(name="Roberto").save()
-        # e55_3 = E55_Type(name="Bibliotecario").save()
-        # # Creation of relationship
-        # e21.hasType.connect(e55_3)
-        # # Obtaining Json
-        # json_a = e21.encodeJSON()
-        # json_b = e55_3.encodeJSON()
-        # json_c = json.dumps(e21.hasType.relationship(e55_3).encodeJSON())
-        # # Merge of json documents
-        # json_d = json_merge(json_merge(json_a, json_b), json_c)
-        # # Printing the json for easy verification
-        # print(json_a)
-        # print(json_b)
-        # print(json_c)
-        # # print(json_d)
-        # # Verification
-        # self.assertEqual(json_a, "{\"E21_Person\": {\"name\": \"Roberto\", \"uid\": \"" + e21.uid + "\"}}")
-        # self.assertEqual(json_b, "{\"E55_Type\": {\"name\": \"Bibliotecario\", \"uid\": \"" + e55_3.uid + "\"}}")
-        # self.assertEqual(json_c, "{\"P2_has_type\": {""\"start_node\": {\"E21_Person\": {\"name\": \"Roberto\", "
-        #                          "\"uid\": \"" + e21.uid + "\"}}, \"end_node\": {\"E55_Type\": {\"name\": "
-        #                                                    "\"Bibliotecario\", \"uid\": \"" + e55_3.uid + "\"" +
-        #                  "}}}}")
-        # self.assertEqual(json_d, "{\"E21_Person\": {\"name\": \"Roberto\", \"id\": " + str(e21.id) +
-        #                 "},\"E55_Type\": {\"name\": \"Bibliotecario\", \"id\": " + str(e55_3.id) + "},\"P2_has_type\": "
-        #                                                                                        "{\"id\": " + str(
-        #    e55_3.hasType.relationship(e21).id) + ", \"start_node\": {\"name\": \"Roberto\", \"id\": " + str(
-        #    e21.id) + "}, \"end_node\": {\"name\": \"Bibliotecario\", \"id\": " + str(e55_3.id) + "}}}")
-
     def test_schema(self):
+        e52 = E52_Time_Span(name="Production time", date=datetime.datetime(1812, 2, 12)).save()
+        e41 = E41_Appellation(name="1812-02-12").save()
         print(e1.getSchema())
         print(e55.getSchema())
         print(e7.getSchema())
         print(e18.getSchema())
         print(e24.getSchema())
         print(e83.getSchema())
+        print(e52.getSchema())

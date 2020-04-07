@@ -1,10 +1,8 @@
-from marshmallow import Schema
-
 from src.Models.CRM.v5_0_2.NodeEntities.E90_Symbolic_Object import \
-    E90_Symbolic_Object
+    E90_Symbolic_Object, E90_Symbolic_ObjectSchema
 
 
-class E41_AppellationSchema(Schema):
+class E41_AppellationSchema(E90_Symbolic_ObjectSchema):
     pass
 
 

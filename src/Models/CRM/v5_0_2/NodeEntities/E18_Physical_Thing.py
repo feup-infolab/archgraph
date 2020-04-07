@@ -1,7 +1,7 @@
 from marshmallow import Schema, fields
 from neomodel import RelationshipTo
 from src.Models.CRM.v5_0_2.NodeEntities.E72_Legal_Object import \
-    E72_Legal_Object
+    E72_Legal_Object, E72_Legal_ObjectSchema
 from src.Models.CRM.v5_0_2.NodeProperties.P44_has_condition import \
     P44_has_condition
 from src.Models.CRM.v5_0_2.NodeProperties.P45_consists_of import \
@@ -28,18 +28,16 @@ class E18_Physical_ThingSchema(Schema):
     P44_has_condition = fields.List(fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E3_Condition_State"
                                                   ".E3_Condition_StateSchema"))
     P45_consists_of = fields.List(fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E57_Material.E57_MaterialSchema"))
-    P46_is_composed_of = fields.List(fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E18_Physical_Thing.E18_Physical_ThingSchema"))
-    P49_has_former_or_current_keeper = fields.List(fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E53_Place"
-                                                                 ".E53_PlaceSchema"))
-    P50_has_current_keeper = fields.List(fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E30_Right.E30_RightSchema"))
-    P51_has_former_or_current_owner = fields.List(fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E53_Place"
-                                                                ".E53_PlaceSchema"))
-    P52_has_current_owner = fields.List(fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E30_Right.E30_RightSchema"))
-    P53_has_former_or_current_location = fields.List(fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E53_Place"
-                                                                   ".E53_PlaceSchema"))
-    P59_has_section = fields.List(fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E30_Right.E30_RightSchema"))
-    P128_carries = fields.List(fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E30_Right.E30_RightSchema"))
-    P156_occupies = fields.List(fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E30_Right.E30_RightSchema"))
+    P46_is_composed_of = fields.List(fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E18_Physical_Thing"
+                                                    ".E18_Physical_ThingSchema"))
+    P49_has_former_or_current_keeper = fields.List(fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E39_Actor.E39_ActorSchema"))
+    P50_has_current_keeper = fields.List(fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E39_Actor.E39_ActorSchema"))
+    P51_has_former_or_current_owner = fields.List(fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E39_Actor.E39_ActorSchema"))
+    P52_has_current_owner = fields.List(fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E39_Actor.E39_ActorSchema"))
+    P53_has_former_or_current_location = fields.List(fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E53_Place.E53_PlaceSchema"))
+    P59_has_section = fields.List(fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E53_Place.E53_PlaceSchema"))
+    P128_carries = fields.List(fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E90_Symbolic_Object.E90_Symbolic_ObjectSchema"))
+    P156_occupies = fields.List(fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E53_Place.E53_PlaceSchema"))
 
 
 class E18_Physical_Thing(E72_Legal_Object):

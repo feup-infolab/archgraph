@@ -150,15 +150,108 @@ getSchemaNode(uid) {
         this.form.layout = [];
         console.log(result);
         const definitions = result.definitions;
-        const schema = definitions[Object.keys(definitions)[0]];
-        this.form.schema = schema;
+        const schema = definitions;
+        //const schema = definitions[Object.keys(definitions)[0]];
+        //this.form.schema = schema;
+        const schema2 = {$id: 'https://example.com/arrays.schema.json',
+          $schema: 'http://json-schema.org/draft-07/schema#',
+          description: 'A representation of a person, company, organization, or place',
+          type: 'object',
+          properties: {
+          fruits: {
+            type: 'array',
+              items: {
+              type: 'string'
+            }
+          },
+          vegetables: {
+            type: 'array',
+              items: { $ref: '#/definitions/veggie' }
+          }
+        },
+          definitions: {
+          veggie: {
+            type: 'object',
+              required: [ 'veggieName', 'veggieLike' ],
+              properties: {
+              veggieName: {
+                type: 'string',
+                  description: 'The name of the vegetable.'
+              },
+              veggieLike: {
+                type: 'boolean',
+                  description: 'Do I like this vegetable?'
+              }
+            }
+          }
+        }
+        };
+        const schema3 = {
+          $ref: '#/definitions/E52_Time_SpanSchema',
+          $schema: 'http://json-schema.org/draft-07/schema#',
+          type: 'object',
+          properties: {
+            uid: {
+              $ref: '#/definitions/E52_Time_SpanSchema'
+            }
+          },
+          definitions: {
+            DataObjectSchema: {
+              additionalProperties: false,
+              properties: {
+                name: {
+                  title: 'name',
+                  type: 'string'
+                },
+                uid: {
+                  title: 'uid',
+                  type: 'string'
+                }
+              },
+              required: ['name'],
+              type: 'object'
+            },
+            E52_Time_SpanSchema: {
+              additionalProperties: false,
+              properties: {
+                date: {
+                  format: 'date',
+                  title: 'date',
+                  type: 'string'
+                },
+                has_value: {
+                  items: {
+                    $ref: '#/definitions/DataObjectSchema',
+                    type: 'object'
+                  },
+                  type: 'array'
+                },
+                uide: {
+                  title: 'uid',
+                  type: 'string'
+                },
+                name: {
+                  title: 'name',
+                  type: 'string'
+                }
+              },
+              required: ['date', 'name'],
+              type: 'object'
+            }
+          }
+        };
+        this.form.schema = schema3;
 
-        const cloneProperties = {...schema.properties};
-        delete cloneProperties.uid;
-        Object.keys(cloneProperties).forEach((n, i) => {
-          const object = { key: n};
-          this.form.layout.push(object);
-        });
+
+        // const cloneProperties = {...schema3.properties};
+        // delete cloneProperties.uid;
+        // Object.keys(cloneProperties).forEach((n, i) => {
+        //   const object = {key: n};
+        //   this.form.layout.push(object);
+        // };
+        this.form.layout.push('*');
+
+        // });
         // const button1 = {
         //   type: 'submit',
         //   title: 'Submit',
@@ -167,7 +260,9 @@ getSchemaNode(uid) {
         //     evt.preventDefault();
         //     alert('Thank you!');
         //   }
-        this.getDataNode(this.uid);
+        // this.getDataNode(this.uid);
+        this.load = true;
+
       });
   }
 
@@ -208,34 +303,34 @@ yourValidationErrorsFn($event) {
 
 // inline ref schema
 // {
-//   "$id": "https://example.com/arrays.schema.json",
-//   "$schema": "http://json-schema.org/draft-07/schema#",
-//   "description": "A representation of a person, company, organization, or place",
-//   "type": "object",
-//   "properties": {
-//   "fruits": {
-//     "type": "array",
-//       "items": {
-//       "type": "string"
+//   '$id': 'https://example.com/arrays.schema.json',
+//   '$schema': 'http://json-schema.org/draft-07/schema#',
+//   'description': 'A representation of a person, company, organization, or place',
+//   'type': 'object',
+//   'properties': {
+//   'fruits': {
+//     'type': 'array',
+//       'items': {
+//       'type': 'string'
 //     }
 //   },
-//   "vegetables": {
-//     "type": "array",
-//       "items": { "$ref": "#/definitions/veggie" }
+//   'vegetables': {
+//     'type': 'array',
+//       'items': { '$ref': '#/definitions/veggie' }
 //   }
 // },
-//   "definitions": {
-//   "veggie": {
-//     "type": "object",
-//       "required": [ "veggieName", "veggieLike" ],
-//       "properties": {
-//       "veggieName": {
-//         "type": "string",
-//           "description": "The name of the vegetable."
+//   'definitions': {
+//   'veggie': {
+//     'type': 'object',
+//       'required': [ 'veggieName', 'veggieLike' ],
+//       'properties': {
+//       'veggieName': {
+//         'type': 'string',
+//           'description': 'The name of the vegetable.'
 //       },
-//       "veggieLike": {
-//         "type": "boolean",
-//           "description": "Do I like this vegetable?"
+//       'veggieLike': {
+//         'type': 'boolean',
+//           'description': 'Do I like this vegetable?'
 //       }
 //     }
 //   }
@@ -244,15 +339,15 @@ yourValidationErrorsFn($event) {
 
 // data
 // {
-//   "fruits": [ "apple" ],
-//   "vegetables": [
+//   'fruits': [ 'apple' ],
+//   'vegetables': [
 //   {
-//     "veggieName": "potato",
-//     "veggieLike": true
+//     'veggieName': 'potato',
+//     'veggieLike': true
 //   },
 //   {
-//     "veggieName": "broccoli",
-//     "veggieLike": false
+//     'veggieName': 'broccoli',
+//     'veggieLike': false
 //   }
 // ]
 // }
