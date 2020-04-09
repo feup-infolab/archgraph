@@ -17,7 +17,7 @@ nvm use v13
 echo "Starting archgraph server at $ROOT_DIR"
 cd $ROOT_DIR
 python "$ROOT_DIR/src/Routes/routes.py" &
-SERVER_PID=$!g
+SERVER_PID=$!
 cd "$ROOT_DIR/frontend" || ( echo "folder missing " && exit 1 )
 yarn ng serve &
 CLIENT_PID=$!
