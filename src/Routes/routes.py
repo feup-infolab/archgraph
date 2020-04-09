@@ -60,9 +60,9 @@ def response_get_schema_node(uid):
         return make_response(jsonify(message="Node doesn't exists"), 404)
 
 
-@app.route("/create", methods=["POST"])
-def create():
-    return "create"  # TODO
+# @app.route("/create", methods=["POST"])
+# def create():
+#     return "create"
 
 
 # update node

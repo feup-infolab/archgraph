@@ -55,7 +55,6 @@ e24 = E24_Physical_Human_Made_Thing(name="e24").save()
 e83 = E83_Type_Creation(name="e83").save()
 
 
-
 class TestNeoModel(unittest.TestCase):
     def test_basic_relationship(self):
         # Tests creation of basic relationships
@@ -241,8 +240,8 @@ class TestNeoModel(unittest.TestCase):
 
         e41.has_value.connect(node)
         e41.has_value.connect(node2)
-
         e52.P1_is_identified_by.connect(e41)
+
         json1 = {
             "E41_Appellation": [
                 {"has_value": "DataObject"},
@@ -251,14 +250,37 @@ class TestNeoModel(unittest.TestCase):
         result1 = json.dumps(nested_json(e41, json1))
         print(result1)
 
+        # example 2
         json2 = {"E52_Time_Span": [
             {"P1_is_identified_by": {
                 "E41_Appellation": [
                     {"has_value": "DataObject"},
 
-                ]}}]}
+                ]}}
+        ]}
         result2 = json.dumps(nested_json(e52, json2))
         print(result2)
+
+        # example 3
+        thing = E70_Thing(name="thing").save()
+        title = E35_Title(name="title").save()
+        place = E53_Place(name="place").save()
+        humanThing = E24_Physical_Human_Made_Thing(name="humam Eiffel").save()
+
+        humanThing.P156_occupies.connect(place)
+        humanThing.P102_has_title.connect(title)
+        thing.P130_shows_features_of.connect(humanThing)
+
+        json3 = {"E70_Thing": [
+            {"P130_shows_features_of": {
+                "E24_Physical_Human_Made_Thing": [
+                    {"P102_has_title": "E35_Title"},
+                    {"P156_occupies": "E53_Place"},
+
+                ]}}
+        ]}
+        result3 = json.dumps(nested_json(thing, json3))
+        print(result3)
 
     def test_schema(self):
         e52 = E52_Time_Span(name="Production time", date=datetime.datetime(1812, 2, 12)).save()
@@ -270,3 +292,4 @@ class TestNeoModel(unittest.TestCase):
         print(e24.getSchema())
         print(e83.getSchema())
         print(e52.getSchema())
+        print(e41.getSchema())

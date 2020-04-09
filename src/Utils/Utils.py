@@ -1,8 +1,9 @@
 from neo4j import GraphDatabase
+
 # TODO nao apagar estes importes
 from src.Models.CRM.v5_0_2.NodeEntities.E4_Period import E4_Period
 from src.Models.CRM.v5_0_2.NodeEntities.E5_Event import E5_Event
-from src.Models.DataObject.v0_0_2 import DataObject
+from src.Models.DataObject.v0_0_2.DataObject import DataObject
 from src.Models.DataObject.v0_0_2.Approximate import Approximate
 from src.Models.DataObject.v0_0_2.AuthorityFile import AuthorityFile
 from src.Models.DataObject.v0_0_2.AuthorityString import AuthorityString
@@ -39,8 +40,6 @@ from src.Models.CRM.v5_0_2.NodeEntities.E7_Activity import E7_Activity
 from src.Models.CRM.v5_0_2.NodeEntities.E2_Temporal_Entity import E2_Temporal_Entity
 from src.Models.CRM.v5_0_2.NodeEntities.E83_Type_Creation import E83_Type_Creation
 from src.Models.CRM.v5_0_2.NodeEntities.E77_Persistent_Item import E77_Persistent_Item
-
-
 # TODO nao apagar estes importes
 
 uri = "bolt://localhost:7687"
@@ -62,11 +61,9 @@ def nested_json(node, json_schema):
     node_name = list(json_schema.keys())[0]
     relationships = json_schema[node_name]
     array = []
-
     for relationship in relationships:
         relationship_name = list(relationship.keys())[0]
-        uid = ""
-        new_node = ""
+        objectRelationship = {relationship_name: []}
 
         with driver.session() as session:
             array_uid = session.read_transaction(read_relationships, node_name, relationship_name)
@@ -78,8 +75,9 @@ def nested_json(node, json_schema):
                 new_node = DataObject.nodes.get(uid=uid)
             else:
                 new_node = E1_CRM_Entity.nodes.get(uid=uid)
+            objectRelationship[relationship_name].append(nested_json(new_node, json_nested))
 
-            array.append(nested_json(new_node, json_nested))
+        array.append(objectRelationship)
 
     return dict(node.decodeJSON(), **{"relationships": array})
 
@@ -106,4 +104,3 @@ def delete_node_by_uid(uid):
             return True
         except:
             return None
-
