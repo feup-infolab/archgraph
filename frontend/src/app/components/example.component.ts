@@ -88,30 +88,18 @@ export class ExampleComponent implements OnInit {
     } else {
       this.service.getSearchJson(search)
         .subscribe(result => {
-          this.searchResult = result;
-          const entries = Object.entries(result);
-          for (const entry of result) {
-            const entries2 = Object.entries(entry);
-            for (const key of Object.keys(entry)) {
-              if (key === 'name') {
-                this.searchName = entry[key];
-              } else if (key === 'uid') {
-                this.searchUID = entry[key];
-              } else if (key === 'labels') {
-                this.searchLabels = entry[key];
-              }
-            }
-            this.searchResultS = new CidocSearch(this.searchName, this.searchUID, this.searchLabels);
-            this.searchResultArray.push(this.searchResultS);
-          }
-          this.loadSearch = true;
-        });
+          this.changeContent(result)
+      });
     }
   }
 
   getSearchSpecificJson(entity, search) {
     this.service.getSpecificSearchJson(entity, search)
       .subscribe(result => {
+          this.changeContent(result)
+      });
+  }
+  changeContent(result) {
         this.searchResult = result;
         const entries = Object.entries(result);
         for (const entry of result) {
@@ -129,7 +117,7 @@ export class ExampleComponent implements OnInit {
           this.searchResultArray.push(this.searchResultS);
         }
         this.loadSearch = true;
-      });
+
   }
 
   ngOnInit() {
@@ -149,124 +137,9 @@ export class ExampleComponent implements OnInit {
     this.service.getSchemaNode(uid)
       .subscribe(returned_schema => {
         this.form.layout = [];
-        console.log('ai ai recebi dados do servidor');
         console.log(returned_schema);
-        const definitions = returned_schema.definitions;
-        const schema = definitions;
-        // const schema = definitions[Object.keys(definitions)[0]];
-        // this.form.schema = schema;
-        const schema2 = {
-          $id: 'https://example.com/arrays.schema.json',
-          $schema: 'http://json-schema.org/draft-07/schema#',
-          description: 'A representation of a person, company, organization, or place',
-          type: 'object',
-          properties: {
-            fruits: {
-              type: 'array',
-              items: {
-                type: 'string'
-              }
-            },
-            vegetables: {
-              type: 'array',
-              items: {$ref: '#/definitions/veggie'}
-            }
-          },
-          definitions: {
-            veggie: {
-              type: 'object',
-              required: ['veggieName', 'veggieLike'],
-              properties: {
-                veggieName: {
-                  type: 'string',
-                  description: 'The name of the vegetable.'
-                },
-                veggieLike: {
-                  type: 'boolean',
-                  description: 'Do I like this vegetable?'
-                }
-              }
-            }
-          }
-        };
-        const schema3 = {
-          // $ref: '#/definitions/E52_Time_SpanSchema',
-          $schema: 'http://json-schema.org/draft-07/schema#',
-          type: 'object',
-          properties: {
-            bb2ca7ccfab44ee49c4594adfde91734: {
-              $ref: '#/definitions/E52_Time_SpanSchema',
-              title: 'Editing E52_Time_Span <a href=\"/bb2ca7ccfab44ee49c4594adfde91734\">teste</a>'
-            }
-          },
-          definitions: {
-            DataObjectSchema: {
-              additionalProperties: false,
-              properties: {
-                name: {
-                  title: 'name',
-                  type: 'string'
-                },
-                uid: {
-                  title: 'uid',
-                  type: 'string'
-                }
-              },
-              required: ['name'],
-              type: 'object'
-            },
-            E52_Time_SpanSchema: {
-              additionalProperties: false,
-              properties: {
-                date: {
-                  format: 'date',
-                  title: 'date',
-                  type: 'string'
-                },
-                has_value: {
-                  items: {
-                    $ref: '#/definitions/DataObjectSchema',
-                    type: 'object'
-                  },
-                  type: 'array'
-                },
-                uid: {
-                  title: 'uid',
-                  type: 'string'
-                },
-                name: {
-                  title: 'name',
-                  type: 'string'
-                }
-              },
-              required: ['date', 'name'],
-              type: 'object'
-            }
-          }
-        };
-
-        // this.form.schema = schema3;
-
-        const cloneSchema = {schema3};
-        // cloneSchema = Utils.removeUIDs(cloneSchema);
         this.form.schema = this.refactorSchema(returned_schema);
-
-        // delete cloneSchema.uid;
-        // Object.keys(cloneSchema).forEach((n, i) => {
-        //   const object = {key: n};
-        //   this.form.layout.push(object);
-        // });
         this.form.layout = ['*'];
-        // this.form.layout = [
-        //   this.form.schema["definitions"].E52_Time_SpanSchema.properties.name,
-        //   this.form.schema["definitions"].E52_Time_SpanSchema.properties.has_value,
-        //   this.form.schema["definitions"].E52_Time_SpanSchema.properties.date
-        //
-        // ];
-
-        // this.form.layout.push('*');
-
-        // });
         // const button1 = {
         //   type: 'submit',
         //   title: 'Submit',
@@ -284,25 +157,22 @@ export class ExampleComponent implements OnInit {
     const ref = jsonSchema.$ref;
     const path = ref.split('/');
     const schemaName = path[2];
-    const properties = {
-      entity: {
+    const properties = {};
+    properties[this.uid] = {
         $ref: ref,
         title: 'Editing schemaName'
-
-      }
     };
     jsonSchema.properties = properties;
+    jsonSchema.desc = "Description";
 
     delete jsonSchema.$ref;
+    const schemaEntity = jsonSchema.definitions[schemaName];
+
+    delete schemaEntity.properties.uid;
     jsonSchema.type = 'object';
     return jsonSchema;
+
   }
-
-  deleteUidFromLayout(jsonSchema) {
-
-    //jsonSchema.definitions[schemaName]["properties"]["uid"]
-  }
-
   sendNode(data) {
     this.service.sendNode(data)
       .subscribe(result => {
@@ -313,6 +183,7 @@ export class ExampleComponent implements OnInit {
 
 
   onSubmit(a: any) {
+    console.log(a);
     this.sendNode(a);
   }
 
@@ -337,40 +208,61 @@ export class ExampleComponent implements OnInit {
 }
 
 // inline ref schema
-// {
-//   '$id': 'https://example.com/arrays.schema.json',
-//   '$schema': 'http://json-schema.org/draft-07/schema#',
-//   'description': 'A representation of a person, company, organization, or place',
-//   'type': 'object',
-//   'properties': {
-//   'fruits': {
-//     'type': 'array',
-//       'items': {
-//       'type': 'string'
-//     }
-//   },
-//   'vegetables': {
-//     'type': 'array',
-//       'items': { '$ref': '#/definitions/veggie' }
-//   }
-// },
-//   'definitions': {
-//   'veggie': {
-//     'type': 'object',
-//       'required': [ 'veggieName', 'veggieLike' ],
-//       'properties': {
-//       'veggieName': {
-//         'type': 'string',
-//           'description': 'The name of the vegetable.'
-//       },
-//       'veggieLike': {
-//         'type': 'boolean',
-//           'description': 'Do I like this vegetable?'
-//       }
-//     }
-//   }
-// }
-// }
+// const schema3 = {
+//           $schema: 'http://json-schema.org/draft-07/schema#',
+//           type: 'object',
+//           properties: {
+//             bb2ca7ccfab44ee49c4594adfde91734: {
+//               $ref: '#/definitions/E52_Time_SpanSchema',
+//               title: 'Editing E52_Time_Span <a href=\"/bb2ca7ccfab44ee49c4594adfde91734\">teste</a>'
+//             }
+//           },
+//
+//           definitions: {
+//             DataObjectSchema: {
+//               additionalProperties: false,
+//               properties: {
+//                 name: {
+//                   title: 'name',
+//                   type: 'string'
+//                 },
+//                 uid: {
+//                   title: 'uid',
+//                   type: 'string'
+//                 }
+//               },
+//               required: ['name'],
+//               type: 'object'
+//             },
+//             E52_Time_SpanSchema: {
+//               additionalProperties: false,
+//               properties: {
+//                 date: {
+//                   format: 'date',
+//                   title: 'date',
+//                   type: 'string'
+//                 },
+//                 has_value: {
+//                   items: {
+//                     $ref: '#/definitions/DataObjectSchema',
+//                     type: 'object'
+//                   },
+//                   type: 'array'
+//                 },
+//                 uid: {
+//                   title: 'uid',
+//                   type: 'string'
+//                 },
+//                 name: {
+//                   title: 'name',
+//                   type: 'string'
+//                 }
+//               },
+//               required: ['date', 'name'],
+//               type: 'object'
+//             }
+//           }
+//         };
 
 // data
 // {
@@ -386,31 +278,6 @@ export class ExampleComponent implements OnInit {
 //   }
 // ]
 // }
-
-
-// shema without data____________________________-
-// {
-//   $schema: 'http://json-schema.org/draft-07/schema#',
-//     type: 'object',
-//   properties: {
-//   vegetables: {
-//     $ref: '#/definitions/ola'
-//   }
-// },
-//   definitions: {
-//     ola: {
-//       type: 'object',
-//         required: [ 'veggieName' ],
-//         properties: {
-//         veggieName: {
-//           type: 'string',
-//             description: 'The name of the vegetable.'
-//         }
-//       }
-//     }
-//   }
-// };
-
 
 
 
