@@ -1,10 +1,12 @@
 from pathlib import Path
 import os, sys
 
+
 # returns the project root path (assumes that the script is started from src/Routes/routes.py)
 def get_project_root() -> Path:
     """Returns project root folder."""
     return Path(__file__).parent.parent.parent
+
 
 # append project root to sys paths so that src.** modules can be found by Python when running the app from a script
 # From https://leemendelowitz.github.io/blog/how-does-python-find-packages.html

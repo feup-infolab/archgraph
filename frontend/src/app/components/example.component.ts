@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, OnChanges, OnInit, ViewChild} from '@angular/core';
-import { FormGroup, FormControl  } from '@angular/forms';
+import {FormGroup, FormControl} from '@angular/forms';
 import {Schema} from '../models/Schema';
 import {Utils} from '../models/Utils';
 import {MyServiceService} from '../service/my-service.service';
@@ -14,7 +14,9 @@ import {ComboBoxComponent} from '../combo-box/combo-box.component';
 
 export class ExampleComponent implements OnInit {
 
-  constructor(private service: MyServiceService) {  }
+  constructor(private service: MyServiceService) {
+  }
+
   @ViewChild(ComboBoxComponent) comboBoxReference;
 
   searched = '';
@@ -36,13 +38,9 @@ export class ExampleComponent implements OnInit {
   load = false;
   loadSearch = false;
   form = {
-      schema: {
-    },
-    data : {
-      },
-    layout: [
-
-    ]
+    schema: {},
+    data: {},
+    layout: []
   };
   itemList = ['E1_CRM_Entity', 'E2_Temporal_Entity', 'E3_Condition_State', 'E4_Period', 'E5_Event',
     'E6_Destruction', 'E7_Activity', 'E8_Acquisition', 'E9_Move',
@@ -66,6 +64,7 @@ export class ExampleComponent implements OnInit {
     'E87_Curation_Activity', 'E89_Propositional_Object', 'E90_Symbolic_Object',
     'E92_Spacetime_Volume', 'E93_Presence', 'E96_Purchase', 'E97_Monetary_Amount',
     'E98_Currency', 'E99_Product_Type'];
+
   onEnter(uid: string) {
     this.uid = uid;
     // this.form.data = {};
@@ -74,6 +73,7 @@ export class ExampleComponent implements OnInit {
     this.load = false;
     this.getSchemaNode(this.uid);
   }
+
   searchDatabase(searched: string) {
     this.searched = searched;
     this.loadSearch = false;
@@ -86,36 +86,37 @@ export class ExampleComponent implements OnInit {
     if (this.selectedEntity !== '') {
       this.getSearchSpecificJson(this.selectedEntity, search);
     } else {
-    this.service.getSearchJson( search)
-      .subscribe( result => {
-        this.searchResult = result;
-        const entries = Object.entries(result);
-        for ( const entry of result) {
-          const entries2 = Object.entries(entry);
-          for ( const key of Object.keys(entry)) {
-            if (key === 'name') {
-              this.searchName = entry[key];
-            } else if (key === 'uid') {
-              this.searchUID = entry[key];
-            } else if (key === 'labels') {
-              this.searchLabels = entry[key];
+      this.service.getSearchJson(search)
+        .subscribe(result => {
+          this.searchResult = result;
+          const entries = Object.entries(result);
+          for (const entry of result) {
+            const entries2 = Object.entries(entry);
+            for (const key of Object.keys(entry)) {
+              if (key === 'name') {
+                this.searchName = entry[key];
+              } else if (key === 'uid') {
+                this.searchUID = entry[key];
+              } else if (key === 'labels') {
+                this.searchLabels = entry[key];
+              }
             }
+            this.searchResultS = new CidocSearch(this.searchName, this.searchUID, this.searchLabels);
+            this.searchResultArray.push(this.searchResultS);
           }
-          this.searchResultS = new CidocSearch(this.searchName , this.searchUID , this.searchLabels);
-          this.searchResultArray.push(this.searchResultS);
-        }
-        this.loadSearch = true;
-      }); }
+          this.loadSearch = true;
+        });
+    }
   }
 
   getSearchSpecificJson(entity, search) {
-    this.service.getSpecificSearchJson( entity, search)
-      .subscribe( result => {
+    this.service.getSpecificSearchJson(entity, search)
+      .subscribe(result => {
         this.searchResult = result;
         const entries = Object.entries(result);
-        for ( const entry of result) {
+        for (const entry of result) {
           const entries2 = Object.entries(entry);
-          for ( const key of Object.keys(entry)) {
+          for (const key of Object.keys(entry)) {
             if (key === 'name') {
               this.searchName = entry[key];
             } else if (key === 'uid') {
@@ -124,18 +125,19 @@ export class ExampleComponent implements OnInit {
               this.searchLabels = entry[key];
             }
           }
-          this.searchResultS = new CidocSearch(this.searchName , this.searchUID , this.searchLabels);
+          this.searchResultS = new CidocSearch(this.searchName, this.searchUID, this.searchLabels);
           this.searchResultArray.push(this.searchResultS);
         }
         this.loadSearch = true;
       });
   }
 
-ngOnInit() {
+  ngOnInit() {
 
   }
- getDataNode(uid) {
-    this.service.getDataNode( uid)
+
+  getDataNode(uid) {
+    this.service.getDataNode(uid)
       .subscribe(result => {
         this.form.data = result;
         console.log(result);
@@ -143,55 +145,56 @@ ngOnInit() {
       });
   }
 
-getSchemaNode(uid) {
+  getSchemaNode(uid) {
     this.service.getSchemaNode(uid)
-      .subscribe(result => {
+      .subscribe(returned_schema => {
         this.form.layout = [];
-        console.log("ai ai recebi dados do servidor");
-        console.log(result);
-        const definitions = result.definitions;
+        console.log('ai ai recebi dados do servidor');
+        console.log(returned_schema);
+        const definitions = returned_schema.definitions;
         const schema = definitions;
-        //const schema = definitions[Object.keys(definitions)[0]];
-        //this.form.schema = schema;
-        const schema2 = {$id: 'https://example.com/arrays.schema.json',
+        // const schema = definitions[Object.keys(definitions)[0]];
+        // this.form.schema = schema;
+        const schema2 = {
+          $id: 'https://example.com/arrays.schema.json',
           $schema: 'http://json-schema.org/draft-07/schema#',
           description: 'A representation of a person, company, organization, or place',
           type: 'object',
           properties: {
-          fruits: {
-            type: 'array',
+            fruits: {
+              type: 'array',
               items: {
-              type: 'string'
+                type: 'string'
+              }
+            },
+            vegetables: {
+              type: 'array',
+              items: {$ref: '#/definitions/veggie'}
             }
           },
-          vegetables: {
-            type: 'array',
-              items: { $ref: '#/definitions/veggie' }
-          }
-        },
           definitions: {
-          veggie: {
-            type: 'object',
-              required: [ 'veggieName', 'veggieLike' ],
+            veggie: {
+              type: 'object',
+              required: ['veggieName', 'veggieLike'],
               properties: {
-              veggieName: {
-                type: 'string',
+                veggieName: {
+                  type: 'string',
                   description: 'The name of the vegetable.'
-              },
-              veggieLike: {
-                type: 'boolean',
+                },
+                veggieLike: {
+                  type: 'boolean',
                   description: 'Do I like this vegetable?'
+                }
               }
             }
           }
-        }
         };
         const schema3 = {
           // $ref: '#/definitions/E52_Time_SpanSchema',
           $schema: 'http://json-schema.org/draft-07/schema#',
           type: 'object',
           properties: {
-            'bb2ca7ccfab44ee49c4594adfde91734': {
+            bb2ca7ccfab44ee49c4594adfde91734: {
               $ref: '#/definitions/E52_Time_SpanSchema',
               title: 'Editing E52_Time_Span <a href=\"/bb2ca7ccfab44ee49c4594adfde91734\">teste</a>'
             }
@@ -242,17 +245,25 @@ getSchemaNode(uid) {
           }
         };
 
-        this.form.schema = schema3;
+        // this.form.schema = schema3;
 
-        let cloneSchema = {schema3};
-        cloneSchema = Utils.removeUIDs(cloneSchema);
+        const cloneSchema = {schema3};
+        // cloneSchema = Utils.removeUIDs(cloneSchema);
+        this.form.schema = this.refactorSchema(returned_schema);
 
-        // delete cloneProperties.uid;
-        Object.keys(cloneSchema).forEach((n, i) => {
-          const object = {key: n};
-          this.form.layout.push(object);
-        };
-        //this.form.layout = ['*'];
+        // delete cloneSchema.uid;
+        // Object.keys(cloneSchema).forEach((n, i) => {
+        //   const object = {key: n};
+        //   this.form.layout.push(object);
+        // });
+        this.form.layout = ['*'];
+        // this.form.layout = [
+        //   this.form.schema["definitions"].E52_Time_SpanSchema.properties.name,
+        //   this.form.schema["definitions"].E52_Time_SpanSchema.properties.has_value,
+        //   this.form.schema["definitions"].E52_Time_SpanSchema.properties.date
+        //
+        // ];
+
         // this.form.layout.push('*');
 
         // });
@@ -269,10 +280,31 @@ getSchemaNode(uid) {
       });
   }
 
+  refactorSchema(jsonSchema) {
+    const ref = jsonSchema.$ref;
+    const path = ref.split('/');
+    const schemaName = path[2];
+    const properties = {
+      entity: {
+        $ref: ref,
+        title: 'Editing schemaName'
 
+      }
+    };
+    jsonSchema.properties = properties;
 
-sendNode(data) {
-    this.service.sendNode( data)
+    delete jsonSchema.$ref;
+    jsonSchema.type = 'object';
+    return jsonSchema;
+  }
+
+  deleteUidFromLayout(jsonSchema) {
+
+    //jsonSchema.definitions[schemaName]["properties"]["uid"]
+  }
+
+  sendNode(data) {
+    this.service.sendNode(data)
       .subscribe(result => {
         this.form.data = result;
         console.log(result);
@@ -280,23 +312,23 @@ sendNode(data) {
   }
 
 
-onSubmit(a: any) {
+  onSubmit(a: any) {
     this.sendNode(a);
   }
 
-showFormSchemaFn($event) {
+  showFormSchemaFn($event) {
     // console.log($event); it shows schema of node
   }
 
-showFormLayoutFn($event) {
+  showFormLayoutFn($event) {
     console.log($event);
   }
 
-isValid($event) {
+  isValid($event) {
     // console.log('isvalid ' + $event);
   }
 
-yourValidationErrorsFn($event) {
+  yourValidationErrorsFn($event) {
     console.log('error' + $event);
 
   }
@@ -354,7 +386,6 @@ yourValidationErrorsFn($event) {
 //   }
 // ]
 // }
-
 
 
 // shema without data____________________________-
