@@ -1,6 +1,5 @@
 import datetime
 import json
-
 from marshmallow_jsonschema import JSONSchema
 
 
@@ -15,15 +14,17 @@ class SuperClass:
     # Json to string
     def encodeJSON(self):
         data = {}
-        for key, val in self.__dict__.items():
+        ___class = {}
+        for key, val in self.__properties__.items():
             if (key != "schema") and (key != "id"):
                 data[key] = val
+            ___class[self.__class__.__name__] = data
 
         def my_converter(o):
             if isinstance(o, datetime.datetime):
                 return o.strftime("%Y-%m-%d")
 
-        return json.dumps(data, default=my_converter)
+        return json.dumps(___class, default=my_converter)
 
     # string to json
     def decodeJSON(self):

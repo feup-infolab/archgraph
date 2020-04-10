@@ -14,7 +14,9 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 nvm use v13
 
-python ./src/Routes/routes.py &
+echo "Starting archgraph server at $ROOT_DIR"
+cd $ROOT_DIR
+python "$ROOT_DIR/src/Routes/routes.py" &
 SERVER_PID=$!
 cd "$ROOT_DIR/frontend" || ( echo "folder missing " && exit 1 )
 yarn ng serve &

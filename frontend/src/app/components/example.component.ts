@@ -1,8 +1,9 @@
 import {AfterViewInit, Component, OnChanges, OnInit, ViewChild} from '@angular/core';
-import { FormGroup, FormControl  } from '@angular/forms';
-import {Schema} from './Schema';
+import {FormGroup, FormControl} from '@angular/forms';
+import {Schema} from '../models/Schema';
+import {Utils} from '../models/Utils';
 import {MyServiceService} from '../service/my-service.service';
-import {CidocSearch} from './CidocSearch';
+import {CidocSearch} from '../models/CidocSearch';
 import {ComboBoxComponent} from '../combo-box/combo-box.component';
 
 @Component({
@@ -11,11 +12,11 @@ import {ComboBoxComponent} from '../combo-box/combo-box.component';
   styleUrls: ['./example.component.css']
 })
 
-
-
 export class ExampleComponent implements OnInit {
 
-  constructor(private service: MyServiceService) {  }
+  constructor(private service: MyServiceService) {
+  }
+
   @ViewChild(ComboBoxComponent) comboBoxReference;
 
   searched = '';
@@ -37,13 +38,9 @@ export class ExampleComponent implements OnInit {
   load = false;
   loadSearch = false;
   form = {
-      schema: {
-    },
-    data : {
-      },
-    layout: [
-
-    ]
+    schema: {},
+    data: {},
+    layout: []
   };
   itemList = ['E1_CRM_Entity', 'E2_Temporal_Entity', 'E3_Condition_State', 'E4_Period', 'E5_Event',
     'E6_Destruction', 'E7_Activity', 'E8_Acquisition', 'E9_Move',
@@ -67,6 +64,7 @@ export class ExampleComponent implements OnInit {
     'E87_Curation_Activity', 'E89_Propositional_Object', 'E90_Symbolic_Object',
     'E92_Spacetime_Volume', 'E93_Presence', 'E96_Purchase', 'E97_Monetary_Amount',
     'E98_Currency', 'E99_Product_Type'];
+
   onEnter(uid: string) {
     this.uid = uid;
     // this.form.data = {};
@@ -75,6 +73,7 @@ export class ExampleComponent implements OnInit {
     this.load = false;
     this.getSchemaNode(this.uid);
   }
+
   searchDatabase(searched: string) {
     this.searched = searched;
     this.loadSearch = false;
@@ -87,36 +86,25 @@ export class ExampleComponent implements OnInit {
     if (this.selectedEntity !== '') {
       this.getSearchSpecificJson(this.selectedEntity, search);
     } else {
-    this.service.getSearchJson( search)
-      .subscribe( result => {
-        this.searchResult = result;
-        const entries = Object.entries(result);
-        for ( const entry of result) {
-          const entries2 = Object.entries(entry);
-          for ( const key of Object.keys(entry)) {
-            if (key === 'name') {
-              this.searchName = entry[key];
-            } else if (key === 'uid') {
-              this.searchUID = entry[key];
-            } else if (key === 'labels') {
-              this.searchLabels = entry[key];
-            }
-          }
-          this.searchResultS = new CidocSearch(this.searchName , this.searchUID , this.searchLabels);
-          this.searchResultArray.push(this.searchResultS);
-        }
-        this.loadSearch = true;
-      }); }
+      this.service.getSearchJson(search)
+        .subscribe(result => {
+          this.changeContent(result)
+      });
+    }
   }
 
   getSearchSpecificJson(entity, search) {
-    this.service.getSpecificSearchJson( entity, search)
-      .subscribe( result => {
+    this.service.getSpecificSearchJson(entity, search)
+      .subscribe(result => {
+          this.changeContent(result)
+      });
+  }
+  changeContent(result) {
         this.searchResult = result;
         const entries = Object.entries(result);
-        for ( const entry of result) {
+        for (const entry of result) {
           const entries2 = Object.entries(entry);
-          for ( const key of Object.keys(entry)) {
+          for (const key of Object.keys(entry)) {
             if (key === 'name') {
               this.searchName = entry[key];
             } else if (key === 'uid') {
@@ -125,18 +113,19 @@ export class ExampleComponent implements OnInit {
               this.searchLabels = entry[key];
             }
           }
-          this.searchResultS = new CidocSearch(this.searchName , this.searchUID , this.searchLabels);
+          this.searchResultS = new CidocSearch(this.searchName, this.searchUID, this.searchLabels);
           this.searchResultArray.push(this.searchResultS);
         }
         this.loadSearch = true;
-      });
-  }
-
-ngOnInit() {
 
   }
- getDataNode(uid) {
-    this.service.getDataNode( uid)
+
+  ngOnInit() {
+
+  }
+
+  getDataNode(uid) {
+    this.service.getDataNode(uid)
       .subscribe(result => {
         this.form.data = result;
         console.log(result);
@@ -144,21 +133,13 @@ ngOnInit() {
       });
   }
 
-getSchemaNode(uid) {
+  getSchemaNode(uid) {
     this.service.getSchemaNode(uid)
-      .subscribe(result => {
+      .subscribe(returned_schema => {
         this.form.layout = [];
-        console.log(result);
-        const definitions = result.definitions;
-        const schema = definitions[Object.keys(definitions)[0]];
-        this.form.schema = schema;
-
-        const cloneProperties = {...schema.properties};
-        delete cloneProperties.uid;
-        Object.keys(cloneProperties).forEach((n, i) => {
-          const object = { key: n};
-          this.form.layout.push(object);
-        });
+        console.log(returned_schema);
+        this.form.schema = this.refactorSchema(returned_schema);
+        this.form.layout = ['*'];
         // const button1 = {
         //   type: 'submit',
         //   title: 'Submit',
@@ -167,14 +148,33 @@ getSchemaNode(uid) {
         //     evt.preventDefault();
         //     alert('Thank you!');
         //   }
-        this.getDataNode(this.uid);
+        // this.getDataNode(this.uid);
+        this.load = true;
       });
   }
 
+  refactorSchema(jsonSchema) {
+    const ref = jsonSchema.$ref;
+    const path = ref.split('/');
+    const schemaName = path[2];
+    const properties = {};
+    properties[this.uid] = {
+        $ref: ref,
+        title: 'Editing schemaName'
+    };
+    jsonSchema.properties = properties;
+    jsonSchema.desc = "Description";
 
+    delete jsonSchema.$ref;
+    const schemaEntity = jsonSchema.definitions[schemaName];
 
-sendNode(data) {
-    this.service.sendNode( data)
+    delete schemaEntity.properties.uid;
+    jsonSchema.type = 'object';
+    return jsonSchema;
+
+  }
+  sendNode(data) {
+    this.service.sendNode(data)
       .subscribe(result => {
         this.form.data = result;
         console.log(result);
@@ -182,23 +182,24 @@ sendNode(data) {
   }
 
 
-onSubmit(a: any) {
+  onSubmit(a: any) {
+    console.log(a);
     this.sendNode(a);
   }
 
-showFormSchemaFn($event) {
+  showFormSchemaFn($event) {
     // console.log($event); it shows schema of node
   }
 
-showFormLayoutFn($event) {
+  showFormLayoutFn($event) {
     console.log($event);
   }
 
-isValid($event) {
+  isValid($event) {
     // console.log('isvalid ' + $event);
   }
 
-yourValidationErrorsFn($event) {
+  yourValidationErrorsFn($event) {
     console.log('error' + $event);
 
   }
@@ -207,81 +208,76 @@ yourValidationErrorsFn($event) {
 }
 
 // inline ref schema
-// {
-//   "$id": "https://example.com/arrays.schema.json",
-//   "$schema": "http://json-schema.org/draft-07/schema#",
-//   "description": "A representation of a person, company, organization, or place",
-//   "type": "object",
-//   "properties": {
-//   "fruits": {
-//     "type": "array",
-//       "items": {
-//       "type": "string"
-//     }
-//   },
-//   "vegetables": {
-//     "type": "array",
-//       "items": { "$ref": "#/definitions/veggie" }
-//   }
-// },
-//   "definitions": {
-//   "veggie": {
-//     "type": "object",
-//       "required": [ "veggieName", "veggieLike" ],
-//       "properties": {
-//       "veggieName": {
-//         "type": "string",
-//           "description": "The name of the vegetable."
-//       },
-//       "veggieLike": {
-//         "type": "boolean",
-//           "description": "Do I like this vegetable?"
-//       }
-//     }
-//   }
-// }
-// }
+// const schema3 = {
+//           $schema: 'http://json-schema.org/draft-07/schema#',
+//           type: 'object',
+//           properties: {
+//             bb2ca7ccfab44ee49c4594adfde91734: {
+//               $ref: '#/definitions/E52_Time_SpanSchema',
+//               title: 'Editing E52_Time_Span <a href=\"/bb2ca7ccfab44ee49c4594adfde91734\">teste</a>'
+//             }
+//           },
+//
+//           definitions: {
+//             DataObjectSchema: {
+//               additionalProperties: false,
+//               properties: {
+//                 name: {
+//                   title: 'name',
+//                   type: 'string'
+//                 },
+//                 uid: {
+//                   title: 'uid',
+//                   type: 'string'
+//                 }
+//               },
+//               required: ['name'],
+//               type: 'object'
+//             },
+//             E52_Time_SpanSchema: {
+//               additionalProperties: false,
+//               properties: {
+//                 date: {
+//                   format: 'date',
+//                   title: 'date',
+//                   type: 'string'
+//                 },
+//                 has_value: {
+//                   items: {
+//                     $ref: '#/definitions/DataObjectSchema',
+//                     type: 'object'
+//                   },
+//                   type: 'array'
+//                 },
+//                 uid: {
+//                   title: 'uid',
+//                   type: 'string'
+//                 },
+//                 name: {
+//                   title: 'name',
+//                   type: 'string'
+//                 }
+//               },
+//               required: ['date', 'name'],
+//               type: 'object'
+//             }
+//           }
+//         };
 
 // data
 // {
-//   "fruits": [ "apple" ],
-//   "vegetables": [
+//   'fruits': [ 'apple' ],
+//   'vegetables': [
 //   {
-//     "veggieName": "potato",
-//     "veggieLike": true
+//     'veggieName': 'potato',
+//     'veggieLike': true
 //   },
 //   {
-//     "veggieName": "broccoli",
-//     "veggieLike": false
+//     'veggieName': 'broccoli',
+//     'veggieLike': false
 //   }
 // ]
 // }
-
-
-
-// shema without data____________________________-
-// {
-//   $schema: 'http://json-schema.org/draft-07/schema#',
-//     type: 'object',
-//   properties: {
-//   vegetables: {
-//     $ref: '#/definitions/ola'
-//   }
-// },
-//   definitions: {
-//     ola: {
-//       type: 'object',
-//         required: [ 'veggieName' ],
-//         properties: {
-//         veggieName: {
-//           type: 'string',
-//             description: 'The name of the vegetable.'
-//         }
-//       }
-//     }
-//   }
-// };
-
 
 
 

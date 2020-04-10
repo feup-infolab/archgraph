@@ -1,5 +1,6 @@
 import datetime
 import unittest
+from src.Utils.Utils import nested_json
 
 from src.Models.ArchOnto.v0_1.NodeEntities.ARE2_Formal_Title import ARE2_Formal_Title
 from src.Models.CRM.v5_0_2.NodeEntities.E12_Production import E12_Production
@@ -16,7 +17,6 @@ from src.Models.CRM.v5_0_2.NodeEntities.E52_Time_Span import E52_Time_Span
 from src.Models.CRM.v5_0_2.NodeEntities.E72_Legal_Object import E72_Legal_Object
 from src.Models.CRM.v5_0_2.NodeEntities.E39_Actor import E39_Actor
 from src.Models.CRM.v5_0_2.NodeEntities.E7_Activity import E7_Activity
-from src.Models.CRM.v5_0_2.NodeEntities.E21_Person import E21_Person
 from src.Models.CRM.v5_0_2.NodeEntities.E2_Temporal_Entity import E2_Temporal_Entity
 from src.Models.CRM.v5_0_2.NodeEntities.E83_Type_Creation import E83_Type_Creation
 from src.Models.CRM.v5_0_2.NodeProperties.PC14_Carried_Out_By import PC14_Carried_Out_By
@@ -45,7 +45,7 @@ specific_index_creation()
 e1 = E1_CRM_Entity(name="test").save()
 e1_2 = E1_CRM_Entity(name="test").save()
 e55 = E55_Type(name="test2").save()
-e1_2.hasType.connect(e55)
+e1_2.P2_has_type.connect(e55)
 
 e55_2 = E55_Type(name="test3").save()
 e7 = E7_Activity(name="e7").save()
@@ -60,10 +60,10 @@ class TestNeoModel(unittest.TestCase):
         # Tests creation of basic relationships
         # Creates 2 P2_Has_Type Relationships that connect A E1 instance to a E55 and that E55 to another
 
-        e1.hasType.connect(e55)
-        e55_2.hasType.connect(e55)
+        e1.P2_has_type.connect(e55)
+        e55_2.P2_has_type.connect(e55)
         # Obtains origin of relationship
-        all_types = e55.hasType.filter(name="test2")
+        all_types = e55.P2_has_type.filter(name="test2")
         # Check if Node is the correct one
         for p in all_types:
             self.assertAlmostEqual(p.id, e1.id)
@@ -76,7 +76,7 @@ class TestNeoModel(unittest.TestCase):
         relations_traversal = Traversal(e1, E55_Type.__label__, definition)
         all_relations = relations_traversal.all()
         # Check if traversal returned correct nodes
-        e55rels = e55_2.hasType
+        e55rels = e55_2.P2_has_type
         for p in all_relations:
             self.assertAlmostEqual(p.id, e55.id)
         for p in e55rels:
@@ -87,13 +87,13 @@ class TestNeoModel(unittest.TestCase):
         # e7.is_composed_of.connect(e1)
         # e1.was_based_on.connect(e83)
         # e83.was_based_on.connect(e1)
-        self.assertRaises(ValueError, e18.is_composed_of.connect, e1)
+        self.assertRaises(ValueError, e18.P46_is_composed_of.connect, e1)
 
     def test_diamond_problem(self):
         # Tests if E24 that inherits showsFeaturesOf from both it's superclasses (P130, that E70 has from which E71
         # and and E18 inherit)
-        e18.showsFeaturesOf.connect(e24)
-        all_features = e18.showsFeaturesOf.filter(name="e24")
+        e18.P130_shows_features_of.connect(e24)
+        all_features = e18.P130_shows_features_of.filter(name="e24")
         for p in all_features:
             self.assertAlmostEqual(p.id, e24.id)
 
@@ -136,9 +136,9 @@ class TestNeoModel(unittest.TestCase):
         e2_2 = E2_Temporal_Entity(name="instante_2").save()
         e2_3 = E2_Temporal_Entity(name="instante_3").save()
         # Creation of first relationship, shouldn't break
-        e2_1.is_equal_in_time_to.connect(e2_2)
+        e2_1.P114_is_equal_in_time_to.connect(e2_2)
         # Creation of second relationship, should raise exception
-        self.assertRaises(AttemptedCardinalityViolation, e2_1.is_equal_in_time_to.connect, e2_3)
+        self.assertRaises(AttemptedCardinalityViolation, e2_1.P114_is_equal_in_time_to.connect, e2_3)
 
     def test_ternary_relationship(self):
         # Test to check ternary functioning
@@ -157,37 +157,6 @@ class TestNeoModel(unittest.TestCase):
         self.assertTrue('PC0_CRM_Property' in returned_pc14.labels())
         # When serialization is complete test how to remove it through verification
 
-    def test_serialization(self):
-        # Test to check if serialization works
-        # Creation of nodes
-        e21 = E21_Person(name="Roberto").save()
-        e55_3 = E55_Type(name="Bibliotecario").save()
-        # Creation of relationship
-        e21.hasType.connect(e55_3)
-        # Obtaining Json
-        json_a = e21.encodeJSON()
-        json_b = e55_3.encodeJSON()
-        json_c = json.dumps(e21.hasType.relationship(e55_3).encodeJSON())
-        # Merge of json documents
-        json_d = json_merge(json_merge(json_a, json_b), json_c)
-        # Printing the json for easy verification
-        print(json_a)
-        print(json_b)
-        print(json_c)
-        print(json_d)
-        # Verification
-        self.assertEqual(json_a, "{\"E21_Person\": {\"name\": \"Roberto\", \"uid\": \"" + e21.uid + "\"}}")
-        self.assertEqual(json_b, "{\"E55_Type\": {\"name\": \"Bibliotecario\", \"uid\": \"" + e55_3.uid + "\"}}")
-        # self.assertEqual(json_c, "{\"P2_has_type\": {""\"start_node\": {\"E21_Person\": {\"name\": \"Roberto\", "
-        #                          "\"uid\": \"" + e21.uid + "\"}}, \"end_node\": {\"E55_Type\": {\"name\": "
-        #                                                    "\"Bibliotecario\", \"uid\": \"" + e55_3.uid + "\"" +
-        #                  "}}}}")
-        # self.assertEqual(json_d, "{\"E21_Person\": {\"name\": \"Roberto\", \"id\": " + str(e21.id) +
-        #                 "},\"E55_Type\": {\"name\": \"Bibliotecario\", \"id\": " + str(e55_3.id) + "},\"P2_has_type\": "
-        #                                                                                        "{\"id\": " + str(
-        #    e55_3.hasType.relationship(e21).id) + ", \"start_node\": {\"name\": \"Roberto\", \"id\": " + str(
-        #    e21.id) + "}, \"end_node\": {\"name\": \"Bibliotecario\", \"id\": " + str(e55_3.id) + "}}}")
-
     def test_case(self):
         # Define nodes to use
         monumento = E70_Thing(name="Monumentooo").save()
@@ -197,12 +166,12 @@ class TestNeoModel(unittest.TestCase):
         uma_entidade_qualquer = E1_CRM_Entity(name="E1 de Teste").save()
 
         # Definition of Relations
-        torre_eiffel.occupies.connect(paris)
-        torre_eiffel.has_title.connect(titulo_torre_eiffel)
-        monumento.showsFeaturesOf.connect(torre_eiffel)
+        torre_eiffel.P156_occupies.connect(paris)
+        torre_eiffel.P102_has_title.connect(titulo_torre_eiffel)
+        monumento.P130_shows_features_of.connect(torre_eiffel)
 
         # Exception Raised on Illegal Relation
-        self.assertRaises(ValueError, torre_eiffel.showsFeaturesOf.connect, uma_entidade_qualquer)
+        self.assertRaises(ValueError, torre_eiffel.P130_shows_features_of.connect, uma_entidade_qualquer)
 
     def test_full_test(self):
         # Testing full test searching and indexing
@@ -228,7 +197,8 @@ class TestNeoModel(unittest.TestCase):
         self.assertEqual(test_results3[0].labels, {'E70_Thing', 'E77_Persistent_Item', 'E1_CRM_Entity'})
         self.assertEqual(test_results3[0].properties, {'name': 'Monument', 'uid': monument.uid})
 
-        # Test of JSON Serialization of search result / Due to the nature of Set inside of labels is always different so labels must be found to be tested
+        # Test of JSON Serialization of search result / Due to the nature of Set inside of labels is always different
+        # so labels must be found to be tested
         json_results = test_results[0].encodeJSON()
         start = json_results.find("[") + len("[")
         end = json_results.find("]")
@@ -242,7 +212,7 @@ class TestNeoModel(unittest.TestCase):
         are2 = ARE2_Formal_Title(name="Document Title").save()
         string = String(name="string name", stringValue="Registo_de_Baptismo").save()
 
-        e22.has_title.connect(are2)
+        e22.P102_has_title.connect(are2)
         are2.has_value.connect(string)
 
         startDatetime = datetime.datetime(1812, 2, 12)
@@ -254,8 +224,72 @@ class TestNeoModel(unittest.TestCase):
         node = Interval(name="1812-02-12", startDateValue=startDatetime, endDateValue=endDatetime).save()
 
         e41.has_value.connect(node)
-        e52.is_identified_by.connect(e41)
-        e12.has_time_span.connect(e52)
-        e22.was_produced_by.connect(e12)
+        e52.P1_is_identified_by.connect(e41)
+        e12.P4_has_time_span.connect(e52)
+        e22.P108_has_produced_by.connect(e12)
 
+    def test_serialization(self):
+        startDatetime = datetime.datetime(1812, 2, 12)
+        endDatetime = datetime.datetime(1812, 2, 13)
 
+        e52 = E52_Time_Span(name="Production time", date=datetime.datetime(1812, 2, 12)).save()
+        e41 = E41_Appellation(name="1812-02-12").save()
+
+        node = Interval(name="1812-02-12", startDateValue=startDatetime, endDateValue=endDatetime).save()
+        node2 = Interval(name="1812-02-12", startDateValue=startDatetime, endDateValue=endDatetime).save()
+
+        e41.has_value.connect(node)
+        e41.has_value.connect(node2)
+        e52.P1_is_identified_by.connect(e41)
+
+        json1 = {
+            "E41_Appellation": [
+                {"has_value": "DataObject"},
+
+            ]}
+        result1 = json.dumps(nested_json(e41, json1))
+        print(result1)
+
+        # example 2
+        json2 = {"E52_Time_Span": [
+            {"P1_is_identified_by": {
+                "E41_Appellation": [
+                    {"has_value": "DataObject"},
+
+                ]}}
+        ]}
+        result2 = json.dumps(nested_json(e52, json2))
+        print(result2)
+
+        # example 3
+        thing = E70_Thing(name="thing").save()
+        title = E35_Title(name="title").save()
+        place = E53_Place(name="place").save()
+        humanThing = E24_Physical_Human_Made_Thing(name="humam Eiffel").save()
+
+        humanThing.P156_occupies.connect(place)
+        humanThing.P102_has_title.connect(title)
+        thing.P130_shows_features_of.connect(humanThing)
+
+        json3 = {"E70_Thing": [
+            {"P130_shows_features_of": {
+                "E24_Physical_Human_Made_Thing": [
+                    {"P102_has_title": "E35_Title"},
+                    {"P156_occupies": "E53_Place"},
+
+                ]}}
+        ]}
+        result3 = json.dumps(nested_json(thing, json3))
+        print(result3)
+
+    def test_schema(self):
+        e52 = E52_Time_Span(name="Production time", date=datetime.datetime(1812, 2, 12)).save()
+        e41 = E41_Appellation(name="1812-02-12").save()
+        print(e1.getSchema())
+        print(e55.getSchema())
+        print(e7.getSchema())
+        print(e18.getSchema())
+        print(e24.getSchema())
+        print(e83.getSchema())
+        print(e52.getSchema())
+        print(e41.getSchema())

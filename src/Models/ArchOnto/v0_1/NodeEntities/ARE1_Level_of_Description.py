@@ -19,3 +19,6 @@ class ARE1_Level_of_Description(E55_Type):
     lower_level = RelationshipFrom(
         ".ARE1_Level_of_Description.ARE1_Level_of_Description", "ARP9_lower_level", model=ARP9_lower_level
     )
+    has_level_of_description = RelationshipFrom(
+        E22_Human_Made_Object, "ARP12_has_level_of_description", model=ARP12_has_level_of_description
+    )
