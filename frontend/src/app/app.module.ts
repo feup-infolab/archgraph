@@ -10,6 +10,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {ComboBoxComponent} from './combo-box/combo-box.component';
+import {MatButtonModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {ComboBoxComponent} from './combo-box/combo-box.component';
     CommonModule,
     Bootstrap4FrameworkModule,
     NoopAnimationsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatButtonModule
   ],
   providers: [MyServiceService],
   bootstrap: [ AppComponent ],

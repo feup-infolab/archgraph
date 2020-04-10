@@ -1,21 +1,40 @@
-<div style="margin: 35px;"><p>Search </p>
-  <input style="width: 300px" #search_box (keyup.enter)="searchDatabase(search_box.value)">
+<div style="margin-left: 35px;">
+  <p>Search</p>
 </div>
 
-<app-combo-box [list]="itemList"></app-combo-box>
+<div style="margin-left: 35px;padding: 3px; display: inline-block;">
+  <input style="width: 300px" #search_box (keyup.enter)="searchDatabase(search_box.value)">
+</div>
+<div  style="padding: 3px; display: inline-block;">
+  <app-combo-box [list]="itemList"></app-combo-box>
+</div>
+<div  style="padding: 3px; display: inline-block;">
+  <button type="button" (click)="searchDatabase(search_box.value)"> Search </button>
+</div>
+
+
 
 <div *ngIf="loadSearch" style="margin: 35px">
-  <tr *ngFor="let item of searchResultArray; let i = index">
-    <p>UID: {{item.uid}}</p>
-    <p> Name: {{item.name}}</p>
-    <p>Labels:</p>
-    <ul>
-      <li *ngFor="let label of item.labels">
-        {{ label }}
-      </li>
-    </ul>
-  </tr>
-
+  <table id="search" >
+    <thead>
+    <tr>
+      <th>UID</th>
+      <th>Name</th>
+      <th>Labels</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of searchResultArray; let i = index">
+      <td>{{ item.uid }}</td>
+      <td>{{ item.name }}</td>
+      <td><ul>
+        <li *ngFor="let label of item.labels">
+          {{ label }}
+        </li>
+      </ul></td>
+    </tr>
+    </tbody>
+  </table>
 </div>
 
 <div style="margin: 35px;"><p>Insert your UID </p>
