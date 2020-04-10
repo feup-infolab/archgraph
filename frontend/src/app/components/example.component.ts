@@ -5,6 +5,10 @@ import {Utils} from '../models/Utils';
 import {MyServiceService} from '../service/my-service.service';
 import {CidocSearch} from '../models/CidocSearch';
 import {ComboBoxComponent} from '../combo-box/combo-box.component';
+import {animate, query, stagger, style, transition, trigger} from '@angular/animations';
+
+
+
 
 @Component({
   selector: 'app-example',
@@ -18,7 +22,6 @@ export class ExampleComponent implements OnInit {
   }
 
   @ViewChild(ComboBoxComponent) comboBoxReference;
-
   searched = '';
   searchResult = {};
   searchResultArray: Array<CidocSearch> = new Array<CidocSearch>();
@@ -65,6 +68,7 @@ export class ExampleComponent implements OnInit {
     'E92_Spacetime_Volume', 'E93_Presence', 'E96_Purchase', 'E97_Monetary_Amount',
     'E98_Currency', 'E99_Product_Type'];
 
+  headers = ['name', 'uid', 'labels'];
   onEnter(uid: string) {
     this.uid = uid;
     // this.form.data = {};
