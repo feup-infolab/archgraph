@@ -6,7 +6,6 @@ class E57_MaterialSchema(E55_TypeSchema):
 
 
 class E57_Material(E55_Type):
-
     def __init__(self, schema=None, *args, **kwargs):
         if schema is None:
             schema = E57_MaterialSchema()

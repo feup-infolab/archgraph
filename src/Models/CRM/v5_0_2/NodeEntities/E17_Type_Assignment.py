@@ -1,6 +1,7 @@
 from neomodel import RelationshipTo
-from src.Models.CRM.v5_0_2.NodeEntities.E13_Attribute_Assignment import \
-    E13_Attribute_Assignment
+from src.Models.CRM.v5_0_2.NodeEntities.E13_Attribute_Assignment import (
+    E13_Attribute_Assignment,
+)
 from src.Models.CRM.v5_0_2.NodeProperties.P41_classified import P41_classified
 from src.Models.CRM.v5_0_2.NodeProperties.P42_assigned import P42_assigned
 

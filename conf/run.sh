@@ -7,7 +7,24 @@ if [[ ! -f "README.md" ]] || [[ ! -f "requirements.txt" ]]; then
 fi
 
 #activate environment
-source "./conf/activate.sh"
+ROOT_DIR=$(pwd)
+echo "Running at $ROOT_DIR"
+
+# maybe remove this later when conda is working correctly in path
+# (this was not working on linux without re-exporting the folder to path?)
+
+source "$HOME/.bash_profile" && source "$HOME/.profile" && source "$HOME/.bashrc"
+export PATH="$HOME/miniconda/bin":$PATH
+
+if [[ ! -f "README.md" ]] || [[ ! -f "requirements.txt" ]]; then
+    echo "This script should be run at the root of the project!"
+    exit 1
+fi
+
+eval "$(conda shell.bash hook)"
+conda activate archgraph
+echo "Python interpreter is at: ---> $(which python) <---"
+echo "Pip is at: ---> $(which pip) <---"
 
 # activate nvm and use node v13
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
@@ -16,7 +33,8 @@ nvm use v13
 
 echo "Starting archgraph server at $ROOT_DIR"
 cd $ROOT_DIR
-python "$ROOT_DIR/src/Routes/routes.py" &
+
+python "$ROOT_DIR/src/Routes/routes.py" --neo4j="$NEO4J_ADDRESS" &
 SERVER_PID=$!
 cd "$ROOT_DIR/frontend" || ( echo "folder missing " && exit 1 )
 yarn ng serve &

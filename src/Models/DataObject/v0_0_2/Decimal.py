@@ -1,5 +1,4 @@
-from src.Models.DataObject.v0_0_2.DataObject import (DataObject,
-                                                     DataObjectSchema)
+from src.Models.DataObject.v0_0_2.DataObject import DataObject, DataObjectSchema
 
 
 class DecimalSchema(DataObjectSchema):

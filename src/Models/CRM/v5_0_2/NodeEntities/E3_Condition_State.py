@@ -1,12 +1,17 @@
 from marshmallow import Schema, fields
 from neomodel import One, RelationshipTo
-from src.Models.CRM.v5_0_2.NodeEntities.E2_Temporal_Entity import \
-    E2_Temporal_Entity, E2_Temporal_EntitySchema
+from src.Models.CRM.v5_0_2.NodeEntities.E2_Temporal_Entity import (
+    E2_Temporal_Entity,
+    E2_Temporal_EntitySchema,
+)
 from src.Models.CRM.v5_0_2.NodeProperties.P5_consists_of import P5_consists_of
 
 
 class E3_Condition_StateSchema(E2_Temporal_EntitySchema):
-    P5_consists_of = fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E3_Condition_State.E3_Condition_StateSchema", exclude=("P5_consists_of",))
+    P5_consists_of = fields.Nested(
+        "src.Models.CRM.v5_0_2.NodeEntities.E3_Condition_State.E3_Condition_StateSchema",
+        exclude=("P5_consists_of",),
+    )
 
 
 class E3_Condition_State(E2_Temporal_Entity):

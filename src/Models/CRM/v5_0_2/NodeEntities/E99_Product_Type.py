@@ -1,9 +1,11 @@
 from neomodel import RelationshipTo
 from src.Models.CRM.v5_0_2.NodeEntities.E55_Type import E55_Type
-from src.Models.CRM.v5_0_2.NodeProperties.P187_has_production_plan import \
-    P187_has_production_plan
-from src.Models.CRM.v5_0_2.NodeProperties.P188_requires_production_tool import \
-    P188_requires_production_tool
+from src.Models.CRM.v5_0_2.NodeProperties.P187_has_production_plan import (
+    P187_has_production_plan,
+)
+from src.Models.CRM.v5_0_2.NodeProperties.P188_requires_production_tool import (
+    P188_requires_production_tool,
+)
 
 
 class E99_Product_Type(E55_Type):

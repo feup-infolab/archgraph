@@ -1,5 +1,8 @@
 #!/bin/bash
 
+ROOT_DIR=$(pwd)
+echo "Running at $ROOT_DIR"
+
 ENV_NAME="archgraph"
 
 if [ "$(uname)" == "Darwin" ]; then
@@ -10,7 +13,7 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     rm -rf Miniconda3-latest-Linux-x86_64.sh
     wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
     chmod +x Miniconda3-latest-Linux-x86_64.sh
-    ./Miniconda3-latest-Linux-x86_64.sh -b -p "$HOME/miniconda"
+    ./Miniconda3-latest-Linux-x86_64.sh -b -p "$HOME/miniconda" || ./Miniconda3-latest-Linux-x86_64.sh -u -b -p "$HOME/miniconda"
     rm -rf Miniconda3-latest-Linux-x86_64.sh
 fi
 
@@ -22,21 +25,26 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     source "$HOME/.profile"
 fi
 
+# make conda binary available in path
 export PATH="$HOME/miniconda/bin":$PATH
+
+# init conda
+source "$HOME/miniconda3/etc/profile.d/conda.sh"
+conda init bash
+conda deactivate
 conda remove --quiet --name "$ENV_NAME" -y --all
 conda create --quiet -y -n "$ENV_NAME" python=3.7 anaconda
 conda activate "$ENV_NAME"
-conda init bash
 
-# install pip
-curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-python get-pip.py
-# upgrade pip to latest version
-pip install --quiet --upgrade pip
-# (optional) install any requirements of your current app in this venv
-pip install -r requirements.txt
 # Get location of python interpreter
 echo "Python interpreter is at: ---> $(which python) <---"
+
+# install pip
+conda install pip -y --all
+echo "Pip at: ---> $(which pip) <---"
+# (optional) install any requirements of your current app in this venv
+pip install -r "$ROOT_DIR/requirements.txt"
+
 
 # install nodejs and yarn
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh | bash
@@ -49,7 +57,6 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 nvm install v13
 nvm use v13
 npm install -g yarn
-
 
 # run yarn install
 cd frontend

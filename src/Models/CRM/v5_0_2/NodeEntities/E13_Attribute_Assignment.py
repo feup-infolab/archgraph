@@ -1,10 +1,12 @@
 from neomodel import RelationshipTo
 from src.Models.CRM.v5_0_2.NodeEntities.E7_Activity import E7_Activity
-from src.Models.CRM.v5_0_2.NodeProperties.P140_assigned_attribute_to import \
-    P140_assigned_attribute_to
+from src.Models.CRM.v5_0_2.NodeProperties.P140_assigned_attribute_to import (
+    P140_assigned_attribute_to,
+)
 from src.Models.CRM.v5_0_2.NodeProperties.P141_assigned import P141_assigned
-from src.Models.CRM.v5_0_2.NodeProperties.P177_assigned_property_type import \
-    P177_assigned_property_type
+from src.Models.CRM.v5_0_2.NodeProperties.P177_assigned_property_type import (
+    P177_assigned_property_type,
+)
 
 
 class E13_Attribute_Assignment(E7_Activity):

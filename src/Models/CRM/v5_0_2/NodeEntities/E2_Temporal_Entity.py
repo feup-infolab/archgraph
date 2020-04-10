@@ -1,62 +1,98 @@
 from marshmallow import Schema, fields
 from neomodel import One, RelationshipTo
-from src.Models.CRM.v5_0_2.NodeEntities.E1_CRM_Entity import E1_CRM_Entity, E1_CRM_EntitySchema
-from src.Models.CRM.v5_0_2.NodeProperties.P4_has_time_span import \
-    P4_has_time_span
-from src.Models.CRM.v5_0_2.NodeProperties.P114_is_equal_in_time_to import \
-    P114_is_equal_in_time_to
+from src.Models.CRM.v5_0_2.NodeEntities.E1_CRM_Entity import (
+    E1_CRM_Entity,
+    E1_CRM_EntitySchema,
+)
+from src.Models.CRM.v5_0_2.NodeProperties.P4_has_time_span import P4_has_time_span
+from src.Models.CRM.v5_0_2.NodeProperties.P114_is_equal_in_time_to import (
+    P114_is_equal_in_time_to,
+)
 from src.Models.CRM.v5_0_2.NodeProperties.P115_finished import P115_finishes
 from src.Models.CRM.v5_0_2.NodeProperties.P116_starts import P116_starts
-from src.Models.CRM.v5_0_2.NodeProperties.P117_occurs_during import \
-    P117_occurs_during
-from src.Models.CRM.v5_0_2.NodeProperties.P118_overlaps_in_time_with import \
-    P118_overlaps_in_time_with
-from src.Models.CRM.v5_0_2.NodeProperties.P119_meets_in_time_with import \
-    P119_meets_in_time_with
-from src.Models.CRM.v5_0_2.NodeProperties.P120_occurs_before import \
-    P120_occurs_before
-from src.Models.CRM.v5_0_2.NodeProperties.P173_starts_before_or_with_the_end_of import \
-    P173_starts_before_or_with_the_end_of
-from src.Models.CRM.v5_0_2.NodeProperties.P174_starts_before_the_end_of import \
-    P174_starts_before_the_end_of
-from src.Models.CRM.v5_0_2.NodeProperties.P175_starts_before_or_with_the_start_of import \
-    P175_starts_before_or_with_the_start_of
-from src.Models.CRM.v5_0_2.NodeProperties.P176_starts_before_the_start_of import \
-    P176_starts_before_the_start_of
-from src.Models.CRM.v5_0_2.NodeProperties.P182_ends_before_or_with_the_start_of import \
-    P182_ends_before_or_with_the_start_of
-from src.Models.CRM.v5_0_2.NodeProperties.P183_ends_before_the_start_of import \
-    P183_ends_before_the_start_of
-from src.Models.CRM.v5_0_2.NodeProperties.P184_ends_before_or_with_the_end_of import \
-    P184_ends_before_or_with_the_end_of
-from src.Models.CRM.v5_0_2.NodeProperties.P185_ends_before_the_end_of import \
-    P185_ends_before_the_end_of
+from src.Models.CRM.v5_0_2.NodeProperties.P117_occurs_during import P117_occurs_during
+from src.Models.CRM.v5_0_2.NodeProperties.P118_overlaps_in_time_with import (
+    P118_overlaps_in_time_with,
+)
+from src.Models.CRM.v5_0_2.NodeProperties.P119_meets_in_time_with import (
+    P119_meets_in_time_with,
+)
+from src.Models.CRM.v5_0_2.NodeProperties.P120_occurs_before import P120_occurs_before
+from src.Models.CRM.v5_0_2.NodeProperties.P173_starts_before_or_with_the_end_of import (
+    P173_starts_before_or_with_the_end_of,
+)
+from src.Models.CRM.v5_0_2.NodeProperties.P174_starts_before_the_end_of import (
+    P174_starts_before_the_end_of,
+)
+from src.Models.CRM.v5_0_2.NodeProperties.P175_starts_before_or_with_the_start_of import (
+    P175_starts_before_or_with_the_start_of,
+)
+from src.Models.CRM.v5_0_2.NodeProperties.P176_starts_before_the_start_of import (
+    P176_starts_before_the_start_of,
+)
+from src.Models.CRM.v5_0_2.NodeProperties.P182_ends_before_or_with_the_start_of import (
+    P182_ends_before_or_with_the_start_of,
+)
+from src.Models.CRM.v5_0_2.NodeProperties.P183_ends_before_the_start_of import (
+    P183_ends_before_the_start_of,
+)
+from src.Models.CRM.v5_0_2.NodeProperties.P184_ends_before_or_with_the_end_of import (
+    P184_ends_before_or_with_the_end_of,
+)
+from src.Models.CRM.v5_0_2.NodeProperties.P185_ends_before_the_end_of import (
+    P185_ends_before_the_end_of,
+)
 
 
 class E2_Temporal_EntitySchema(E1_CRM_EntitySchema):
-    P4_consists_of = fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E52_Time_Span.E52_Time_SpanSchema")
-    P114_is_equal_in_time_to = fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E52_Time_Span.E52_Time_SpanSchema")
-    P115_finishes = fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E52_Time_Span.E52_Time_SpanSchema")
-    P116_starts = fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E52_Time_Span.E52_Time_SpanSchema")
-    P117_occurs_during = fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E52_Time_Span.E52_Time_SpanSchema")
-    P118_overlaps_in_time_with = fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E52_Time_Span.E52_Time_SpanSchema")
-    P119_meets_in_time_with = fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E52_Time_Span.E52_Time_SpanSchema")
-    P120_occurs_before = fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E52_Time_Span.E52_Time_SpanSchema")
+    P4_consists_of = fields.Nested(
+        "src.Models.CRM.v5_0_2.NodeEntities.E52_Time_Span.E52_Time_SpanSchema"
+    )
+    P114_is_equal_in_time_to = fields.Nested(
+        "src.Models.CRM.v5_0_2.NodeEntities.E52_Time_Span.E52_Time_SpanSchema"
+    )
+    P115_finishes = fields.Nested(
+        "src.Models.CRM.v5_0_2.NodeEntities.E52_Time_Span.E52_Time_SpanSchema"
+    )
+    P116_starts = fields.Nested(
+        "src.Models.CRM.v5_0_2.NodeEntities.E52_Time_Span.E52_Time_SpanSchema"
+    )
+    P117_occurs_during = fields.Nested(
+        "src.Models.CRM.v5_0_2.NodeEntities.E52_Time_Span.E52_Time_SpanSchema"
+    )
+    P118_overlaps_in_time_with = fields.Nested(
+        "src.Models.CRM.v5_0_2.NodeEntities.E52_Time_Span.E52_Time_SpanSchema"
+    )
+    P119_meets_in_time_with = fields.Nested(
+        "src.Models.CRM.v5_0_2.NodeEntities.E52_Time_Span.E52_Time_SpanSchema"
+    )
+    P120_occurs_before = fields.Nested(
+        "src.Models.CRM.v5_0_2.NodeEntities.E52_Time_Span.E52_Time_SpanSchema"
+    )
     P173_starts_before_or_with_the_end_of = fields.Nested(
-        "src.Models.CRM.v5_0_2.NodeEntities.E52_Time_Span.E52_Time_SpanSchema")
+        "src.Models.CRM.v5_0_2.NodeEntities.E52_Time_Span.E52_Time_SpanSchema"
+    )
     P174_starts_before_the_end_of = fields.Nested(
-        "src.Models.CRM.v5_0_2.NodeEntities.E52_Time_Span.E52_Time_SpanSchema")
-    P175_starts_before_or_with_the_start_of = fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E52_Time_Span"
-                                                            ".E52_Time_SpanSchema")
+        "src.Models.CRM.v5_0_2.NodeEntities.E52_Time_Span.E52_Time_SpanSchema"
+    )
+    P175_starts_before_or_with_the_start_of = fields.Nested(
+        "src.Models.CRM.v5_0_2.NodeEntities.E52_Time_Span" ".E52_Time_SpanSchema"
+    )
     P176_starts_before_the_start_of = fields.Nested(
-        "src.Models.CRM.v5_0_2.NodeEntities.E52_Time_Span.E52_Time_SpanSchema")
+        "src.Models.CRM.v5_0_2.NodeEntities.E52_Time_Span.E52_Time_SpanSchema"
+    )
     P182_ends_before_or_with_the_start_of = fields.Nested(
-        "src.Models.CRM.v5_0_2.NodeEntities.E52_Time_Span.E52_Time_SpanSchema")
+        "src.Models.CRM.v5_0_2.NodeEntities.E52_Time_Span.E52_Time_SpanSchema"
+    )
     P183_ends_before_the_start_of = fields.Nested(
-        "src.Models.CRM.v5_0_2.NodeEntities.E52_Time_Span.E52_Time_SpanSchema")
-    P184_ends_before_or_with_the_end_of = fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E52_Time_Span"
-                                                        ".E52_Time_SpanSchema")
-    P185_ends_before_the_end_of = fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E52_Time_Span.E52_Time_SpanSchema")
+        "src.Models.CRM.v5_0_2.NodeEntities.E52_Time_Span.E52_Time_SpanSchema"
+    )
+    P184_ends_before_or_with_the_end_of = fields.Nested(
+        "src.Models.CRM.v5_0_2.NodeEntities.E52_Time_Span" ".E52_Time_SpanSchema"
+    )
+    P185_ends_before_the_end_of = fields.Nested(
+        "src.Models.CRM.v5_0_2.NodeEntities.E52_Time_Span.E52_Time_SpanSchema"
+    )
 
 
 class E2_Temporal_Entity(E1_CRM_Entity):

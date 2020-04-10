@@ -4,10 +4,10 @@ from src.Models.DataObject.v0_0_2.Approximate import Approximate
 from src.Models.DataObject.v0_0_2.PersonName import PersonName
 from src.Models.DataObject.v0_0_2.RegexString import RegexString
 from src.Models.DataObject.v0_0_2.String import String
-from neomodel import (config)
+from neomodel import config
 from src.GCF.utils.db import clean_database
 
-config.DATABASE_URL = 'bolt://neo4j:password@localhost:7687'
+config.DATABASE_URL = "bolt://neo4j:password@localhost:7687"
 clean_database()
 
 
@@ -29,7 +29,11 @@ class TestString(unittest.TestCase):
     def test_create_update_regexString_Node(self):
         name = "RegexStringName"
         string_value = "stringValue"
-        node = RegexString(hasRegex="regex/[a-zA-Z]([a-zA-Z 0-9])*$", name=name, stringValue=string_value).save()
+        node = RegexString(
+            hasRegex="regex/[a-zA-Z]([a-zA-Z 0-9])*$",
+            name=name,
+            stringValue=string_value,
+        ).save()
         print(node.getSchema())
         print(node.encodeJSON())
         returned_node = RegexString.nodes.get(name=name)
@@ -55,14 +59,18 @@ class TestString(unittest.TestCase):
         self.assertAlmostEqual(node.id, returned_node.id)
         returned_date = change_returned_approximate.approximateDateValue
         new_date = new_approximate_date_value
-        self.assertEqual(returned_date.strftime("%Y-%m-%d"), new_date.strftime("%Y-%m-%d"))
+        self.assertEqual(
+            returned_date.strftime("%Y-%m-%d"), new_date.strftime("%Y-%m-%d")
+        )
         self.assertAlmostEqual(node.id, change_returned_approximate.id)
 
     def test_create_update_person_Node(self):
         name = "personName"
         person_name = "person_node_name"
         string_value = "stringValue"
-        node = PersonName(person_name=person_name, name=name, stringValue=string_value).save()
+        node = PersonName(
+            person_name=person_name, name=name, stringValue=string_value
+        ).save()
         print(node.getSchema())
         print(node.encodeJSON())
         returned_node = PersonName.nodes.get(name=name)

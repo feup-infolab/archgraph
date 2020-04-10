@@ -1,10 +1,13 @@
-FROM ubuntu:18.04
+FROM ubuntu:18.04 as dependencies_ready
+ENV SOURCE_BRANCH "master"
+ENV NEO4J_ADDRESS "bolt://neo4j:password@neo4j:7687"
 
-RUN apt-get update
-RUN apt-get install -y git
-RUN apt-get install -y curl
-RUN apt-get install -y wget
-RUN git clone https://github.com/feup-infolab/archgraph.git /archgraph
+RUN apt-get update -qq
+RUN apt-get install -y -qq git curl wget python2.7 python-pip
+
+FROM dependencies_ready
+COPY . /archgraph
 WORKDIR /archgraph
+RUN git checkout "$SOURCE_BRANCH"
 RUN ./conf/install.sh
-CMD [ "./run.sh" ]
+ENTRYPOINT [ "./conf/run.sh" ]

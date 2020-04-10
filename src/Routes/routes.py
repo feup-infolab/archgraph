@@ -1,6 +1,14 @@
 from pathlib import Path
 import os, sys
+import argparse
 
+parser = argparse.ArgumentParser(description="Starts the archgraph server.")
+
+parser.add_argument("--neo4j", nargs="?", help="Address of the neo4j server")
+
+parser.add_argument("--mongodb", nargs="?", help="Address of the mongodb server")
+
+args = parser.parse_args()
 
 # returns the project root path (assumes that the script is started from src/Routes/routes.py)
 def get_project_root() -> Path:
@@ -13,8 +21,7 @@ def get_project_root() -> Path:
 print("Archgraph running at " + get_project_root().as_posix())
 sys.path.append(get_project_root().as_posix())
 
-from flask import (Flask, Response, jsonify, make_response, request,
-                   send_from_directory)
+from flask import Flask, Response, jsonify, make_response, request, send_from_directory
 
 from flask_cors import CORS, cross_origin
 from neomodel import config
@@ -22,7 +29,10 @@ from neomodel import config
 from src.Utils.JsonEncoder import search_cidoc, search_specific_cidoc
 from src.Utils.Utils import get_node_by_uid, delete_node_by_uid
 
-config.DATABASE_URL = "bolt://neo4j:password@localhost:7687"
+if args.neo4j:
+    config.DATABASE_URL = args.neo4j
+else:
+    config.DATABASE_URL = "bolt://neo4j:password@localhost:7687"
 
 app = Flask(__name__)
 

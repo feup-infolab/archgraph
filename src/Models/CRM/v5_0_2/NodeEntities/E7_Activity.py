@@ -8,10 +8,8 @@ from ..NodeProperties.P17_was_motivated_by import P17_was_motivated_by
 from ..NodeProperties.P19_was_intended_use_of import P19_was_intended_use_of
 from ..NodeProperties.P20_had_specific_purpose import P20_had_specific_purpose
 from ..NodeProperties.P21_had_general_purpose import P21_had_general_purpose
-from ..NodeProperties.P32_used_general_technique import \
-    P32_used_general_technique
-from ..NodeProperties.P33_used_specific_technique import \
-    P33_used_specific_technique
+from ..NodeProperties.P32_used_general_technique import P32_used_general_technique
+from ..NodeProperties.P33_used_specific_technique import P33_used_specific_technique
 from ..NodeProperties.P125_used_object_of_type import P125_used_object_of_type
 from ..NodeProperties.P134_continued import P134_continued
 

@@ -1,32 +1,43 @@
 from marshmallow import Schema, fields
-from neomodel import (One, RelationshipTo, StringProperty,
-                      StructuredNode, UniqueIdProperty, db)
+from neomodel import (
+    One,
+    RelationshipTo,
+    StringProperty,
+    StructuredNode,
+    UniqueIdProperty,
+    db,
+)
 from src.GCF.decorators.OntologyClass import ontology_class
 from src.Models.CRM.v5_0_2.NodeProperties.has_value import has_value
-from src.Models.CRM.v5_0_2.NodeProperties.P1_is_identified_by import \
-    P1_is_identified_by
+from src.Models.CRM.v5_0_2.NodeProperties.P1_is_identified_by import P1_is_identified_by
 from src.Models.CRM.v5_0_2.NodeProperties.P2_has_type import P2_has_type
-from src.Models.CRM.v5_0_2.NodeProperties.P48_has_preferred_identifier import \
-    P48_has_preferred_identifier
-from src.Models.CRM.v5_0_2.NodeProperties.P137_exemplifies import \
-    P137_exemplifies
-from src.Models.CRM.v5_0_2.NodeProperties.P138_represents import \
-    P138_represents
-from src.Models.CRM.v5_0_2.NodeProperties.P139_has_alternative_form import \
-    P139_has_alternative_form
+from src.Models.CRM.v5_0_2.NodeProperties.P48_has_preferred_identifier import (
+    P48_has_preferred_identifier,
+)
+from src.Models.CRM.v5_0_2.NodeProperties.P137_exemplifies import P137_exemplifies
+from src.Models.CRM.v5_0_2.NodeProperties.P138_represents import P138_represents
+from src.Models.CRM.v5_0_2.NodeProperties.P139_has_alternative_form import (
+    P139_has_alternative_form,
+)
 from src.Models.DataObject.v0_0_2.SuperClass import SuperClass
 
 
 class E1_CRM_EntitySchema(Schema):
     uid = fields.String()
     name = fields.String(required=True)
-    P138_represents = fields.List(fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E36_Visual_Item.E36_Visual_ItemSchema"))
-    #P2_has_type = fields.List(fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E55_Type.E55_TypeSchema"))
-    #P137_exemplifies = fields.List(fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E55_Type.E55_TypeSchema"))
+    P138_represents = fields.List(
+        fields.Nested(
+            "src.Models.CRM.v5_0_2.NodeEntities.E36_Visual_Item.E36_Visual_ItemSchema"
+        )
+    )
+    # P2_has_type = fields.List(fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E55_Type.E55_TypeSchema"))
+    # P137_exemplifies = fields.List(fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E55_Type.E55_TypeSchema"))
     # P48_has_preferred_identifier = fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E42_Identifier.E42_IdentifierSchema")
     # P139_has_alternative_form = fields.List(fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E41_Appellation.E41_AppellationSchema"))
     # P1_is_identified_by = fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E55_Type.E55_TypeSchema")
-    has_value = fields.List(fields.Nested("src.Models.DataObject.v0_0_2.DataObject.DataObjectSchema"))
+    has_value = fields.List(
+        fields.Nested("src.Models.DataObject.v0_0_2.DataObject.DataObjectSchema")
+    )
 
 
 @ontology_class

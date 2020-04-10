@@ -1,11 +1,12 @@
 from neomodel import RelationshipTo
-from src.Models.CRM.v5_0_2.NodeEntities.E63_Beggining_of_Existence import \
-    E63_Beggining_of_Existence
+from src.Models.CRM.v5_0_2.NodeEntities.E63_Beggining_of_Existence import (
+    E63_Beggining_of_Existence,
+)
 from src.Models.CRM.v5_0_2.NodeProperties.P96_by_mother import P96_by_mother
-from src.Models.CRM.v5_0_2.NodeProperties.P97_from_father import \
-    P97_from_father
-from src.Models.CRM.v5_0_2.NodeProperties.P98_brought_into_life import \
-    P98_brought_into_life
+from src.Models.CRM.v5_0_2.NodeProperties.P97_from_father import P97_from_father
+from src.Models.CRM.v5_0_2.NodeProperties.P98_brought_into_life import (
+    P98_brought_into_life,
+)
 
 
 class E67_Birth(E63_Beggining_of_Existence):
