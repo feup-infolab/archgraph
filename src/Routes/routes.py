@@ -10,8 +10,9 @@ parser.add_argument("--mongodb", nargs="?", help="Address of the mongodb server"
 
 args = parser.parse_args()
 
+
 # returns the project root path (assumes that the script is started from src/Routes/routes.py)
-def get_project_root() -> Path:
+def get_project_root():
     """Returns project root folder."""
     return Path(__file__).parent.parent.parent
 
