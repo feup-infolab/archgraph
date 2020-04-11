@@ -15,13 +15,13 @@ echo "Running at $ROOT_DIR"
 
 if [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     # init conda cli
-    source "$HOME/miniconda3/etc/profile.d/conda.sh"
-elif  [ "$(uname)" == "Darwin" ]; then
-    conda init zsh
-    source "$HOME/.zshrc"
-    conda init bash
-    source "$HOME/.bash_profile"
+    source "$HOME/miniconda/etc/profile.d/conda.sh"
 fi
+
+conda init zsh &> /dev/null
+source "$HOME/.zshrc" &> /dev/null
+conda init bash &> /dev/null
+source "$HOME/.bash_profile" &> /dev/null
 
 if [[ ! -f "README.md" ]] || [[ ! -f "requirements.txt" ]]; then
     echo "This script should be run at the root of the project!"
@@ -43,7 +43,13 @@ cd "$ROOT_DIR"
 python "$ROOT_DIR/src/Routes/routes.py" --neo4j="$NEO4J_CONNECTION_STRING" &
 SERVER_PID=$!
 cd "$ROOT_DIR/frontend" || ( echo "folder missing " && exit 1 )
-npm start &
+if [[ "$RUN_IN_PRODUCTION" != "" ]] ; then
+    echo "Running archgraph frontend in production mode."
+    npm run start-prod &
+else
+    npm start &
+fi
+
 CLIENT_PID=$!
 cd "$ROOT_DIR" || ( echo "folder missing " && exit 1 )
 

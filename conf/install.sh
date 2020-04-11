@@ -14,7 +14,7 @@ if  [ "$(uname)" == "Darwin" ]; then
         echo "Miniconda already installed, continuing..."
     fi
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ] ; then
-    if ! [ $(conda > /dev/null) > /dev/null ]; then
+    if ! type conda &> /dev/null ; then
         # Do something under GNU/Linux platform
         rm -rf Miniconda3-latest-Linux-x86_64.sh
         wget --quiet https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh

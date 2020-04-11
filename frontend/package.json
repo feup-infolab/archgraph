@@ -30,7 +30,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --poll=2000",
-    "start-prod": "ng serve --prod",
+    "start-prod": "ng serve --prod --host 0.0.0.0",
     "build": "ng build --prod --base-href ./",
     "buildlib": "ng build angular7-json-schema-form --prod",
     "postbuildlib": "cp  README.md LICENSE  dist/angular7-json-schema-form/",

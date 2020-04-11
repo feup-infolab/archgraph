@@ -36,6 +36,7 @@ services:
         context: .
       environment:
         - "NEO4J_CONNECTION_STRING=bolt://neo4j:password@neo4j:7687"
+        - "RUN_IN_PRODUCTION=1"
       ports:
         - published: 4200
           target: 4200
