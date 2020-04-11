@@ -12,7 +12,7 @@ Torre do Tombo has used the ISAD (G) and ISAAR (CPF) standards for the descripti
 This project aims, among other objectives, to develop a prototype for an open source knowledge graph platform, adopting the data model for archival description used by DGLAB. This project is also dedicated to finding ways to ensure the effective migration of content stored according to ICA standards to an ontology-based model, requiring the use of cross-walks and the inference of new relationships with semi-automated methods. (Almeida and Runa 2018)
 For the development of the knowledge graph, the model CIDOC-CRM, a model created in the context of museums and which is already stable, has been taken into account.
 
-## ArchOnto 
+## ArchOnto
 
 New ontology for the domain of the files that imports the model CIDOC-CRM, in the version 6.2, and the Ontologia Data Object, explained further below. In this ontology there is also the creation of classes and properties to be able to represent the fields of ISAD (G) that CIDOC-CRM is not capable, since this was created for the museum area and does not include everything that is necessary to represent the domain of the files.
 Most Data Properties were created, since there were almost no such properties in CIDOC-CRM and it was necessary to create properties that would allow the description of fields with a larger amount of text, such as the case of Administrative History and Custodial and the scope and Content.
@@ -27,7 +27,7 @@ Both Ontologies, EXT and Data Object, are not the final versions, but are both i
 
 ## Docker-based deployment
 
-```
+```bash
 git clone https://github.com/feup-infolab/archgraph.git
 cd archgraph
 docker-compose up
@@ -40,7 +40,7 @@ docker-compose up
 
 Open The command line and enter:
 
-```
+```bash
 git clone https://github.com/feup-infolab/archgraph.git
 cd archgraph
 ./conf/install.sh
@@ -50,7 +50,7 @@ The setup should automatically detect your operating system (Mac or Linux) and r
 
 ### Running the program
 
-```
+```bash
 ./conf/run.sh
 ```
 
