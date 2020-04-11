@@ -3,6 +3,7 @@
 [![Build Status](https://travis-ci.com/feup-infolab/archgraph.svg?branch=master)](https://travis-ci.com/feup-infolab/archgraph)
 [![Coverage Status](https://coveralls.io/repos/github/feup-infolab/archgraph/badge.svg?branch=master)](https://coveralls.io/github/feup-infolab/archgraph?branch=master)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/f3070810a6f946de93967d5a78acbfc0)](https://app.codacy.com/manual/feup-infolab/archgraph?utm_source=github.com&utm_medium=referral&utm_content=feup-infolab/archgraph&utm_campaign=Badge_Grade_Dashboard)
+[![](https://images.microbadger.com/badges/image/feupinfolab/archgraph.svg)](https://microbadger.com/images/feupinfolab/archgraph "Get your own image badge on microbadger.com")
 
 ## Project context
 
@@ -23,6 +24,16 @@ In order to have a data validation and a cleaner implementation code, an ontolog
 
 
 Both Ontologies, EXT and Data Object, are not the final versions, but are both in active development.
+
+## Docker Installation
+
+```
+git clone https://github.com/feup-infolab/archgraph.git
+cd archgraph
+docker-compose up
+# Access http://localhost:4200 on your browser
+```
+
 
 ## Mac and Linux (Ubuntu) Installation
 
