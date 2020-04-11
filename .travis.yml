@@ -21,7 +21,8 @@ install:
   - ./conf/install.sh
 
 script:
-  - source ./conf/activate.sh
+  - source "$HOME/miniconda/etc/profile.d/conda.sh"
+  - conda activate archgraph
   - coverage run -m unittest discover test
   - coverage report -m
   - coveralls
