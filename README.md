@@ -25,7 +25,7 @@ In order to have a data validation and a cleaner implementation code, an ontolog
 
 Both Ontologies, EXT and Data Object, are not the final versions, but are both in active development.
 
-## Docker Installation
+## Docker-based deployment
 
 ```
 git clone https://github.com/feup-infolab/archgraph.git
@@ -34,8 +34,9 @@ docker-compose up
 # Access http://localhost:4200 on your browser
 ```
 
+## Native installation for developers 
 
-## Mac and Linux (Ubuntu) Installation
+### Mac and Linux (Ubuntu) Installation
 
 Open The command line and enter:
 
@@ -47,7 +48,7 @@ cd archgraph
 
 The setup should automatically detect your operating system (Mac or Linux) and run the appropriate commands.
 
-## Running the program
+### Running the program
 
 ```
 ./conf/run.sh
