@@ -13,7 +13,7 @@ from src.Models.CRM.v5_0_2.NodeProperties.P75_possesses import P75_possesses
 
 class E39_ActorSchema(E77_Persistent_ItemSchema):
     P74_has_current_or_former_residence = fields.List(
-        fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E53_Place.E53_PlaceSchema")
+        fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E53_Place.E53_PlaceSchema", exclude=("P157_is_at_rest_relative_to",))
     )
     P75_possesses = fields.List(
         fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E30_Right.E30_RightSchema")

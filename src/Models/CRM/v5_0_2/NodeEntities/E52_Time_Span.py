@@ -10,8 +10,8 @@ from src.Models.CRM.v5_0_2.NodeProperties.P191_had_duration import P191_had_dura
 
 class E52_Time_SpanSchema(E1_CRM_EntitySchema):
     date = fields.Date(required=True)
-    # P86_falls_within = fields.List(fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E52_Time_Span.E52_Time_SpanSchema"))
-    # P191_had_duration = fields.List(fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E54_Dimension.E54_DimensionSchema"))
+    P86_falls_within = fields.List(fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E52_Time_Span.E52_Time_SpanSchema"))
+    P191_had_duration = fields.List(fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E54_Dimension.E54_DimensionSchema"))
 
 
 class E52_Time_Span(E1_CRM_Entity):

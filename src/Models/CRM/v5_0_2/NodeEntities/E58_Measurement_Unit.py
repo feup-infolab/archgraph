@@ -1,9 +1,7 @@
-from marshmallow import Schema
-
-from src.Models.CRM.v5_0_2.NodeEntities.E55_Type import E55_Type
+from src.Models.CRM.v5_0_2.NodeEntities.E55_Type import E55_Type, E55_TypeSchema
 
 
-class E58_Measurement_UnitSchema(Schema):
+class E58_Measurement_UnitSchema(E55_TypeSchema):
     pass
 
 

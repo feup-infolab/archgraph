@@ -1,5 +1,15 @@
 import datetime
 import unittest
+
+from src.Models.CRM.v5_0_2.NodeEntities.E10_Transfer_of_Custody import E10_Transfer_of_Custody
+from src.Models.CRM.v5_0_2.NodeEntities.E11_Modification import E11_Modification
+from src.Models.CRM.v5_0_2.NodeEntities.E13_Attribute_Assignment import E13_Attribute_Assignment
+from src.Models.CRM.v5_0_2.NodeEntities.E3_Condition_State import E3_Condition_StateSchema, E3_Condition_State
+from src.Models.CRM.v5_0_2.NodeEntities.E4_Period import E4_Period
+from src.Models.CRM.v5_0_2.NodeEntities.E5_Event import E5_Event
+from src.Models.CRM.v5_0_2.NodeEntities.E6_Destruction import E6_Destruction
+from src.Models.CRM.v5_0_2.NodeEntities.E8_Acquisition import E8_Acquisition
+from src.Models.CRM.v5_0_2.NodeEntities.E9_Move import E9_Move
 from src.Utils.Utils import nested_json
 
 from src.Models.ArchOnto.v0_1.NodeEntities.ARE2_Formal_Title import ARE2_Formal_Title
@@ -308,8 +318,9 @@ class TestNeoModel(unittest.TestCase):
         e41.has_value.connect(node2)
         e52.P1_is_identified_by.connect(e41)
 
-        json1 = {"E41_Appellation": [{"has_value": "DataObject"},]}
+        json1 = {"E41_Appellation": [{"has_value": "DataObject"}]}
         result1 = json.dumps(nested_json(e41, json1))
+        #e41.get_schema_with_template(json1)
         print(result1)
 
         # example 2
@@ -351,39 +362,41 @@ class TestNeoModel(unittest.TestCase):
         print(result3)
 
     def test_schema(self):
+        e2 = E2_Temporal_Entity(name="E2").save()
+        e3 = E3_Condition_State(name="E3").save()
+        e4 = E4_Period(name="E4").save()
+        e5 = E5_Event(name="E5").save()
+        e6 = E6_Destruction(name="E6").save()
+        e8 = E8_Acquisition(name="E8").save()
+        e9 = E9_Move(name="E9").save()
+        e10 = E10_Transfer_of_Custody(name="E10").save()
+        e11 = E11_Modification(name="E11").save()
+        e12 = E12_Production(name="E12").save()
+        e13 = E13_Attribute_Assignment(name="E13").save()
+
+        e41 = E41_Appellation(name="1812-02-12").save()
         e52 = E52_Time_Span(
             name="Production time", date=datetime.datetime(1812, 2, 12)
         ).save()
-        e41 = E41_Appellation(name="1812-02-12").save()
         print(e1.getSchema())
-        schema1 = {'$schema': 'http://json-schema.org/draft-07/schema#',
-                   'definitions': {
-                                'E36_Visual_ItemSchema': {'type': 'object', 'properties': {
-                                    'P65_shows_visual_item': {'title': 'P65_shows_visual_item', 'type': 'array', 'items': {'type': 'object',
-                                                                                                                           '$ref': '#/definitions/E24_Physical_Human_Made_ThingSchema'}}},
-                                                          'additionalProperties': False},
-                                'E24_Physical_Human_Made_ThingSchema': {'type': 'object', 'properties': {
-                                    'P108_has_produced_by': {'title': 'P108_has_produced_by', 'type': 'array',
-                                                             'items': {'type': 'object', '$ref': '#/definitions/E1_CRM_EntitySchema'}},
-                                    'P62_depicts': {'title': 'P62_depicts', 'type': 'array',
-                                                    'items': {'type': 'object', '$ref': '#/definitions/E1_CRM_EntitySchema'}}},
-                                                                        'additionalProperties': False},
-                                'E1_CRM_EntitySchema': {'required': ['name'], 'type': 'object', 'properties': {
-                                    'P138_represents': {'title': 'P138_represents', 'type': 'array',
-                                                        'items': {'type': 'object', '$ref': '#/definitions/E36_Visual_ItemSchema'}},
-                                    'has_value': {'title': 'has_value', 'type': 'array',
-                                                  'items': {'type': 'object', '$ref': '#/definitions/DataObjectSchema'}},
-                                    'name': {'title': 'name', 'type': 'string'}, 'uid': {'title': 'uid', 'type': 'string'}},
-                                                        'additionalProperties': False},
-                                'DataObjectSchema': {'required': ['name'], 'type': 'object',
-                                                     'properties': {'name': {'title': 'name', 'type': 'string'},
-                                                                    'uid': {'title': 'uid', 'type': 'string'}},
-                                                     'additionalProperties': False}}, '$ref': '#/definitions/E1_CRM_EntitySchema'}
-
-        print(e55.getSchema())
+        print(e2.getSchema())
+        print(e3.getSchema())
+        print(e4.getSchema())
+        print(e5.getSchema())
+        print(e6.getSchema())
         print(e7.getSchema())
+        print(e8.getSchema())
+        print(e9.getSchema())
+        print(e10.getSchema())
+        print(e11.getSchema())
+        print(e12.getSchema())
+        print(e13.getSchema())
+
         print(e18.getSchema())
         print(e24.getSchema())
-        print(e83.getSchema())
-        print(e52.getSchema())
         print(e41.getSchema())
+        print(e52.getSchema())
+        print(e55.getSchema())
+        print(e83.getSchema())
+
+

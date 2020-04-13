@@ -28,21 +28,16 @@ from src.Models.CRM.v5_0_2.NodeProperties.P156_occupies import P156_occupies
 
 
 class E18_Physical_ThingSchema(Schema):
-    P44_has_condition = fields.List(
-        fields.Nested(
-            "src.Models.CRM.v5_0_2.NodeEntities.E3_Condition_State"
-            ".E3_Condition_StateSchema"
+    P44_has_condition = fields.List(fields.Nested(
+            "src.Models.CRM.v5_0_2.NodeEntities.E3_Condition_State.E3_Condition_StateSchema"
         )
     )
-    P45_consists_of = fields.List(
-        fields.Nested(
+    P45_consists_of = fields.List(fields.Nested(
             "src.Models.CRM.v5_0_2.NodeEntities.E57_Material.E57_MaterialSchema"
         )
     )
-    P46_is_composed_of = fields.List(
-        fields.Nested(
-            "src.Models.CRM.v5_0_2.NodeEntities.E18_Physical_Thing"
-            ".E18_Physical_ThingSchema"
+    P46_is_composed_of = fields.List(fields.Nested(
+            "src.Models.CRM.v5_0_2.NodeEntities.E18_Physical_Thing.E18_Physical_ThingSchema"
         )
     )
     P49_has_former_or_current_keeper = fields.List(
@@ -57,20 +52,21 @@ class E18_Physical_ThingSchema(Schema):
     P52_has_current_owner = fields.List(
         fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E39_Actor.E39_ActorSchema")
     )
-    P53_has_former_or_current_location = fields.List(
-        fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E53_Place.E53_PlaceSchema")
-    )
-    P59_has_section = fields.List(
-        fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E53_Place.E53_PlaceSchema")
-    )
-    P128_carries = fields.List(
-        fields.Nested(
-            "src.Models.CRM.v5_0_2.NodeEntities.E90_Symbolic_Object.E90_Symbolic_ObjectSchema"
-        )
-    )
-    P156_occupies = fields.List(
-        fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E53_Place.E53_PlaceSchema")
-    )
+    # P53_has_former_or_current_location = fields.List(
+    #     fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E53_Place.E53_PlaceSchema", exclude=("P157_is_at_rest_relative_to",),)
+    # )
+    # P59_has_section = fields.List(
+    #     fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E53_Place.E53_PlaceSchema", exclude=("P157_is_at_rest_relative_to",),)
+    # )
+    # P128_carries = fields.List(
+    #     fields.Nested(
+    #         "src.Models.CRM.v5_0_2.NodeEntities.E90_Symbolic_Object.E90_Symbolic_ObjectSchema"
+    #     )
+    # )
+    # P156_occupies = fields.List(
+    #     fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E53_Place.E53_PlaceSchema", exclude=("P157_is_at_rest_relative_to",),)
+    # )
+    pass
 
 
 class E18_Physical_Thing(E72_Legal_Object):
