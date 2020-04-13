@@ -1,9 +1,11 @@
 from neomodel import RelationshipTo
-from src.Models.CRM.v5_0_2.NodeEntities.E13_Attribute_Assignment import \
-    E13_Attribute_Assignment
+from src.Models.CRM.v5_0_2.NodeEntities.E13_Attribute_Assignment import (
+    E13_Attribute_Assignment,
+)
 from src.Models.CRM.v5_0_2.NodeProperties.P39_measured import P39_measured
-from src.Models.CRM.v5_0_2.NodeProperties.P40_observed_dimension import \
-    P40_observed_dimension
+from src.Models.CRM.v5_0_2.NodeProperties.P40_observed_dimension import (
+    P40_observed_dimension,
+)
 
 
 class E16_Measurement(E13_Attribute_Assignment):

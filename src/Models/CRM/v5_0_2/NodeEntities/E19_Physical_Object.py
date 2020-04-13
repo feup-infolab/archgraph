@@ -1,12 +1,12 @@
 from neomodel import RelationshipTo
-from src.Models.CRM.v5_0_2.NodeEntities.E18_Physical_Thing import \
-    E18_Physical_Thing
-from src.Models.CRM.v5_0_2.NodeProperties.P54_has_current_permanent_location import \
-    P54_has_current_permanent_location
-from src.Models.CRM.v5_0_2.NodeProperties.P55_has_current_location import \
-    P55_has_current_location
-from src.Models.CRM.v5_0_2.NodeProperties.P56_bears_feature import \
-    P56_bears_feature
+from src.Models.CRM.v5_0_2.NodeEntities.E18_Physical_Thing import E18_Physical_Thing
+from src.Models.CRM.v5_0_2.NodeProperties.P54_has_current_permanent_location import (
+    P54_has_current_permanent_location,
+)
+from src.Models.CRM.v5_0_2.NodeProperties.P55_has_current_location import (
+    P55_has_current_location,
+)
+from src.Models.CRM.v5_0_2.NodeProperties.P56_bears_feature import P56_bears_feature
 
 
 class E19_Physical_Object(E18_Physical_Thing):

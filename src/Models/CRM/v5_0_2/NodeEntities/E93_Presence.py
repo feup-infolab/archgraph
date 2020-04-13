@@ -1,9 +1,9 @@
 from neomodel import RelationshipTo
-from src.Models.CRM.v5_0_2.NodeEntities.E92_Spacetime_Volume import \
-    E92_Spacetime_Volume
+from src.Models.CRM.v5_0_2.NodeEntities.E92_Spacetime_Volume import E92_Spacetime_Volume
 from src.Models.CRM.v5_0_2.NodeProperties.P164_during import P164_during
-from src.Models.CRM.v5_0_2.NodeProperties.P166_was_a_presence_of import \
-    P166_was_a_presence_of
+from src.Models.CRM.v5_0_2.NodeProperties.P166_was_a_presence_of import (
+    P166_was_a_presence_of,
+)
 from src.Models.CRM.v5_0_2.NodeProperties.P167_at import P167_at
 
 

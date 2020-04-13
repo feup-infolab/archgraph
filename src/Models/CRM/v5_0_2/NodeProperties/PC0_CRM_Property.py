@@ -1,5 +1,10 @@
-from neomodel import (One, RelationshipTo, StringProperty, StructuredNode,
-                      UniqueIdProperty)
+from neomodel import (
+    One,
+    RelationshipTo,
+    StringProperty,
+    StructuredNode,
+    UniqueIdProperty,
+)
 
 from .P01_has_domain import P01_has_domain
 from .P02_has_range import P02_has_range

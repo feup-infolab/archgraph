@@ -1,19 +1,30 @@
 #!/bin/bash
 
-ENV_NAME="archgraph"
+ROOT_DIR=$(pwd)
+echo "Running at $ROOT_DIR"
 
-if [ "$(uname)" == "Darwin" ]; then
+ARCHGRAPH_ENV="archgraph"
+PYTHON27_ENV="nodegyp-python27"
+
+if  [ "$(uname)" == "Darwin" ]; then
     # Do something under Mac OS X platform
-    brew cask install miniconda || brew cask upgrade miniconda
-elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-    # Do something under GNU/Linux platform
-    rm -rf Miniconda3-latest-Linux-x86_64.sh
-    wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
-    chmod +x Miniconda3-latest-Linux-x86_64.sh
-    ./Miniconda3-latest-Linux-x86_64.sh -b -p "$HOME/miniconda"
-    rm -rf Miniconda3-latest-Linux-x86_64.sh
+    if [ $(conda > /dev/null) > /dev/null ]; then
+        brew cask install miniconda || brew cask upgrade miniconda
+    else
+        echo "Miniconda already installed, continuing..."
+    fi
+elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ] ; then
+    if ! type conda &> /dev/null ; then
+        # Do something under GNU/Linux platform
+        rm -rf Miniconda3-latest-Linux-x86_64.sh
+        wget --quiet https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
+        chmod +x Miniconda3-latest-Linux-x86_64.sh
+        ./Miniconda3-latest-Linux-x86_64.sh -b -p "$HOME/miniconda" || ./Miniconda3-latest-Linux-x86_64.sh -u -b -p "$HOME/miniconda"
+        rm -rf Miniconda3-latest-Linux-x86_64.sh
+    else
+        echo "Miniconda already installed, continuing..."
+    fi
 fi
-
 
 # run conda
 if [ "$(uname)" == "Darwin" ]; then
@@ -22,21 +33,34 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     source "$HOME/.profile"
 fi
 
-export PATH="$HOME/miniconda/bin":$PATH
-conda remove --quiet --name "$ENV_NAME" -y --all
-conda create --quiet -y -n "$ENV_NAME" python=3.7 anaconda
-conda activate "$ENV_NAME"
+if  [ "$(uname)" == "Darwin" ]; then
+    # make conda binary available in path
+    export PATH="$HOME/miniconda/bin":$PATH
+elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+    # init conda cli
+    source "$HOME/miniconda/etc/profile.d/conda.sh"
+fi
+
 conda init bash
+conda create --quiet -y -n "$PYTHON27_ENV" python=2.7 anaconda
+conda activate "$PYTHON27_ENV"
+PYTHON27_PATH=$(which python)
+echo "Node-Gyp interpreter Python (2.7) is at: ---> ${PYTHON27_PATH} <---"
+
+# create archgraph env
+conda create --quiet -y -n "$ARCHGRAPH_ENV" python=3.7 anaconda
+conda activate "$ARCHGRAPH_ENV"
+
+# Get location of python interpreter
+PYTHON_PATH=$(which python)
+echo "Python interpreter is at: ---> ${PYTHON_PATH} <---"
 
 # install pip
-curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-python get-pip.py
-# upgrade pip to latest version
-pip install --quiet --upgrade pip
+conda install pip -y --all --quiet
+echo "Pip at: ---> $(which pip) <---"
 # (optional) install any requirements of your current app in this venv
-pip install -r requirements.txt
-# Get location of python interpreter
-echo "Python interpreter is at: ---> $(which python) <---"
+pip install -r "$ROOT_DIR/requirements.txt"
+
 
 # install nodejs and yarn
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh | bash
@@ -45,49 +69,12 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh | bash
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
-#install nodejs and yarn
-nvm install v13
-nvm use v13
-npm install -g yarn
+#install nodejs
+nvm install v10
+nvm use v10
 
-
-# run yarn install
+# install frontend stuff
 cd frontend
-yarn install
-cd -
-
-exit 0
-
-
-# old script below, before using conda
-
-## clean dependencies
-#rm -rf backend/env/bin
-#rm -rf backend/env/include
-#rm -rf backend/env/lib
-#rm -rf backend/env/man
-#
-#brew install openssl
-#brew link openssl --force
-#brew uninstall python
-#brew install python3 --with-brewed-openssl || brew upgrade python3 --with-brewed-openssl
-#
-##brew install python3 || brew upgrade python3
-#
-#brew link python
-#
-#brew install zlib
-#export LDFLAGS="-L/usr/local/opt/zlib/lib"
-#export CPPFLAGS="-I/usr/local/opt/zlib/include"
-#
-## install venv
-#python -m venv env ||
-## activate venv
-#source env/bin/activate
-## install pip
-#curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-#python get-pip.py
-## upgrade pip to latest version
-#pip install --upgrade pip
-## (optional) install any requirements of your current app in this venv
-#pip install -r requirements.txt
+npm install -g npm@latest
+npm config set python "$PYTHON27_PATH"
+npm install

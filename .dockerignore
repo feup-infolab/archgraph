@@ -1,5 +1,5 @@
-# Ignore everything
-**
+# Ignore everything (uncomment next line to enable)
+# **
 
 # # Allow files and directories
 # !/file.txt
@@ -11,3 +11,6 @@
 # **/*.log
 # **/.DS_Store
 # **/Thumbs.db
+
+volumes/
+**/node_modules

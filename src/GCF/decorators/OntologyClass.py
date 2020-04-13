@@ -30,6 +30,6 @@ def ontology_class(cls):
     #
     #     return json.dumps(___class, default=my_converter)
 
-    #setattr(cls, "encodeJSON", encodeJSON)
+    # setattr(cls, "encodeJSON", encodeJSON)
 
     return cls
