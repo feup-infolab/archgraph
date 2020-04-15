@@ -16,15 +16,15 @@ class E24_Physical_Human_Made_ThingSchema(Schema):
     P62_depicts = fields.List(
         fields.Nested(
             "src.Models.CRM.v5_0_2.NodeEntities.E1_CRM_Entity.E1_CRM_EntitySchema",
-            exclude=("P138_represents",),
+            exclude=("P138_represents",)
         )
     )
-    P108_has_produced_by = fields.List(
-        fields.Nested(
-            "src.Models.CRM.v5_0_2.NodeEntities.E1_CRM_Entity.E1_CRM_EntitySchema",
-            exclude=("P138_represents",),
-        )
-    )
+    # P108_has_produced_by = fields.List(
+    #     fields.Nested(
+    #         "src.Models.CRM.v5_0_2.NodeEntities.E12_Production.E12_ProductionSchema",
+    #         exclude=("P138_represents",)
+    #     )
+    # )
 
 
 class E24_Physical_Human_Made_Thing(E18_Physical_Thing, E71_Human_Made_Thing):

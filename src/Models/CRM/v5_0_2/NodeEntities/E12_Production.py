@@ -8,7 +8,7 @@ from src.Models.CRM.v5_0_2.NodeProperties.P186_produced_thing_of_product_type im
 
 class E12_ProductionSchema(E11_ModificationSchema):
     produced_thing_of_product_type = fields.List(fields.Nested(
-        "src.Models.CRM.v5_0_2.NodeEntities.E57_Material.E57_MaterialSchema")
+        "src.Models.CRM.v5_0_2.NodeEntities.E99_Product_Type.E99_Product_TypeSchema")
     )
 
 

@@ -8,7 +8,7 @@ from src.Models.CRM.v5_0_2.NodeProperties.P179_had_sales_prices import (
 
 class E95_PurchaseSchema(E8_AcquisitionSchema):
     had_sales_price = fields.List(fields.Nested(
-        "src.Models.CRM.v5_0_2.NodeEntities.E98_Currency.E98_CurrencySchema")
+        "src.Models.CRM.v5_0_2.NodeEntities.E97_Monetary_Amount.E97_Monetary_AmountSchema")
     )
 
 

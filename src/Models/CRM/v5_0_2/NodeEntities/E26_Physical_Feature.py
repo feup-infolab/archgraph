@@ -1,4 +1,4 @@
-from src.Models.CRM.v5_0_2.NodeEntities.E18_Physical_Thing import E18_Physical_Thing, E18_Physical_ThingSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E18_Physical_Thing import E18_Physical_ThingSchema, E18_Physical_Thing
 
 
 class E26_Physical_FeatureSchema(E18_Physical_ThingSchema):

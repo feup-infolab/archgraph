@@ -14,6 +14,7 @@ class E52_Time_SpanSchema(E1_CRM_EntitySchema):
     P191_had_duration = fields.List(fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E54_Dimension.E54_DimensionSchema"))
 
 
+# todo alterar data
 class E52_Time_Span(E1_CRM_Entity):
     date = DateTimeFormatProperty(format="%Y-%m-%d", unique_index=True, required=True)
     P86_falls_within = RelationshipTo(

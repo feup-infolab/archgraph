@@ -9,7 +9,6 @@ class E6_DestructionSchema(E64_End_of_ExistenceSchema):
     destroyed = fields.List(fields.Nested(
         "src.Models.CRM.v5_0_2.NodeEntities.E18_Physical_Thing.E18_Physical_ThingSchema")
     )
-    pass
 
 
 class E6_Destruction(E64_End_of_Existence):

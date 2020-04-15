@@ -10,16 +10,17 @@ from src.Models.CRM.v5_0_2.NodeProperties.P55_has_current_location import (
 from src.Models.CRM.v5_0_2.NodeProperties.P56_bears_feature import P56_bears_feature
 
 
+#todo
 class E19_Physical_ObjectSchema(E18_Physical_ThingSchema):
     has_current_permanent_location = fields.List(fields.Nested(
-            "src.Models.CRM.v5_0_2.NodeEntities.E53_Place.E53_PlaceSchema",
-        ))
+            "src.Models.CRM.v5_0_2.NodeEntities.E53_Place.E53_PlaceSchema")
+    )
     has_current_location = fields.List(fields.Nested(
-            "src.Models.CRM.v5_0_2.NodeEntities.E53_Place.E53_PlaceSchema"
-        ))
+            "src.Models.CRM.v5_0_2.NodeEntities.E53_Place.E53_PlaceSchema")
+    )
     # bears_feature = fields.List(fields.Nested(
-    #         "src.Models.CRM.v5_0_2.NodeEntities.E26_Physical_Feature.E26_Physical_FeatureSchema"
-    #     ))
+    #         "src.Models.CRM.v5_0_2.NodeEntities.E26_Physical_Feature.E26_Physical_FeatureSchema")
+    # )
 
 
 class E19_Physical_Object(E18_Physical_Thing):
