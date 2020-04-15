@@ -1,30 +1,22 @@
 from marshmallow import Schema, fields
 from neomodel import RelationshipTo
-
-from src.Models.CRM.v5_0_2.NodeEntities.E1_CRM_Entity import E1_CRM_Entity
 from src.Models.CRM.v5_0_2.NodeEntities.E28_Conceptual_Object import (
     E28_Conceptual_Object,
-)
+    E28_Conceptual_ObjectSchema)
 from src.Models.CRM.v5_0_2.NodeProperties.P67_refers_to import P67_refers_to
 from src.Models.CRM.v5_0_2.NodeProperties.P129_is_about import P129_is_about
 from src.Models.CRM.v5_0_2.NodeProperties.P148_has_component import P148_has_component
 
 
-class E89_Propositional_ObjectSchema(Schema):
-    P106_is_composed_of = fields.List(
-        fields.Nested(
-            "src.Models.CRM.v5_0_2.NodeEntities.E89_Propositional_Object.E89_Propositional_ObjectSchema"
-        )
+class E89_Propositional_ObjectSchema(E28_Conceptual_ObjectSchema):
+    P106_is_composed_of = fields.List(fields.Nested(
+            "src.Models.CRM.v5_0_2.NodeEntities.E89_Propositional_Object.E89_Propositional_ObjectSchema")
     )
-    P67_refers_to = fields.List(
-        fields.Nested(
-            "src.Models.CRM.v5_0_2.NodeEntities.E1_CRM_Entity.E1_CRM_EntitySchema"
-        )
+    P67_refers_to = fields.List(fields.Nested(
+            "src.Models.CRM.v5_0_2.NodeEntities.E1_CRM_Entity.E1_CRM_EntitySchema")
     )
-    P129_is_about = fields.List(
-        fields.Nested(
-            "src.Models.CRM.v5_0_2.NodeEntities.E1_CRM_Entity.E1_CRM_EntitySchema"
-        )
+    P129_is_about = fields.List(fields.Nested(
+            "src.Models.CRM.v5_0_2.NodeEntities.E1_CRM_Entity.E1_CRM_EntitySchema")
     )
 
 

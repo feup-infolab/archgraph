@@ -46,7 +46,7 @@ from src.Models.CRM.v5_0_2.NodeEntities.E77_Persistent_Item import E77_Persisten
 
 # TODO nao apagar estes importes
 
-import src.Utils as self
+import src.Utils.Utils as self
 
 uri = "bolt://localhost:7687"
 driver = None
