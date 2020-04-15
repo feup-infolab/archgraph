@@ -1,9 +1,9 @@
 from src.Models.CRM.v5_0_2.NodeEntities.E55_Type import E55_Type, E55_TypeSchema
-from src.Models.CRM.v5_0_2.NodeEntities.E58_Measurement_Unit import E58_Measurement_Unit
+from src.Models.CRM.v5_0_2.NodeEntities.E58_Measurement_Unit import E58_Measurement_Unit, E58_Measurement_UnitSchema
 
 
-#todo
-class E98_CurrencySchema(E55_TypeSchema):
+#todo verificar
+class E98_CurrencySchema(E55_TypeSchema, E58_Measurement_UnitSchema):
     pass
 
 

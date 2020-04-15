@@ -382,6 +382,8 @@ class TestNeoModel(unittest.TestCase):
         e16 = E16_Measurement(name="E16").save()
         e17 = E17_Type_Assignment(name="E17").save()
 
+        e22 = E22_Human_Made_Object(name="E22").save()
+
         e41 = E41_Appellation(name="1812-02-12").save()
         e52 = E52_Time_Span(
             name="Production time", date=datetime.datetime(1812, 2, 12)
@@ -404,6 +406,8 @@ class TestNeoModel(unittest.TestCase):
         print(e16.getSchema())
         print(e17.getSchema())
         print(e18.getSchema())
+
+        print(e22.getSchema())
 
         print(e24.getSchema())
         print(e41.getSchema())

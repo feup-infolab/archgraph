@@ -3,12 +3,12 @@ from neomodel import RelationshipTo
 from src.Models.CRM.v5_0_2.NodeEntities.E89_Propositional_Object import (
     E89_Propositional_Object,
     E89_Propositional_ObjectSchema)
-from src.Models.CRM.v5_0_2.NodeEntities.E90_Symbolic_Object import E90_Symbolic_Object
+from src.Models.CRM.v5_0_2.NodeEntities.E90_Symbolic_Object import E90_Symbolic_Object, E90_Symbolic_ObjectSchema
 from src.Models.CRM.v5_0_2.NodeProperties.P165_incorporates import P165_incorporates
 
 
 #todo
-class E73_Information_ObjectSchema(Schema):
+class E73_Information_ObjectSchema(E90_Symbolic_ObjectSchema):
     incorporates = fields.List(fields.Nested(
         "src.Models.CRM.v5_0_2.NodeEntities.E73_Information_Object.E73_Information_ObjectSchema")
     )

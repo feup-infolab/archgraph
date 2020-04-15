@@ -22,3 +22,9 @@ class E71_Human_Made_Thing(E70_Thing):
     P102_has_title = RelationshipTo(
         ".E35_Title.E35_Title", "P102_has_title", model=P102_has_title,
     )
+
+    def __init__(self, schema=None, *args, **kwargs):
+        if schema is None:
+            schema = E71_Human_Made_ThingSchema()
+
+        super().__init__(schema, *args, **kwargs)
