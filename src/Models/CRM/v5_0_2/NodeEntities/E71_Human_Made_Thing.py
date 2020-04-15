@@ -8,6 +8,7 @@ from src.Models.CRM.v5_0_2.NodeProperties.P103_was_intended_for import (
 )
 
 
+#todo
 class E71_Human_Made_ThingSchema(E70_ThingSchema):
     pass
     # P103_was_intended_for = fields.List(fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E55_Type.E55_TypeSchema"))

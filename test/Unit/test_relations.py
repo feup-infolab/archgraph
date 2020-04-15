@@ -4,6 +4,10 @@ import unittest
 from src.Models.CRM.v5_0_2.NodeEntities.E10_Transfer_of_Custody import E10_Transfer_of_Custody
 from src.Models.CRM.v5_0_2.NodeEntities.E11_Modification import E11_Modification
 from src.Models.CRM.v5_0_2.NodeEntities.E13_Attribute_Assignment import E13_Attribute_Assignment
+from src.Models.CRM.v5_0_2.NodeEntities.E14_Condition_Assessment import E14_Condition_Assessment
+from src.Models.CRM.v5_0_2.NodeEntities.E15_Identifier_Assignment import E15_Identifier_Assignment
+from src.Models.CRM.v5_0_2.NodeEntities.E16_Measurement import E16_Measurement
+from src.Models.CRM.v5_0_2.NodeEntities.E17_Type_Assignment import E17_Type_Assignment
 from src.Models.CRM.v5_0_2.NodeEntities.E3_Condition_State import E3_Condition_StateSchema, E3_Condition_State
 from src.Models.CRM.v5_0_2.NodeEntities.E4_Period import E4_Period
 from src.Models.CRM.v5_0_2.NodeEntities.E5_Event import E5_Event
@@ -373,6 +377,10 @@ class TestNeoModel(unittest.TestCase):
         e11 = E11_Modification(name="E11").save()
         e12 = E12_Production(name="E12").save()
         e13 = E13_Attribute_Assignment(name="E13").save()
+        e14 = E14_Condition_Assessment(name="E14").save()
+        e15 = E15_Identifier_Assignment(name="E15").save()
+        e16 = E16_Measurement(name="E16").save()
+        e17 = E17_Type_Assignment(name="E17").save()
 
         e41 = E41_Appellation(name="1812-02-12").save()
         e52 = E52_Time_Span(
@@ -391,8 +399,12 @@ class TestNeoModel(unittest.TestCase):
         print(e11.getSchema())
         print(e12.getSchema())
         print(e13.getSchema())
-
+        print(e14.getSchema())
+        print(e15.getSchema())
+        print(e16.getSchema())
+        print(e17.getSchema())
         print(e18.getSchema())
+
         print(e24.getSchema())
         print(e41.getSchema())
         print(e52.getSchema())
