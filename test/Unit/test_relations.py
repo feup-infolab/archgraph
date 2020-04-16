@@ -8,6 +8,9 @@ from src.Models.CRM.v5_0_2.NodeEntities.E14_Condition_Assessment import E14_Cond
 from src.Models.CRM.v5_0_2.NodeEntities.E15_Identifier_Assignment import E15_Identifier_Assignment
 from src.Models.CRM.v5_0_2.NodeEntities.E16_Measurement import E16_Measurement
 from src.Models.CRM.v5_0_2.NodeEntities.E17_Type_Assignment import E17_Type_Assignment
+from src.Models.CRM.v5_0_2.NodeEntities.E19_Physical_Object import E19_Physical_Object
+from src.Models.CRM.v5_0_2.NodeEntities.E20_Biological_Object import E20_Biological_Object
+from src.Models.CRM.v5_0_2.NodeEntities.E21_Person import E21_Person
 from src.Models.CRM.v5_0_2.NodeEntities.E3_Condition_State import E3_Condition_StateSchema, E3_Condition_State
 from src.Models.CRM.v5_0_2.NodeEntities.E4_Period import E4_Period
 from src.Models.CRM.v5_0_2.NodeEntities.E5_Event import E5_Event
@@ -362,7 +365,14 @@ class TestNeoModel(unittest.TestCase):
                 }
             ]
         }
+        json31 = {
+            "E70_Thing": [
+                {"P130_shows_features_of":"E24_Physical_Human_Made_Thing"}
+            ]
+        }
         result3 = json.dumps(nested_json(thing, json3))
+        thing.get_schema_with_template(json31)
+
         print(result3)
 
     def test_schema(self):
@@ -381,13 +391,17 @@ class TestNeoModel(unittest.TestCase):
         e15 = E15_Identifier_Assignment(name="E15").save()
         e16 = E16_Measurement(name="E16").save()
         e17 = E17_Type_Assignment(name="E17").save()
-
+        e19 = E19_Physical_Object(name="E19").save()
+        e20 = E20_Biological_Object(name="E20").save()
+        e21 = E21_Person(name="E21").save()
         e22 = E22_Human_Made_Object(name="E22").save()
 
         e41 = E41_Appellation(name="1812-02-12").save()
         e52 = E52_Time_Span(
             name="Production time", date=datetime.datetime(1812, 2, 12)
         ).save()
+
+        e70 = E70_Thing(name="E70").save()
         print(e1.getSchema())
         print(e2.getSchema())
         print(e3.getSchema())
@@ -406,13 +420,27 @@ class TestNeoModel(unittest.TestCase):
         print(e16.getSchema())
         print(e17.getSchema())
         print(e18.getSchema())
-
+        print(e19.getSchema())
+        print(e20.getSchema())
+        print(e21.getSchema())
         print(e22.getSchema())
-
         print(e24.getSchema())
+
         print(e41.getSchema())
         print(e52.getSchema())
         print(e55.getSchema())
+
+        print(e70.getSchema())
         print(e83.getSchema())
+
+    def test_nested_schema(self):
+        e18.P46_is_composed_of.connect(e18)
+
+        json = {
+            "E18_Physical_Thing": [
+                {"P46_is_composed_of": "E18_Physical_Thing"}
+            ]
+        }
+        e18.get_schema_with_template(json)
 
 

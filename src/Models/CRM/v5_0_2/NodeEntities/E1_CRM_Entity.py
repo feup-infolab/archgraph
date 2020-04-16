@@ -29,15 +29,15 @@ class E1_CRM_EntitySchema(Schema):
             "src.Models.CRM.v5_0_2.NodeEntities.E36_Visual_Item.E36_Visual_ItemSchema")
     )
     P2_has_type = fields.List(fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E55_Type.E55_TypeSchema"))
-    # P137_exemplifies = fields.List(fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E55_Type.E55_TypeSchema"))
-    # P48_has_preferred_identifier = fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E42_Identifier"
-    #                                              ".E42_IdentifierSchema")
-    # P139_has_alternative_form = fields.List(fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E41_Appellation"
-    #                                                       ".E41_AppellationSchema"))
-    # P1_is_identified_by = fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E55_Type.E55_TypeSchema")
-    # has_value = fields.List(
-    #     fields.Nested("src.Models.DataObject.v0_0_2.DataObject.DataObjectSchema")
-    # )
+    P137_exemplifies = fields.List(fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E55_Type.E55_TypeSchema"))
+    P48_has_preferred_identifier = fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E42_Identifier"
+                                                 ".E42_IdentifierSchema")
+    P139_has_alternative_form = fields.List(fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E41_Appellation"
+                                                          ".E41_AppellationSchema"))
+    P1_is_identified_by = fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E55_Type.E55_TypeSchema")
+    has_value = fields.List(
+        fields.Nested("src.Models.DataObject.v0_0_2.DataObject.DataObjectSchema")
+    )
 
 
 @ontology_class

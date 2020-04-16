@@ -10,7 +10,6 @@ from src.Models.CRM.v5_0_2.NodeProperties.P151_was_formed_from import (
 )
 
 
-#todo verificar
 class E66_FormationSchema(E7_ActivitySchema, E63_Beggining_of_ExistenceSchema):
     has_formed = fields.List(fields.Nested(
         "src.Models.CRM.v5_0_2.NodeEntities.E74_Group.E74_GroupSchema")

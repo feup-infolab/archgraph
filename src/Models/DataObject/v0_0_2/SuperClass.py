@@ -36,90 +36,109 @@ class SuperClass:
             '$schema': jsonSchema["$schema"],
             'definitions': {}
         }
-        first_entity = list(jsonTemplate.keys())[0]
-        self.get_schema_with_template_aux(jsonSchema["definitions"][first_entity + "Schema"], jsonTemplate)
+        self.get_schema_with_template_aux(jsonSchema["definitions"], jsonTemplate, newJsonSchema)
+        print(newJsonSchema)
+        print(jsonSchema)
 
-        return
+        return newJsonSchema
 
-        {"E70_Thing": [
-            {
-                "P130_shows_features_of": {
-                    "E24_Physical_Human_Made_Thing": [
-                        {"P102_has_title": "E35_Title"},
-                        {"P156_occupies": "E53_Place"},
-                    ]
-                }
-            }
-        ]
-        }
-
-    def get_schema_with_template_aux(self, entitySchema, entity_json):
-        if isinstance(entity_json, str):
+    def get_schema_with_template_aux(self, definitions, json_template, newJsonSchema):
+        if isinstance(json_template, str):
             return
 
-        entity_name = list(entity_json.keys())[0]
+        entity_name = list(json_template.keys())[0]
+        current_entity = entity_name + "Schema"
         entity = {
-            entity_name: {
-                'properties': {}
+            current_entity: {
+                'type': definitions[current_entity]['type'],
+                'properties': {},
+                'additionalProperties': definitions[current_entity]['additionalProperties'],
             }
         }
-        properties = entitySchema['properties']
+        if hasattr(definitions[current_entity], 'required'):
+            entity[current_entity]['required'] = definitions[current_entity]['required']
 
-        for property_entity in entity_json[entity_name]:
+        newJsonSchema['definitions'][entity_name] = entity
 
+        properties = definitions[current_entity]['properties']
+
+        for property_entity in json_template[entity_name]:
             property_name = list(property_entity.keys())[0]
-            next_property = property_entity[property_name]
+            next_entity = property_entity[property_name]
+            if isinstance(next_entity, str):
+                new_property = definitions[current_entity]['properties'][property_name]
 
-            self.get_schema_with_template_aux(entitySchema, next_property)
+                changed_property = {
+                    'type': new_property['type'],
+                }
+                if new_property['type'] == 'object' and hasattr(new_property, '$ref'):
+                    changed_property['type'] = 'string'
 
-        return entity
+                if new_property['type'] == 'array' and new_property['items']['type'] == 'object':
+                    changed_property['items'] = {
+                        'type': 'string'}
+                    changed_property['title'] = new_property['title']
+
+                entity[current_entity]['properties'][property_name] = changed_property
+
+            else:
+                entity[entity_name]['properties'][property_name] = properties[property_name]
+
+            self.get_schema_with_template_aux(definitions, next_entity, newJsonSchema)
 
 
-# {'title': 'name', 'type': 'string'}
-{'$schema': 'http://json-schema.org/draft-07/schema#', 'definitions': {'E36_Visual_ItemSchema':
-                                                                           {'properties': {'P65_shows_visual_item':
-                                                                                               {
-                                                                                                   'title': 'P65_shows_visual_item',
-                                                                                                   'type': 'array',
-                                                                                                   'items':
-                                                                                                       {
-                                                                                                           'type': 'object',
-                                                                                                           '$ref': '#/definitions/E24_Physical_Human_Made_ThingSchema'}}},
-                                                                            'type': 'object',
-                                                                            'additionalProperties': False},
-                                                                       'E24_Physical_Human_Made_ThingSchema': {
-                                                                           'properties': {'P108_has_produced_by': {
-                                                                               'title': 'P108_has_produced_by',
-                                                                               'type': 'array',
-                                                                               'items': {'type': 'object',
-                                                                                         '$ref': '#/definitions/E1_CRM_EntitySchema'}},
-                                                                                          'P62_depicts': {
-                                                                                              'title': 'P62_depicts',
-                                                                                              'type': 'array',
-                                                                                              'items': {
-                                                                                                  'type': 'object',
-                                                                                                  '$ref': '#/definitions/E1_CRM_EntitySchema'}}},
-                                                                           'type': 'object',
-                                                                           'additionalProperties': False},
-                                                                       'E1_CRM_EntitySchema': {'properties': {
-                                                                           'P138_represents': {
-                                                                               'title': 'P138_represents',
-                                                                               'type': 'array',
-                                                                               'items': {'type': 'object',
-                                                                                         '$ref': '#/definitions/E36_Visual_ItemSchema'}},
-                                                                           'has_value': {'title': 'has_value',
-                                                                                         'type': 'array',
-                                                                                         'items': {'type': 'object',
-                                                                                                   '$ref': '#/definitions/DataObjectSchema'}},
-                                                                           'name': {'title': 'name', 'type': 'string'},
-                                                                           'uid': {'title': 'uid', 'type': 'string'}},
-                                                                                               'type': 'object',
-                                                                                               'required': ['name'],
-                                                                                               'additionalProperties': False},
-                                                                       'DataObjectSchema': {'properties': {
-                                                                           'name': {'title': 'name', 'type': 'string'},
-                                                                           'uid': {'title': 'uid', 'type': 'string'}},
-                                                                                            'type': 'object',
-                                                                                            'required': ['name'],
-                                                                                            'additionalProperties': False}},
- '$ref': '#/definitions/E1_CRM_EntitySchema'}
+var = {'P1_is_identified_by': {'type': 'object',
+                               '$ref': '#/definitions/E55_TypeSchema'},
+       'P2_has_type': {'title': 'P2_has_type',
+                       'type': 'array',
+                       'items': {
+                           'type': 'object',
+                           '$ref': '#/definitions/E55_TypeSchema'}}}
+
+var3 = {'P48_has_preferred_identifier': {
+    'type': 'object',
+    '$ref': '#/definitions/E42_IdentifierSchema'}, }
+
+var1 = {'DataObjectSchema': {'properties': {
+    'name': {'title': 'name',
+             'type': 'string'},
+    'uid': {'title': 'uid',
+            'type': 'string'}},
+    'type': 'object',
+    'required': ['name'],
+    'additionalProperties': False}}
+
+var2 = {
+    "E18_Physical_Thing": [
+        {"P46_is_composed_of": "E18_Physical_Thing"}
+    ]
+}
+
+var = {'$schema': 'http://json-schema.org/draft-07/schema#', 'definitions': {
+    'E24_Physical_Human_Made_ThingSchema': {
+        'type': 'object', 'properties': {
+            'P130_shows_features_of': {
+                'title': 'P130_shows_features_of',
+                'type': 'array',
+                'items': {'type': 'object',
+                          '$ref': '#/definitions/E70_ThingSchema'}},
+            'P62_depicts': {
+                'title': 'P62_depicts',
+                'type': 'array',
+                'items': {'type': 'object',
+                          '$ref': '#/definitions/E1_CRM_EntitySchema'}}},
+        'additionalProperties': False},
+    'E18_Physical_ThingSchema': {
+        'type': 'object', 'properties': {
+            'P46_is_composed_of': {
+                'title': 'P46_is_composed_of',
+                'type': 'array',
+                'items': {'type': 'object',
+                          '$ref': '#/definitions/E18_Physical_ThingSchema'}},
+            'P59_has_section': {
+                'title': 'P59_has_section',
+                'type': 'array',
+                'items': {'type': 'object',
+                          '$ref': '#/definitions/E53_PlaceSchema'}}},
+        'additionalProperties': False}},
+       '$ref': '#/definitions/E18_Physical_ThingSchema'}

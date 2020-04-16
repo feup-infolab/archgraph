@@ -7,7 +7,6 @@ from src.Models.CRM.v5_0_2.NodeEntities.E63_Beggining_of_Existence import (
 from src.Models.CRM.v5_0_2.NodeProperties.P94_has_created import P94_has_created
 
 
-#todo verificar
 class E65_CreationSchema(E7_ActivitySchema, E63_Beggining_of_ExistenceSchema):
     has_created = fields.List(fields.Nested(
         "src.Models.CRM.v5_0_2.NodeEntities.E28_Conceptual_Object.E28_Conceptual_ObjectSchema")

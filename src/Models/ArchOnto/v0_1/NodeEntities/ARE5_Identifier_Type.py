@@ -1,5 +1,14 @@
-from src.Models.CRM.v5_0_2.NodeEntities.E55_Type import E55_Type
+from src.Models.CRM.v5_0_2.NodeEntities.E55_Type import E55_Type, E55_TypeSchema
+
+
+class ARE5_Identifier_TypeSchema(E55_TypeSchema):
+    pass
 
 
 class ARE5_Identifier_Type(E55_Type):
-    pass
+
+    def __init__(self, schema=None, *args, **kwargs):
+        if schema is None:
+            schema = ARE5_Identifier_TypeSchema()
+
+        super().__init__(schema, *args, **kwargs)
