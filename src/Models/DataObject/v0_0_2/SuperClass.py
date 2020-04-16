@@ -34,57 +34,61 @@ class SuperClass:
         jsonSchema = self.getSchema()
         newJsonSchema = {
             '$schema': jsonSchema["$schema"],
-            'definitions': {}
+            'definitions': {},
+            '$ref': jsonSchema["$ref"],
         }
-        self.get_schema_with_template_aux(jsonSchema["definitions"], jsonTemplate, newJsonSchema)
+        self.__get_schema_with_template_aux(jsonSchema["definitions"], jsonTemplate, newJsonSchema)
         print(newJsonSchema)
         print(jsonSchema)
 
         return newJsonSchema
 
-    def get_schema_with_template_aux(self, definitions, json_template, newJsonSchema):
+    def __get_schema_with_template_aux(self, definitions, json_template, newJsonSchema):
         if isinstance(json_template, str):
-            return
-
-        entity_name = list(json_template.keys())[0]
+            entity_name = json_template
+        else:
+            entity_name = list(json_template.keys())[0]
         current_entity = entity_name + "Schema"
         entity = {
-            current_entity: {
                 'type': definitions[current_entity]['type'],
                 'properties': {},
                 'additionalProperties': definitions[current_entity]['additionalProperties'],
-            }
         }
-        if hasattr(definitions[current_entity], 'required'):
-            entity[current_entity]['required'] = definitions[current_entity]['required']
+        if 'required' in definitions[current_entity].keys():
+            entity['required'] = definitions[current_entity]['required']
 
-        newJsonSchema['definitions'][entity_name] = entity
+        newJsonSchema['definitions'][current_entity] = entity
 
         properties = definitions[current_entity]['properties']
+
+        self.__get_entity_properties_without_ref(definitions[current_entity], entity)
+
+        if isinstance(json_template, str):
+            return
 
         for property_entity in json_template[entity_name]:
             property_name = list(property_entity.keys())[0]
             next_entity = property_entity[property_name]
-            if isinstance(next_entity, str):
-                new_property = definitions[current_entity]['properties'][property_name]
 
-                changed_property = {
-                    'type': new_property['type'],
-                }
-                if new_property['type'] == 'object' and hasattr(new_property, '$ref'):
-                    changed_property['type'] = 'string'
+            entity['properties'][property_name] = properties[property_name]
 
-                if new_property['type'] == 'array' and new_property['items']['type'] == 'object':
-                    changed_property['items'] = {
-                        'type': 'string'}
-                    changed_property['title'] = new_property['title']
+            self.__get_schema_with_template_aux(definitions, next_entity, newJsonSchema)
 
-                entity[current_entity]['properties'][property_name] = changed_property
+    def __get_entity_properties_without_ref(self, current_entity, entity):
+        for property_name in current_entity['properties']:
+            property_entity = current_entity['properties'][property_name]
 
-            else:
-                entity[entity_name]['properties'][property_name] = properties[property_name]
+            if property_entity['type'] != 'object' and property_entity['type'] != 'array':
+                entity['properties'][property_name] = property_entity
 
-            self.get_schema_with_template_aux(definitions, next_entity, newJsonSchema)
+            #
+            # if property_entity['type'] == 'object' and '$ref' in property_entity.keys():
+            #     changed_property['type'] = 'string'
+            #
+            # if property_entity['type'] == 'array' and property_entity['items']['type'] == 'object':
+            #     changed_property['items'] = {
+            #         'type': 'string'}
+            #     changed_property['title'] = property_entity['title']
 
 
 var = {'P1_is_identified_by': {'type': 'object',

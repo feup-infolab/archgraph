@@ -71,12 +71,21 @@ from src.Utils.JsonEncoder import (
 clean_database()
 
 config.DATABASE_URL = "bolt://neo4j:password@localhost:7687"
-ref = list_indexes()
-if ref[0].__len__() != 0:
+#ref = list_indexes()
+#if ref[0].__len__() != 0:
+try:
+    index_creation()
+except:
     index_drop()
+    index_creation()
+
+try:
+    specific_index_creation()
+except:
     specific_index_drop()
-index_creation()
-specific_index_creation()
+    specific_index_creation()
+
+
 e1 = E1_CRM_Entity(name="test").save()
 e1_2 = E1_CRM_Entity(name="test").save()
 e55 = E55_Type(name="test2").save()
@@ -365,14 +374,7 @@ class TestNeoModel(unittest.TestCase):
                 }
             ]
         }
-        json31 = {
-            "E70_Thing": [
-                {"P130_shows_features_of":"E24_Physical_Human_Made_Thing"}
-            ]
-        }
         result3 = json.dumps(nested_json(thing, json3))
-        thing.get_schema_with_template(json31)
-
         print(result3)
 
     def test_schema(self):
@@ -443,4 +445,84 @@ class TestNeoModel(unittest.TestCase):
         }
         e18.get_schema_with_template(json)
 
+        e2 = E2_Temporal_Entity(name="E2").save()
+        date = datetime.datetime(2020, 5, 17)
+        e52 = E52_Time_Span(name="E52", date=date).save()
+        dataobject = String(name="name", stringValue="String_Value").save()
+
+        e2.P4_has_time_span.connect(e52)
+        e52.has_value.connect(dataobject)
+
+        json2 = {
+            "E2_Temporal_Entity": [
+                {"P4_has_time_span": {
+                    "E52_Time_Span": [
+                            {"has_value": "DataObject"}
+                        ]
+                    }
+                }
+            ]
+        }
+        e2.get_schema_with_template(json2)
+
+
+var = {'$schema': 'http://json-schema.org/draft-07/schema#', 'definitions': {
+    'E2_Temporal_EntitySchema': {'type': 'object', 'properties': {'name': {'title': 'name', 'type': 'string'},
+                                                                  'uid': {'title': 'uid', 'type': 'string'},
+                                                                  'P4_has_time_span': {'type': 'object',
+                                                                                       '$ref': '#/definitions/E52_Time_SpanSchema'}},
+                                 'additionalProperties': False, 'required': ['name']},
+    'E52_Time_SpanSchema': {'type': 'object',
+                            'properties': {'date': {'title': 'date', 'type': 'string', 'format': 'date'},
+                                           'name': {'title': 'name', 'type': 'string'},
+                                           'uid': {'title': 'uid', 'type': 'string'},
+                                           'has_value': {'title': 'has_value', 'type': 'array',
+                                                         'items': {'type': 'object',
+                                                                   '$ref': '#/definitions/DataObjectSchema'}}},
+                            'additionalProperties': False, 'required': ['date', 'name']},
+    'DataObjectSchema': {'type': 'object', 'properties': {'name': {'title': 'name', 'type': 'string'},
+                                                          'uid': {'title': 'uid', 'type': 'string'}},
+                         'additionalProperties': False, 'required': ['name']}},
+       '$ref': '#/definitions/E2_Temporal_EntitySchema'}
+
+
+var2 = {'$schema': 'http://json-schema.org/draft-07/schema#', 'definitions': {'E52_Time_SpanSchema': {'properties': {
+    'P137_exemplifies': {'title': 'P137_exemplifies', 'type': 'array',
+                         'items': {'type': 'object', '$ref': '#/definitions/E55_TypeSchema'}},
+    'date': {'title': 'date', 'type': 'string', 'format': 'date'}, 'has_value': {'title': 'has_value', 'type': 'array',
+                                                                                 'items': {'type': 'object',
+                                                                                           '$ref': '#/definitions/DataObjectSchema'}},
+    'name': {'title': 'name', 'type': 'string'}, 'uid': {'title': 'uid', 'type': 'string'}}, 'type': 'object',
+                                                                                                     'required': [
+                                                                                                         'date',
+                                                                                                         'name'],
+                                                                                                     'additionalProperties': False},
+                                                                             'DataObjectSchema': {'properties': {
+                                                                                 'name': {'title': 'name',
+                                                                                          'type': 'string'},
+                                                                                 'uid': {'title': 'uid',
+                                                                                         'type': 'string'}},
+                                                                                                  'type': 'object',
+                                                                                                  'required': ['name'],
+                                                                                                  'additionalProperties': False},
+                                                                             'E2_Temporal_EntitySchema': {
+                                                                                 'properties': {
+                                                                                     'P114_is_equal_in_time_to': {
+                                                                                         'type': 'object',
+                                                                                         '$ref': '#/definitions/E52_Time_SpanSchema'},
+                                                                                     'P4_has_time_span': {
+                                                                                         'type': 'object',
+                                                                                         '$ref': '#/definitions/E52_Time_SpanSchema'},
+                                                                                     'has_value': {'title': 'has_value',
+                                                                                                   'type': 'array',
+                                                                                                   'items': {
+                                                                                                       'type': 'object',
+                                                                                                       '$ref': '#/definitions/DataObjectSchema'}},
+                                                                                     'name': {'title': 'name',
+                                                                                              'type': 'string'},
+                                                                                     'uid': {'title': 'uid',
+                                                                                             'type': 'string'}},
+                                                                                 'type': 'object', 'required': ['name'],
+                                                                                 'additionalProperties': False}},
+       '$ref': '#/definitions/E2_Temporal_EntitySchema'}
 
