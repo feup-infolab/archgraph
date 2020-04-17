@@ -21,6 +21,8 @@ class ARE1_Level_of_Description(E55_Type):
         "ARP9_lower_level",
         model=ARP9_lower_level,
     )
+
+    # todo alerar para relationshipto
     has_level_of_description = RelationshipFrom(
         E22_Human_Made_Object,
         "ARP12_has_level_of_description",

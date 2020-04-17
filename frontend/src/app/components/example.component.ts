@@ -30,20 +30,9 @@ export class ExampleComponent implements OnInit {
   selectedEntity: string;
   searchName = '';
   searchUID = '';
-  uid = '';
   name = 'Angular 7';
-  jsonFormOptions = {
-    loadExternalAssets: true,
-  };
-  schema = {};
-  data = {};
-  load = false;
   loadSearch = false;
-  form = {
-    schema: {},
-    data: {},
-    layout: []
-  };
+
   itemList = ['E1_CRM_Entity', 'E2_Temporal_Entity', 'E3_Condition_State', 'E4_Period', 'E5_Event',
     'E6_Destruction', 'E7_Activity', 'E8_Acquisition', 'E9_Move',
     'E10_Transfer_of_Custody', 'E11_Modification', 'E12_Production',
@@ -68,13 +57,6 @@ export class ExampleComponent implements OnInit {
     'E98_Currency', 'E99_Product_Type'];
 
   headers = ['name', 'uid', 'labels'];
-  onEnter(uid: string) {
-    this.uid = uid;
-    // this.form.data = {};
-    // this.form.layout = [];
-    // this.form.schema = {};
-    this.load = false;
-  }
 
   searchDatabase(searched: string) {
     this.searched = searched;
@@ -101,6 +83,7 @@ export class ExampleComponent implements OnInit {
           this.changeContent(result);
       });
   }
+
   changeContent(result) {
         this.searchResult = result;
         const entries = Object.entries(result);
@@ -119,7 +102,6 @@ export class ExampleComponent implements OnInit {
           this.searchResultArray.push(this.searchResultS);
         }
         this.loadSearch = true;
-
   }
 
   ngOnInit() {
