@@ -12,7 +12,7 @@ class SuperClass:
         return json_schema.dump(self.schema)
 
     # Json to string
-    def encodeJSON(self):
+    def encodeJSON(self, without_class_name=False):
         data = {}
         ___class = {}
         for key, val in self.__properties__.items():
@@ -24,11 +24,19 @@ class SuperClass:
             if isinstance(o, datetime.datetime):
                 return o.strftime("%Y-%m-%d")
 
-        return json.dumps(___class, default=my_converter)
+        if without_class_name:
+            return json.dumps(data, default=my_converter)
+        else:
+            return json.dumps(___class, default=my_converter)
 
     # string to json
-    def decodeJSON(self):
-        return json.loads(self.encodeJSON())
+    def decodeJSON(self, without_class_name=False):
+        return json.loads(self.encodeJSON(without_class_name))
+
+    def get_property_from_entity(self, property_name):
+        schema_node = self.getSchema()
+        class_name = self.__class__.__name__ + "Schema"
+        return schema_node['definitions'][class_name]['properties'][property_name]
 
     def get_schema_with_template(self, jsonTemplate):
         jsonSchema = self.getSchema()
@@ -66,9 +74,9 @@ class SuperClass:
         if isinstance(json_template, str):
             return
 
-        for property_entity in json_template[entity_name]:
-            property_name = list(property_entity.keys())[0]
-            next_entity = property_entity[property_name]
+        for property_name in json_template[entity_name]:
+
+            next_entity = json_template[entity_name][property_name]
 
             entity['properties'][property_name] = properties[property_name]
 

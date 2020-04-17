@@ -314,69 +314,6 @@ class TestNeoModel(unittest.TestCase):
         e12.P4_has_time_span.connect(e52)
         e22.P108_has_produced_by.connect(e12)
 
-    def test_serialization(self):
-        startDatetime = datetime.datetime(1812, 2, 12)
-        endDatetime = datetime.datetime(1812, 2, 13)
-
-        e52 = E52_Time_Span(
-            name="Production time", date=datetime.datetime(1812, 2, 12)
-        ).save()
-        e41 = E41_Appellation(name="1812-02-12").save()
-
-        node = Interval(
-            name="1812-02-12", startDateValue=startDatetime, endDateValue=endDatetime
-        ).save()
-        node2 = Interval(
-            name="1812-02-12", startDateValue=startDatetime, endDateValue=endDatetime
-        ).save()
-
-        e41.has_value.connect(node)
-        e41.has_value.connect(node2)
-        e52.P1_is_identified_by.connect(e41)
-
-        json1 = {"E41_Appellation": [{"has_value": "DataObject"}]}
-        result1 = json.dumps(nested_json(e41, json1))
-        #e41.get_schema_with_template(json1)
-        print(result1)
-
-        # example 2
-        json2 = {
-            "E52_Time_Span": [
-                {
-                    "P1_is_identified_by": {
-                        "E41_Appellation": [{"has_value": "DataObject"},]
-                    }
-                }
-            ]
-        }
-        result2 = json.dumps(nested_json(e52, json2))
-        print(result2)
-
-        # example 3
-        thing = E70_Thing(name="thing").save()
-        title = E35_Title(name="title").save()
-        place = E53_Place(name="place").save()
-        humanThing = E24_Physical_Human_Made_Thing(name="humam Eiffel").save()
-
-        humanThing.P156_occupies.connect(place)
-        humanThing.P102_has_title.connect(title)
-        thing.P130_shows_features_of.connect(humanThing)
-
-        json3 = {
-            "E70_Thing": [
-                {
-                    "P130_shows_features_of": {
-                        "E24_Physical_Human_Made_Thing": [
-                            {"P102_has_title": "E35_Title"},
-                            {"P156_occupies": "E53_Place"},
-                        ]
-                    }
-                }
-            ]
-        }
-        result3 = json.dumps(nested_json(thing, json3))
-        print(result3)
-
     def test_schema(self):
         e2 = E2_Temporal_Entity(name="E2").save()
         e3 = E3_Condition_State(name="E3").save()
@@ -435,35 +372,106 @@ class TestNeoModel(unittest.TestCase):
         print(e70.getSchema())
         print(e83.getSchema())
 
-    def test_nested_schema(self):
+    def test_serialization(self):
+        startDatetime = datetime.datetime(1812, 2, 12)
+        endDatetime = datetime.datetime(1812, 2, 13)
+
+        e52 = E52_Time_Span(
+            name="Production time", date=datetime.datetime(1812, 2, 12)
+        ).save()
+        e41 = E41_Appellation(name="1812-02-12").save()
+
+        node = Interval(
+            name="1812-02-12", startDateValue=startDatetime, endDateValue=endDatetime
+        ).save()
+        node2 = Interval(
+            name="1812-02-12", startDateValue=startDatetime, endDateValue=endDatetime
+        ).save()
+
+        e41.has_value.connect(node)
+        e41.has_value.connect(node2)
+        e52.P1_is_identified_by.connect(e41)
+
+        json1 = {"E41_Appellation": {"has_value": "DataObject"}}
+        # result1 = json.dumps(nested_json(e41, json1))
+        # #e41.get_schema_with_template(json1)
+        # print(result1)
+        #
+        # # example 2
+        # json2 = {
+        #     "E52_Time_Span":
+        #         {
+        #             "P1_is_identified_by": {
+        #                 "E41_Appellation": {"has_value": "DataObject"}
+        #             }
+        #         }
+        #
+        # }
+        # result2 = json.dumps(nested_json(e52, json2))
+        # print(result2)
+
+        # example 3
+        thing = E70_Thing(name="thing").save()
+        title = E35_Title(name="title").save()
+        place = E53_Place(name="place").save()
+        humanThing = E24_Physical_Human_Made_Thing(name="humam Eiffel").save()
+
+        humanThing.P156_occupies.connect(place)
+        humanThing.P102_has_title.connect(title)
+        thing.P130_shows_features_of.connect(humanThing)
+        #
+        # json3 = {
+        #     "E70_Thing":
+        #         {
+        #             "P130_shows_features_of": {
+        #                 "E24_Physical_Human_Made_Thing":
+        #                     {"P102_has_title": "E35_Title",
+        #                      "P156_occupies": "E53_Place"},
+        #
+        #             }
+        #         }
+        #
+        # }
+        # result3 = json.dumps(nested_json(thing, json3))
+        # print(result3)
+
+    def test_schema_with_template(self):
         e18.P46_is_composed_of.connect(e18)
 
-        json = {
-            "E18_Physical_Thing": [
+        json1 = {
+            "E18_Physical_Thing":
                 {"P46_is_composed_of": "E18_Physical_Thing"}
-            ]
         }
-        e18.get_schema_with_template(json)
 
-        e2 = E2_Temporal_Entity(name="E2").save()
+        e18.get_schema_with_template(json1)
+
+        e2 = E2_Temporal_Entity(name="E2_222").save()
         date = datetime.datetime(2020, 5, 17)
-        e52 = E52_Time_Span(name="E52", date=date).save()
+        e52 = E52_Time_Span(name="E52_22", date=date).save()
         dataobject = String(name="name", stringValue="String_Value").save()
 
         e2.P4_has_time_span.connect(e52)
         e52.has_value.connect(dataobject)
 
         json2 = {
-            "E2_Temporal_Entity": [
+            "E2_Temporal_Entity":
                 {"P4_has_time_span": {
-                    "E52_Time_Span": [
+                    "E52_Time_Span":
                             {"has_value": "DataObject"}
-                        ]
+
                     }
                 }
-            ]
+        }
+        json2_1 = {
+        "E52_Time_Span":
+                {"has_value": "DataObject"}
+
         }
         e2.get_schema_with_template(json2)
+        e52.get_schema_with_template(json2_1)
+
+        result3 = json.dumps(nested_json(e2, json2))
+        print(result3)
 
 
 var = {'$schema': 'http://json-schema.org/draft-07/schema#', 'definitions': {
@@ -484,6 +492,7 @@ var = {'$schema': 'http://json-schema.org/draft-07/schema#', 'definitions': {
                                                           'uid': {'title': 'uid', 'type': 'string'}},
                          'additionalProperties': False, 'required': ['name']}},
        '$ref': '#/definitions/E2_Temporal_EntitySchema'}
+
 
 
 var2 = {'$schema': 'http://json-schema.org/draft-07/schema#', 'definitions': {'E52_Time_SpanSchema': {'properties': {
