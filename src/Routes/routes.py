@@ -56,7 +56,7 @@ def favicon():
 def response_get_node(uid):
     result = get_node_by_uid(uid)
     if result is not None:
-        return Response(result.encodeJSON(True), mimetype="application/json", status=201)
+        return Response(result.encodeJSON(), mimetype="application/json", status=201)
     else:
         return make_response(jsonify(message="Node doesn't exists"), 404)
 
@@ -98,7 +98,7 @@ def response_update(uid):
         data = request.json
         merged = node.merge_node(data)
         if merged:
-            return Response(node.encodeJSON(True), mimetype="application/json", status=201)
+            return Response(node.encodeJSON(), mimetype="application/json", status=201)
         else:
             return make_response(jsonify(message="Unsaved node"), 404)
     else:
@@ -119,16 +119,8 @@ def delete(uid):
 @cross_origin()
 def search(word):
     result = search_cidoc(word)
-    response_array = "["
-    response_array += result[0].encodeJSON()
-    iterresult = iter(result)
-    next(iterresult)
-    for items in iterresult:
-        response_array += ", "
-        response_array += items.encodeJSON()
-    response_array += "]"
     if result is not None:
-        return Response(response_array, mimetype="application/json", status=201)
+        return Response(make_response(result), mimetype="application/json", status=201)
     else:
         return make_response(jsonify(message="Failed Search"), 404)
 
@@ -137,6 +129,13 @@ def search(word):
 @cross_origin()
 def search_specific(entity, word):
     result = search_specific_cidoc(entity, word)
+    if result is not None:
+        return Response(make_response(result), mimetype="application/json", status=201)
+    else:
+        return make_response(jsonify(message="Failed Search"), 404)
+
+
+def make_response(result):
     response_array = "["
     response_array += result[0].encodeJSON()
     iterresult = iter(result)
@@ -145,10 +144,7 @@ def search_specific(entity, word):
         response_array += ", "
         response_array += items.encodeJSON()
     response_array += "]"
-    if result is not None:
-        return Response(response_array, mimetype="application/json", status=201)
-    else:
-        return make_response(jsonify(message="Failed Search"), 404)
+    return response_array
 
 
 if __name__ == "__main__":

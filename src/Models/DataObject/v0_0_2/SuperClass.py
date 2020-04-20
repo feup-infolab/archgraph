@@ -12,26 +12,21 @@ class SuperClass:
         return json_schema.dump(self.schema)
 
     # Json to string
-    def encodeJSON(self, without_class_name=False):
+    def encodeJSON(self):
         data = {}
-        ___class = {}
         for key, val in self.__properties__.items():
             if (key != "schema") and (key != "id"):
                 data[key] = val
-            ___class[self.__class__.__name__] = data
 
         def my_converter(o):
             if isinstance(o, datetime.datetime):
                 return o.strftime("%Y-%m-%d")
 
-        if without_class_name:
-            return json.dumps(data, default=my_converter)
-        else:
-            return json.dumps(___class, default=my_converter)
+        return json.dumps(data, default=my_converter)
 
     # string to json
-    def decodeJSON(self, without_class_name=False):
-        return json.loads(self.encodeJSON(without_class_name))
+    def decodeJSON(self):
+        return json.loads(self.encodeJSON())
 
     def get_property_from_entity(self, property_name):
         schema_node = self.getSchema()
