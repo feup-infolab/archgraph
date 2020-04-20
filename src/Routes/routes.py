@@ -136,13 +136,9 @@ def search_specific(entity, word):
 
 
 def make_response(result):
-    response_array = "["
-    response_array += result[0].encodeJSON()
-    iterresult = iter(result)
-    next(iterresult)
-    for items in iterresult:
-        response_array += ", "
-        response_array += items.encodeJSON()
+    response_array = "[" + result[0].encodeJSON()
+    for items in iter(result):
+        response_array += ", " + items.encodeJSON()
     response_array += "]"
     return response_array
 
