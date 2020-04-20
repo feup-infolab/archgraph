@@ -28,7 +28,7 @@ from flask_cors import CORS, cross_origin
 from neomodel import config
 
 from src.Utils.JsonEncoder import search_cidoc, search_specific_cidoc
-from src.Utils.Utils import get_node_by_uid, delete_node_by_uid
+from src.Utils.Utils import get_node_by_uid, delete_node_by_uid, nested_json
 
 if args.neo4j:
     config.DATABASE_URL = args.neo4j
@@ -54,9 +54,27 @@ def favicon():
 @app.route("/<uid>", methods=["GET"])
 @cross_origin()
 def response_get_node(uid):
-    result = get_node_by_uid(uid)
-    if result is not None:
-        return Response(result.encodeJSON(), mimetype="application/json", status=201)
+    node = get_node_by_uid(uid)
+    if node is not None:
+        return Response(node.encodeJSON(), mimetype="application/json", status=201)
+    else:
+        return make_response(jsonify(message="Node doesn't exists"), 404)
+
+
+@app.route("/withtemplate/<uid>", methods=["GET"])
+@cross_origin()
+def response_get_node_with_templat(uid):
+    node = get_node_by_uid(uid)
+    template = {
+        "E52_Time_Span": {
+            "has_value": "DataObject"}
+    }
+    if node is not None:
+        result = nested_json(node, template)
+        if result is not None:
+            return make_response(jsonify(result), 201)
+        else:
+            return make_response(jsonify(message="Some error occurred"), 404)
     else:
         return make_response(jsonify(message="Node doesn't exists"), 404)
 
@@ -80,7 +98,8 @@ def response_get_schema_node_with_template(uid):
             "has_value": "DataObject"}
     }
     if node is not None:
-        return make_response(jsonify(node.get_schema_with_template(template)), 201)
+        result = node.get_schema_with_template(template)
+        return make_response(jsonify(result), 201)
     else:
         return make_response(jsonify(message="Node doesn't exists"), 404)
 
@@ -98,7 +117,7 @@ def response_update(uid):
         data = request.json
         merged = node.merge_node(data)
         if merged:
-            return Response(node.encodeJSON(), mimetype="application/json", status=201)
+            return make_response(jsonify(node.encodeJSON()), 201)
         else:
             return make_response(jsonify(message="Unsaved node"), 404)
     else:
@@ -120,7 +139,7 @@ def delete(uid):
 def search(word):
     result = search_cidoc(word)
     if result is not None:
-        return Response(make_response(result), mimetype="application/json", status=201)
+        return Response(make_result(result), mimetype="application/json", status=201)
     else:
         return make_response(jsonify(message="Failed Search"), 404)
 
@@ -130,14 +149,16 @@ def search(word):
 def search_specific(entity, word):
     result = search_specific_cidoc(entity, word)
     if result is not None:
-        return Response(make_response(result), mimetype="application/json", status=201)
+        return Response(make_result(result), mimetype="application/json", status=201)
     else:
         return make_response(jsonify(message="Failed Search"), 404)
 
 
-def make_response(result):
+def make_result(result):
     response_array = "[" + result[0].encodeJSON()
-    for items in iter(result):
+    iterator = iter(result)
+    next(iterator)
+    for items in iterator:
         response_array += ", " + items.encodeJSON()
     response_array += "]"
     return response_array

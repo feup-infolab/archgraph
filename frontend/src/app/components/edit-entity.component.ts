@@ -60,6 +60,15 @@ export class EditEntityComponent implements OnInit {
       });
   }
 
+    getDataNodeWithTemplate(uid) {
+    this.service.getDataNodeWithTemplate(uid)
+      .subscribe(result => {
+        this.form.data[this.uid] = result;
+        console.log(result);
+        this.load = true;
+      });
+  }
+
   getSchemaNode(uid) {
     this.service.getSchemaNode(uid)
       .subscribe(returnedSchema => {
@@ -75,8 +84,9 @@ export class EditEntityComponent implements OnInit {
         //     evt.preventDefault();
         //     alert('Thank you!');
         //   }
-        //this.getDataNode(this.uid);
-        this.load = true;
+        this.getDataNode(this.uid);
+
+        //this.load = true;
       });
   }
 
@@ -119,7 +129,9 @@ export class EditEntityComponent implements OnInit {
         //, 'has_value': {'name': "name"}}};
         // , "uid": "3053b0fd7b084942946b78df845a0fdf", "stringValue": "String_Value"}}]}]}]}]}
         //this.form.data['7f40a675ca3f4f0c97a6dcea08be6ba9']['P4_has_time_span']['E52_Time_SpanSchema']="1"
-        this.load = true;
+        this.getDataNodeWithTemplate(this.uid)
+
+//        this.load = true;
       });
   }
 

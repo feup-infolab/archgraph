@@ -60,21 +60,7 @@ def get_driver():
 
 def nested_json(node, template):
     if isinstance(template, str):
-        return node.decodeJSON(True)
-
-    def read_relationships(tx, search_node, node_relationship):
-        array_uids = []
-        records = tx.run(
-            "MATCH (a: "
-            + search_node
-            + ")-[: "
-            + node_relationship
-            + "]->(nested_node) "
-            "Return nested_node.uid"
-        )
-        for record in records:
-            array_uids.append(record[0])
-        return array_uids
+        return node.decodeJSON()
 
     node_name = list(template.keys())[0]
     relationships = template[node_name]
@@ -86,27 +72,49 @@ def nested_json(node, template):
         else:
             new_object[relationship_name] = {}
 
-        with get_driver().session() as session:
-            array_uid = session.read_transaction(
-                read_relationships, node_name, relationship_name
-            )
-
         json_nested = relationships[relationship_name]
+        array_uid = read_relationships(node_name, relationship_name)
 
         for uid in array_uid:
-            if relationship_name == "has_value":
-                new_node = DataObject.nodes.get(uid=uid)
-            else:
-                new_node = E1_CRM_Entity.nodes.get(uid=uid)
+            new_node = get_node_by_uid(uid)
+            if new_node is None:
+                return None
 
             if schema_relationship['type'] == 'array':
-                new_object[relationship_name].append(
-                    nested_json(new_node, json_nested)
-                )
+                result = nested_json(new_node, json_nested)
+                if result is None:
+                    return None
+                else:
+                    new_object[relationship_name].append(result)
             else:
-                new_object[relationship_name] = nested_json(new_node, json_nested)
+                result = nested_json(new_node, json_nested)
+                if result is None:
+                    return None
+                else:
+                    new_object[relationship_name] = nested_json(new_node, json_nested)
 
     return dict(node.decodeJSON(), **new_object)
+
+
+def read_relationships(search_node, relationship_name):
+    def read(tx, search_node, relationship_name):
+        array_uids = []
+        records = tx.run(
+            "MATCH (a: "
+            + search_node
+            + ")-[: "
+            + relationship_name
+            + "]->(nested_node) "
+            "Return nested_node.uid"
+        )
+        for record in records:
+            array_uids.append(record[0])
+        return array_uids
+
+    with get_driver().session() as session:
+        return session.read_transaction(
+            read, search_node, relationship_name
+        )
 
 
 def get_node_by_uid(uid):
