@@ -4,7 +4,6 @@ from src.Models.CRM.v5_0_2.NodeEntities.E24_Physical_Human_Made_Thing import (
 from src.Models.CRM.v5_0_2.NodeEntities.E26_Physical_Feature import E26_Physical_Feature, E26_Physical_FeatureSchema
 
 
-#Todo verificar
 class E25_Human_Made_FeatureSchema(E24_Physical_Human_Made_ThingSchema, E26_Physical_FeatureSchema):
     pass
 

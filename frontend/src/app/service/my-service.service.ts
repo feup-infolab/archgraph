@@ -32,8 +32,13 @@ export class MyServiceService {
     return this.http.get<Schema>(this.baseUrl + 'schema' + '/' + uid);
   }
 
+  getSchemaNodeWithTemplate(uid: string): Observable<Schema> {
+    return this.http.get<Schema>(this.baseUrl + 'schemawithtemplate' + '/' + uid);
+  }
+
   sendNode(data): Observable<any> {
-    return this.http.post<any>(this.baseUrl + data.uid,  data);
+    const uid = Object.keys(data)[0];
+    return this.http.post<any>(this.baseUrl + uid,  data[uid]);
   }
 
   constructor(private http: HttpClient) {

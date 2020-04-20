@@ -8,7 +8,6 @@ from src.Models.CRM.v5_0_2.NodeProperties.P123_resulted_in import P123_resulted_
 from src.Models.CRM.v5_0_2.NodeProperties.P124_transformed import P124_transformed
 
 
-#todo verififcar
 class E81_TransformationSchema(E63_Beggining_of_ExistenceSchema, E64_End_of_ExistenceSchema):
     resulted_in = fields.List(fields.Nested(
         "src.Models.CRM.v5_0_2.NodeEntities.E18_Physical_Thing.E18_Physical_ThingSchema")

@@ -6,7 +6,6 @@ class E27_SiteSchema(E26_Physical_FeatureSchema):
 
 
 class E27_Site(E26_Physical_Feature):
-    pass
 
     def __init__(self, schema=None, *args, **kwargs):
         if schema is None:

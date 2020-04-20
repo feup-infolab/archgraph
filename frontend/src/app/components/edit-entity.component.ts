@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {MyServiceService} from "../service/my-service.service";
-import {ActivatedRoute} from "@angular/router";
+import {MyServiceService} from '../service/my-service.service';
+import {ActivatedRoute} from '@angular/router';
 import { Location } from '@angular/common';
 
 @Component({
@@ -12,7 +12,7 @@ export class EditEntityComponent implements OnInit {
 
     constructor(
       private location: Location,
-       private route: ActivatedRoute,
+      private route: ActivatedRoute,
       private service: MyServiceService) {
   }
   uid = '';
@@ -31,11 +31,11 @@ export class EditEntityComponent implements OnInit {
   };
 
   onEnter(uid: string) {
-    //this.uid = uid;
+    // this.uid = uid;
     // this.form.data = {};
     // this.form.layout = [];
     // this.form.schema = {};
-    //this.getSchemaNode(this.uid);
+    // this.getSchemaNode(this.uid);
   }
   goBack() {
     this.location.back();
@@ -46,13 +46,15 @@ export class EditEntityComponent implements OnInit {
     console.log(this.uid);
     this.load = false;
     this.getSchemaNode(this.uid);
+    //this.getSchemaNodeWithTemplate(this.uid);
+
   });
   }
 
   getDataNode(uid) {
     this.service.getDataNode(uid)
       .subscribe(result => {
-        this.form.data = result;
+        this.form.data[this.uid] = result;
         console.log(result);
         this.load = true;
       });
@@ -73,7 +75,50 @@ export class EditEntityComponent implements OnInit {
         //     evt.preventDefault();
         //     alert('Thank you!');
         //   }
+        this.getDataNode(this.uid);
+        //this.load = true;
+      });
+  }
+
+  getSchemaNodeWithTemplate(uid) {
+    this.service.getSchemaNodeWithTemplate(uid)
+      .subscribe(returnedSchema => {
+        const newschema = {$schema: 'http://json-schema.org/draft-07/schema#', definitions: {
+        E2_Temporal_EntitySchema: {type: 'object', properties: {name: {title: 'name', type: 'string'},
+                                                                      uid: {title: 'uid', type: 'string'},
+                                                                      P4_has_time_span: {type: 'object',
+                                                                                           $ref: '#/definitions/E52_Time_SpanSchema'}},
+                                     additionalProperties: false, required: ['name']},
+        E52_Time_SpanSchema: {type: 'object',
+                                properties: {date: {title: 'date', type: 'string', format: 'date'},
+                                               name: {title: 'name', type: 'string'},
+                                               uid: {title: 'uid', type: 'string'},
+                                               has_value: {title: 'has_value', type: 'array',
+                                                             items: {type: 'object',
+                                                                       $ref: '#/definitions/DataObjectSchema'}}},
+                                additionalProperties: false, required: ['date', 'name']},
+        DataObjectSchema: {type: 'object', properties: {name: {title: 'name', type: 'string'},
+                                                              uid: {title: 'uid', type: 'string'}},
+                             additionalProperties: false, required: ['name']}},
+        $ref: '#/definitions/E2_Temporal_EntitySchema'};
+        this.form.layout = [];
+        console.log(returnedSchema);
+        this.form.schema = this.refactorSchema(returnedSchema);
+        this.form.layout = ['*'];
+        // const button1 = {
+        //   type: 'submit',
+        //   title: 'Submit',
+        //   onClick(evt) {
+        //     sen
+        //     evt.preventDefault();
+        //     alert('Thank you!');
+        //   }
         // this.getDataNode(this.uid);
+
+        //this.form.data[this.uid] = {name: 'E2_222', uid: "asas", 'has_value': [{name: "2020-04-16"}]};
+        //, 'has_value': {'name': "name"}}};
+        // , "uid": "3053b0fd7b084942946b78df845a0fdf", "stringValue": "String_Value"}}]}]}]}]}
+        //this.form.data['7f40a675ca3f4f0c97a6dcea08be6ba9']['P4_has_time_span']['E52_Time_SpanSchema']="1"
         this.load = true;
       });
   }
@@ -88,7 +133,7 @@ export class EditEntityComponent implements OnInit {
         title: 'Editing'
     };
     jsonSchema.properties = properties;
-    jsonSchema.desc = "Description";
+    jsonSchema.desc = 'Description';
 
     delete jsonSchema.$ref;
     const schemaEntity = jsonSchema.definitions[schemaName];
@@ -107,9 +152,10 @@ export class EditEntityComponent implements OnInit {
       });
   }
 
-  onSubmit(a: any) {
-    console.log(a);
-    this.sendNode(a);
+  onSubmit(data: any) {
+    console.log(data);
+
+    this.sendNode(data);
   }
 
   showFormSchemaFn($event) {

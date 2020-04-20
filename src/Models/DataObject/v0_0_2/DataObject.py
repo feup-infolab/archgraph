@@ -22,7 +22,7 @@ class DataObject(StructuredNode, SuperClass):
         SuperClass.__init__(self, schema)
 
     def merge_node(self, updated_node):
-        merged_node = dict(self.decodeJSON(), **updated_node)
+        merged_node = dict(self.decodeJSON(True), **updated_node)
         field_type_date = self.__get_field_of_type_date()
 
         for attr, value in merged_node.items():
@@ -41,7 +41,8 @@ class DataObject(StructuredNode, SuperClass):
     def __get_field_of_type_date(self):
         result = []
         get_schema = self.getSchema()
-        properties = get_schema["definitions"]["Schema"]["properties"]
+        class_name = self.__class__.__name__ + "Schema"
+        properties = get_schema["definitions"][class_name]["properties"]
         for attr in properties:
             field = properties[attr]
             if "format" in field:

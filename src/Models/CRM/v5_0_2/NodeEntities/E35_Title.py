@@ -8,6 +8,7 @@ class E35_TitleSchema(E33_Linguistic_ObjectSchema):
 
 
 class E35_Title(E33_Linguistic_Object):
+
     def __init__(self, schema=None, *args, **kwargs):
         if schema is None:
             schema = E35_TitleSchema()

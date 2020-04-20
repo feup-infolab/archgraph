@@ -5,7 +5,7 @@ from src.Models.CRM.v5_0_2.NodeProperties.P71_lists import P71_lists
 
 
 class E32_Authority_DocumentSchema(E31_DocumentSchema):
-    documents = fields.List(fields.Nested(
+    lists = fields.List(fields.Nested(
         "src.Models.CRM.v5_0_2.NodeEntities.E1_CRM_Entity.E1_CRM_EntitySchema")
     )
 
