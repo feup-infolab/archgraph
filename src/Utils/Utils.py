@@ -63,7 +63,7 @@ def nested_json(node, template):
         return node.decodeJSON(True)
 
     def read_relationships(tx, search_node, node_relationship):
-        array_uid = []
+        array_uids = []
         records = tx.run(
             "MATCH (a: "
             + search_node
@@ -73,18 +73,18 @@ def nested_json(node, template):
             "Return nested_node.uid"
         )
         for record in records:
-            array_uid.append(record[0])
-        return array_uid
+            array_uids.append(record[0])
+        return array_uids
 
     node_name = list(template.keys())[0]
     relationships = template[node_name]
-    newobject= {}
+    new_object = {}
     for relationship_name in relationships:
         schema_relationship = node.get_property_from_entity(relationship_name)
         if schema_relationship['type'] == 'array':
-            newobject[relationship_name] = []
+            new_object[relationship_name] = []
         else:
-            newobject[relationship_name] = {}
+            new_object[relationship_name] = {}
 
         with get_driver().session() as session:
             array_uid = session.read_transaction(
@@ -100,13 +100,13 @@ def nested_json(node, template):
                 new_node = E1_CRM_Entity.nodes.get(uid=uid)
 
             if schema_relationship['type'] == 'array':
-                newobject[relationship_name].append(
+                new_object[relationship_name].append(
                     nested_json(new_node, json_nested)
                 )
             else:
-                newobject[relationship_name] = nested_json(new_node, json_nested)
+                new_object[relationship_name] = nested_json(new_node, json_nested)
 
-    return dict(node.decodeJSON(True), **newobject)
+    return dict(node.decodeJSON(), **new_object)
 
 
 def get_node_by_uid(uid):

@@ -45,8 +45,8 @@ export class EditEntityComponent implements OnInit {
     this.uid = params.get('uid');
     console.log(this.uid);
     this.load = false;
-    this.getSchemaNode(this.uid);
-    //this.getSchemaNodeWithTemplate(this.uid);
+    //this.getSchemaNode(this.uid);
+    this.getSchemaNodeWithTemplate(this.uid);
 
   });
   }
@@ -75,8 +75,8 @@ export class EditEntityComponent implements OnInit {
         //     evt.preventDefault();
         //     alert('Thank you!');
         //   }
-        this.getDataNode(this.uid);
-        //this.load = true;
+        //this.getDataNode(this.uid);
+        this.load = true;
       });
   }
 

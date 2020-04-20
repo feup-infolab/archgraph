@@ -51,7 +51,7 @@ class SuperClass:
 
         return newJsonSchema
 
-    def __get_schema_with_template_aux(self, definitions, json_template, newJsonSchema):
+    def __get_schema_with_template_aux(self, definitions, json_template, new_json_schema):
         if isinstance(json_template, str):
             entity_name = json_template
         else:
@@ -65,7 +65,7 @@ class SuperClass:
         if 'required' in definitions[current_entity].keys():
             entity['required'] = definitions[current_entity]['required']
 
-        newJsonSchema['definitions'][current_entity] = entity
+        new_json_schema['definitions'][current_entity] = entity
 
         properties = definitions[current_entity]['properties']
 
@@ -80,7 +80,7 @@ class SuperClass:
 
             entity['properties'][property_name] = properties[property_name]
 
-            self.__get_schema_with_template_aux(definitions, next_entity, newJsonSchema)
+            self.__get_schema_with_template_aux(definitions, next_entity, new_json_schema)
 
     def __get_entity_properties_without_ref(self, current_entity, entity):
         for property_name in current_entity['properties']:

@@ -76,10 +76,9 @@ def response_get_schema_node(uid):
 def response_get_schema_node_with_template(uid):
     node = get_node_by_uid(uid)
     template = {
-            "E52_Time_Span": [
-                    {"has_value": "DataObject"}
-                ]
-        }
+        "E52_Time_Span": {
+            "has_value": "DataObject"}
+    }
     if node is not None:
         return make_response(jsonify(node.get_schema_with_template(template)), 201)
     else:
