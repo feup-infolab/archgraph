@@ -1,7 +1,9 @@
 from marshmallow import fields
 from neomodel import StringProperty
 from src.Models.DataObject.v0_0_2.AuthorityString import (
-    AuthorityString, AuthorityStringSchema)
+    AuthorityString,
+    AuthorityStringSchema,
+)
 
 
 class PersonNameSchema(AuthorityStringSchema):

@@ -1,8 +1,8 @@
 version: '3.3'
 
 services:
-  mongodb_container:
-    container_name: mongodb_container
+  mongodb:
+    container_name: archgraph-mongodb
     image: mongo:latest
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
@@ -25,5 +25,29 @@ services:
     networks:
       - archgraph-docker-deployment
     restart: on-failure
+  archgraph:
+      container_name: archgraph
+      image: feupinfolab/archgraph:latest
+      build:
+        dockerfile: Dockerfile
+        args:
+          - "SOURCE_BRANCH=master"
+          - "PRELOAD_GRAPH=1"
+        context: .
+      environment:
+        - "NEO4J_CONNECTION_STRING=bolt://neo4j:password@neo4j:7687"
+        - "RUN_IN_PRODUCTION=1"
+
+      ports:
+        - published: 4200
+          target: 4200
+        - published: 5000
+          target: 5000
+      depends_on:
+        - mongodb
+        - neo4j
+      networks:
+        - archgraph-docker-deployment
+      restart: on-failure
 networks:
   archgraph-docker-deployment: {}

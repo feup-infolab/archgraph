@@ -10,5 +10,5 @@ class StructuredRelCl(StructuredRel):
             self.__class__.__name__:
             # "id": self.id,
             # "start_node": json.loads(self.start_node().encodeJSON()),
-                json.loads(self.end_node().encodeJSON()),
+            json.loads(self.end_node().encodeJSON()),
         }

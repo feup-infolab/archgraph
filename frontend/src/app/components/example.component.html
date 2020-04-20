@@ -25,7 +25,9 @@
     </thead>
     <tbody>
     <tr *ngFor="let item of searchResultArray; let i = index">
-      <td>{{ item.uid }}</td>
+      <td><nav>
+        <a routerLink={{item.uid}}>{{item.uid}}</a>
+        </nav></td>
       <td>{{ item.name }}</td>
       <td><ul>
         <li *ngFor="let label of item.labels">
@@ -35,35 +37,6 @@
     </tr>
     </tbody>
   </table>
+
 </div>
 
-<div style="margin: 35px;"><p>Insert your UID </p>
-  <input style="width: 300px" #box (keyup.enter)="onEnter(box.value)">
-</div>
-
-<div *ngIf="load" style="margin: 35px">
-  <json-schema-form
-    *ngIf="load"
-    [form]= "form"
-    [options]='jsonFormOptions'
-    [framework]="'bootstrap-4'"
-    (onSubmit)="onSubmit($event)"
-    (formSchema)="showFormSchemaFn($event)"
-    (formLayout)="showFormLayoutFn($event)"
-    (isValid)="isValid($event)">
-  </json-schema-form>
-</div>
-
-
-<!--
-<json-schema-form
-  loadExternalAssets="true"
-  [schema]="schema"
-  [(data)]='data'
-  [layout]='layout'
-  [options]="jsonFormOptions"
-  [framework]="'material-design'">
-(onChanges)="onChanges($event)"
-(onSubmit)="onSubmit($event)"
-(validationErrors)="validationErrors($event)">
-</json-schema-form>-->

@@ -8,20 +8,27 @@ services:
 python:
   - 3.7
 
-before_install:
-  - git clone https://github.com/eficode/wait-for.git
-  - docker-compose up -d
-  - cd wait-for
-  - ./wait-for 127.0.0.1:7474 -t 60 -- echo "Neo4J up 1"
-  - ./wait-for 127.0.0.1:7687 -t 60 -- echo "Neo4J up 2"
-  - cd ..
-  - sudo apt-get install jq
-
-install:
-  - ./conf/install.sh
-
-script:
-  - source ./conf/activate.sh
-  - coverage run -m unittest discover test
-  - coverage report -m
-  - coveralls
+jobs:
+  include:
+    - stage: test
+      script:
+          - sudo apt-get install jq
+          - git clone https://github.com/eficode/wait-for.git
+          - docker-compose up -d
+          - cd wait-for
+          - ./wait-for 127.0.0.1:7474 -t 60 -- echo "Neo4J up 1"
+          - ./wait-for 127.0.0.1:7687 -t 60 -- echo "Neo4J up 2"
+          - cd ..
+          - ./conf/install.sh
+          - source "$HOME/miniconda/etc/profile.d/conda.sh"
+          - conda activate archgraph
+          - coverage run -m unittest discover test
+          - coverage report -m
+          - coveralls
+    - stage: test-docker-image
+      script:
+        - docker-compose build && docker-compose up -d
+        - git clone https://github.com/eficode/wait-for.git
+        - cd wait-for
+        - ./wait-for 127.0.0.1:4200 -t 60 -- echo "Archgraph Docker Frontend up"
+        - ./wait-for 127.0.0.1:5000 -t 60 -- echo "Archgraph Docker API up"
