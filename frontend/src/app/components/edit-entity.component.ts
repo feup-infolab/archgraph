@@ -45,8 +45,8 @@ export class EditEntityComponent implements OnInit {
     this.uid = params.get('uid');
     console.log(this.uid);
     this.load = false;
-    // this.getSchemaNode(this.uid);
-    this.getSchemaNodeWithTemplate(this.uid);
+    this.getSchemaNode(this.uid);
+    //this.getSchemaNodeWithTemplate(this.uid);
 
   });
   }
@@ -54,7 +54,7 @@ export class EditEntityComponent implements OnInit {
   getDataNode(uid) {
     this.service.getDataNode(uid)
       .subscribe(result => {
-        this.form.data = result;
+        this.form.data[this.uid] = result;
         console.log(result);
         this.load = true;
       });
@@ -75,8 +75,8 @@ export class EditEntityComponent implements OnInit {
         //     evt.preventDefault();
         //     alert('Thank you!');
         //   }
-        // this.getDataNode(this.uid);
-        this.load = true;
+        this.getDataNode(this.uid);
+        //this.load = true;
       });
   }
 
@@ -115,7 +115,7 @@ export class EditEntityComponent implements OnInit {
         //   }
         // this.getDataNode(this.uid);
 
-        this.form.data[this.uid] = {name: 'E2_222', uid: "asas", 'has_value': [{name: "2020-04-16"}]};
+        //this.form.data[this.uid] = {name: 'E2_222', uid: "asas", 'has_value': [{name: "2020-04-16"}]};
         //, 'has_value': {'name': "name"}}};
         // , "uid": "3053b0fd7b084942946b78df845a0fdf", "stringValue": "String_Value"}}]}]}]}]}
         //this.form.data['7f40a675ca3f4f0c97a6dcea08be6ba9']['P4_has_time_span']['E52_Time_SpanSchema']="1"

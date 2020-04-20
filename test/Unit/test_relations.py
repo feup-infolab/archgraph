@@ -469,6 +469,7 @@ class TestNeoModel(unittest.TestCase):
 
         result3 = json.dumps(nested_json(e2, json2))
         print(result3)
+
     def test_schema_with_template(self):
 
         json1 = {
@@ -485,7 +486,7 @@ class TestNeoModel(unittest.TestCase):
                             {"has_value": "DataObject"}
 
                     }
-                }
+            }
         }
 
         json2_1 = {

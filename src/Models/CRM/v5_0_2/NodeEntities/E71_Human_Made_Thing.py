@@ -1,6 +1,4 @@
-from marshmallow import Schema, fields
 from neomodel import RelationshipTo
-
 from src.Models.CRM.v5_0_2.NodeEntities.E70_Thing import E70_Thing, E70_ThingSchema
 from src.Models.CRM.v5_0_2.NodeProperties.P102_has_title import P102_has_title
 from src.Models.CRM.v5_0_2.NodeProperties.P103_was_intended_for import (

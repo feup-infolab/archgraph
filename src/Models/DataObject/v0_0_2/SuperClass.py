@@ -38,14 +38,14 @@ class SuperClass:
         class_name = self.__class__.__name__ + "Schema"
         return schema_node['definitions'][class_name]['properties'][property_name]
 
-    def get_schema_with_template(self, jsonTemplate):
+    def get_schema_with_template(self, template):
         jsonSchema = self.getSchema()
         newJsonSchema = {
             '$schema': jsonSchema["$schema"],
             'definitions': {},
             '$ref': jsonSchema["$ref"],
         }
-        self.__get_schema_with_template_aux(jsonSchema["definitions"], jsonTemplate, newJsonSchema)
+        self.__get_schema_with_template_aux(jsonSchema["definitions"], template, newJsonSchema)
         print(newJsonSchema)
         print(jsonSchema)
 

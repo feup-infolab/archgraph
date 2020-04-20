@@ -38,7 +38,7 @@ export class MyServiceService {
 
   sendNode(data): Observable<any> {
     const uid = Object.keys(data)[0];
-    return this.http.post<any>(this.baseUrl + uid,  data);
+    return this.http.post<any>(this.baseUrl + uid,  data[uid]);
   }
 
   constructor(private http: HttpClient) {

@@ -56,7 +56,7 @@ def favicon():
 def response_get_node(uid):
     result = get_node_by_uid(uid)
     if result is not None:
-        return Response(result.encodeJSON(), mimetype="application/json", status=201)
+        return Response(result.encodeJSON(True), mimetype="application/json", status=201)
     else:
         return make_response(jsonify(message="Node doesn't exists"), 404)
 
@@ -99,7 +99,7 @@ def response_update(uid):
         data = request.json
         merged = node.merge_node(data)
         if merged:
-            return Response(node.encodeJSON(), mimetype="application/json", status=201)
+            return Response(node.encodeJSON(True), mimetype="application/json", status=201)
         else:
             return make_response(jsonify(message="Unsaved node"), 404)
     else:

@@ -58,8 +58,8 @@ def get_driver():
     return self.driver
 
 
-def nested_json(node, json_schema):
-    if isinstance(json_schema, str):
+def nested_json(node, template):
+    if isinstance(template, str):
         return node.decodeJSON(True)
 
     def read_relationships(tx, search_node, node_relationship):
@@ -76,8 +76,8 @@ def nested_json(node, json_schema):
             array_uid.append(record[0])
         return array_uid
 
-    node_name = list(json_schema.keys())[0]
-    relationships = json_schema[node_name]
+    node_name = list(template.keys())[0]
+    relationships = template[node_name]
     newobject= {}
     for relationship_name in relationships:
         schema_relationship = node.get_property_from_entity(relationship_name)
