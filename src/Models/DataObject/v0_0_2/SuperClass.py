@@ -1,8 +1,6 @@
 import datetime
 import json
 from marshmallow_jsonschema import JSONSchema
-#from src.Utils.Utils import *
-
 
 class SuperClass:
     def __init__(self, schema):
@@ -92,8 +90,7 @@ class SuperClass:
             #     changed_property['title'] = property_entity['title']
 
     def merge_node(self, updated_node):
-        node_self = self.node_self_build(updated_node)
-        merged_node = dict(self.decodeJSON(), **node_self['self_node'])
+        merged_node = dict(self.decodeJSON(), **updated_node)
         field_type_date = self.__get_field_of_type_date()
 
         for attr, value in merged_node.items():
@@ -106,7 +103,9 @@ class SuperClass:
             self.save()
         except BaseException:
             return None
-        #
+
+
+
         # array_uid = read_relationships(node_name, relationship_name)
         #
         # for uid in array_uid:
@@ -121,7 +120,7 @@ class SuperClass:
             if isinstance(updated_node[property], str):
                 object['self_node'][property] = updated_node[property]
             elif isinstance(updated_node[property], dict):
-                object['relationships'][property] = updated_node[property]
+                object['relationships'][property].apend(updated_node[property])
             elif isinstance(updated_node[property], list):
                 relationships = []
                 for element in updated_node[property]:

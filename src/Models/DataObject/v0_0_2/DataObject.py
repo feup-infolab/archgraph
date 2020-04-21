@@ -1,4 +1,3 @@
-import datetime
 
 from marshmallow import Schema, fields
 from neomodel import StringProperty, StructuredNode, UniqueIdProperty

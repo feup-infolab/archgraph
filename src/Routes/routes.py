@@ -28,7 +28,7 @@ from flask_cors import CORS, cross_origin
 from neomodel import config
 
 from src.Utils.JsonEncoder import search_cidoc, search_specific_cidoc
-from src.Utils.Utils import get_node_by_uid, delete_node_by_uid, nested_json
+from src.Utils.Utils import get_node_by_uid, delete_node_by_uid, nested_json, updated_node
 
 if args.neo4j:
     config.DATABASE_URL = args.neo4j
@@ -115,7 +115,7 @@ def response_update(uid):
     node = get_node_by_uid(uid)
     if node is not None:
         data = request.json
-        merged = node.merge_node(data)
+        merged = updated_node(node, data)
         if merged:
             return make_response(jsonify(node.encodeJSON()), 201)
         else:

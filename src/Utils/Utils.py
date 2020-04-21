@@ -1,4 +1,5 @@
 from neo4j import GraphDatabase
+from neomodel import db
 
 # TODO nao apagar estes importes
 from src.Models.CRM.v5_0_2.NodeEntities.E4_Period import E4_Period
@@ -139,3 +140,40 @@ def delete_node_by_uid(uid):
             return True
         except:
             return None
+
+
+def updated_node(node, data):
+    db.begin()
+    result = updated_node_aux(node, data)
+    if result is None:
+        db.rollback()
+        return None
+    else:
+        db.commit()
+        return True
+
+
+def updated_node_aux(node, data):
+    node_self = node.node_self_build(data)
+    merged = node.merge_node(node_self['self_node'])
+    if merged is None:
+        return None
+
+    for relationship_name in node_self['relationships']:
+        for nexted_node in node_self['relationships'][relationship_name]:
+            try:
+                uid = nexted_node['uid']
+                node = ""
+                try:
+                    node = DataObject.nodes.get(uid=uid)
+                except:
+                    try:
+                        node = E1_CRM_Entity.nodes.get(uid=uid)
+                    except:
+                        return None
+                result = updated_node_aux(node, nexted_node)
+                if result is None:
+                    return None
+            except:
+                return None
+    return True
