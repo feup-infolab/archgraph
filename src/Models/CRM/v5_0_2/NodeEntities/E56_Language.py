@@ -6,6 +6,7 @@ class E56_LanguageSchema(E55_TypeSchema):
 
 
 class E56_Language(E55_Type):
+
     def __init__(self, schema=None, *args, **kwargs):
         if schema is None:
             schema = E56_LanguageSchema()

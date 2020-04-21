@@ -20,6 +20,11 @@ export class MyServiceService {
     return this.http.get<any[]>(this.baseUrl + uid);
   }
 
+  getDataNodeWithTemplate( uid: string): Observable<any[]> {
+    return this.http.get<any[]>(this.baseUrl + "withtemplate/" + uid);
+  }
+
+
   getSearchJson( search: string): Observable<any[]> {
     return this.http.get<any[]>(this.baseUrl + 'search' + '/' + search);
   }
@@ -32,8 +37,13 @@ export class MyServiceService {
     return this.http.get<Schema>(this.baseUrl + 'schema' + '/' + uid);
   }
 
+  getSchemaNodeWithTemplate(uid: string): Observable<Schema> {
+    return this.http.get<Schema>(this.baseUrl + 'schemawithtemplate' + '/' + uid);
+  }
+
   sendNode(data): Observable<any> {
-    return this.http.post<any>(this.baseUrl + data.uid,  data);
+    const uid = Object.keys(data)[0];
+    return this.http.post<any>(this.baseUrl + uid,  data[uid]);
   }
 
   constructor(private http: HttpClient) {

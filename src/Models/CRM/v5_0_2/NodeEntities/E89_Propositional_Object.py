@@ -9,7 +9,7 @@ from src.Models.CRM.v5_0_2.NodeProperties.P148_has_component import P148_has_com
 
 
 class E89_Propositional_ObjectSchema(E28_Conceptual_ObjectSchema):
-    P106_is_composed_of = fields.List(fields.Nested(
+    P148_has_component = fields.List(fields.Nested(
             "src.Models.CRM.v5_0_2.NodeEntities.E89_Propositional_Object.E89_Propositional_ObjectSchema")
     )
     P67_refers_to = fields.List(fields.Nested(

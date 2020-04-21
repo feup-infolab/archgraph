@@ -8,6 +8,9 @@ from src.Models.CRM.v5_0_2.NodeEntities.E14_Condition_Assessment import E14_Cond
 from src.Models.CRM.v5_0_2.NodeEntities.E15_Identifier_Assignment import E15_Identifier_Assignment
 from src.Models.CRM.v5_0_2.NodeEntities.E16_Measurement import E16_Measurement
 from src.Models.CRM.v5_0_2.NodeEntities.E17_Type_Assignment import E17_Type_Assignment
+from src.Models.CRM.v5_0_2.NodeEntities.E19_Physical_Object import E19_Physical_Object
+from src.Models.CRM.v5_0_2.NodeEntities.E20_Biological_Object import E20_Biological_Object
+from src.Models.CRM.v5_0_2.NodeEntities.E21_Person import E21_Person
 from src.Models.CRM.v5_0_2.NodeEntities.E3_Condition_State import E3_Condition_StateSchema, E3_Condition_State
 from src.Models.CRM.v5_0_2.NodeEntities.E4_Period import E4_Period
 from src.Models.CRM.v5_0_2.NodeEntities.E5_Event import E5_Event
@@ -68,12 +71,21 @@ from src.Utils.JsonEncoder import (
 clean_database()
 
 config.DATABASE_URL = "bolt://neo4j:password@localhost:7687"
-ref = list_indexes()
-if ref[0].__len__() != 0:
+#ref = list_indexes()
+#if ref[0].__len__() != 0:
+try:
+    index_creation()
+except:
     index_drop()
+    index_creation()
+
+try:
+    specific_index_creation()
+except:
     specific_index_drop()
-index_creation()
-specific_index_creation()
+    specific_index_creation()
+
+
 e1 = E1_CRM_Entity(name="test").save()
 e1_2 = E1_CRM_Entity(name="test").save()
 e55 = E55_Type(name="test2").save()
@@ -85,6 +97,16 @@ e18 = E18_Physical_Thing(name="e18").save()
 e18_2 = E18_Physical_Thing(name="e18_2").save()
 e24 = E24_Physical_Human_Made_Thing(name="e24").save()
 e83 = E83_Type_Creation(name="e83").save()
+
+
+e18.P46_is_composed_of.connect(e18)
+e2 = E2_Temporal_Entity(name="E2_222").save()
+date = datetime.datetime(2020, 5, 7)
+e52 = E52_Time_Span(name="E52_22", date=date).save()
+dataObject = String(name="name", stringValue="String_Value").save()
+
+e2.P4_has_time_span.connect(e52)
+e52.has_value.connect(dataObject)
 
 
 class TestNeoModel(unittest.TestCase):
@@ -302,69 +324,6 @@ class TestNeoModel(unittest.TestCase):
         e12.P4_has_time_span.connect(e52)
         e22.P108_has_produced_by.connect(e12)
 
-    def test_serialization(self):
-        startDatetime = datetime.datetime(1812, 2, 12)
-        endDatetime = datetime.datetime(1812, 2, 13)
-
-        e52 = E52_Time_Span(
-            name="Production time", date=datetime.datetime(1812, 2, 12)
-        ).save()
-        e41 = E41_Appellation(name="1812-02-12").save()
-
-        node = Interval(
-            name="1812-02-12", startDateValue=startDatetime, endDateValue=endDatetime
-        ).save()
-        node2 = Interval(
-            name="1812-02-12", startDateValue=startDatetime, endDateValue=endDatetime
-        ).save()
-
-        e41.has_value.connect(node)
-        e41.has_value.connect(node2)
-        e52.P1_is_identified_by.connect(e41)
-
-        json1 = {"E41_Appellation": [{"has_value": "DataObject"}]}
-        result1 = json.dumps(nested_json(e41, json1))
-        #e41.get_schema_with_template(json1)
-        print(result1)
-
-        # example 2
-        json2 = {
-            "E52_Time_Span": [
-                {
-                    "P1_is_identified_by": {
-                        "E41_Appellation": [{"has_value": "DataObject"},]
-                    }
-                }
-            ]
-        }
-        result2 = json.dumps(nested_json(e52, json2))
-        print(result2)
-
-        # example 3
-        thing = E70_Thing(name="thing").save()
-        title = E35_Title(name="title").save()
-        place = E53_Place(name="place").save()
-        humanThing = E24_Physical_Human_Made_Thing(name="humam Eiffel").save()
-
-        humanThing.P156_occupies.connect(place)
-        humanThing.P102_has_title.connect(title)
-        thing.P130_shows_features_of.connect(humanThing)
-
-        json3 = {
-            "E70_Thing": [
-                {
-                    "P130_shows_features_of": {
-                        "E24_Physical_Human_Made_Thing": [
-                            {"P102_has_title": "E35_Title"},
-                            {"P156_occupies": "E53_Place"},
-                        ]
-                    }
-                }
-            ]
-        }
-        result3 = json.dumps(nested_json(thing, json3))
-        print(result3)
-
     def test_schema(self):
         e2 = E2_Temporal_Entity(name="E2").save()
         e3 = E3_Condition_State(name="E3").save()
@@ -381,13 +340,14 @@ class TestNeoModel(unittest.TestCase):
         e15 = E15_Identifier_Assignment(name="E15").save()
         e16 = E16_Measurement(name="E16").save()
         e17 = E17_Type_Assignment(name="E17").save()
-
+        e19 = E19_Physical_Object(name="E19").save()
+        e20 = E20_Biological_Object(name="E20").save()
+        e21 = E21_Person(name="E21").save()
         e22 = E22_Human_Made_Object(name="E22").save()
 
         e41 = E41_Appellation(name="1812-02-12").save()
-        e52 = E52_Time_Span(
-            name="Production time", date=datetime.datetime(1812, 2, 12)
-        ).save()
+
+        e70 = E70_Thing(name="E70").save()
         print(e1.getSchema())
         print(e2.getSchema())
         print(e3.getSchema())
@@ -406,13 +366,196 @@ class TestNeoModel(unittest.TestCase):
         print(e16.getSchema())
         print(e17.getSchema())
         print(e18.getSchema())
-
+        print(e19.getSchema())
+        print(e20.getSchema())
+        print(e21.getSchema())
         print(e22.getSchema())
-
         print(e24.getSchema())
+
         print(e41.getSchema())
         print(e52.getSchema())
         print(e55.getSchema())
+
+        print(e70.getSchema())
         print(e83.getSchema())
 
+    def test_serialization(self):
+        # startDatetime = datetime.datetime(1812, 2, 12)
+        # endDatetime = datetime.datetime(1812, 2, 13)
+        #
+        # e52 = E52_Time_Span(
+        #     name="Production time", date=datetime.datetime(1812, 2, 12)
+        # ).save()
+        # e41 = E41_Appellation(name="1812-02-12").save()
+        #
+        # node = Interval(
+        #     name="1812-02-12", startDateValue=startDatetime, endDateValue=endDatetime
+        # ).save()
+        # node2 = Interval(
+        #     name="1812-02-12", startDateValue=startDatetime, endDateValue=endDatetime
+        # ).save()
+        #
+        # e41.has_value.connect(node)
+        # e41.has_value.connect(node2)
+        # e52.P1_is_identified_by.connect(e41)
+        #
+        # json1 = {"E41_Appellation": {"has_value": "DataObject"}}
+        # result1 = json.dumps(nested_json(e41, json1))
+        # #e41.get_schema_with_template(json1)
+        # print(result1)
+        #
+        # # example 2
+        # json2 = {
+        #     "E52_Time_Span":
+        #         {
+        #             "P1_is_identified_by": {
+        #                 "E41_Appellation": {"has_value": "DataObject"}
+        #             }
+        #         }
+        #
+        # }
+        # result2 = json.dumps(nested_json(e52, json2))
+        # print(result2)
+
+        # example 3
+        # thing = E70_Thing(name="thing").save()
+        # title = E35_Title(name="title").save()
+        # place = E53_Place(name="place").save()
+        # humanThing = E24_Physical_Human_Made_Thing(name="humam Eiffel").save()
+        #
+        # humanThing.P156_occupies.connect(place)
+        # humanThing.P102_has_title.connect(title)
+        # thing.P130_shows_features_of.connect(humanThing)
+        #
+        # json3 = {
+        #     "E70_Thing":
+        #         {
+        #             "P130_shows_features_of": {
+        #                 "E24_Physical_Human_Made_Thing":
+        #                     {"P102_has_title": "E35_Title",
+        #                      "P156_occupies": "E53_Place"},
+        #
+        #             }
+        #         }
+        #
+        # }
+        # result3 = json.dumps(nested_json(thing, json3))
+        # print(result3)
+
+        json1 = {
+            "E18_Physical_Thing":
+                {"P46_is_composed_of": "E18_Physical_Thing"}
+        }
+
+        result1 = json.dumps(nested_json(e18, json1))
+        print(result1)
+
+        json2 = {
+            "E2_Temporal_Entity":
+                {"P4_has_time_span": {
+                    "E52_Time_Span":
+                            {"has_value": "DataObject"}
+
+                    }
+                }
+        }
+        json2_1 = {
+        "E52_Time_Span":
+                {"has_value": "DataObject"}
+
+        }
+        result2 = json.dumps(nested_json(e52, json2_1))
+        print(result2)
+
+        result3 = json.dumps(nested_json(e2, json2))
+        print(result3)
+
+    def test_schema_with_template(self):
+
+        json1 = {
+            "E18_Physical_Thing":
+                {"P46_is_composed_of": "E18_Physical_Thing"}
+        }
+
+        e18.get_schema_with_template(json1)
+
+        json2 = {
+            "E2_Temporal_Entity":
+                {"P4_has_time_span": {
+                    "E52_Time_Span":
+                            {"has_value": "DataObject"}
+
+                    }
+            }
+        }
+
+        json2_1 = {
+        "E52_Time_Span":
+                {"has_value": "DataObject"}
+
+        }
+        e2.get_schema_with_template(json2)
+        e52.get_schema_with_template(json2_1)
+
+
+var = {'$schema': 'http://json-schema.org/draft-07/schema#', 'definitions': {
+    'E2_Temporal_EntitySchema': {'type': 'object', 'properties': {'name': {'title': 'name', 'type': 'string'},
+                                                                  'uid': {'title': 'uid', 'type': 'string'},
+                                                                  'P4_has_time_span': {'type': 'object',
+                                                                                       '$ref': '#/definitions/E52_Time_SpanSchema'}},
+                                 'additionalProperties': False, 'required': ['name']},
+    'E52_Time_SpanSchema': {'type': 'object',
+                            'properties': {'date': {'title': 'date', 'type': 'string', 'format': 'date'},
+                                           'name': {'title': 'name', 'type': 'string'},
+                                           'uid': {'title': 'uid', 'type': 'string'},
+                                           'has_value': {'title': 'has_value', 'type': 'array',
+                                                         'items': {'type': 'object',
+                                                                   '$ref': '#/definitions/DataObjectSchema'}}},
+                            'additionalProperties': False, 'required': ['date', 'name']},
+    'DataObjectSchema': {'type': 'object', 'properties': {'name': {'title': 'name', 'type': 'string'},
+                                                          'uid': {'title': 'uid', 'type': 'string'}},
+                         'additionalProperties': False, 'required': ['name']}},
+       '$ref': '#/definitions/E2_Temporal_EntitySchema'}
+
+
+
+var2 = {'$schema': 'http://json-schema.org/draft-07/schema#', 'definitions': {'E52_Time_SpanSchema': {'properties': {
+    'P137_exemplifies': {'title': 'P137_exemplifies', 'type': 'array',
+                         'items': {'type': 'object', '$ref': '#/definitions/E55_TypeSchema'}},
+    'date': {'title': 'date', 'type': 'string', 'format': 'date'}, 'has_value': {'title': 'has_value', 'type': 'array',
+                                                                                 'items': {'type': 'object',
+                                                                                           '$ref': '#/definitions/DataObjectSchema'}},
+    'name': {'title': 'name', 'type': 'string'}, 'uid': {'title': 'uid', 'type': 'string'}}, 'type': 'object',
+                                                                                                     'required': [
+                                                                                                         'date',
+                                                                                                         'name'],
+                                                                                                     'additionalProperties': False},
+                                                                             'DataObjectSchema': {'properties': {
+                                                                                 'name': {'title': 'name',
+                                                                                          'type': 'string'},
+                                                                                 'uid': {'title': 'uid',
+                                                                                         'type': 'string'}},
+                                                                                                  'type': 'object',
+                                                                                                  'required': ['name'],
+                                                                                                  'additionalProperties': False},
+                                                                             'E2_Temporal_EntitySchema': {
+                                                                                 'properties': {
+                                                                                     'P114_is_equal_in_time_to': {
+                                                                                         'type': 'object',
+                                                                                         '$ref': '#/definitions/E52_Time_SpanSchema'},
+                                                                                     'P4_has_time_span': {
+                                                                                         'type': 'object',
+                                                                                         '$ref': '#/definitions/E52_Time_SpanSchema'},
+                                                                                     'has_value': {'title': 'has_value',
+                                                                                                   'type': 'array',
+                                                                                                   'items': {
+                                                                                                       'type': 'object',
+                                                                                                       '$ref': '#/definitions/DataObjectSchema'}},
+                                                                                     'name': {'title': 'name',
+                                                                                              'type': 'string'},
+                                                                                     'uid': {'title': 'uid',
+                                                                                             'type': 'string'}},
+                                                                                 'type': 'object', 'required': ['name'],
+                                                                                 'additionalProperties': False}},
+       '$ref': '#/definitions/E2_Temporal_EntitySchema'}
 

@@ -9,6 +9,7 @@ class E41_AppellationSchema(E90_Symbolic_ObjectSchema):
 
 
 class E41_Appellation(E90_Symbolic_Object):
+
     def __init__(self, schema=None, *args, **kwargs):
         if schema is None:
             schema = E41_AppellationSchema()

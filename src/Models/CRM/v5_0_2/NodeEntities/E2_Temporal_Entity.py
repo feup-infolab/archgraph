@@ -45,7 +45,7 @@ from src.Models.CRM.v5_0_2.NodeProperties.P185_ends_before_the_end_of import (
 
 
 class E2_Temporal_EntitySchema(E1_CRM_EntitySchema):
-    P4_consists_of = fields.Nested(
+    P4_has_time_span = fields.Nested(
         "src.Models.CRM.v5_0_2.NodeEntities.E52_Time_Span.E52_Time_SpanSchema"
     )
     P114_is_equal_in_time_to = fields.Nested(
