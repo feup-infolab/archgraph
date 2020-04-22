@@ -65,7 +65,7 @@ export class ExampleComponent implements OnInit {
     } else {
       this.service.getSearchJson(search)
         .subscribe(result => {
-          this.changeContent(result)
+          this.changeContent(result);
         });
     }
   }

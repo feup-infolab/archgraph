@@ -105,6 +105,21 @@ def response_get_schema_node_with_template(uid):
     else:
         return make_response(jsonify(message="Node doesn't exists"), 404)
 
+@app.route("/schemawithtemplate/<uid>", methods=["GET"])
+@cross_origin()
+def response_get_schema_node_with_template(uid):
+    node = get_node_by_uid(uid)
+    template = {
+        "E52_Time_Span": {
+            "has_value": "DataObject",
+            "P1_is_identified_by": "E41_Appellation"}
+    }
+    if node is not None:
+        result = node.get_schema_with_template(template)
+        return make_response(jsonify(result), 201)
+    else:
+        return make_response(jsonify(message="Node doesn't exists"), 404)
+
 # @app.route("/create", methods=["POST"])
 # def create():
 #     return "create"
