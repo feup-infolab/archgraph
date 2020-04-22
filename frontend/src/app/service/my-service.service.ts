@@ -20,6 +20,11 @@ export class MyServiceService {
     return this.http.get<any[]>(this.baseUrl + uid);
   }
 
+  getDataNodeWithTemplate( uid: string): Observable<any[]> {
+    return this.http.get<any[]>(this.baseUrl + "withtemplate/" + uid);
+  }
+
+
   getSearchJson( search: string): Observable<any[]> {
     return this.http.get<any[]>(this.baseUrl + 'search' + '/' + search);
   }

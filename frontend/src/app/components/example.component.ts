@@ -1,14 +1,7 @@
-import {AfterViewInit, Component, OnChanges, OnInit, ViewChild} from '@angular/core';
-import {FormGroup, FormControl} from '@angular/forms';
-import {Schema} from '../models/Schema';
-import {Utils} from '../models/Utils';
+import { Component, OnInit, ViewChild} from '@angular/core';
 import {MyServiceService} from '../service/my-service.service';
 import {CidocSearch} from '../models/CidocSearch';
 import {ComboBoxComponent} from '../combo-box/combo-box.component';
-import {animate, query, stagger, style, transition, trigger} from '@angular/animations';
-
-
-
 
 @Component({
   selector: 'app-example',
@@ -73,35 +66,35 @@ export class ExampleComponent implements OnInit {
       this.service.getSearchJson(search)
         .subscribe(result => {
           this.changeContent(result)
-      });
+        });
     }
   }
 
   getSearchSpecificJson(entity, search) {
     this.service.getSpecificSearchJson(entity, search)
       .subscribe(result => {
-          this.changeContent(result);
+        this.changeContent(result);
       });
   }
 
   changeContent(result) {
-        this.searchResult = result;
-        const entries = Object.entries(result);
-        for (const entry of result) {
-          const entries2 = Object.entries(entry);
-          for (const key of Object.keys(entry)) {
-            if (key === 'name') {
-              this.searchName = entry[key];
-            } else if (key === 'uid') {
-              this.searchUID = entry[key];
-            } else if (key === 'labels') {
-              this.searchLabels = entry[key];
-            }
-          }
-          this.searchResultS = new CidocSearch(this.searchName, this.searchUID, this.searchLabels);
-          this.searchResultArray.push(this.searchResultS);
+    this.searchResult = result;
+    const entries = Object.entries(result);
+    for (const entry of result) {
+      const entries2 = Object.entries(entry);
+      for (const key of Object.keys(entry)) {
+        if (key === 'name') {
+          this.searchName = entry[key];
+        } else if (key === 'uid') {
+          this.searchUID = entry[key];
+        } else if (key === 'labels') {
+          this.searchLabels = entry[key];
         }
-        this.loadSearch = true;
+      }
+      this.searchResultS = new CidocSearch(this.searchName, this.searchUID, this.searchLabels);
+      this.searchResultArray.push(this.searchResultS);
+    }
+    this.loadSearch = true;
   }
 
   ngOnInit() {

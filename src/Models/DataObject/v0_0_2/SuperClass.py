@@ -2,7 +2,6 @@ import datetime
 import json
 from marshmallow_jsonschema import JSONSchema
 
-
 class SuperClass:
     def __init__(self, schema):
         self.schema = schema
@@ -12,26 +11,21 @@ class SuperClass:
         return json_schema.dump(self.schema)
 
     # Json to string
-    def encodeJSON(self, without_class_name=False):
+    def encodeJSON(self):
         data = {}
-        ___class = {}
         for key, val in self.__properties__.items():
             if (key != "schema") and (key != "id"):
                 data[key] = val
-            ___class[self.__class__.__name__] = data
 
         def my_converter(o):
             if isinstance(o, datetime.datetime):
                 return o.strftime("%Y-%m-%d")
 
-        if without_class_name:
-            return json.dumps(data, default=my_converter)
-        else:
-            return json.dumps(___class, default=my_converter)
+        return json.dumps(data, default=my_converter)
 
     # string to json
-    def decodeJSON(self, without_class_name=False):
-        return json.loads(self.encodeJSON(without_class_name))
+    def decodeJSON(self):
+        return json.loads(self.encodeJSON())
 
     def get_property_from_entity(self, property_name):
         schema_node = self.getSchema()
@@ -46,12 +40,9 @@ class SuperClass:
             '$ref': jsonSchema["$ref"],
         }
         self.__get_schema_with_template_aux(jsonSchema["definitions"], template, newJsonSchema)
-        print(newJsonSchema)
-        print(jsonSchema)
-
         return newJsonSchema
 
-    def __get_schema_with_template_aux(self, definitions, json_template, newJsonSchema):
+    def __get_schema_with_template_aux(self, definitions, json_template, new_json_schema):
         if isinstance(json_template, str):
             entity_name = json_template
         else:
@@ -65,7 +56,7 @@ class SuperClass:
         if 'required' in definitions[current_entity].keys():
             entity['required'] = definitions[current_entity]['required']
 
-        newJsonSchema['definitions'][current_entity] = entity
+        new_json_schema['definitions'][current_entity] = entity
 
         properties = definitions[current_entity]['properties']
 
@@ -80,7 +71,7 @@ class SuperClass:
 
             entity['properties'][property_name] = properties[property_name]
 
-            self.__get_schema_with_template_aux(definitions, next_entity, newJsonSchema)
+            self.__get_schema_with_template_aux(definitions, next_entity, new_json_schema)
 
     def __get_entity_properties_without_ref(self, current_entity, entity):
         for property_name in current_entity['properties']:
@@ -97,6 +88,56 @@ class SuperClass:
             #     changed_property['items'] = {
             #         'type': 'string'}
             #     changed_property['title'] = property_entity['title']
+
+    def merge_node(self, updated_node):
+        merged_node = dict(self.decodeJSON(), **updated_node)
+        field_type_date = self.__get_field_of_type_date()
+
+        for attr, value in merged_node.items():
+            get_attr = getattr(self, attr)
+            if get_attr != value:
+                if attr in field_type_date:
+                    value = datetime.datetime.strptime(value, "%Y-%m-%d")
+                setattr(self, attr, value)
+        try:
+            self.save()
+        except BaseException:
+            return None
+
+
+
+        # array_uid = read_relationships(node_name, relationship_name)
+        #
+        # for uid in array_uid:
+        #     node = get_node_by_uid(uid)
+
+        return True
+
+    def node_self_build(self, updated_node):
+        object = {'self_node':{},
+                  'relationships':{}}
+        for property in updated_node.keys():
+            if isinstance(updated_node[property], str):
+                object['self_node'][property] = updated_node[property]
+            elif isinstance(updated_node[property], dict):
+                object['relationships'][property].apend(updated_node[property])
+            elif isinstance(updated_node[property], list):
+                relationships = []
+                for element in updated_node[property]:
+                    relationships.append(element)
+                object['relationships'][property] = relationships
+        return object
+
+    def __get_field_of_type_date(self):
+        result = []
+        get_schema = self.getSchema()
+        class_name = self.__class__.__name__ + "Schema"
+        properties = get_schema["definitions"][class_name]["properties"]
+        for attr in properties:
+            field = properties[attr]
+            if "format" in field:
+                result.append(field["title"])
+        return result
 
 
 var = {'P1_is_identified_by': {'type': 'object',

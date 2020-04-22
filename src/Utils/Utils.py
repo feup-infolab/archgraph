@@ -1,4 +1,5 @@
 from neo4j import GraphDatabase
+from neomodel import db
 
 # TODO nao apagar estes importes
 from src.Models.CRM.v5_0_2.NodeEntities.E4_Period import E4_Period
@@ -60,53 +61,61 @@ def get_driver():
 
 def nested_json(node, template):
     if isinstance(template, str):
-        return node.decodeJSON(True)
+        return node.decodeJSON()
 
-    def read_relationships(tx, search_node, node_relationship):
-        array_uid = []
+    node_name = list(template.keys())[0]
+    relationships = template[node_name]
+    new_object = {}
+    for relationship_name in relationships:
+        schema_relationship = node.get_property_from_entity(relationship_name)
+        if schema_relationship['type'] == 'array':
+            new_object[relationship_name] = []
+        else:
+            new_object[relationship_name] = {}
+
+        json_nested = relationships[relationship_name]
+        array_uid = read_relationships(node_name, relationship_name)
+
+        for uid in array_uid:
+            new_node = get_node_by_uid(uid)
+            if new_node is None:
+                return None
+
+            if schema_relationship['type'] == 'array':
+                result = nested_json(new_node, json_nested)
+                if result is None:
+                    return None
+                else:
+                    new_object[relationship_name].append(result)
+            else:
+                result = nested_json(new_node, json_nested)
+                if result is None:
+                    return None
+                else:
+                    new_object[relationship_name] = nested_json(new_node, json_nested)
+
+    return dict(node.decodeJSON(), **new_object)
+
+
+def read_relationships(search_node, relationship_name):
+    def read(tx, search_node, relationship_name):
+        array_uids = []
         records = tx.run(
             "MATCH (a: "
             + search_node
             + ")-[: "
-            + node_relationship
+            + relationship_name
             + "]->(nested_node) "
             "Return nested_node.uid"
         )
         for record in records:
-            array_uid.append(record[0])
-        return array_uid
+            array_uids.append(record[0])
+        return array_uids
 
-    node_name = list(template.keys())[0]
-    relationships = template[node_name]
-    newobject= {}
-    for relationship_name in relationships:
-        schema_relationship = node.get_property_from_entity(relationship_name)
-        if schema_relationship['type'] == 'array':
-            newobject[relationship_name] = []
-        else:
-            newobject[relationship_name] = {}
-
-        with get_driver().session() as session:
-            array_uid = session.read_transaction(
-                read_relationships, node_name, relationship_name
-            )
-
-        json_nested = relationships[relationship_name]
-
-        for uid in array_uid:
-            if relationship_name == "has_value":
-                new_node = DataObject.nodes.get(uid=uid)
-            else:
-                new_node = E1_CRM_Entity.nodes.get(uid=uid)
-
-            if schema_relationship['type'] == 'array':
-                newobject[relationship_name].append(
-                    nested_json(new_node, json_nested)
-                )
-            else:
-                newobject[relationship_name] = nested_json(new_node, json_nested)
-
-    return dict(node.decodeJSON(True), **newobject)
+    with get_driver().session() as session:
+        return session.read_transaction(
+            read, search_node, relationship_name
+        )
 
 
 def get_node_by_uid(uid):
@@ -131,3 +140,40 @@ def delete_node_by_uid(uid):
             return True
         except:
             return None
+
+
+def updated_node(node, data):
+    db.begin()
+    result = updated_node_aux(node, data)
+    if result is None:
+        db.rollback()
+        return None
+    else:
+        db.commit()
+        return True
+
+
+def updated_node_aux(node, data):
+    node_self = node.node_self_build(data)
+    merged = node.merge_node(node_self['self_node'])
+    if merged is None:
+        return None
+
+    for relationship_name in node_self['relationships']:
+        for nexted_node in node_self['relationships'][relationship_name]:
+            try:
+                uid = nexted_node['uid']
+                node = ""
+                try:
+                    node = DataObject.nodes.get(uid=uid)
+                except:
+                    try:
+                        node = E1_CRM_Entity.nodes.get(uid=uid)
+                    except:
+                        return None
+                result = updated_node_aux(node, nexted_node)
+                if result is None:
+                    return None
+            except:
+                return None
+    return True
