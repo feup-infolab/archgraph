@@ -39,8 +39,10 @@ export class EditEntityComponent implements OnInit {
       this.uid = params.get('uid');
       console.log(this.uid);
       this.load = false;
-      //this.getSchemaNode(this.uid);
+      // this.getSchemaNode(this.uid);
       this.getSchemaNodeWithTemplate(this.uid);
+      console.log('Testing:');
+      console.log(this.form);
 
     });
   }
@@ -50,11 +52,12 @@ export class EditEntityComponent implements OnInit {
       .subscribe(returnedSchema => {
 
         this.form.layout = [];
+        console.log('Schema being returned:');
         console.log(returnedSchema);
         this.form.schema = this.refactorSchema(returnedSchema);
         this.form.layout = ['*'];
 
-        this.getDataNodeWithTemplate(this.uid)
+        this.getDataNodeWithTemplate(this.uid);
         //  this.load = true;
       });
   }

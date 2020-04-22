@@ -26,7 +26,7 @@ class E1_CRM_EntitySchema(Schema):
     uid = fields.String()
     name = fields.String(required=True)
     P138_represents = fields.List(fields.Nested(
-            "src.Models.CRM.v5_0_2.NodeEntities.E36_Visual_Item.E36_Visual_ItemSchema")
+        "src.Models.CRM.v5_0_2.NodeEntities.E36_Visual_Item.E36_Visual_ItemSchema")
     )
     P2_has_type = fields.List(fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E55_Type.E55_TypeSchema"))
     P137_exemplifies = fields.List(fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E55_Type.E55_TypeSchema"))
@@ -34,7 +34,8 @@ class E1_CRM_EntitySchema(Schema):
                                                  ".E42_IdentifierSchema")
     P139_has_alternative_form = fields.List(fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E41_Appellation"
                                                           ".E41_AppellationSchema"))
-    P1_is_identified_by = fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E55_Type.E55_TypeSchema")
+    P1_is_identified_by = fields.List(fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E41_Appellation"
+                                                    ".E41_AppellationSchema"))
     has_value = fields.List(
         fields.Nested("src.Models.DataObject.v0_0_2.DataObject.DataObjectSchema")
     )
@@ -66,7 +67,7 @@ class E1_CRM_Entity(StructuredNode, SuperClass):
     P1_is_identified_by = RelationshipTo(
         ".E41_Appellation.E41_Appellation",
         "P1_is_identified_by",
-        cardinality=One,
+        # cardinality=One,
         model=P1_is_identified_by,
     )
     has_value = RelationshipTo(

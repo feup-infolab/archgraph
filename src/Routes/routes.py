@@ -67,7 +67,8 @@ def response_get_node_with_templat(uid):
     node = get_node_by_uid(uid)
     template = {
         "E52_Time_Span": {
-            "has_value": "DataObject"}
+            "has_value": "DataObject",
+            "P1_is_identified_by": "E41_Appellation"}
     }
     if node is not None:
         result = nested_json(node, template)
@@ -95,7 +96,8 @@ def response_get_schema_node_with_template(uid):
     node = get_node_by_uid(uid)
     template = {
         "E52_Time_Span": {
-            "has_value": "DataObject"}
+            "has_value": "DataObject",
+            "P1_is_identified_by": "E41_Appellation"}
     }
     if node is not None:
         result = node.get_schema_with_template(template)

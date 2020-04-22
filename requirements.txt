@@ -8,7 +8,7 @@ bdist-mpkg==0.5.0
 cffi==1.12.2
 click==7.0
 configparser==3.5.0
-cryptography==2.6.1
+cryptography==2.8.0
 enum34==1.1.6
 first==2.0.1
 Flask==1.1.1
@@ -35,7 +35,7 @@ pyOpenSSL==19.0.0
 pyparsing==2.0.2
 python-dateutil==2.6.1
 pytz==2017.2
-scipy==1.2.3
+scipy==1.4.1
 singledispatch==3.4.0.3
 six==1.12.0
 tornado==5.1.1

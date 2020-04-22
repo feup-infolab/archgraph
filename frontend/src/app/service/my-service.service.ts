@@ -21,7 +21,7 @@ export class MyServiceService {
   }
 
   getDataNodeWithTemplate( uid: string): Observable<any[]> {
-    return this.http.get<any[]>(this.baseUrl + "withtemplate/" + uid);
+    return this.http.get<any[]>(this.baseUrl + 'withtemplate/' + uid);
   }
 
 

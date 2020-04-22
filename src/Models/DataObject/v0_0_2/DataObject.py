@@ -1,4 +1,3 @@
-
 from marshmallow import Schema, fields
 from neomodel import StringProperty, StructuredNode, UniqueIdProperty
 from src.Models.DataObject.v0_0_2.SuperClass import SuperClass
@@ -19,8 +18,6 @@ class DataObject(StructuredNode, SuperClass):
             schema = DataObjectSchema()
 
         SuperClass.__init__(self, schema)
-
-
 
 
 var = {
