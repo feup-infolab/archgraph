@@ -74,7 +74,7 @@ def nested_json(node, template):
             new_object[relationship_name] = {}
 
         json_nested = relationships[relationship_name]
-        array_uid = read_relationships(node_name, relationship_name)
+        array_uid = read_relationships(node_name, node.uid, relationship_name)
 
         for uid in array_uid:
             new_node = get_node_by_uid(uid)
@@ -97,12 +97,15 @@ def nested_json(node, template):
     return dict(node.decodeJSON(), **new_object)
 
 
-def read_relationships(search_node, relationship_name):
-    def read(tx, search_node, relationship_name):
+def read_relationships(search_node, search_node_uid, relationship_name):
+    def read(tx, search_node, search_node_uid, relationship_name):
         array_uids = []
         records = tx.run(
             "MATCH (a: "
             + search_node
+            + "{ uid:'"
+            + search_node_uid
+            + "'}"
             + ")-[: "
             + relationship_name
             + "]->(nested_node) "
@@ -114,7 +117,7 @@ def read_relationships(search_node, relationship_name):
 
     with get_driver().session() as session:
         return session.read_transaction(
-            read, search_node, relationship_name
+            read, search_node, search_node_uid, relationship_name
         )
 
 
