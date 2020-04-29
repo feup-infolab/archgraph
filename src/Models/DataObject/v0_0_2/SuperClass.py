@@ -32,6 +32,9 @@ class SuperClass:
         class_name = self.__class__.__name__ + "Schema"
         return schema_node['definitions'][class_name]['properties'][property_name]
 
+    def get_superclasses_name(self):
+        return list(set(self.labels()))
+
     def get_schema_with_template(self, template):
         jsonSchema = self.getSchema()
         newJsonSchema = {

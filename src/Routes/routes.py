@@ -2,6 +2,8 @@ from pathlib import Path
 import os, sys
 import argparse
 
+from src.Routes.mongo import update_template, get_all_records_from_collection, update_data
+
 parser = argparse.ArgumentParser(description="Starts the archgraph server.")
 
 parser.add_argument("--neo4j", nargs="?", help="Address of the neo4j server")
@@ -89,13 +91,30 @@ def response_get_schema_node(uid):
         return make_response(jsonify(message="Node doesn't exists"), 404)
 
 
+@app.route("/schemawithtemplate/<uid>", methods=["POST"])
+@cross_origin()
+def update_schema_of_node_in_mongodb(uid):
+    node = get_node_by_uid(uid)
+    template = request.json
+    if node is not None:
+        template_of_node = node.get_schema_with_template(template)
+        classes_name = node.get_superclasses_name()
+        message = update_template(classes_name, template_of_node)
+        get_all_records_from_collection("template")
+
+        return make_response(jsonify(message=message), 200)
+    else:
+        return make_response(jsonify(message="Node doesn't exists"), 404)
+
+
 @app.route("/schemawithtemplate/<uid>", methods=["GET"])
 @cross_origin()
 def response_get_schema_node_with_template(uid):
     node = get_node_by_uid(uid)
     template = {
         "E52_Time_Span": {
-            "has_value": "DataObject"}
+            "has_value": "DataObject",
+        }
     }
     if node is not None:
         result = node.get_schema_with_template(template)
@@ -117,7 +136,9 @@ def response_update(uid):
         data = request.json
         merged = updated_node(node, data)
         if merged:
-            return make_response(jsonify(node.encodeJSON()), 201)
+            new_data = node.encodeJSON()
+            #update_data(uid, new_data)
+            return make_response(jsonify(new_data), 201)
         else:
             return make_response(jsonify(message="Unsaved node"), 404)
     else:

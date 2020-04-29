@@ -156,6 +156,7 @@ class TestNeoModel(unittest.TestCase):
     def test_multiple_inheritance_queries(self):
         # Test if multiple levels of inheritance is detected
         found_e24 = E72_Legal_Object.nodes.get(name="e24")
+        found_e24.get_superclasses_name()
         self.assertAlmostEqual(found_e24.id, e24.id)
 
     def test_data_property_types(self):

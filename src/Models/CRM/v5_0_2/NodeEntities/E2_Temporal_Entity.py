@@ -76,7 +76,7 @@ class E2_Temporal_EntitySchema(E1_CRM_EntitySchema):
         "src.Models.CRM.v5_0_2.NodeEntities.E52_Time_Span.E52_Time_SpanSchema"
     )
     P175_starts_before_or_with_the_start_of = fields.Nested(
-        "src.Models.CRM.v5_0_2.NodeEntities.E52_Time_Span" ".E52_Time_SpanSchema"
+        "src.Models.CRM.v5_0_2.NodeEntities.E52_Time_Span.E52_Time_SpanSchema"
     )
     P176_starts_before_the_start_of = fields.Nested(
         "src.Models.CRM.v5_0_2.NodeEntities.E52_Time_Span.E52_Time_SpanSchema"
@@ -88,7 +88,7 @@ class E2_Temporal_EntitySchema(E1_CRM_EntitySchema):
         "src.Models.CRM.v5_0_2.NodeEntities.E52_Time_Span.E52_Time_SpanSchema"
     )
     P184_ends_before_or_with_the_end_of = fields.Nested(
-        "src.Models.CRM.v5_0_2.NodeEntities.E52_Time_Span" ".E52_Time_SpanSchema"
+        "src.Models.CRM.v5_0_2.NodeEntities.E52_Time_Span.E52_Time_SpanSchema"
     )
     P185_ends_before_the_end_of = fields.Nested(
         "src.Models.CRM.v5_0_2.NodeEntities.E52_Time_Span.E52_Time_SpanSchema"
