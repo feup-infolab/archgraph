@@ -30,18 +30,19 @@ date_now = datetime.now().strftime("%Y-%m-%d, %H:%M:%S")
 #         print(document)
 
 
-def update_data(uid, data):
+def update_data_in_mongo(uid, data):
+    date = datetime.now()
+    date_str = date.strftime("%Y-%m-%d, %H:%M:%S")
     result = db.data.find_one({"uid": uid})
     if result is None:
-        db.data.insert_one({"uid": uid, "data": data})
+        db.data.insert_one({"uid": uid, "data": data, "timestamp": date_str})
         print("created")
     else:
-        new_node = db.data.find_one_and_replace({"_id": result["_id"]}, {"data": data})
+        db.data.find_one_and_replace({"_id": result["_id"]}, {"uid": uid, "data": data, "timestamp": date_str})
         print("updated")
-        print(new_node)
 
 
-def update_template(classes_name, template):
+def update_template_in_mongo(classes_name, template):
     template_str = json.dumps(template)
     date = datetime.now()
     date_str = date.strftime("%Y-%m-%d, %H:%M:%S")
@@ -90,7 +91,7 @@ def delete_collection(collection):
     db[collection].delete_many({})
 
 
-delete_collection("template")
+delete_collection("data")
 # unique = datetime.now()
 # #update_data(5552,"aaa")
 # class_name = ['ola', '1', '2', '3']

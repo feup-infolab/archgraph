@@ -2,7 +2,7 @@ from pathlib import Path
 import os, sys
 import argparse
 
-from src.Routes.mongo import update_template, get_all_records_from_collection, update_data
+from src.Routes.mongo import update_template_in_mongo, get_all_records_from_collection, update_data_in_mongo
 
 parser = argparse.ArgumentParser(description="Starts the archgraph server.")
 
@@ -99,7 +99,7 @@ def update_schema_of_node_in_mongodb(uid):
     if node is not None:
         template_of_node = node.get_schema_with_template(template)
         classes_name = node.get_superclasses_name()
-        message = update_template(classes_name, template_of_node)
+        message = update_template_in_mongo(classes_name, template_of_node)
         get_all_records_from_collection("template")
 
         return make_response(jsonify(message=message), 200)
@@ -131,13 +131,19 @@ def response_get_schema_node_with_template(uid):
 @app.route("/<uid>", methods=["POST"])
 @cross_origin()
 def response_update(uid):
+    template = {
+        "E52_Time_Span": {
+            "has_value": "DataObject",
+        }
+    }
     node = get_node_by_uid(uid)
     if node is not None:
         data = request.json
         merged = updated_node(node, data)
         if merged:
-            new_data = node.encodeJSON()
-            #update_data(uid, new_data)
+            new_data = nested_json(node, template)
+            update_data_in_mongo(uid, new_data)
+            get_all_records_from_collection("data")
             return make_response(jsonify(new_data), 201)
         else:
             return make_response(jsonify(message="Unsaved node"), 404)

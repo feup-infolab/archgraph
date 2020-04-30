@@ -59,6 +59,30 @@ def get_driver():
     return self.driver
 
 
+def read_relationships(search_node, search_node_uid, relationship_name):
+    def read(tx, search_node, search_node_uid, relationship_name):
+        array_uids = []
+        records = tx.run(
+            "MATCH (a: "
+            + search_node
+            + "{ uid:'"
+            + search_node_uid
+            + "'}"
+            + ")-[: "
+            + relationship_name
+            + "]->(nested_node) "
+            "Return nested_node.uid"
+        )
+        for record in records:
+            array_uids.append(record[0])
+        return array_uids
+
+    with get_driver().session() as session:
+        return session.read_transaction(
+            read, search_node, search_node_uid, relationship_name
+        )
+
+
 def nested_json(node, template):
     if isinstance(template, str):
         return node.decodeJSON()
@@ -95,30 +119,6 @@ def nested_json(node, template):
                     new_object[relationship_name] = nested_json(new_node, json_nested)
 
     return dict(node.decodeJSON(), **new_object)
-
-
-def read_relationships(search_node, search_node_uid, relationship_name):
-    def read(tx, search_node, search_node_uid, relationship_name):
-        array_uids = []
-        records = tx.run(
-            "MATCH (a: "
-            + search_node
-            + "{ uid:'"
-            + search_node_uid
-            + "'}"
-            + ")-[: "
-            + relationship_name
-            + "]->(nested_node) "
-            "Return nested_node.uid"
-        )
-        for record in records:
-            array_uids.append(record[0])
-        return array_uids
-
-    with get_driver().session() as session:
-        return session.read_transaction(
-            read, search_node, search_node_uid, relationship_name
-        )
 
 
 def get_node_by_uid(uid):
