@@ -7,10 +7,10 @@ from ..NodeProperties.P150_defines_typical_parts_of import P150_defines_typical_
 
 class E55_TypeSchema(E28_Conceptual_ObjectSchema):
     P127_has_broader_term = fields.List(
-        fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E55_Type.E55_TypeSchema")
+        fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E55_Type.E55_TypeSchema", exclude=("P101_had_as_general_use",))
     )
     P150_defines_typical_parts_of = fields.List(
-        fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E55_Type.E55_TypeSchema")
+        fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E55_Type.E55_TypeSchema",  exclude=("P101_had_as_general_use",))
     )
 
 

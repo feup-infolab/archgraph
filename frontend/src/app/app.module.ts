@@ -18,7 +18,7 @@ import { EditTemplateComponent } from './edit-template/edit-template.component';
 
 const appRoutes: Routes = [
   { path: '', component: ExampleComponent },
-  { path: 'edit-template', component: EditTemplateComponent },
+  { path: 'edit-template/:id', component: EditTemplateComponent },
   { path: ':uid', component: EditEntityComponent },
 
 ];

@@ -24,6 +24,10 @@ export class MyServiceService {
     return this.http.get<any[]>(this.baseUrl + 'withtemplate/' + uid);
   }
 
+  getBaseDataNodeWithTemplate( uid: string): Observable<any[]> {
+    return this.http.get<any[]>(this.baseUrl + 'createwithtemplate/' + uid);
+  }
+
 
   getSearchJson( search: string): Observable<any[]> {
     return this.http.get<any[]>(this.baseUrl + 'search' + '/' + search);
@@ -39,6 +43,14 @@ export class MyServiceService {
 
   getSchemaNodeWithTemplate(uid: string): Observable<Schema> {
     return this.http.get<Schema>(this.baseUrl + 'schemawithtemplate' + '/' + uid);
+  }
+
+  getBaseSchemaNodeWithTemplate(uid: string): Observable<Schema> {
+    return this.http.get<Schema>(this.baseUrl + 'createtemplate' + '/' + uid);
+  }
+
+  geAllSchemaProperties(uid: string): Observable<Schema> {
+    return this.http.get<Schema>(this.baseUrl + 'getallproperties' + '/' + uid);
   }
 
   sendNode(data): Observable<any> {

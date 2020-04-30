@@ -67,7 +67,7 @@ class E1_CRM_Entity(StructuredNode, SuperClass):
     P1_is_identified_by = RelationshipTo(
         ".E41_Appellation.E41_Appellation",
         "P1_is_identified_by",
-        # cardinality=One,
+        cardinality=One,
         model=P1_is_identified_by,
     )
     has_value = RelationshipTo(

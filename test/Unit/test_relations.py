@@ -378,8 +378,9 @@ class TestNeoModel(unittest.TestCase):
         print(e41.getSchema())
         print(e52.getSchema())
         print(e55.getSchema())
-
+        print("acual test")
         print(e70.getSchema())
+        print("acual test2")
         print(e83.getSchema())
 
     def test_serialization(self):
