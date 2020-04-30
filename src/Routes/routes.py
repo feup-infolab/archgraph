@@ -174,6 +174,13 @@ def response_update(uid):
         return make_response(jsonify(message="Node doesn't exists"), 404)
 
 
+@app.route("/post_template", methods=["POST"])
+@cross_origin()
+def receive_new_template():
+    data = request
+    print(data)
+
+
 @app.route("/<uid>", methods=["DELETE"])
 @cross_origin()
 def delete(uid):
