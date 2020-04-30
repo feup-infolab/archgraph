@@ -177,8 +177,9 @@ def response_update(uid):
 @app.route("/post_template", methods=["POST"])
 @cross_origin()
 def receive_new_template():
-    data = request
+    data = request.json
     print(data)
+    return make_response(jsonify(data), 201)
 
 
 @app.route("/<uid>", methods=["DELETE"])

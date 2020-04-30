@@ -122,7 +122,10 @@ export class EditTemplateComponent implements OnInit {
   }
 
   sendProps() {
-
+    this.service.sendTemplate(this.props)
+      .subscribe( result => {
+        console.log(result);
+      });
   }
 
   onSubmit(data: any) {

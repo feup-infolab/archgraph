@@ -58,6 +58,10 @@ export class MyServiceService {
     return this.http.post<any>(this.baseUrl + uid,  data[uid]);
   }
 
+  sendTemplate(data): Observable<any> {
+    return this.http.post<any>(this.baseUrl + 'post_template', data);
+  }
+
   constructor(private http: HttpClient) {
 
     this.shareMethod$ = this.shareMethodSubject.asObservable();
