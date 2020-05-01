@@ -1,6 +1,13 @@
-import datetime
 import importlib
-import json
+from marshmallow_jsonschema import JSONSchema
+
+
+def decorator_schema(cls):
+    def getSchema(self):
+        json_schema = JSONSchema()
+        return json_schema.dump(self)
+    setattr(cls, 'getSchema', getSchema)
+    return cls
 
 
 def ontology_class(cls):

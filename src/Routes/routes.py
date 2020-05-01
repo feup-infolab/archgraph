@@ -1,8 +1,11 @@
 from pathlib import Path
 import os, sys
 import argparse
+from src.Utils.Utils import read_file
 
-from src.Routes.mongo import update_template_in_mongo, get_all_records_from_collection, update_data_in_mongo
+from src.Routes.mongo import update_schema_in_mongo, get_all_records_from_collection, update_data_in_mongo, \
+    get_record_from_collection, add_record_to_collection, get_schema_from_mongo, populate_template_collection, \
+    delete_collection
 
 parser = argparse.ArgumentParser(description="Starts the archgraph server.")
 
@@ -30,7 +33,7 @@ from flask_cors import CORS, cross_origin
 from neomodel import config
 
 from src.Utils.JsonEncoder import search_cidoc, search_specific_cidoc
-from src.Utils.Utils import get_node_by_uid, delete_node_by_uid, nested_json, updated_node
+from src.Utils.Utils import get_node_by_uid, delete_node_by_uid, nested_json, updated_node, make_result
 
 if args.neo4j:
     config.DATABASE_URL = args.neo4j
@@ -65,20 +68,31 @@ def response_get_node(uid):
 
 @app.route("/withtemplate/<uid>", methods=["GET"])
 @cross_origin()
-def response_get_node_with_templat(uid):
-    node = get_node_by_uid(uid)
+def get_record(uid):
     template = {
         "E52_Time_Span": {
             "has_value": "DataObject"}
     }
-    if node is not None:
-        result = nested_json(node, template)
-        if result is not None:
-            return make_response(jsonify(result), 201)
-        else:
-            return make_response(jsonify(message="Some error occurred"), 404)
+    # template = {
+    #     "E52_Time_Span": {
+    #         "P86_falls_within": "E52_Time_Span"}
+    # }
+    record = get_record_from_collection(uid, "data")
+    if record is not None:
+        return make_response(jsonify(record["data"]), 201)
     else:
-        return make_response(jsonify(message="Node doesn't exists"), 404)
+        node = get_node_by_uid(uid)
+        if node is not None:
+            data = nested_json(node, template)
+            print(data)
+            add_record_to_collection(uid, data, "data")
+            get_all_records_from_collection("data")
+            if data is not None:
+                return make_response(jsonify(data), 201)
+            else:
+                return make_response(jsonify(message="Some error occurred"), 404)
+        else:
+            return make_response(jsonify(message="Node doesn't exists"), 404)
 
 
 @app.route("/schema/<uid>", methods=["GET"])
@@ -95,13 +109,17 @@ def response_get_schema_node(uid):
 @cross_origin()
 def update_schema_of_node_in_mongodb(uid):
     node = get_node_by_uid(uid)
-    template = request.json
+    #template = request.json
+    template = {
+        "E52_Time_Span": {
+            "P86_falls_within": "E52_Time_Span"}
+    }
     if node is not None:
-        template_of_node = node.get_schema_with_template(template)
+        schema_of_node = node.get_schema_with_template(template)
         classes_name = node.get_superclasses_name()
-        message = update_template_in_mongo(classes_name, template_of_node)
+        message = update_schema_in_mongo(classes_name, schema_of_node)
+        print(message)
         get_all_records_from_collection("template")
-
         return make_response(jsonify(message=message), 200)
     else:
         return make_response(jsonify(message="Node doesn't exists"), 404)
@@ -109,16 +127,28 @@ def update_schema_of_node_in_mongodb(uid):
 
 @app.route("/schemawithtemplate/<uid>", methods=["GET"])
 @cross_origin()
-def response_get_schema_node_with_template(uid):
+def get_schema_node_with_template(uid):
     node = get_node_by_uid(uid)
     template = {
         "E52_Time_Span": {
-            "has_value": "DataObject",
-        }
+            "has_value": "DataObject"}
     }
+    # template = {
+    #     "E52_Time_Span": {
+    #         "P86_falls_within": "E52_Time_Span"}
+    # }
+
     if node is not None:
-        result = node.get_schema_with_template(template)
-        return make_response(jsonify(result), 201)
+        classes_name = node.get_superclasses_name()
+        record = get_schema_from_mongo(classes_name)
+        if record is not None:
+            return make_response(record["schema"], 201)
+        else:
+            schema_of_node = node.get_schema_with_template(template)
+            message = update_schema_in_mongo(classes_name, schema_of_node)
+            print(message)
+            get_all_records_from_collection("template")
+            return make_response(jsonify(schema_of_node), 201)
     else:
         return make_response(jsonify(message="Node doesn't exists"), 404)
 
@@ -141,9 +171,9 @@ def response_update(uid):
         data = request.json
         merged = updated_node(node, data)
         if merged:
-            new_data = nested_json(node, template)
-            update_data_in_mongo(uid, new_data)
+            update_data_in_mongo(uid, node.encodeJSON())
             get_all_records_from_collection("data")
+            new_data = nested_json(node, template)
             return make_response(jsonify(new_data), 201)
         else:
             return make_response(jsonify(message="Unsaved node"), 404)
@@ -151,14 +181,14 @@ def response_update(uid):
         return make_response(jsonify(message="Node doesn't exists"), 404)
 
 
-@app.route("/<uid>", methods=["DELETE"])
-@cross_origin()
-def delete(uid):
-    result = delete_node_by_uid(uid)
-    if result is not None:
-        return make_response(jsonify(message="Successfully deleted node"), 201)
-    else:
-        return make_response(jsonify(message="Node doesn't exists"), 404)
+# @app.route("/<uid>", methods=["DELETE"])
+# @cross_origin()
+# def delete(uid):
+#     result = delete_node_by_uid(uid)
+#     if result is not None:
+#         return make_response(jsonify(message="Successfully deleted node"), 201)
+#     else:
+#         return make_response(jsonify(message="Node doesn't exists"), 404)
 
 
 @app.route("/search/<word>", methods=["GET"])
@@ -180,16 +210,10 @@ def search_specific(entity, word):
     else:
         return make_response(jsonify(message="Failed Search"), 404)
 
-
-def make_result(result):
-    response_array = "[" + result[0].encodeJSON()
-    iterator = iter(result)
-    next(iterator)
-    for items in iterator:
-        response_array += ", " + items.encodeJSON()
-    response_array += "]"
-    return response_array
-
+# delete_collection("defaultTemplate")
+# json = read_file("../Utils/defaultTemplates.json")
+# populate_template_collection(json)
+# get_all_records_from_collection("defaultTemplate")
 
 if __name__ == "__main__":
     app.run()

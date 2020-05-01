@@ -1,5 +1,6 @@
 import json
 from datetime import datetime
+from src.Utils.Utils import find_name_of_class_schema_in_project
 
 
 from pymongo import MongoClient
@@ -8,13 +9,7 @@ client = MongoClient(port=27017, username="root", password="rootpassword")
 db = client.mydatabase
 date_now = datetime.now().strftime("%Y-%m-%d, %H:%M:%S")
 
-# def read_file(path_file):
-#     file = open(path_file, "r")
-#     file_to_json = json.loads(file.read())
-#     print(file_to_json)
-#     return file_to_json
-#
-#
+
 # def insert_into_mongo(content):
 #     result = {}
 #     if isinstance(content, type([])):
@@ -28,6 +23,19 @@ date_now = datetime.now().strftime("%Y-%m-%d, %H:%M:%S")
 #     cursor = db.reviews.find({})
 #     for document in cursor:
 #         print(document)
+def populate_template_collection(objectjson):
+
+    for object in objectjson:
+        class_name = object["className"]
+
+        class_in_project = find_name_of_class_schema_in_project(class_name)
+        if class_in_project is None:
+            print(class_name + " did't found")
+        template = object["template"]
+        schema = class_in_project().getSchema()
+        schema_str = json.dumps(schema)
+        db.defaultTemplate.insert_one({"class_name": class_name, "template": template, "schema": schema_str})
+    return
 
 
 def update_data_in_mongo(uid, data):
@@ -42,42 +50,55 @@ def update_data_in_mongo(uid, data):
         print("updated")
 
 
-def update_template_in_mongo(classes_name, template):
-    template_str = json.dumps(template)
+def update_schema_in_mongo(classes_name, schema):
+    schema_str = json.dumps(schema)
     date = datetime.now()
     date_str = date.strftime("%Y-%m-%d, %H:%M:%S")
     message = ""
-    if db.template.count_documents({'classes_name': {'$in': classes_name}}) == 0:
+    result = get_schema_from_mongo(classes_name)
+    if result is None:
         message = "was inserted new template"
-        print(message)
-        db.template.insert_one({'classes_name': classes_name, "timestamp": date_str, "template": template_str})
+        db.template.insert_one({'classes_name': classes_name, "timestamp": date_str, "schema": schema_str})
         return message
+    elif result['match'] < len(classes_name):
+        db.template.insert_one({'classes_name': classes_name, "timestamp": date_str, "schema": schema_str})
+        message = "inserted new template"
+    else:
+        db.data.find_one_and_replace({"_id": result['_id']}, {'classes_name': classes_name, "timestamp": date_str, "schema": schema})
+        message = "updated template"
+    return message
+
+
+def get_schema_from_mongo(classes_name):
+    if db.template.count_documents({'classes_name': {'$in': classes_name}}) == 0:
+        return None
     else:
         result = db.template.find({'classes_name': {'$in': classes_name}})
 
         elements_match_records = {
             '_id': "",
             'match': 0,
-            'template': {}
+            'schema': {}
         }
         for document in result:
             merged = set(classes_name) & set(document['classes_name'])
             if len(merged) > elements_match_records["match"]:
                 elements_match_records['match'] = len(merged)
-                elements_match_records['template'] = document
+                elements_match_records['schema'] = document
                 elements_match_records['_id'] = document['_id']
+        return elements_match_records
 
-        if elements_match_records['match'] < len(classes_name):
-            db.template.insert_one({'classes_name': classes_name, "timestamp": date_str, "template": template_str})
-            elements_match_records['match'] = len(classes_name)
-            elements_match_records['template'] = template
-            message = "inserted new template"
-            print(message)
-        else:
-            db.data.find_one_and_replace({"_id": elements_match_records['_id']}, {'classes_name': classes_name, "timestamp": date_str, "template": template})
-            message = "updated template"
-            print(message)
-        return message
+
+def get_record_from_collection(uid, collection):
+    record = db[collection].find_one({"uid": uid})
+    return record
+
+
+def add_record_to_collection(uid, data, collection):
+    date = datetime.now()
+    date_str = date.strftime("%Y-%m-%d, %H:%M:%S")
+    db[collection].insert_one({"uid": uid, "data": data, "timestamp": date_str})
+    return
 
 
 def get_all_records_from_collection(collection):
@@ -92,6 +113,8 @@ def delete_collection(collection):
 
 
 delete_collection("data")
+delete_collection("template")
+
 # unique = datetime.now()
 # #update_data(5552,"aaa")
 # class_name = ['ola', '1', '2', '3']
@@ -106,3 +129,4 @@ delete_collection("data")
 #
 # print("get all records")
 # get_all_records_from_collection("template")
+#get_all_records_from_collection("data")

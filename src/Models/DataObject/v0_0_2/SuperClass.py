@@ -51,15 +51,20 @@ class SuperClass:
         else:
             entity_name = list(json_template.keys())[0]
         current_entity = entity_name + "Schema"
-        entity = {
-                'type': definitions[current_entity]['type'],
-                'properties': {},
-                'additionalProperties': definitions[current_entity]['additionalProperties'],
-        }
-        if 'required' in definitions[current_entity].keys():
-            entity['required'] = definitions[current_entity]['required']
+        entity = {}
+        get_entity = new_json_schema["definitions"].get(current_entity, None)
+        if  get_entity is not None:
+            entity = new_json_schema["definitions"][current_entity]
+        else:
+            entity = {
+                    'type': definitions[current_entity]['type'],
+                    'properties': {},
+                    'additionalProperties': definitions[current_entity]['additionalProperties'],
+            }
+            if 'required' in definitions[current_entity].keys():
+                entity['required'] = definitions[current_entity]['required']
 
-        new_json_schema['definitions'][current_entity] = entity
+            new_json_schema['definitions'][current_entity] = entity
 
         properties = definitions[current_entity]['properties']
 
