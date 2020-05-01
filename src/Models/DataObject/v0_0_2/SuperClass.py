@@ -32,6 +32,9 @@ class SuperClass:
         class_name = self.__class__.__name__ + "Schema"
         return schema_node['definitions'][class_name]['properties'][property_name]
 
+    def get_superclasses_name(self):
+        return list(set(self.labels()))
+
     def get_schema_with_template(self, template):
         jsonSchema = self.getSchema()
         newJsonSchema = {
@@ -48,15 +51,20 @@ class SuperClass:
         else:
             entity_name = list(json_template.keys())[0]
         current_entity = entity_name + "Schema"
-        entity = {
-                'type': definitions[current_entity]['type'],
-                'properties': {},
-                'additionalProperties': definitions[current_entity]['additionalProperties'],
-        }
-        if 'required' in definitions[current_entity].keys():
-            entity['required'] = definitions[current_entity]['required']
+        entity = {}
+        get_entity = new_json_schema["definitions"].get(current_entity, None)
+        if  get_entity is not None:
+            entity = new_json_schema["definitions"][current_entity]
+        else:
+            entity = {
+                    'type': definitions[current_entity]['type'],
+                    'properties': {},
+                    'additionalProperties': definitions[current_entity]['additionalProperties'],
+            }
+            if 'required' in definitions[current_entity].keys():
+                entity['required'] = definitions[current_entity]['required']
 
-        new_json_schema['definitions'][current_entity] = entity
+            new_json_schema['definitions'][current_entity] = entity
 
         properties = definitions[current_entity]['properties']
 
