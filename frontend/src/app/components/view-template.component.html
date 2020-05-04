@@ -1,0 +1,11 @@
+<select  (change)="selectChangeHandler($event)">
+  <option *ngFor="let key of objectKeys(templates)" [ngValue]="templates[key]">{{ key }}</option>
+</select>
+
+<div *ngIf="hasTemplate">
+    <pre>{{templates[key] | json}}</pre>
+</div>
+
+  <div class="example-button-row">
+    <button type="button" class="btn btn-primary-outline pull-right" (click)="editEntity();"><i class="fa fa-plus"></i> Edit Entity</button>
+  </div>

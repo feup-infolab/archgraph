@@ -14,10 +14,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { EditEntityComponent } from './components/edit-entity.component';
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from '@angular/material';
+import { ViewTemplateComponent } from './components/view-template.component';
 
 const appRoutes: Routes = [
   { path: '', component: SearchComponent },
   { path: ':uid', component: EditEntityComponent },
+  { path: 'viewtemplate/:uid', component: ViewTemplateComponent }
 
 ];
 
@@ -27,7 +29,8 @@ const appRoutes: Routes = [
     AppComponent,
     SearchComponent,
     ComboBoxComponent,
-    EditEntityComponent
+    EditEntityComponent,
+    ViewTemplateComponent
   ],
   imports: [
     RouterModule.forRoot(

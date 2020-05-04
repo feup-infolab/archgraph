@@ -2,7 +2,6 @@ import json
 from datetime import datetime
 from src.Utils.Utils import find_name_of_class_schema_in_project
 
-
 from pymongo import MongoClient
 
 client = MongoClient(port=27017, username="root", password="rootpassword")
@@ -24,7 +23,6 @@ date_now = datetime.now().strftime("%Y-%m-%d, %H:%M:%S")
 #     for document in cursor:
 #         print(document)
 def populate_template_collection(object_json):
-
     for object in object_json:
         class_name = object["className"]
 
@@ -66,12 +64,22 @@ def insert_template_in_mongo(classes_name, schema, template):
 
 
 def get_schema_from_mongo(template):
-    result = db.createdTemplate.find({'template': template})
-    if result.count() == 0:
+    records = db.createdTemplate.find({'template': template})
+    if records.count() == 0:
         return None
     else:
-        return result[0]
+        return records[0]
 
+
+def get_schema_from_mongo_by_classes_name(classes_name):
+    records = db.createdTemplate.find({'classes_name': {'$in': classes_name}})
+    if records.count() == 0:
+        return None
+    else:
+        result = []
+        for record in records:
+            result.append(record["template"])
+        return result
 
 # def get_schema_from_mongo(classes_name):
 #     if db.createdTemplate.count_documents({'classes_name': {'$in': classes_name}}) == 0:
@@ -124,14 +132,14 @@ delete_collection("template")
 # class_name = ['ola', '1', '2', '3']
 # db.createdTemplate.insert_one({'classes_name': class_name, "timestamp": date_now, "template": "template"})
 #
-#class_name2 = ['ola', '3', "4"]
-#db.createdTemplate.insert_one({'classes_name': class_name2, "timestamp": date_now, "template": "template"})
+# class_name2 = ['ola', '3', "4"]
+# db.createdTemplate.insert_one({'classes_name': class_name2, "timestamp": date_now, "template": "template"})
 #
 # class_name_test = ["7"]
 # update_template(class_name_test, "template")
 #
 #
 # print("get all records")
-#get_all_records_from_collection("createdTemplate")
-#delete_collection("createdTemplate")
-#get_all_records_from_collection("data")
+# get_all_records_from_collection("createdTemplate")
+# delete_collection("createdTemplate")
+# get_all_records_from_collection("data")

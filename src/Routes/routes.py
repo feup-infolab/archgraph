@@ -6,7 +6,7 @@ from src.Utils.Utils import read_file
 
 from src.Routes.mongo import insert_template_in_mongo, get_all_records_from_collection, update_data_in_mongo, \
     get_record_from_collection, add_record_to_collection, get_schema_from_mongo, populate_template_collection, \
-    delete_collection
+    delete_collection, get_schema_from_mongo_by_classes_name
 
 parser = argparse.ArgumentParser(description="Starts the archgraph server.")
 
@@ -129,7 +129,7 @@ def insert_template_in_mongodb(uid):
 
 @app.route("/schemawithtemplate/<uid>", methods=["GET"])
 @cross_origin()
-def get_schema_from_mongo(uid):
+def get_schema(uid):
     node = get_node_by_uid(uid)
     #todo descomentar isto
     # template = request.json
@@ -149,6 +149,22 @@ def get_schema_from_mongo(uid):
             return make_response(jsonify(json.loads(result["schema"])), 201)
         else:
             make_response(jsonify(message="Template doesn't exists"), 404)
+    else:
+        return make_response(jsonify(message="Node doesn't exists"), 404)
+
+
+@app.route("/templatesfromentity/<uid>", methods=["GET"])
+@cross_origin()
+def get_templates_from_entity(uid):
+    node = get_node_by_uid(uid)
+    if node is not None:
+        get_all_records_from_collection("createdTemplate")
+        classes_name = node.get_superclasses_name()
+        templates = get_schema_from_mongo_by_classes_name(classes_name)
+        if templates is None:
+            return make_response(jsonify(message="Don't have templates for this entity"), 200)
+        else:
+            return make_response(jsonify(templates), 201)
     else:
         return make_response(jsonify(message="Node doesn't exists"), 404)
 

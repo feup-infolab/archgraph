@@ -24,6 +24,10 @@ export class MyServiceService {
     return this.http.get<any[]>(this.baseUrl + "withtemplate/" + uid);
   }
 
+  getTemplatesFromEntity( uid: string): Observable<any[]> {
+        return this.http.get<any[]>(this.baseUrl + "templatesfromentity/" + uid);
+  }
+
 
   getSearchJson( search: string): Observable<any[]> {
     return this.http.get<any[]>(this.baseUrl + 'search' + '/' + search);
