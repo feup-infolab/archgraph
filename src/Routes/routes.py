@@ -1,11 +1,12 @@
+import json
 from pathlib import Path
 import os, sys
 import argparse
 from src.Utils.Utils import read_file
 
-from src.Routes.mongo import update_schema_in_mongo, get_all_records_from_collection, update_data_in_mongo, \
+from src.Routes.mongo import insert_template_in_mongo, get_all_records_from_collection, update_data_in_mongo, \
     get_record_from_collection, add_record_to_collection, get_schema_from_mongo, populate_template_collection, \
-    delete_collection
+    delete_collection, get_schema_from_mongo_by_classes_name
 
 parser = argparse.ArgumentParser(description="Starts the archgraph server.")
 
@@ -105,11 +106,12 @@ def response_get_schema_node(uid):
         return make_response(jsonify(message="Node doesn't exists"), 404)
 
 
-@app.route("/schemawithtemplate/<uid>", methods=["POST"])
+@app.route("/inserttemplate/<uid>", methods=["POST"])
 @cross_origin()
-def update_schema_of_node_in_mongodb(uid):
+def insert_template_in_mongodb(uid):
     node = get_node_by_uid(uid)
-    #template = request.json
+    #todo descomentar isto
+    # template = request.json
     template = {
         "E52_Time_Span": {
             "P86_falls_within": "E52_Time_Span"}
@@ -117,9 +119,9 @@ def update_schema_of_node_in_mongodb(uid):
     if node is not None:
         schema_of_node = node.get_schema_with_template(template)
         classes_name = node.get_superclasses_name()
-        message = update_schema_in_mongo(classes_name, schema_of_node)
+        message = insert_template_in_mongo(classes_name, schema_of_node, template)
         print(message)
-        get_all_records_from_collection("template")
+        get_all_records_from_collection("createdTemplate")
         return make_response(jsonify(message=message), 200)
     else:
         return make_response(jsonify(message="Node doesn't exists"), 404)
@@ -127,30 +129,45 @@ def update_schema_of_node_in_mongodb(uid):
 
 @app.route("/schemawithtemplate/<uid>", methods=["GET"])
 @cross_origin()
-def get_schema_node_with_template(uid):
+def get_schema(uid):
     node = get_node_by_uid(uid)
-    template = {
-        "E52_Time_Span": {
-            "has_value": "DataObject"}
-    }
+    #todo descomentar isto
+    # template = request.json
+
     # template = {
     #     "E52_Time_Span": {
-    #         "P86_falls_within": "E52_Time_Span"}
+    #         "has_value": "DataObject"}
     # }
+    template = {
+        "E52_Time_Span": {
+            "P86_falls_within": "E52_Time_Span"}
+    }
 
     if node is not None:
-        classes_name = node.get_superclasses_name()
-        record = get_schema_from_mongo(classes_name)
-        if record is not None:
-            return make_response(record["schema"], 201)
+        result = get_schema_from_mongo(template)
+        if result is not None:
+            return make_response(jsonify(json.loads(result["schema"])), 201)
         else:
-            schema_of_node = node.get_schema_with_template(template)
-            message = update_schema_in_mongo(classes_name, schema_of_node)
-            print(message)
-            get_all_records_from_collection("template")
-            return make_response(jsonify(schema_of_node), 201)
+            make_response(jsonify(message="Template doesn't exists"), 404)
     else:
         return make_response(jsonify(message="Node doesn't exists"), 404)
+
+
+@app.route("/templatesfromentity/<uid>", methods=["GET"])
+@cross_origin()
+def get_templates_from_entity(uid):
+    node = get_node_by_uid(uid)
+    if node is not None:
+        get_all_records_from_collection("createdTemplate")
+        classes_name = node.get_superclasses_name()
+        templates = get_schema_from_mongo_by_classes_name(classes_name)
+        if templates is None:
+            return make_response(jsonify(message="Don't have templates for this entity"), 200)
+        else:
+            return make_response(jsonify(templates), 201)
+    else:
+        return make_response(jsonify(message="Node doesn't exists"), 404)
+
 
 # @app.route("/create", methods=["POST"])
 # def create():
@@ -161,6 +178,7 @@ def get_schema_node_with_template(uid):
 @app.route("/<uid>", methods=["POST"])
 @cross_origin()
 def response_update(uid):
+
     template = {
         "E52_Time_Span": {
             "has_value": "DataObject",
@@ -168,6 +186,7 @@ def response_update(uid):
     }
     node = get_node_by_uid(uid)
     if node is not None:
+        #todo meter o template no body tambem
         data = request.json
         merged = updated_node(node, data)
         if merged:
@@ -210,10 +229,11 @@ def search_specific(entity, word):
     else:
         return make_response(jsonify(message="Failed Search"), 404)
 
+
 # delete_collection("defaultTemplate")
 # json = read_file("../Utils/defaultTemplates.json")
 # populate_template_collection(json)
-# get_all_records_from_collection("defaultTemplate")
+get_all_records_from_collection("createdTemplate")
 
 if __name__ == "__main__":
     app.run()

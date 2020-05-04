@@ -3,7 +3,7 @@ import { MyServiceService } from './service/my-service.service';
 import {Bootstrap4FrameworkModule, MaterialDesignFrameworkModule} from 'angular7-json-schema-form';
 import { AppComponent } from './app.component';
 import {HttpClientModule} from '@angular/common/http';
-import {ExampleComponent} from './components/example.component';
+import {SearchComponent} from './components/search.component';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -14,10 +14,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { EditEntityComponent } from './components/edit-entity.component';
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from '@angular/material';
+import { ViewTemplateComponent } from './components/view-template.component';
 
 const appRoutes: Routes = [
-  { path: '', component: ExampleComponent },
+  { path: '', component: SearchComponent },
   { path: ':uid', component: EditEntityComponent },
+  { path: 'viewtemplate/:uid', component: ViewTemplateComponent }
 
 ];
 
@@ -25,9 +27,10 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    ExampleComponent,
+    SearchComponent,
     ComboBoxComponent,
-    EditEntityComponent
+    EditEntityComponent,
+    ViewTemplateComponent
   ],
   imports: [
     RouterModule.forRoot(
