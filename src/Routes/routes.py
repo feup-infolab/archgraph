@@ -127,7 +127,7 @@ def insert_template_in_mongodb(uid):
         return make_response(jsonify(message="Node doesn't exists"), 404)
 
 
-@app.route("/getschema/<uid>", methods=["GET"])
+@app.route("/schemawithtemplate/<uid>", methods=["GET"])
 @cross_origin()
 def get_schema_from_mongo(uid):
     node = get_node_by_uid(uid)
