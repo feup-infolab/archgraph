@@ -33,6 +33,7 @@ export class EditTemplateComponent implements OnInit {
     layout: []
   };
   props = [];
+  allprops = {};
 
   chosenprops = [];
 
@@ -84,6 +85,7 @@ export class EditTemplateComponent implements OnInit {
         console.log(result);
         console.log(Object.keys(result));
         this.props = Object.keys(result);
+        this.allprops = result;
         this.load = true;
       });
   }
@@ -119,6 +121,8 @@ export class EditTemplateComponent implements OnInit {
 
   addProp() {
     this.chosenprops.push(this.comboBoxReference.inputItem);
+    this.form.data[this.uid][this.comboBoxReference.inputItem] = this.allprops[this.comboBoxReference.inputItem];
+    console.log(this.form.data);
   }
 
   sendProps() {
