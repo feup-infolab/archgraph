@@ -27,3 +27,9 @@ class E29_Design_or_Procedure(E73_Information_Object):
     foresees_use_of = RelationshipTo(
         ".E57_Material.E57_Material", "P68_foresees_use_of", model=P68_foresees_use_of,
     )
+
+    def __init__(self, schema=None, *args, **kwargs):
+        if schema is None:
+            schema = E29_Design_or_ProcedureSchema()
+
+        super().__init__(schema, *args, **kwargs)

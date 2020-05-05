@@ -2,6 +2,7 @@ import datetime
 import json
 from marshmallow_jsonschema import JSONSchema
 
+
 class SuperClass:
     def __init__(self, schema):
         self.schema = schema
@@ -53,13 +54,13 @@ class SuperClass:
         current_entity = entity_name + "Schema"
         entity = {}
         get_entity = new_json_schema["definitions"].get(current_entity, None)
-        if  get_entity is not None:
+        if get_entity is not None:
             entity = new_json_schema["definitions"][current_entity]
         else:
             entity = {
-                    'type': definitions[current_entity]['type'],
-                    'properties': {},
-                    'additionalProperties': definitions[current_entity]['additionalProperties'],
+                'type': definitions[current_entity]['type'],
+                'properties': {},
+                'additionalProperties': definitions[current_entity]['additionalProperties'],
             }
             if 'required' in definitions[current_entity].keys():
                 entity['required'] = definitions[current_entity]['required']
@@ -74,7 +75,6 @@ class SuperClass:
             return
 
         for property_name in json_template[entity_name]:
-
             next_entity = json_template[entity_name][property_name]
 
             entity['properties'][property_name] = properties[property_name]
@@ -112,8 +112,6 @@ class SuperClass:
         except BaseException:
             return None
 
-
-
         # array_uid = read_relationships(node_name, relationship_name)
         #
         # for uid in array_uid:
@@ -122,8 +120,8 @@ class SuperClass:
         return True
 
     def node_self_build(self, updated_node):
-        object = {'self_node':{},
-                  'relationships':{}}
+        object = {'self_node': {},
+                  'relationships': {}}
         for property in updated_node.keys():
             if isinstance(updated_node[property], str):
                 object['self_node'][property] = updated_node[property]
@@ -147,59 +145,35 @@ class SuperClass:
                 result.append(field["title"])
         return result
 
+    def generate_template(self):
+        schema = self.getSchema()
+        class_name = self.__class__.__name__
+        schema_class_name = class_name + "Schema"
+        properties_of_entity = schema["definitions"][schema_class_name]["properties"]
 
-var = {'P1_is_identified_by': {'type': 'object',
-                               '$ref': '#/definitions/E55_TypeSchema'},
-       'P2_has_type': {'title': 'P2_has_type',
-                       'type': 'array',
-                       'items': {
-                           'type': 'object',
-                           '$ref': '#/definitions/E55_TypeSchema'}}}
+        template_aux = {class_name: {}}
+        template = {
+            "class_name": class_name,
+            "template": template_aux,
+            "schema": json.dumps(schema)
+        }
+        for property_name in properties_of_entity:
+            property = properties_of_entity[property_name]
+            if property["type"] == "string":
+                continue
 
-var3 = {'P48_has_preferred_identifier': {
-    'type': 'object',
-    '$ref': '#/definitions/E42_IdentifierSchema'}, }
+            range = ""
+            title = ""
+            if property["type"] == "array":
+                range = property["items"]["$ref"]
+                title = property["title"]
+            elif property["type"] == "object":
+                title = property_name
+                range = property["$ref"]
 
-var1 = {'DataObjectSchema': {'properties': {
-    'name': {'title': 'name',
-             'type': 'string'},
-    'uid': {'title': 'uid',
-            'type': 'string'}},
-    'type': 'object',
-    'required': ['name'],
-    'additionalProperties': False}}
+            range_schema_class_name = range.split("/")[2]
+            range_class_name = range_schema_class_name.split("Schema")[0]
+            template_aux[class_name][title] = range_class_name
 
-var2 = {
-    "E18_Physical_Thing": [
-        {"P46_is_composed_of": "E18_Physical_Thing"}
-    ]
-}
+        return template
 
-var = {'$schema': 'http://json-schema.org/draft-07/schema#', 'definitions': {
-    'E24_Physical_Human_Made_ThingSchema': {
-        'type': 'object', 'properties': {
-            'P130_shows_features_of': {
-                'title': 'P130_shows_features_of',
-                'type': 'array',
-                'items': {'type': 'object',
-                          '$ref': '#/definitions/E70_ThingSchema'}},
-            'P62_depicts': {
-                'title': 'P62_depicts',
-                'type': 'array',
-                'items': {'type': 'object',
-                          '$ref': '#/definitions/E1_CRM_EntitySchema'}}},
-        'additionalProperties': False},
-    'E18_Physical_ThingSchema': {
-        'type': 'object', 'properties': {
-            'P46_is_composed_of': {
-                'title': 'P46_is_composed_of',
-                'type': 'array',
-                'items': {'type': 'object',
-                          '$ref': '#/definitions/E18_Physical_ThingSchema'}},
-            'P59_has_section': {
-                'title': 'P59_has_section',
-                'type': 'array',
-                'items': {'type': 'object',
-                          '$ref': '#/definitions/E53_PlaceSchema'}}},
-        'additionalProperties': False}},
-       '$ref': '#/definitions/E18_Physical_ThingSchema'}

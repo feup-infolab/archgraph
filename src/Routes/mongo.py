@@ -9,30 +9,11 @@ db = client.mydatabase
 date_now = datetime.now().strftime("%Y-%m-%d, %H:%M:%S")
 
 
-# def insert_into_mongo(content):
-#     result = {}
-#     if isinstance(content, type([])):
-#         db.reviews.insert_many(content)
-#         print("inserted many documents")
-#
-#     elif isinstance(content, type({})):
-#         result = db.reviews.insert_one(content)
-#         print(result.inserted_id)
-#
-#     cursor = db.reviews.find({})
-#     for document in cursor:
-#         print(document)
-def populate_template_collection(object_json):
-    for object in object_json:
-        class_name = object["className"]
-
-        class_in_project = find_name_of_class_schema_in_project(class_name)
-        if class_in_project is None:
-            print(class_name + " did't found")
-        template = object["template"]
-        schema = class_in_project().getSchema()
-        schema_str = json.dumps(schema)
-        db.defaultTemplate.insert_one({"class_name": class_name, "template": template, "schema": schema_str})
+def insert_default_templates(templates):
+    for template in templates:
+        class_name = template["class_name"]
+        schema = template["schema"]
+        db.defaultTemplate.insert_one({"class_name": class_name, "template": template["template"], "schema": schema})
     return
 
 
@@ -71,34 +52,32 @@ def get_schema_from_mongo(template):
         return records[0]
 
 
-def get_schema_from_mongo_by_classes_name(classes_name):
+def get_templates_from_mongo_by_classes_name(classes_name):
     records = db.createdTemplate.find({'classes_name': {'$in': classes_name}})
-    if records.count() == 0:
+    default_template = get_default_templates_from_mongo(classes_name)
+    result = []
+
+    if records.count() == 0 and default_template is None:
         return None
     else:
-        result = []
+        if default_template is not None:
+            for template in default_template:
+                result.append(template)
         for record in records:
             result.append(record["template"])
         return result
 
-# def get_schema_from_mongo(classes_name):
-#     if db.createdTemplate.count_documents({'classes_name': {'$in': classes_name}}) == 0:
-#         return None
-#     else:
-#         result = db.createdTemplate.find({'classes_name': {'$in': classes_name}})
-#
-#         elements_match_records = {
-#             '_id': "",
-#             'match': 0,
-#             'schema': {}
-#         }
-#         for document in result:
-#             merged = set(classes_name) & set(document['classes_name'])
-#             if len(merged) > elements_match_records["match"]:
-#                 elements_match_records['match'] = len(merged)
-#                 elements_match_records['schema'] = document
-#                 elements_match_records['_id'] = document['_id']
-#         return elements_match_records
+
+def get_default_templates_from_mongo(classes_name):
+    if db.defaultTemplate.count_documents({'classes_name': {'$in': classes_name}}) == 0:
+        return None
+    else:
+        result = db.defaultTemplate.find({'classes_name': {'$in': classes_name}})
+        templates = []
+
+        for document in result:
+            templates.append(document["template"])
+        return templates
 
 
 def get_record_from_collection(uid, collection):
@@ -124,8 +103,6 @@ def delete_collection(collection):
     db[collection].delete_many({})
 
 
-delete_collection("data")
-delete_collection("template")
 
 # unique = datetime.now()
 # #update_data(5552,"aaa")
@@ -142,4 +119,5 @@ delete_collection("template")
 # print("get all records")
 # get_all_records_from_collection("createdTemplate")
 # delete_collection("createdTemplate")
+# delete_collection("defaultTemplate")
 # get_all_records_from_collection("data")
