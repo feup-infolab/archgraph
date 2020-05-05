@@ -120,6 +120,8 @@ def response_create_node_with_template(uid):
     if node is not None:
         result = nested_json(node, template)
         if result is not None:
+            print("ONE")
+            print(result)
             return make_response(jsonify(result), 201)
         else:
             return make_response(jsonify(message="Some error occurred"), 404)
@@ -136,6 +138,8 @@ def create_base_schema_node_with_template(uid):
     }
     if node is not None:
         result = node.get_schema_with_template(template)
+        print("TWO")
+        print(result)
         return make_response(jsonify(result), 201)
     else:
         return make_response(jsonify(message="Node doesn't exists"), 404)
@@ -165,6 +169,7 @@ def response_update(uid):
     node = get_node_by_uid(uid)
     if node is not None:
         data = request.json
+        print(data)
         merged = updated_node(node, data)
         if merged:
             return make_response(jsonify(node.encodeJSON()), 201)
@@ -178,6 +183,7 @@ def response_update(uid):
 @cross_origin()
 def receive_new_template():
     data = request.json
+    print("Returned Schema")
     print(data)
     return make_response(jsonify(data), 201)
 

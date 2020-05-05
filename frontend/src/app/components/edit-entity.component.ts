@@ -55,6 +55,8 @@ export class EditEntityComponent implements OnInit {
         console.log('Schema being returned:');
         console.log(returnedSchema);
         this.form.schema = this.refactorSchema(returnedSchema);
+        console.log('Refactored Schema');
+        console.log(this.form.schema);
         this.form.layout = ['*'];
 
         this.getDataNodeWithTemplate(this.uid);
@@ -67,6 +69,10 @@ export class EditEntityComponent implements OnInit {
       .subscribe(result => {
         this.form.data[this.uid] = result;
         console.log(result);
+        console.log('Form Data');
+        console.log(this.form.data);
+        console.log('ALl Form');
+        console.log(this.form);
         this.load = true;
       });
   }
@@ -96,7 +102,8 @@ export class EditEntityComponent implements OnInit {
     this.service.sendNode(data)
       .subscribe(result => {
         this.form.data = result;
-        console.log(result);
+        console.log('Form Data');
+        console.log(this.form.data);
       });
   }
 
