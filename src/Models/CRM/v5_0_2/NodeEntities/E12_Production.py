@@ -21,6 +21,6 @@ class E12_Production(E11_Modification):
 
     def __init__(self, schema=None, *args, **kwargs):
         if schema is None:
-            schema = E11_ModificationSchema()
+            schema = E12_ProductionSchema()
 
         super().__init__(schema, *args, **kwargs)

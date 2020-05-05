@@ -2,8 +2,9 @@
   {
     "className": "E52_Time_Span",
     "template": {
-        "E52_Time_Span": {
-            "P86_falls_within": "E52_Time_Span"}
+      "E52_Time_Span": {
+        "P86_falls_within": "E52_Time_Span"
+      }
     }
   }
 ]
