@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Observable, Subject} from 'rxjs';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Schema} from '../models/Schema';
 
 @Injectable({
@@ -41,8 +41,10 @@ export class MyServiceService {
     return this.http.get<Schema>(this.baseUrl + 'schema' + '/' + uid);
   }
 
-  getSchemaNodeWithTemplate(uid: string): Observable<Schema> {
-    return this.http.get<Schema>(this.baseUrl + 'schemawithtemplate' + '/' + uid);
+  getSchemaNodeWithTemplate(uid: string, template: string): Observable<Schema> {
+    // const headers = new HttpHeaders();
+    // headers.append('template', template)
+    return this.http.get<Schema>(this.baseUrl + 'schemawithtemplate' + '/' + uid + '/' + template);
   }
 
   sendNode(data): Observable<any> {

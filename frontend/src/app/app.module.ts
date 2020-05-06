@@ -18,8 +18,8 @@ import { ViewTemplateComponent } from './components/view-template.component';
 
 const appRoutes: Routes = [
   { path: '', component: SearchComponent },
-  { path: ':uid', component: EditEntityComponent },
-  { path: 'viewtemplate/:uid', component: ViewTemplateComponent }
+  { path: 'viewtemplate/:uid', component: ViewTemplateComponent },
+  { path: ':uid', component: EditEntityComponent }
 
 ];
 

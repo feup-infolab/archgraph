@@ -144,36 +144,3 @@ class SuperClass:
             if "format" in field:
                 result.append(field["title"])
         return result
-
-    def generate_template(self):
-        schema = self.getSchema()
-        class_name = self.__class__.__name__
-        schema_class_name = class_name + "Schema"
-        properties_of_entity = schema["definitions"][schema_class_name]["properties"]
-
-        template_aux = {class_name: {}}
-        template = {
-            "class_name": class_name,
-            "template": template_aux,
-            "schema": json.dumps(schema)
-        }
-        for property_name in properties_of_entity:
-            property = properties_of_entity[property_name]
-            if property["type"] == "string":
-                continue
-
-            range = ""
-            title = ""
-            if property["type"] == "array":
-                range = property["items"]["$ref"]
-                title = property["title"]
-            elif property["type"] == "object":
-                title = property_name
-                range = property["$ref"]
-
-            range_schema_class_name = range.split("/")[2]
-            range_class_name = range_schema_class_name.split("Schema")[0]
-            template_aux[class_name][title] = range_class_name
-
-        return template
-

@@ -137,26 +137,27 @@ def insert_template_in_mongodb(uid):
         return make_response(jsonify(message="Node doesn't exists"), 404)
 
 
-@app.route("/schemawithtemplate/<uid>", methods=["GET"])
+@app.route("/schemawithtemplate/<uid>/<template_str>", methods=["GET"])
 @cross_origin()
-def get_schema(uid):
+def get_schema(uid, template_str):
     node = get_node_by_uid(uid)
-    #todo descomentar isto
-    # template = request.json
-
     # template = {
     #     "E52_Time_Span": {
     #         "has_value": "DataObject"}
     # }
+    # todo descomentar isto
+    #template = json.load(template_str)
+
+
     template = {
         "E52_Time_Span": {
             "P86_falls_within": "E52_Time_Span"}
     }
-
+    print(template)
     if node is not None:
         result = get_schema_from_mongo(template)
         if result is not None:
-            return make_response(jsonify(json.loads(result["schema"])), 201)
+            return make_response(jsonify(json.loads(result)), 201)
         else:
             make_response(jsonify(message="Template doesn't exists"), 404)
     else:

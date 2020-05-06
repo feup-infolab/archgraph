@@ -1,4 +1,6 @@
 import importlib
+import json
+
 from marshmallow_jsonschema import JSONSchema
 
 
@@ -7,6 +9,45 @@ def decorator_schema(cls):
         json_schema = JSONSchema()
         return json_schema.dump(self)
     setattr(cls, 'getSchema', getSchema)
+
+    def generate_template(self):
+        schema = self.getSchema()
+        class_name = self.__class__.__name__.split("Schema")[0]
+        #todo arranjar isto
+        #classes_name = self.get_superclasses_name()
+        classes_name = [class_name]
+
+        schema_class_name = class_name + "Schema"
+        properties_of_entity = schema["definitions"][schema_class_name]["properties"]
+
+        template_aux = {class_name: {}}
+        template = {
+            "classes_name": classes_name,
+            "template": template_aux,
+            "schema": json.dumps(schema)
+        }
+        for property_name in properties_of_entity:
+            property = properties_of_entity[property_name]
+            if property["type"] == "string":
+                continue
+
+            range = ""
+            title = ""
+            if property["type"] == "array":
+                range = property["items"]["$ref"]
+                title = property["title"]
+            elif property["type"] == "object":
+                title = property_name
+                range = property["$ref"]
+
+            range_schema_class_name = range.split("/")[2]
+            range_class_name = range_schema_class_name.split("Schema")[0]
+            template_aux[class_name][title] = range_class_name
+
+        return template
+
+    setattr(cls, 'generate_template', generate_template)
+
     return cls
 
 

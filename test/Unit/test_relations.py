@@ -18,7 +18,7 @@ from src.Models.CRM.v5_0_2.NodeEntities.E6_Destruction import E6_Destruction
 from src.Models.CRM.v5_0_2.NodeEntities.E8_Acquisition import E8_Acquisition
 from src.Models.CRM.v5_0_2.NodeEntities.E9_Move import E9_Move
 from src.Routes.mongo import get_all_records_from_collection, insert_default_templates, delete_collection
-from src.Utils.Utils import nested_json
+from src.Utils.Utils import nested_json, find_name_of_classes_schema_in_project
 
 from src.Models.ArchOnto.v0_1.NodeEntities.ARE2_Formal_Title import ARE2_Formal_Title
 from src.Models.CRM.v5_0_2.NodeEntities.E12_Production import E12_Production
@@ -86,9 +86,6 @@ except:
     specific_index_drop()
     specific_index_creation()
 
-
-
-
 e1 = E1_CRM_Entity(name="test").save()
 e1_2 = E1_CRM_Entity(name="test").save()
 e55 = E55_Type(name="test2").save()
@@ -110,28 +107,16 @@ dataObject = String(name="name", stringValue="String_Value").save()
 e2.P4_has_time_span.connect(e52)
 e52.has_value.connect(dataObject)
 
-##create default entities
-e3default = E3_Condition_State(name="E3").save()
-e4default = E4_Period(name="E4").save()
-e5default = E5_Event(name="E5").save()
-e6default = E6_Destruction(name="E6").save()
-e8default = E8_Acquisition(name="E8").save()
-e9default = E9_Move(name="E9").save()
-e10default = E10_Transfer_of_Custody(name="E10").save()
-e11default = E11_Modification(name="E11").save()
-e12default = E12_Production(name="E12").save()
-e13default = E13_Attribute_Assignment(name="E13").save()
-e14default = E14_Condition_Assessment(name="E14").save()
-e15default = E15_Identifier_Assignment(name="E15").save()
-e16default = E16_Measurement(name="E16").save()
-e17default = E17_Type_Assignment(name="E17").save()
-e19default = E19_Physical_Object(name="E19").save()
-e20default = E20_Biological_Object(name="E20").save()
-e21default = E21_Person(name="E21").save()
-e22default = E22_Human_Made_Object(name="E22").save()
-e41default = E41_Appellation(name="1812-02-12").save()
-e70default = E70_Thing(name="E70").save()
-##
+classes_name = ["E1_CRM_Entity", "E2_Temporal_Entity", "E3_Condition_State", "E4_Period", "E5_Event", "E6_Destruction",
+                "E7_Activity", "E8_Acquisition", "E9_Move", "E10_Transfer_of_Custody", "E11_Modification",
+                "E12_Production", "E13_Attribute_Assignment", "E14_Condition_Assessment", "E15_Identifier_Assignment",
+                "E16_Measurement", "E17_Type_Assignment", "E18_Physical_Thing", "E19_Physical_Object",
+                "E20_Biological_Object", "E21_Person", "E22_Human_Made_Object", "E24_Physical_Human_Made_Thing",
+                "E25_Human_Made_Feature", "E26_Physical_Feature", "E27_Site", "E28_Conceptual_Object",
+                "E29_Design_or_Procedure", "E30_Right", "E31_Document", "E32_Authority_Document",
+                "E33_Linguistic_Object", "E34_Inscription", "E35_Title", "E36_Visual_Item", "E37_Mark", "E39_Actor",
+                "E41_Appellation", "E42_Identifier", "E52_Time_Span"]
+
 
 class TestNeoModel(unittest.TestCase):
     def test_basic_relationship(self):
@@ -350,36 +335,9 @@ class TestNeoModel(unittest.TestCase):
         e22.P108_has_produced_by.connect(e12)
 
     def test_schema(self):
-
-        print(e1.getSchema())
-        print(e2.getSchema())
-        print(e3default.getSchema())
-        print(e4default.getSchema())
-        print(e5default.getSchema())
-        print(e6default.getSchema())
-        print(e7.getSchema())
-        print(e8default.getSchema())
-        print(e9default.getSchema())
-        print(e10default.getSchema())
-        print(e11default.getSchema())
-        print(e12default.getSchema())
-        print(e13default.getSchema())
-        print(e14default.getSchema())
-        print(e15default.getSchema())
-        print(e16default.getSchema())
-        print(e17default.getSchema())
-        print(e18.getSchema())
-        print(e19default.getSchema())
-        print(e20default.getSchema())
-        print(e21default.getSchema())
-        print(e22default.getSchema())
-        print(e24.getSchema())
-        print(e41default.getSchema())
-        print(e52.getSchema())
-        print(e55.getSchema())
-
-        print(e70default.getSchema())
-        print(e83.getSchema())
+        classes_schema = find_name_of_classes_schema_in_project(classes_name)
+        for class_schema in classes_schema:
+            class_schema().getSchema()
 
     def test_serialization(self):
         # startDatetime = datetime.datetime(1812, 2, 12)
@@ -502,23 +460,9 @@ class TestNeoModel(unittest.TestCase):
     def test_generate_schema(self):
         delete_collection("defaultTemplate")
         templates = []
-        templates.append(e1.generate_template())
-        templates.append(e2.generate_template())
-        templates.append(e3default.generate_template())
-        templates.append(e4default.generate_template())
-        templates.append(e5default.generate_template())
-        templates.append(e6default.generate_template())
-        templates.append(e7.generate_template())
-        templates.append(e8default.generate_template())
-        templates.append(e9default.generate_template())
-        templates.append(e10default.generate_template())
-        templates.append(e11default.generate_template())
-        templates.append(e12default.generate_template())
-        templates.append(e13default.generate_template())
-        templates.append(e14default.generate_template())
-        templates.append(e15default.generate_template())
-        templates.append(e16default.generate_template())
-        templates.append(e52.generate_template())
+        classes_schema = find_name_of_classes_schema_in_project(classes_name)
+        for class_schema in classes_schema:
+            templates.append(class_schema().generate_template())
         insert_default_templates(templates)
         get_all_records_from_collection("defaultTemplate")
 

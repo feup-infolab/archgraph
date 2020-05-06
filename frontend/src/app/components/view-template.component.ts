@@ -43,16 +43,18 @@ export class ViewTemplateComponent implements OnInit {
       .subscribe(templates => {
         let index = 1;
 
-        if(templates.length >0){
-          this.key= "template 1"
-          this.hasTemplate = true
-        }
         for(let template of templates){
           let name = "template " + index;
           this.templates[name] = template;
           index++
 
         }
+        if(templates.length >0){
+          this.key= "template 1"
+          this.hasTemplate = true
+          this.template = this.templates[this.key]
+        }
+
         let x = 1
       });
 
@@ -65,7 +67,15 @@ export class ViewTemplateComponent implements OnInit {
   }
 
   editEntity() {
-        this.route.navigateByUrl(this.uid);
+        //this.route.navigateByUrl(this.uid);
+        this.route.navigate([this.uid],
+          {queryParams :
+              {
+                template : JSON.stringify(this.template)
+              }}
+            );
+        //this.route.navigate([this.uid], { queryParams: { template: "this.template" }});
+
 
   }
 }
