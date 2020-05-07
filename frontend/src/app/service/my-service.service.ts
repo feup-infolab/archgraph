@@ -34,7 +34,11 @@ export class MyServiceService {
   }
 
   getSpecificSearchJson(entity: string, search: string): Observable<any[]> {
-    return this.http.get<any[]>(this.baseUrl + 'search_specific' + '/' + entity + '/' + search);
+    if(search == "" ){
+          return this.http.get<any[]>(this.baseUrl + 'search_specific' + '/' + entity);
+    }else {
+      return this.http.get<any[]>(this.baseUrl + 'search_specific' + '/' + entity + '/' + search);
+    }
   }
 
   getSchemaNode(uid: string): Observable<Schema> {

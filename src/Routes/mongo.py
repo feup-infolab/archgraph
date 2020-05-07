@@ -86,7 +86,6 @@ def get_record_from_collection(uid, collection):
     record = db[collection].find_one({"uid": uid})
     return record
 
-
 def add_record_to_collection(uid, data, collection):
     date = datetime.now()
     date_str = date.strftime("%Y-%m-%d, %H:%M:%S")

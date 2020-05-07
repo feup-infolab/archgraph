@@ -251,14 +251,14 @@ class cidoc_search_results(SuperClass):
         return json.dumps(data, default=my_converter)
 
 
-def search_cidoc(name):
-    if name.startswith('"') and name.endswith('"'):
+def search_cidoc(query):
+    if query.startswith('"') and query.endswith('"'):
         results, meta = db.cypher_query(
-            "CALL db.index.fulltext.queryNodes('node_entity','" + name + "')"
+            "CALL db.index.fulltext.queryNodes('node_entity','" + query + "')"
         )
     else:
         results, meta = db.cypher_query(
-            "CALL db.index.fulltext.queryNodes('node_entity','" + name + "~')"
+            "CALL db.index.fulltext.queryNodes('node_entity','" + query + "~')"
         )
     results_list = []
 
@@ -269,14 +269,18 @@ def search_cidoc(name):
     return results_list
 
 
-def search_specific_cidoc(entity, name):
-    if name.startswith('"') and name.endswith('"'):
+def search_specific_cidoc(class_name, query):
+    #todo replace
+    if query is None:
         results, meta = db.cypher_query(
-            "CALL db.index.fulltext.queryNodes('" + entity + "','" + name + "')"
+            "MATCH (n:" + class_name + ") RETURN n LIMIT 25")
+    elif query.startswith('"') and query.endswith('"'):
+        results, meta = db.cypher_query(
+            "CALL db.index.fulltext.queryNodes('" + class_name + "','" + query + "')"
         )
     else:
         results, meta = db.cypher_query(
-            "CALL db.index.fulltext.queryNodes('" + entity + "','" + name + "~')"
+            "CALL db.index.fulltext.queryNodes('" + class_name + "','" + query + "~')"
         )
     results_list = []
 

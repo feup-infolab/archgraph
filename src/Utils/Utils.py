@@ -154,7 +154,7 @@ def delete_node_by_uid(uid):
             return None
 
 
-def updated_node(node, data):
+def updated_node(node, data, template):
     db.begin()
     result = updated_node_aux(node, data)
     if result is None:
@@ -165,30 +165,72 @@ def updated_node(node, data):
         return True
 
 
-def updated_node_aux(node, data):
-    node_self = node.node_self_build(data)
-    merged = node.merge_node(node_self['self_node'])
+def updated_node_aux(atual_node, data):
+    node_self = atual_node.node_self_build(data)
+    merged = atual_node.merge_node(node_self['self_node'])
     if merged is None:
         return None
 
-    for relationship_name in node_self['relationships']:
-        for nexted_node in node_self['relationships'][relationship_name]:
+    if node_self['relationships'] == {}:
+        # relationship_of_node = getattr(atual_node, relationship_name)
+        # all_relationships_of_node = relationship_of_node.all()
+        # for node_of_relationship in all_relationships_of_node:
+        #     new_result = add_new_node(node_self['relationships'][relationship_name], relationship_of_node,
+        #                               node_of_relationship)
+        #     if not new_result["exists"]:
+        #         relationship_of_node.disconnect(node_of_relationship)
+        #         continue
+        x=1
+        return True
+    else:
+        for relationship_name in node_self['relationships']:
+            relationship_of_node = getattr(atual_node, relationship_name)
+            all_relationships_of_node = relationship_of_node.all()
+            if all_relationships_of_node == []:
+                add_new_node(node_self['relationships'][relationship_name], relationship_of_node, None)
+            else:
+                for node_of_relationship in all_relationships_of_node:
+                    new_result = add_new_node(node_self['relationships'][relationship_name],relationship_of_node, node_of_relationship)
+                    if not new_result["exists"]:
+                        relationship_of_node.disconnect(node_of_relationship)
+                        continue
+
+            return True
+
+
+def add_new_node(relationships, relationship_of_node, node_of_relationship):
+    exists = False
+    new_result = {"exists": False, "error": ""}
+    for nested_node in relationships:
+        try:
+            uid = nested_node['uid']
+            if node_of_relationship is None:
+                continue
+            elif node_of_relationship.uid == nested_node["uid"]:
+                new_result["exists"] = True
+            node = ""
             try:
-                uid = nexted_node['uid']
-                node = ""
-                try:
-                    node = DataObject.nodes.get(uid=uid)
-                except:
-                    try:
-                        node = E1_CRM_Entity.nodes.get(uid=uid)
-                    except:
-                        return None
-                result = updated_node_aux(node, nexted_node)
-                if result is None:
-                    return None
+                node = DataObject.nodes.get(uid=uid)
             except:
-                return None
-    return True
+                try:
+                    node = E1_CRM_Entity.nodes.get(uid=uid)
+                except:
+                    new_result["error"] = None
+                    return new_result
+            result = updated_node_aux(node, nested_node)
+            if result is None:
+                new_result["error"] = None
+                return new_result
+        except:
+            new_result["exists"] = True
+            range_class = relationship_of_node.definition["node_class"]
+            new_instance = range_class()
+            for attr in nested_node:
+                setattr(new_instance, attr, nested_node[attr])
+            new_instance.save()
+            relationship_of_node.connect(new_instance)
+
+    return new_result
 
 
 def read_file(path_file):
