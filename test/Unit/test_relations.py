@@ -59,14 +59,12 @@ import json
 from src.Models.DataObject.v0_0_2.Interval import Interval
 from src.Models.DataObject.v0_0_2.String import String
 from src.Utils.JsonEncoder import (
-    json_merge,
     index_creation,
     search_cidoc,
     specific_index_creation,
     search_specific_cidoc,
     index_drop,
     specific_index_drop,
-    list_indexes,
 )
 
 clean_database()
@@ -165,7 +163,6 @@ class TestNeoModel(unittest.TestCase):
     def test_multiple_inheritance_queries(self):
         # Test if multiple levels of inheritance is detected
         found_e24 = E72_Legal_Object.nodes.get(name="e24")
-        found_e24.get_superclasses_name()
         self.assertAlmostEqual(found_e24.id, e24.id)
 
     def test_data_property_types(self):

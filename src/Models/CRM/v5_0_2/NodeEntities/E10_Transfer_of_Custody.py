@@ -1,5 +1,6 @@
 from marshmallow import fields
 from neomodel import RelationshipTo
+from src.GCF.decorators.OntologyClass import decorator_schema
 from src.Models.CRM.v5_0_2.NodeEntities.E7_Activity import E7_Activity, E7_ActivitySchema
 from src.Models.CRM.v5_0_2.NodeProperties.P28_custody_surrenedered_by import (
     P28_custody_surrendered_by,
@@ -12,6 +13,7 @@ from src.Models.CRM.v5_0_2.NodeProperties.P30_transferred_custody_of import (
 )
 
 
+@decorator_schema
 class E10_Transfer_of_CustodySchema(E7_ActivitySchema):
     custody_surrendered_by = fields.List(fields.Nested(
         "src.Models.CRM.v5_0_2.NodeEntities.E53_Place.E53_PlaceSchema")

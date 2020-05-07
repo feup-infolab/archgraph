@@ -4,8 +4,10 @@ from neomodel import RelationshipTo
 from src.Models.CRM.v5_0_2.NodeEntities.E70_Thing import E70_Thing, E70_ThingSchema
 from src.Models.CRM.v5_0_2.NodeProperties.P104_is_subject_to import P104_is_subject_to
 from src.Models.CRM.v5_0_2.NodeProperties.P105_right_held_by import P105_right_held_by
+from src.GCF.decorators.OntologyClass import decorator_schema
 
 
+@decorator_schema
 class E72_Legal_ObjectSchema(E70_ThingSchema):
     P104_is_subject_to = fields.List(
         fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E30_Right.E30_RightSchema")

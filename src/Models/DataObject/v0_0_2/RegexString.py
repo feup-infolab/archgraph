@@ -3,8 +3,10 @@ import json
 from marshmallow import fields, validate
 from neomodel import RegexProperty
 from src.Models.DataObject.v0_0_2.String import String, StringSchema
+from src.GCF.decorators.OntologyClass import decorator_schema
 
 
+@decorator_schema
 class RegexStringSchema(StringSchema):
     hasRegex = fields.String(
         required=False,

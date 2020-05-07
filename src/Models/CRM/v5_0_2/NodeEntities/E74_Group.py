@@ -4,8 +4,10 @@ from src.Models.CRM.v5_0_2.NodeEntities.E39_Actor import E39_Actor, E39_ActorSch
 from src.Models.CRM.v5_0_2.NodeProperties.P107_has_current_or_former_member import (
     P107_has_current_or_former_member,
 )
+from src.GCF.decorators.OntologyClass import decorator_schema
 
 
+@decorator_schema
 class E74_GroupSchema(E39_ActorSchema):
     has_current_or_former_member = fields.List(fields.Nested(
         "src.Models.CRM.v5_0_2.NodeEntities.E73_Information_Object.E39_Actor.E39_ActorSchema")

@@ -6,8 +6,10 @@ from src.Models.CRM.v5_0_2.NodeEntities.E24_Physical_Human_Made_Thing import (
 from src.Models.CRM.v5_0_2.NodeProperties.P109_has_current_or_former_curator import (
     P109_has_current_or_former_curator,
 )
+from src.GCF.decorators.OntologyClass import decorator_schema
 
 
+@decorator_schema
 class E78_Curated_HoldingSchema(E24_Physical_Human_Made_ThingSchema):
     has_current_or_former_curator = fields.List(fields.Nested(
         "src.Models.CRM.v5_0_2.NodeEntities.E73_Information_Object.E39_Actor.E39_ActorSchema")

@@ -1,8 +1,10 @@
 from marshmallow import fields
 from neomodel import DateTimeFormatProperty
 from src.Models.DataObject.v0_0_2.Date import Date, DateSchema
+from src.GCF.decorators.OntologyClass import decorator_schema
 
 
+@decorator_schema
 class IntervalSchema(DateSchema):
     startDateValue = fields.Date(required=True)
     endDateValue = fields.Date(required=True)

@@ -1,6 +1,6 @@
 import importlib
 import json
-
+from marshmallow import Schema
 from marshmallow_jsonschema import JSONSchema
 
 
@@ -8,14 +8,26 @@ def decorator_schema(cls):
     def getSchema(self):
         json_schema = JSONSchema()
         return json_schema.dump(self)
+
     setattr(cls, 'getSchema', getSchema)
+
+    def get_labels(self, base_class):
+        supper_classes_and_self_class = cls.mro()
+        labels = []
+        super_class_name = base_class().__class__.__name__
+        for class__ in supper_classes_and_self_class:
+            class_name = class__().__class__.__name__
+            if issubclass(class__, base_class) and class_name != super_class_name:
+                labels.append(class_name.split("Schema")[0])
+        return labels
+
+    setattr(cls, 'get_labels', get_labels)
 
     def generate_template(self):
         schema = self.getSchema()
         class_name = self.__class__.__name__.split("Schema")[0]
-        #todo arranjar isto
-        #classes_name = self.get_superclasses_name()
-        classes_name = [class_name]
+
+        classes_name = self.get_labels(Schema)
 
         schema_class_name = class_name + "Schema"
         properties_of_entity = schema["definitions"][schema_class_name]["properties"]

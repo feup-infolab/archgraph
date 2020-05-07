@@ -33,8 +33,8 @@ class SuperClass:
         class_name = self.__class__.__name__ + "Schema"
         return schema_node['definitions'][class_name]['properties'][property_name]
 
-    def get_superclasses_name(self):
-        return list(set(self.labels()))
+    # def get_superclasses_name(self):
+    #     return list(set(self.labels()))
 
     def get_schema_with_template(self, template):
         jsonSchema = self.getSchema()
@@ -144,3 +144,11 @@ class SuperClass:
             if "format" in field:
                 result.append(field["title"])
         return result
+
+    def get_labels(target, base_class):
+        return (
+            c.__name__
+            for c in target.__mro__
+            if issubclass(c, base_class)
+        )
+

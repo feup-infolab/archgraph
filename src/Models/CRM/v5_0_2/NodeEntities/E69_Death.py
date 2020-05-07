@@ -8,8 +8,10 @@ class E69_DeathSchema(E64_End_of_ExistenceSchema):
     was_death_of = fields.List(fields.Nested(
         "src.Models.CRM.v5_0_2.NodeEntities.E21_Person.E21_PersonSchema")
     )
+from src.GCF.decorators.OntologyClass import decorator_schema
 
 
+@decorator_schema
 class E69_Death(E64_End_of_Existence):
     was_death_of = RelationshipTo(
         ".E21_Person.E21_Person", "P100_was_death_of", model=P100_was_death_of

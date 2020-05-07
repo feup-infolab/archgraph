@@ -1,6 +1,8 @@
 from src.Models.CRM.v5_0_2.NodeEntities.E55_Type import E55_Type, E55_TypeSchema
+from src.GCF.decorators.OntologyClass import decorator_schema
 
 
+@decorator_schema
 class E58_Measurement_UnitSchema(E55_TypeSchema):
     pass
 

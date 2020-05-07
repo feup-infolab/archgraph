@@ -3,8 +3,10 @@ from neomodel import RelationshipTo
 from src.Models.CRM.v5_0_2.NodeEntities.E7_Activity import E7_Activity, E7_ActivitySchema
 from src.Models.CRM.v5_0_2.NodeProperties.P145_separated import P145_separated
 from src.Models.CRM.v5_0_2.NodeProperties.P146_separated_from import P146_separated_from
+from src.GCF.decorators.OntologyClass import decorator_schema
 
 
+@decorator_schema
 class E86_LeavingSchema(E7_ActivitySchema):
     separated = fields.List(fields.Nested(
         "src.Models.CRM.v5_0_2.NodeEntities.E39_Actor.E39_ActorSchema")

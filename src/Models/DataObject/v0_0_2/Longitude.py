@@ -2,8 +2,10 @@ from src.Models.DataObject.v0_0_2.GeospatialCoordinates import (
     GeospatialCoordinates,
     GeospatialCoordinatesSchema,
 )
+from src.GCF.decorators.OntologyClass import decorator_schema
 
 
+@decorator_schema
 class LongitudeSchema(GeospatialCoordinatesSchema):
     pass
 

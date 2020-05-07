@@ -1,6 +1,8 @@
 from src.Models.DataObject.v0_0_2.String import String, StringSchema
+from src.GCF.decorators.OntologyClass import decorator_schema
 
 
+@decorator_schema
 class AuthorityStringSchema(StringSchema):
     pass
 

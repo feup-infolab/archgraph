@@ -2,8 +2,10 @@ from src.Models.CRM.v5_0_2.NodeEntities.E89_Propositional_Object import (
     E89_Propositional_Object,
     E89_Propositional_ObjectSchema,
 )
+from src.GCF.decorators.OntologyClass import decorator_schema
 
 
+@decorator_schema
 class E30_RightSchema(E89_Propositional_ObjectSchema):
     pass
 

@@ -1,5 +1,6 @@
 from marshmallow import Schema, fields
 from neomodel import RelationshipTo
+from src.GCF.decorators.OntologyClass import decorator_schema
 from src.Models.CRM.v5_0_2.NodeEntities.E72_Legal_Object import (
     E72_Legal_Object,
     E72_Legal_ObjectSchema,
@@ -27,6 +28,7 @@ from src.Models.CRM.v5_0_2.NodeProperties.P128_carries import P128_carries
 from src.Models.CRM.v5_0_2.NodeProperties.P156_occupies import P156_occupies
 
 
+@decorator_schema
 class E18_Physical_ThingSchema(E72_Legal_ObjectSchema):
     P44_has_condition = fields.List(fields.Nested(
             "src.Models.CRM.v5_0_2.NodeEntities.E3_Condition_State.E3_Condition_StateSchema")
