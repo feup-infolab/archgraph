@@ -141,18 +141,18 @@ def insert_template_in_mongodb(uid):
 @cross_origin()
 def get_schema(uid, template_str):
     node = get_node_by_uid(uid)
-    # template = {
-    #     "E52_Time_Span": {
-    #         "has_value": "DataObject"}
-    # }
-    # todo descomentar isto
-    #template = json.load(template_str)
-
-
     template = {
         "E52_Time_Span": {
-            "P86_falls_within": "E52_Time_Span"}
+            "has_value": "DataObject"}
     }
+    # todo descomentar isto
+    #template = json.loads(template_str)
+
+
+    # template = {
+    #     "E52_Time_Span": {
+    #         "P86_falls_within": "E52_Time_Span"}
+    # }
     print(template)
     if node is not None:
         result = get_schema_from_mongo(template)

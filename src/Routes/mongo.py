@@ -43,11 +43,13 @@ def update_data_in_mongo(uid, data):
 
 
 def get_schema_from_mongo(template):
-    #todo arranjar isto
-    #record = db.defaultTemplate.find_one({'template': template})
-    record = db.createdTemplate.find_one({'template': template})
+    record = db.defaultTemplate.find_one({'template': template})
     if record is None:
-        return None
+        record = db.createdTemplate.find_one({'template': template})
+        if record is None:
+            return None
+        else:
+            return record["schema"]
     else:
         return record["schema"]
 

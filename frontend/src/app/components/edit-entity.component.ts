@@ -81,7 +81,7 @@ export class EditEntityComponent implements OnInit {
     const properties = {};
     properties[this.uid] = {
       $ref: ref,
-      title: 'Editing'
+      title: 'New relationship'
     };
     jsonSchema.properties = properties;
     jsonSchema.desc = 'Description';

@@ -55,6 +55,7 @@ def decorator_schema(cls):
             range_schema_class_name = range.split("/")[2]
             range_class_name = range_schema_class_name.split("Schema")[0]
             template_aux[class_name][title] = range_class_name
+        #print(self.get_schema_with_template(template_aux))
 
         return template
 
