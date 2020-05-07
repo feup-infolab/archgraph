@@ -119,7 +119,7 @@ def delete_collection(collection):
 #
 # print("get all records")
 # get_all_records_from_collection("createdTemplate")
-get_all_records_from_collection("defaultTemplate")
+#get_all_records_from_collection("defaultTemplate")
 # delete_collection("createdTemplate")
 # delete_collection("defaultTemplate")
 # get_all_records_from_collection("data")

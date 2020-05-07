@@ -42,7 +42,7 @@ export class EditEntityComponent implements OnInit {
       this.load = false;
       //this.getSchemaNode(this.uid);
       this.route.queryParamMap.subscribe(query => {
-        this.template = query.get('template');
+        this.template = JSON.parse(query.get('template'));
         console.log(this.template)
         this.getSchemaNodeWithTemplate(this.uid, this.template)
     });
@@ -66,7 +66,7 @@ export class EditEntityComponent implements OnInit {
   }
 
   getDataNodeWithTemplate(uid) {
-    this.service.getDataNodeWithTemplate(uid)
+    this.service.getDataNodeWithTemplate(uid, this.template)
       .subscribe(result => {
         this.form.data[this.uid] = result;
         console.log(result);

@@ -466,11 +466,32 @@ class TestNeoModel(unittest.TestCase):
     def test_generate_schema(self):
         delete_collection("defaultTemplate")
         templates = []
-        classes_schema = find_name_of_classes_schema_in_project(classes_name)
-        for class_schema in classes_schema:
-            templates.append(class_schema().generate_template())
+        # classes_schema = find_name_of_classes_schema_in_project(classes_name)
+        # for class_schema in classes_schema:
+        #     templates.append(class_schema().generate_template())
+        # insert_default_templates(templates)
+        # get_all_records_from_collection("defaultTemplate")
+
+    def test_insert_template(self):
+        delete_collection("defaultTemplate")
+        template = {
+            "E52_Time_Span": {
+                "has_value": "DataObject",
+            }
+        }
+        template2 = {'E52_Time_Span': {'P86_falls_within': 'E52_Time_Span'}}
+        template3 = {'E52_Time_Span': {}}
+        class_name =['E52_Time_Span', 'E1_CRM_Entity']
+        schema = e52.get_schema_with_template(template)
+        schema2 = e52.get_schema_with_template(template2)
+        schema3 = e52.get_schema_with_template(template3)
+        templates = [{"classes_name": class_name, "template": template, "schema": json.dumps(schema) },
+                     {"classes_name": class_name, "template": template2, "schema": json.dumps(schema2) },
+                     {"classes_name": class_name, "template": template3, "schema": json.dumps(schema3) }]
         insert_default_templates(templates)
         get_all_records_from_collection("defaultTemplate")
+
+
 
 
 var = {'$schema': 'http://json-schema.org/draft-07/schema#', 'definitions': {

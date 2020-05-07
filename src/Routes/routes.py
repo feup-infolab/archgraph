@@ -77,13 +77,13 @@ def default_template(uid):
         return make_response(jsonify(message="Node doesn't exists"), 404)
 
 
-@app.route("/withtemplate/<uid>", methods=["GET"])
+@app.route("/withtemplate/<uid>", methods=["POST"])
 @cross_origin()
 def get_record(uid):
-    template = {
-        "E52_Time_Span": {
-            "has_value": "DataObject"}
-    }
+    # template = {
+    #     "E52_Time_Span": {
+    #         "has_value": "DataObject"}
+    # }
     # template = {
     #     "E52_Time_Span": {
     #         "P86_falls_within": "E52_Time_Span"}
@@ -92,6 +92,9 @@ def get_record(uid):
     # if record is not None:
     #     return make_response(jsonify(json.loads(record["data"])), 201)
     # else:
+    #template = json.loads(template_str)
+    template = request.json
+
     node = get_node_by_uid(uid)
     if node is not None:
         data = nested_json(node, template)
@@ -141,14 +144,14 @@ def insert_template_in_mongodb(uid):
         return make_response(jsonify(message="Node doesn't exists"), 404)
 
 
-@app.route("/schemawithtemplate/<uid>/<template_str>", methods=["GET"])
+@app.route("/schemawithtemplate/<uid>", methods=["POST"])
 @cross_origin()
-def get_schema(uid, template_str):
+def get_schema(uid):
     node = get_node_by_uid(uid)
-    template = {
-        "E52_Time_Span": {
-            "has_value": "DataObject"}
-    }
+    # template = {
+    #     "E52_Time_Span": {
+    #         "has_value": "DataObject"}
+    # }
     # todo descomentar isto
     #template = json.loads(template_str)
 
@@ -157,6 +160,7 @@ def get_schema(uid, template_str):
     #     "E52_Time_Span": {
     #         "P86_falls_within": "E52_Time_Span"}
     # }
+    template = request.json
     print(template)
     if node is not None:
         result = get_schema_from_mongo(template)
@@ -194,11 +198,6 @@ def get_templates_from_entity(uid):
 @cross_origin()
 def response_update(uid):
 
-    template = {
-        "E52_Time_Span": {
-            "has_value": "DataObject",
-        }
-    }
     node = get_node_by_uid(uid)
     if node is not None:
         #todo meter o template no body tambem

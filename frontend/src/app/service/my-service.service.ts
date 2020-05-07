@@ -20,8 +20,8 @@ export class MyServiceService {
     return this.http.get<any[]>(this.baseUrl + uid);
   }
 
-  getDataNodeWithTemplate( uid: string): Observable<any[]> {
-    return this.http.get<any[]>(this.baseUrl + "withtemplate/" + uid);
+  getDataNodeWithTemplate( uid: string, template: object): Observable<any[]> {
+    return this.http.post<any[]>(this.baseUrl + "withtemplate/" + uid, template) ;
   }
 
   getTemplatesFromEntity( uid: string): Observable<any[]> {
@@ -45,10 +45,10 @@ export class MyServiceService {
     return this.http.get<Schema>(this.baseUrl + 'schema' + '/' + uid);
   }
 
-  getSchemaNodeWithTemplate(uid: string, template: string): Observable<Schema> {
+  getSchemaNodeWithTemplate(uid: string, template: object): Observable<Schema> {
     // const headers = new HttpHeaders();
     // headers.append('template', template)
-    return this.http.get<Schema>(this.baseUrl + 'schemawithtemplate' + '/' + uid + '/' + template);
+    return this.http.post<Schema>(this.baseUrl + 'schemawithtemplate' + '/' + uid, template);
   }
 
   sendNode(data): Observable<any> {
