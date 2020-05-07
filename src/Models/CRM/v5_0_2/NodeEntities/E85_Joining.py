@@ -3,8 +3,10 @@ from neomodel import RelationshipTo
 from src.Models.CRM.v5_0_2.NodeEntities.E7_Activity import E7_Activity, E7_ActivitySchema
 from src.Models.CRM.v5_0_2.NodeProperties.P143_joined import P143_joined
 from src.Models.CRM.v5_0_2.NodeProperties.P144_joined_with import P144_joined_with
+from src.GCF.decorators.OntologyClass import decorator_schema
 
 
+@decorator_schema
 class E85_JoiningSchema(E7_ActivitySchema):
     joined = fields.List(fields.Nested(
         "src.Models.CRM.v5_0_2.NodeEntities.E39_Actor.E39_ActorSchema")

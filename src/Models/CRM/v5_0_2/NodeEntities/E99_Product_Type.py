@@ -7,8 +7,10 @@ from src.Models.CRM.v5_0_2.NodeProperties.P187_has_production_plan import (
 from src.Models.CRM.v5_0_2.NodeProperties.P188_requires_production_tool import (
     P188_requires_production_tool,
 )
+from src.GCF.decorators.OntologyClass import decorator_schema
 
 
+@decorator_schema
 class E99_Product_TypeSchema(E55_TypeSchema):
     requires_production_tool = fields.List(fields.Nested(
         "src.Models.CRM.v5_0_2.NodeEntities.E19_Physical_Object.E19_Physical_ObjectSchema")

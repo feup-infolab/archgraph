@@ -2,8 +2,10 @@ from src.Models.CRM.v5_0_2.NodeEntities.E90_Symbolic_Object import (
     E90_Symbolic_Object,
     E90_Symbolic_ObjectSchema,
 )
+from src.GCF.decorators.OntologyClass import decorator_schema
 
 
+@decorator_schema
 class E41_AppellationSchema(E90_Symbolic_ObjectSchema):
     pass
 

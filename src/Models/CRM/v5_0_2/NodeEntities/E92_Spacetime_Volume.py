@@ -14,8 +14,10 @@ from src.Models.CRM.v5_0_2.NodeProperties.P160_has_temporal_projection import (
 from src.Models.CRM.v5_0_2.NodeProperties.P161_has_spatial_projection import (
     P161_has_spatial_projection,
 )
+from src.GCF.decorators.OntologyClass import decorator_schema
 
 
+@decorator_schema
 class E92_Spacetime_VolumeSchema(E1_CRM_EntitySchema):
     falls_within = fields.List(fields.Nested(
         "src.Models.CRM.v5_0_2.NodeEntities.E92_Spacetime_Volume.E92_Spacetime_VolumeSchema")

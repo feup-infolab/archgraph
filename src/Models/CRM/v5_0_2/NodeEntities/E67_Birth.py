@@ -8,8 +8,10 @@ from src.Models.CRM.v5_0_2.NodeProperties.P97_from_father import P97_from_father
 from src.Models.CRM.v5_0_2.NodeProperties.P98_brought_into_life import (
     P98_brought_into_life,
 )
+from src.GCF.decorators.OntologyClass import decorator_schema
 
 
+@decorator_schema
 class E67_BirthSchema(E63_Beggining_of_ExistenceSchema):
     by_mother = fields.List(fields.Nested(
         "src.Models.CRM.v5_0_2.NodeEntities.E21_Person.E21_PersonSchema")

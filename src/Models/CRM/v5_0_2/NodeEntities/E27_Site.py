@@ -1,6 +1,8 @@
 from src.Models.CRM.v5_0_2.NodeEntities.E26_Physical_Feature import E26_Physical_Feature, E26_Physical_FeatureSchema
+from src.GCF.decorators.OntologyClass import decorator_schema
 
 
+@decorator_schema
 class E27_SiteSchema(E26_Physical_FeatureSchema):
     pass
 

@@ -4,7 +4,6 @@ from neo4j import GraphDatabase
 from neomodel import db
 import importlib
 
-
 # TODO nao apagar estes importes
 from src.Models.CRM.v5_0_2.NodeEntities.E4_Period import E4_Period, E4_PeriodSchema
 from src.Models.CRM.v5_0_2.NodeEntities.E5_Event import E5_Event, E5_EventSchema
@@ -36,11 +35,10 @@ from src.Models.CRM.v5_0_2.NodeEntities.E6_Destruction import E6_Destruction, E6
 from src.Models.CRM.v5_0_2.NodeEntities.E7_Activity import E7_Activity, E7_ActivitySchema
 from src.Models.CRM.v5_0_2.NodeEntities.E8_Acquisition import E8_Acquisition, E8_AcquisitionSchema
 from src.Models.CRM.v5_0_2.NodeEntities.E9_Move import E9_Move, E9_MoveSchema
-from src.Models.CRM.v5_0_2.NodeEntities.E10_Transfer_of_Custody import E10_Transfer_of_Custody, E10_Transfer_of_CustodySchema
+from src.Models.CRM.v5_0_2.NodeEntities.E10_Transfer_of_Custody import E10_Transfer_of_Custody, \
+    E10_Transfer_of_CustodySchema
 from src.Models.CRM.v5_0_2.NodeEntities.E11_Modification import E11_Modification, E11_ModificationSchema
 from src.Models.CRM.v5_0_2.NodeEntities.E12_Production import E12_Production
-
-
 
 from src.Models.CRM.v5_0_2.NodeEntities.E18_Physical_Thing import E18_Physical_Thing
 from src.Models.CRM.v5_0_2.NodeEntities.E24_Physical_Human_Made_Thing import E24_Physical_Human_Made_Thing
@@ -82,7 +80,7 @@ def read_relationships(search_node, search_node_uid, relationship_name):
             + ")-[: "
             + relationship_name
             + "]->(nested_node) "
-            "Return nested_node.uid"
+              "Return nested_node.uid"
         )
         for record in records:
             array_uids.append(record[0])
@@ -156,9 +154,9 @@ def delete_node_by_uid(uid):
             return None
 
 
-def updated_node(node, data):
+def updated_node(node, data, template):
     db.begin()
-    result = updated_node_aux(node, data)
+    result = updated_node_aux(node, data, template[list(template.keys())[0]])
     if result is None:
         db.rollback()
         return None
@@ -167,29 +165,51 @@ def updated_node(node, data):
         return True
 
 
-def updated_node_aux(node, data):
-    node_self = node.node_self_build(data)
-    merged = node.merge_node(node_self['self_node'])
-    if merged is None:
+def updated_node_aux(current_node, data, template):
+    new_node = current_node.node_self_build(data)
+    if current_node.merge_node(new_node['self_node']):
+        for relationship_name in template:
+            relationship_of_node = getattr(current_node, relationship_name)
+            existing_relationships = relationship_of_node.all()
+            for existing_relationship in existing_relationships:
+                relationship_of_node.disconnect(existing_relationship)
+            #
+            # if existing_relationships == []:
+            #     add_new_node(new_node['relationships'][relationship_name], relationship_of_node, None, template[relationship_name])
+            if relationship_name in new_node['relationships']:
+                new_relationships = new_node['relationships'][relationship_name]
+                if add_all_relationships(new_relationships, relationship_of_node) is None:
+                    return None
+        return True
+    else:
         return None
 
-    for relationship_name in node_self['relationships']:
-        for nexted_node in node_self['relationships'][relationship_name]:
+
+def add_all_relationships(relationships, node):
+    for nested_node in relationships:
+        if "uid" not in nested_node:
+            range_class = node.definition["node_class"]
+            new_instance = range_class()
+            for attr in nested_node:
+                setattr(new_instance, attr, nested_node[attr])
+            new_instance.save()
+            node.connect(new_instance)
+        else:
+            uid = nested_node["uid"]
             try:
-                uid = nexted_node['uid']
-                node = ""
-                try:
-                    node = DataObject.nodes.get(uid=uid)
-                except:
-                    try:
-                        node = E1_CRM_Entity.nodes.get(uid=uid)
-                    except:
-                        return None
-                result = updated_node_aux(node, nexted_node)
-                if result is None:
-                    return None
+                nested_node = DataObject.nodes.get(uid=uid)
+                node.connect(nested_node)
+
             except:
-                return None
+                try:
+                    nested_node = E1_CRM_Entity.nodes.get(uid=uid)
+                    node.connect(nested_node)
+                except:
+                    return None
+            #result = updated_node_aux(node, nested_node, template)
+            # if result is None:
+            #     new_result["error"] = None
+            #     return new_result
     return True
 
 
@@ -209,18 +229,26 @@ def make_result(result):
     return response_array
 
 
-def find_name_of_class_schema_in_project(class_schema_name):
-    try:
-        class_schema = getattr(importlib.import_module("src.Models.DataObject.v0_0_2.NodeEntities." + class_schema_name), class_schema_name + "Schema")
-        return class_schema
-    except:
+def find_name_of_classes_schema_in_project(classes_schema_name):
+    classes_schema = []
+    for class_schema_name in classes_schema_name:
         try:
-            class_schema = getattr(importlib.import_module("src.Models.CRM.v5_0_2.NodeEntities." + class_schema_name), class_schema_name + "Schema")
-            return class_schema
+            class_schema = getattr(
+                importlib.import_module("src.Models.DataObject.v0_0_2.NodeEntities." + class_schema_name),
+                class_schema_name + "Schema")
+            classes_schema.append(class_schema)
         except:
             try:
-                class_schema = getattr(importlib.import_module("src.Models.ArchOnto.v0_1." + class_schema_name), class_schema_name + "Schema")
-                return class_schema
+                class_schema = getattr(
+                    importlib.import_module("src.Models.CRM.v5_0_2.NodeEntities." + class_schema_name),
+                    class_schema_name + "Schema")
+                classes_schema.append(class_schema)
             except:
-                return None
+                try:
+                    class_schema = getattr(importlib.import_module("src.Models.ArchOnto.v0_1." + class_schema_name),
+                                           class_schema_name + "Schema")
+                    classes_schema.append(class_schema)
+                except:
+                    continue
 
+    return classes_schema

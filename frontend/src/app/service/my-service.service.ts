@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Observable, Subject} from 'rxjs';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Schema} from '../models/Schema';
 
 @Injectable({
@@ -20,8 +20,8 @@ export class MyServiceService {
     return this.http.get<any[]>(this.baseUrl + uid);
   }
 
-  getDataNodeWithTemplate( uid: string): Observable<any[]> {
-    return this.http.get<any[]>(this.baseUrl + "withtemplate/" + uid);
+  getDataNodeWithTemplate( uid: string, template: object): Observable<any[]> {
+    return this.http.post<any[]>(this.baseUrl + "withtemplate/" + uid, template) ;
   }
 
   getTemplatesFromEntity( uid: string): Observable<any[]> {
@@ -34,15 +34,21 @@ export class MyServiceService {
   }
 
   getSpecificSearchJson(entity: string, search: string): Observable<any[]> {
-    return this.http.get<any[]>(this.baseUrl + 'search_specific' + '/' + entity + '/' + search);
+    if(search == "" ){
+          return this.http.get<any[]>(this.baseUrl + 'search_specific' + '/' + entity);
+    }else {
+      return this.http.get<any[]>(this.baseUrl + 'search_specific' + '/' + entity + '/' + search);
+    }
   }
 
   getSchemaNode(uid: string): Observable<Schema> {
     return this.http.get<Schema>(this.baseUrl + 'schema' + '/' + uid);
   }
 
-  getSchemaNodeWithTemplate(uid: string): Observable<Schema> {
-    return this.http.get<Schema>(this.baseUrl + 'schemawithtemplate' + '/' + uid);
+  getSchemaNodeWithTemplate(uid: string, template: object): Observable<Schema> {
+    // const headers = new HttpHeaders();
+    // headers.append('template', template)
+    return this.http.post<Schema>(this.baseUrl + 'schemawithtemplate' + '/' + uid, template);
   }
 
   sendNode(data): Observable<any> {

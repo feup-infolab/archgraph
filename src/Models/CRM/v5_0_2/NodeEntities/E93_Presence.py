@@ -6,8 +6,10 @@ from src.Models.CRM.v5_0_2.NodeProperties.P166_was_a_presence_of import (
     P166_was_a_presence_of,
 )
 from src.Models.CRM.v5_0_2.NodeProperties.P167_at import P167_at
+from src.GCF.decorators.OntologyClass import decorator_schema
 
 
+@decorator_schema
 class E93_PresenceSchema(E92_Spacetime_VolumeSchema):
     was_a_presence_of = fields.List(fields.Nested(
         "src.Models.CRM.v5_0_2.NodeEntities.E92_Spacetime_Volume.E92_Spacetime_VolumeSchema")

@@ -1,11 +1,14 @@
 from marshmallow import Schema
+
+from src.GCF.decorators.OntologyClass import decorator_schema
 from src.Models.CRM.v5_0_2.NodeEntities.E1_CRM_Entity import (
     E1_CRM_Entity,
     E1_CRM_EntitySchema,
 )
 
 
-#todo
+#todo calss super
+@decorator_schema
 class E77_Persistent_ItemSchema(Schema):
     pass
 

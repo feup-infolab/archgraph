@@ -1,5 +1,6 @@
 from marshmallow import Schema, fields
 from neomodel import One, RelationshipTo
+from src.GCF.decorators.OntologyClass import decorator_schema
 from src.Models.CRM.v5_0_2.NodeEntities.E1_CRM_Entity import (
     E1_CRM_Entity,
     E1_CRM_EntitySchema,
@@ -44,6 +45,7 @@ from src.Models.CRM.v5_0_2.NodeProperties.P185_ends_before_the_end_of import (
 )
 
 
+@decorator_schema
 class E2_Temporal_EntitySchema(E1_CRM_EntitySchema):
     P4_has_time_span = fields.Nested(
         "src.Models.CRM.v5_0_2.NodeEntities.E52_Time_Span.E52_Time_SpanSchema"

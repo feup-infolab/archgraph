@@ -5,8 +5,10 @@ from src.Models.CRM.v5_0_2.NodeEntities.E5_Event import E5_Event, E5_EventSchema
 from src.Models.CRM.v5_0_2.NodeProperties.P92_brought_into_existence import (
     P92_brought_into_existence,
 )
+from src.GCF.decorators.OntologyClass import decorator_schema
 
 
+@decorator_schema
 class E63_Beggining_of_ExistenceSchema(E5_EventSchema):
     brought_into_existence = fields.List(fields.Nested(
         "src.Models.CRM.v5_0_2.NodeEntities.E77_Persistent_Item.E77_Persistent_ItemSchema")

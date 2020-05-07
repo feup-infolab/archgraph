@@ -1,8 +1,10 @@
 from marshmallow import fields
 from neomodel import DateTimeFormatProperty
 from src.Models.DataObject.v0_0_2.Date import Date, DateSchema
+from src.GCF.decorators.OntologyClass import decorator_schema
 
 
+@decorator_schema
 class InstantSchema(DateSchema):
     timestamp = fields.Date(required=True)
 

@@ -1,10 +1,12 @@
 from marshmallow import fields
 from neomodel import RelationshipTo
+from src.GCF.decorators.OntologyClass import decorator_schema
 from src.Models.CRM.v5_0_2.NodeEntities.E2_Temporal_Entity import E2_Temporal_Entity, E2_Temporal_EntitySchema
 from src.Models.CRM.v5_0_2.NodeProperties.P7_took_place_at import P7_took_place_at
 from src.Models.CRM.v5_0_2.NodeProperties.P9_consists_of import P9_consists_of
 
 
+@decorator_schema
 class E4_PeriodSchema(E2_Temporal_EntitySchema):
     consists_of = fields.List(fields.Nested(
         "src.Models.CRM.v5_0_2.NodeEntities.E4_Period.E4_PeriodSchema")

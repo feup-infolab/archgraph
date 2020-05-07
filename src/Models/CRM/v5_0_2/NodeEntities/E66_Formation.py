@@ -8,8 +8,10 @@ from src.Models.CRM.v5_0_2.NodeProperties.P95_has_formed import P95_has_formed
 from src.Models.CRM.v5_0_2.NodeProperties.P151_was_formed_from import (
     P151_was_formed_from,
 )
+from src.GCF.decorators.OntologyClass import decorator_schema
 
 
+@decorator_schema
 class E66_FormationSchema(E7_ActivitySchema, E63_Beggining_of_ExistenceSchema):
     has_formed = fields.List(fields.Nested(
         "src.Models.CRM.v5_0_2.NodeEntities.E74_Group.E74_GroupSchema")

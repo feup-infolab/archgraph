@@ -4,8 +4,10 @@ from src.Models.DataObject.v0_0_2.AuthorityString import (
     AuthorityString,
     AuthorityStringSchema,
 )
+from src.GCF.decorators.OntologyClass import decorator_schema
 
 
+@decorator_schema
 class PersonNameSchema(AuthorityStringSchema):
     person_name = fields.String(required=True)
 

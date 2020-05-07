@@ -11,8 +11,10 @@ from src.Models.CRM.v5_0_2.NodeProperties.P157_is_at_rest_relative_to import (
     P157_is_at_rest_relative_to,
 )
 from src.Models.CRM.v5_0_2.NodeProperties.P189_approximates import P189_approximates
+from src.GCF.decorators.OntologyClass import decorator_schema
 
 
+@decorator_schema
 class E53_PlaceSchema(E1_CRM_EntitySchema):
     P89_falls_within = fields.List(
         fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E53_Place.E53_PlaceSchema")

@@ -3,8 +3,10 @@ from src.Models.CRM.v5_0_2.NodeEntities.E71_Human_Made_Thing import (
     E71_Human_Made_Thing,
     E71_Human_Made_ThingSchema,
 )
+from src.GCF.decorators.OntologyClass import decorator_schema
 
 
+@decorator_schema
 class E28_Conceptual_ObjectSchema(E71_Human_Made_ThingSchema):
     pass
 
