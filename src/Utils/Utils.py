@@ -171,31 +171,20 @@ def updated_node_aux(atual_node, data):
     if merged is None:
         return None
 
-    if node_self['relationships'] == {}:
-        # relationship_of_node = getattr(atual_node, relationship_name)
-        # all_relationships_of_node = relationship_of_node.all()
-        # for node_of_relationship in all_relationships_of_node:
-        #     new_result = add_new_node(node_self['relationships'][relationship_name], relationship_of_node,
-        #                               node_of_relationship)
-        #     if not new_result["exists"]:
-        #         relationship_of_node.disconnect(node_of_relationship)
-        #         continue
-        x=1
-        return True
-    else:
-        for relationship_name in node_self['relationships']:
-            relationship_of_node = getattr(atual_node, relationship_name)
-            all_relationships_of_node = relationship_of_node.all()
-            if all_relationships_of_node == []:
-                add_new_node(node_self['relationships'][relationship_name], relationship_of_node, None)
-            else:
-                for node_of_relationship in all_relationships_of_node:
-                    new_result = add_new_node(node_self['relationships'][relationship_name],relationship_of_node, node_of_relationship)
-                    if not new_result["exists"]:
-                        relationship_of_node.disconnect(node_of_relationship)
-                        continue
+    for relationship_name in node_self['relationships']:
+        relationship_of_node = getattr(atual_node, relationship_name)
+        all_relationships_of_node = relationship_of_node.all()
+        if all_relationships_of_node == []:
+            add_new_node(node_self['relationships'][relationship_name], relationship_of_node, None)
+        else:
+            for node_of_relationship in all_relationships_of_node:
+                new_result = add_new_node(node_self['relationships'][relationship_name], relationship_of_node,
+                                          node_of_relationship)
+                if not new_result["exists"]:
+                    relationship_of_node.disconnect(node_of_relationship)
+                    continue
 
-            return True
+    return True
 
 
 def add_new_node(relationships, relationship_of_node, node_of_relationship):
