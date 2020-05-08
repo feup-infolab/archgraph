@@ -51,9 +51,14 @@ export class MyServiceService {
     return this.http.post<Schema>(this.baseUrl + 'schemawithtemplate' + '/' + uid, template);
   }
 
-  sendNode(data): Observable<any> {
+  sendNode(data, template): Observable<any> {
     const uid = Object.keys(data)[0];
-    return this.http.post<any>(this.baseUrl + uid,  data[uid]);
+    const body = {
+      template,
+      data: data[uid]
+    };
+
+    return this.http.post<any>(this.baseUrl + uid,  body);
   }
 
   constructor(private http: HttpClient) {

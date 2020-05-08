@@ -2,7 +2,16 @@ import json
 from pathlib import Path
 import os, sys
 import argparse
-from src.Utils.Utils import read_file
+
+# returns the project root path (assumes that the script is started from src/Routes/routes.py)
+def get_project_root():
+    """Returns project root folder."""
+    return Path(__file__).parent.parent.parent
+
+# append project root to sys paths so that src.** modules can be found by Python when running the app from a script
+# From https://leemendelowitz.github.io/blog/how-does-python-find-packages.html
+print("Archgraph running at " + get_project_root().as_posix())
+sys.path.append(get_project_root().as_posix())
 
 from src.Routes.mongo import insert_template_in_mongo, get_all_records_from_collection, update_data_in_mongo, \
     get_record_from_collection, add_record_to_collection, get_schema_from_mongo, \
@@ -15,18 +24,6 @@ parser.add_argument("--neo4j", nargs="?", help="Address of the neo4j server")
 parser.add_argument("--mongodb", nargs="?", help="Address of the mongodb server")
 
 args = parser.parse_args()
-
-
-# returns the project root path (assumes that the script is started from src/Routes/routes.py)
-def get_project_root():
-    """Returns project root folder."""
-    return Path(__file__).parent.parent.parent
-
-
-# append project root to sys paths so that src.** modules can be found by Python when running the app from a script
-# From https://leemendelowitz.github.io/blog/how-does-python-find-packages.html
-print("Archgraph running at " + get_project_root().as_posix())
-sys.path.append(get_project_root().as_posix())
 
 from flask import Flask, Response, jsonify, make_response, request, send_from_directory
 
@@ -98,8 +95,8 @@ def get_record(uid):
     node = get_node_by_uid(uid)
     if node is not None:
         data = nested_json(node, template)
-        print(data)
-        add_record_to_collection(uid, data, "data")
+        # print(data)
+        # add_record_to_collection(uid, data, "data")
         get_all_records_from_collection("data")
         if data is not None:
             return make_response(jsonify(data), 201)
@@ -202,11 +199,11 @@ def response_update(uid):
     if node is not None:
         #todo meter o template no body tambem
         data = request.json
-        merged = updated_node(node, data, template)
+        merged = updated_node(node, data['data'], data['template'])
         if merged:
             #update_data_in_mongo(uid, node.encodeJSON())
             #get_all_records_from_collection("data")
-            new_data = nested_json(node, template)
+            new_data = nested_json(node, data['template'])
             return make_response(jsonify(new_data), 201)
         else:
             return make_response(jsonify(message="Unsaved node"), 404)
