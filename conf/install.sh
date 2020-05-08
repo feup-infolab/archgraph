@@ -80,7 +80,9 @@ npm config set python "$PYTHON27_PATH"
 npm install
 
 # preload graph
-if [ "$PRELOAD_GRAPH" != "" ] ; then
+if [ -z "$PRELOAD_GRAPH" ] ; then
+    echo "Preload graph flag is not active, skipping tests"
+else
     echo "Preload graph flag is active, loading graph through tests"
     coverage run -m unittest discover test || true
 fi
