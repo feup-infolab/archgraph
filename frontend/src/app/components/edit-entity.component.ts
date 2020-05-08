@@ -97,7 +97,7 @@ export class EditEntityComponent implements OnInit {
 
   sendNode(data) {
     this.load = false;
-    this.service.sendNode(data)
+    this.service.sendNode(data, this.template)
       .subscribe(result => {
         this.form.data[this.uid] = result;
         console.log(result);

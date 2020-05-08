@@ -1,4 +1,6 @@
 import json
+import datetime
+import marshmallow.fields as fields
 
 from neo4j import GraphDatabase
 from neomodel import db
@@ -178,20 +180,23 @@ def updated_node_aux(current_node, data, template):
             #     add_new_node(new_node['relationships'][relationship_name], relationship_of_node, None, template[relationship_name])
             if relationship_name in new_node['relationships']:
                 new_relationships = new_node['relationships'][relationship_name]
-                if add_all_relationships(new_relationships, relationship_of_node) is None:
+                if add_all_relationships(new_relationships, relationship_of_node, current_node.schema) is None:
                     return None
         return True
     else:
         return None
 
 
-def add_all_relationships(relationships, node):
+def add_all_relationships(relationships, node, node_schema):
     for nested_node in relationships:
         if "uid" not in nested_node:
             range_class = node.definition["node_class"]
             new_instance = range_class()
             for attr in nested_node:
-                setattr(new_instance, attr, nested_node[attr])
+                if node_schema.fields[attr].__class__ == fields.Date:
+                    setattr(new_instance, attr, datetime.datetime.strptime(nested_node[attr], "%Y-%m-%d"))
+                else:
+                    setattr(new_instance, attr, nested_node[attr])
             new_instance.save()
             node.connect(new_instance)
         else:
@@ -206,6 +211,7 @@ def add_all_relationships(relationships, node):
                     node.connect(nested_node)
                 except:
                     return None
+
             #result = updated_node_aux(node, nested_node, template)
             # if result is None:
             #     new_result["error"] = None
