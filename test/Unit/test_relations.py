@@ -479,15 +479,12 @@ class TestNeoModel(unittest.TestCase):
                 "has_value": "DataObject",
             }
         }
-        template2 = {'E52_Time_Span': {'P86_falls_within': 'E52_Time_Span'}}
         template3 = {'E52_Time_Span': {}}
-        class_name =['E52_Time_Span', 'E1_CRM_Entity']
+        class_name = ['E52_Time_Span', 'E1_CRM_Entity']
         schema = e52.get_schema_with_template(template)
-        schema2 = e52.get_schema_with_template(template2)
         schema3 = e52.get_schema_with_template(template3)
-        templates = [{"classes_name": class_name, "template": template, "schema": json.dumps(schema) },
-                     {"classes_name": class_name, "template": template2, "schema": json.dumps(schema2) },
-                     {"classes_name": class_name, "template": template3, "schema": json.dumps(schema3) }]
+        templates = [{"classes_name": class_name, "template": template, "schema": json.dumps(schema)},
+                     {"classes_name": class_name, "template": template3, "schema": json.dumps(schema3)}]
         insert_default_templates(templates)
         get_all_records_from_collection("defaultTemplate")
 

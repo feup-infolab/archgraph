@@ -13,16 +13,9 @@ def get_project_root():
 print("Archgraph running at " + get_project_root().as_posix())
 sys.path.append(get_project_root().as_posix())
 
-from src.Routes.mongo import insert_template_in_mongo, get_all_records_from_collection, update_data_in_mongo, \
-    get_record_from_collection, add_record_to_collection, get_schema_from_mongo, \
-    delete_collection, get_templates_from_mongo_by_classes_name
-
 parser = argparse.ArgumentParser(description="Starts the archgraph server.")
-
 parser.add_argument("--neo4j", nargs="?", help="Address of the neo4j server")
-
 parser.add_argument("--mongodb", nargs="?", help="Address of the mongodb server")
-
 args = parser.parse_args()
 
 from flask import Flask, Response, jsonify, make_response, request, send_from_directory
@@ -37,6 +30,10 @@ if args.neo4j:
     config.DATABASE_URL = args.neo4j
 else:
     config.DATABASE_URL = "bolt://neo4j:password@localhost:7687"
+
+from src.Routes.mongo import insert_template_in_mongo, get_all_records_from_collection, update_data_in_mongo, \
+    get_record_from_collection, add_record_to_collection, get_schema_from_mongo, \
+    delete_collection, get_templates_from_mongo_by_classes_name
 
 app = Flask(__name__)
 
@@ -247,4 +244,4 @@ def search_specific(class_name, query):
 # get_all_records_from_collection("createdTemplate")
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host='0.0.0.0')
