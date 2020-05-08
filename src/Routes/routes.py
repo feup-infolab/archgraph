@@ -105,7 +105,6 @@ def get_record(uid):
     else:
         return make_response(jsonify(message="Node doesn't exists"), 404)
 
-
 @app.route("/schema/<uid>", methods=["GET"])
 @cross_origin()
 def response_get_schema_node(uid):
