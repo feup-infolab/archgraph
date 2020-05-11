@@ -36,7 +36,11 @@ export class EditTemplateComponent implements OnInit {
   props = [];
   allprops = {};
 
+  template = {};
+
   chosenprops = [];
+
+  copyProp;
 
   goBack() {
     this.location.back();
@@ -89,6 +93,17 @@ export class EditTemplateComponent implements OnInit {
         this.allprops = result;
         this.load = true;
       });
+    this.getTemplate();
+  }
+
+  getTemplate() {
+    this.service.getTemplate()
+      .subscribe(template => {
+        console.log('Displaying Obtained Template:');
+        console.log(template);
+        this.template = template;
+        console.log(this.template);
+      });
   }
 
   refactorSchema(jsonSchema) {
@@ -113,9 +128,6 @@ export class EditTemplateComponent implements OnInit {
 
   }
 
-  schemaToTemplate(){
-
-  }
 
   refactorDefinitions(jsonSchema, schema) {
     const ref = jsonSchema.$ref;
@@ -137,8 +149,7 @@ export class EditTemplateComponent implements OnInit {
 
   addPropertySchema(property, jsonSchema) {
     jsonSchema.definitions[this.schemaname].properties[property.title] = property;
-    console.log('This Refactor');
-    console.log(this.refactorDefinitions(property.items, this.form.schema));
+    this.refactorDefinitions(property.items, this.form.schema);
     return jsonSchema;
   }
 
@@ -155,27 +166,22 @@ export class EditTemplateComponent implements OnInit {
     this.chosenprops.push(this.comboBoxReference.inputItem);
     this.form.data[this.uid][this.comboBoxReference.inputItem] = [];
     this.form.data[this.uid][this.comboBoxReference.inputItem][0] = {name: '1', uid: '1' };
+    const schemaEntity = this.schemaname.replace('Schema', '');
+    this.template[schemaEntity][this.comboBoxReference.inputItem] = this.allprops[this.comboBoxReference.inputItem].items.$ref
+      .replace('Schema', '').replace('#/definitions/', '');
     this.form.schema = this.addPropertySchema(this.allprops[this.comboBoxReference.inputItem], this.form.schema);
-    console.log('Added data');
-    console.log(this.form.data);
-    console.log('Added Schema');
-    console.log(this.form.schema);
-    console.log('All Forms');
-    console.log(this.form);
     this.sendProps();
   }
 
 
   sendProps() {
-    this.service.sendTemplate(this.form.schema)
+    this.service.sendTemplate(this.template)
       .subscribe( result => {
-        console.log(result);
         this.load = true;
       });
   }
 
   onSubmit(data: any) {
-    console.log(data);
 
     this.sendNode(data);
   }

@@ -53,6 +53,10 @@ export class MyServiceService {
     return this.http.get<Schema>(this.baseUrl + 'getallproperties' + '/' + uid);
   }
 
+  getTemplate(): Observable<any[]> {
+    return this.http.get<any[]>(this.baseUrl + 'obtainschema');
+  }
+
   sendNode(data): Observable<any> {
     const uid = Object.keys(data)[0];
     return this.http.post<any>(this.baseUrl + uid,  data[uid]);
