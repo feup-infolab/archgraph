@@ -1,5 +1,27 @@
 
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">
+    Archgraph Backend Demo
+  </a>
+
+  <button class="navbar-toggler" type="button">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+
+  <div class="collapse navbar-collapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="#">Search page</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
 <div *ngIf="load" style="margin: 35px">
+
+
   <json-schema-form
     *ngIf="load"
     [form]= "form"
@@ -11,9 +33,6 @@
     (isValid)="isValid($event)">
   </json-schema-form>
 
-  <div class="example-button-row">
-    <button mat-raised-button color="primary" (click)="goBack()">Go back</button>
-  </div>
 </div>
 
 <!--

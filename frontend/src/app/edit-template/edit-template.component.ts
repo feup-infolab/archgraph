@@ -113,6 +113,10 @@ export class EditTemplateComponent implements OnInit {
 
   }
 
+  schemaToTemplate(){
+
+  }
+
   refactorDefinitions(jsonSchema, schema) {
     const ref = jsonSchema.$ref;
     const path = ref.split('/');

@@ -321,6 +321,7 @@ class TestNeoModel(unittest.TestCase):
 
         e41.has_value.connect(node)
         e52_2.P1_is_identified_by.connect(e41)
+        e52_2.has_value.connect(node)
         # remove Later
         e52_2.P86_falls_within.connect(e52)
 

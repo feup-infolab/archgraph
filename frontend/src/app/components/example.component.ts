@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild} from '@angular/core';
 import {MyServiceService} from '../service/my-service.service';
 import {CidocSearch} from '../models/CidocSearch';
 import {ComboBoxComponent} from '../combo-box/combo-box.component';
+import {ActivatedRoute} from '@angular/router';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-example',
@@ -50,6 +52,19 @@ export class ExampleComponent implements OnInit {
     'E98_Currency', 'E99_Product_Type'];
 
   headers = ['name', 'uid', 'labels'];
+
+  uid = '';
+  jsonFormOptions = {
+    loadExternalAssets: true,
+  };
+  schema = {};
+  data = {};
+  load = false;
+  form = {
+    schema: {},
+    data: {},
+    layout: []
+  };
 
   searchDatabase(searched: string) {
     this.searched = searched;

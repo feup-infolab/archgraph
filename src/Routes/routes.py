@@ -97,7 +97,7 @@ def response_get_schema_node_with_template(uid):
     template = {
         "E52_Time_Span": {
             "has_value": "DataObject",
-            "P1_is_identified_by": "E41_Appellation"}
+            }
     }
     if node is not None:
         result = node.get_schema_with_template(template)

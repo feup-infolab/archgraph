@@ -29,6 +29,7 @@ export class EditEntityComponent implements OnInit {
     data: {},
     layout: []
   };
+  inName = 'Production Time';
 
   goBack() {
     this.location.back();
@@ -72,7 +73,9 @@ export class EditEntityComponent implements OnInit {
         console.log('Form Data');
         console.log(this.form.data);
         console.log('ALl Form');
-        console.log(this.form);
+        console.log(this.form.data[this.uid]);
+        console.log(this.form.data[this.uid].name);
+        this.inName = this.form.data[this.uid].name;
         this.load = true;
       });
   }
@@ -81,10 +84,13 @@ export class EditEntityComponent implements OnInit {
     const ref = jsonSchema.$ref;
     const path = ref.split('/');
     const schemaName = path[2];
+
+    const enName = schemaName.replace('Schema', '');
+    const finalName = enName.replace(/_/g, ' ');
     const properties = {};
     properties[this.uid] = {
       $ref: ref,
-      title: 'Editing'
+      title: 'Editing ' + finalName + ' - ' + this.inName
     };
     jsonSchema.properties = properties;
     jsonSchema.desc = 'Description';
