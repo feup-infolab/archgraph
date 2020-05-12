@@ -40,7 +40,7 @@ nvm use v10
 echo "Starting archgraph server at $ROOT_DIR"
 cd "$ROOT_DIR"
 
-python "$ROOT_DIR/src/Routes/routes.py" --neo4j="$NEO4J_CONNECTION_STRING" &
+python "$ROOT_DIR/src/Routes/routes.py" --neo4j="$NEO4J_CONNECTION_STRING" --mongodb="$MONGODB_CONNECTION_STRING" &
 SERVER_PID=$!
 cd "$ROOT_DIR/frontend" || ( echo "folder missing " && exit 1 )
 if [[ "$RUN_IN_PRODUCTION" != "" ]] ; then

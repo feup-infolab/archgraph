@@ -1,6 +1,8 @@
+from src.GCF.decorators.OntologyClass import decorator_schema
 from src.Models.CRM.v5_0_2.NodeEntities.E19_Physical_Object import E19_Physical_Object, E19_Physical_ObjectSchema
 
 
+@decorator_schema
 class E20_Biological_ObjectSchema(E19_Physical_ObjectSchema):
     pass
 

@@ -5,8 +5,10 @@ from src.Models.CRM.v5_0_2.NodeEntities.E63_Beggining_of_Existence import (
     E63_Beggining_of_Existence,
     E63_Beggining_of_ExistenceSchema)
 from src.Models.CRM.v5_0_2.NodeProperties.P94_has_created import P94_has_created
+from src.GCF.decorators.OntologyClass import decorator_schema
 
 
+@decorator_schema
 class E65_CreationSchema(E7_ActivitySchema, E63_Beggining_of_ExistenceSchema):
     has_created = fields.List(fields.Nested(
         "src.Models.CRM.v5_0_2.NodeEntities.E28_Conceptual_Object.E28_Conceptual_ObjectSchema")

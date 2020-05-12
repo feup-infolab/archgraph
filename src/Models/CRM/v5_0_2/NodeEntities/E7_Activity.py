@@ -1,6 +1,6 @@
 from marshmallow import fields
 from neomodel import RelationshipTo
-
+from src.GCF.decorators.OntologyClass import decorator_schema
 from ..NodeEntities.E5_Event import E5_Event, E5_EventSchema
 from ..NodeProperties.P14_carried_out_by import P14_carried_out_by
 from ..NodeProperties.P15_was_influenced_by import P15_was_influenced_by
@@ -15,6 +15,7 @@ from ..NodeProperties.P125_used_object_of_type import P125_used_object_of_type
 from ..NodeProperties.P134_continued import P134_continued
 
 
+@decorator_schema
 class E7_ActivitySchema(E5_EventSchema):
     continued = fields.List(fields.Nested(
         "src.Models.CRM.v5_0_2.NodeEntities.E7_Activity.E7_ActivitySchema")

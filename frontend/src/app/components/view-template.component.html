@@ -1,0 +1,22 @@
+<div *ngIf="hasTemplate">
+  <select (change)="selectChangeHandler($event)">
+    <option *ngFor="let key of objectKeys(templates)" [ngValue]="templates[key]">{{ key }}</option>
+  </select>
+
+  <pre>{{templates[key] | json}}</pre>
+
+  <div class="example-button-row">
+    <button type="button" class="btn btn-primary-outline pull-right" (click)="editEntity();"><i class="fa fa-plus"></i>
+      Edit Entity
+    </button>
+  </div>
+</div>
+
+<div class="row" *ngIf="!hasTemplate" style="align-content: center">
+  <div class="col-xs-12">
+    <p class="alert alert-danger">
+      <strong>Don't have templates</strong>
+
+    </p>
+  </div>
+</div>

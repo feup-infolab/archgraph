@@ -1,5 +1,6 @@
 from marshmallow import fields
 from neomodel import RelationshipTo
+from src.GCF.decorators.OntologyClass import decorator_schema
 from src.Models.CRM.v5_0_2.NodeEntities.E7_Activity import E7_Activity, E7_ActivitySchema
 from src.Models.CRM.v5_0_2.NodeProperties.P140_assigned_attribute_to import (
     P140_assigned_attribute_to,
@@ -10,6 +11,7 @@ from src.Models.CRM.v5_0_2.NodeProperties.P177_assigned_property_type import (
 )
 
 
+@decorator_schema
 class E13_Attribute_AssignmentSchema(E7_ActivitySchema):
     assigned_attribute_to = fields.List(fields.Nested(
         "src.Models.CRM.v5_0_2.NodeEntities.E1_CRM_Entity.E1_CRM_EntitySchema")

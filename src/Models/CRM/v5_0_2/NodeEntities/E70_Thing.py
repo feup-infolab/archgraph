@@ -12,8 +12,11 @@ from src.Models.CRM.v5_0_2.NodeProperties.P101_had_as_general_use import (
 from src.Models.CRM.v5_0_2.NodeProperties.P130_shows_features_of import (
     P130_shows_features_of,
 )
+from src.GCF.decorators.OntologyClass import decorator_schema
 
 
+#todo
+@decorator_schema
 class E70_ThingSchema(E77_Persistent_ItemSchema):
     P130_shows_features_of = fields.List(
         fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E70_Thing.E70_ThingSchema",

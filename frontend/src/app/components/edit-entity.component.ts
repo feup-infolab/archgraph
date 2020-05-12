@@ -24,6 +24,7 @@ export class EditEntityComponent implements OnInit {
   schema = {};
   data = {};
   load = false;
+  template = {};
   form = {
     schema: {},
     data: {},
@@ -40,16 +41,19 @@ export class EditEntityComponent implements OnInit {
       this.uid = params.get('uid');
       console.log(this.uid);
       this.load = false;
-      // this.getSchemaNode(this.uid);
-      this.getSchemaNodeWithTemplate(this.uid);
-      console.log('Testing:');
-      console.log(this.form);
+      //this.getSchemaNode(this.uid);
+      this.route.queryParamMap.subscribe(query => {
+        this.template = JSON.parse(query.get('template'));
+        console.log(this.template)
+        this.getSchemaNodeWithTemplate(this.uid, this.template)
+    });
 
     });
+
   }
 
-  getSchemaNodeWithTemplate(uid) {
-    this.service.getSchemaNodeWithTemplate(uid)
+  getSchemaNodeWithTemplate(uid, template) {
+    this.service.getSchemaNodeWithTemplate(uid, template)
       .subscribe(returnedSchema => {
 
         this.form.layout = [];
@@ -66,7 +70,7 @@ export class EditEntityComponent implements OnInit {
   }
 
   getDataNodeWithTemplate(uid) {
-    this.service.getDataNodeWithTemplate(uid)
+    this.service.getDataNodeWithTemplate(uid, this.template)
       .subscribe(result => {
         this.form.data[this.uid] = result;
         console.log(result);
@@ -105,11 +109,12 @@ export class EditEntityComponent implements OnInit {
   }
 
   sendNode(data) {
-    this.service.sendNode(data)
+    this.load = false;
+    this.service.sendNode(data, this.template)
       .subscribe(result => {
-        this.form.data = result;
-        console.log('Form Data');
-        console.log(this.form.data);
+        this.form.data[this.uid] = result;
+        console.log(result);
+        this.load = true;
       });
   }
 

@@ -5,8 +5,10 @@ from src.Models.CRM.v5_0_2.NodeEntities.E5_Event import E5_Event, E5_EventSchema
 from src.Models.CRM.v5_0_2.NodeProperties.P93_took_out_of_existence import (
     P93_took_out_of_existence,
 )
+from src.GCF.decorators.OntologyClass import decorator_schema
 
 
+@decorator_schema
 class E64_End_of_ExistenceSchema(E5_EventSchema):
     took_out_of_existence = fields.List(fields.Nested(
         "src.Models.CRM.v5_0_2.NodeEntities.E77_Persistent_Item.E77_Persistent_ItemSchema")

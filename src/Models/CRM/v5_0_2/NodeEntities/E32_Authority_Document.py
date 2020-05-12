@@ -2,8 +2,10 @@ from marshmallow import fields
 from neomodel import RelationshipTo
 from src.Models.CRM.v5_0_2.NodeEntities.E31_Document import E31_Document, E31_DocumentSchema
 from src.Models.CRM.v5_0_2.NodeProperties.P71_lists import P71_lists
+from src.GCF.decorators.OntologyClass import decorator_schema
 
 
+@decorator_schema
 class E32_Authority_DocumentSchema(E31_DocumentSchema):
     lists = fields.List(fields.Nested(
         "src.Models.CRM.v5_0_2.NodeEntities.E1_CRM_Entity.E1_CRM_EntitySchema")

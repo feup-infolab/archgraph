@@ -1,5 +1,4 @@
 .combobox-options {
-
   position: absolute;
   text-align: center;
   background-color: white;
@@ -9,6 +8,12 @@
   box-shadow: 2px 2px 2px 2px #ccc;
   z-index: 1;
 }
+
+input.combobox-input {
+  border-style: none;
+  padding: 0px;
+}
+
 
 
 list-item{

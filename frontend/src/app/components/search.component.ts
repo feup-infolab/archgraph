@@ -7,11 +7,11 @@ import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-example',
-  templateUrl: './example.component.html',
-  styleUrls: ['./example.component.css']
+  templateUrl: './search.component.html',
+  styleUrls: ['./search.component.css']
 })
 
-export class ExampleComponent implements OnInit {
+export class SearchComponent implements OnInit {
 
   constructor(private service: MyServiceService) {
   }

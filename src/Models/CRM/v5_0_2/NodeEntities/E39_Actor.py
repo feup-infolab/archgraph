@@ -9,8 +9,10 @@ from src.Models.CRM.v5_0_2.NodeProperties.P74_has_current_or_former_residence im
     P74_has_current_or_former_residence,
 )
 from src.Models.CRM.v5_0_2.NodeProperties.P75_possesses import P75_possesses
+from src.GCF.decorators.OntologyClass import decorator_schema
 
 
+@decorator_schema
 class E39_ActorSchema(E77_Persistent_ItemSchema):
     P74_has_current_or_former_residence = fields.List(
         fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E53_Place.E53_PlaceSchema",

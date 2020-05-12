@@ -9,9 +9,11 @@ from src.Models.CRM.v5_0_2.NodeProperties.P62_depicts import P62_depicts
 from src.Models.CRM.v5_0_2.NodeProperties.P108_was_produced_by import (
     P108_was_produced_by,
 )
+from src.GCF.decorators.OntologyClass import decorator_schema
 
 
 # TODO na linha de baixo falta fazer um import
+@decorator_schema
 class E24_Physical_Human_Made_ThingSchema(E71_Human_Made_ThingSchema):
     P62_depicts = fields.List(
         fields.Nested(

@@ -7,8 +7,10 @@ from src.Models.CRM.v5_0_2.NodeEntities.E73_Information_Object import (
 from src.Models.CRM.v5_0_2.NodeProperties.P65_shows_visual_item import (
     P65_shows_visual_item,
 )
+from src.GCF.decorators.OntologyClass import decorator_schema
 
 
+@decorator_schema
 class E36_Visual_ItemSchema(E73_Information_ObjectSchema):
     P65_shows_visual_item = fields.List(
         fields.Nested(

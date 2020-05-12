@@ -1,6 +1,8 @@
 from src.Models.CRM.v5_0_2.NodeEntities.E37_Mark import E37_Mark, E37_MarkSchema
+from src.GCF.decorators.OntologyClass import decorator_schema
 
 
+@decorator_schema
 class E34_InscriptionSchema(E37_MarkSchema):
     pass
 

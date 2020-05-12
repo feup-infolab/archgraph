@@ -7,7 +7,7 @@ from neomodel import (
     UniqueIdProperty,
     db,
 )
-from src.GCF.decorators.OntologyClass import ontology_class
+from src.GCF.decorators.OntologyClass import ontology_class, decorator_schema
 from src.Models.CRM.v5_0_2.NodeProperties.has_value import has_value
 from src.Models.CRM.v5_0_2.NodeProperties.P1_is_identified_by import P1_is_identified_by
 from src.Models.CRM.v5_0_2.NodeProperties.P2_has_type import P2_has_type
@@ -21,7 +21,7 @@ from src.Models.CRM.v5_0_2.NodeProperties.P139_has_alternative_form import (
 )
 from src.Models.DataObject.v0_0_2.SuperClass import SuperClass
 
-
+@decorator_schema
 class E1_CRM_EntitySchema(Schema):
     uid = fields.String()
     name = fields.String(required=True)
@@ -82,3 +82,4 @@ class E1_CRM_Entity(StructuredNode, SuperClass):
             schema = E1_CRM_EntitySchema()
 
         SuperClass.__init__(self, schema)
+

@@ -1,8 +1,9 @@
 from marshmallow import Schema, fields
 from neomodel import StringProperty, StructuredNode, UniqueIdProperty
+from src.GCF.decorators.OntologyClass import decorator_schema
 from src.Models.DataObject.v0_0_2.SuperClass import SuperClass
 
-
+@decorator_schema
 class DataObjectSchema(Schema):
     uid = fields.String()
     name = fields.String(required=True)
@@ -20,20 +21,4 @@ class DataObject(StructuredNode, SuperClass):
         SuperClass.__init__(self, schema)
 
 
-var = {
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "definitions": {
-        "PersonNameSchema": {
-            "properties": {
-                "name": {"title": "name", "type": "string"},
-                "person_name": {"title": "person_name", "type": "string"},
-                "stringValue": {"title": "stringValue", "type": "string"},
-                "uid": {"title": "uid", "type": "string"},
-            },
-            "required": ["name", "person_name", "stringValue"],
-            "type": "object",
-            "additionalProperties": False,
-        }
-    },
-    "$ref": "#/definitions/PersonNameSchema",
-}
+

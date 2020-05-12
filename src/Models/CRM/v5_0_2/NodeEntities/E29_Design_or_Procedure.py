@@ -7,8 +7,10 @@ from src.Models.CRM.v5_0_2.NodeProperties.P68_foresees_use_of import P68_foresee
 from src.Models.CRM.v5_0_2.NodeProperties.P69_has_association_with import (
     P69_has_association_with,
 )
+from src.GCF.decorators.OntologyClass import decorator_schema
 
 
+@decorator_schema
 class E29_Design_or_ProcedureSchema(E73_Information_ObjectSchema):
     has_association_with = fields.List(fields.Nested(
         "src.Models.CRM.v5_0_2.NodeEntities.E29_Design_or_Procedure.E29_Design_or_ProcedureSchema")
@@ -27,3 +29,9 @@ class E29_Design_or_Procedure(E73_Information_Object):
     foresees_use_of = RelationshipTo(
         ".E57_Material.E57_Material", "P68_foresees_use_of", model=P68_foresees_use_of,
     )
+
+    def __init__(self, schema=None, *args, **kwargs):
+        if schema is None:
+            schema = E29_Design_or_ProcedureSchema()
+
+        super().__init__(schema, *args, **kwargs)

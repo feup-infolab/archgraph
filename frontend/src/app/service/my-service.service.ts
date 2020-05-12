@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Observable, Subject} from 'rxjs';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Schema} from '../models/Schema';
 
 @Injectable({
@@ -20,12 +20,16 @@ export class MyServiceService {
     return this.http.get<any[]>(this.baseUrl + uid);
   }
 
-  getDataNodeWithTemplate( uid: string): Observable<any[]> {
-    return this.http.get<any[]>(this.baseUrl + 'withtemplate/' + uid);
+  getDataNodeWithTemplate( uid: string, template: object): Observable<any[]> {
+    return this.http.post<any[]>(this.baseUrl + "withtemplate/" + uid, template) ;
   }
 
   getBaseDataNodeWithTemplate( uid: string): Observable<any[]> {
     return this.http.get<any[]>(this.baseUrl + 'createwithtemplate/' + uid);
+  }
+  
+  getTemplatesFromEntity( uid: string): Observable<any[]> {
+        return this.http.get<any[]>(this.baseUrl + "templatesfromentity/" + uid);
   }
 
 
@@ -34,15 +38,21 @@ export class MyServiceService {
   }
 
   getSpecificSearchJson(entity: string, search: string): Observable<any[]> {
-    return this.http.get<any[]>(this.baseUrl + 'search_specific' + '/' + entity + '/' + search);
+    if(search == "" ){
+          return this.http.get<any[]>(this.baseUrl + 'search_specific' + '/' + entity);
+    }else {
+      return this.http.get<any[]>(this.baseUrl + 'search_specific' + '/' + entity + '/' + search);
+    }
   }
 
   getSchemaNode(uid: string): Observable<Schema> {
     return this.http.get<Schema>(this.baseUrl + 'schema' + '/' + uid);
   }
 
-  getSchemaNodeWithTemplate(uid: string): Observable<Schema> {
-    return this.http.get<Schema>(this.baseUrl + 'schemawithtemplate' + '/' + uid);
+  getSchemaNodeWithTemplate(uid: string, template: object): Observable<Schema> {
+    // const headers = new HttpHeaders();
+    // headers.append('template', template)
+    return this.http.post<Schema>(this.baseUrl + 'schemawithtemplate' + '/' + uid, template);
   }
 
   getBaseSchemaNodeWithTemplate(uid: string): Observable<Schema> {
@@ -57,9 +67,14 @@ export class MyServiceService {
     return this.http.get<any[]>(this.baseUrl + 'obtainschema');
   }
 
-  sendNode(data): Observable<any> {
+  sendNode(data, template): Observable<any> {
     const uid = Object.keys(data)[0];
-    return this.http.post<any>(this.baseUrl + uid,  data[uid]);
+    const body = {
+      template,
+      data: data[uid]
+    };
+
+    return this.http.post<any>(this.baseUrl + uid,  body);
   }
 
   sendTemplate(data): Observable<any> {

@@ -1,6 +1,8 @@
 from src.Models.CRM.v5_0_2.NodeEntities.E18_Physical_Thing import E18_Physical_ThingSchema, E18_Physical_Thing
+from src.GCF.decorators.OntologyClass import decorator_schema
 
 
+@decorator_schema
 class E26_Physical_FeatureSchema(E18_Physical_ThingSchema):
     pass
 

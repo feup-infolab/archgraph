@@ -2,8 +2,10 @@ from src.Models.CRM.v5_0_2.NodeEntities.E41_Appellation import (
     E41_Appellation,
     E41_AppellationSchema,
 )
+from src.GCF.decorators.OntologyClass import decorator_schema
 
 
+@decorator_schema
 class E42_IdentifierSchema(E41_AppellationSchema):
     pass
 
