@@ -1,4 +1,4 @@
-from marshmallow import Schema
+from marshmallow import Schema, fields
 
 from src.GCF.decorators.OntologyClass import decorator_schema
 from src.Models.CRM.v5_0_2.NodeEntities.E1_CRM_Entity import (

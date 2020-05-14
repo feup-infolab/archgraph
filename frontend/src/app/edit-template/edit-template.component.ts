@@ -154,7 +154,7 @@ export class EditTemplateComponent implements OnInit {
   }
 
   sendNode(data) {
-    this.service.sendNode(data)
+    this.service.sendNode(data, data)
       .subscribe(result => {
         this.form.data = result;
         console.log(result);

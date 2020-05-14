@@ -170,8 +170,6 @@ def create_base_schema_node_with_template(uid):
     }
     if node is not None:
         result = node.get_schema_with_template(template)
-        print("TWO")
-        print(result)
         return make_response(jsonify(result), 201)
     else:
         return make_response(jsonify(message="Node doesn't exists"), 404)
@@ -252,7 +250,6 @@ def get_templates_from_entity(uid):
 @app.route("/<uid>", methods=["POST"])
 @cross_origin()
 def response_update(uid):
-
     node = get_node_by_uid(uid)
     if node is not None:
         #todo meter o template no body tambem

@@ -21,15 +21,15 @@ export class MyServiceService {
   }
 
   getDataNodeWithTemplate( uid: string, template: object): Observable<any[]> {
-    return this.http.post<any[]>(this.baseUrl + "withtemplate/" + uid, template) ;
+    return this.http.post<any[]>(this.baseUrl + 'withtemplate/' + uid, template) ;
   }
 
   getBaseDataNodeWithTemplate( uid: string): Observable<any[]> {
-    return this.http.get<any[]>(this.baseUrl + 'createwithtemplate/' + uid);
+    return this.http.get<any[]>(this.baseUrl + 'withtemplate/' + uid);
   }
-  
+
   getTemplatesFromEntity( uid: string): Observable<any[]> {
-        return this.http.get<any[]>(this.baseUrl + "templatesfromentity/" + uid);
+        return this.http.get<any[]>(this.baseUrl + 'templatesfromentity/' + uid);
   }
 
 
@@ -56,7 +56,7 @@ export class MyServiceService {
   }
 
   getBaseSchemaNodeWithTemplate(uid: string): Observable<Schema> {
-    return this.http.get<Schema>(this.baseUrl + 'createtemplate' + '/' + uid);
+    return this.http.get<Schema>(this.baseUrl + 'template' + '/' + uid);
   }
 
   geAllSchemaProperties(uid: string): Observable<Schema> {

@@ -6,7 +6,7 @@ from src.Models.CRM.v5_0_2.NodeEntities.E1_CRM_Entity import (
 )
 from src.Models.CRM.v5_0_2.NodeProperties.P86_falls_within import P86_falls_within
 from src.Models.CRM.v5_0_2.NodeProperties.P191_had_duration import P191_had_duration
-from src.GCF.decorators.OntologyClass import decorator_schema
+from src.GCF.decorators.OntologyClass import decorator_schema, ontology_class
 
 
 @decorator_schema
