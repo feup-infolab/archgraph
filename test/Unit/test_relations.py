@@ -18,7 +18,7 @@ from src.Models.CRM.v5_0_2.NodeEntities.E6_Destruction import E6_Destruction
 from src.Models.CRM.v5_0_2.NodeEntities.E8_Acquisition import E8_Acquisition
 from src.Models.CRM.v5_0_2.NodeEntities.E9_Move import E9_Move
 from src.Routes.mongo import get_all_records_from_collection, insert_default_templates, delete_collection
-from src.Utils.Utils import nested_json, find_name_of_classes_schema_in_project
+from src.Utils.Utils import nested_json, find_name_of_classes_in_project, find_name_of_schema_classes_in_project
 
 from src.Models.ArchOnto.v0_1.NodeEntities.ARE2_Formal_Title import ARE2_Formal_Title
 from src.Models.CRM.v5_0_2.NodeEntities.E12_Production import E12_Production
@@ -341,7 +341,7 @@ class TestNeoModel(unittest.TestCase):
         e22.P108_has_produced_by.connect(e12)
 
     def test_schema(self):
-        classes_schema = find_name_of_classes_schema_in_project(classes_name)
+        classes_schema = find_name_of_classes_in_project(classes_name)
         for class_schema in classes_schema:
             class_schema().getSchema()
 
@@ -463,17 +463,21 @@ class TestNeoModel(unittest.TestCase):
         e2.get_schema_with_template(json2)
         e52.get_schema_with_template(json2_1)
 
-    def test_generate_schema(self):
-        delete_collection("defaultTemplate")
-        templates = []
-        # classes_schema = find_name_of_classes_schema_in_project(classes_name)
-        # for class_schema in classes_schema:
-        #     templates.append(class_schema().generate_template())
-        # insert_default_templates(templates)
+    # def test_generate_schema(self):
+        # delete_collection("defaultTemplate")
+        # templates = []
+        # classes_schema = find_name_of_schema_classes_in_project(classes_name)
+        # if classes_schema:
+        #     classes = find_name_of_classes_in_project(classes_name)
+        #     if classes:
+        #         for i in range(len(classes_schema)):
+        #              templates.append(classes_schema[i]().generate_default_template(classes[i]))
+        #         insert_default_templates(templates)
         # get_all_records_from_collection("defaultTemplate")
 
     def test_insert_template(self):
         delete_collection("defaultTemplate")
+        ##---------------------Templates to E52_Time_Span -----------------
         template = {
             "E52_Time_Span": {
                 "has_value": "DataObject",
@@ -486,66 +490,22 @@ class TestNeoModel(unittest.TestCase):
         templates = [{"classes_name": class_name, "template": template, "schema": json.dumps(schema)},
                      {"classes_name": class_name, "template": template3, "schema": json.dumps(schema3)}]
         insert_default_templates(templates)
+
+
+        ##---------------------Templates to E2_Temporal_Entity ----------------
+        template_E2 = {
+            "E2_Temporal_Entity":
+                {"P4_has_time_span": {
+                    "E52_Time_Span":
+                        {"has_value": "DataObject"}
+
+                }
+                }
+        }
+        class_name_E2 = ['E2_Temporal_Entity', 'E1_CRM_Entity']
+        schemaE2 = e2.get_schema_with_template(template_E2)
+        templates_E2 = [{"classes_name": class_name_E2, "template": template_E2, "schema": json.dumps(schemaE2)}]
+        insert_default_templates(templates_E2)
+
+
         get_all_records_from_collection("defaultTemplate")
-
-
-
-
-var = {'$schema': 'http://json-schema.org/draft-07/schema#', 'definitions': {
-    'E2_Temporal_EntitySchema': {'type': 'object', 'properties': {'name': {'title': 'name', 'type': 'string'},
-                                                                  'uid': {'title': 'uid', 'type': 'string'},
-                                                                  'P4_has_time_span': {'type': 'object',
-                                                                                       '$ref': '#/definitions/E52_Time_SpanSchema'}},
-                                 'additionalProperties': False, 'required': ['name']},
-    'E52_Time_SpanSchema': {'type': 'object',
-                            'properties': {'date': {'title': 'date', 'type': 'string', 'format': 'date'},
-                                           'name': {'title': 'name', 'type': 'string'},
-                                           'uid': {'title': 'uid', 'type': 'string'},
-                                           'has_value': {'title': 'has_value', 'type': 'array',
-                                                         'items': {'type': 'object',
-                                                                   '$ref': '#/definitions/DataObjectSchema'}}},
-                            'additionalProperties': False, 'required': ['date', 'name']},
-    'DataObjectSchema': {'type': 'object', 'properties': {'name': {'title': 'name', 'type': 'string'},
-                                                          'uid': {'title': 'uid', 'type': 'string'}},
-                         'additionalProperties': False, 'required': ['name']}},
-       '$ref': '#/definitions/E2_Temporal_EntitySchema'}
-
-var2 = {'$schema': 'http://json-schema.org/draft-07/schema#', 'definitions': {'E52_Time_SpanSchema': {'properties': {
-    'P137_exemplifies': {'title': 'P137_exemplifies', 'type': 'array',
-                         'items': {'type': 'object', '$ref': '#/definitions/E55_TypeSchema'}},
-    'date': {'title': 'date', 'type': 'string', 'format': 'date'}, 'has_value': {'title': 'has_value', 'type': 'array',
-                                                                                 'items': {'type': 'object',
-                                                                                           '$ref': '#/definitions/DataObjectSchema'}},
-    'name': {'title': 'name', 'type': 'string'}, 'uid': {'title': 'uid', 'type': 'string'}}, 'type': 'object',
-    'required': [
-        'date',
-        'name'],
-    'additionalProperties': False},
-    'DataObjectSchema': {'properties': {
-        'name': {'title': 'name',
-                 'type': 'string'},
-        'uid': {'title': 'uid',
-                'type': 'string'}},
-        'type': 'object',
-        'required': ['name'],
-        'additionalProperties': False},
-    'E2_Temporal_EntitySchema': {
-        'properties': {
-            'P114_is_equal_in_time_to': {
-                'type': 'object',
-                '$ref': '#/definitions/E52_Time_SpanSchema'},
-            'P4_has_time_span': {
-                'type': 'object',
-                '$ref': '#/definitions/E52_Time_SpanSchema'},
-            'has_value': {'title': 'has_value',
-                          'type': 'array',
-                          'items': {
-                              'type': 'object',
-                              '$ref': '#/definitions/DataObjectSchema'}},
-            'name': {'title': 'name',
-                     'type': 'string'},
-            'uid': {'title': 'uid',
-                    'type': 'string'}},
-        'type': 'object', 'required': ['name'],
-        'additionalProperties': False}},
-        '$ref': '#/definitions/E2_Temporal_EntitySchema'}

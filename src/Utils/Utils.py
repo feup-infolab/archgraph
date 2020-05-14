@@ -40,16 +40,26 @@ from src.Models.CRM.v5_0_2.NodeEntities.E9_Move import E9_Move, E9_MoveSchema
 from src.Models.CRM.v5_0_2.NodeEntities.E10_Transfer_of_Custody import E10_Transfer_of_Custody, \
     E10_Transfer_of_CustodySchema
 from src.Models.CRM.v5_0_2.NodeEntities.E11_Modification import E11_Modification, E11_ModificationSchema
-from src.Models.CRM.v5_0_2.NodeEntities.E12_Production import E12_Production
+from src.Models.CRM.v5_0_2.NodeEntities.E12_Production import E12_Production, E12_ProductionSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E13_Attribute_Assignment import E13_Attribute_Assignment, E13_Attribute_AssignmentSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E14_Condition_Assessment import E14_Condition_Assessment, E14_Condition_AssessmentSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E15_Identifier_Assignment import E15_Identifier_Assignment, E15_Identifier_AssignmentSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E16_Measurement import E16_Measurement, E16_MeasurementSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E17_Type_Assignment import E17_Type_Assignment, E17_Type_AssignmentSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E18_Physical_Thing import E18_Physical_Thing, E18_Physical_ThingSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E19_Physical_Object import E19_Physical_Object, E19_Physical_ObjectSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E20_Biological_Object import E20_Biological_Object, E20_Biological_ObjectSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E21_Person import E21_Person, E21_PersonSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E22_Human_Made_Object import E22_Human_Made_Object, E22_Human_Made_ObjectSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E24_Physical_Human_Made_Thing import E24_Physical_Human_Made_Thing, E24_Physical_Human_Made_ThingSchema
 
-from src.Models.CRM.v5_0_2.NodeEntities.E18_Physical_Thing import E18_Physical_Thing
-from src.Models.CRM.v5_0_2.NodeEntities.E24_Physical_Human_Made_Thing import E24_Physical_Human_Made_Thing
-from src.Models.CRM.v5_0_2.NodeEntities.E22_Human_Made_Object import E22_Human_Made_Object
 from src.Models.CRM.v5_0_2.NodeEntities.E35_Title import E35_Title
 from src.Models.CRM.v5_0_2.NodeEntities.E39_Actor import E39_Actor
 from src.Models.CRM.v5_0_2.NodeEntities.E41_Appellation import E41_Appellation
 from src.Models.CRM.v5_0_2.NodeEntities.E52_Time_Span import E52_Time_Span
 from src.Models.CRM.v5_0_2.NodeEntities.E53_Place import E53_Place
+from src.Models.CRM.v5_0_2.NodeEntities.E54_Dimension import E54_Dimension, E54_DimensionSchema
+
 from src.Models.CRM.v5_0_2.NodeEntities.E55_Type import E55_Type
 from src.Models.CRM.v5_0_2.NodeEntities.E70_Thing import E70_Thing
 from src.Models.CRM.v5_0_2.NodeEntities.E72_Legal_Object import E72_Legal_Object
@@ -175,25 +185,22 @@ def updated_node_aux(current_node, data, template):
             existing_relationships = relationship_of_node.all()
             for existing_relationship in existing_relationships:
                 relationship_of_node.disconnect(existing_relationship)
-            #
-            # if existing_relationships == []:
-            #     add_new_node(new_node['relationships'][relationship_name], relationship_of_node, None, template[relationship_name])
             if relationship_name in new_node['relationships']:
                 new_relationships = new_node['relationships'][relationship_name]
-                if add_all_relationships(new_relationships, relationship_of_node, current_node.schema) is None:
+                if add_all_relationships(new_relationships, relationship_of_node, template[relationship_name]) is None:
                     return None
         return True
     else:
         return None
 
 
-def add_all_relationships(relationships, node, node_schema):
+def add_all_relationships(relationships, node, template):
     for nested_node in relationships:
         if "uid" not in nested_node:
             range_class = node.definition["node_class"]
             new_instance = range_class()
             for attr in nested_node:
-                if node_schema.fields[attr].__class__ == fields.Date:
+                if new_instance.schema.fields[attr].__class__ == fields.Date:
                     setattr(new_instance, attr, datetime.datetime.strptime(nested_node[attr], "%Y-%m-%d"))
                 else:
                     setattr(new_instance, attr, nested_node[attr])
@@ -209,10 +216,11 @@ def add_all_relationships(relationships, node, node_schema):
                 try:
                     nested_node = E1_CRM_Entity.nodes.get(uid=uid)
                     node.connect(nested_node)
+                    #updated_node_aux(nested_node,relationships, template)
                 except:
                     return None
 
-            #result = updated_node_aux(node, nested_node, template)
+            # result = updated_node_aux(node, nested_node, template)
             # if result is None:
             #     new_result["error"] = None
             #     return new_result
@@ -235,26 +243,61 @@ def make_result(result):
     return response_array
 
 
-def find_name_of_classes_schema_in_project(classes_schema_name):
-    classes_schema = []
-    for class_schema_name in classes_schema_name:
+def find_name_of_classes_in_project(classes_name):
+    classes = []
+    error = False
+    for class_name in classes_name:
         try:
-            class_schema = getattr(
-                importlib.import_module("src.Models.DataObject.v0_0_2.NodeEntities." + class_schema_name),
-                class_schema_name + "Schema")
-            classes_schema.append(class_schema)
+            class__ = getattr(
+                importlib.import_module("src.Models.DataObject.v0_0_2.NodeEntities." + class_name),
+                class_name)
+            classes.append(class__)
         except:
             try:
-                class_schema = getattr(
-                    importlib.import_module("src.Models.CRM.v5_0_2.NodeEntities." + class_schema_name),
-                    class_schema_name + "Schema")
-                classes_schema.append(class_schema)
+                class__ = getattr(
+                    importlib.import_module("src.Models.CRM.v5_0_2.NodeEntities." + class_name),
+                    class_name)
+                classes.append(class__)
             except:
                 try:
-                    class_schema = getattr(importlib.import_module("src.Models.ArchOnto.v0_1." + class_schema_name),
-                                           class_schema_name + "Schema")
-                    classes_schema.append(class_schema)
+                    class__ = getattr(importlib.import_module("src.Models.ArchOnto.v0_1." + class_name),
+                                      class_name)
+                    classes.append(class__)
                 except:
+                    error = True
                     continue
 
-    return classes_schema
+    if error:
+        return None
+    else:
+        return classes
+
+
+def find_name_of_schema_classes_in_project(classes_name):
+    schemas_classes = []
+    error = False
+
+    for class_name in classes_name:
+        try:
+            schema_class = getattr(
+                importlib.import_module("src.Models.DataObject.v0_0_2.NodeEntities." + class_name),
+                class_name + "Schema")
+            schemas_classes.append(schema_class)
+        except:
+            try:
+                schema_class = getattr(
+                    importlib.import_module("src.Models.CRM.v5_0_2.NodeEntities." + class_name),
+                    class_name + "Schema")
+                schemas_classes.append(schema_class)
+            except:
+                try:
+                    schema_class = getattr(importlib.import_module("src.Models.ArchOnto.v0_1." + class_name),
+                                           class_name + "Schema")
+                    schemas_classes.append(schema_class)
+                except:
+                    error = True
+                    continue
+    if error:
+        return None
+    else:
+        return schemas_classes

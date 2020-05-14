@@ -31,9 +31,7 @@ if args.neo4j:
 else:
     config.DATABASE_URL = "bolt://neo4j:password@localhost:7687"
 
-from src.Routes.mongo import insert_template_in_mongo, get_all_records_from_collection, update_data_in_mongo, \
-    get_record_from_collection, add_record_to_collection, get_schema_from_mongo, \
-    delete_collection, get_templates_from_mongo_by_classes_name
+from src.Routes.mongo import insert_template_in_mongo, get_all_records_from_collection, get_schema_from_mongo, get_templates_from_mongo_by_classes_name
 
 app = Flask(__name__)
 
@@ -101,6 +99,7 @@ def get_record(uid):
             return make_response(jsonify(message="Some error occurred"), 404)
     else:
         return make_response(jsonify(message="Node doesn't exists"), 404)
+
 
 @app.route("/schema/<uid>", methods=["GET"])
 @cross_origin()
@@ -244,4 +243,4 @@ def search_specific(class_name, query):
 # get_all_records_from_collection("createdTemplate")
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0')
+    app.run(host='127.0.0.1')
