@@ -195,35 +195,39 @@ def updated_node_aux(current_node, data, template):
 
 
 def add_all_relationships(relationships, node, template):
-    for nested_node in relationships:
-        if "uid" not in nested_node:
+    def update_node_and_call_next(new_instance, next_node, template):
+        for attr in next_node:
+            if new_instance.schema.fields[attr].__class__ == fields.Date:
+                setattr(new_instance, attr, datetime.datetime.strptime(next_node[attr], "%Y-%m-%d"))
+            elif new_instance.schema.fields[attr].__class__ == fields.Str:
+                setattr(new_instance, attr, next_node[attr])
+
+        new_instance.save()
+        node.connect(new_instance)
+        if isinstance(template, str):
+            return True
+        else:
+            return updated_node_aux(new_instance, next_node, template[new_instance.__class__.__name__])
+
+    for next_node in relationships:
+        if "uid" not in next_node:
             range_class = node.definition["node_class"]
             new_instance = range_class()
-            for attr in nested_node:
-                if new_instance.schema.fields[attr].__class__ == fields.Date:
-                    setattr(new_instance, attr, datetime.datetime.strptime(nested_node[attr], "%Y-%m-%d"))
-                else:
-                    setattr(new_instance, attr, nested_node[attr])
-            new_instance.save()
-            node.connect(new_instance)
+            if update_node_and_call_next(new_instance, next_node, template) is None:
+                return None
         else:
-            uid = nested_node["uid"]
+            uid = next_node["uid"]
             try:
-                nested_node = DataObject.nodes.get(uid=uid)
-                node.connect(nested_node)
-
+                new_instance = DataObject.nodes.get(uid=uid)
+                if update_node_and_call_next(new_instance, next_node, template) is None:
+                    return None
             except:
                 try:
-                    nested_node = E1_CRM_Entity.nodes.get(uid=uid)
-                    node.connect(nested_node)
-                    #updated_node_aux(nested_node,relationships, template)
+                    new_instance = E1_CRM_Entity.nodes.get(uid=uid)
+                    if update_node_and_call_next(new_instance, next_node, template) is None:
+                        return None
                 except:
                     return None
-
-            # result = updated_node_aux(node, nested_node, template)
-            # if result is None:
-            #     new_result["error"] = None
-            #     return new_result
     return True
 
 
@@ -265,7 +269,7 @@ def find_name_of_classes_in_project(classes_name):
                     classes.append(class__)
                 except:
                     error = True
-                    continue
+                    break
 
     if error:
         return None
@@ -296,7 +300,7 @@ def find_name_of_schema_classes_in_project(classes_name):
                     schemas_classes.append(schema_class)
                 except:
                     error = True
-                    continue
+                    break
     if error:
         return None
     else:
