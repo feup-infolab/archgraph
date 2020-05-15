@@ -1,5 +1,5 @@
 from marshmallow import Schema, fields
-from neomodel import One, RelationshipTo
+from neomodel import One, RelationshipTo, ZeroOrOne
 from src.GCF.decorators.OntologyClass import decorator_schema
 from src.Models.CRM.v5_0_2.NodeEntities.E2_Temporal_Entity import (
     E2_Temporal_Entity,
@@ -20,7 +20,7 @@ class E3_Condition_State(E2_Temporal_Entity):
     P5_consists_of = RelationshipTo(
         ".E3_Condition_State.E3_Condition_State",
         "P5_consists_of",
-        cardinality=One,
+        cardinality=ZeroOrOne,
         model=P5_consists_of,
     )
 

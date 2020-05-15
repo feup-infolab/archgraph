@@ -1,5 +1,5 @@
 from marshmallow import Schema, fields
-from neomodel import One, RelationshipTo
+from neomodel import One, RelationshipTo, ZeroOrOne
 from src.GCF.decorators.OntologyClass import decorator_schema
 from src.Models.CRM.v5_0_2.NodeEntities.E1_CRM_Entity import (
     E1_CRM_Entity,
@@ -101,97 +101,97 @@ class E2_Temporal_Entity(E1_CRM_Entity):
     P4_has_time_span = RelationshipTo(
         ".E52_Time_Span.E52_Time_Span",
         "P4_has_time_span",
-        cardinality=One,
+        cardinality=ZeroOrOne,
         model=P4_has_time_span,
     )
     P114_is_equal_in_time_to = RelationshipTo(
         ".E2_Temporal_Entity.E2_Temporal_Entity",
         "P114_is_equal_in_time_to",
-        cardinality=One,
+        cardinality=ZeroOrOne,
         model=P114_is_equal_in_time_to,
     )
     P115_finishes = RelationshipTo(
         ".E2_Temporal_Entity.E2_Temporal_Entity",
         "P115_finishes",
-        cardinality=One,
+        cardinality=ZeroOrOne,
         model=P115_finishes,
     )
     P116_starts = RelationshipTo(
         ".E2_Temporal_Entity.E2_Temporal_Entity",
         "P116_starts",
-        cardinality=One,
+        cardinality=ZeroOrOne,
         model=P116_starts,
     )
     P117_occurs_during = RelationshipTo(
         ".E2_Temporal_Entity.E2_Temporal_Entity",
         "P117_occurs_during",
-        cardinality=One,
+        cardinality=ZeroOrOne,
         model=P117_occurs_during,
     )
     P118_overlaps_in_time_with = RelationshipTo(
         ".E2_Temporal_Entity.E2_Temporal_Entity",
         "P118_overlaps_in_time_with",
-        cardinality=One,
+        cardinality=ZeroOrOne,
         model=P118_overlaps_in_time_with,
     )
     P119_meets_in_time_with = RelationshipTo(
         ".E2_Temporal_Entity.E2_Temporal_Entity",
         "P119_meets_in_time_with",
-        cardinality=One,
+        cardinality=ZeroOrOne,
         model=P119_meets_in_time_with,
     )
     P120_occurs_before = RelationshipTo(
         ".E2_Temporal_Entity.E2_Temporal_Entity",
         "P120_occurs_before",
-        cardinality=One,
+        cardinality=ZeroOrOne,
         model=P120_occurs_before,
     )
     P173_starts_before_or_with_the_end_of = RelationshipTo(
         ".E2_Temporal_Entity.E2_Temporal_Entity",
         "P173_starts_before_or_with_the_end_of",
-        cardinality=One,
+        cardinality=ZeroOrOne,
         model=P173_starts_before_or_with_the_end_of,
     )
     P174_starts_before_the_end_of = RelationshipTo(
         ".E2_Temporal_Entity.E2_Temporal_Entity",
         "P174_starts_before_the_end_of",
-        cardinality=One,
+        cardinality=ZeroOrOne,
         model=P174_starts_before_the_end_of,
     )
     P175_starts_before_or_with_the_start_of = RelationshipTo(
         ".E2_Temporal_Entity.E2_Temporal_Entity",
         "P175_starts_before_or_with_the_start_of",
-        cardinality=One,
+        cardinality=ZeroOrOne,
         model=P175_starts_before_or_with_the_start_of,
     )
     P176_starts_before_the_start_of = RelationshipTo(
         ".E2_Temporal_Entity.E2_Temporal_Entity",
         "P176_starts_before_the_start_of",
-        cardinality=One,
+        cardinality=ZeroOrOne,
         model=P176_starts_before_the_start_of,
     )
     P182_ends_before_or_with_the_start_of = RelationshipTo(
         ".E2_Temporal_Entity.E2_Temporal_Entity",
         "P182_ends_before_or_with_the_start_of",
-        cardinality=One,
+        cardinality=ZeroOrOne,
         model=P182_ends_before_or_with_the_start_of,
     )
     P183_ends_before_the_start_of = RelationshipTo(
         ".E2_Temporal_Entity.E2_Temporal_Entity",
         "P183_ends_before_the_start_of",
-        cardinality=One,
+        cardinality=ZeroOrOne,
         model=P183_ends_before_the_start_of,
     )
     P184_ends_before_or_with_the_end_of = RelationshipTo(
         ".E2_Temporal_Entity.E2_Temporal_Entity",
         "P184_ends_before_or_with_the_end_of",
-        cardinality=One,
+        cardinality=ZeroOrOne,
         model=P184_ends_before_or_with_the_end_of,
     )
     P185_ends_before_the_end_of = RelationshipTo(
         ".E2_Temporal_Entity.E2_Temporal_Entity",
         "P185_ends_before_the_end_of",
-        cardinality=One,
+        cardinality=ZeroOrOne,
         model=P185_ends_before_the_end_of,
     )
 

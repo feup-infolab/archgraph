@@ -126,7 +126,8 @@ class SuperClass:
             if isinstance(updated_node[property], str):
                 object['self_node'][property] = updated_node[property]
             elif isinstance(updated_node[property], dict):
-                object['relationships'][property].apend(updated_node[property])
+                object['relationships'][property] = []
+                object['relationships'][property].append(updated_node[property])
             elif isinstance(updated_node[property], list):
                 relationships = []
                 for element in updated_node[property]:
@@ -145,10 +146,10 @@ class SuperClass:
                 result.append(field["title"])
         return result
 
-    def get_labels(target, base_class):
-        return (
-            c.__name__
-            for c in target.__mro__
-            if issubclass(c, base_class)
-        )
+    # def get_labels(target, base_class):
+    #     return (
+    #         c.__name__
+    #         for c in target.__mro__
+    #         if issubclass(c, base_class)
+    #     )
 
