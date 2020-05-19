@@ -24,7 +24,7 @@ from flask_cors import CORS, cross_origin
 from neomodel import config
 
 from src.Utils.JsonEncoder import search_cidoc, search_specific_cidoc
-from src.Utils.Utils import get_node_by_uid, nested_json, updated_node, make_result
+from src.Utils.Utils import get_node_by_uid, build_next_json, updated_node, make_result
 
 if args.neo4j:
     config.DATABASE_URL = args.neo4j
@@ -89,7 +89,7 @@ def get_record(uid):
 
     node = get_node_by_uid(uid)
     if node is not None:
-        data = nested_json(node, template)
+        data = build_next_json(node, template)
         # print(data)
         # add_record_to_collection(uid, data, "data")
         get_all_records_from_collection("data")
@@ -198,7 +198,7 @@ def response_update(uid):
         if merged:
             #update_data_in_mongo(uid, node.encodeJSON())
             #get_all_records_from_collection("data")
-            new_data = nested_json(node, data['template'])
+            new_data = build_next_json(node, data['template'])
             return make_response(jsonify(new_data), 201)
         else:
             return make_response(jsonify(message="Unsaved node"), 404)
