@@ -53,19 +53,26 @@ export class EditTemplateComponent implements OnInit {
       console.log(this.uid);
       this.load = false;
       // this.getSchemaNode(this.uid);
-      this.getSchemaNodeWithTemplate(this.uid);
+      this.getNodeTemplate(this.uid);
       console.log('Testing:');
       console.log(this.form);
 
     });
   }
 
-  getSchemaNodeWithTemplate(uid) {
-    this.service.getBaseSchemaNodeWithTemplate(uid)
+  getNodeTemplate(uid) {
+    this.service.getTemplatesFromEntity(uid)
+      .subscribe(returnedTemplate => {
+        this.getSchemaNodeWithTemplate(uid, returnedTemplate[0]);
+    });
+  }
+
+  getSchemaNodeWithTemplate(uid, template) {
+    this.service.getSchemaNodeWithTemplate(uid, template)
       .subscribe(returnedSchema => {
         this.form.layout = [];
         console.log('The Schema being returned:');
-        console.log(returnedSchema);
+        console.log(returnedSchema[0]);
         this.form.schema = this.refactorSchema(returnedSchema);
         this.form.layout = ['*'];
 

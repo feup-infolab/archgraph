@@ -38,9 +38,9 @@ export class MyServiceService {
   }
 
   getSpecificSearchJson(entity: string, search: string): Observable<any[]> {
-    if(search == "" ){
+    if (search === '') {
           return this.http.get<any[]>(this.baseUrl + 'search_specific' + '/' + entity);
-    }else {
+    } else {
       return this.http.get<any[]>(this.baseUrl + 'search_specific' + '/' + entity + '/' + search);
     }
   }
