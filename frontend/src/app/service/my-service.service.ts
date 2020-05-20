@@ -24,7 +24,7 @@ export class MyServiceService {
     return this.http.post<any[]>(this.baseUrl + 'withtemplate/' + uid, template) ;
   }
 
-  getBaseDataNodeWithTemplate( uid: string): Observable<any[]> {
+    getBaseDataNodeWithTemplate( uid: string): Observable<any[]> {
     return this.http.get<any[]>(this.baseUrl + 'withtemplate/' + uid);
   }
 
@@ -77,8 +77,12 @@ export class MyServiceService {
     return this.http.post<any>(this.baseUrl + uid,  body);
   }
 
-  sendTemplate(data): Observable<any> {
-    return this.http.post<any>(this.baseUrl + 'post_template', data);
+   sendTemplate(uid, template): Observable<any> {
+    return this.http.post<any>(this.baseUrl + 'inserttemplate' + '/' + uid, template);
+  }
+
+  postTemplate(template): Observable<any> {
+    return this.http.post<any>(this.baseUrl + 'post_template' , template);
   }
 
   constructor(private http: HttpClient) {

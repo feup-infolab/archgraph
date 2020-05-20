@@ -63,6 +63,7 @@ export class EditTemplateComponent implements OnInit {
   getNodeTemplate(uid) {
     this.service.getTemplatesFromEntity(uid)
       .subscribe(returnedTemplate => {
+        this.template = returnedTemplate[0];
         this.getSchemaNodeWithTemplate(uid, returnedTemplate[0]);
     });
   }
@@ -76,13 +77,13 @@ export class EditTemplateComponent implements OnInit {
         this.form.schema = this.refactorSchema(returnedSchema);
         this.form.layout = ['*'];
 
-        this.getDataNodeWithTemplate(this.uid);
+        this.getDataNodeWithTemplate(this.uid, template);
         //  this.load = true;
       });
   }
 
-  getDataNodeWithTemplate(uid) {
-    this.service.getBaseDataNodeWithTemplate(uid)
+  getDataNodeWithTemplate(uid, template) {
+    this.service.getDataNodeWithTemplate(uid , template)
       .subscribe(result => {
         this.form.data[this.uid] = result;
         console.log(result);
@@ -100,18 +101,8 @@ export class EditTemplateComponent implements OnInit {
         this.allprops = result;
         this.load = true;
       });
-    this.getTemplate();
   }
 
-  getTemplate() {
-    this.service.getTemplate()
-      .subscribe(template => {
-        console.log('Displaying Obtained Template:');
-        console.log(template);
-        this.template = template;
-        console.log(this.template);
-      });
-  }
 
   refactorSchema(jsonSchema) {
     const ref = jsonSchema.$ref;
@@ -168,6 +159,14 @@ export class EditTemplateComponent implements OnInit {
       });
   }
 
+  changeTemplate() {
+    this.service.postTemplate(this.template)
+      .subscribe(result => {
+        this.form.data = result;
+        console.log(result);
+      });
+  }
+
   addProp() {
     this.load = false;
     this.chosenprops.push(this.comboBoxReference.inputItem);
@@ -177,12 +176,12 @@ export class EditTemplateComponent implements OnInit {
     this.template[schemaEntity][this.comboBoxReference.inputItem] = this.allprops[this.comboBoxReference.inputItem].items.$ref
       .replace('Schema', '').replace('#/definitions/', '');
     this.form.schema = this.addPropertySchema(this.allprops[this.comboBoxReference.inputItem], this.form.schema);
-    this.sendProps();
+    this.changeTemplate();
   }
 
 
   sendProps() {
-    this.service.sendTemplate(this.template)
+    this.service.sendTemplate(this.uid, this.template)
       .subscribe( result => {
         this.load = true;
       });

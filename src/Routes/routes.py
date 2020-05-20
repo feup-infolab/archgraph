@@ -116,21 +116,22 @@ def response_get_schema_node(uid):
 @cross_origin()
 def insert_template_in_mongodb(uid):
     node = get_node_by_uid(uid)
-    #todo descomentar isto
-    # template = request.json
+
+    template = request.json
     # template = {
     #     "E52_Time_Span": {
     #         "P86_falls_within": "E52_Time_Span"}
     # }
-    template = {
-        "E52_Time_Span": {
-            "has_value": "DataObject",
-        }
-    }
+    #template = {
+    #    "E52_Time_Span": {
+    #        "has_value": "DataObject",
+    #    }
+    #}
     if node is not None:
         schema_of_node = node.get_schema_with_template(template)
         classes_name = node.get_superclasses_name()
         message = insert_template_in_mongo(classes_name, schema_of_node, template)
+        print("Received Message")
         print(message)
         get_all_records_from_collection("createdTemplate")
         return make_response(jsonify(message=message), 200)
@@ -145,7 +146,6 @@ def insert_template_in_mongodb(uid):
 @cross_origin()
 def response_create_node_with_template(uid):
     node = get_node_by_uid(uid)
-    print(node.get_all_properties_from_entity())
     template = {
         "E52_Time_Span": {}
     }
