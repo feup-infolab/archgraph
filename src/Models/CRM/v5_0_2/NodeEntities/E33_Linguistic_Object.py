@@ -9,6 +9,7 @@ from src.Models.CRM.v5_0_2.NodeProperties.P73_has_translation import P73_has_tra
 
 from src.GCF.decorators.OntologyClass import decorator_schema
 
+
 @decorator_schema
 class E33_Linguistic_ObjectSchema(E73_Information_ObjectSchema):
     has_translation = fields.List(fields.Nested(

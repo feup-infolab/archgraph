@@ -9,8 +9,7 @@ from src.GCF.decorators.OntologyClass import decorator_schema
 
 @decorator_schema
 class E74_GroupSchema(E39_ActorSchema):
-    has_current_or_former_member = fields.List(fields.Nested(E39_ActorSchema)
-    )
+    has_current_or_former_member = fields.List(fields.Nested(E39_ActorSchema))
 
 
 class E74_Group(E39_Actor):

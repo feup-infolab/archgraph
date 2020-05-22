@@ -52,20 +52,57 @@ from src.Models.CRM.v5_0_2.NodeEntities.E20_Biological_Object import E20_Biologi
 from src.Models.CRM.v5_0_2.NodeEntities.E21_Person import E21_Person, E21_PersonSchema
 from src.Models.CRM.v5_0_2.NodeEntities.E22_Human_Made_Object import E22_Human_Made_Object, E22_Human_Made_ObjectSchema
 from src.Models.CRM.v5_0_2.NodeEntities.E24_Physical_Human_Made_Thing import E24_Physical_Human_Made_Thing, E24_Physical_Human_Made_ThingSchema
-
-from src.Models.CRM.v5_0_2.NodeEntities.E35_Title import E35_Title
-from src.Models.CRM.v5_0_2.NodeEntities.E39_Actor import E39_Actor
-from src.Models.CRM.v5_0_2.NodeEntities.E41_Appellation import E41_Appellation
-from src.Models.CRM.v5_0_2.NodeEntities.E52_Time_Span import E52_Time_Span
-from src.Models.CRM.v5_0_2.NodeEntities.E53_Place import E53_Place
+from src.Models.CRM.v5_0_2.NodeEntities.E25_Human_Made_Feature import E25_Human_Made_Feature, E25_Human_Made_FeatureSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E26_Physical_Feature import E26_Physical_Feature, E26_Physical_FeatureSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E27_Site import E27_Site, E27_SiteSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E28_Conceptual_Object import E28_Conceptual_Object, E28_Conceptual_ObjectSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E29_Design_or_Procedure import E29_Design_or_Procedure, E29_Design_or_ProcedureSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E30_Right import E30_Right, E30_RightSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E31_Document import E31_Document, E31_DocumentSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E32_Authority_Document import E32_Authority_Document, E32_Authority_DocumentSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E33_Linguistic_Object import E33_Linguistic_Object, E33_Linguistic_ObjectSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E34_Inscription import E34_Inscription, E34_InscriptionSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E35_Title import E35_Title, E35_TitleSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E36_Visual_Item import E36_Visual_Item, E36_Visual_ItemSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E37_Mark import E37_Mark, E37_MarkSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E39_Actor import E39_Actor, E39_ActorSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E41_Appellation import E41_Appellation, E41_AppellationSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E42_Identifier import E42_Identifier, E42_IdentifierSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E52_Time_Span import E52_Time_Span, E52_Time_SpanSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E53_Place import E53_Place, E53_PlaceSchema
 from src.Models.CRM.v5_0_2.NodeEntities.E54_Dimension import E54_Dimension, E54_DimensionSchema
-
-from src.Models.CRM.v5_0_2.NodeEntities.E55_Type import E55_Type
-from src.Models.CRM.v5_0_2.NodeEntities.E70_Thing import E70_Thing
-from src.Models.CRM.v5_0_2.NodeEntities.E72_Legal_Object import E72_Legal_Object
-from src.Models.CRM.v5_0_2.NodeEntities.E77_Persistent_Item import E77_Persistent_Item
-from src.Models.CRM.v5_0_2.NodeEntities.E83_Type_Creation import E83_Type_Creation
-
+from src.Models.CRM.v5_0_2.NodeEntities.E55_Type import E55_Type, E55_TypeSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E56_Language import E56_Language, E56_LanguageSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E57_Material import E57_Material, E57_MaterialSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E58_Measurement_Unit import E58_Measurement_Unit, E58_Measurement_UnitSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E63_Beggining_of_Existence import E63_Beggining_of_Existence, E63_Beggining_of_ExistenceSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E64_End_of_Existence import E64_End_of_Existence, E64_End_of_ExistenceSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E65_Creation import E65_Creation, E65_CreationSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E66_Formation import E66_Formation, E66_FormationSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E67_Birth import E67_Birth, E67_BirthSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E68_Dissolution import E68_Dissolution, E68_DissolutionSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E69_Death import E69_Death, E69_DeathSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E70_Thing import E70_Thing, E70_ThingSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E71_Human_Made_Thing import E71_Human_Made_Thing, E71_Human_Made_ThingSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E72_Legal_Object import E72_Legal_Object, E72_Legal_ObjectSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E73_Information_Object import E73_Information_Object, E73_Information_ObjectSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E74_Group import E74_Group, E74_GroupSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E77_Persistent_Item import E77_Persistent_Item, E77_Persistent_ItemSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E78_Curated_Holding import E78_Curated_Holding, E78_Curated_HoldingSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E79_Part_Addition import E79_Part_Addition, E79_Part_AdditionSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E80_Part_Removal import E80_Part_Removal, E80_Part_RemovalSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E81_Transformation import E81_Transformation, E81_TransformationSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E83_Type_Creation import E83_Type_Creation, E83_Type_CreationSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E85_Joining import E85_Joining, E85_JoiningSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E86_Leaving import E86_Leaving, E86_LeavingSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E87_Curation_Activity import E87_Curation_Activity, E87_Curation_ActivitySchema
+from src.Models.CRM.v5_0_2.NodeEntities.E89_Propositional_Object import E89_Propositional_Object, E89_Propositional_ObjectSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E90_Symbolic_Object import E90_Symbolic_Object, E90_Symbolic_ObjectSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E92_Spacetime_Volume import E92_Spacetime_Volume, E92_Spacetime_VolumeSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E93_Presence import E93_Presence, E93_PresenceSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E95_Purchase import E95_Purchase, E95_PurchaseSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E97_Monetary_Amount import E97_Monetary_Amount, E97_Monetary_AmountSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E99_Product_Type import E99_Product_Type, E99_Product_TypeSchema
 # TODO nao apagar estes importes
 
 import src.Utils.Utils as self
@@ -80,6 +117,7 @@ def get_driver():
     return self.driver
 
 
+# reads all relation of a node with a given name
 def read_relationships(search_node, search_node_uid, relationship_name):
     def read(tx, search_node, search_node_uid, relationship_name):
         array_uids = []
@@ -104,7 +142,8 @@ def read_relationships(search_node, search_node_uid, relationship_name):
         )
 
 
-def nested_json(node, template):
+# builds information block for a node with a given template
+def build_next_json(node, template):
     if isinstance(template, str):
         return node.decodeJSON()
 
@@ -127,21 +166,22 @@ def nested_json(node, template):
                 return None
 
             if schema_relationship['type'] == 'array':
-                result = nested_json(new_node, json_nested)
+                result = build_next_json(new_node, json_nested)
                 if result is None:
                     return None
                 else:
                     new_object[relationship_name].append(result)
             else:
-                result = nested_json(new_node, json_nested)
+                result = build_next_json(new_node, json_nested)
                 if result is None:
                     return None
                 else:
-                    new_object[relationship_name] = nested_json(new_node, json_nested)
+                    new_object[relationship_name] = build_next_json(new_node, json_nested)
 
     return dict(node.decodeJSON(), **new_object)
 
 
+# get node from database with a given uid
 def get_node_by_uid(uid):
     try:
         return DataObject.nodes.get(uid=uid)
@@ -152,6 +192,7 @@ def get_node_by_uid(uid):
             return None
 
 
+# delete node from database with a given uid
 def delete_node_by_uid(uid):
     try:
         node = DataObject.nodes.get(uid=uid)
@@ -166,6 +207,7 @@ def delete_node_by_uid(uid):
             return None
 
 
+# given a template and a node, the node and next nodes information is updated
 def updated_node(node, data, template):
     db.begin()
     result = updated_node_aux(node, data, template[list(template.keys())[0]])
@@ -177,6 +219,7 @@ def updated_node(node, data, template):
         return True
 
 
+# auxiliary function - given a template and a node, the node and next nodes information is updated
 def updated_node_aux(current_node, data, template):
     new_node = current_node.node_self_build(data)
     if current_node.merge_node(new_node['self_node']):
@@ -194,6 +237,7 @@ def updated_node_aux(current_node, data, template):
         return None
 
 
+# given a template and the current node, the function add all relations to the current node
 def add_all_relationships(relationships, node, template):
     def update_node_and_call_next(new_instance, next_node, template):
         for attr in next_node:
@@ -231,12 +275,6 @@ def add_all_relationships(relationships, node, template):
     return True
 
 
-def read_file(path_file):
-    file = open(path_file, "r")
-    file_to_json = json.loads(file.read())
-    return file_to_json
-
-
 def make_result(result):
     response_array = "[" + result[0].encodeJSON()
     iterator = iter(result)
@@ -247,6 +285,7 @@ def make_result(result):
     return response_array
 
 
+# given a classes name array, the function return the class instance
 def find_name_of_classes_in_project(classes_name):
     classes = []
     error = False
@@ -277,6 +316,7 @@ def find_name_of_classes_in_project(classes_name):
         return classes
 
 
+# given a model class names array, the function return the schema class instance
 def find_name_of_schema_classes_in_project(classes_name):
     schemas_classes = []
     error = False

@@ -18,7 +18,7 @@ from src.Models.CRM.v5_0_2.NodeEntities.E6_Destruction import E6_Destruction
 from src.Models.CRM.v5_0_2.NodeEntities.E8_Acquisition import E8_Acquisition
 from src.Models.CRM.v5_0_2.NodeEntities.E9_Move import E9_Move
 from src.Routes.mongo import get_all_records_from_collection, insert_default_templates, delete_collection
-from src.Utils.Utils import nested_json, find_name_of_classes_in_project, find_name_of_schema_classes_in_project
+from src.Utils.Utils import build_next_json, find_name_of_classes_in_project, find_name_of_schema_classes_in_project
 
 from src.Models.ArchOnto.v0_1.NodeEntities.ARE2_Formal_Title import ARE2_Formal_Title
 from src.Models.CRM.v5_0_2.NodeEntities.E12_Production import E12_Production
@@ -413,7 +413,7 @@ class TestNeoModel(unittest.TestCase):
                 {"P46_is_composed_of": "E18_Physical_Thing"}
         }
 
-        result1 = json.dumps(nested_json(e18, json1))
+        result1 = json.dumps(build_next_json(e18, json1))
         print(result1)
 
         json2 = {
@@ -430,10 +430,10 @@ class TestNeoModel(unittest.TestCase):
                 {"has_value": "DataObject"}
 
         }
-        result2 = json.dumps(nested_json(e52, json2_1))
+        result2 = json.dumps(build_next_json(e52, json2_1))
         print(result2)
 
-        result3 = json.dumps(nested_json(e2, json2))
+        result3 = json.dumps(build_next_json(e2, json2))
         print(result3)
 
     def test_schema_with_template(self):
