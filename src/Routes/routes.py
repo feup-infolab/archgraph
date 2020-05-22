@@ -3,10 +3,12 @@ from pathlib import Path
 import os, sys
 import argparse
 
+
 # returns the project root path (assumes that the script is started from src/Routes/routes.py)
 def get_project_root():
     """Returns project root folder."""
     return Path(__file__).parent.parent.parent
+
 
 # append project root to sys paths so that src.** modules can be found by Python when running the app from a script
 # From https://leemendelowitz.github.io/blog/how-does-python-find-packages.html
@@ -31,7 +33,8 @@ if args.neo4j:
 else:
     config.DATABASE_URL = "bolt://neo4j:password@localhost:7687"
 
-from src.Routes.mongo import insert_template_in_mongo, get_all_records_from_collection, get_schema_from_mongo, get_templates_from_mongo_by_classes_name
+from src.Routes.mongo import insert_template_in_mongo, get_all_records_from_collection, get_schema_from_mongo, \
+    get_templates_from_mongo_by_classes_name
 
 app = Flask(__name__)
 
@@ -84,7 +87,7 @@ def get_record(uid):
     # if record is not None:
     #     return make_response(jsonify(json.loads(record["data"])), 201)
     # else:
-    #template = json.loads(template_str)
+    # template = json.loads(template_str)
     template = request.json
 
     node = get_node_by_uid(uid)
@@ -115,7 +118,7 @@ def response_get_schema_node(uid):
 @cross_origin()
 def insert_template_in_mongodb(uid):
     node = get_node_by_uid(uid)
-    #todo descomentar isto
+    # todo descomentar isto
     # template = request.json
     # template = {
     #     "E52_Time_Span": {
@@ -144,9 +147,6 @@ def get_schema(uid):
     #     "E52_Time_Span": {
     #         "has_value": "DataObject"}
     # }
-    # todo descomentar isto
-    #template = json.loads(template_str)
-
 
     # template = {
     #     "E52_Time_Span": {
@@ -180,24 +180,17 @@ def get_templates_from_entity(uid):
         return make_response(jsonify(message="Node doesn't exists"), 404)
 
 
-# @app.route("/create", methods=["POST"])
-# def create():
-#     return "create"
-
-
 # update node
 @app.route("/<uid>", methods=["POST"])
 @cross_origin()
 def response_update(uid):
-
     node = get_node_by_uid(uid)
     if node is not None:
-        #todo meter o template no body tambem
         data = request.json
         merged = updated_node(node, data['data'], data['template'])
         if merged:
-            #update_data_in_mongo(uid, node.encodeJSON())
-            #get_all_records_from_collection("data")
+            # update_data_in_mongo(uid, node.encodeJSON())
+            # get_all_records_from_collection("data")
             new_data = build_next_json(node, data['template'])
             return make_response(jsonify(new_data), 201)
         else:

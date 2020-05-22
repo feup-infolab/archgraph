@@ -72,12 +72,37 @@ from src.Models.CRM.v5_0_2.NodeEntities.E52_Time_Span import E52_Time_Span, E52_
 from src.Models.CRM.v5_0_2.NodeEntities.E53_Place import E53_Place, E53_PlaceSchema
 from src.Models.CRM.v5_0_2.NodeEntities.E54_Dimension import E54_Dimension, E54_DimensionSchema
 from src.Models.CRM.v5_0_2.NodeEntities.E55_Type import E55_Type, E55_TypeSchema
-
+from src.Models.CRM.v5_0_2.NodeEntities.E56_Language import E56_Language, E56_LanguageSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E57_Material import E57_Material, E57_MaterialSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E58_Measurement_Unit import E58_Measurement_Unit, E58_Measurement_UnitSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E63_Beggining_of_Existence import E63_Beggining_of_Existence, E63_Beggining_of_ExistenceSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E64_End_of_Existence import E64_End_of_Existence, E64_End_of_ExistenceSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E65_Creation import E65_Creation, E65_CreationSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E66_Formation import E66_Formation, E66_FormationSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E67_Birth import E67_Birth, E67_BirthSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E68_Dissolution import E68_Dissolution, E68_DissolutionSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E69_Death import E69_Death, E69_DeathSchema
 from src.Models.CRM.v5_0_2.NodeEntities.E70_Thing import E70_Thing, E70_ThingSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E71_Human_Made_Thing import E71_Human_Made_Thing, E71_Human_Made_ThingSchema
 from src.Models.CRM.v5_0_2.NodeEntities.E72_Legal_Object import E72_Legal_Object, E72_Legal_ObjectSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E73_Information_Object import E73_Information_Object, E73_Information_ObjectSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E74_Group import E74_Group, E74_GroupSchema
 from src.Models.CRM.v5_0_2.NodeEntities.E77_Persistent_Item import E77_Persistent_Item, E77_Persistent_ItemSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E78_Curated_Holding import E78_Curated_Holding, E78_Curated_HoldingSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E79_Part_Addition import E79_Part_Addition, E79_Part_AdditionSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E80_Part_Removal import E80_Part_Removal, E80_Part_RemovalSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E81_Transformation import E81_Transformation, E81_TransformationSchema
 from src.Models.CRM.v5_0_2.NodeEntities.E83_Type_Creation import E83_Type_Creation, E83_Type_CreationSchema
-
+from src.Models.CRM.v5_0_2.NodeEntities.E85_Joining import E85_Joining, E85_JoiningSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E86_Leaving import E86_Leaving, E86_LeavingSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E87_Curation_Activity import E87_Curation_Activity, E87_Curation_ActivitySchema
+from src.Models.CRM.v5_0_2.NodeEntities.E89_Propositional_Object import E89_Propositional_Object, E89_Propositional_ObjectSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E90_Symbolic_Object import E90_Symbolic_Object, E90_Symbolic_ObjectSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E92_Spacetime_Volume import E92_Spacetime_Volume, E92_Spacetime_VolumeSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E93_Presence import E93_Presence, E93_PresenceSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E95_Purchase import E95_Purchase, E95_PurchaseSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E97_Monetary_Amount import E97_Monetary_Amount, E97_Monetary_AmountSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E99_Product_Type import E99_Product_Type, E99_Product_TypeSchema
 # TODO nao apagar estes importes
 
 import src.Utils.Utils as self
