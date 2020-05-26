@@ -40,6 +40,18 @@ nvm use v10
 echo "Starting archgraph server at $ROOT_DIR"
 cd "$ROOT_DIR"
 
+if [[ "$NEO4J_CONNECTION_STRING" != "" ]]; then
+    echo "Neo4j Server at $NEO4J_CONNECTION_STRING";
+fi
+
+if [[ "$MONGODB_CONNECTION_STRING" != "" ]]; then
+    echo "MongoDB Server at $MONGODB_CONNECTION_STRING";
+fi
+
+if [[ "$CUSTOM_HOST_FOR_SERVER_BIND" != "" ]]; then
+    echo "Flask Server binding to host with address $CUSTOM_HOST_FOR_SERVER_BIND";
+fi
+
 python "$ROOT_DIR/src/Routes/routes.py" --neo4j="$NEO4J_CONNECTION_STRING" --mongodb="$MONGODB_CONNECTION_STRING"  --host="$CUSTOM_HOST_FOR_SERVER_BIND" &
 SERVER_PID=$!
 cd "$ROOT_DIR/frontend" || ( echo "folder missing " && exit 1 )

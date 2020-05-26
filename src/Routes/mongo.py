@@ -1,6 +1,7 @@
 import json
 from datetime import datetime
-from pymongo import MongoClient
+from pymongo import MongoClient, uri_parser
+
 
 import src.Utils.ArgParser as ArgParser
 args = ArgParser.parse()
@@ -8,9 +9,16 @@ args = ArgParser.parse()
 MONGODB_URL = "mongodb://root:rootpassword@localhost:27017"
 
 if args.mongodb is not None and args.mongodb != "":
+    # mongodb_arguments = uri_parser.parse_uri(args.mongodb)
+    # client = MongoClient(host=mongodb_arguments.nodelist.first(),
+    #                      port= mongodb_arguments.port,
+    #                      username=mongodb_arguments.username,
+    #                      password=mongodb_arguments.password,
+    #                      server_selection_timeout=1
+    #                      )
     MONGODB_URL = args.mongodb
 
-client = MongoClient(host=MONGODB_URL)
+client = MongoClient(MONGODB_URL)
 db = client.mydatabase
 date_now = datetime.now().strftime("%Y-%m-%d, %H:%M:%S")
 
