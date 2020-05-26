@@ -37,6 +37,7 @@ services:
       environment:
         - "NEO4J_CONNECTION_STRING=bolt://neo4j:password@neo4j:7687"
         - "MONGODB_CONNECTION_STRING=mongodb://root:rootpassword@mongodb:27017"
+        - "CUSTOM_HOST_FOR_SERVER_BIND=0.0.0.0"
         - "RUN_IN_PRODUCTION=1"
       ports:
         - published: 4200

@@ -1,20 +1,16 @@
 import json
 from datetime import datetime
 from pymongo import MongoClient
-import argparse
 
-parser = argparse.ArgumentParser(description="Starts the archgraph server.")
-parser.add_argument("--mongodb", nargs="?", help="Address of the mongodb server")
-parser.add_argument("--neo4j", nargs="?", help="Address of the neo4j server")
+import src.Utils.ArgParser as ArgParser
+args = ArgParser.parse()
 
-args = parser.parse_args()
+MONGODB_URL = "mongodb://root:rootpassword@localhost:27017"
 
-if args.mongodb is not None:
+if args.mongodb is not None and args.mongodb != "":
     MONGODB_URL = args.mongodb
-else:
-    MONGODB_URL = "mongodb://root:rootpassword@localhost:27017"
 
-client = MongoClient(MONGODB_URL)
+client = MongoClient(host=MONGODB_URL)
 db = client.mydatabase
 date_now = datetime.now().strftime("%Y-%m-%d, %H:%M:%S")
 
