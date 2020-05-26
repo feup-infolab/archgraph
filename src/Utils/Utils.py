@@ -221,7 +221,7 @@ def updated_node(node, data, template):
 
 # auxiliary function - given a template and a node, the node and next nodes information is updated
 def updated_node_aux(current_node, data, template):
-    new_node = current_node.node_self_build(data)
+    new_node = current_node.build_node(data)
     if current_node.merge_node(new_node['self_node']):
         for relationship_name in template:
             relationship_of_node = getattr(current_node, relationship_name)
