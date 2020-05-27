@@ -41,9 +41,12 @@ from src.Models.CRM.v5_0_2.NodeEntities.E10_Transfer_of_Custody import E10_Trans
     E10_Transfer_of_CustodySchema
 from src.Models.CRM.v5_0_2.NodeEntities.E11_Modification import E11_Modification, E11_ModificationSchema
 from src.Models.CRM.v5_0_2.NodeEntities.E12_Production import E12_Production, E12_ProductionSchema
-from src.Models.CRM.v5_0_2.NodeEntities.E13_Attribute_Assignment import E13_Attribute_Assignment, E13_Attribute_AssignmentSchema
-from src.Models.CRM.v5_0_2.NodeEntities.E14_Condition_Assessment import E14_Condition_Assessment, E14_Condition_AssessmentSchema
-from src.Models.CRM.v5_0_2.NodeEntities.E15_Identifier_Assignment import E15_Identifier_Assignment, E15_Identifier_AssignmentSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E13_Attribute_Assignment import E13_Attribute_Assignment, \
+    E13_Attribute_AssignmentSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E14_Condition_Assessment import E14_Condition_Assessment, \
+    E14_Condition_AssessmentSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E15_Identifier_Assignment import E15_Identifier_Assignment, \
+    E15_Identifier_AssignmentSchema
 from src.Models.CRM.v5_0_2.NodeEntities.E16_Measurement import E16_Measurement, E16_MeasurementSchema
 from src.Models.CRM.v5_0_2.NodeEntities.E17_Type_Assignment import E17_Type_Assignment, E17_Type_AssignmentSchema
 from src.Models.CRM.v5_0_2.NodeEntities.E18_Physical_Thing import E18_Physical_Thing, E18_Physical_ThingSchema
@@ -51,15 +54,19 @@ from src.Models.CRM.v5_0_2.NodeEntities.E19_Physical_Object import E19_Physical_
 from src.Models.CRM.v5_0_2.NodeEntities.E20_Biological_Object import E20_Biological_Object, E20_Biological_ObjectSchema
 from src.Models.CRM.v5_0_2.NodeEntities.E21_Person import E21_Person, E21_PersonSchema
 from src.Models.CRM.v5_0_2.NodeEntities.E22_Human_Made_Object import E22_Human_Made_Object, E22_Human_Made_ObjectSchema
-from src.Models.CRM.v5_0_2.NodeEntities.E24_Physical_Human_Made_Thing import E24_Physical_Human_Made_Thing, E24_Physical_Human_Made_ThingSchema
-from src.Models.CRM.v5_0_2.NodeEntities.E25_Human_Made_Feature import E25_Human_Made_Feature, E25_Human_Made_FeatureSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E24_Physical_Human_Made_Thing import E24_Physical_Human_Made_Thing, \
+    E24_Physical_Human_Made_ThingSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E25_Human_Made_Feature import E25_Human_Made_Feature, \
+    E25_Human_Made_FeatureSchema
 from src.Models.CRM.v5_0_2.NodeEntities.E26_Physical_Feature import E26_Physical_Feature, E26_Physical_FeatureSchema
 from src.Models.CRM.v5_0_2.NodeEntities.E27_Site import E27_Site, E27_SiteSchema
 from src.Models.CRM.v5_0_2.NodeEntities.E28_Conceptual_Object import E28_Conceptual_Object, E28_Conceptual_ObjectSchema
-from src.Models.CRM.v5_0_2.NodeEntities.E29_Design_or_Procedure import E29_Design_or_Procedure, E29_Design_or_ProcedureSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E29_Design_or_Procedure import E29_Design_or_Procedure, \
+    E29_Design_or_ProcedureSchema
 from src.Models.CRM.v5_0_2.NodeEntities.E30_Right import E30_Right, E30_RightSchema
 from src.Models.CRM.v5_0_2.NodeEntities.E31_Document import E31_Document, E31_DocumentSchema
-from src.Models.CRM.v5_0_2.NodeEntities.E32_Authority_Document import E32_Authority_Document, E32_Authority_DocumentSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E32_Authority_Document import E32_Authority_Document, \
+    E32_Authority_DocumentSchema
 from src.Models.CRM.v5_0_2.NodeEntities.E33_Linguistic_Object import E33_Linguistic_Object, E33_Linguistic_ObjectSchema
 from src.Models.CRM.v5_0_2.NodeEntities.E34_Inscription import E34_Inscription, E34_InscriptionSchema
 from src.Models.CRM.v5_0_2.NodeEntities.E35_Title import E35_Title, E35_TitleSchema
@@ -75,7 +82,8 @@ from src.Models.CRM.v5_0_2.NodeEntities.E55_Type import E55_Type, E55_TypeSchema
 from src.Models.CRM.v5_0_2.NodeEntities.E56_Language import E56_Language, E56_LanguageSchema
 from src.Models.CRM.v5_0_2.NodeEntities.E57_Material import E57_Material, E57_MaterialSchema
 from src.Models.CRM.v5_0_2.NodeEntities.E58_Measurement_Unit import E58_Measurement_Unit, E58_Measurement_UnitSchema
-from src.Models.CRM.v5_0_2.NodeEntities.E63_Beggining_of_Existence import E63_Beggining_of_Existence, E63_Beggining_of_ExistenceSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E63_Beggining_of_Existence import E63_Beggining_of_Existence, \
+    E63_Beggining_of_ExistenceSchema
 from src.Models.CRM.v5_0_2.NodeEntities.E64_End_of_Existence import E64_End_of_Existence, E64_End_of_ExistenceSchema
 from src.Models.CRM.v5_0_2.NodeEntities.E65_Creation import E65_Creation, E65_CreationSchema
 from src.Models.CRM.v5_0_2.NodeEntities.E66_Formation import E66_Formation, E66_FormationSchema
@@ -85,7 +93,8 @@ from src.Models.CRM.v5_0_2.NodeEntities.E69_Death import E69_Death, E69_DeathSch
 from src.Models.CRM.v5_0_2.NodeEntities.E70_Thing import E70_Thing, E70_ThingSchema
 from src.Models.CRM.v5_0_2.NodeEntities.E71_Human_Made_Thing import E71_Human_Made_Thing, E71_Human_Made_ThingSchema
 from src.Models.CRM.v5_0_2.NodeEntities.E72_Legal_Object import E72_Legal_Object, E72_Legal_ObjectSchema
-from src.Models.CRM.v5_0_2.NodeEntities.E73_Information_Object import E73_Information_Object, E73_Information_ObjectSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E73_Information_Object import E73_Information_Object, \
+    E73_Information_ObjectSchema
 from src.Models.CRM.v5_0_2.NodeEntities.E74_Group import E74_Group, E74_GroupSchema
 from src.Models.CRM.v5_0_2.NodeEntities.E77_Persistent_Item import E77_Persistent_Item, E77_Persistent_ItemSchema
 from src.Models.CRM.v5_0_2.NodeEntities.E78_Curated_Holding import E78_Curated_Holding, E78_Curated_HoldingSchema
@@ -96,7 +105,8 @@ from src.Models.CRM.v5_0_2.NodeEntities.E83_Type_Creation import E83_Type_Creati
 from src.Models.CRM.v5_0_2.NodeEntities.E85_Joining import E85_Joining, E85_JoiningSchema
 from src.Models.CRM.v5_0_2.NodeEntities.E86_Leaving import E86_Leaving, E86_LeavingSchema
 from src.Models.CRM.v5_0_2.NodeEntities.E87_Curation_Activity import E87_Curation_Activity, E87_Curation_ActivitySchema
-from src.Models.CRM.v5_0_2.NodeEntities.E89_Propositional_Object import E89_Propositional_Object, E89_Propositional_ObjectSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E89_Propositional_Object import E89_Propositional_Object, \
+    E89_Propositional_ObjectSchema
 from src.Models.CRM.v5_0_2.NodeEntities.E90_Symbolic_Object import E90_Symbolic_Object, E90_Symbolic_ObjectSchema
 from src.Models.CRM.v5_0_2.NodeEntities.E92_Spacetime_Volume import E92_Spacetime_Volume, E92_Spacetime_VolumeSchema
 from src.Models.CRM.v5_0_2.NodeEntities.E93_Presence import E93_Presence, E93_PresenceSchema
@@ -117,8 +127,8 @@ def get_driver():
     return self.driver
 
 
-# reads all relation of a node with a given name
 def read_relationships(search_node, search_node_uid, relationship_name):
+    """The function reads all relation of a node with a given name"""
     def read(tx, search_node, search_node_uid, relationship_name):
         array_uids = []
         records = tx.run(
@@ -142,8 +152,8 @@ def read_relationships(search_node, search_node_uid, relationship_name):
         )
 
 
-# builds information block for a node with a given template
 def build_next_json(node, template):
+    """The function builds information block for a node with a given template"""
     if isinstance(template, str):
         return node.decodeJSON()
 
@@ -181,8 +191,8 @@ def build_next_json(node, template):
     return dict(node.decodeJSON(), **new_object)
 
 
-# get node from database with a given uid
 def get_node_by_uid(uid):
+    """The function get node from database with a given uid"""
     try:
         return DataObject.nodes.get(uid=uid)
     except:
@@ -192,8 +202,8 @@ def get_node_by_uid(uid):
             return None
 
 
-# delete node from database with a given uid
 def delete_node_by_uid(uid):
+    """The function delete node from database with a given uid"""
     try:
         node = DataObject.nodes.get(uid=uid)
         node.delete()
@@ -207,8 +217,8 @@ def delete_node_by_uid(uid):
             return None
 
 
-# given a template and a node, the node and next nodes information is updated
 def updated_node(node, data, template):
+    """The function given a template and a node, the node and next nodes information is updated"""
     db.begin()
     result = updated_node_aux(node, data, template[list(template.keys())[0]])
     if result is None:
@@ -219,8 +229,8 @@ def updated_node(node, data, template):
         return True
 
 
-# auxiliary function - given a template and a node, the node and next nodes information is updated
 def updated_node_aux(current_node, data, template):
+    """Auxiliary function - The function given a template and a node, the node and next nodes information is updated"""
     new_node = current_node.build_node(data)
     if current_node.merge_node(new_node['self_node']):
         for relationship_name in template:
@@ -237,8 +247,9 @@ def updated_node_aux(current_node, data, template):
         return None
 
 
-# given a template and the current node, the function add all relations to the current node
 def add_all_relationships(relationships, node, template):
+    """The function given a template and the current node, the function add all relations to the current node"""
+
     def update_node_and_call_next(new_instance, next_node, template):
         for attr in next_node:
             if new_instance.schema.fields[attr].__class__ == fields.Date:
@@ -285,8 +296,8 @@ def make_result(result):
     return response_array
 
 
-# given a classes name array, the function return the class instance
 def find_name_of_classes_in_project(classes_name):
+    """The function given a classes name array, the function return the class instance"""
     classes = []
     error = False
     for class_name in classes_name:
@@ -316,8 +327,8 @@ def find_name_of_classes_in_project(classes_name):
         return classes
 
 
-# given a model class names array, the function return the schema class instance
 def find_name_of_schema_classes_in_project(classes_name):
+    """The function given a model class names array, the function return the schema class instance"""
     schemas_classes = []
     error = False
 

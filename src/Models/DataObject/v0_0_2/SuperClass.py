@@ -74,7 +74,7 @@ class SuperClass:
 
         properties = definitions[current_entity]['properties']
 
-        self.__get_entity_properties_without_ref(definitions[current_entity], entity)
+        self.__set_entity_properties_without_ref(definitions[current_entity], entity)
 
         if isinstance(json_template, str):
             return
@@ -86,7 +86,7 @@ class SuperClass:
 
             self.__get_schema_with_template_aux(definitions, next_entity, new_json_schema)
 
-    def __get_entity_properties_without_ref(self, current_entity, entity):
+    def __set_entity_properties_without_ref(self, current_entity, entity):
         for property_name in current_entity['properties']:
             property_entity = current_entity['properties'][property_name]
 
