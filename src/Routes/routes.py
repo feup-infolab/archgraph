@@ -246,6 +246,7 @@ def search_specific(class_name, query):
 # get_all_records_from_collection("createdTemplate")
 if __name__ == "__main__":
     if args.host is not None and args.host != "":
+        app.logger.debug('Archgraph running with a custom host setting: %s', args.host)
         app.run(host=args.host)
     else:
         app.run(host='127.0.0.1')

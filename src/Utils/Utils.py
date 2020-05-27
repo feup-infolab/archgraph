@@ -276,14 +276,14 @@ def add_all_relationships(relationships, node, template):
 
 
 def make_result(result):
-    response_array = "[" + result[0].encodeJSON()
+    response_array = "["
+
     iterator = iter(result)
-    next(iterator)
     for items in iterator:
         response_array += ", " + items.encodeJSON()
+
     response_array += "]"
     return response_array
-
 
 # given a classes name array, the function return the class instance
 def find_name_of_classes_in_project(classes_name):
