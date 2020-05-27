@@ -1,7 +1,6 @@
 import json
 from pathlib import Path
 import os, sys
-import argparse
 
 
 # returns the project root path (assumes that the script is started from src/Routes/routes.py)
@@ -15,10 +14,6 @@ def get_project_root():
 print("Archgraph running at " + get_project_root().as_posix())
 sys.path.append(get_project_root().as_posix())
 
-parser = argparse.ArgumentParser(description="Starts the archgraph server.")
-parser.add_argument("--neo4j", nargs="?", help="Address of the neo4j server")
-parser.add_argument("--mongodb", nargs="?", help="Address of the mongodb server")
-args = parser.parse_args()
 
 from flask import Flask, Response, jsonify, make_response, request, send_from_directory
 
@@ -28,20 +23,35 @@ from neomodel import config
 from src.Utils.JsonEncoder import search_cidoc, search_specific_cidoc
 from src.Utils.Utils import get_node_by_uid, build_next_json, updated_node, make_result
 
-if args.neo4j:
+import src.Utils.ArgParser as ArgParser
+args = ArgParser.parse()
+
+if args.neo4j and args.neo4j != "":
     config.DATABASE_URL = args.neo4j
 else:
     config.DATABASE_URL = "bolt://neo4j:password@localhost:7687"
 
-from src.Routes.mongo import insert_template_in_mongo, get_all_records_from_collection, get_schema_from_mongo, \
-    get_templates_from_mongo_by_classes_name
+from src.Routes.mongo import insert_template_in_mongo, get_all_records_from_collection, get_schema_from_mongo, get_templates_from_mongo_by_classes_name
 
 app = Flask(__name__)
 
 CORS(app)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
 app = Flask(__name__, static_url_path="")
+app.debug = True
 
+@app.before_request
+def log_request_info():
+    app.logger.debug('Headers: %s', request.headers)
+    app.logger.debug('Body: %s', request.get_data())
+
+@app.after_request
+def after(response):
+    # todo with response
+    print(response.status)
+    print(response.headers)
+    print(response.get_data())
+    return response
 
 @app.route("/favicon.ico")
 def favicon():
@@ -234,6 +244,9 @@ def search_specific(class_name, query):
 # json = read_file("../Utils/defaultTemplates.json")
 # populate_template_collection(json)
 # get_all_records_from_collection("createdTemplate")
-
 if __name__ == "__main__":
-    app.run(host='127.0.0.1')
+    if args.host is not None and args.host != "":
+        app.logger.debug('Archgraph running with a custom host setting: %s', args.host)
+        app.run(host=args.host)
+    else:
+        app.run(host='127.0.0.1')

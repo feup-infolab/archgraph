@@ -507,5 +507,4 @@ class TestNeoModel(unittest.TestCase):
         templates_E2 = [{"classes_name": class_name_E2, "template": template_E2, "schema": json.dumps(schemaE2)}]
         insert_default_templates(templates_E2)
 
-
         get_all_records_from_collection("defaultTemplate")
