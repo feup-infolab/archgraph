@@ -7,11 +7,12 @@ class SuperClass:
     def __init__(self, schema):
         self.schema = schema
 
+    """The function returns the node schema"""
     def getSchema(self):
         json_schema = JSONSchema()
         return json_schema.dump(self.schema)
 
-    # Json to string
+    """The function returns the node information in string"""
     def encodeJSON(self):
         data = {}
         for key, val in self.__properties__.items():
@@ -24,18 +25,21 @@ class SuperClass:
 
         return json.dumps(data, default=my_converter)
 
-    # string to json
+    """The function returns the node information at format json"""
     def decodeJSON(self):
         return json.loads(self.encodeJSON())
 
+    """The function returns the property of entity with name property_name"""
     def get_property_from_entity(self, property_name):
         schema_node = self.getSchema()
         class_name = self.__class__.__name__ + "Schema"
         return schema_node['definitions'][class_name]['properties'][property_name]
 
+    """The function returns its superclasses names"""
     def get_superclasses_name(self):
         return list(set(self.labels()))
 
+    """The function returns the schema according to the template provided"""
     def get_schema_with_template(self, template):
         jsonSchema = self.getSchema()
         newJsonSchema = {
@@ -46,6 +50,7 @@ class SuperClass:
         self.__get_schema_with_template_aux(jsonSchema["definitions"], template, newJsonSchema)
         return newJsonSchema
 
+    """Auxiliary function - The function returns the schema according to the template provided"""
     def __get_schema_with_template_aux(self, definitions, json_template, new_json_schema):
         if isinstance(json_template, str):
             entity_name = json_template
@@ -97,6 +102,7 @@ class SuperClass:
             #         'type': 'string'}
             #     changed_property['title'] = property_entity['title']
 
+    """The function merges between node and customer data, then saves the node"""
     def merge_node(self, updated_node):
         merged_node = dict(self.decodeJSON(), **updated_node)
         field_type_date = self.__get_field_of_type_date()
@@ -111,30 +117,26 @@ class SuperClass:
             self.save()
         except BaseException:
             return None
-
-        # array_uid = read_relationships(node_name, relationship_name)
-        #
-        # for uid in array_uid:
-        #     node = get_node_by_uid(uid)
-
         return True
 
-    def node_self_build(self, updated_node):
-        object = {'self_node': {},
+    """The function returns the node with updated fields and relationships"""
+    def build_node(self, data):
+        node = {'self_node': {},
                   'relationships': {}}
-        for property in updated_node.keys():
-            if isinstance(updated_node[property], str):
-                object['self_node'][property] = updated_node[property]
-            elif isinstance(updated_node[property], dict):
-                object['relationships'][property] = []
-                object['relationships'][property].append(updated_node[property])
-            elif isinstance(updated_node[property], list):
+        for property in data.keys():
+            if isinstance(data[property], str):
+                node['self_node'][property] = data[property]
+            elif isinstance(data[property], dict):
+                node['relationships'][property] = []
+                node['relationships'][property].append(data[property])
+            elif isinstance(data[property], list):
                 relationships = []
-                for element in updated_node[property]:
+                for element in data[property]:
                     relationships.append(element)
-                object['relationships'][property] = relationships
-        return object
+                node['relationships'][property] = relationships
+        return node
 
+    """The function returns entity's fields of type date"""
     def __get_field_of_type_date(self):
         result = []
         get_schema = self.getSchema()
@@ -145,11 +147,4 @@ class SuperClass:
             if "format" in field:
                 result.append(field["title"])
         return result
-
-    # def get_labels(target, base_class):
-    #     return (
-    #         c.__name__
-    #         for c in target.__mro__
-    #         if issubclass(c, base_class)
-    #     )
 
