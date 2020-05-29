@@ -287,9 +287,8 @@ def add_all_relationships(relationships, node, template):
 
 
 def make_result(result):
-    response_array = "[" + result[0].encodeJSON()
+    response_array = "["
     iterator = iter(result)
-    next(iterator)
     for items in iterator:
         response_array += ", " + items.encodeJSON()
     response_array += "]"
