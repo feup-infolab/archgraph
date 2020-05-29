@@ -162,7 +162,6 @@ export class EditTemplateComponent implements OnInit {
   changeTemplate() {
     this.service.postTemplate(this.template)
       .subscribe(result => {
-        this.form.data = result;
         console.log(result);
         this.load = true;
       });
@@ -171,6 +170,8 @@ export class EditTemplateComponent implements OnInit {
   addProp() {
     this.load = false;
     this.chosenprops.push(this.comboBoxReference.inputItem);
+    console.log( "this.form.data");
+    console.log( this.form.data);
     this.form.data[this.uid][this.comboBoxReference.inputItem] = [];
     this.form.data[this.uid][this.comboBoxReference.inputItem][0] = {name: '1', uid: '1' };
     const schemaEntity = this.schemaname.replace('Schema', '');
