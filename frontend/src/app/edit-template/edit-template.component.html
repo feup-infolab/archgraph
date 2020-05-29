@@ -3,11 +3,7 @@
     *ngIf="load"
     [form]= "form"
     [options]='jsonFormOptions'
-    [framework]="'bootstrap-4'"
-    (onSubmit)="onSubmit($event)"
-    (formSchema)="showFormSchemaFn($event)"
-    (formLayout)="showFormLayoutFn($event)"
-    (isValid)="isValid($event)">
+    [framework]="'bootstrap-4'">
   </json-schema-form>
 </div>
 

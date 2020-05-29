@@ -164,6 +164,7 @@ export class EditTemplateComponent implements OnInit {
       .subscribe(result => {
         this.form.data = result;
         console.log(result);
+        this.load = true;
       });
   }
 
