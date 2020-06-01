@@ -17,6 +17,12 @@ def parse():
     if "MONGODB_PORT" in os.environ:
         args["MONGODB_PORT"] = os.environ["MONGODB_PORT"]
 
+    if "MONGODB_USERNAME" in os.environ:
+        args["MONGODB_USERNAME"] = os.environ["MONGODB_USERNAME"]
+
+    if "MONGODB_PASSWORD" in os.environ:
+        args["MONGODB_PASSWORD"] = os.environ["MONGODB_PASSWORD"]
+
     if "CUSTOM_HOST_FOR_SERVER_BIND" in os.environ:
         args["CUSTOM_HOST_FOR_SERVER_BIND"] = os.environ["CUSTOM_HOST_FOR_SERVER_BIND"]
 

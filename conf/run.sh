@@ -70,7 +70,10 @@ fi
 
 ## wait for servers to be active before running the application
 
-./conf/wait-for-it.sh "$NEO4J_HOST:$NEO4J_PORT" --timeout=120
+./conf/wait-for-it.sh "$NEO4J_HOST:$NEO4J_PORT" --timeout=120 &
+./conf/wait-for-it.sh "$MONGODB_HOST:$MONGODB_PORT" --timeout=120 &
+
+wait
 
 # preload graph
 if [[ -z "$INIT_GRAPH" ]] ; then

@@ -41,6 +41,8 @@ services:
         - "NEO4J_PORT=7687"
         - "MONGODB_HOST=archgraph-mongodb"
         - "MONGODB_PORT=27017"
+        - "MONGODB_USERNAME=root"
+        - "MONGODB_PASSWORD=rootpassword"
         - "CUSTOM_HOST_FOR_SERVER_BIND=0.0.0.0"
         - "RUN_IN_PRODUCTION=1"
         - "INIT_GRAPH=1"
