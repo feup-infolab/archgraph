@@ -304,6 +304,7 @@ uri = (
 
 driver = None
 
+
 def get_driver():
     if self.driver is None:
         self.driver = GraphDatabase.driver(uri, auth=("neo4j", "password"))
