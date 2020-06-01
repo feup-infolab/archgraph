@@ -11,7 +11,6 @@ class E42_IdentifierSchema(E41_AppellationSchema):
 
 
 class E42_Identifier(E41_Appellation):
-
     def __init__(self, schema=None, *args, **kwargs):
         if schema is None:
             schema = E42_IdentifierSchema()

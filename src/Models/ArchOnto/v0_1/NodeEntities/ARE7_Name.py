@@ -6,7 +6,6 @@ class ARE7_NameSchema(E55_TypeSchema):
 
 
 class ARE7_Name(E55_Type):
-
     def __init__(self, schema=None, *args, **kwargs):
         if schema is None:
             schema = ARE7_NameSchema()

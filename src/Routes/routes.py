@@ -23,15 +23,18 @@ from neomodel import config
 from src.Utils.JsonEncoder import search_cidoc, search_specific_cidoc
 from src.Utils.Utils import get_node_by_uid, build_next_json, updated_node, make_result
 
-import src.Utils.ArgParser as ArgParser
-args = ArgParser.parse()
+import src.Utils.EnvVarManager as EnvVarManager
 
-if args.neo4j and args.neo4j != "":
-    config.DATABASE_URL = args.neo4j
-else:
-    config.DATABASE_URL = "bolt://neo4j:password@localhost:7687"
+config.DATABASE_URL = EnvVarManager.get_from_env_or_return_default(
+    "NEO4J_CONNECTION_STRING", "bolt://neo4j:password@localhost:7687"
+)
 
-from src.Routes.mongo import insert_template_in_mongo, get_all_records_from_collection, get_schema_from_mongo, get_templates_from_mongo_by_classes_name
+from src.Routes.mongo import (
+    insert_template_in_mongo,
+    get_all_records_from_collection,
+    get_schema_from_mongo,
+    get_templates_from_mongo_by_classes_name,
+)
 
 app = Flask(__name__)
 
@@ -40,10 +43,12 @@ cors = CORS(app, resources={r"/*": {"origins": "*"}})
 app = Flask(__name__, static_url_path="")
 app.debug = True
 
+
 @app.before_request
 def log_request_info():
-    app.logger.debug('Headers: %s', request.headers)
-    app.logger.debug('Body: %s', request.get_data())
+    app.logger.debug("Headers: %s", request.headers)
+    app.logger.debug("Body: %s", request.get_data())
+
 
 @app.after_request
 def after(response):
@@ -52,6 +57,7 @@ def after(response):
     print(response.headers)
     print(response.get_data())
     return response
+
 
 @app.route("/favicon.ico")
 def favicon():
@@ -134,10 +140,7 @@ def insert_template_in_mongodb(uid):
     #     "E52_Time_Span": {
     #         "P86_falls_within": "E52_Time_Span"}
     # }
-    template = {
-        "E52_Time_Span": {
-            "has_value": "DataObject"}
-    }
+    template = {"E52_Time_Span": {"has_value": "DataObject"}}
     if node is not None:
         schema_of_node = node.get_schema_with_template(template)
         classes_name = node.get_superclasses_name()
@@ -183,7 +186,9 @@ def get_templates_from_entity(uid):
         classes_name = node.get_superclasses_name()
         templates = get_templates_from_mongo_by_classes_name(classes_name)
         if templates is None:
-            return make_response(jsonify(message="Don't have templates for this entity"), 200)
+            return make_response(
+                jsonify(message="Don't have templates for this entity"), 200
+            )
         else:
             return make_response(jsonify(templates), 201)
     else:
@@ -197,11 +202,11 @@ def response_update(uid):
     node = get_node_by_uid(uid)
     if node is not None:
         data = request.json
-        merged = updated_node(node, data['data'], data['template'])
+        merged = updated_node(node, data["data"], data["template"])
         if merged:
             # update_data_in_mongo(uid, node.encodeJSON())
             # get_all_records_from_collection("data")
-            new_data = build_next_json(node, data['template'])
+            new_data = build_next_json(node, data["template"])
             return make_response(jsonify(new_data), 201)
         else:
             return make_response(jsonify(message="Unsaved node"), 404)
@@ -218,7 +223,8 @@ def response_update(uid):
 #     else:
 #         return make_response(jsonify(message="Node doesn't exists"), 404)
 
-@app.route('/search', defaults={'query': None}, methods=["GET"])
+
+@app.route("/search", defaults={"query": None}, methods=["GET"])
 @app.route("/search/<query>", methods=["GET"])
 @cross_origin()
 def search(query):
@@ -229,7 +235,7 @@ def search(query):
         return make_response(jsonify(message="Failed Search"), 404)
 
 
-@app.route('/search_specific/<class_name>', defaults={'query': None}, methods=["GET"])
+@app.route("/search_specific/<class_name>", defaults={"query": None}, methods=["GET"])
 @app.route("/search_specific/<class_name>/<query>", methods=["GET"])
 @cross_origin()
 def search_specific(class_name, query):
@@ -245,8 +251,9 @@ def search_specific(class_name, query):
 # populate_template_collection(json)
 # get_all_records_from_collection("createdTemplate")
 if __name__ == "__main__":
-    if args.host is not None and args.host != "":
-        app.logger.debug('Archgraph running with a custom host setting: %s', args.host)
-        app.run(host=args.host)
-    else:
-        app.run(host='127.0.0.1')
+    host = EnvVarManager.get_from_env_or_return_default(
+        "CUSTOM_HOST_FOR_SERVER_BIND", "127.0.0.1"
+    )
+    if host is not None and host != "127.0.0.1":
+        app.logger.debug("Archgraph running with a custom host setting: %s", host)
+    app.run(host=host)

@@ -2,7 +2,8 @@ from marshmallow import fields, Schema
 from neomodel import RelationshipTo
 from src.Models.CRM.v5_0_2.NodeEntities.E73_Information_Object import (
     E73_Information_Object,
-    E73_Information_ObjectSchema)
+    E73_Information_ObjectSchema,
+)
 from src.Models.CRM.v5_0_2.NodeProperties.P68_foresees_use_of import P68_foresees_use_of
 from src.Models.CRM.v5_0_2.NodeProperties.P69_has_association_with import (
     P69_has_association_with,
@@ -12,11 +13,15 @@ from src.GCF.decorators.OntologyClass import decorator_schema
 
 @decorator_schema
 class E29_Design_or_ProcedureSchema(E73_Information_ObjectSchema):
-    has_association_with = fields.List(fields.Nested(
-        "src.Models.CRM.v5_0_2.NodeEntities.E29_Design_or_Procedure.E29_Design_or_ProcedureSchema")
+    has_association_with = fields.List(
+        fields.Nested(
+            "src.Models.CRM.v5_0_2.NodeEntities.E29_Design_or_Procedure.E29_Design_or_ProcedureSchema"
+        )
     )
-    foresees_use_of = fields.List(fields.Nested(
-        "src.Models.CRM.v5_0_2.NodeEntities.E57_Material.E57_MaterialSchema")
+    foresees_use_of = fields.List(
+        fields.Nested(
+            "src.Models.CRM.v5_0_2.NodeEntities.E57_Material.E57_MaterialSchema"
+        )
     )
 
 

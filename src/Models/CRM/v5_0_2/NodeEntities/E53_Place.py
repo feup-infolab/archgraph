@@ -29,7 +29,9 @@ class E53_PlaceSchema(E1_CRM_EntitySchema):
         fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E53_Place.E53_PlaceSchema")
     )
     P157_is_at_rest_relative_to = fields.List(
-        fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E18_Physical_Thing.E18_Physical_ThingSchema")
+        fields.Nested(
+            "src.Models.CRM.v5_0_2.NodeEntities.E18_Physical_Thing.E18_Physical_ThingSchema"
+        )
     )
 
 

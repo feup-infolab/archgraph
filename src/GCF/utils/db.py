@@ -2,9 +2,15 @@ from py2neo import Graph
 
 # Create graph
 
+import src.Utils.EnvVarManager as EnvVarManager
+
 
 def get_connection():
-    return Graph(host="localhost", port=7687)
+    return Graph(
+        uri=EnvVarManager.get_from_env_or_return_default(
+            "NEO4J_CONNECTION_STRING", "bolt://neo4j:password@localhost:7687"
+        )
+    )
 
 
 def get_node_count(graph):

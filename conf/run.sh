@@ -37,6 +37,20 @@ export NVM_DIR="$([[ -z "${XDG_CONFIG_HOME-}" ]] && printf %s "${HOME}/.nvm" || 
 [[ -s "$NVM_DIR/nvm.sh" ]] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 nvm use v10
 
+# preload graph
+if [[ -z "$INIT_GRAPH" ]] ; then
+    echo "Preload graph flag is not active, skipping tests"
+elif [[ ! -f "$ROOT_DIR/.preloaded.txt" ]] || [[ "$FORCE_RELOAD_GRAPH" == "1" ]] ; then
+    rm -f "$ROOT_DIR/.preloaded.txt"
+    echo "Preload graph flag is active, loading graph through tests"
+    coverage run -m unittest discover test
+    echo "true" > "$ROOT_DIR/.preloaded.txt"
+else
+    echo "Preload graph flag is active but the database has already been initialized once. \
+    To re-initialize, delete the $ROOT_DIR/.preloaded.txt file and run this script again, or \
+    set the FORCE_RELOAD_GRAPH environment variable before re-running this script."
+fi
+
 echo "Starting archgraph server at $ROOT_DIR"
 cd "$ROOT_DIR"
 
@@ -52,7 +66,7 @@ if [[ "$CUSTOM_HOST_FOR_SERVER_BIND" != "" ]]; then
     echo "Flask Server binding to host with address $CUSTOM_HOST_FOR_SERVER_BIND";
 fi
 
-python "$ROOT_DIR/src/Routes/routes.py" --neo4j="$NEO4J_CONNECTION_STRING" --mongodb="$MONGODB_CONNECTION_STRING"  --host="$CUSTOM_HOST_FOR_SERVER_BIND" &
+python "$ROOT_DIR/src/Routes/routes.py" &
 SERVER_PID=$!
 cd "$ROOT_DIR/frontend" || ( echo "folder missing " && exit 1 )
 if [[ "$RUN_IN_PRODUCTION" != "" ]] ; then
