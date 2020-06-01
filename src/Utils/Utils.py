@@ -293,9 +293,16 @@ from src.Models.CRM.v5_0_2.NodeEntities.E99_Product_Type import (
 
 import src.Utils.Utils as self
 
-uri = "bolt://localhost:7687"
-driver = None
+import src.Utils.EnvVarManager as EnvVarManager
 
+uri = (
+    "bolt://neo4j:password@"
+    + EnvVarManager.get_from_env_or_return_default("NEO4J_HOST", "127.0.0.1")
+    + ":"
+    + EnvVarManager.get_from_env_or_return_default("NEO4J_PORT", "27017")
+)
+
+driver = None
 
 def get_driver():
     if self.driver is None:

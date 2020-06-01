@@ -37,20 +37,6 @@ export NVM_DIR="$([[ -z "${XDG_CONFIG_HOME-}" ]] && printf %s "${HOME}/.nvm" || 
 [[ -s "$NVM_DIR/nvm.sh" ]] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 nvm use v10
 
-# preload graph
-if [[ -z "$INIT_GRAPH" ]] ; then
-    echo "Preload graph flag is not active, skipping tests"
-elif [[ ! -f "$ROOT_DIR/.preloaded.txt" ]] || [[ "$FORCE_RELOAD_GRAPH" == "1" ]] ; then
-    rm -f "$ROOT_DIR/.preloaded.txt"
-    echo "Preload graph flag is active, loading graph through tests"
-    coverage run -m unittest discover test
-    echo "true" > "$ROOT_DIR/.preloaded.txt"
-else
-    echo "Preload graph flag is active but the database has already been initialized once. \
-    To re-initialize, delete the $ROOT_DIR/.preloaded.txt file and run this script again, or \
-    set the FORCE_RELOAD_GRAPH environment variable before re-running this script."
-fi
-
 echo "Starting archgraph server at $ROOT_DIR"
 cd "$ROOT_DIR"
 
@@ -84,10 +70,21 @@ fi
 
 ## wait for servers to be active before running the application
 
-./conf/wait-for-it.sh "$MONGODB_HOST:$MONGODB_PORT" --timeout=60 &
-./conf/wait-for-it.sh "$NEO4J_HOST:$NEO4J_PORT" --timeout=60
+./conf/wait-for-it.sh "$NEO4J_HOST:$NEO4J_PORT" --timeout=120
 
-wait
+# preload graph
+if [[ -z "$INIT_GRAPH" ]] ; then
+    echo "Preload graph flag is not active, skipping tests"
+elif [[ ! -f "$ROOT_DIR/.preloaded.txt" ]] || [[ "$FORCE_RELOAD_GRAPH" == "1" ]] ; then
+    rm -f "$ROOT_DIR/.preloaded.txt"
+    echo "Preload graph flag is active, loading graph through tests"
+    coverage run -m unittest discover test
+    echo "true" > "$ROOT_DIR/.preloaded.txt"
+else
+    echo "Preload graph flag is active but the database has already been initialized once. \
+    To re-initialize, delete the $ROOT_DIR/.preloaded.txt file and run this script again, or \
+    set the FORCE_RELOAD_GRAPH environment variable before re-running this script."
+fi
 
 python "$ROOT_DIR/src/Routes/routes.py" &
 SERVER_PID=$!
