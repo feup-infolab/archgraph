@@ -92,9 +92,13 @@ clean_database()
 
 import src.Utils.EnvVarManager as EnvVarManager
 
-config.DATABASE_URL = EnvVarManager.get_from_env_or_return_default(
-    "NEO4J_CONNECTION_STRING", "bolt://neo4j:password@localhost:7687"
+config.DATABASE_URL = (
+    "bolt://neo4j:password@"
+    + EnvVarManager.get_from_env_or_return_default("NEO4J_HOST", "127.0.0.1")
+    + ":"
+    + EnvVarManager.get_from_env_or_return_default("NEO4J_PORT", "27017")
 )
+
 # ref = list_indexes()
 # if ref[0].__len__() != 0:
 try:

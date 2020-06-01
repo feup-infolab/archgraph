@@ -35,8 +35,10 @@ services:
           SOURCE_BRANCH: "master"
         context: .
       environment:
-        - "NEO4J_CONNECTION_STRING=bolt://neo4j:password@archgraph-neo4j:7687"
-        - "MONGODB_CONNECTION_STRING=mongodb://root:rootpassword@archgraph-mongodb:27017"
+        - "NEO4J_HOST=archgraph-neo4j"
+        - "NEO4J_PORT=7687"
+        - "MONGODB_HOST=archgraph-mongodb"
+        - "MONGODB_PORT=27017"
         - "CUSTOM_HOST_FOR_SERVER_BIND=0.0.0.0"
         - "RUN_IN_PRODUCTION=1"
         - "INIT_GRAPH=1"

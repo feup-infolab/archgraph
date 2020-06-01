@@ -7,11 +7,11 @@ import src.Utils.EnvVarManager as EnvVarManager
 
 args = EnvVarManager.parse()
 
-MONGODB_URL = EnvVarManager.get_from_env_or_return_default(
-    "MONGODB_CONNECTION_STRING", "mongodb://root:rootpassword@localhost:27017"
-)
 
-client = MongoClient(MONGODB_URL)
+client = MongoClient(
+    host=EnvVarManager.get_from_env_or_return_default("MONGODB_HOST", "localhost"),
+    port=EnvVarManager.get_from_env_or_return_default("MONGODB_PORT", "27017"),
+)
 db = client.mydatabase
 date_now = datetime.now().strftime("%Y-%m-%d, %H:%M:%S")
 

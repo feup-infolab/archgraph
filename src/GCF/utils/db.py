@@ -7,9 +7,8 @@ import src.Utils.EnvVarManager as EnvVarManager
 
 def get_connection():
     return Graph(
-        uri=EnvVarManager.get_from_env_or_return_default(
-            "NEO4J_CONNECTION_STRING", "bolt://neo4j:password@localhost:7687"
-        )
+        host=EnvVarManager.get_from_env_or_return_default("NEO4J_HOST", "127.0.0.1"),
+        port=EnvVarManager.get_from_env_or_return_default("NEO4J_PORT", "7687"),
     )
 
 

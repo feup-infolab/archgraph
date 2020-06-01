@@ -54,16 +54,24 @@ fi
 echo "Starting archgraph server at $ROOT_DIR"
 cd "$ROOT_DIR"
 
-if [[ "$NEO4J_CONNECTION_STRING" != "" ]]; then
-    echo "Neo4j Server at $NEO4J_CONNECTION_STRING";
+if [[ "$NEO4J_HOST" != "" ]]; then
+    echo "Neo4j Server Host: $NEO4J_HOST"
 fi
 
-if [[ "$MONGODB_CONNECTION_STRING" != "" ]]; then
-    echo "MongoDB Server at $MONGODB_CONNECTION_STRING";
+if [[ "$NEO4J_PORT" != "" ]]; then
+    echo "Neo4j Server Port: $NEO4J_PORT"
+fi
+
+if [[ "$MONGODB_HOST" != "" ]]; then
+    echo "MongoDB Server Host: $MONGODB_HOST"
+fi
+
+if [[ "$MONGODB_PORT" != "" ]]; then
+    echo "MongoDB Server Port: $MONGODB_PORT"
 fi
 
 if [[ "$CUSTOM_HOST_FOR_SERVER_BIND" != "" ]]; then
-    echo "Flask Server binding to host with address $CUSTOM_HOST_FOR_SERVER_BIND";
+    echo "Flask Server binding to host with address $CUSTOM_HOST_FOR_SERVER_BIND"
 fi
 
 python "$ROOT_DIR/src/Routes/routes.py" &
