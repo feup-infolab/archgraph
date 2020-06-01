@@ -56,23 +56,38 @@ cd "$ROOT_DIR"
 
 if [[ "$NEO4J_HOST" != "" ]]; then
     echo "Neo4j Server Host: $NEO4J_HOST"
+else
+    NEO4J_HOST="127.0.0.1"
 fi
 
 if [[ "$NEO4J_PORT" != "" ]]; then
     echo "Neo4j Server Port: $NEO4J_PORT"
+else
+    NEO4J_PORT="7687"
 fi
 
 if [[ "$MONGODB_HOST" != "" ]]; then
     echo "MongoDB Server Host: $MONGODB_HOST"
+else
+    MONGODB_HOST="127.0.0.1"
 fi
 
 if [[ "$MONGODB_PORT" != "" ]]; then
     echo "MongoDB Server Port: $MONGODB_PORT"
+else
+    MONGODB_PORT="27017"
 fi
 
 if [[ "$CUSTOM_HOST_FOR_SERVER_BIND" != "" ]]; then
     echo "Flask Server binding to host with address $CUSTOM_HOST_FOR_SERVER_BIND"
 fi
+
+## wait for servers to be active before running the application
+
+./conf/wait-for-it.sh "$MONGODB_HOST:$MONGODB_PORT" --timeout=60 &
+./conf/wait-for-it.sh "$NEO4J_HOST:$NEO4J_PORT" --timeout=60
+
+wait
 
 python "$ROOT_DIR/src/Routes/routes.py" &
 SERVER_PID=$!

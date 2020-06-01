@@ -10,7 +10,7 @@ args = EnvVarManager.parse()
 
 client = MongoClient(
     host=EnvVarManager.get_from_env_or_return_default("MONGODB_HOST", "localhost"),
-    port=EnvVarManager.get_from_env_or_return_default("MONGODB_PORT", "27017"),
+    port=int(EnvVarManager.get_from_env_or_return_default("MONGODB_PORT", "27017")),
 )
 db = client.mydatabase
 date_now = datetime.now().strftime("%Y-%m-%d, %H:%M:%S")
