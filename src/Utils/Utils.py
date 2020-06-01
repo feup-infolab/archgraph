@@ -490,10 +490,14 @@ def add_all_relationships(relationships, node, template):
 
 
 def make_result(result):
+
     response_array = "["
-    iterator = iter(result)
-    for items in iterator:
-        response_array += ", " + items.encodeJSON()
+
+    for i in range(len(result)):
+        response_array += result[i].encodeJSON()
+        if i < (len(result) - 1):
+            response_array += ","
+
     response_array += "]"
     return response_array
 
