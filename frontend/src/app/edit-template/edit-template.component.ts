@@ -3,6 +3,7 @@ import {MyServiceService} from '../service/my-service.service';
 import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
 import {ComboBoxComponent} from '../combo-box/combo-box.component';
+import {NoneComponent} from 'angular7-json-schema-form';
 
 @Component({
   selector: 'app-edit-template',
@@ -40,6 +41,9 @@ export class EditTemplateComponent implements OnInit {
 
   chosenprops = [];
 
+  yourWidgets = {
+    submit: NoneComponent,
+  };
   copyProp;
 
   goBack() {
@@ -49,13 +53,13 @@ export class EditTemplateComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       this.uid = params.get('id');
-      console.log('Testing 2:');
-      console.log(this.uid);
       this.load = false;
       // this.getSchemaNode(this.uid);
-      this.getNodeTemplate(this.uid);
-      console.log('Testing:');
-      console.log(this.form);
+      this.route.queryParamMap.subscribe(query => {
+        this.template = JSON.parse(query.get('template'));
+        this.getSchemaNodeWithTemplate(this.uid, this.template);
+      });
+      // this.getNodeTemplate(this.uid);
 
     });
   }
@@ -112,7 +116,7 @@ export class EditTemplateComponent implements OnInit {
     this.schemaname = schemaName;
     properties[this.uid] = {
       $ref: ref,
-      title: 'Editing'
+      title: 'Entity Edition Preview'
     };
     jsonSchema.properties = properties;
     jsonSchema.desc = 'Description';
