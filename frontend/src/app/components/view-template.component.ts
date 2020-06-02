@@ -84,4 +84,15 @@ export class ViewTemplateComponent implements OnInit {
 
 
   }
+
+  editTemplate() {
+    this.route.navigate(['/edit-template/', this.uid],
+      {
+        queryParams:
+          {
+            template: JSON.stringify(this.template)
+          }
+      }
+    );
+  }
 }
