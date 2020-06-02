@@ -40,6 +40,7 @@ app = Flask(__name__)
 CORS(app)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
 app = Flask(__name__, static_url_path="")
+app.config['JSON_SORT_KEYS'] = False
 
 
 @app.route("/favicon.ico")
@@ -235,7 +236,8 @@ def get_templates_from_entity(uid):
         if templates is None:
             return make_response(jsonify(message="Don't have templates for this entity"), 200)
         else:
-            return make_response(jsonify(templates), 201)
+            test = jsonify(templates)
+            return make_response(test, 201)
     else:
         return make_response(jsonify(message="Node doesn't exists"), 404)
 
