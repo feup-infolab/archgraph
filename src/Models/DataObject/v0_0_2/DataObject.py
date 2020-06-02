@@ -1,4 +1,3 @@
-
 from marshmallow import Schema, fields
 from neomodel import StringProperty, StructuredNode, UniqueIdProperty
 from src.GCF.decorators.OntologyClass import decorator_schema

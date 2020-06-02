@@ -38,6 +38,7 @@ app = Flask(__name__)
 CORS(app)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
 app = Flask(__name__, static_url_path="")
+app.config['JSON_SORT_KEYS'] = False
 app.debug = True
 
 @app.before_request
@@ -128,25 +129,84 @@ def response_get_schema_node(uid):
 @cross_origin()
 def insert_template_in_mongodb(uid):
     node = get_node_by_uid(uid)
-    # todo descomentar isto
-    # template = request.json
+
+    template = request.json
     # template = {
     #     "E52_Time_Span": {
     #         "P86_falls_within": "E52_Time_Span"}
     # }
-    template = {
-        "E52_Time_Span": {
-            "has_value": "DataObject"}
-    }
+    #template = {
+    #    "E52_Time_Span": {
+    #        "has_value": "DataObject",
+    #    }
+    #}
     if node is not None:
         schema_of_node = node.get_schema_with_template(template)
         classes_name = node.get_superclasses_name()
         message = insert_template_in_mongo(classes_name, schema_of_node, template)
+        print("Received Message")
         print(message)
         get_all_records_from_collection("createdTemplate")
         return make_response(jsonify(message=message), 200)
     else:
         return make_response(jsonify(message="Node doesn't exists"), 404)
+
+
+# TODO Change below
+
+
+@app.route("/createwithtemplate/<uid>", methods=["GET"])
+@cross_origin()
+def response_create_node_with_template(uid):
+    node = get_node_by_uid(uid)
+    template = {
+        "E52_Time_Span": {}
+    }
+    if node is not None:
+        result = nested_json(node, template)
+        if result is not None:
+            print("ONE")
+            print(result)
+            return make_response(jsonify(result), 201)
+        else:
+            return make_response(jsonify(message="Some error occurred"), 404)
+    else:
+        return make_response(jsonify(message="Node doesn't exists"), 404)
+
+
+@app.route("/createtemplate/<uid>", methods=["GET"])
+@cross_origin()
+def create_base_schema_node_with_template(uid):
+    node = get_node_by_uid(uid)
+    template = {
+        "E52_Time_Span": {}
+    }
+    if node is not None:
+        result = node.get_schema_with_template(template)
+        return make_response(jsonify(result), 201)
+    else:
+        return make_response(jsonify(message="Node doesn't exists"), 404)
+
+
+@app.route("/getallproperties/<uid>", methods=["GET"])
+@cross_origin()
+def get_all_node_properties(uid):
+    node = get_node_by_uid(uid)
+    property_array = node.get_all_properties_from_entity()
+    if node is not None:
+        return make_response(jsonify(property_array), 201)
+    else:
+        return make_response(jsonify(message="Node doesn't exists"), 404)
+
+
+@app.route("/obtainschema", methods=["GET"])
+@cross_origin()
+def get_template():
+    template = {
+        "E52_Time_Span": {}
+    }
+    return make_response(jsonify(template), 201)
+
 
 
 @app.route("/schemawithtemplate/<uid>", methods=["POST"])
@@ -185,7 +245,8 @@ def get_templates_from_entity(uid):
         if templates is None:
             return make_response(jsonify(message="Don't have templates for this entity"), 200)
         else:
-            return make_response(jsonify(templates), 201)
+            test = jsonify(templates)
+            return make_response(test, 201)
     else:
         return make_response(jsonify(message="Node doesn't exists"), 404)
 
@@ -207,6 +268,15 @@ def response_update(uid):
             return make_response(jsonify(message="Unsaved node"), 404)
     else:
         return make_response(jsonify(message="Node doesn't exists"), 404)
+
+
+@app.route("/post_template", methods=["POST"])
+@cross_origin()
+def receive_new_template():
+    data = request.json
+    print("Returned Schema")
+    print(data)
+    return make_response(jsonify(data), 201)
 
 
 # @app.route("/<uid>", methods=["DELETE"])

@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild} from '@angular/core';
 import {MyServiceService} from '../service/my-service.service';
 import {CidocSearch} from '../models/CidocSearch';
 import {ComboBoxComponent} from '../combo-box/combo-box.component';
+import {ActivatedRoute} from '@angular/router';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-example',
@@ -51,6 +53,19 @@ export class SearchComponent implements OnInit {
 
   headers = ['name', 'uid', 'labels'];
 
+  uid = '';
+  jsonFormOptions = {
+    loadExternalAssets: true,
+  };
+  schema = {};
+  data = {};
+  load = false;
+  form = {
+    schema: {},
+    data: {},
+    layout: []
+  };
+
   searchDatabase(searched: string) {
     this.searched = searched;
     this.loadSearch = false;
@@ -65,7 +80,7 @@ export class SearchComponent implements OnInit {
     } else {
       this.service.getSearchJson(search)
         .subscribe(result => {
-          this.changeContent(result)
+          this.changeContent(result);
         });
     }
   }

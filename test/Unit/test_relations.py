@@ -328,7 +328,7 @@ class TestNeoModel(unittest.TestCase):
         startDatetime = datetime.datetime(1812, 2, 12)
         endDatetime = datetime.datetime(1812, 2, 13)
         e12 = E12_Production(name="Document Production").save()
-        e52 = E52_Time_Span(name="Production time", date=startDatetime).save()
+        e52_2 = E52_Time_Span(name="Production time", date=startDatetime).save()
         e41 = E41_Appellation(name="1812-02-12").save()
 
         node = Interval(
@@ -336,8 +336,12 @@ class TestNeoModel(unittest.TestCase):
         ).save()
 
         e41.has_value.connect(node)
-        e52.P1_is_identified_by.connect(e41)
-        e12.P4_has_time_span.connect(e52)
+        e52_2.P1_is_identified_by.connect(e41)
+        e52_2.has_value.connect(node)
+        # remove Later
+        e52_2.P86_falls_within.connect(e52)
+
+        e12.P4_has_time_span.connect(e52_2)
         e22.P108_has_produced_by.connect(e12)
 
     def test_schema(self):

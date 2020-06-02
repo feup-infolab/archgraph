@@ -12,15 +12,17 @@ import {FormsModule} from '@angular/forms';
 import {ComboBoxComponent} from './combo-box/combo-box.component';
 import { RouterModule, Routes } from '@angular/router';
 import { EditEntityComponent } from './components/edit-entity.component';
-import {MatIconModule} from "@angular/material/icon";
+import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material';
+import { EditTemplateComponent } from './edit-template/edit-template.component';
 import { ViewTemplateComponent } from './components/view-template.component';
 import { LayoutComponent } from './components/layout.component';
 
 const appRoutes: Routes = [
+  { path: 'edit-template/:id', component: EditTemplateComponent },
+  { path: ':uid', component: EditEntityComponent },
   { path: '', component: SearchComponent },
   { path: 'viewtemplate/:uid', component: ViewTemplateComponent },
-  { path: ':uid', component: EditEntityComponent }
 
 ];
 
@@ -32,7 +34,8 @@ const appRoutes: Routes = [
     ComboBoxComponent,
     EditEntityComponent,
     ViewTemplateComponent,
-    LayoutComponent
+    LayoutComponent,
+    EditTemplateComponent
   ],
   imports: [
     RouterModule.forRoot(
