@@ -3,6 +3,8 @@ import json
 from marshmallow import Schema
 from marshmallow_jsonschema import JSONSchema
 
+#from src.Utils.Utils import find_name_of_classes_in_project
+
 
 def decorator_schema(cls):
     def getSchema(self):
@@ -23,7 +25,7 @@ def decorator_schema(cls):
 
     setattr(cls, 'get_labels', get_labels)
 
-    def generate_template(self):
+    def generate_default_template(self, class__):
         schema = self.getSchema()
         class_name = self.__class__.__name__.split("Schema")[0]
 
@@ -55,11 +57,15 @@ def decorator_schema(cls):
             range_schema_class_name = range.split("/")[2]
             range_class_name = range_schema_class_name.split("Schema")[0]
             template_aux[class_name][title] = range_class_name
-        #print(self.get_schema_with_template(template_aux))
+
+
+        schema = class__().get_schema_with_template(template_aux)
+        template["schema"] = json.dumps(schema)
+        print(schema)
 
         return template
 
-    setattr(cls, 'generate_template', generate_template)
+    setattr(cls, 'generate_default_template', generate_default_template)
 
     return cls
 

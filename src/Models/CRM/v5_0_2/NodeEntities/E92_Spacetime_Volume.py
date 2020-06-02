@@ -1,5 +1,5 @@
 from marshmallow import fields
-from neomodel import One, RelationshipTo
+from neomodel import One, RelationshipTo, ZeroOrOne
 from src.Models.CRM.v5_0_2.NodeEntities.E1_CRM_Entity import E1_CRM_Entity, E1_CRM_EntitySchema
 from src.Models.CRM.v5_0_2.NodeProperties.P10_falls_within import P10_falls_within
 from src.Models.CRM.v5_0_2.NodeProperties.P132_spatiotemporally_overlaps_with import (
@@ -40,7 +40,7 @@ class E92_Spacetime_Volume(E1_CRM_Entity):
     falls_within = RelationshipTo(
         ".E92_Spacetime_Volume.E92_Spacetime_Volume",
         "P10_falls_within",
-        cardinality=One,
+        cardinality=ZeroOrOne,
         model=P10_falls_within,
     )
     spatiotemporally_overlaps_with = RelationshipTo(

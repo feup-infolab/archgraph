@@ -26,7 +26,7 @@ class RegexString(String):
 
         expression = ""
         if kwargs.get("expression") is None:
-            # TODO falta arranjar isto
+            # todo falta arranjar isto
             expression = "regex/[a-zA-Z]([a-zA-Z 0-9])*$"
         else:
             expression = json.dumps(kwargs.get("expression"))

@@ -1,11 +1,10 @@
 from marshmallow import Schema, fields
 from neomodel import (
-    One,
     RelationshipTo,
     StringProperty,
     StructuredNode,
     UniqueIdProperty,
-    db,
+    ZeroOrOne,
 )
 from src.GCF.decorators.OntologyClass import ontology_class, decorator_schema
 from src.Models.CRM.v5_0_2.NodeProperties.has_value import has_value
@@ -30,12 +29,9 @@ class E1_CRM_EntitySchema(Schema):
     )
     P2_has_type = fields.List(fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E55_Type.E55_TypeSchema"))
     P137_exemplifies = fields.List(fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E55_Type.E55_TypeSchema"))
-    P48_has_preferred_identifier = fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E42_Identifier"
-                                                 ".E42_IdentifierSchema")
-    P139_has_alternative_form = fields.List(fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E41_Appellation"
-                                                          ".E41_AppellationSchema"))
-    P1_is_identified_by = fields.List(fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E41_Appellation"
-                                                    ".E41_AppellationSchema"))
+    P48_has_preferred_identifier = fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E42_Identifier.E42_IdentifierSchema")
+    P139_has_alternative_form = fields.List(fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E41_Appellation.E41_AppellationSchema"))
+    P1_is_identified_by = fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E41_Appellation.E41_AppellationSchema")
     has_value = fields.List(
         fields.Nested("src.Models.DataObject.v0_0_2.DataObject.DataObjectSchema")
     )
@@ -56,7 +52,7 @@ class E1_CRM_Entity(StructuredNode, SuperClass):
     P48_has_preferred_identifier = RelationshipTo(
         ".E42_Identifier.E42_Identifier",
         "P48_has_preferred_identifier",
-        cardinality=One,
+        cardinality=ZeroOrOne,
         model=P48_has_preferred_identifier,
     )
     P139_has_alternative_form = RelationshipTo(
@@ -67,7 +63,7 @@ class E1_CRM_Entity(StructuredNode, SuperClass):
     P1_is_identified_by = RelationshipTo(
         ".E41_Appellation.E41_Appellation",
         "P1_is_identified_by",
-        cardinality=One,
+        cardinality=ZeroOrOne,
         model=P1_is_identified_by,
     )
     has_value = RelationshipTo(

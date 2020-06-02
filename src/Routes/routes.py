@@ -1,22 +1,19 @@
 import json
 from pathlib import Path
 import os, sys
-import argparse
+
 
 # returns the project root path (assumes that the script is started from src/Routes/routes.py)
 def get_project_root():
     """Returns project root folder."""
     return Path(__file__).parent.parent.parent
 
+
 # append project root to sys paths so that src.** modules can be found by Python when running the app from a script
 # From https://leemendelowitz.github.io/blog/how-does-python-find-packages.html
 print("Archgraph running at " + get_project_root().as_posix())
 sys.path.append(get_project_root().as_posix())
 
-parser = argparse.ArgumentParser(description="Starts the archgraph server.")
-parser.add_argument("--neo4j", nargs="?", help="Address of the neo4j server")
-parser.add_argument("--mongodb", nargs="?", help="Address of the mongodb server")
-args = parser.parse_args()
 
 from flask import Flask, Response, jsonify, make_response, request, send_from_directory
 
@@ -24,16 +21,17 @@ from flask_cors import CORS, cross_origin
 from neomodel import config
 
 from src.Utils.JsonEncoder import search_cidoc, search_specific_cidoc
-from src.Utils.Utils import get_node_by_uid, nested_json, updated_node, make_result
+from src.Utils.Utils import get_node_by_uid, build_next_json, updated_node, make_result
 
-if args.neo4j:
+import src.Utils.ArgParser as ArgParser
+args = ArgParser.parse()
+
+if args.neo4j and args.neo4j != "":
     config.DATABASE_URL = args.neo4j
 else:
     config.DATABASE_URL = "bolt://neo4j:password@localhost:7687"
 
-from src.Routes.mongo import insert_template_in_mongo, get_all_records_from_collection, update_data_in_mongo, \
-    get_record_from_collection, add_record_to_collection, get_schema_from_mongo, \
-    delete_collection, get_templates_from_mongo_by_classes_name
+from src.Routes.mongo import insert_template_in_mongo, get_all_records_from_collection, get_schema_from_mongo, get_templates_from_mongo_by_classes_name
 
 app = Flask(__name__)
 
@@ -41,7 +39,20 @@ CORS(app)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
 app = Flask(__name__, static_url_path="")
 app.config['JSON_SORT_KEYS'] = False
+app.debug = True
 
+@app.before_request
+def log_request_info():
+    app.logger.debug('Headers: %s', request.headers)
+    app.logger.debug('Body: %s', request.get_data())
+
+@app.after_request
+def after(response):
+    # todo with response
+    print(response.status)
+    print(response.headers)
+    print(response.get_data())
+    return response
 
 @app.route("/favicon.ico")
 def favicon():
@@ -87,12 +98,12 @@ def get_record(uid):
     # if record is not None:
     #     return make_response(jsonify(json.loads(record["data"])), 201)
     # else:
-    #template = json.loads(template_str)
+    # template = json.loads(template_str)
     template = request.json
 
     node = get_node_by_uid(uid)
     if node is not None:
-        data = nested_json(node, template)
+        data = build_next_json(node, template)
         # print(data)
         # add_record_to_collection(uid, data, "data")
         get_all_records_from_collection("data")
@@ -102,6 +113,7 @@ def get_record(uid):
             return make_response(jsonify(message="Some error occurred"), 404)
     else:
         return make_response(jsonify(message="Node doesn't exists"), 404)
+
 
 @app.route("/schema/<uid>", methods=["GET"])
 @cross_origin()
@@ -205,9 +217,6 @@ def get_schema(uid):
     #     "E52_Time_Span": {
     #         "has_value": "DataObject"}
     # }
-    # todo descomentar isto
-    #template = json.loads(template_str)
-
 
     # template = {
     #     "E52_Time_Span": {
@@ -242,25 +251,18 @@ def get_templates_from_entity(uid):
         return make_response(jsonify(message="Node doesn't exists"), 404)
 
 
-# @app.route("/create", methods=["POST"])
-# def create():
-#     return "create"
-
-# TODO Change Above
-
 # update node
 @app.route("/<uid>", methods=["POST"])
 @cross_origin()
 def response_update(uid):
     node = get_node_by_uid(uid)
     if node is not None:
-        #todo meter o template no body tambem
         data = request.json
         merged = updated_node(node, data['data'], data['template'])
         if merged:
-            #update_data_in_mongo(uid, node.encodeJSON())
-            #get_all_records_from_collection("data")
-            new_data = nested_json(node, data['template'])
+            # update_data_in_mongo(uid, node.encodeJSON())
+            # get_all_records_from_collection("data")
+            new_data = build_next_json(node, data['template'])
             return make_response(jsonify(new_data), 201)
         else:
             return make_response(jsonify(message="Unsaved node"), 404)
@@ -312,6 +314,9 @@ def search_specific(class_name, query):
 # json = read_file("../Utils/defaultTemplates.json")
 # populate_template_collection(json)
 # get_all_records_from_collection("createdTemplate")
-
 if __name__ == "__main__":
-    app.run(host='0.0.0.0')
+    if args.host is not None and args.host != "":
+        app.logger.debug('Archgraph running with a custom host setting: %s', args.host)
+        app.run(host=args.host)
+    else:
+        app.run(host='127.0.0.1')
