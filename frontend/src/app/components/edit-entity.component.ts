@@ -30,6 +30,7 @@ export class EditEntityComponent implements OnInit {
     data: {},
     layout: []
   };
+  inName = 'Production Time';
 
   goBack() {
     this.location.back();
@@ -56,11 +57,14 @@ export class EditEntityComponent implements OnInit {
       .subscribe(returnedSchema => {
 
         this.form.layout = [];
+        console.log('Schema being returned:');
         console.log(returnedSchema);
         this.form.schema = this.refactorSchema(returnedSchema);
+        console.log('Refactored Schema');
+        console.log(this.form.schema);
         this.form.layout = ['*'];
 
-        this.getDataNodeWithTemplate(this.uid)
+        this.getDataNodeWithTemplate(this.uid);
         //  this.load = true;
       });
   }
@@ -70,6 +74,12 @@ export class EditEntityComponent implements OnInit {
       .subscribe(result => {
         this.form.data[this.uid] = result;
         console.log(result);
+        console.log('Form Data');
+        console.log(this.form.data);
+        console.log('ALl Form');
+        console.log(this.form.data[this.uid]);
+        console.log(this.form.data[this.uid].name);
+        this.inName = this.form.data[this.uid].name;
         this.load = true;
       });
   }
@@ -78,10 +88,13 @@ export class EditEntityComponent implements OnInit {
     const ref = jsonSchema.$ref;
     const path = ref.split('/');
     const schemaName = path[2];
+
+    const enName = schemaName.replace('Schema', '');
+    const finalName = enName.replace(/_/g, ' ');
     const properties = {};
     properties[this.uid] = {
       $ref: ref,
-      title: 'New relationship'
+      title: 'Editing ' + finalName + ' - ' + this.inName
     };
     jsonSchema.properties = properties;
     jsonSchema.desc = 'Description';

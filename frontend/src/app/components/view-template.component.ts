@@ -41,6 +41,7 @@ export class ViewTemplateComponent implements OnInit {
   private getTemplatesFromEntity(uid: string) {
     this.service.getTemplatesFromEntity(uid)
       .subscribe(templates => {
+        console.log(templates);
         let index = 1;
         if (templates["message"]) {
           this.hasTemplate = false
@@ -82,5 +83,16 @@ export class ViewTemplateComponent implements OnInit {
     //this.route.navigate([this.uid], { queryParams: { template: "this.template" }});
 
 
+  }
+
+  editTemplate() {
+    this.route.navigate(['/edit-template/', this.uid],
+      {
+        queryParams:
+          {
+            template: JSON.stringify(this.template)
+          }
+      }
+    );
   }
 }

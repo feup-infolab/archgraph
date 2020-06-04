@@ -93,3 +93,4 @@ class E1_CRM_Entity(StructuredNode, SuperClass):
             schema = E1_CRM_EntitySchema()
 
         SuperClass.__init__(self, schema)
+

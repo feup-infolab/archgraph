@@ -130,6 +130,7 @@ def add_record_to_collection(uid, data, collection):
 def get_all_records_from_collection(collection):
     records = db[collection].find({})
     for record in records:
+        print("Obtained Records")
         print(record)
     return records
 

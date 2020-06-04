@@ -21,11 +21,15 @@ export class MyServiceService {
   }
 
   getDataNodeWithTemplate( uid: string, template: object): Observable<any[]> {
-    return this.http.post<any[]>(this.baseUrl + "withtemplate/" + uid, template) ;
+    return this.http.post<any[]>(this.baseUrl + 'withtemplate/' + uid, template) ;
+  }
+
+    getBaseDataNodeWithTemplate( uid: string): Observable<any[]> {
+    return this.http.get<any[]>(this.baseUrl + 'withtemplate/' + uid);
   }
 
   getTemplatesFromEntity( uid: string): Observable<any[]> {
-        return this.http.get<any[]>(this.baseUrl + "templatesfromentity/" + uid);
+        return this.http.get<any[]>(this.baseUrl + 'templatesfromentity/' + uid);
   }
 
 
@@ -34,9 +38,9 @@ export class MyServiceService {
   }
 
   getSpecificSearchJson(entity: string, search: string): Observable<any[]> {
-    if(search == "" ){
+    if (search === '') {
           return this.http.get<any[]>(this.baseUrl + 'search_specific' + '/' + entity);
-    }else {
+    } else {
       return this.http.get<any[]>(this.baseUrl + 'search_specific' + '/' + entity + '/' + search);
     }
   }
@@ -51,6 +55,18 @@ export class MyServiceService {
     return this.http.post<Schema>(this.baseUrl + 'schemawithtemplate' + '/' + uid, template);
   }
 
+  getBaseSchemaNodeWithTemplate(uid: string): Observable<Schema> {
+    return this.http.get<Schema>(this.baseUrl + 'template' + '/' + uid);
+  }
+
+  geAllSchemaProperties(uid: string): Observable<Schema> {
+    return this.http.get<Schema>(this.baseUrl + 'getallproperties' + '/' + uid);
+  }
+
+  getTemplate(): Observable<any[]> {
+    return this.http.get<any[]>(this.baseUrl + 'obtainschema');
+  }
+
   sendNode(data, template): Observable<any> {
     const uid = Object.keys(data)[0];
     const body = {
@@ -59,6 +75,14 @@ export class MyServiceService {
     };
 
     return this.http.post<any>(this.baseUrl + uid,  body);
+  }
+
+   sendTemplate(uid, template): Observable<any> {
+    return this.http.post<any>(this.baseUrl + 'inserttemplate' + '/' + uid, template);
+  }
+
+  postTemplate(template): Observable<any> {
+    return this.http.post<any>(this.baseUrl + 'post_template' , template);
   }
 
   constructor(private http: HttpClient) {

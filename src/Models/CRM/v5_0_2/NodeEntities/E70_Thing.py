@@ -19,10 +19,15 @@ from src.GCF.decorators.OntologyClass import decorator_schema
 @decorator_schema
 class E70_ThingSchema(E77_Persistent_ItemSchema):
     P130_shows_features_of = fields.List(
-        fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E70_Thing.E70_ThingSchema")
+        fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E70_Thing.E70_ThingSchema",
+                      exclude=("P101_had_as_general_use",))
     )
-    # P101_had_as_general_use = fields.List(fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E55_Type.E55_TypeSchema"))
-    # P43_has_dimension = fields.List(fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E54_Dimension.E54_DimensionSchema"))
+    P101_had_as_general_use = fields.List(
+        fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E55_Type.E55_TypeSchema",
+                      exclude=("P101_had_as_general_use",))
+    )
+    #P43_has_dimension = fields.List(fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E54_Dimension.E54_DimensionSchema"))
+
 
 
 class E70_Thing(E77_Persistent_Item):
