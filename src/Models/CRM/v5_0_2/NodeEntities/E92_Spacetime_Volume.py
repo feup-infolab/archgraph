@@ -1,6 +1,9 @@
 from marshmallow import fields
 from neomodel import One, RelationshipTo, ZeroOrOne
-from src.Models.CRM.v5_0_2.NodeEntities.E1_CRM_Entity import E1_CRM_Entity, E1_CRM_EntitySchema
+from src.Models.CRM.v5_0_2.NodeEntities.E1_CRM_Entity import (
+    E1_CRM_Entity,
+    E1_CRM_EntitySchema,
+)
 from src.Models.CRM.v5_0_2.NodeProperties.P10_falls_within import P10_falls_within
 from src.Models.CRM.v5_0_2.NodeProperties.P132_spatiotemporally_overlaps_with import (
     P132_spatiotemporally_overlaps_with,
@@ -19,20 +22,28 @@ from src.GCF.decorators.OntologyClass import decorator_schema
 
 @decorator_schema
 class E92_Spacetime_VolumeSchema(E1_CRM_EntitySchema):
-    falls_within = fields.List(fields.Nested(
-        "src.Models.CRM.v5_0_2.NodeEntities.E92_Spacetime_Volume.E92_Spacetime_VolumeSchema")
+    falls_within = fields.List(
+        fields.Nested(
+            "src.Models.CRM.v5_0_2.NodeEntities.E92_Spacetime_Volume.E92_Spacetime_VolumeSchema"
+        )
     )
-    spatiotemporally_overlaps_with = fields.List(fields.Nested(
-        "src.Models.CRM.v5_0_2.NodeEntities.E92_Spacetime_Volume.E92_Spacetime_VolumeSchema")
+    spatiotemporally_overlaps_with = fields.List(
+        fields.Nested(
+            "src.Models.CRM.v5_0_2.NodeEntities.E92_Spacetime_Volume.E92_Spacetime_VolumeSchema"
+        )
     )
-    spatiotemporally_separated_from = fields.List(fields.Nested(
-        "src.Models.CRM.v5_0_2.NodeEntities.E92_Spacetime_Volume.E92_Spacetime_VolumeSchema")
+    spatiotemporally_separated_from = fields.List(
+        fields.Nested(
+            "src.Models.CRM.v5_0_2.NodeEntities.E92_Spacetime_Volume.E92_Spacetime_VolumeSchema"
+        )
     )
-    has_temporal_projection = fields.List(fields.Nested(
-        "src.Models.CRM.v5_0_2.NodeEntities.E52_Time_Span.E52_Time_SpanSchema")
+    has_temporal_projection = fields.List(
+        fields.Nested(
+            "src.Models.CRM.v5_0_2.NodeEntities.E52_Time_Span.E52_Time_SpanSchema"
+        )
     )
-    has_spatial_projection = fields.List(fields.Nested(
-        "src.Models.CRM.v5_0_2.NodeEntities.E53_Place.E53_PlaceSchema")
+    has_spatial_projection = fields.List(
+        fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E53_Place.E53_PlaceSchema")
     )
 
 

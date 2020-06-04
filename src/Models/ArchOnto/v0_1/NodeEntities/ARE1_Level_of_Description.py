@@ -8,11 +8,13 @@ from src.Models.CRM.v5_0_2.NodeEntities.E55_Type import E55_Type, E55_TypeSchema
 class ARE1_Level_of_DescriptionSchema(E55_TypeSchema):
     upper_level = fields.List(
         fields.Nested(
-            "src.Models.ArchOnto.v0_1.NodeEntities.ARE1_Level_of_Description.ARE1_Level_of_DescriptionSchema",)
+            "src.Models.ArchOnto.v0_1.NodeEntities.ARE1_Level_of_Description.ARE1_Level_of_DescriptionSchema",
+        )
     )
     lower_level = fields.List(
         fields.Nested(
-            "src.Models.ArchOnto.v0_1.NodeEntities.ARE1_Level_of_Description.ARE1_Level_of_DescriptionSchema",)
+            "src.Models.ArchOnto.v0_1.NodeEntities.ARE1_Level_of_Description.ARE1_Level_of_DescriptionSchema",
+        )
     )
 
 
@@ -33,4 +35,3 @@ class ARE1_Level_of_Description(E55_Type):
             schema = ARE1_Level_of_DescriptionSchema()
 
         super().__init__(schema, *args, **kwargs)
-

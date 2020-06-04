@@ -12,11 +12,15 @@ from src.GCF.decorators.OntologyClass import decorator_schema
 
 @decorator_schema
 class E99_Product_TypeSchema(E55_TypeSchema):
-    requires_production_tool = fields.List(fields.Nested(
-        "src.Models.CRM.v5_0_2.NodeEntities.E19_Physical_Object.E19_Physical_ObjectSchema")
+    requires_production_tool = fields.List(
+        fields.Nested(
+            "src.Models.CRM.v5_0_2.NodeEntities.E19_Physical_Object.E19_Physical_ObjectSchema"
+        )
     )
-    has_production_plan = fields.List(fields.Nested(
-        "src.Models.CRM.v5_0_2.NodeEntities.E29_Design_or_Procedure.E29_Design_or_ProcedureSchema")
+    has_production_plan = fields.List(
+        fields.Nested(
+            "src.Models.CRM.v5_0_2.NodeEntities.E29_Design_or_Procedure.E29_Design_or_ProcedureSchema"
+        )
     )
 
 

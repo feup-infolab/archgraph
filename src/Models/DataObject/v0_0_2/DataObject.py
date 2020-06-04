@@ -1,8 +1,8 @@
-
 from marshmallow import Schema, fields
 from neomodel import StringProperty, StructuredNode, UniqueIdProperty
 from src.GCF.decorators.OntologyClass import decorator_schema
 from src.Models.DataObject.v0_0_2.SuperClass import SuperClass
+
 
 @decorator_schema
 class DataObjectSchema(Schema):
@@ -20,6 +20,3 @@ class DataObject(StructuredNode, SuperClass):
             schema = DataObjectSchema()
 
         SuperClass.__init__(self, schema)
-
-
-

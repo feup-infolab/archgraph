@@ -3,7 +3,8 @@ from neomodel import RelationshipTo
 
 from src.Models.CRM.v5_0_2.NodeEntities.E73_Information_Object import (
     E73_Information_Object,
-    E73_Information_ObjectSchema)
+    E73_Information_ObjectSchema,
+)
 from src.Models.CRM.v5_0_2.NodeProperties.P65_shows_visual_item import (
     P65_shows_visual_item,
 )

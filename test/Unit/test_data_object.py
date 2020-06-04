@@ -7,7 +7,14 @@ from src.Models.DataObject.v0_0_2.String import String
 from neomodel import config
 from src.GCF.utils.db import clean_database
 
-config.DATABASE_URL = "bolt://neo4j:password@localhost:7687"
+import src.Utils.EnvVarManager as EnvVarManager
+
+config.DATABASE_URL = (
+    "bolt://neo4j:password@"
+    + EnvVarManager.get_from_env_or_return_default("NEO4J_HOST", "127.0.0.1")
+    + ":"
+    + EnvVarManager.get_from_env_or_return_default("NEO4J_PORT", "27017")
+)
 clean_database()
 
 
