@@ -8,7 +8,7 @@ from src.Models.CRM.v5_0_2.NodeProperties.P165_incorporates import P165_incorpor
 from src.GCF.decorators.OntologyClass import decorator_schema
 
 
-#todo
+# todo
 @decorator_schema
 class E73_Information_ObjectSchema(E90_Symbolic_ObjectSchema):
     incorporates = fields.List(fields.Nested(

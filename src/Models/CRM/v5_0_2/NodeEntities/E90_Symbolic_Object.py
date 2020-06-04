@@ -8,7 +8,7 @@ from src.Models.CRM.v5_0_2.NodeProperties.P106_is_composed_of import P106_is_com
 from src.GCF.decorators.OntologyClass import decorator_schema
 
 
-#todo
+# todo
 @decorator_schema
 class E90_Symbolic_ObjectSchema(E28_Conceptual_ObjectSchema):
     P106_is_composed_of = fields.List(

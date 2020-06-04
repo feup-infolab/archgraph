@@ -7,7 +7,7 @@ from src.Models.CRM.v5_0_2.NodeProperties.P103_was_intended_for import (
 from src.GCF.decorators.OntologyClass import decorator_schema
 
 
-#todo
+# todo
 @decorator_schema
 class E71_Human_Made_ThingSchema(E70_ThingSchema):
     pass

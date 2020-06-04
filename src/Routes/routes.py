@@ -45,6 +45,7 @@ def log_request_info():
     app.logger.debug('Headers: %s', request.headers)
     app.logger.debug('Body: %s', request.get_data())
 
+
 @app.after_request
 def after(response):
     # todo with response
@@ -52,6 +53,7 @@ def after(response):
     print(response.headers)
     print(response.get_data())
     return response
+
 
 @app.route("/favicon.ico")
 def favicon():

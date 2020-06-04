@@ -15,7 +15,7 @@ from src.Models.CRM.v5_0_2.NodeProperties.P130_shows_features_of import (
 from src.GCF.decorators.OntologyClass import decorator_schema
 
 
-#todo
+# todo
 @decorator_schema
 class E70_ThingSchema(E77_Persistent_ItemSchema):
     P130_shows_features_of = fields.List(
