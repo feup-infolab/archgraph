@@ -42,7 +42,7 @@ class SuperClass:
     def get_all_properties_from_entity(self):
         schema_node = self.getSchema()
         class_name = self.__class__.__name__ + "Schema"
-        return schema_node['definitions'][class_name]['properties']
+        return schema_node["definitions"][class_name]["properties"]
 
     """The function returns its superclasses names"""
 

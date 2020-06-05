@@ -29,7 +29,7 @@ config.DATABASE_URL = (
     "bolt://neo4j:password@"
     + EnvVarManager.get_from_env_or_return_default("NEO4J_HOST", "127.0.0.1")
     + ":"
-    + EnvVarManager.get_from_env_or_return_default("NEO4J_PORT", "27017")
+    + EnvVarManager.get_from_env_or_return_default("NEO4J_PORT", "7687")
 )
 
 from src.Routes.mongo import (
@@ -44,7 +44,7 @@ app = Flask(__name__)
 CORS(app)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
 app = Flask(__name__, static_url_path="")
-app.config['JSON_SORT_KEYS'] = False
+app.config["JSON_SORT_KEYS"] = False
 app.debug = True
 
 
@@ -52,7 +52,6 @@ app.debug = True
 def log_request_info():
     app.logger.debug("Headers: %s", request.headers)
     app.logger.debug("Body: %s", request.get_data())
-
 
 
 @app.after_request
@@ -145,11 +144,11 @@ def insert_template_in_mongodb(uid):
     #     "E52_Time_Span": {
     #         "P86_falls_within": "E52_Time_Span"}
     # }
-    #template = {
+    # template = {
     #    "E52_Time_Span": {
     #        "has_value": "DataObject",
     #    }
-    #}
+    # }
     if node is not None:
         schema_of_node = node.get_schema_with_template(template)
         classes_name = node.get_superclasses_name()
@@ -169,9 +168,7 @@ def insert_template_in_mongodb(uid):
 @cross_origin()
 def response_create_node_with_template(uid):
     node = get_node_by_uid(uid)
-    template = {
-        "E52_Time_Span": {}
-    }
+    template = {"E52_Time_Span": {}}
     if node is not None:
         result = nested_json(node, template)
         if result is not None:
@@ -188,9 +185,7 @@ def response_create_node_with_template(uid):
 @cross_origin()
 def create_base_schema_node_with_template(uid):
     node = get_node_by_uid(uid)
-    template = {
-        "E52_Time_Span": {}
-    }
+    template = {"E52_Time_Span": {}}
     if node is not None:
         result = node.get_schema_with_template(template)
         return make_response(jsonify(result), 201)
@@ -212,11 +207,8 @@ def get_all_node_properties(uid):
 @app.route("/obtainschema", methods=["GET"])
 @cross_origin()
 def get_template():
-    template = {
-        "E52_Time_Span": {}
-    }
+    template = {"E52_Time_Span": {}}
     return make_response(jsonify(template), 201)
-
 
 
 @app.route("/schemawithtemplate/<uid>", methods=["POST"])
@@ -253,7 +245,9 @@ def get_templates_from_entity(uid):
         classes_name = node.get_superclasses_name()
         templates = get_templates_from_mongo_by_classes_name(classes_name)
         if templates is None:
-            return make_response(jsonify(message="Don't have templates for this entity"), 200)
+            return make_response(
+                jsonify(message="Don't have templates for this entity"), 200
+            )
         else:
             test = jsonify(templates)
             return make_response(test, 201)

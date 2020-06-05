@@ -299,7 +299,7 @@ uri = (
     "bolt://neo4j:password@"
     + EnvVarManager.get_from_env_or_return_default("NEO4J_HOST", "127.0.0.1")
     + ":"
-    + EnvVarManager.get_from_env_or_return_default("NEO4J_PORT", "27017")
+    + EnvVarManager.get_from_env_or_return_default("NEO4J_PORT", "7687")
 )
 
 driver = None

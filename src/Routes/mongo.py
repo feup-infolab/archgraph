@@ -12,7 +12,9 @@ client = MongoClient(
     host=EnvVarManager.get_from_env_or_return_default("MONGODB_HOST", "localhost"),
     port=int(EnvVarManager.get_from_env_or_return_default("MONGODB_PORT", "27017")),
     username=EnvVarManager.get_from_env_or_return_default("MONGODB_USERNAME", "root"),
-    password=EnvVarManager.get_from_env_or_return_default("MONGODB_PASSWORD", "rootpassword"),
+    password=EnvVarManager.get_from_env_or_return_default(
+        "MONGODB_PASSWORD", "rootpassword"
+    ),
     connectTimeoutMS=120000,
 )
 db = client.mydatabase
