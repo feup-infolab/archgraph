@@ -19,7 +19,7 @@ nvm use v10
 
 # install frontend stuff
 cd "$ROOT_DIR/frontend"
-npm install -g npm@latest
+npm install -g npm@6.14.4
 npm config set python "$PYTHON27_PATH"
 npm install
 echo "Current directory: $(pwd)"
