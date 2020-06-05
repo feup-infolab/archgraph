@@ -8,7 +8,6 @@ class E34_InscriptionSchema(E37_MarkSchema):
 
 
 class E34_Inscription(E37_Mark):
-
     def __init__(self, schema=None, *args, **kwargs):
         if schema is None:
             schema = E34_InscriptionSchema()

@@ -1,24 +1,45 @@
 import datetime
 import unittest
 
-from src.Models.CRM.v5_0_2.NodeEntities.E10_Transfer_of_Custody import E10_Transfer_of_Custody
+from src.Models.CRM.v5_0_2.NodeEntities.E10_Transfer_of_Custody import (
+    E10_Transfer_of_Custody,
+)
 from src.Models.CRM.v5_0_2.NodeEntities.E11_Modification import E11_Modification
-from src.Models.CRM.v5_0_2.NodeEntities.E13_Attribute_Assignment import E13_Attribute_Assignment
-from src.Models.CRM.v5_0_2.NodeEntities.E14_Condition_Assessment import E14_Condition_Assessment
-from src.Models.CRM.v5_0_2.NodeEntities.E15_Identifier_Assignment import E15_Identifier_Assignment
+from src.Models.CRM.v5_0_2.NodeEntities.E13_Attribute_Assignment import (
+    E13_Attribute_Assignment,
+)
+from src.Models.CRM.v5_0_2.NodeEntities.E14_Condition_Assessment import (
+    E14_Condition_Assessment,
+)
+from src.Models.CRM.v5_0_2.NodeEntities.E15_Identifier_Assignment import (
+    E15_Identifier_Assignment,
+)
 from src.Models.CRM.v5_0_2.NodeEntities.E16_Measurement import E16_Measurement
 from src.Models.CRM.v5_0_2.NodeEntities.E17_Type_Assignment import E17_Type_Assignment
 from src.Models.CRM.v5_0_2.NodeEntities.E19_Physical_Object import E19_Physical_Object
-from src.Models.CRM.v5_0_2.NodeEntities.E20_Biological_Object import E20_Biological_Object
+from src.Models.CRM.v5_0_2.NodeEntities.E20_Biological_Object import (
+    E20_Biological_Object,
+)
 from src.Models.CRM.v5_0_2.NodeEntities.E21_Person import E21_Person
-from src.Models.CRM.v5_0_2.NodeEntities.E3_Condition_State import E3_Condition_StateSchema, E3_Condition_State
+from src.Models.CRM.v5_0_2.NodeEntities.E3_Condition_State import (
+    E3_Condition_StateSchema,
+    E3_Condition_State,
+)
 from src.Models.CRM.v5_0_2.NodeEntities.E4_Period import E4_Period
 from src.Models.CRM.v5_0_2.NodeEntities.E5_Event import E5_Event
 from src.Models.CRM.v5_0_2.NodeEntities.E6_Destruction import E6_Destruction
 from src.Models.CRM.v5_0_2.NodeEntities.E8_Acquisition import E8_Acquisition
 from src.Models.CRM.v5_0_2.NodeEntities.E9_Move import E9_Move
-from src.Routes.mongo import get_all_records_from_collection, insert_default_templates, delete_collection
-from src.Utils.Utils import build_next_json, find_name_of_classes_in_project, find_name_of_schema_classes_in_project
+from src.Routes.mongo import (
+    get_all_records_from_collection,
+    insert_default_templates,
+    delete_collection,
+)
+from src.Utils.Utils import (
+    build_next_json,
+    find_name_of_classes_in_project,
+    find_name_of_schema_classes_in_project,
+)
 
 from src.Models.ArchOnto.v0_1.NodeEntities.ARE2_Formal_Title import ARE2_Formal_Title
 from src.Models.CRM.v5_0_2.NodeEntities.E12_Production import E12_Production
@@ -69,7 +90,15 @@ from src.Utils.JsonEncoder import (
 
 clean_database()
 
-config.DATABASE_URL = "bolt://neo4j:password@localhost:7687"
+import src.Utils.EnvVarManager as EnvVarManager
+
+config.DATABASE_URL = (
+    "bolt://neo4j:password@"
+    + EnvVarManager.get_from_env_or_return_default("NEO4J_HOST", "127.0.0.1")
+    + ":"
+    + EnvVarManager.get_from_env_or_return_default("NEO4J_PORT", "7687")
+)
+
 # ref = list_indexes()
 # if ref[0].__len__() != 0:
 try:
@@ -412,28 +441,17 @@ class TestNeoModel(unittest.TestCase):
         # result3 = json.dumps(nested_json(thing, json3))
         # print(result3)
 
-        json1 = {
-            "E18_Physical_Thing":
-                {"P46_is_composed_of": "E18_Physical_Thing"}
-        }
+        json1 = {"E18_Physical_Thing": {"P46_is_composed_of": "E18_Physical_Thing"}}
 
         result1 = json.dumps(build_next_json(e18, json1))
         print(result1)
 
         json2 = {
-            "E2_Temporal_Entity":
-                {"P4_has_time_span": {
-                    "E52_Time_Span":
-                        {"has_value": "DataObject"}
-
-                }
-                }
+            "E2_Temporal_Entity": {
+                "P4_has_time_span": {"E52_Time_Span": {"has_value": "DataObject"}}
+            }
         }
-        json2_1 = {
-            "E52_Time_Span":
-                {"has_value": "DataObject"}
-
-        }
+        json2_1 = {"E52_Time_Span": {"has_value": "DataObject"}}
         result2 = json.dumps(build_next_json(e52, json2_1))
         print(result2)
 
@@ -442,73 +460,69 @@ class TestNeoModel(unittest.TestCase):
 
     def test_schema_with_template(self):
 
-        json1 = {
-            "E18_Physical_Thing":
-                {"P46_is_composed_of": "E18_Physical_Thing"}
-        }
+        json1 = {"E18_Physical_Thing": {"P46_is_composed_of": "E18_Physical_Thing"}}
 
         e18.get_schema_with_template(json1)
 
         json2 = {
-            "E2_Temporal_Entity":
-                {"P4_has_time_span": {
-                    "E52_Time_Span":
-                        {"has_value": "DataObject"}
-
-                }
-                }
+            "E2_Temporal_Entity": {
+                "P4_has_time_span": {"E52_Time_Span": {"has_value": "DataObject"}}
+            }
         }
 
-        json2_1 = {
-            "E52_Time_Span":
-                {"has_value": "DataObject"}
-
-        }
+        json2_1 = {"E52_Time_Span": {"has_value": "DataObject"}}
         e2.get_schema_with_template(json2)
         e52.get_schema_with_template(json2_1)
 
     # def test_generate_schema(self):
-        # delete_collection("defaultTemplate")
-        # templates = []
-        # classes_schema = find_name_of_schema_classes_in_project(classes_name)
-        # if classes_schema:
-        #     classes = find_name_of_classes_in_project(classes_name)
-        #     if classes:
-        #         for i in range(len(classes_schema)):
-        #              templates.append(classes_schema[i]().generate_default_template(classes[i]))
-        #         insert_default_templates(templates)
-        # get_all_records_from_collection("defaultTemplate")
+    # delete_collection("defaultTemplate")
+    # templates = []
+    # classes_schema = find_name_of_schema_classes_in_project(classes_name)
+    # if classes_schema:
+    #     classes = find_name_of_classes_in_project(classes_name)
+    #     if classes:
+    #         for i in range(len(classes_schema)):
+    #              templates.append(classes_schema[i]().generate_default_template(classes[i]))
+    #         insert_default_templates(templates)
+    # get_all_records_from_collection("defaultTemplate")
 
     def test_insert_template(self):
         delete_collection("defaultTemplate")
         ##---------------------Templates to E52_Time_Span -----------------
-        template = {
-            "E52_Time_Span": {
-                "has_value": "DataObject",
-            }
-        }
-        template3 = {'E52_Time_Span': {}}
-        class_name = ['E52_Time_Span', 'E1_CRM_Entity']
+        template = {"E52_Time_Span": {"has_value": "DataObject",}}
+        template3 = {"E52_Time_Span": {}}
+        class_name = ["E52_Time_Span", "E1_CRM_Entity"]
         schema = e52.get_schema_with_template(template)
         schema3 = e52.get_schema_with_template(template3)
-        templates = [{"classes_name": class_name, "template": template, "schema": json.dumps(schema)},
-                     {"classes_name": class_name, "template": template3, "schema": json.dumps(schema3)}]
+        templates = [
+            {
+                "classes_name": class_name,
+                "template": template,
+                "schema": json.dumps(schema),
+            },
+            {
+                "classes_name": class_name,
+                "template": template3,
+                "schema": json.dumps(schema3),
+            },
+        ]
         insert_default_templates(templates)
-
 
         ##---------------------Templates to E2_Temporal_Entity ----------------
         template_E2 = {
-            "E2_Temporal_Entity":
-                {"P4_has_time_span": {
-                    "E52_Time_Span":
-                        {"has_value": "DataObject"}
-
-                }
-                }
+            "E2_Temporal_Entity": {
+                "P4_has_time_span": {"E52_Time_Span": {"has_value": "DataObject"}}
+            }
         }
-        class_name_E2 = ['E2_Temporal_Entity', 'E1_CRM_Entity']
+        class_name_E2 = ["E2_Temporal_Entity", "E1_CRM_Entity"]
         schemaE2 = e2.get_schema_with_template(template_E2)
-        templates_E2 = [{"classes_name": class_name_E2, "template": template_E2, "schema": json.dumps(schemaE2)}]
+        templates_E2 = [
+            {
+                "classes_name": class_name_E2,
+                "template": template_E2,
+                "schema": json.dumps(schemaE2),
+            }
+        ]
         insert_default_templates(templates_E2)
 
         get_all_records_from_collection("defaultTemplate")

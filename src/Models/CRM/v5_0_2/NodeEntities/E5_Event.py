@@ -7,13 +7,16 @@ from src.Models.CRM.v5_0_2.NodeProperties.P12_occurred_in_the_presence_of import
     P12_occurred_in_the_presence_of,
 )
 
+
 @decorator_schema
 class E5_EventSchema(E4_PeriodSchema):
-    had_participant = fields.List(fields.Nested(
-        "src.Models.CRM.v5_0_2.NodeEntities.E39_Actor.E39_ActorSchema")
+    had_participant = fields.List(
+        fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E39_Actor.E39_ActorSchema")
     )
-    occurred_in_the_presence_of = fields.List(fields.Nested(
-        "src.Models.CRM.v5_0_2.NodeEntities.E77_Persistent_Item.E77_Persistent_ItemSchema")
+    occurred_in_the_presence_of = fields.List(
+        fields.Nested(
+            "src.Models.CRM.v5_0_2.NodeEntities.E77_Persistent_Item.E77_Persistent_ItemSchema"
+        )
     )
     pass
 

@@ -6,7 +6,6 @@ class ARE8_RoleSchema(E55_TypeSchema):
 
 
 class ARE8_Role(E55_Type):
-
     def __init__(self, schema=None, *args, **kwargs):
         if schema is None:
             schema = ARE8_RoleSchema()

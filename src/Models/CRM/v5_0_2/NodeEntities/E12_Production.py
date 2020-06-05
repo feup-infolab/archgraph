@@ -1,17 +1,19 @@
 from marshmallow import fields
 from neomodel import RelationshipTo
 from src.GCF.decorators.OntologyClass import decorator_schema
-from src.Models.CRM.v5_0_2.NodeEntities.E11_Modification import E11_Modification, E11_ModificationSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E11_Modification import (
+    E11_Modification,
+    E11_ModificationSchema,
+)
 from src.Models.CRM.v5_0_2.NodeEntities.E99_Product_Type import E99_Product_TypeSchema
 from src.Models.CRM.v5_0_2.NodeProperties.P186_produced_thing_of_product_type import (
     P186_produced_thing_of_product_type,
 )
 
+
 @decorator_schema
 class E12_ProductionSchema(E11_ModificationSchema):
-    produced_thing_of_product_type = fields.List(fields.Nested(
-        E99_Product_TypeSchema)
-    )
+    produced_thing_of_product_type = fields.List(fields.Nested(E99_Product_TypeSchema))
 
 
 class E12_Production(E11_Modification):

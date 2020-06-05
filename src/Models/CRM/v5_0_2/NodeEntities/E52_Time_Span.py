@@ -12,9 +12,18 @@ from src.GCF.decorators.OntologyClass import decorator_schema, ontology_class
 @decorator_schema
 class E52_Time_SpanSchema(E1_CRM_EntitySchema):
     date = fields.Date(required=True)
-    P86_falls_within = fields.List(fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E52_Time_Span.E52_Time_SpanSchema"))
-    P191_had_duration = fields.List(fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E54_Dimension.E54_DimensionSchema"))
+    P86_falls_within = fields.List(
+        fields.Nested(
+            "src.Models.CRM.v5_0_2.NodeEntities.E52_Time_Span.E52_Time_SpanSchema"
+        )
+    )
+    P191_had_duration = fields.List(
+        fields.Nested(
+            "src.Models.CRM.v5_0_2.NodeEntities.E54_Dimension.E54_DimensionSchema"
+        )
+    )
     #
+
 
 # todo
 class E52_Time_Span(E1_CRM_Entity):
