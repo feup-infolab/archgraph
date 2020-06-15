@@ -1,2 +1,39 @@
+<mat-accordion>
 
-<mat-slider min="1" max="100" step="1" value="1"></mat-slider>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Title
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <mat-form-field>
+      <mat-label>Title Name</mat-label>
+      <input matInput [value]="titleName">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Type</mat-label>
+      <input matInput [value]=titleType >
+    </mat-form-field>
+
+  </mat-expansion-panel>
+
+  <mat-expansion-panel >
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Identifier
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <mat-form-field>
+      <mat-label>Identifier</mat-label>
+      <input matInput [value]=identifierName>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Type</mat-label>
+      <input matInput [value]=identifierType>
+    </mat-form-field>
+  </mat-expansion-panel>
+</mat-accordion>

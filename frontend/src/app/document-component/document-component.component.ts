@@ -25,13 +25,11 @@ export class DocumentComponentComponent implements OnInit {
     ]
   })
 
+  panelOpenState = false;
+
   @ViewChild(ComboBoxComponent) comboBoxReference;
   uid = '';
   name = 'Angular 7';
-  jsonFormOptions = {
-    loadExternalAssets: true,
-  };
-  schemaname = '';
   schema = {};
   data = {};
   load = false;
@@ -40,17 +38,14 @@ export class DocumentComponentComponent implements OnInit {
     data: {},
     layout: []
   };
-  props = [];
-  allprops = {};
 
   template = {};
 
-  chosenprops = [];
+  titleType = '';
+  titleName = '';
+  identifierName = '';
+  identifierType = '';
 
-  yourWidgets = {
-    submit: NoneComponent,
-  };
-  copyProp;
 
 
   ngOnInit() {
@@ -72,6 +67,15 @@ export class DocumentComponentComponent implements OnInit {
       .subscribe(returnedTemplate => {
         this.template = returnedTemplate;
         console.log(returnedTemplate);
+        this.identifierType = returnedTemplate.E22_Human_Made_Object.P1_is_identified_by[0];
+        this.identifierName = returnedTemplate.E22_Human_Made_Object.P1_is_identified_by[1];
+        this.titleType = returnedTemplate.E22_Human_Made_Object.P102_has_title[0];
+        this.titleName = returnedTemplate.E22_Human_Made_Object.P102_has_title[1];
+
+        console.log(this.identifierType);
+        console.log(this.identifierName);
+        console.log(this.titleType);
+        console.log(this.titleName);
       });
   }
 

@@ -319,11 +319,11 @@ def get_doc(uid):
     #node = get_node_by_uid(uid)
     template = {
         "E22_Human_Made_Object": {
-            "P102_has_title": ["ARE2_formal_title", "Título"],
-            "P1_is_identified_by ": ["Código de Referência", "PT/ADPRT"]
+            "P102_has_title": ["ARE2_formal_title", "Registo de Batismo"],
+            "P1_is_identified_by": ["Código de Referência", "PT /ADPRT"]
         }
     }
-    
+
     print(template)
     if template is not None:
         return make_response(jsonify(template), 201)
