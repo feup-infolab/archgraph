@@ -582,3 +582,28 @@ def find_name_of_schema_classes_in_project(classes_name):
         return None
     else:
         return schemas_classes
+
+
+def build_information_eva(node):
+    title = node.P102_has_title.all()[0]
+    registo =title.has_value.all()[0]
+    identifier = node.P1_is_identified_by.all()[0]
+    identifier_value = identifier.has_value.all()[0]
+    # todo
+    #identifier_type = node.P2_has_type.all()[0]
+    #codigo = identifier_type.has_value.all()[0]
+
+    result = {
+        "title": {
+            "value": registo.stringValue,
+            "type": "Formal"
+        },
+        "identifier": {
+            "value": identifier_value.stringValue,
+            "type": "codigo.stringValue"
+
+        }
+    }
+
+    return result
+

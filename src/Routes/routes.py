@@ -21,7 +21,7 @@ from flask_cors import CORS, cross_origin
 from neomodel import config
 
 from src.Utils.JsonEncoder import search_cidoc, search_specific_cidoc
-from src.Utils.Utils import get_node_by_uid, build_next_json, updated_node, make_result
+from src.Utils.Utils import get_node_by_uid, build_next_json, updated_node, make_result, build_information_eva
 
 import src.Utils.EnvVarManager as EnvVarManager
 
@@ -170,7 +170,7 @@ def response_create_node_with_template(uid):
     node = get_node_by_uid(uid)
     template = {"E52_Time_Span": {}}
     if node is not None:
-        result = nested_json(node, template)
+        result = build_next_json(node, template)
         if result is not None:
             print("ONE")
             print(result)
@@ -239,6 +239,7 @@ def get_schema(uid):
 @app.route("/templatesfromentity/<uid>", methods=["GET"])
 @cross_origin()
 def get_templates_from_entity(uid):
+    print("lindo")
     node = get_node_by_uid(uid)
     if node is not None:
         get_all_records_from_collection("createdTemplate")
@@ -251,6 +252,21 @@ def get_templates_from_entity(uid):
         else:
             test = jsonify(templates)
             return make_response(test, 201)
+    else:
+        return make_response(jsonify(message="Node doesn't exists"), 404)
+
+
+@app.route("/eva/<uid>", methods=["GET"])
+@cross_origin()
+def response_eva_view(uid):
+    node = get_node_by_uid(uid)
+    print("lindo")
+    if node is not None:
+        response = build_information_eva(node)
+        if response:
+            return make_response(jsonify(response), 201)
+        else:
+            make_response(jsonify(message="Node doesn't have information"), 404)
     else:
         return make_response(jsonify(message="Node doesn't exists"), 404)
 
