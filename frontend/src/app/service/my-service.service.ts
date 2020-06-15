@@ -85,6 +85,10 @@ export class MyServiceService {
     return this.http.post<any>(this.baseUrl + 'post_template' , template);
   }
 
+  getDocTemplate(uid): Observable<any> {
+    return this.http.post<any>(this.baseUrl + 'eva' + '/' + uid, uid);
+  }
+
   constructor(private http: HttpClient) {
 
     this.shareMethod$ = this.shareMethodSubject.asObservable();

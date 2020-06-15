@@ -14,7 +14,6 @@ def get_project_root():
 print("Archgraph running at " + get_project_root().as_posix())
 sys.path.append(get_project_root().as_posix())
 
-
 from flask import Flask, Response, jsonify, make_response, request, send_from_directory
 
 from flask_cors import CORS, cross_origin
@@ -24,6 +23,7 @@ from src.Utils.JsonEncoder import search_cidoc, search_specific_cidoc
 from src.Utils.Utils import get_node_by_uid, build_next_json, updated_node, make_result
 
 import src.Utils.ArgParser as ArgParser
+
 args = ArgParser.parse()
 
 if args.neo4j and args.neo4j != "":
@@ -31,7 +31,8 @@ if args.neo4j and args.neo4j != "":
 else:
     config.DATABASE_URL = "bolt://neo4j:password@localhost:7687"
 
-from src.Routes.mongo import insert_template_in_mongo, get_all_records_from_collection, get_schema_from_mongo, get_templates_from_mongo_by_classes_name
+from src.Routes.mongo import insert_template_in_mongo, get_all_records_from_collection, get_schema_from_mongo, \
+    get_templates_from_mongo_by_classes_name
 
 app = Flask(__name__)
 
@@ -41,10 +42,12 @@ app = Flask(__name__, static_url_path="")
 app.config['JSON_SORT_KEYS'] = False
 app.debug = True
 
+
 @app.before_request
 def log_request_info():
     app.logger.debug('Headers: %s', request.headers)
     app.logger.debug('Body: %s', request.get_data())
+
 
 @app.after_request
 def after(response):
@@ -53,6 +56,7 @@ def after(response):
     print(response.headers)
     print(response.get_data())
     return response
+
 
 @app.route("/favicon.ico")
 def favicon():
@@ -135,11 +139,11 @@ def insert_template_in_mongodb(uid):
     #     "E52_Time_Span": {
     #         "P86_falls_within": "E52_Time_Span"}
     # }
-    #template = {
+    # template = {
     #    "E52_Time_Span": {
     #        "has_value": "DataObject",
     #    }
-    #}
+    # }
     if node is not None:
         schema_of_node = node.get_schema_with_template(template)
         classes_name = node.get_superclasses_name()
@@ -206,7 +210,6 @@ def get_template():
         "E52_Time_Span": {}
     }
     return make_response(jsonify(template), 201)
-
 
 
 @app.route("/schemawithtemplate/<uid>", methods=["POST"])
@@ -308,6 +311,24 @@ def search_specific(class_name, query):
         return Response(make_result(result), mimetype="application/json", status=201)
     else:
         return make_response(jsonify(message="Failed Search"), 404)
+
+
+@app.route("/eva/<uid>", methods=["POST"])
+@cross_origin()
+def get_doc(uid):
+    #node = get_node_by_uid(uid)
+    template = {
+        "E22_Human_Made_Object": {
+            "P102_has_title": ["ARE2_formal_title", "Título"],
+            "P1_is_identified_by ": ["Código de Referência", "PT/ADPRT"]
+        }
+    }
+    
+    print(template)
+    if template is not None:
+        return make_response(jsonify(template), 201)
+    else:
+        make_response(jsonify(message="Template doesn't exists"), 404)
 
 
 # delete_collection("defaultTemplate")

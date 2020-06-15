@@ -13,16 +13,18 @@ import {ComboBoxComponent} from './combo-box/combo-box.component';
 import { RouterModule, Routes } from '@angular/router';
 import { EditEntityComponent } from './components/edit-entity.component';
 import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material';
+import {MatButtonModule, MatSliderModule} from '@angular/material';
 import { EditTemplateComponent } from './edit-template/edit-template.component';
 import { ViewTemplateComponent } from './components/view-template.component';
 import { LayoutComponent } from './components/layout.component';
+import { DocumentComponentComponent } from './document-component/document-component.component';
 
 const appRoutes: Routes = [
   { path: 'edit-template/:id', component: EditTemplateComponent },
   { path: ':uid', component: EditEntityComponent },
   { path: '', component: SearchComponent },
   { path: 'viewtemplate/:uid', component: ViewTemplateComponent },
+  { path: 'eva/:uid', component: DocumentComponentComponent}
 
 ];
 
@@ -35,7 +37,8 @@ const appRoutes: Routes = [
     EditEntityComponent,
     ViewTemplateComponent,
     LayoutComponent,
-    EditTemplateComponent
+    EditTemplateComponent,
+    DocumentComponentComponent
   ],
   imports: [
     RouterModule.forRoot(
@@ -52,7 +55,8 @@ const appRoutes: Routes = [
     NoopAnimationsModule,
     FlexLayoutModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatSliderModule
   ],
   providers: [MyServiceService],
   bootstrap: [ AppComponent ],
