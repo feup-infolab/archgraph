@@ -3,7 +3,7 @@ import json
 from marshmallow import Schema
 from marshmallow_jsonschema import JSONSchema
 
-#from src.Utils.Utils import find_name_of_classes_in_project
+# from src.Utils.Utils import find_name_of_classes_in_project
 
 
 def decorator_schema(cls):
@@ -11,7 +11,7 @@ def decorator_schema(cls):
         json_schema = JSONSchema()
         return json_schema.dump(self)
 
-    setattr(cls, 'getSchema', getSchema)
+    setattr(cls, "getSchema", getSchema)
 
     def get_labels(self, base_class):
         supper_classes_and_self_class = cls.mro()
@@ -23,7 +23,7 @@ def decorator_schema(cls):
                 labels.append(class_name.split("Schema")[0])
         return labels
 
-    setattr(cls, 'get_labels', get_labels)
+    setattr(cls, "get_labels", get_labels)
 
     def generate_default_template(self, class__):
         schema = self.getSchema()
@@ -38,7 +38,7 @@ def decorator_schema(cls):
         template = {
             "classes_name": classes_name,
             "template": template_aux,
-            "schema": json.dumps(schema)
+            "schema": json.dumps(schema),
         }
         for property_name in properties_of_entity:
             property = properties_of_entity[property_name]
@@ -58,14 +58,13 @@ def decorator_schema(cls):
             range_class_name = range_schema_class_name.split("Schema")[0]
             template_aux[class_name][title] = range_class_name
 
-
         schema = class__().get_schema_with_template(template_aux)
         template["schema"] = json.dumps(schema)
         print(schema)
 
         return template
 
-    setattr(cls, 'generate_default_template', generate_default_template)
+    setattr(cls, "generate_default_template", generate_default_template)
 
     return cls
 

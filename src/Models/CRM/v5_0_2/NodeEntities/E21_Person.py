@@ -2,15 +2,16 @@ from marshmallow import fields
 from neomodel import RelationshipTo
 from src.Models.CRM.v5_0_2.NodeEntities.E20_Biological_Object import (
     E20_Biological_Object,
-    E20_Biological_ObjectSchema)
+    E20_Biological_ObjectSchema,
+)
 from src.Models.CRM.v5_0_2.NodeProperties.P152_has_parent import P152_has_parent
 from src.GCF.decorators.OntologyClass import decorator_schema
 
 
 @decorator_schema
 class E21_PersonSchema(E20_Biological_ObjectSchema):
-    has_parent = fields.List(fields.Nested(
-        "src.Models.CRM.v5_0_2.NodeEntities.E21_Person.E21_PersonSchema")
+    has_parent = fields.List(
+        fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E21_Person.E21_PersonSchema")
     )
 
 

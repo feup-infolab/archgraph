@@ -1,6 +1,9 @@
 from marshmallow import fields
 from neomodel import RelationshipTo
-from src.Models.CRM.v5_0_2.NodeEntities.E92_Spacetime_Volume import E92_Spacetime_Volume, E92_Spacetime_VolumeSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E92_Spacetime_Volume import (
+    E92_Spacetime_Volume,
+    E92_Spacetime_VolumeSchema,
+)
 from src.Models.CRM.v5_0_2.NodeProperties.P164_during import P164_during
 from src.Models.CRM.v5_0_2.NodeProperties.P166_was_a_presence_of import (
     P166_was_a_presence_of,
@@ -11,14 +14,20 @@ from src.GCF.decorators.OntologyClass import decorator_schema
 
 @decorator_schema
 class E93_PresenceSchema(E92_Spacetime_VolumeSchema):
-    was_a_presence_of = fields.List(fields.Nested(
-        "src.Models.CRM.v5_0_2.NodeEntities.E92_Spacetime_Volume.E92_Spacetime_VolumeSchema")
+    was_a_presence_of = fields.List(
+        fields.Nested(
+            "src.Models.CRM.v5_0_2.NodeEntities.E92_Spacetime_Volume.E92_Spacetime_VolumeSchema"
+        )
     )
-    at = fields.List(fields.Nested(
-        "src.Models.CRM.v5_0_2.NodeEntities.E57_Material.E57_MaterialSchema")
+    at = fields.List(
+        fields.Nested(
+            "src.Models.CRM.v5_0_2.NodeEntities.E57_Material.E57_MaterialSchema"
+        )
     )
-    has_spatial_projection = fields.List(fields.Nested(
-        "src.Models.CRM.v5_0_2.NodeEntities.E52_Time_Span.E52_Time_SpanSchema")
+    has_spatial_projection = fields.List(
+        fields.Nested(
+            "src.Models.CRM.v5_0_2.NodeEntities.E52_Time_Span.E52_Time_SpanSchema"
+        )
     )
 
 

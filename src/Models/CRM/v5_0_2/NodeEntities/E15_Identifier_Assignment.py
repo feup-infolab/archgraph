@@ -3,7 +3,8 @@ from neomodel import RelationshipTo
 from src.GCF.decorators.OntologyClass import decorator_schema
 from src.Models.CRM.v5_0_2.NodeEntities.E13_Attribute_Assignment import (
     E13_Attribute_Assignment,
-    E13_Attribute_AssignmentSchema)
+    E13_Attribute_AssignmentSchema,
+)
 from src.Models.CRM.v5_0_2.NodeProperties.P37_assigned import P37_assigned
 from src.Models.CRM.v5_0_2.NodeProperties.P38_deassigned import P38_deassigned
 from src.Models.CRM.v5_0_2.NodeProperties.P142_used_constituent import (
@@ -13,14 +14,20 @@ from src.Models.CRM.v5_0_2.NodeProperties.P142_used_constituent import (
 
 @decorator_schema
 class E15_Identifier_AssignmentSchema(E13_Attribute_AssignmentSchema):
-    used_constituent = fields.List(fields.Nested(
-        "src.Models.CRM.v5_0_2.NodeEntities.E90_Symbolic_Object.E90_Symbolic_ObjectSchema")
+    used_constituent = fields.List(
+        fields.Nested(
+            "src.Models.CRM.v5_0_2.NodeEntities.E90_Symbolic_Object.E90_Symbolic_ObjectSchema"
+        )
     )
-    deassigned = fields.List(fields.Nested(
-        "src.Models.CRM.v5_0_2.NodeEntities.E42_Identifier.E42_IdentifierSchema")
+    deassigned = fields.List(
+        fields.Nested(
+            "src.Models.CRM.v5_0_2.NodeEntities.E42_Identifier.E42_IdentifierSchema"
+        )
     )
-    assigned = fields.List(fields.Nested(
-        "src.Models.CRM.v5_0_2.NodeEntities.E42_Identifier.E42_IdentifierSchema")
+    assigned = fields.List(
+        fields.Nested(
+            "src.Models.CRM.v5_0_2.NodeEntities.E42_Identifier.E42_IdentifierSchema"
+        )
     )
 
 

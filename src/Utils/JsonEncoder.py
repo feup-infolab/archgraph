@@ -270,10 +270,11 @@ def search_cidoc(query):
 
 
 def search_specific_cidoc(class_name, query):
-    #todo replace
+    # todo replace
     if query is None:
         results, meta = db.cypher_query(
-            "MATCH (n:" + class_name + ") RETURN n LIMIT 25")
+            "MATCH (n:" + class_name + ") RETURN n LIMIT 25"
+        )
     elif query.startswith('"') and query.endswith('"'):
         results, meta = db.cypher_query(
             "CALL db.index.fulltext.queryNodes('" + class_name + "','" + query + "')"

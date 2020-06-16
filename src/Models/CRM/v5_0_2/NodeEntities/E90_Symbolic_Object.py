@@ -2,18 +2,23 @@ from marshmallow import Schema, fields
 from neomodel import RelationshipTo
 from src.Models.CRM.v5_0_2.NodeEntities.E28_Conceptual_Object import (
     E28_Conceptual_Object,
-    E28_Conceptual_ObjectSchema)
-from src.Models.CRM.v5_0_2.NodeEntities.E72_Legal_Object import E72_Legal_Object, E72_Legal_ObjectSchema
+    E28_Conceptual_ObjectSchema,
+)
+from src.Models.CRM.v5_0_2.NodeEntities.E72_Legal_Object import (
+    E72_Legal_Object,
+    E72_Legal_ObjectSchema,
+)
 from src.Models.CRM.v5_0_2.NodeProperties.P106_is_composed_of import P106_is_composed_of
 from src.GCF.decorators.OntologyClass import decorator_schema
 
 
-#todo
+# todo
 @decorator_schema
 class E90_Symbolic_ObjectSchema(E28_Conceptual_ObjectSchema):
     P106_is_composed_of = fields.List(
         fields.Nested(
-            "src.Models.CRM.v5_0_2.NodeEntities.E90_Symbolic_Object.E90_Symbolic_ObjectSchema")
+            "src.Models.CRM.v5_0_2.NodeEntities.E90_Symbolic_Object.E90_Symbolic_ObjectSchema"
+        )
     )
 
 

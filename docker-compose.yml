@@ -3,7 +3,7 @@ version: '3.3'
 services:
   mongodb:
     container_name: archgraph-mongodb
-    image: mongo:latest
+    image: library/mongo:4.2.1
     command: ["--bind_ip_all"]
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
@@ -12,6 +12,8 @@ services:
       - "27017:27017"
     volumes:
       - ./volumes/mongodb:/data/db
+    networks:
+      - archgraph-docker-deployment
     restart: on-failure
   neo4j:
     container_name: archgraph-neo4j
@@ -26,30 +28,35 @@ services:
     networks:
       - archgraph-docker-deployment
     restart: on-failure
-  archgraph:
-      container_name: archgraph
-      image: feupinfolab/archgraph:latest
-      build:
-        dockerfile: Dockerfile
-        args:
-          SOURCE_BRANCH: master
-          PRELOAD_GRAPH: "1"
-        context: .
-      environment:
-        - "NEO4J_CONNECTION_STRING=bolt://neo4j:password@archgraph-neo4j:7687"
-        - "MONGODB_CONNECTION_STRING=mongodb://root:rootpassword@archgraph-mongodb:27017"
-        - "CUSTOM_HOST_FOR_SERVER_BIND=0.0.0.0"
-        - "RUN_IN_PRODUCTION=1"
-      ports:
-        - published: 4200
-          target: 4200
-        - published: 5000
-          target: 5000
-      depends_on:
-        - mongodb
-        - neo4j
-      networks:
-        - archgraph-docker-deployment
-      restart: on-failure
+#  archgraph:
+#      container_name: archgraph
+#      image: feupinfolab/archgraph:latest
+#      build:
+#        dockerfile: Dockerfile
+#        args:
+#          SOURCE_BRANCH: "master"
+#        context: .
+#      environment:
+#        - "NEO4J_HOST=archgraph-neo4j"
+#        - "NEO4J_PORT=7687"
+#        - "MONGODB_HOST=archgraph-mongodb"
+#        - "MONGODB_PORT=27017"
+#        - "MONGODB_USERNAME=root"
+#        - "MONGODB_PASSWORD=rootpassword"
+#        - "CUSTOM_HOST_FOR_SERVER_BIND=0.0.0.0"
+#        - "RUN_IN_PRODUCTION=1"
+#        - "INIT_GRAPH=1"
+#        - "FORCE_RELOAD_GRAPH=0"
+#      ports:
+#        - published: 4200
+#          target: 4200
+#        - published: 5000
+#          target: 5000
+#      depends_on:
+#        - mongodb
+#        - neo4j
+#      networks:
+#        - archgraph-docker-deployment
+#      restart: on-failure
 networks:
   archgraph-docker-deployment: {}

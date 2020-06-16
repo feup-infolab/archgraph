@@ -4,7 +4,9 @@ from src.Models.CRM.v5_0_2.NodeEntities.E1_CRM_Entity import (
     E1_CRM_Entity,
     E1_CRM_EntitySchema,
 )
-from src.Models.CRM.v5_0_2.NodeEntities.E58_Measurement_Unit import E58_Measurement_UnitSchema
+from src.Models.CRM.v5_0_2.NodeEntities.E58_Measurement_Unit import (
+    E58_Measurement_UnitSchema,
+)
 from src.Models.CRM.v5_0_2.NodeProperties.P91_has_unit import P91_has_unit
 from src.GCF.decorators.OntologyClass import decorator_schema
 

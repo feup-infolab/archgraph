@@ -3,18 +3,23 @@ from neomodel import RelationshipTo
 from src.GCF.decorators.OntologyClass import decorator_schema
 from src.Models.CRM.v5_0_2.NodeEntities.E13_Attribute_Assignment import (
     E13_Attribute_Assignment,
-    E13_Attribute_AssignmentSchema)
+    E13_Attribute_AssignmentSchema,
+)
 from src.Models.CRM.v5_0_2.NodeProperties.P34_concerned import P34_concerned
 from src.Models.CRM.v5_0_2.NodeProperties.P35_has_identified import P35_has_identified
 
 
 @decorator_schema
 class E14_Condition_AssessmentSchema(E13_Attribute_AssignmentSchema):
-    has_identified = fields.List(fields.Nested(
-        "src.Models.CRM.v5_0_2.NodeEntities.E3_Condition_State.E3_Condition_StateSchema")
+    has_identified = fields.List(
+        fields.Nested(
+            "src.Models.CRM.v5_0_2.NodeEntities.E3_Condition_State.E3_Condition_StateSchema"
+        )
     )
-    concerned = fields.List(fields.Nested(
-        "src.Models.CRM.v5_0_2.NodeEntities.E18_Physical_Thing.E18_Physical_ThingSchema")
+    concerned = fields.List(
+        fields.Nested(
+            "src.Models.CRM.v5_0_2.NodeEntities.E18_Physical_Thing.E18_Physical_ThingSchema"
+        )
     )
 
 

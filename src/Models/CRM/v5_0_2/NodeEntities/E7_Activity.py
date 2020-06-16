@@ -17,38 +17,48 @@ from ..NodeProperties.P134_continued import P134_continued
 
 @decorator_schema
 class E7_ActivitySchema(E5_EventSchema):
-    continued = fields.List(fields.Nested(
-        "src.Models.CRM.v5_0_2.NodeEntities.E7_Activity.E7_ActivitySchema")
+    continued = fields.List(
+        fields.Nested(
+            "src.Models.CRM.v5_0_2.NodeEntities.E7_Activity.E7_ActivitySchema"
+        )
     )
-    was_influenced_by = fields.List(fields.Nested(
-        "src.Models.CRM.v5_0_2.NodeEntities.E1_CRM_Entity.E1_CRM_EntitySchema")
+    was_influenced_by = fields.List(
+        fields.Nested(
+            "src.Models.CRM.v5_0_2.NodeEntities.E1_CRM_Entity.E1_CRM_EntitySchema"
+        )
     )
-    was_motivated_by = fields.List(fields.Nested(
-        "src.Models.CRM.v5_0_2.NodeEntities.E1_CRM_Entity.E1_CRM_EntitySchema")
+    was_motivated_by = fields.List(
+        fields.Nested(
+            "src.Models.CRM.v5_0_2.NodeEntities.E1_CRM_Entity.E1_CRM_EntitySchema"
+        )
     )
-    was_intended_use_of = fields.List(fields.Nested(
-        "src.Models.CRM.v5_0_2.NodeEntities.E71_Human_Made_Thing.E71_Human_Made_ThingSchema")
+    was_intended_use_of = fields.List(
+        fields.Nested(
+            "src.Models.CRM.v5_0_2.NodeEntities.E71_Human_Made_Thing.E71_Human_Made_ThingSchema"
+        )
     )
-    had_general_purpose = fields.List(fields.Nested(
-        "src.Models.CRM.v5_0_2.NodeEntities.E55_Type.E55_TypeSchema")
+    had_general_purpose = fields.List(
+        fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E55_Type.E55_TypeSchema")
     )
-    used_general_technique = fields.List(fields.Nested(
-            "src.Models.CRM.v5_0_2.NodeEntities.E55_Type.E55_TypeSchema")
+    used_general_technique = fields.List(
+        fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E55_Type.E55_TypeSchema")
     )
-    used_specific_object = fields.List(fields.Nested(
-        "src.Models.CRM.v5_0_2.NodeEntities.E70_Thing.E70_ThingSchema")
+    used_specific_object = fields.List(
+        fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E70_Thing.E70_ThingSchema")
     )
-    used_object_of_type = fields.List(fields.Nested(
-        "src.Models.CRM.v5_0_2.NodeEntities.E55_Type.E55_TypeSchema")
+    used_object_of_type = fields.List(
+        fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E55_Type.E55_TypeSchema")
     )
-    had_specific_purpose = fields.List(fields.Nested(
-        "src.Models.CRM.v5_0_2.NodeEntities.E5_Event.E5_EventSchema")
+    had_specific_purpose = fields.List(
+        fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E5_Event.E5_EventSchema")
     )
-    used_specific_technique = fields.List(fields.Nested(
-            "src.Models.CRM.v5_0_2.NodeEntities.E29_Design_or_Procedure.E29_Design_or_ProcedureSchema")
+    used_specific_technique = fields.List(
+        fields.Nested(
+            "src.Models.CRM.v5_0_2.NodeEntities.E29_Design_or_Procedure.E29_Design_or_ProcedureSchema"
+        )
     )
-    carried_out_by = fields.List(fields.Nested(
-        "src.Models.CRM.v5_0_2.NodeEntities.E39_Actor.E39_ActorSchema")
+    carried_out_by = fields.List(
+        fields.Nested("src.Models.CRM.v5_0_2.NodeEntities.E39_Actor.E39_ActorSchema")
     )
 
 
