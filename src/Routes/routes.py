@@ -260,7 +260,6 @@ def get_templates_from_entity(uid):
 @cross_origin()
 def response_eva_view(uid):
     node = get_node_by_uid(uid)
-    print("lindo")
     if node is not None:
         response = build_information_eva(node)
         if response:

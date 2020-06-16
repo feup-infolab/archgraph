@@ -289,6 +289,21 @@ from src.Models.CRM.v5_0_2.NodeEntities.E99_Product_Type import (
     E99_Product_TypeSchema,
 )
 
+## ------------- imports ArchOnto ------------------------ ##
+from src.Models.ArchOnto.v0_1.NodeEntities.ARE1_Level_of_Description import ARE1_Level_of_Description, \
+    ARE1_Level_of_DescriptionSchema
+from src.Models.ArchOnto.v0_1.NodeEntities.ARE2_Formal_Title import ARE2_Formal_Title, ARE2_Formal_TitleSchema
+from src.Models.ArchOnto.v0_1.NodeEntities.ARE3_Supplied_Title import ARE3_Supplied_Title, ARE3_Supplied_TitleSchema
+from src.Models.ArchOnto.v0_1.NodeEntities.ARE4_Extension import ARE4_Extension, ARE4_ExtensionSchema
+from src.Models.ArchOnto.v0_1.NodeEntities.ARE5_Identifier_Type import ARE5_Identifier_Type, ARE5_Identifier_TypeSchema
+from src.Models.ArchOnto.v0_1.NodeEntities.ARE2_Formal_Title import ARE2_Formal_Title, ARE2_Formal_TitleSchema
+from src.Models.ArchOnto.v0_1.NodeEntities.ARE6_Date_Type import ARE6_Date_Type, ARE6_Date_TypeSchema
+from src.Models.ArchOnto.v0_1.NodeEntities.ARE7_Name import ARE7_Name, ARE7_NameSchema
+from src.Models.ArchOnto.v0_1.NodeEntities.ARE8_Role import ARE8_Role, ARE8_RoleSchema
+from src.Models.ArchOnto.v0_1.NodeEntities.ARE9_Date_Certainty import ARE9_Date_Certainty, ARE9_Date_CertaintySchema
+## ------------- imports ArchOnto END------------------------ ##
+
+
 # TODO nao apagar estes importes
 
 import src.Utils.Utils as self
@@ -296,10 +311,10 @@ import src.Utils.Utils as self
 import src.Utils.EnvVarManager as EnvVarManager
 
 uri = (
-    "bolt://neo4j:password@"
-    + EnvVarManager.get_from_env_or_return_default("NEO4J_HOST", "127.0.0.1")
-    + ":"
-    + EnvVarManager.get_from_env_or_return_default("NEO4J_PORT", "7687")
+        "bolt://neo4j:password@"
+        + EnvVarManager.get_from_env_or_return_default("NEO4J_HOST", "127.0.0.1")
+        + ":"
+        + EnvVarManager.get_from_env_or_return_default("NEO4J_PORT", "7687")
 )
 
 driver = None
@@ -325,7 +340,7 @@ def read_relationships(search_node, search_node_uid, relationship_name):
             + ")-[: "
             + relationship_name
             + "]->(nested_node) "
-            "Return nested_node.uid"
+              "Return nested_node.uid"
         )
         for record in records:
             array_uids.append(record[0])
@@ -428,12 +443,12 @@ def updated_node_aux(current_node, data, template):
             if relationship_name in new_node["relationships"]:
                 new_relationships = new_node["relationships"][relationship_name]
                 if (
-                    add_all_relationships(
-                        new_relationships,
-                        relationship_of_node,
-                        template[relationship_name],
-                    )
-                    is None
+                        add_all_relationships(
+                            new_relationships,
+                            relationship_of_node,
+                            template[relationship_name],
+                        )
+                        is None
                 ):
                     return None
         return True
@@ -480,8 +495,8 @@ def add_all_relationships(relationships, node, template):
                 try:
                     new_instance = E1_CRM_Entity.nodes.get(uid=uid)
                     if (
-                        update_node_and_call_next(new_instance, next_node, template)
-                        is None
+                            update_node_and_call_next(new_instance, next_node, template)
+                            is None
                     ):
                         return None
                 except:
@@ -490,7 +505,6 @@ def add_all_relationships(relationships, node, template):
 
 
 def make_result(result):
-
     response_array = "["
 
     for i in range(len(result)):
@@ -585,25 +599,42 @@ def find_name_of_schema_classes_in_project(classes_name):
 
 
 def build_information_eva(node):
-    title = node.P102_has_title.all()[0]
-    registo =title.has_value.all()[0]
+    array_title = node.P102_has_title.all()
     identifier = node.P1_is_identified_by.all()[0]
     identifier_value = identifier.has_value.all()[0]
-    # todo
-    #identifier_type = node.P2_has_type.all()[0]
-    #codigo = identifier_type.has_value.all()[0]
+    array_identifier_type = node.P2_has_type.all()
 
-    result = {
-        "title": {
-            "value": registo.stringValue,
-            "type": "Formal"
-        },
-        "identifier": {
+    array_title_result = []
+    array_identifier_result = []
+    for title in array_title:
+        array_registo = title.has_value.all()
+        for registo in array_registo:
+            title_class = title.__class__.__name__
+            if title_class is "ARE2_Formal_Title":
+                type_title = "Formal"
+            elif title_class is "ARE3_Supplied_Title":
+                type_title = "Atribuido"
+            else:
+                return None
+
+            title_elem = {
+                "value": registo.stringValue,
+                "type": type_title
+            }
+            array_title_result.append(title_elem)
+
+    for identifier_type in array_identifier_type:
+        codigo = identifier_type.has_value.all()[0]
+        identifier_elem = {
             "value": identifier_value.stringValue,
-            "type": "codigo.stringValue"
+            "type": codigo.stringValue
 
         }
+        array_identifier_result.append(identifier_elem)
+
+    result = {
+        "title": array_title_result,
+        "identifier": array_identifier_result
     }
 
     return result
-
