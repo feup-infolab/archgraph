@@ -22,9 +22,9 @@ from neomodel import config
 from src.Utils.JsonEncoder import search_cidoc, search_specific_cidoc
 from src.Utils.Utils import get_node_by_uid, build_next_json, updated_node, make_result, build_information_eva
 
-import src.Utils.ArgParser as ArgParser
+#import src.Utils.ArgParser as ArgParser
 
-args = ArgParser.parse()
+#args = ArgParser.parse()
 import src.Utils.EnvVarManager as EnvVarManager
 
 config.DATABASE_URL = (
@@ -332,22 +332,22 @@ def search_specific(class_name, query):
         return make_response(jsonify(message="Failed Search"), 404)
 
 
-@app.route("/eva/<uid>", methods=["POST"])
-@cross_origin()
-def get_doc(uid):
-    #node = get_node_by_uid(uid)
-    template = {
-        "E22_Human_Made_Object": {
-            "P102_has_title": ["ARE2_formal_title", "Registo de Batismo"],
-            "P1_is_identified_by": ["Código de Referência", "PT /ADPRT"]
-        }
-    }
+#@app.route("/eva/<uid>", methods=["POST"])
+#@cross_origin()
+#def get_doc(uid):
+#    #node = get_node_by_uid(uid)
+#    template = {
+#        "E22_Human_Made_Object": {
+#            "P102_has_title": ["ARE2_formal_title", "Registo de Batismo"],
+#            "P1_is_identified_by": ["Código de Referência", "PT /ADPRT"]
+#        }
+#    }
 
-    print(template)
-    if template is not None:
-        return make_response(jsonify(template), 201)
-    else:
-        make_response(jsonify(message="Template doesn't exists"), 404)
+#    print(template)
+#    if template is not None:
+#        return make_response(jsonify(template), 201)
+#    else:
+#        make_response(jsonify(message="Template doesn't exists"), 404)
 
 
 # delete_collection("defaultTemplate")

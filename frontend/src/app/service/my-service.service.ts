@@ -86,7 +86,7 @@ export class MyServiceService {
   }
 
   getDocTemplate(uid): Observable<any> {
-    return this.http.post<any>(this.baseUrl + 'eva' + '/' + uid, uid);
+    return this.http.get<any>(this.baseUrl + 'eva' + '/' + uid);
   }
 
   constructor(private http: HttpClient) {

@@ -67,10 +67,10 @@ export class DocumentComponentComponent implements OnInit {
       .subscribe(returnedTemplate => {
         this.template = returnedTemplate;
         console.log(returnedTemplate);
-        this.identifierType = returnedTemplate.E22_Human_Made_Object.P1_is_identified_by[0];
-        this.identifierName = returnedTemplate.E22_Human_Made_Object.P1_is_identified_by[1];
-        this.titleType = returnedTemplate.E22_Human_Made_Object.P102_has_title[0];
-        this.titleName = returnedTemplate.E22_Human_Made_Object.P102_has_title[1];
+        this.identifierType = returnedTemplate.identifier[0].type;
+        this.identifierName = returnedTemplate.identifier[0].value;
+        this.titleType = returnedTemplate.title[0].type;
+        this.titleName = returnedTemplate.title[0].value;
 
         console.log(this.identifierType);
         console.log(this.identifierName);
