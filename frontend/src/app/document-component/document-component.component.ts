@@ -46,6 +46,9 @@ export class DocumentComponentComponent implements OnInit {
   identifierName = '';
   identifierType = '';
 
+  titleTypes = [];
+  identifierTypes = [];
+
 
 
   ngOnInit() {
@@ -66,17 +69,30 @@ export class DocumentComponentComponent implements OnInit {
     this.service.getDocTemplate(uid)
       .subscribe(returnedTemplate => {
         this.template = returnedTemplate;
-        console.log(returnedTemplate);
         this.identifierType = returnedTemplate.identifier[0].type;
         this.identifierName = returnedTemplate.identifier[0].value;
         this.titleType = returnedTemplate.title[0].type;
         this.titleName = returnedTemplate.title[0].value;
-
-        console.log(this.identifierType);
-        console.log(this.identifierName);
-        console.log(this.titleType);
-        console.log(this.titleName);
+        this.getTitleTypes();
       });
+  }
+
+  getTitleTypes() {
+    this.service.getAllTitleTypes()
+      .subscribe(returnedTitles => {
+        this.titleTypes = returnedTitles;
+        this.getIdentifierTypes();
+      });
+
+  }
+
+  getIdentifierTypes() {
+    this.service.getAllIdentifierTypes()
+      .subscribe(returnedIdentifiers => {
+        this.identifierTypes = returnedIdentifiers;
+        console.log(returnedIdentifiers);
+      });
+
   }
 
 }
