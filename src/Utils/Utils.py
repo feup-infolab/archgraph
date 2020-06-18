@@ -638,3 +638,48 @@ def build_information_eva(node):
     }
 
     return result
+
+
+def search_type_identifiers():
+    result = []
+    identifiers = ARE5_Identifier_Type.nodes.all()
+    for identifier in identifiers:
+        uid = read_relationships(identifier.__class__.__name__, identifier.uid, "has_value")[0]
+        string_node = get_node_by_uid(uid)
+        if string_node is not None:
+            element = {
+                "option": string_node.stringValue,
+                "value": identifier.uid,
+            }
+            result.append(element)
+
+    return result
+
+
+def search_type_titles():
+    result = []
+    # formals_titles = ARE2_Formal_Title.nodes.all()
+    # supplied_titles = ARE3_Supplied_Title.nodes.all()
+    # result = E71_Human_Made_Thing.nodes.has(P102_has_title=True)
+    # for node in result:
+    #     uid = read_relationships(node.__class__.__name__, node.uid, "P102_has_title")[0]
+    #     title_node = get_node_by_uid(uid)
+    #     if title_node is not None:
+    #         element = {
+    #             "option": title_node.stringValue,
+    #             "value": title_node.uid,
+    #         }
+    #         result.append(element)
+    element = {
+                "option": "Formal",
+                "value": "ARE2_Formal_Title",
+            }
+    element1 = {
+                "option": "Atribuido",
+                "value": "ARE3_Supplied_Title",
+            }
+    result.append(element)
+    result.append(element1)
+
+    return result
+

@@ -20,7 +20,8 @@ from flask_cors import CORS, cross_origin
 from neomodel import config
 
 from src.Utils.JsonEncoder import search_cidoc, search_specific_cidoc
-from src.Utils.Utils import get_node_by_uid, build_next_json, updated_node, make_result, build_information_eva
+from src.Utils.Utils import get_node_by_uid, build_next_json, updated_node, make_result, build_information_eva, \
+    search_type_identifiers, search_type_titles
 
 #import src.Utils.ArgParser as ArgParser
 
@@ -258,6 +259,7 @@ def get_templates_from_entity(uid):
         return make_response(jsonify(message="Node doesn't exists"), 404)
 
 
+#verificar se é do tipo E24, E18
 @app.route("/eva/<uid>", methods=["GET"])
 @cross_origin()
 def response_eva_view(uid):
@@ -270,6 +272,26 @@ def response_eva_view(uid):
             make_response(jsonify(message="Node doesn't have information"), 404)
     else:
         return make_response(jsonify(message="Node doesn't exists"), 404)
+
+
+@app.route("/control_values/type_identifiers", methods=["GET"])
+@cross_origin()
+def response_type_identifiers():
+    response = search_type_identifiers()
+    if response:
+        return make_response(jsonify(response), 201)
+    else:
+        return make_response(jsonify(message="Doesn't have information"), 404)
+
+
+@app.route("/control_values/type_titles", methods=["GET"])
+@cross_origin()
+def response_type_titles():
+    response = search_type_titles()
+    if response:
+        return make_response(jsonify(response), 201)
+    else:
+        return make_response(jsonify(message="Doesn't have information"), 404)
 
 
 # update node
@@ -332,22 +354,6 @@ def search_specific(class_name, query):
         return make_response(jsonify(message="Failed Search"), 404)
 
 
-#@app.route("/eva/<uid>", methods=["POST"])
-#@cross_origin()
-#def get_doc(uid):
-#    #node = get_node_by_uid(uid)
-#    template = {
-#        "E22_Human_Made_Object": {
-#            "P102_has_title": ["ARE2_formal_title", "Registo de Batismo"],
-#            "P1_is_identified_by": ["Código de Referência", "PT /ADPRT"]
-#        }
-#    }
-
-#    print(template)
-#    if template is not None:
-#        return make_response(jsonify(template), 201)
-#    else:
-#        make_response(jsonify(message="Template doesn't exists"), 404)
 
 
 # delete_collection("defaultTemplate")

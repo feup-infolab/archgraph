@@ -547,6 +547,16 @@ class TestNeoModel(unittest.TestCase):
         identifier.has_value.connect(identifier_value)
         identifier_type.has_value.connect(codigo)
 
+    def test_type_identifier(self):
+        identifier = ARE5_Identifier_Type(name="identifier1").save()
+        identifier2 = ARE5_Identifier_Type(name="identifier2").save()
+        string1 = String(name="string1", stringValue="CodigoDeReferencia").save()
+        string2 = String(name="string2", stringValue="CodigoDeReferencia2").save()
+
+        identifier.has_value.connect(string1)
+        identifier2.has_value.connect(string2)
+
+
 
 
 
