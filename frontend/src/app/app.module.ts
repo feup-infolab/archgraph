@@ -13,7 +13,15 @@ import {ComboBoxComponent} from './combo-box/combo-box.component';
 import { RouterModule, Routes } from '@angular/router';
 import { EditEntityComponent } from './components/edit-entity.component';
 import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule, MatExpansionModule, MatFormFieldModule, MatInputModule, MatSliderModule} from '@angular/material';
+import {
+  MatButtonModule,
+  MatExpansionModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatOptionModule,
+  MatSelectModule,
+  MatSliderModule
+} from '@angular/material';
 import { EditTemplateComponent } from './edit-template/edit-template.component';
 import { ViewTemplateComponent } from './components/view-template.component';
 import { LayoutComponent } from './components/layout.component';
@@ -59,7 +67,9 @@ const appRoutes: Routes = [
     MatSliderModule,
     MatExpansionModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatOptionModule,
+    MatSelectModule
   ],
   providers: [MyServiceService],
   bootstrap: [ AppComponent ],

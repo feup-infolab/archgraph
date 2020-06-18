@@ -17,6 +17,17 @@
       <input matInput [value]=titleType >
     </mat-form-field>
 
+    <div>
+    <mat-form-field>
+      <mat-label>Change Type</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let title of titleTypes" [value]="title.value">
+          {{title.option}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    </div>
+
   </mat-expansion-panel>
 
   <mat-expansion-panel >
@@ -35,5 +46,16 @@
       <mat-label>Type</mat-label>
       <input matInput [value]=identifierType>
     </mat-form-field>
+
+    <div>
+      <mat-form-field>
+        <mat-label>Change Type</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let identifier of identifierTypes" [value]="identifier .value">
+            {{identifier .option}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
   </mat-expansion-panel>
 </mat-accordion>

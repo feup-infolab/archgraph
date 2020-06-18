@@ -89,6 +89,14 @@ export class MyServiceService {
     return this.http.get<any>(this.baseUrl + 'eva' + '/' + uid);
   }
 
+  getAllTitleTypes(): Observable<any> {
+    return this.http.get<any>(this.baseUrl + 'control_values/type_titles');
+  }
+
+  getAllIdentifierTypes(): Observable<any> {
+    return this.http.get<any>(this.baseUrl + 'control_values/type_identifiers');
+  }
+
   constructor(private http: HttpClient) {
 
     this.shareMethod$ = this.shareMethodSubject.asObservable();
