@@ -90,11 +90,11 @@ export class MyServiceService {
   }
 
   getAllTitleTypes(): Observable<any> {
-    return this.http.get<any>(this.baseUrl + 'control_values/type_titles');
+    return this.http.get<any>(this.baseUrl + 'control_values/title_types');
   }
 
   getAllIdentifierTypes(): Observable<any> {
-    return this.http.get<any>(this.baseUrl + 'control_values/type_identifiers');
+    return this.http.get<any>(this.baseUrl + 'control_values/identifier_types');
   }
 
   constructor(private http: HttpClient) {

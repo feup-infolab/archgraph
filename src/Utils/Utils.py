@@ -640,7 +640,7 @@ def build_information_eva(node):
     return result
 
 
-def search_type_identifiers():
+def search_identifier_types():
     result = []
     identifiers = ARE5_Identifier_Type.nodes.all()
     for identifier in identifiers:
@@ -656,7 +656,7 @@ def search_type_identifiers():
     return result
 
 
-def search_type_titles():
+def search_title_types():
     result = []
     # formals_titles = ARE2_Formal_Title.nodes.all()
     # supplied_titles = ARE3_Supplied_Title.nodes.all()

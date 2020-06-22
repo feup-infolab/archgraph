@@ -21,7 +21,7 @@ from neomodel import config
 
 from src.Utils.JsonEncoder import search_cidoc, search_specific_cidoc
 from src.Utils.Utils import get_node_by_uid, build_next_json, updated_node, make_result, build_information_eva, \
-    search_type_identifiers, search_type_titles
+    search_identifier_types, search_title_types
 
 #import src.Utils.ArgParser as ArgParser
 
@@ -259,35 +259,37 @@ def get_templates_from_entity(uid):
         return make_response(jsonify(message="Node doesn't exists"), 404)
 
 
-#verificar se é do tipo E24, E18
 @app.route("/eva/<uid>", methods=["GET"])
 @cross_origin()
 def response_eva_view(uid):
     node = get_node_by_uid(uid)
-    if node is not None:
-        response = build_information_eva(node)
-        if response:
-            return make_response(jsonify(response), 201)
+    if node.__class__.__name__ is not "E24_Physical_Human_Made_ThingSchema" or node.__class__.__name__ is not "E18_Physical_ThingSchema":
+        if node is not None:
+            response = build_information_eva(node)
+            if response:
+                return make_response(jsonify(response), 201)
+            else:
+                make_response(jsonify(message="Node doesn't have information"), 404)
         else:
-            make_response(jsonify(message="Node doesn't have information"), 404)
+            return make_response(jsonify(message="Node doesn't exists"), 404)
     else:
-        return make_response(jsonify(message="Node doesn't exists"), 404)
+        return make_response(jsonify(message="Node is not a valid type"), 404)
 
 
-@app.route("/control_values/type_identifiers", methods=["GET"])
+@app.route("/control_values/identifier_types", methods=["GET"])
 @cross_origin()
 def response_type_identifiers():
-    response = search_type_identifiers()
+    response = search_identifier_types()
     if response:
         return make_response(jsonify(response), 201)
     else:
         return make_response(jsonify(message="Doesn't have information"), 404)
 
 
-@app.route("/control_values/type_titles", methods=["GET"])
+@app.route("/control_values/title_types", methods=["GET"])
 @cross_origin()
 def response_type_titles():
-    response = search_type_titles()
+    response = search_title_types()
     if response:
         return make_response(jsonify(response), 201)
     else:
