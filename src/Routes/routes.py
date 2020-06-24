@@ -20,19 +20,19 @@ from flask_cors import CORS, cross_origin
 from neomodel import config
 
 from src.Utils.JsonEncoder import search_cidoc, search_specific_cidoc
-from src.Utils.Utils import get_node_by_uid, build_next_json, updated_node, make_result, build_information_eva, \
-    search_identifier_types, search_title_types
+from src.Utils.Utils import get_node_by_uid, build_next_json, updated_node, make_result, build_information_uidglab, \
+    search_identifier_types, search_title_types, dglab_node_update
 
-#import src.Utils.ArgParser as ArgParser
+# import src.Utils.ArgParser as ArgParser
 
-#args = ArgParser.parse()
+# args = ArgParser.parse()
 import src.Utils.EnvVarManager as EnvVarManager
 
 config.DATABASE_URL = (
-    "bolt://neo4j:password@"
-    + EnvVarManager.get_from_env_or_return_default("NEO4J_HOST", "127.0.0.1")
-    + ":"
-    + EnvVarManager.get_from_env_or_return_default("NEO4J_PORT", "7687")
+        "bolt://neo4j:password@"
+        + EnvVarManager.get_from_env_or_return_default("NEO4J_HOST", "127.0.0.1")
+        + ":"
+        + EnvVarManager.get_from_env_or_return_default("NEO4J_PORT", "7687")
 )
 
 from src.Routes.mongo import (
@@ -259,17 +259,36 @@ def get_templates_from_entity(uid):
         return make_response(jsonify(message="Node doesn't exists"), 404)
 
 
-@app.route("/eva/<uid>", methods=["GET"])
+@app.route("/uidglab/<uid>", methods=["GET"])
 @cross_origin()
-def response_eva_view(uid):
+def response_uidglab_view(uid):
     node = get_node_by_uid(uid)
     if node.__class__.__name__ is not "E24_Physical_Human_Made_ThingSchema" or node.__class__.__name__ is not "E18_Physical_ThingSchema":
         if node is not None:
-            response = build_information_eva(node)
+            response = build_information_uidglab(node)
             if response:
                 return make_response(jsonify(response), 201)
             else:
                 make_response(jsonify(message="Node doesn't have information"), 404)
+        else:
+            return make_response(jsonify(message="Node doesn't exists"), 404)
+    else:
+        return make_response(jsonify(message="Node is not a valid type"), 404)
+
+
+@app.route("/uidglab/<uid>", methods=["POST"])
+@cross_origin()
+def response_uidglab_edit(uid):
+    node = get_node_by_uid(uid)
+    if node.__class__.__name__ is not "E24_Physical_Human_Made_ThingSchema" or node.__class__.__name__ is not "E18_Physical_ThingSchema":
+        if node is not None:
+            data = request.json
+            identifiers = data.get("identifier", None)
+            titles = data.get("title", None)
+            if dglab_node_update(node, identifiers, titles):
+                return make_response(jsonify(message="Saved node"), 200)
+            else:
+                return make_response(jsonify(message="Unsaved node"), 404)
         else:
             return make_response(jsonify(message="Node doesn't exists"), 404)
     else:
@@ -354,8 +373,6 @@ def search_specific(class_name, query):
         return Response(make_result(result), mimetype="application/json", status=201)
     else:
         return make_response(jsonify(message="Failed Search"), 404)
-
-
 
 
 # delete_collection("defaultTemplate")
