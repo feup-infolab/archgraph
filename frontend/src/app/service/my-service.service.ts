@@ -34,33 +34,33 @@ export class MyServiceService {
 
 
   getSearchJson( search: string): Observable<any[]> {
-    return this.http.get<any[]>(this.baseUrl + 'search' + '/' + search);
+    return this.http.get<any[]>(this.baseUrl + 'search/' + search);
   }
 
   getSpecificSearchJson(entity: string, search: string): Observable<any[]> {
     if (search === '') {
-          return this.http.get<any[]>(this.baseUrl + 'search_specific' + '/' + entity);
+          return this.http.get<any[]>(this.baseUrl + 'search_specific/' + entity);
     } else {
-      return this.http.get<any[]>(this.baseUrl + 'search_specific' + '/' + entity + '/' + search);
+      return this.http.get<any[]>(this.baseUrl + 'search_specific/' + entity + '/' + search);
     }
   }
 
   getSchemaNode(uid: string): Observable<Schema> {
-    return this.http.get<Schema>(this.baseUrl + 'schema' + '/' + uid);
+    return this.http.get<Schema>(this.baseUrl + 'schema/' + uid);
   }
 
   getSchemaNodeWithTemplate(uid: string, template: object): Observable<Schema> {
     // const headers = new HttpHeaders();
     // headers.append('template', template)
-    return this.http.post<Schema>(this.baseUrl + 'schemawithtemplate' + '/' + uid, template);
+    return this.http.post<Schema>(this.baseUrl + 'schemawithtemplate/' + uid, template);
   }
 
   getBaseSchemaNodeWithTemplate(uid: string): Observable<Schema> {
-    return this.http.get<Schema>(this.baseUrl + 'template' + '/' + uid);
+    return this.http.get<Schema>(this.baseUrl + 'template/' + uid);
   }
 
   geAllSchemaProperties(uid: string): Observable<Schema> {
-    return this.http.get<Schema>(this.baseUrl + 'getallproperties' + '/' + uid);
+    return this.http.get<Schema>(this.baseUrl + 'getallproperties/' + uid);
   }
 
   getTemplate(): Observable<any[]> {
@@ -78,7 +78,7 @@ export class MyServiceService {
   }
 
    sendTemplate(uid, template): Observable<any> {
-    return this.http.post<any>(this.baseUrl + 'inserttemplate' + '/' + uid, template);
+    return this.http.post<any>(this.baseUrl + 'inserttemplate/' + uid, template);
   }
 
   postTemplate(template): Observable<any> {
@@ -86,15 +86,15 @@ export class MyServiceService {
   }
 
   getDocTemplate(uid): Observable<any> {
-    return this.http.get<any>(this.baseUrl + 'eva' + '/' + uid);
+    return this.http.get<any>(this.baseUrl + 'uidglab/' + uid);
   }
 
   getAllTitleTypes(): Observable<any> {
-    return this.http.get<any>(this.baseUrl + 'control_values/type_titles');
+    return this.http.get<any>(this.baseUrl + 'control_values/title_types');
   }
 
   getAllIdentifierTypes(): Observable<any> {
-    return this.http.get<any>(this.baseUrl + 'control_values/type_identifiers');
+    return this.http.get<any>(this.baseUrl + 'control_values/identifier_types');
   }
 
   constructor(private http: HttpClient) {

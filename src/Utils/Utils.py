@@ -419,6 +419,75 @@ def delete_node_by_uid(uid):
             return None
 
 
+def dglab_node_update(node, identifiers, titles):
+    db.begin()
+    update_titles_result = update_titles(node, titles)
+    update_identifiers_result = update_identifiers(node, identifiers)
+    if update_titles_result and update_identifiers_result:
+        db.commit()
+        return True
+    else:
+        db.rollback()
+        return None
+
+
+def update_titles(node, titles):
+    if titles is None:
+        return True
+    # Todo alterar
+    node.P102_has_title.disconnect_all()
+    for title in titles:
+        title_value = title.get("value", None)
+        if title_value is None:
+            return None
+        title_type = title.get("type", None)
+        if title_type is None:
+            return None
+        class_name_title_type = find_name_of_classes_in_project([title_type])
+        if class_name_title_type is None:
+            return None
+        title_type_class = class_name_title_type[0]
+        title_string = String(stringValue=title_value, name=title_value).save()
+        new_title = title_type_class(name=title_value).save()
+        new_title.has_value.connect(title_string)
+        node.P102_has_title.connect(new_title)
+    return True
+
+
+def update_identifiers(node, identifiers):
+    if identifiers is None:
+        return True
+    # Todo alterar
+    node.P2_has_type.disconnect_all()
+    for identifier in identifiers:
+        identifier_value = identifier.get("value", None)
+        if identifier_value is None:
+            return None
+        identifier_type = identifier.get("type", None)
+        if identifier_type is None:
+            return None
+
+        identifier_node = get_node_by_uid(identifier_type)
+        if identifier_node is None:
+            return None
+        identifier_strings = identifier_node.has_value.all()
+        added = False
+        for identifier_string in identifier_strings:
+            if identifier_string.stringValue == identifier_value:
+                node.P2_has_type.connect(identifier_node)
+                added = True
+        if not added:
+            string_node = String(stringValue=identifier_value, name=identifier_value).save()
+            class_name_identifier_type = find_name_of_classes_in_project([identifier_node.__class__.__name__])
+            if class_name_identifier_type is None:
+                return None
+            identifier_type_class = class_name_identifier_type[0]
+            new_identifier = identifier_type_class(name=identifier_value).save()
+            node.P2_has_type.connect(new_identifier)
+            new_identifier.has_value.connect(string_node)
+    return True
+
+
 def updated_node(node, data, template):
     """The function given a template and a node, the node and next nodes information is updated"""
     db.begin()
@@ -542,7 +611,7 @@ def find_name_of_classes_in_project(classes_name):
                 try:
                     class__ = getattr(
                         importlib.import_module(
-                            "src.Models.ArchOnto.v0_1." + class_name
+                            "src.Models.ArchOnto.v0_1.NodeEntities." + class_name
                         ),
                         class_name,
                     )
@@ -551,7 +620,7 @@ def find_name_of_classes_in_project(classes_name):
                     error = True
                     break
 
-    if error:
+    if error or classes.__len__() == 0:
         return None
     else:
         return classes
@@ -598,7 +667,7 @@ def find_name_of_schema_classes_in_project(classes_name):
         return schemas_classes
 
 
-def build_information_eva(node):
+def build_information_uidglab(node):
     array_title = node.P102_has_title.all()
     identifier = node.P1_is_identified_by.all()[0]
     identifier_value = identifier.has_value.all()[0]
@@ -640,7 +709,7 @@ def build_information_eva(node):
     return result
 
 
-def search_type_identifiers():
+def search_identifier_types():
     result = []
     identifiers = ARE5_Identifier_Type.nodes.all()
     for identifier in identifiers:
@@ -656,7 +725,7 @@ def search_type_identifiers():
     return result
 
 
-def search_type_titles():
+def search_title_types():
     result = []
     # formals_titles = ARE2_Formal_Title.nodes.all()
     # supplied_titles = ARE3_Supplied_Title.nodes.all()
@@ -671,15 +740,14 @@ def search_type_titles():
     #         }
     #         result.append(element)
     element = {
-                "option": "Formal",
-                "value": "ARE2_Formal_Title",
-            }
+        "option": "Formal",
+        "value": "ARE2_Formal_Title",
+    }
     element1 = {
-                "option": "Atribuido",
-                "value": "ARE3_Supplied_Title",
-            }
+        "option": "Atribuido",
+        "value": "ARE3_Supplied_Title",
+    }
     result.append(element)
     result.append(element1)
 
     return result
-
