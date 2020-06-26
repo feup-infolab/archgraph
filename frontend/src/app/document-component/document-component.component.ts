@@ -41,6 +41,10 @@ export class DocumentComponentComponent implements OnInit {
 
   template = {};
 
+  ftitleType = '';
+  ftitleName = '';
+  fidentifierName = '';
+  fidentifierType = '';
   titleType = '';
   titleName = '';
   identifierName = '';
@@ -73,6 +77,10 @@ export class DocumentComponentComponent implements OnInit {
         this.identifierName = returnedTemplate.identifier[0].value;
         this.titleType = returnedTemplate.title[0].type;
         this.titleName = returnedTemplate.title[0].value;
+        this.fidentifierType = returnedTemplate.identifier[0].type;
+        this.fidentifierName = returnedTemplate.identifier[0].value;
+        this.ftitleType = returnedTemplate.title[0].type;
+        this.ftitleName = returnedTemplate.title[0].value;
         this.getTitleTypes();
       });
   }
@@ -92,6 +100,13 @@ export class DocumentComponentComponent implements OnInit {
         this.identifierTypes = returnedIdentifiers;
         console.log(returnedIdentifiers);
       });
+
+  }
+
+  checkChange() {
+
+    // tslint:disable-next-line:max-line-length
+    return this.ftitleName === this.titleName && this.fidentifierName === this.identifierName && this.fidentifierType === this.identifierType && this.ftitleType === this.titleType;
 
   }
 
