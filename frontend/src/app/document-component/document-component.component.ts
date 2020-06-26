@@ -121,15 +121,12 @@ export class DocumentComponentComponent implements OnInit {
   }
 
   submitUpdate() {
-
     let j: any;
-    // tslint:disable-next-line:forin
     for (j in this.titleTypes) {
       if (j.option === this.titleType) {
         this.titleTypeVal = j.value;
       }
     }
-    // tslint:disable-next-line:forin
     for (j in this.identifierTypes) {
       if (j.option === this.identifierType) {
         this.identifierTypeVal = j.value;
