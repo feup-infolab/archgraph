@@ -49,9 +49,26 @@ export class DocumentComponentComponent implements OnInit {
   titleName = '';
   identifierName = '';
   identifierType = '';
+  titleTypeVal = '';
+  identifierTypeVal = '';
 
   titleTypes = [];
   identifierTypes = [];
+
+  id = {
+    value: '',
+    type: ''
+  };
+
+  titlef = {
+    value: '',
+    type: ''
+  };
+
+  deliveredJson = {
+    identifier : [],
+    title: []
+  };
 
 
 
@@ -101,6 +118,25 @@ export class DocumentComponentComponent implements OnInit {
         console.log(returnedIdentifiers);
       });
 
+  }
+
+  submitUpdate() {
+
+    let j: any;
+    // tslint:disable-next-line:forin
+    for (j in this.titleTypes) {
+      if (j.option === this.titleType) {
+        this.titleTypeVal = j.value;
+      }
+    }
+    // tslint:disable-next-line:forin
+    for (j in this.identifierTypes) {
+      if (j.option === this.identifierType) {
+        this.identifierTypeVal = j.value;
+      }
+    }
+    this.deliveredJson.identifier.push({value: this.identifierName, type: this.identifierTypeVal});
+    this.deliveredJson.title.push({value: this.titleName, type: this.titleTypeVal});
   }
 
   checkChange() {

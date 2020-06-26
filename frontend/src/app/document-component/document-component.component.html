@@ -14,8 +14,8 @@
 
     <mat-form-field>
       <mat-label>Change Type</mat-label>
-      <mat-select [(value)]=titleType>
-        <mat-option *ngFor="let title of titleTypes" [value]="title.option">
+      <mat-select [(value)]=titleType (selectionChange)="changeTitleTypeVal($event)">
+        <mat-option *ngFor="let title of titleTypes" [value]="title.option" >
           {{title.option}}
         </mat-option>
       </mat-select>
