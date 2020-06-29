@@ -41,13 +41,34 @@ export class DocumentComponentComponent implements OnInit {
 
   template = {};
 
+  ftitleType = '';
+  ftitleName = '';
+  fidentifierName = '';
+  fidentifierType = '';
   titleType = '';
   titleName = '';
   identifierName = '';
   identifierType = '';
+  titleTypeVal = '';
+  identifierTypeVal = '';
 
   titleTypes = [];
   identifierTypes = [];
+
+  id = {
+    value: '',
+    type: ''
+  };
+
+  titlef = {
+    value: '',
+    type: ''
+  };
+
+  deliveredJson = {
+    identifier : [],
+    title: []
+  };
 
 
 
@@ -73,6 +94,10 @@ export class DocumentComponentComponent implements OnInit {
         this.identifierName = returnedTemplate.identifier[0].value;
         this.titleType = returnedTemplate.title[0].type;
         this.titleName = returnedTemplate.title[0].value;
+        this.fidentifierType = returnedTemplate.identifier[0].type;
+        this.fidentifierName = returnedTemplate.identifier[0].value;
+        this.ftitleType = returnedTemplate.title[0].type;
+        this.ftitleName = returnedTemplate.title[0].value;
         this.getTitleTypes();
       });
   }
@@ -92,6 +117,41 @@ export class DocumentComponentComponent implements OnInit {
         this.identifierTypes = returnedIdentifiers;
         console.log(returnedIdentifiers);
       });
+
+  }
+
+  submitUpdate() {
+    let j: any;
+    for (j in this.titleTypes) {
+      if (this.titleTypes[j].option === this.titleType) {
+        this.titleTypeVal = this.titleTypes[j].value;
+        console.log('this worked');
+        console.log(this.titleTypeVal);
+      }
+    }
+    for (j in this.identifierTypes) {
+      if (this.identifierTypes[j].option === this.identifierType) {
+        this.identifierTypeVal = this.identifierTypes[j].value;
+        console.log('this worked');
+        console.log(this.identifierTypeVal);
+      }
+    }
+    this.deliveredJson.identifier.push({value: this.identifierName, type: this.identifierTypeVal});
+    this.deliveredJson.title.push({value: this.titleName, type: this.titleTypeVal});
+
+    this.service.postDocTemplate(this.uid, this.deliveredJson)
+      .subscribe(returned => {
+        console.log('Delivered Json');
+        console.log(this.deliveredJson);
+        console.log('Returned');
+        console.log(returned);
+      });
+  }
+
+  checkChange() {
+
+    // tslint:disable-next-line:max-line-length
+    return this.ftitleName === this.titleName && this.fidentifierName === this.identifierName && this.fidentifierType === this.identifierType && this.ftitleType === this.titleType;
 
   }
 

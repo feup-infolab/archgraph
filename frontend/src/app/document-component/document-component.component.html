@@ -1,4 +1,3 @@
-<mat-accordion>
 
   <mat-expansion-panel>
     <mat-expansion-panel-header>
@@ -9,27 +8,20 @@
 
     <mat-form-field>
       <mat-label>Title Name</mat-label>
-      <input matInput [value]="titleName">
+      <input matInput [value]="titleName" [(ngModel)]="titleName">
     </mat-form-field>
 
-    <mat-form-field>
-      <mat-label>Type</mat-label>
-      <input matInput [value]=titleType >
-    </mat-form-field>
 
-    <div>
     <mat-form-field>
       <mat-label>Change Type</mat-label>
-      <mat-select>
-        <mat-option *ngFor="let title of titleTypes" [value]="title.value">
+      <mat-select [(value)]=titleType >
+        <mat-option *ngFor="let title of titleTypes" [value]="title.option" >
           {{title.option}}
         </mat-option>
       </mat-select>
     </mat-form-field>
-    </div>
 
   </mat-expansion-panel>
-
   <mat-expansion-panel >
     <mat-expansion-panel-header>
       <mat-panel-title>
@@ -39,23 +31,18 @@
 
     <mat-form-field>
       <mat-label>Identifier</mat-label>
-      <input matInput [value]=identifierName>
+      <input matInput [value]=identifierName [(ngModel)]="identifierName">
     </mat-form-field>
 
-    <mat-form-field>
-      <mat-label>Type</mat-label>
-      <input matInput [value]=identifierType>
-    </mat-form-field>
 
-    <div>
       <mat-form-field>
         <mat-label>Change Type</mat-label>
-        <mat-select>
-          <mat-option *ngFor="let identifier of identifierTypes" [value]="identifier .value">
-            {{identifier .option}}
+        <mat-select [(value)]=identifierType>
+          <mat-option *ngFor="let identifier of identifierTypes" [value]="identifier.option">
+            {{identifier.option}}
           </mat-option>
         </mat-select>
       </mat-form-field>
-    </div>
   </mat-expansion-panel>
-</mat-accordion>
+
+  <button mat-raised-button disabled color="primary" [disabled]="checkChange()" (click)="submitUpdate()">Update</button>

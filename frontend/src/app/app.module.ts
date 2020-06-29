@@ -17,7 +17,7 @@ import {
   MatButtonModule,
   MatExpansionModule,
   MatFormFieldModule,
-  MatInputModule,
+  MatInputModule, MatListModule,
   MatOptionModule,
   MatSelectModule,
   MatSliderModule
@@ -32,7 +32,7 @@ const appRoutes: Routes = [
   { path: ':uid', component: EditEntityComponent },
   { path: '', component: SearchComponent },
   { path: 'viewtemplate/:uid', component: ViewTemplateComponent },
-  { path: 'eva/:uid', component: DocumentComponentComponent}
+  { path: 'uidglab/:uid', component: DocumentComponentComponent}
 
 ];
 
@@ -69,7 +69,8 @@ const appRoutes: Routes = [
     MatFormFieldModule,
     MatInputModule,
     MatOptionModule,
-    MatSelectModule
+    MatSelectModule,
+    MatListModule
   ],
   providers: [MyServiceService],
   bootstrap: [ AppComponent ],
