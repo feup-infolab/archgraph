@@ -89,6 +89,10 @@ export class MyServiceService {
     return this.http.get<any>(this.baseUrl + 'uidglab/' + uid);
   }
 
+  postDocTemplate(uid, content): Observable<any> {
+    return this.http.post<any>(this.baseUrl + 'uidglab/' + uid, content);
+  }
+
   getAllTitleTypes(): Observable<any> {
     return this.http.get<any>(this.baseUrl + 'control_values/title_types');
   }

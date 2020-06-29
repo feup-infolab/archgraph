@@ -123,17 +123,29 @@ export class DocumentComponentComponent implements OnInit {
   submitUpdate() {
     let j: any;
     for (j in this.titleTypes) {
-      if (j.option === this.titleType) {
-        this.titleTypeVal = j.value;
+      if (this.titleTypes[j].option === this.titleType) {
+        this.titleTypeVal = this.titleTypes[j].value;
+        console.log('this worked');
+        console.log(this.titleTypeVal);
       }
     }
     for (j in this.identifierTypes) {
-      if (j.option === this.identifierType) {
-        this.identifierTypeVal = j.value;
+      if (this.identifierTypes[j].option === this.identifierType) {
+        this.identifierTypeVal = this.identifierTypes[j].value;
+        console.log('this worked');
+        console.log(this.identifierTypeVal);
       }
     }
     this.deliveredJson.identifier.push({value: this.identifierName, type: this.identifierTypeVal});
     this.deliveredJson.title.push({value: this.titleName, type: this.titleTypeVal});
+
+    this.service.postDocTemplate(this.uid, this.deliveredJson)
+      .subscribe(returned => {
+        console.log('Delivered Json');
+        console.log(this.deliveredJson);
+        console.log('Returned');
+        console.log(returned);
+      });
   }
 
   checkChange() {
