@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Location} from "@angular/common";
 import {ActivatedRoute} from "@angular/router";
-import {MyServiceService} from "../service/my-service.service";
+import {MyServiceService} from "../../../service/service-service";
 import {Router} from '@angular/router';
 
 

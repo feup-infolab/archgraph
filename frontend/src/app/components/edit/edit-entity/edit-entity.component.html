@@ -1,4 +1,3 @@
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="#">
     Archgraph Backend Demo
@@ -24,7 +23,7 @@
 
   <json-schema-form
     *ngIf="load"
-    [form]= "form"
+    [form]="form"
     [options]='jsonFormOptions'
     [framework]="'bootstrap-4'"
     (onSubmit)="onSubmit($event)"

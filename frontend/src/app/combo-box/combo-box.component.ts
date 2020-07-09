@@ -1,5 +1,5 @@
 import {Component, OnInit, Input, Output} from '@angular/core';
-import { MyServiceService} from '../service/my-service.service';
+import {MyServiceService} from '../service/service-service';
 
 @Component({
   selector: 'app-combo-box',
@@ -9,9 +9,11 @@ import { MyServiceService} from '../service/my-service.service';
 export class ComboBoxComponent implements OnInit {
   constructor() {
   }
+
   get inputIt() {
     return this.inputItem;
   }
+
   @Input() list: string[];
   // two way binding for input text
   @Input() inputItem = '';
@@ -25,13 +27,15 @@ export class ComboBoxComponent implements OnInit {
   ngOnInit() {
     this.filteredList = this.list;
   }
+
   // modifies the filtered list as per input
   getFilteredList() {
     this.listHidden = false;
     if (!this.listHidden && this.inputItem !== undefined) {
-      this.filteredList = this.list.filter((item) =>  item.toLowerCase().startsWith(this.inputItem.toLowerCase()));
+      this.filteredList = this.list.filter((item) => item.toLowerCase().startsWith(this.inputItem.toLowerCase()));
     }
   }
+
   // select highlighted item when enter is pressed or any item that is clicked
   selectItem(ind) {
     this.inputItem = this.filteredList[ind];
@@ -39,6 +43,7 @@ export class ComboBoxComponent implements OnInit {
     this.selectedIndex = ind;
     console.log(this.inputItem);
   }
+
   // navigate through the list of items
   onKeyPress(event) {
     if (!this.listHidden) {
@@ -65,6 +70,7 @@ export class ComboBoxComponent implements OnInit {
       }
     }
   }
+
   // show or hide the dropdown list when input is focused or moves out of focus
   toggleListDisplay(sender: number) {
     if (sender === 1) {

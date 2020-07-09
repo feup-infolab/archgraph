@@ -1,8 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {MyServiceService} from '../service/my-service.service';
+import {MyServiceService} from '../../../service/service-service';
 import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
-import {ComboBoxComponent} from '../combo-box/combo-box.component';
+import {ComboBoxComponent} from '../../../combo-box/combo-box.component';
 import {NoneComponent} from 'angular7-json-schema-form';
 
 @Component({
@@ -69,7 +69,7 @@ export class EditTemplateComponent implements OnInit {
       .subscribe(returnedTemplate => {
         this.template = returnedTemplate[0];
         this.getSchemaNodeWithTemplate(uid, returnedTemplate[0]);
-    });
+      });
   }
 
   getSchemaNodeWithTemplate(uid, template) {
@@ -87,7 +87,7 @@ export class EditTemplateComponent implements OnInit {
   }
 
   getDataNodeWithTemplate(uid, template) {
-    this.service.getDataNodeWithTemplate(uid , template)
+    this.service.getDataNodeWithTemplate(uid, template)
       .subscribe(result => {
         this.form.data[this.uid] = result;
         console.log(result);
@@ -175,7 +175,7 @@ export class EditTemplateComponent implements OnInit {
     this.load = false;
     this.chosenprops.push(this.comboBoxReference.inputItem);
     this.form.data[this.uid][this.comboBoxReference.inputItem] = [];
-    this.form.data[this.uid][this.comboBoxReference.inputItem][0] = {name: '1', uid: '1' };
+    this.form.data[this.uid][this.comboBoxReference.inputItem][0] = {name: '1', uid: '1'};
     const schemaEntity = this.schemaname.replace('Schema', '');
     this.template[schemaEntity][this.comboBoxReference.inputItem] = this.allprops[this.comboBoxReference.inputItem].items.$ref
       .replace('Schema', '').replace('#/definitions/', '');
@@ -186,7 +186,7 @@ export class EditTemplateComponent implements OnInit {
 
   sendProps() {
     this.service.sendTemplate(this.uid, this.template)
-      .subscribe( result => {
+      .subscribe(result => {
         this.load = true;
       });
   }

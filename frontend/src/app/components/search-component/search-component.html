@@ -11,30 +11,45 @@
       <app-combo-box [list]="itemList" class="form-control"></app-combo-box>
     </div>
     <div>
-      <button class="form-control" type="button" (click)="searchDatabase(search_box.value)" class="btn btn-primary">Search</button>
+      <button class="form-control" type="button" (click)="searchDatabase(search_box.value)" class="btn btn-primary">
+        Search
+      </button>
     </div>
   </div>
 
   <div *ngIf="loadSearch" style="margin: 35px">
-    <table id="search" >
+    <table id="search">
       <thead>
       <tr>
         <th>UID</th>
         <th>Name</th>
         <th>Labels</th>
+        <th>Template-based Interface</th>
+        <th>Alternative Interface</th>
       </tr>
       </thead>
       <tbody>
       <tr *ngFor="let item of searchResultArray; let i = index">
-        <td><nav>
-          <a [routerLink]="['/viewtemplate', item.uid]">{{item.uid}}</a>
-          </nav></td>
+
+        <td>{{item.uid}}</td>
         <td>{{ item.name }}</td>
-        <td><ul>
-          <li *ngFor="let label of item.labels">
-            {{ label }}
-          </li>
-        </ul></td>
+        <td>
+          <ul>
+            <li *ngFor="let label of item.labels">
+              {{ label }}
+            </li>
+          </ul>
+        </td>
+        <td>
+          <nav>
+            <a [routerLink]="['/viewtemplate', item.uid]">View Interface</a>
+          </nav>
+        </td>
+        <td>
+          <nav>
+            <a [routerLink]="['/uidglab', item.uid]">View Interface</a>
+          </nav>
+        </td>
       </tr>
       </tbody>
     </table>

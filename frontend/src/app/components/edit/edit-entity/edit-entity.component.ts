@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {MyServiceService} from '../service/my-service.service';
+import {MyServiceService} from '../../../service/service-service';
 import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
 
@@ -46,7 +46,7 @@ export class EditEntityComponent implements OnInit {
         this.template = JSON.parse(query.get('template'));
         console.log(this.template)
         this.getSchemaNodeWithTemplate(this.uid, this.template)
-    });
+      });
 
     });
 

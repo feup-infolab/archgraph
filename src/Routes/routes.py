@@ -286,7 +286,11 @@ def response_uidglab_edit(uid):
             identifiers = data.get("identifier", None)
             titles = data.get("title", None)
             if dglab_node_update(node, identifiers, titles):
-                return make_response(jsonify(message="Saved node"), 200)
+                response = build_information_uidglab(node)
+                if response:
+                    return make_response(jsonify(response), 201)
+                else:
+                    return make_response(jsonify(message="Node doesn't have information"), 404)
             else:
                 return make_response(jsonify(message="Unsaved node"), 404)
         else:
