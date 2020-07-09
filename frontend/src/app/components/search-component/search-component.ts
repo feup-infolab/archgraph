@@ -1,14 +1,14 @@
-import { Component, OnInit, ViewChild} from '@angular/core';
-import {MyServiceService} from '../service/my-service.service';
-import {CidocSearch} from '../models/CidocSearch';
-import {ComboBoxComponent} from '../combo-box/combo-box.component';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {MyServiceService} from '../../service/service-service';
+import {CidocSearch} from '../../models/CidocSearch';
+import {ComboBoxComponent} from '../../combo-box/combo-box.component';
 import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-example',
-  templateUrl: './search.component.html',
-  styleUrls: ['./search.component.css']
+  templateUrl: './search-component.html',
+  styleUrls: ['./search-component.css']
 })
 
 export class SearchComponent implements OnInit {

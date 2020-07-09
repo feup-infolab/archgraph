@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Observable, Subject} from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Schema} from '../models/Schema';
@@ -16,30 +16,30 @@ export class MyServiceService {
     this.shareMethodSubject.next(data);
   }
 
-  getDataNode( uid: string): Observable<any[]> {
+  getDataNode(uid: string): Observable<any[]> {
     return this.http.get<any[]>(this.baseUrl + uid);
   }
 
-  getDataNodeWithTemplate( uid: string, template: object): Observable<any[]> {
-    return this.http.post<any[]>(this.baseUrl + 'withtemplate/' + uid, template) ;
+  getDataNodeWithTemplate(uid: string, template: object): Observable<any[]> {
+    return this.http.post<any[]>(this.baseUrl + 'withtemplate/' + uid, template);
   }
 
-    getBaseDataNodeWithTemplate( uid: string): Observable<any[]> {
+  getBaseDataNodeWithTemplate(uid: string): Observable<any[]> {
     return this.http.get<any[]>(this.baseUrl + 'withtemplate/' + uid);
   }
 
-  getTemplatesFromEntity( uid: string): Observable<any[]> {
-        return this.http.get<any[]>(this.baseUrl + 'templatesfromentity/' + uid);
+  getTemplatesFromEntity(uid: string): Observable<any[]> {
+    return this.http.get<any[]>(this.baseUrl + 'templatesfromentity/' + uid);
   }
 
 
-  getSearchJson( search: string): Observable<any[]> {
+  getSearchJson(search: string): Observable<any[]> {
     return this.http.get<any[]>(this.baseUrl + 'search/' + search);
   }
 
   getSpecificSearchJson(entity: string, search: string): Observable<any[]> {
     if (search === '') {
-          return this.http.get<any[]>(this.baseUrl + 'search_specific/' + entity);
+      return this.http.get<any[]>(this.baseUrl + 'search_specific/' + entity);
     } else {
       return this.http.get<any[]>(this.baseUrl + 'search_specific/' + entity + '/' + search);
     }
@@ -74,15 +74,15 @@ export class MyServiceService {
       data: data[uid]
     };
 
-    return this.http.post<any>(this.baseUrl + uid,  body);
+    return this.http.post<any>(this.baseUrl + uid, body);
   }
 
-   sendTemplate(uid, template): Observable<any> {
+  sendTemplate(uid, template): Observable<any> {
     return this.http.post<any>(this.baseUrl + 'inserttemplate/' + uid, template);
   }
 
   postTemplate(template): Observable<any> {
-    return this.http.post<any>(this.baseUrl + 'post_template' , template);
+    return this.http.post<any>(this.baseUrl + 'post_template', template);
   }
 
   getDocTemplate(uid): Observable<any> {
