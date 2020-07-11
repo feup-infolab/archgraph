@@ -56,3 +56,10 @@ The setup should automatically detect your operating system (Mac or Linux) and r
 ```
 
 To exit, press Ctrl+C, and both the API server and the frontend server should be terminated.
+
+### Using the program
+
+After start up the program, you need to go to ```http://localhost:4200```.
+
+In the Home page you can search for entity's name and entity's type. 
+
