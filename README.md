@@ -59,7 +59,10 @@ To exit, press Ctrl+C, and both the API server and the frontend server should be
 
 ### Using the program
 
-After start up the program, you need to go to ```http://localhost:4200```.
+- After starting the program, you need to go to ```http://localhost:4200```.
+- On the Home page you can search for the name and the type of the entity. 
+- After filling the field ```entity's name```  and/or select the entity's type, you can press the botton ```Search```.
+- On this page, you can see some attributes about the entity and choose the interface that you want to see ```Template-based Interface``` or ```Alternative Interface```
 
-In the Home page you can search for entity's name and entity's type. 
+
 
