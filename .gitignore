@@ -47,11 +47,13 @@ node_modules/
 
 #ignore env stuff
 
-/backend/env/bin
-/backend/env/include
-/backend/env/lib
-/backend/env/man
-/volumes/
+/old_project/backend/env/bin
+/old_project/backend/env/include
+/old_project/backend/env/lib
+/old_project/backend/env/man
+/old_project/volumes/
 __pycache__
 .coverage
+
+/new_project/volumes/
 
