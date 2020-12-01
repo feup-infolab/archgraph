@@ -5,7 +5,7 @@
 
   <div class="form-inline">
     <div>
-      <input class="form-control"  placeholder="entity's name" style="width: 300px" #search_box (keyup.enter)="searchDatabase(search_box.value)">
+      <input class="form-control" style="width: 300px" #search_box (keyup.enter)="searchDatabase(search_box.value)">
     </div>
     <div>
       <app-combo-box [list]="itemList" class="form-control"></app-combo-box>
