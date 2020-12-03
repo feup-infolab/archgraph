@@ -17,7 +17,7 @@ export class MyService {
     return this.http.get<any>(`${this.baseUrl}/?query=SELECT ?s ?p ?o WHERE {?s ?p ?o}`);
   }
 
-  getSuppliedTitle(): Observable<any> {
+  getSuppliedTitle(uid: any): Observable<any> {
     let query;
     query = ' SELECT ?title ' +
         'WHERE { ' +
@@ -30,7 +30,7 @@ export class MyService {
     return this.http.get<any>(`${this.baseUrl}/?query=${encodeURIComponent(completeQuery)}`);
   }
 
-  getNote(): Observable<any> {
+  getNote(uid: any): Observable<any> {
     let query;
     query = 'SELECT ?has_note ' +
     'WHERE { ' +

@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {MyComponent} from './components/my.component';
+import {DocumentComponent} from './components/document.component';
 
 
 const routes: Routes = [
-  { path: '', component: MyComponent }
+  { path: 'documento/:id', component: DocumentComponent }
 ];
 
 export const routing = RouterModule.forRoot(routes);

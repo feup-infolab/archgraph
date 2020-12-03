@@ -1,6 +1,6 @@
 import {MyService} from './service/my.service';
 import {AppComponent} from './app.component';
-import {MyComponent} from './components/my.component';
+import {DocumentComponent} from './components/document.component';
 import {HttpClientModule} from '@angular/common/http';
 import {RouterModule} from '@angular/router';
 import {routing} from './app-routing.module';
@@ -13,8 +13,8 @@ import {MatListModule} from '@angular/material/list';
 @NgModule({
     imports: [BrowserModule, RouterModule, HttpClientModule, routing, MatDividerModule, MatListModule],
     providers: [MyService],
-    declarations: [AppComponent, MyComponent  ],
-    exports: [AppComponent, MyComponent],
+    declarations: [AppComponent, DocumentComponent  ],
+    exports: [AppComponent, DocumentComponent],
     bootstrap: [AppComponent ]
 })
 export class AppModule {
