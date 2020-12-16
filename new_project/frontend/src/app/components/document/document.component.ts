@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {MyService} from '../service/my.service';
+import {MyService} from '../../service/my.service';
 import {ActivatedRoute} from '@angular/router';
 
 
@@ -11,8 +11,7 @@ import {ActivatedRoute} from '@angular/router';
 export class DocumentComponent implements OnInit {
     public titles: any[];
     public notes: any[];
-    private uid: any;
-
+    private id: any;
 
     constructor(
         private service: MyService,
@@ -20,29 +19,26 @@ export class DocumentComponent implements OnInit {
     ) {
         this.titles = [];
         this.notes = [];
-
-
     }
 
     ngOnInit() {
         this.route.paramMap.subscribe(params => {
-            this.uid = params.get('uid');
-            this.getNotes(this.uid);
-            this.getSuppliedTitle(this.uid);
+            this.id = params.get('id');
+            this.getNotes(this.id);
+            this.getSuppliedTitle(this.id);
         });
     }
 
-
-    getSuppliedTitle(uid: any) {
-        this.service.getSuppliedTitle(uid)
+    getSuppliedTitle(id: any) {
+        this.service.getSuppliedTitle(id)
             .subscribe(result => {
                 console.log(result);
                 this.titles = result.results.bindings;
             });
     }
 
-    getNotes(uid: any) {
-        this.service.getNote(uid)
+    getNotes(id: any) {
+        this.service.getNote(id)
             .subscribe(result => {
                 console.log(result);
                 this.notes = result.results.bindings;

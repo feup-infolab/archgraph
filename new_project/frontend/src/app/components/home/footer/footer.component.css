@@ -1,0 +1,7 @@
+.myfooter {
+    display: block;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+}

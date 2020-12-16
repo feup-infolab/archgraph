@@ -1,0 +1,35 @@
+<mat-nav-list>
+<!--    <a mat-list-item routerLink="/home" (click)="onSidenavClose()">-->
+<!--        <mat-icon>home</mat-icon>-->
+<!--        <span class="nav-caption">Home</span>-->
+<!--    </a>-->
+    <a mat-list-item routerLink="/doc/1" (click)="onSidenavClose()">
+        <mat-icon>note_add</mat-icon>
+        <span class="nav-caption">Document</span>
+    </a>
+    <a mat-list-item routerLink="#" (click)="onSidenavClose()">
+        <mat-icon>person_add</mat-icon>
+        <span class="nav-caption">Person</span>
+    </a>
+    <a mat-list-item routerLink="#" (click)="onSidenavClose()">
+        <mat-icon>event</mat-icon>
+        <span class="nav-caption">Event</span>
+    </a>
+    <a mat-list-item routerLink="#" (click)="onSidenavClose()">
+        <mat-icon>group_add</mat-icon>
+        <span class="nav-caption">Organization</span>
+    </a>
+    <a mat-list-item routerLink="#" (click)="onSidenavClose()">
+        <mat-icon>place</mat-icon>
+        <span class="nav-caption">Place</span>
+    </a>
+    <mat-list-item [matMenuTriggerFor]="menu">
+        <mat-icon>search</mat-icon>
+        <span class="nav-caption">Search</span>
+    </mat-list-item>
+    <mat-menu #menu="matMenu">
+        <button mat-icon-button routerLink="/ola" (click)="onSidenavClose()"><mat-icon>favorite</mat-icon>ola</button>
+        <button mat-menu-item (click)="onSidenavClose()">Add contact</button>
+    </mat-menu>
+</mat-nav-list>
+

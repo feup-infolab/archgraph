@@ -1,14 +1,15 @@
 <mat-list>
-    <div mat-subheader>Títulos</div>
+    <div mat-subheader i18n="@@docTitles">Titles</div>
     <mat-list-item *ngFor="let title of titles">
         <div mat-line>{{title['title']['value'] }}</div>
     </mat-list-item>
     <mat-divider></mat-divider>
 
-    <div mat-subheader>Notes</div>
+    <div mat-subheader i18n="@@docNotes">Notes</div>
+    <h1></h1>
     <mat-list-item *ngFor="let note of notes">
         <div mat-line>{{note['has_note']['value'] }}</div>
     </mat-list-item>
     <mat-divider></mat-divider>
-
 </mat-list>
+
