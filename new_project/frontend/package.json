@@ -2,7 +2,7 @@
   "name": "project",
   "version": "0.0.0",
   "scripts": {
-    "int:extract": "ng xi18n --output-path src/locale",
+    "translate": "ng xi18n --output-path src/locale",
     "ng": "ng",
     "postinstall": "ngcc",
     "start": "ng serve -- --port=4201",
