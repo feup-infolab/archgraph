@@ -19,6 +19,7 @@ import {EventComponent} from './components/event/event.component';
 import {PlaceComponent} from './components/place/place.component';
 import {OrganizationComponent} from './components/oranization/organization.component';
 import { AdvancedSearchComponent } from './components/search/advanced-search.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
     imports: [BrowserModule,
@@ -27,7 +28,7 @@ import { AdvancedSearchComponent } from './components/search/advanced-search.com
         MaterialModule,
         RoutingModule,
         BrowserAnimationsModule,
-        LayoutModule,
+        LayoutModule, FormsModule,
     ],
     providers: [MyService],
     declarations: [AppComponent,

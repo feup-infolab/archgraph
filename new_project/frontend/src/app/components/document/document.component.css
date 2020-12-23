@@ -1,0 +1,42 @@
+.example-action-buttons {
+    padding-bottom: 20px;
+}
+
+.example-headers-align .mat-expansion-panel-header-title,
+.example-headers-align .mat-expansion-panel-header-description {
+    flex-basis: 0;
+}
+/*.mat-expansion-panel-body {*/
+/*    display: flex;*/
+/*    flex-flow: column;*/
+/*    text-align: center;*/
+/*}*/
+.panel{
+  margin: 20px;
+    padding: 5px;
+}
+
+.fields{
+    display: flex;
+    width: 100%;
+    vertical-align: middle;
+}
+.mat-form-field{
+    width: 20%;
+    margin-right: 10px;
+    padding-left: 10px;
+
+}
+
+/*.mat-expansion-panel-content  .mat-form-field {*/
+/*    margin-right: 10px;*/
+/*}*/
+
+/*.example-headers-align .mat-expansion-panel-header-description {*/
+/*    justify-content: space-between;*/
+/*    align-items: center;*/
+/*}*/
+
+/*.example-headers-align .mat-form-field + .mat-form-field {*/
+/*    margin-left: 8px;*/
+/*}*/

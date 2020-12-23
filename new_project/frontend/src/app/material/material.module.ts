@@ -31,48 +31,12 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatInputModule} from '@angular/material/input';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatDialogModule} from '@angular/material/dialog';
-
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 
 @NgModule({
-  declarations: [],
-  imports: [
-    CommonModule,
-    MatDividerModule,
-    MatListModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatButtonModule,
-    MatStepperModule,
-    MatTooltipModule,
-    MatSidenavModule,
-    MatAutocompleteModule,
-    MatButtonToggleModule,
-    MatCardModule,
-    MatCheckboxModule,
-    MatChipsModule,
-    MatDatepickerModule,
-    MatDialogModule,
-    MatExpansionModule,
-    MatGridListModule,
-    MatInputModule,
-    MatListModule,
-    MatMenuModule,
-    MatNativeDateModule,
-    MatPaginatorModule,
-    MatProgressBarModule,
-    MatProgressSpinnerModule,
-    MatRadioModule,
-    MatRippleModule,
-    MatSelectModule,
-    MatSliderModule,
-    MatSlideToggleModule,
-    MatSnackBarModule,
-    MatSortModule,
-    MatTableModule,
-    MatTabsModule
-  ],
   exports: [
+    MatFormFieldModule,
     MatDividerModule,
     MatListModule,
     MatToolbarModule,
@@ -105,7 +69,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatSnackBarModule,
     MatSortModule,
     MatTableModule,
-    MatTabsModule
+    MatTabsModule,
   ]
 })
 export class MaterialModule { }

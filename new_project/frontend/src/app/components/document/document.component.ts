@@ -11,7 +11,14 @@ import {ActivatedRoute} from '@angular/router';
 export class DocumentComponent implements OnInit {
     public titles: any[];
     public notes: any[];
+    public languages: any[];
     private id: any;
+    private dimensions: any[];
+    private descriptionLevel: string;
+    private subjects: any[];
+    private typologies: any[];
+    private relatedEvents: any[];
+    private relatedDocs: any[];
 
     constructor(
         private service: MyService,
@@ -19,6 +26,13 @@ export class DocumentComponent implements OnInit {
     ) {
         this.titles = [];
         this.notes = [];
+        this.languages = [];
+        this.dimensions = [];
+        this.subjects = [];
+        this.descriptionLevel = '';
+        this.typologies = [];
+        this.relatedEvents = [];
+        this.relatedDocs = [];
     }
 
     ngOnInit() {
