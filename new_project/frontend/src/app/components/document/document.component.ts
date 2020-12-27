@@ -38,7 +38,8 @@ export class DocumentComponent implements OnInit {
     ngOnInit() {
         this.route.paramMap.subscribe(params => {
             this.id = params.get('id');
-            this.getNotes(this.id);
+            this.getAllDocById(this.id);
+            // this.getNotes(this.id);
             this.getSuppliedTitle(this.id);
         });
     }
@@ -51,11 +52,26 @@ export class DocumentComponent implements OnInit {
             });
     }
 
-    getNotes(id: any) {
-        this.service.getNote(id)
+    // getNotes(id: any) {
+    //     this.service.getNote(id)
+    //         .subscribe(result => {
+    //             console.log(result);
+    //             this.notes = result.results.bindings;
+    //         });
+    // }
+
+    getAllDocById(id: any) {
+        this.service.getAllDocById(id)
             .subscribe(result => {
+
                 console.log(result);
-                this.notes = result.results.bindings;
+                // this.notes =
+                // this.languages =
+                // this.titles =
+                // this.descriptionLevel =
+                // this.dimensions =
+                // this.relatedDocs =
+                // this.relatedEvents =
             });
     }
 }

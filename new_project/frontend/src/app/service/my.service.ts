@@ -39,5 +39,10 @@ export class MyService {
             '}';
         return this.http.get<any>(`${this.baseUrl}/?query=${encodeURIComponent(query)}`);
     }
+
+    getAllDocById(id: any): Observable<any> {
+        // @ts-ignore
+        return true;
+    }
 }
 
