@@ -7,6 +7,7 @@ import {PersonComponent} from '../components/person/person.component';
 import {EventComponent} from '../components/event/event.component';
 import {PlaceComponent} from '../components/place/place.component';
 import {AdvancedSearchComponent} from '../components/search/advanced-search.component';
+import {OrganizationComponent} from '../components/oranization/organization.component';
 
 const routes: Routes = [
     {path: 'home', component: HomeComponent},
@@ -14,12 +15,8 @@ const routes: Routes = [
     {path: 'person/:id', component: PersonComponent},
     {path: 'event/:id', component: EventComponent},
     {path: 'place/:id', component: PlaceComponent},
-    {path: 'organization/:id', component: PersonComponent},
-    {path: 'search/person', component: PersonComponent},
-    {path: 'search/event', component: EventComponent},
-    {path: 'search/place', component: PlaceComponent},
-    {path: 'search/doc', component: DocumentComponent},
-    {path: 'advanced_search', component: AdvancedSearchComponent},
+    {path: 'organization/:id', component: OrganizationComponent},
+    {path: 'advancedsearch', component: AdvancedSearchComponent},
 
     {path: '', redirectTo: '/home', pathMatch: 'full'},
 ];

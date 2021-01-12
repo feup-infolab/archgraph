@@ -38,9 +38,9 @@ export class DocumentComponent implements OnInit {
     ngOnInit() {
         this.route.paramMap.subscribe(params => {
             this.id = params.get('id');
-            this.getAllDocById(this.id);
             // this.getNotes(this.id);
             this.getSuppliedTitle(this.id);
+            this.getAllDocById(this.id);
         });
     }
 

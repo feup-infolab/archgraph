@@ -1,0 +1,15 @@
+.tabtitle{
+    text-align: center;
+    padding: 1em;
+}
+.table {
+    width: 45%;
+    margin: auto;
+}
+form {
+    padding-top: 2em;
+}
+.mat-form-field{
+    display: block;
+    padding-right: 20px;
+}

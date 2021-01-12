@@ -19,27 +19,31 @@
         <mat-icon>group_add</mat-icon>
         <span class="nav-caption" i18n>Organization</span>
     </a>
-    <mat-list-item [matMenuTriggerFor]="menu">
+    <a mat-list-item routerLink="/advancedsearch" (click)="onSidenavClose()">
         <mat-icon>search</mat-icon>
-        <span class="nav-caption" i18n>Search</span>
-    </mat-list-item>
-    <mat-menu #menu="matMenu">
-        <button mat-menu-item routerLink="/search/doc" (click)="onSidenavClose()" i18n>
-            <mat-icon>note</mat-icon>
-            Document
-        </button>
-        <button mat-menu-item routerLink="/search/person" (click)="onSidenavClose()" i18n>
-            <mat-icon>person_search</mat-icon>
-            Person
-        </button>
-        <button mat-menu-item routerLink="/search/event" (click)="onSidenavClose()" i18n>
-            <mat-icon>event</mat-icon>
-            Event
-        </button>
-        <button mat-menu-item routerLink="/search/place" (click)="onSidenavClose()" i18n>
-            <mat-icon>place</mat-icon>
-            Place
-        </button>
-    </mat-menu>
+        <span class="nav-caption" i18n>Advanced Search</span>
+    </a>
+<!--    <mat-list-item [matMenuTriggerFor]="menu">-->
+<!--        <mat-icon>search</mat-icon>-->
+<!--        <span class="nav-caption" i18n>Search</span>-->
+<!--    </mat-list-item>-->
+<!--    <mat-menu #menu="matMenu">-->
+<!--        <button mat-menu-item routerLink="/search/doc" (click)="onSidenavClose()" i18n>-->
+<!--            <mat-icon>note</mat-icon>-->
+<!--            Document-->
+<!--        </button>-->
+<!--        <button mat-menu-item routerLink="/search/person" (click)="onSidenavClose()" i18n>-->
+<!--            <mat-icon>person_search</mat-icon>-->
+<!--            Person-->
+<!--        </button>-->
+<!--        <button mat-menu-item routerLink="/search/event" (click)="onSidenavClose()" i18n>-->
+<!--            <mat-icon>event</mat-icon>-->
+<!--            Event-->
+<!--        </button>-->
+<!--        <button mat-menu-item routerLink="/search/place" (click)="onSidenavClose()" i18n>-->
+<!--            <mat-icon>place</mat-icon>-->
+<!--            Place-->
+<!--        </button>-->
+<!--    </mat-menu>-->
 </mat-nav-list>
 
