@@ -2,8 +2,8 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {CommonModule} from '@angular/common';
 import {DocumentComponent} from '../components/document/document.component';
-import { HomeComponent} from '../components/home/home/home.component';
-import {PersonComponent} from '../components/person/person.component';
+import {HomeComponent} from '../components/home/home/home.component';
+import {ActorComponent} from '../components/actor/actor.component';
 import {EventComponent} from '../components/event/event.component';
 import {PlaceComponent} from '../components/place/place.component';
 import {AdvancedSearchComponent} from '../components/search/advanced-search.component';
@@ -12,7 +12,7 @@ import {OrganizationComponent} from '../components/oranization/organization.comp
 const routes: Routes = [
     {path: 'home', component: HomeComponent},
     {path: 'doc/:id', component: DocumentComponent},
-    {path: 'person/:id', component: PersonComponent},
+    {path: 'actor/:id', component: ActorComponent},
     {path: 'event/:id', component: EventComponent},
     {path: 'place/:id', component: PlaceComponent},
     {path: 'organization/:id', component: OrganizationComponent},

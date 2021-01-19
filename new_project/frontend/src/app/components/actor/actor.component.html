@@ -1,0 +1,19 @@
+<div class="doc-content">
+    <mat-accordion class="example-headers-align" multi>
+        <mat-expansion-panel class="panel">
+            <mat-expansion-panel-header>
+                <mat-panel-title i18n>Identifiers</mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="fields" *ngFor="let title of identifiers">
+                <mat-form-field>
+                    <mat-label i18n>Identifier</mat-label>
+                    <input matInput readonly [(ngModel)]="title.title.value">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label i18n>Type</mat-label>
+                    <input matInput readonly value="formal">
+                </mat-form-field>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>

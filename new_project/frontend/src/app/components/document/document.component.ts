@@ -13,12 +13,12 @@ export class DocumentComponent implements OnInit {
     public notes: any[];
     public languages: any[];
     private id: any;
-    private dimensions: any[];
-    private descriptionLevel: string;
-    private subjects: any[];
-    private typologies: any[];
-    private relatedEvents: any[];
-    private relatedDocs: any[];
+    public dimensions: any[];
+    public descriptionLevel: string;
+    public subjects: any[];
+    public typologies: any[];
+    public relatedEvents: any[];
+    public relatedDocs: any[];
 
     constructor(
         private service: MyService,

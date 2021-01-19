@@ -122,14 +122,14 @@
         </form>
 
     </mat-tab>
-    <mat-tab label="Person">
+    <mat-tab label="Actor">
         <form>
             <table class="table" cellspacing="0">
                 <tr class="elements-colspan">
                     <td colspan="2">
                         <mat-form-field>
                             <mat-label i18n>Name</mat-label>
-                            <input matInput name="name" [(ngModel)]="name">
+                            <input matInput name="actorName" [(ngModel)]="actorName">
                         </mat-form-field>
                     </td>
                     <td>
@@ -143,7 +143,7 @@
                     <td colspan="2">
                         <mat-form-field>
                             <mat-label i18n>Cultural Period</mat-label>
-                            <input matInput name="cperiod" [(ngModel)]="cperiod">
+                            <input matInput name="actorCulturalPeriod" [(ngModel)]="actorCulturalPeriod">
                         </mat-form-field>
                     </td>
                     <td>
@@ -157,7 +157,7 @@
                     <td colspan="2">
                         <mat-form-field>
                             <mat-label i18n>Identifier</mat-label>
-                            <input matInput name="personIdentifier" [(ngModel)]="personIdentifier">
+                            <input matInput name="actorIdentifier" [(ngModel)]="actorIdentifier">
                         </mat-form-field>
                     </td>
                     <td>
@@ -171,13 +171,13 @@
                     <td>
                         <mat-form-field class="short-width">
                             <mat-label i18n>Birth Date (From)</mat-label>
-                            <input matInput type="date" name="fromBirthDate" [(ngModel)]="fromBirthDate">
+                            <input matInput type="date" name="actorBirthDateFrom" [(ngModel)]="actorBirthDateFrom">
                         </mat-form-field>
                     </td>
                     <td>
                         <mat-form-field class="short-width">
                             <mat-label i18n>Birth Date (To)</mat-label>
-                            <input matInput type="date" name="toBirthDate" [(ngModel)]="toBirthDate">
+                            <input matInput type="date" name="actorBirthDateTo" [(ngModel)]="actorBirthDateTo">
                         </mat-form-field>
                     </td>
                     <td>
@@ -191,13 +191,13 @@
                     <td>
                         <mat-form-field class="short-width">
                             <mat-label i18n>Death Date (From)</mat-label>
-                            <input matInput type="date" name="fromDeathDate" [(ngModel)]="fromDeathDate">
+                            <input matInput type="date" name="actorDeathDateFrom" [(ngModel)]="actorDeathDateFrom">
                         </mat-form-field>
                     </td>
                     <td class="short-width">
                         <mat-form-field class="short-width">
                             <mat-label i18n>Death Date (To)</mat-label>
-                            <input matInput type="date" name="toDeathDate" [(ngModel)]="toDeathDate">
+                            <input matInput type="date" name="actorDeathDateTo" [(ngModel)]="actorDeathDateTo">
                         </mat-form-field>
                     </td>
                     <td>
@@ -211,7 +211,21 @@
                     <td colspan="2">
                         <mat-form-field>
                             <mat-label i18n>Keywords</mat-label>
-                            <input matInput name="keywords" [(ngModel)]="keywords">
+                            <input matInput name="actorKeywords" [(ngModel)]="actorKeywords">
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <button>AND</button>
+                    </td>
+                    <td>
+                        <button>OR</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <mat-form-field>
+                            <mat-label i18n>Related To</mat-label>
+                            <input matInput name="actorRelatedTo" [(ngModel)]="actorRelatedTo">
                         </mat-form-field>
                     </td>
                     <td>
@@ -225,11 +239,311 @@
         </form>
     </mat-tab>
     <mat-tab label="Event">
-        <h2 class="tabtitle">Advanced Event Search</h2>
+        <form>
+            <table class="table" cellspacing="0">
+                <tr>
+                    <td colspan="2">
+                        <mat-form-field>
+                            <mat-label i18n>Name</mat-label>
+                            <input matInput name="eventName" [(ngModel)]="eventName">
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <button>AND</button>
+                    </td>
+                    <td>
+                        <button>OR</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <mat-form-field>
+                            <mat-label i18n>Identifier</mat-label>
+                            <input matInput name="eventIdentifier" [(ngModel)]="eventIdentifier">
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <button>AND</button>
+                    </td>
+                    <td>
+                        <button>OR</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <mat-form-field class="short-width">
+                            <mat-label i18n>Start Date (From)</mat-label>
+                            <input matInput type="date" name="eventStartDateFrom" [(ngModel)]="eventStartDateFrom">
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field class="short-width">
+                            <mat-label i18n>Start Date (To)</mat-label>
+                            <input matInput type="date" name="eventStartDateTo" [(ngModel)]="eventStartDateTo">
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <button>AND</button>
+                    </td>
+                    <td>
+                        <button>OR</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <mat-form-field class="short-width">
+                            <mat-label i18n>End Date (From)</mat-label>
+                            <input matInput type="date" name="eventEndDateFrom" [(ngModel)]="eventEndDateFrom">
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field class="short-width">
+                            <mat-label i18n>End Date (To)</mat-label>
+                            <input matInput type="date" name="eventEndDateTo" [(ngModel)]="eventEndDateTo">
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <button>AND</button>
+                    </td>
+                    <td>
+                        <button>OR</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <mat-form-field>
+                            <mat-label i18n>Cultural Period</mat-label>
+                            <input matInput name="eventCulturalPeriod" [(ngModel)]="eventCulturalPeriod">
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <button>AND</button>
+                    </td>
+                    <td>
+                        <button>OR</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <mat-form-field>
+                            <mat-label i18n>Event Type</mat-label>
+                            <input matInput name="eventType" [(ngModel)]="eventType">
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <button>AND</button>
+                    </td>
+                    <td>
+                        <button>OR</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <mat-form-field>
+                            <mat-label i18n>Location</mat-label>
+                            <input matInput name="eventLocation" [(ngModel)]="eventLocation">
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <button>AND</button>
+                    </td>
+                    <td>
+                        <button>OR</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <mat-form-field>
+                            <mat-label i18n>Address</mat-label>
+                            <input matInput name="eventAddress" [(ngModel)]="eventAddress">
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <button>AND</button>
+                    </td>
+                    <td>
+                        <button>OR</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <mat-form-field>
+                            <mat-label i18n>Latitude</mat-label>
+                            <input matInput name="eventLatitude" [(ngModel)]="eventLatitude">
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <button>AND</button>
+                    </td>
+                    <td>
+                        <button>OR</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <mat-form-field>
+                            <mat-label i18n>Longitude</mat-label>
+                            <input matInput name="eventLongitude" [(ngModel)]="eventLongitude">
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <button>AND</button>
+                    </td>
+                    <td>
+                        <button>OR</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <mat-form-field>
+                            <mat-label i18n>Keywords</mat-label>
+                            <input matInput name="eventKeywords" [(ngModel)]="eventKeywords">
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <button>AND</button>
+                    </td>
+                    <td>
+                        <button>OR</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <mat-form-field>
+                            <mat-label i18n>Related To</mat-label>
+                            <input matInput name="eventRelatedTo" [(ngModel)]="eventRelatedTo">
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <button>AND</button>
+                    </td>
+                    <td>
+                        <button>OR</button>
+                    </td>
+                </tr>
 
+            </table>
+        </form>
     </mat-tab>
     <mat-tab label="Place">
-        <h2 class="tabtitle">Advanced Place Search</h2>
+        <form>
+            <table class="table" cellspacing="0">
+                <tr>
+                    <td colspan="2">
+                        <mat-form-field>
+                            <mat-label i18n>Name</mat-label>
+                            <input matInput name="placeName" [(ngModel)]="placeName">
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <button>AND</button>
+                    </td>
+                    <td>
+                        <button>OR</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <mat-form-field>
+                            <mat-label i18n>Identifier</mat-label>
+                            <input matInput name="placeIdentifier" [(ngModel)]="placeIdentifier">
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <button>AND</button>
+                    </td>
+                    <td>
+                        <button>OR</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <mat-form-field>
+                            <mat-label i18n>Location</mat-label>
+                            <input matInput name="placeLocation" [(ngModel)]="placeLocation">
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <button>AND</button>
+                    </td>
+                    <td>
+                        <button>OR</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <mat-form-field>
+                            <mat-label i18n>Administrative Division</mat-label>
+                            <input matInput name="placeAdminDivision" [(ngModel)]="placeAdminDivision">
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <button>AND</button>
+                    </td>
+                    <td>
+                        <button>OR</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <mat-form-field>
+                            <mat-label i18n>Latitude</mat-label>
+                            <input matInput name="placeLatitude" [(ngModel)]="placeLatitude">
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <button>AND</button>
+                    </td>
+                    <td>
+                        <button>OR</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <mat-form-field>
+                            <mat-label i18n>Longitude</mat-label>
+                            <input matInput name="placeLongitude" [(ngModel)]="placeLongitude">
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <button>AND</button>
+                    </td>
+                    <td>
+                        <button>OR</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <mat-form-field>
+                            <mat-label i18n>Keywords</mat-label>
+                            <input matInput name="placeKeywords" [(ngModel)]="placeKeywords">
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <button>AND</button>
+                    </td>
+                    <td>
+                        <button>OR</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <mat-form-field>
+                            <mat-label i18n>Related To</mat-label>
+                            <input matInput name="placeRelatedTo" [(ngModel)]="placeRelatedTo">
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <button>AND</button>
+                    </td>
+                    <td>
+                        <button>OR</button>
+                    </td>
+                </tr>
+
+            </table>
+        </form>
+
 
     </mat-tab>
     <mat-tab label="Organization">

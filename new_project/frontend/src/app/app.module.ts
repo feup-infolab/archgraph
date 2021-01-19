@@ -14,12 +14,12 @@ import {FooterComponent} from './components/home/footer/footer.component';
 import {HeaderComponent} from './components/home/header/header.component';
 import {SidenavListComponent} from './components/home/sidenav-list/sidenav-list.component';
 import {HomeComponent} from './components/home/home/home.component';
-import {PersonComponent} from './components/person/person.component';
+import {ActorComponent} from './components/actor/actor.component';
 import {EventComponent} from './components/event/event.component';
 import {PlaceComponent} from './components/place/place.component';
 import {OrganizationComponent} from './components/oranization/organization.component';
-import { AdvancedSearchComponent } from './components/search/advanced-search.component';
-import {FormsModule} from "@angular/forms";
+import {AdvancedSearchComponent} from './components/search/advanced-search.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
     imports: [BrowserModule,
@@ -37,7 +37,7 @@ import {FormsModule} from "@angular/forms";
         HeaderComponent,
         SidenavListComponent,
         HomeComponent,
-        PersonComponent,
+        ActorComponent,
         EventComponent,
         PlaceComponent,
         OrganizationComponent,

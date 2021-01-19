@@ -19,10 +19,15 @@ export class MyService {
     }
 
     getSuppliedTitle(id: any): Observable<any> {
+        let doc = 335;
+        if (id === '1'){
+            doc = 127;
+        }
         let query;
         query = ' SELECT ?title ' +
             'WHERE { ' +
-            '<http://erlangen-crm.org/200717/E31_Document335> <http://erlangen-crm.org/200717/P102_has_title> ?ARE3SuppliedTitle. ' +
+            // tslint:disable-next-line:max-line-length
+            '<http://erlangen-crm.org/200717/E31_Document' + doc + '> <http://erlangen-crm.org/200717/P102_has_title> ?ARE3SuppliedTitle. ' +
             '?ARE3SuppliedTitle ligacao:hasValue ?data_object. ' +
             '?data_object data_object:stringValue ?title. ' +
             '}';
@@ -41,6 +46,11 @@ export class MyService {
     }
 
     getAllDocById(id: any): Observable<any> {
+        // @ts-ignore
+        return true;
+    }
+
+    getAllActorById(id: any): Observable<any> {
         // @ts-ignore
         return true;
     }
