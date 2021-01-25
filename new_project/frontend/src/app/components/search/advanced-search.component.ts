@@ -6,22 +6,31 @@ import {Component, OnInit} from '@angular/core';
     styleUrls: ['./advanced-search.component.css']
 })
 export class AdvancedSearchComponent implements OnInit {
+    // actor
     public actorName: any;
-    // public identifier: any;
     public actorBirthDateTo: any;
     public actorBirthDateFrom: any;
     public actorDeathDateFrom: any;
     public actorDeathDateTo: any;
     public actorKeywords: any;
     public actorRelatedTo: any;
-    public docIdentifier: any;
-    public docIdentifierType: any;
-    public title: any;
-    public titleType: any;
-    public language: any;
-    public languageIdentifier: any;
     public actorIdentifier: any;
     public actorCulturalPeriod: any;
+    // document
+    public docDescriptionLevel: any;
+    public docReferenceCode: any;
+    public docKeywords: any;
+    public docRelatedTo: any;
+    public docProdDateFrom: any;
+    public docProdDateTo: any;
+    public docInterventionStartDateFrom: any;
+    public docInterventionStartDateTo: any;
+    public docInterventionEndDateFrom: any;
+    public docInterventionEndDateTo: any;
+    public docCuratorName: any;
+    public docCreationDateFrom: any;
+    public docCreationDateTo: any;
+    //  event
     public eventName: any;
     public eventType: any;
     public eventLocation: any;
@@ -36,6 +45,7 @@ export class AdvancedSearchComponent implements OnInit {
     public eventStartDateFrom: any;
     public eventIdentifier: any;
     public eventStartDateTo: any;
+    // place
     public placeName: any;
     public placeIdentifier: any;
     public placeLocation: any;
@@ -44,7 +54,17 @@ export class AdvancedSearchComponent implements OnInit {
     public placeLongitude: any;
     public placeKeywords: any;
     public placeRelatedTo: any;
-
+    // organization
+    public orgName: any;
+    public orgIdentifier: any;
+    public orgCulturalPeriod: any;
+    public orgLatitude: any;
+    public orgLongitude: any;
+    public orgKeywords: any;
+    public orgRelatedTo: any;
+    public orgLocation: any;
+    public orgBuildDateFrom: any;
+    public orgBuildDateTo: any;
 
     constructor() {
     }

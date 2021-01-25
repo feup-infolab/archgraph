@@ -18,3 +18,15 @@ form {
     display: block;
     padding-right: 20px;
 }
+form > h4{
+    text-align: center;
+}
+
+form > h4:not(:first-child) {
+    padding-top: 2em;
+    padding-bottom: 1em;
+}
+
+form > h4:first-child {
+    margin: 0;
+}
