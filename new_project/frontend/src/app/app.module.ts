@@ -15,11 +15,13 @@ import {HeaderComponent} from './components/home/header/header.component';
 import {SidenavListComponent} from './components/home/sidenav-list/sidenav-list.component';
 import {HomeComponent} from './components/home/home/home.component';
 import {ActorComponent} from './components/actor/actor.component';
-import {EventComponent} from './components/event/event.component';
 import {PlaceComponent} from './components/place/place.component';
-import {OrganizationComponent} from './components/oranization/organization.component';
+import {OrganizationComponent} from './components/organization/organization.component';
 import {AdvancedSearchComponent} from './components/search/advanced-search.component';
 import {FormsModule} from '@angular/forms';
+import {GenericComponent} from './components/event/generic/generic.component';
+import {SupportComponent} from './components/event/support/support.component';
+import {RestorationComponent} from './components/event/restoration/restoration.component';
 
 @NgModule({
     imports: [BrowserModule,
@@ -38,10 +40,12 @@ import {FormsModule} from '@angular/forms';
         SidenavListComponent,
         HomeComponent,
         ActorComponent,
-        EventComponent,
         PlaceComponent,
         OrganizationComponent,
-        AdvancedSearchComponent],
+        AdvancedSearchComponent,
+        GenericComponent,
+        SupportComponent,
+        RestorationComponent],
     exports: [AppComponent],
     bootstrap: [AppComponent]
 })

@@ -7,10 +7,24 @@
         <mat-icon>person</mat-icon>
         <span class="nav-caption" i18n>Actor</span>
     </a>
-    <a mat-list-item routerLink="/event/1" (click)="onSidenavClose()">
+    <a mat-list-item [matMenuTriggerFor]="menu">
         <mat-icon>event</mat-icon>
         <span class="nav-caption" i18n>Event</span>
     </a>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item routerLink="/event/conservation_restoration/1" (click)="onSidenavClose()" i18n>
+            <mat-icon>event</mat-icon>
+            Conservation and restoration action
+        </button>
+        <button mat-menu-item routerLink="/event/support/1" (click)="onSidenavClose()" i18n>
+            <mat-icon>event</mat-icon>
+            Support transfer action
+        </button>
+        <button mat-menu-item routerLink="/event/generic/1" (click)="onSidenavClose()" i18n>
+            <mat-icon>event</mat-icon>
+            Generic
+        </button>
+    </mat-menu>
     <a mat-list-item routerLink="/place/1" (click)="onSidenavClose()">
         <mat-icon>place</mat-icon>
         <span class="nav-caption" i18n>Place</span>
@@ -23,27 +37,27 @@
         <mat-icon>search</mat-icon>
         <span class="nav-caption" i18n>Advanced Search</span>
     </a>
-<!--    <mat-list-item [matMenuTriggerFor]="menu">-->
-<!--        <mat-icon>search</mat-icon>-->
-<!--        <span class="nav-caption" i18n>Search</span>-->
-<!--    </mat-list-item>-->
-<!--    <mat-menu #menu="matMenu">-->
-<!--        <button mat-menu-item routerLink="/search/doc" (click)="onSidenavClose()" i18n>-->
-<!--            <mat-icon>note</mat-icon>-->
-<!--            Document-->
-<!--        </button>-->
-<!--        <button mat-menu-item routerLink="/search/actor" (click)="onSidenavClose()" i18n>-->
-<!--            <mat-icon>person_search</mat-icon>-->
-<!--            Person-->
-<!--        </button>-->
-<!--        <button mat-menu-item routerLink="/search/event" (click)="onSidenavClose()" i18n>-->
-<!--            <mat-icon>event</mat-icon>-->
-<!--            Event-->
-<!--        </button>-->
-<!--        <button mat-menu-item routerLink="/search/place" (click)="onSidenavClose()" i18n>-->
-<!--            <mat-icon>place</mat-icon>-->
-<!--            Place-->
-<!--        </button>-->
-<!--    </mat-menu>-->
+    <!--    <mat-list-item [matMenuTriggerFor]="menu">-->
+    <!--        <mat-icon>search</mat-icon>-->
+    <!--        <span class="nav-caption" i18n>Search</span>-->
+    <!--    </mat-list-item>-->
+    <!--    <mat-menu #menu="matMenu">-->
+    <!--        <button mat-menu-item routerLink="/search/doc" (click)="onSidenavClose()" i18n>-->
+    <!--            <mat-icon>note</mat-icon>-->
+    <!--            Document-->
+    <!--        </button>-->
+    <!--        <button mat-menu-item routerLink="/search/actor" (click)="onSidenavClose()" i18n>-->
+    <!--            <mat-icon>person_search</mat-icon>-->
+    <!--            Person-->
+    <!--        </button>-->
+    <!--        <button mat-menu-item routerLink="/search/event" (click)="onSidenavClose()" i18n>-->
+    <!--            <mat-icon>event</mat-icon>-->
+    <!--            Event-->
+    <!--        </button>-->
+    <!--        <button mat-menu-item routerLink="/search/place" (click)="onSidenavClose()" i18n>-->
+    <!--            <mat-icon>place</mat-icon>-->
+    <!--            Place-->
+    <!--        </button>-->
+    <!--    </mat-menu>-->
 </mat-nav-list>
 
