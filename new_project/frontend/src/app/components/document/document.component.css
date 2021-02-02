@@ -13,12 +13,6 @@
 .doc-content{
     margin-bottom: 6em;
 }
-.fields{
-    display: flex;
-    width: 80%;
-    vertical-align: middle;
-    margin: auto;
-}
 .mat-form-field{
     width: 30%;
     margin-right: 2em;

@@ -26,7 +26,6 @@ export class ActorComponent implements OnInit {
         this.relatedEvents = [];
         this.relatedActors = [];
         this.relatedPlaces = [];
-
     }
 
     ngOnInit() {
