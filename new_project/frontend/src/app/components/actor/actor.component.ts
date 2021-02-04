@@ -10,7 +10,7 @@ import {ActivatedRoute} from '@angular/router';
 export class ActorComponent implements OnInit {
     private id: any;
     public identifiers: any[];
-    public names: any[];
+    public actor: any[];
     public legalStatus: any[];
     public relatedPlaces: any[];
     public relatedEvents: any[];
@@ -21,7 +21,7 @@ export class ActorComponent implements OnInit {
         private route: ActivatedRoute,
     ) {
         this.identifiers = [];
-        this.names = [];
+        this.actor = [];
         this.legalStatus = [];
         this.relatedEvents = [];
         this.relatedActors = [];
@@ -45,7 +45,7 @@ export class ActorComponent implements OnInit {
     }
 
     getAllActorById(id: any) {
-        this.service.getAllActorById(id)
+        this.service.getActorById(id)
             .subscribe(result => {
 
                 console.log(result);

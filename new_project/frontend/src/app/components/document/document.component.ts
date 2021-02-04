@@ -67,7 +67,7 @@ export class DocumentComponent implements OnInit {
     }
 
     getAllDocById(id: any) {
-        this.service.getAllDocById(id)
+        this.service.getDocById(id)
             .subscribe(result => {
 
                 console.log(result);

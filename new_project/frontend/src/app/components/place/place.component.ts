@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {MyService} from "../../service/my.service";
-import {ActivatedRoute} from "@angular/router";
+import {MyService} from '../../service/my.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-place',

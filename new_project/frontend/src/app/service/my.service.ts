@@ -20,7 +20,7 @@ export class MyService {
 
     getSuppliedTitle(id: any): Observable<any> {
         let doc = 335;
-        if (id === '1'){
+        if (id === '1') {
             doc = 127;
         }
         let query;
@@ -45,12 +45,52 @@ export class MyService {
         return this.http.get<any>(`${this.baseUrl}/?query=${encodeURIComponent(query)}`);
     }
 
-    getAllDocById(id: any): Observable<any> {
+    getDocById(id: any): Observable<any> {
         // @ts-ignore
         return true;
     }
 
-    getAllActorById(id: any): Observable<any> {
+    getDocSummary(id: any): Observable<any> {
+        // @ts-ignore
+        return true;
+    }
+
+    getActorById(id: any): Observable<any> {
+        // @ts-ignore
+        return true;
+    }
+
+    getActorSummary(id: any): Observable<any> {
+        // @ts-ignore
+        return true;
+    }
+
+    getEventById(id: any): Observable<any> {
+        // @ts-ignore
+        return true;
+    }
+
+    getEventSummary(id: any): Observable<any> {
+        // @ts-ignore
+        return true;
+    }
+
+    getOrgById(id: any): Observable<any> {
+        // @ts-ignore
+        return true;
+    }
+
+    getOrgSummary(id: any): Observable<any> {
+        // @ts-ignore
+        return true;
+    }
+
+    getPlaceById(id: any): Observable<any> {
+        // @ts-ignore
+        return true;
+    }
+
+    getPlaceSummary(id: any): Observable<any> {
         // @ts-ignore
         return true;
     }

@@ -22,6 +22,11 @@ import {FormsModule} from '@angular/forms';
 import {GenericComponent} from './components/event/generic/generic.component';
 import {SupportComponent} from './components/event/support/support.component';
 import {RestorationComponent} from './components/event/restoration/restoration.component';
+import { DocSearchPageComponent } from './components/document/searchPage/doc-search-page.component';
+import { ActorSearchPageComponent } from './components/actor/searchPage/actor-search-page.component';
+import { EventSearchPageComponent } from './components/event/searchPage/event-search-page.component';
+import { OrgSearchPageComponent } from './components/organization/searchPage/org-search-page.component';
+import { PlaceSearchPageComponent } from './components/place/searchPage/place-search-page.component';
 
 @NgModule({
     imports: [BrowserModule,
@@ -45,7 +50,12 @@ import {RestorationComponent} from './components/event/restoration/restoration.c
         AdvancedSearchComponent,
         GenericComponent,
         SupportComponent,
-        RestorationComponent],
+        RestorationComponent,
+        DocSearchPageComponent,
+        ActorSearchPageComponent,
+        EventSearchPageComponent,
+        OrgSearchPageComponent,
+        PlaceSearchPageComponent],
     exports: [AppComponent],
     bootstrap: [AppComponent]
 })

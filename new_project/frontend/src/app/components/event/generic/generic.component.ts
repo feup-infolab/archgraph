@@ -12,12 +12,16 @@ export class GenericComponent implements OnInit {
     public name: any;
     public id: any;
     public titles: any[] | undefined;
+    public relatedActors: any[];
+    public relatedEvents: any[];
 
     constructor(
         private service: MyService,
         private route: ActivatedRoute,
     ) {
         this.identifiers = [];
+        this.relatedActors = [];
+        this.relatedEvents = [];
     }
 
     ngOnInit() {
