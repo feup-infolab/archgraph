@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en-US" datatype="plaintext" original="ng2.template">
+        <body>
+            <trans-unit id="c761ea83a5a7d2db6a4784d8673f042f71dbe325" datatype="html">
+                <source>Titles</source>
+                <target>Títulos</target>
+
+                <context-group purpose="location">
+                    <context context-type="sourcefile">src/app/components/document/document.component.html</context>
+                    <context context-type="linenumber">24</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="4e2591df099ddac796cda401c5f282da779d45f2" datatype="html">
+                <source>Identifier</source>
+                <target>Identificador</target>
+
+                <context-group purpose="location">
+                    <context context-type="sourcefile">src/app/components/document/document.component.html</context>
+                    <context context-type="linenumber">32</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="f61c6867295f3b53d23557021f2f4e0aa1d0b8fc" datatype="html">
+                <source>Type</source>
+                <target>Tipo</target>
+
+                <context-group purpose="location">
+                    <context context-type="sourcefile">src/app/components/document/document.component.html</context>
+                    <context context-type="linenumber">37</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="374fa86a4b3f1afa8e652b516dd7fecb4f4a207d" datatype="html">
+                <source>Document</source>
+                <target>Documento</target>
+
+                <context-group purpose="location">
+                    <context context-type="sourcefile">src/app/components/home/sidenav-list/sidenav-list.component.html</context>
+                    <context context-type="linenumber">4</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="d8e2c60f14948022cfa5cbaa7895e29a9171eb2e" datatype="html">
+                <source>Person</source>
+                <target>Pessoa</target>
+
+                <context-group purpose="location">
+                    <context context-type="sourcefile">src/app/components/home/sidenav-list/sidenav-list.component.html</context>
+                    <context context-type="linenumber">8</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="a20835f355331a7398ce79b54cff3c57e96b3c75" datatype="html">
+                <source>Event</source>
+                <target>Evento</target>
+
+                <context-group purpose="location">
+                    <context context-type="sourcefile">src/app/components/home/sidenav-list/sidenav-list.component.html</context>
+                    <context context-type="linenumber">12</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="81d400b008d0f6bd04b506531fd2bd82c6103c78" datatype="html">
+                <source>Place</source>
+                <target>Lugar</target>
+
+                <context-group purpose="location">
+                    <context context-type="sourcefile">src/app/components/home/sidenav-list/sidenav-list.component.html</context>
+                    <context context-type="linenumber">16</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="f3a58c8a81b9ffda26a154eae25a422c9f7de37b" datatype="html">
+                <source>Organization</source>
+                <target>Organização</target>
+
+                <context-group purpose="location">
+                    <context context-type="sourcefile">src/app/components/home/sidenav-list/sidenav-list.component.html</context>
+                    <context context-type="linenumber">20</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="7e892ba15f2c6c17e83510e273b3e10fc32ea016" datatype="html">
+                <source>Search</source>
+                <target>Pesquisa</target>
+
+                <context-group purpose="location">
+                    <context context-type="sourcefile">src/app/components/home/sidenav-list/sidenav-list.component.html</context>
+                    <context context-type="linenumber">24</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="1c71c1b9d3fbf36d2d197aa17d9d7a3d5b965f80" datatype="html">
+                <source>
+                    <x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon&gt;" />
+                    note
+                    <x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;" />
+                    Document
+                </source>
+                <target>
+                    <x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon&gt;" />
+                    note
+                    <x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;" />
+                    Documento
+                </target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">src/app/components/home/sidenav-list/sidenav-list.component.html</context>
+                    <context context-type="linenumber">28,30</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="224e7b54b9b9da2d6ae1adc37bb7ff4904730e5a" datatype="html">
+                <source>
+                    <x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon&gt;" />
+                    person_search
+                    <x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;" />
+                    Person
+                </source>
+                <target>
+                    <x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon&gt;" />
+                    person_search
+                    <x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;" />
+                    Pessoa
+                </target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">src/app/components/home/sidenav-list/sidenav-list.component.html</context>
+                    <context context-type="linenumber">32,34</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="74ab4fd37bd3fd90f63068913560160e13e495cb" datatype="html">
+                <source>
+                    <x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon&gt;" />
+                    event
+                    <x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;" />
+                    Event
+                </source>
+                <target>
+                    <x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon&gt;" />
+                    event
+                    <x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;" />
+                    Evento
+                </target>
+                <context-group purpose="location">
+                    <context context-type="sourcefile">src/app/components/home/sidenav-list/sidenav-list.component.html</context>
+                    <context context-type="linenumber">36,38</context>
+                </context-group>
+            </trans-unit>
+            <trans-unit id="d0cfa3246244d24c7f7341a1c6ff5c8824aaafc0" datatype="html">
+                <source>
+                    <x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon&gt;" />
+                    place
+                    <x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;" />
+                    Place
+                </source>
+                <target>
+                    <x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon&gt;" />
+                    place
+                    <x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;" />
+                    Lugar
+                </target>
+
+                <context-group purpose="location">
+                    <context context-type="sourcefile">src/app/components/home/sidenav-list/sidenav-list.component.html</context>
+                    <context context-type="linenumber">40,42</context>
+                </context-group>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

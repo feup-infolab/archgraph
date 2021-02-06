@@ -1,9 +1,13 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # compiled output
-/frontend/dist
-/frontend/tmp
-/frontend/out-tsc
+new_project/frontend/dist
+new_project/frontend/tmp
+new_project/frontend/out-tsc
+new_project/backend/JenaTest/target
+old_project/frontend/dist
+old_project/frontend/tmp
+old_project/frontend/out-tsc
 # Only exists if Bazel was run
 /bazel-out
 
@@ -47,11 +51,13 @@ node_modules/
 
 #ignore env stuff
 
-/backend/env/bin
-/backend/env/include
-/backend/env/lib
-/backend/env/man
-/volumes/
+/old_project/backend/env/bin
+/old_project/backend/env/include
+/old_project/backend/env/lib
+/old_project/backend/env/man
+/old_project/volumes/
 __pycache__
 .coverage
+
+/new_project/volumes/
 

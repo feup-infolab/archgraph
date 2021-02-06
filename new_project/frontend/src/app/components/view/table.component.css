@@ -1,0 +1,20 @@
+table {
+    width: 100%;
+}
+
+th.mat-sort-header-sorted {
+    color: black;
+}
+td{
+    align-content: center;
+}
+.list-components{
+    width: 50%;
+    display: block;
+    margin: auto;
+    margin-bottom: 6em;
+}
+tr td:first-child{
+    padding-left: 1em;
+}
+

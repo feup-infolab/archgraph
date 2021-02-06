@@ -1,0 +1,285 @@
+<!--<mat-list>-->
+<!--    <div mat-subheader i18n="@@docTitles">Titles</div>-->
+<!--    <mat-list-item *ngFor="let title of titles">-->
+<!--        <div mat-line>{{title['title']['value'] }}</div>-->
+<!--    </mat-list-item>-->
+<!--    <mat-divider></mat-divider>-->
+
+<!--    <div mat-subheader i18n="@@docNotes">Notes</div>-->
+<!--    <h1></h1>-->
+<!--    <mat-list-item *ngFor="let note of notes">-->
+<!--        <div mat-line>{{note['has_note']['value'] }}</div>-->
+<!--    </mat-list-item>-->
+<!--    <mat-divider></mat-divider>-->
+<!--</mat-list>-->
+
+<!--<div class="example-action-buttons">-->
+<!--    <button mat-button (click)="accordion.openAll()">Expand All</button>-->
+<!--    <button mat-button (click)="accordion.closeAll()">Collapse All</button>-->
+<!--</div>-->
+<div class="doc-content">
+    <mat-accordion class="example-headers-align" multi>
+        <mat-expansion-panel class="panel">
+            <mat-expansion-panel-header>
+                <mat-panel-title i18n>Identifiers</mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="fields" *ngFor="let identifier of identifiers">
+                <mat-form-field>
+                    <mat-label for i18n>Identifier</mat-label>
+                    <input matInput readonly [(ngModel)]="identifier.identifier">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label i18n>Type</mat-label>
+                    <input matInput readonly [(ngModel)]="identifier.type">
+                </mat-form-field>
+            </div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel class="panel">
+            <mat-expansion-panel-header>
+                <mat-panel-title i18n>Titles</mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="fields" *ngFor="let title of titles">
+                <mat-form-field>
+                    <mat-label i18n>Title</mat-label>
+                    <input matInput readonly [(ngModel)]="title.title.value">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label i18n>Type</mat-label>
+                    <input matInput readonly value="formal">
+                </mat-form-field>
+            </div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel class="panel">
+            <mat-expansion-panel-header>
+                <mat-panel-title i18n>Materials</mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="fields" *ngFor="let material of materials">
+                <mat-form-field>
+                    <mat-label i18n>Material</mat-label>
+                    <input matInput readonly [(ngModel)]="material.material">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label i18n>Component</mat-label>
+                    <input matInput readonly [(ngModel)]="material.component">
+                </mat-form-field>
+            </div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel class="panel">
+            <mat-expansion-panel-header>
+                <mat-panel-title i18n>Dimensions</mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="fields" *ngFor="let dimension of dimensions">
+                <mat-form-field>
+                    <mat-label i18n>Dimension</mat-label>
+                    <input matInput readonly [(ngModel)]="dimension.dimension">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label i18n>Value</mat-label>
+                    <input matInput readonly [(ngModel)]="dimension.value">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label i18n>Unit of Measurement</mat-label>
+                    <input matInput readonly [(ngModel)]="dimension.unitOfMeasurement">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label i18n>Component</mat-label>
+                    <input matInput readonly [(ngModel)]="dimension.component">
+                </mat-form-field>
+            </div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel class="panel">
+            <mat-expansion-panel-header>
+                <mat-panel-title i18n>Quantities</mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="fields" *ngFor="let quantity of quantities">
+                <mat-form-field>
+                    <mat-label i18n>Quantity</mat-label>
+                    <input matInput readonly [(ngModel)]="quantity.quantity">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label i18n>Value</mat-label>
+                    <input matInput readonly [(ngModel)]="quantity.value">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label i18n>Unit of Measurement</mat-label>
+                    <input matInput readonly [(ngModel)]="quantity.unitOfMeasurement">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label i18n>Component</mat-label>
+                    <input matInput readonly value="formal">
+                </mat-form-field>
+            </div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel class="panel">
+            <mat-expansion-panel-header>
+                <mat-panel-title i18n>Conservation status</mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="fields" *ngFor="let conser of conservation">
+                <mat-form-field>
+                    <mat-label i18n>conservation status</mat-label>
+                    <input matInput readonly [(ngModel)]="conser.conservation">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label i18n>Initial date</mat-label>
+                    <input matInput type="date" readonly [(ngModel)]="conser.initialDate">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label i18n>Final date</mat-label>
+                    <input matInput type="date" readonly [(ngModel)]="conser.finalDate">
+                </mat-form-field>
+            </div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel class="panel">
+            <mat-expansion-panel-header>
+                <mat-panel-title i18n>Languages</mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="fields" *ngFor="let language of languages">
+                <mat-form-field>
+                    <mat-label i18n>Language</mat-label>
+                    <input matInput readonly [(ngModel)]="language.language">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label i18n>Identifier</mat-label>
+                    <input matInput readonly [(ngModel)]="language.identifier">
+                </mat-form-field>
+            </div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel class="panel">
+            <mat-expansion-panel-header>
+                <mat-panel-title i18n>Writings</mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="fields" *ngFor="let writing of writings">
+                <mat-form-field>
+                    <mat-label i18n>Writing</mat-label>
+                    <input matInput readonly [(ngModel)]="writing.writing">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label i18n>Identifier</mat-label>
+                    <input matInput readonly [(ngModel)]="writing.identifier">
+                </mat-form-field>
+            </div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel class="panel">
+            <mat-expansion-panel-header>
+                <mat-panel-title i18n>Documentary traditions</mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="fields" *ngFor="let tradition of traditions">
+                <mat-form-field>
+                    <mat-label i18n>Documentary tradition</mat-label>
+                    <input matInput readonly [(ngModel)]="tradition.tradition">
+                </mat-form-field>
+            </div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel class="panel">
+            <mat-expansion-panel-header>
+                <mat-panel-title i18n>Typologies</mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="fields" *ngFor="let typology of typologies">
+                <mat-form-field>
+                    <mat-label i18n>Documentary typology</mat-label>
+                    <input matInput readonly [(ngModel)]="typology.typology">
+                </mat-form-field>
+            </div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel class="panel">
+            <mat-expansion-panel-header>
+                <mat-panel-title i18n>Subjects</mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="fields" *ngFor="let subject of subjects">
+                <mat-form-field>
+                    <mat-label i18n>Subjects</mat-label>
+                    <input matInput readonly [(ngModel)]="subject.subject">
+                </mat-form-field>
+            </div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel class="panel">
+            <mat-expansion-panel-header>
+                <mat-panel-title i18n>Access conditions</mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="fields" *ngFor="let condition of conditions">
+                <mat-form-field>
+                    <mat-label i18n>Access conditions</mat-label>
+                    <input matInput readonly [(ngModel)]="condition.condition">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label i18n>Justification</mat-label>
+                    <input matInput readonly [(ngModel)]="condition.justification">
+                </mat-form-field>
+            </div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel class="panel">
+            <mat-expansion-panel-header>
+                <mat-panel-title i18n>Hierarchy</mat-panel-title>
+            </mat-expansion-panel-header>
+            <div *ngFor="let title of titles">
+                <mat-nav-list>
+                    <a mat-list-item href="http://localhost:4201/doc/1">
+                        <span class="material-icons">keyboard_arrow_down</span>
+                        Doc1
+                    </a>
+                </mat-nav-list>
+                <mat-list style="margin-left:30px;">
+                    <div *ngFor="let item of titles">
+                        <mat-nav-list>
+                            <a mat-list-item href="http://localhost:4201/doc/2">
+                                <span class="material-icons">keyboard_arrow_down</span>
+                                Doc2
+                            </a>
+                        </mat-nav-list>
+                    </div>
+                </mat-list>
+            </div>
+        </mat-expansion-panel>
+
+        <!--    <mat-expansion-panel>-->
+        <!--        <mat-expansion-panel-header>-->
+        <!--            <mat-panel-title>-->
+        <!--                Day of the trip-->
+        <!--            </mat-panel-title>-->
+        <!--            <mat-panel-description>-->
+        <!--                Inform the date you wish to travel-->
+        <!--                <mat-icon>date_range</mat-icon>-->
+        <!--            </mat-panel-description>-->
+        <!--        </mat-expansion-panel-header>-->
+
+        <!--        <mat-form-field>-->
+        <!--            <mat-label>Date</mat-label>-->
+        <!--            <input matInput [matDatepicker]="picker" (focus)="picker.open()" readonly>-->
+        <!--        </mat-form-field>-->
+        <!--        <mat-datepicker #picker></mat-datepicker>-->
+        <!--    </mat-expansion-panel>-->
+
+        <!--    <mat-expansion-panel>-->
+        <!--        <mat-expansion-panel-header>-->
+        <!--            <mat-panel-title i18n>-->
+        <!--                Identifiers-->
+        <!--            </mat-panel-title>-->
+        <!--        </mat-expansion-panel-header>-->
+
+        <!--        <div class="fields" *ngFor="let note of notes">-->
+        <!--            <mat-form-field>-->
+        <!--                <mat-label i18n>Identifier</mat-label>-->
+        <!--                <input matInput readonly [(ngModel)]="note.has_note.value">&ndash;&gt;-->
+        <!--                <input matInput readonly>-->
+        <!--            </mat-form-field>-->
+
+        <!--            <mat-form-field>-->
+        <!--                <mat-label i18n>Type</mat-label>-->
+        <!--                <input matInput readonly value="codigo de referencia">-->
+        <!--            </mat-form-field>-->
+        <!--        </div>-->
+        <!--    </mat-expansion-panel>-->
+    </mat-accordion>
+</div>
