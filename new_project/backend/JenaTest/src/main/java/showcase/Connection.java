@@ -1,60 +1,93 @@
 package showcase;
-import org.apache.jena.query.Query;
-import org.apache.jena.query.QueryFactory;
-import org.apache.jena.query.ReadWrite;
-import org.apache.jena.query.ResultSetFormatter;
+import cclasses.ResponseClass;
+import org.apache.jena.query.*;
 import org.apache.jena.rdf.model.*;
-import org.apache.jena.rdfconnection.RDFConnection;
 import org.apache.jena.rdfconnection.RDFConnectionFuseki;
 import org.apache.jena.rdfconnection.RDFConnectionRemoteBuilder;
+import queries.Queries;
 
+import java.util.*;
 
 
 public class Connection {
+    Queries querier = new Queries();
 
-    public static void main (String args[]) {
+    public ResponseClass obtainGeneralResponse(Query query,String key,ResponseClass r){
         RDFConnectionRemoteBuilder builder = RDFConnectionFuseki.create()
-                .destination("http://localhost:3030/name/get");
-        Query query = QueryFactory.create("SELECT * WHERE {\n" +
-                "  ?sub ?pred ?obj .\n" +
-                "} \n" +
-                "LIMIT 100");
+                .destination("http://localhost:3030/name/sparql");
+
 
         try ( RDFConnectionFuseki conn = (RDFConnectionFuseki)builder.build() ) {
-            //conn.queryResultSet(query, ResultSetFormatter::out);
 
-            Model model = conn.fetch();
-            //conn.query("SELECT * WHERE {\n" +
-            //        "  ?sub ?pred ?obj .\n" +
-            //        "} \n" +
-             //       "LIMIT 10").execSelect();
-            // list the statements in the graph
-            StmtIterator iter = model.listStatements();
-
-            int i = 0;
-            // print out the predicate, subject and object of each statement
-            while (iter.hasNext() && i<10) {
-                Statement stmt      = iter.nextStatement();         // get next statement
-                Resource subject   = stmt.getSubject();   // get the subject
-                Property predicate = stmt.getPredicate(); // get the predicate
-                RDFNode   object    = stmt.getObject();    // get the object
-
-                System.out.print(subject.toString());
-                System.out.print(" " + predicate.toString() + " ");
-                if (object instanceof Resource) {
-                    System.out.print(object.toString());
-                } else {
-                    // object is a literal
-                    System.out.print(" \"" + object.toString() + "\"");
-                }
-                System.out.println(" .");
-                i++;
+            ResultSet rs = conn.query(query).execSelect();
+            int i = 1;
+            ArrayList<Map<String,String>> complexList = new ArrayList<>();
+            QuerySolution stmt;
+            if(rs.hasNext()){
+                stmt = rs.next();
+            }else{
+                return r;
             }
 
-            //model.write(System.out);*/
+            //TODO CLEAN INTO 2 FUNCTIONS
+            if(!rs.hasNext()){
+                Iterator<String> b = stmt.varNames();
+                HashMap<String,String> map = new HashMap<>();
+
+                while(b.hasNext()){
+                    String current = b.next();
+                    RDFNode res = stmt.get(current);
+                    map.put(current,res.toString());
+
+                }
+                map.put("type","string");
+                r.addContent(key,map);
+                return r;
+            }
+
+            i = 0;
+            while (rs.hasNext()) {
+                if (i != 0){
+                stmt = rs.next();}
+                Iterator<String> b = stmt.varNames();
+                HashMap<String, String> map = new HashMap<>();
+
+                while (b.hasNext()) {
+                    String current = b.next();
+                    RDFNode res = stmt.get(current);
+                    map.put(current, res.toString());
+
+                }
+                map.put("type","string");
+                complexList.add(map);
+                i++;
+                }
+            r.addList(key,complexList);
+            }
+            return r;
+    }
+
+    public ArrayList<String> getAllUuids(){
+        RDFConnectionRemoteBuilder builder = RDFConnectionFuseki.create()
+                .destination("http://localhost:3030/name/sparql");
+        ArrayList<String> list = new ArrayList<>();
+
+        try ( RDFConnectionFuseki conn = (RDFConnectionFuseki)builder.build() ) {
+            Query query = querier.getAllDocs();
+            ResultSet rs = conn.query(query).execSelect();
+            while (rs.hasNext()) {
+
+                QuerySolution qs = rs.next();
+
+                list.add(qs.get("subject").toString());
+
+            }
         }
+        return list;
     }
 
 
-
 }
+
+
+
