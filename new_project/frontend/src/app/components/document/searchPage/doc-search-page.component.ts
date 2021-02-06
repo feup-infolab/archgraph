@@ -9,19 +9,19 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class DocSearchPageComponent implements OnInit {
   // document
-  public DescriptionLevel: any;
-  public ReferenceCode: any;
-  public Keywords: any;
-  public RelatedTo: any;
-  public ProdDateFrom: any;
-  public ProdDateTo: any;
-  public InterventionStartDateFrom: any;
-  public InterventionStartDateTo: any;
-  public InterventionEndDateFrom: any;
-  public InterventionEndDateTo: any;
-  public CuratorName: any;
-  public CreationDateFrom: any;
-  public CreationDateTo: any;
+  public descriptionLevel: any;
+  public referenceCode: any;
+  public keywords: any;
+  public relatedTo: any;
+  public prodDateFrom: any;
+  public prodDateTo: any;
+  public interventionStartDateFrom: any;
+  public interventionStartDateTo: any;
+  public interventionEndDateFrom: any;
+  public interventionEndDateTo: any;
+  public curatorName: any;
+  public creationDateFrom: any;
+  public creationDateTo: any;
 
   constructor(
       private service: MyService,
@@ -32,13 +32,13 @@ export class DocSearchPageComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       // this.id = params.get('id');
-      this.getDocSummary(this.ReferenceCode);
+      this.getDocSummary(this.referenceCode);
       // this.getAllDocById(this.id);
     });
   }
 
-  getDocSummary(ReferenceCode: any) {
-    this.service.getDocSummary(ReferenceCode)
+  getDocSummary(referenceCode: any) {
+    this.service.getDocSummary(referenceCode)
         .subscribe(result => {
           console.log(result);
           // this.identifiers = result.results.bindings;

@@ -5,7 +5,7 @@ import {DocumentComponent} from '../components/document/document.component';
 import {HomeComponent} from '../components/home/home/home.component';
 import {ActorComponent} from '../components/actor/actor.component';
 import {PlaceComponent} from '../components/place/place.component';
-import {AdvancedSearchComponent} from '../components/search/advanced-search.component';
+import {AdvancedSearchComponent} from '../components/advancedSearch/advanced-search.component';
 import {OrganizationComponent} from '../components/organization/organization.component';
 import {RestorationComponent} from '../components/event/restoration/restoration.component';
 import {SupportComponent} from '../components/event/support/support.component';
@@ -15,6 +15,7 @@ import {ActorSearchPageComponent} from '../components/actor/searchPage/actor-sea
 import {EventSearchPageComponent} from '../components/event/searchPage/event-search-page.component';
 import {PlaceSearchPageComponent} from '../components/place/searchPage/place-search-page.component';
 import {OrgSearchPageComponent} from '../components/organization/searchPage/org-search-page.component';
+import {TableComponent} from '../components/view/table.component';
 
 const routes: Routes = [
     {path: 'home', component: HomeComponent},
@@ -31,6 +32,8 @@ const routes: Routes = [
     {path: 'organization/:id', component: OrganizationComponent},
     {path: 'searchorganization', component: OrgSearchPageComponent},
     {path: 'advancedsearch', component: AdvancedSearchComponent},
+    {path: 'table', component: TableComponent},
+
     {path: '', redirectTo: '/home', pathMatch: 'full'},
 ];
 

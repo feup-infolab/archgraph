@@ -4,111 +4,113 @@
             <td colspan="2">
                 <mat-form-field>
                     <mat-label i18n>Name</mat-label>
-                    <input matInput name="actorName" [(ngModel)]="Name">
+                    <input matInput name="name" [(ngModel)]="name">
                 </mat-form-field>
             </td>
             <!--            <td>-->
-<!--                <button>AND</button>-->
-<!--            </td>-->
-<!--            <td>-->
-<!--                <button>OR</button>-->
-<!--            </td>-->
+            <!--                <button>AND</button>-->
+            <!--            </td>-->
+            <!--            <td>-->
+            <!--                <button>OR</button>-->
+            <!--            </td>-->
         </tr>
         <tr>
             <td colspan="2">
                 <mat-form-field>
                     <mat-label i18n>Cultural Period</mat-label>
-                    <input matInput name="actorCulturalPeriod" [(ngModel)]="CulturalPeriod">
+                    <input matInput name="culturalPeriod" [(ngModel)]="culturalPeriod">
                 </mat-form-field>
             </td>
             <!--            <td>-->
-<!--                <button>AND</button>-->
-<!--            </td>-->
-<!--            <td>-->
-<!--                <button>OR</button>-->
-<!--            </td>-->
+            <!--                <button>AND</button>-->
+            <!--            </td>-->
+            <!--            <td>-->
+            <!--                <button>OR</button>-->
+            <!--            </td>-->
         </tr>
         <tr>
             <td colspan="2">
                 <mat-form-field>
                     <mat-label i18n>Identifier</mat-label>
-                    <input matInput name="actorIdentifier" [(ngModel)]="Identifier">
+                    <input matInput name="identifier" [(ngModel)]="identifier">
                 </mat-form-field>
             </td>
             <!--            <td>-->
-<!--                <button>AND</button>-->
-<!--            </td>-->
-<!--            <td>-->
-<!--                <button>OR</button>-->
-<!--            </td>-->
+            <!--                <button>AND</button>-->
+            <!--            </td>-->
+            <!--            <td>-->
+            <!--                <button>OR</button>-->
+            <!--            </td>-->
         </tr>
         <tr>
             <td>
                 <mat-form-field class="short-width">
                     <mat-label i18n>Birth Date (From)</mat-label>
-                    <input matInput type="date" name="actorBirthDateFrom" [(ngModel)]="BirthDateFrom">
+                    <input matInput type="date" name="birthDateFrom" [(ngModel)]="birthDateFrom">
                 </mat-form-field>
             </td>
             <td>
                 <mat-form-field class="short-width">
                     <mat-label i18n>Birth Date (To)</mat-label>
-                    <input matInput type="date" name="actorBirthDateTo" [(ngModel)]="BirthDateTo">
+                    <input matInput type="date" name="birthDateTo" [(ngModel)]="birthDateTo">
                 </mat-form-field>
             </td>
             <!--            <td>-->
-<!--                <button>AND</button>-->
-<!--            </td>-->
-<!--            <td>-->
-<!--                <button>OR</button>-->
-<!--            </td>-->
+            <!--                <button>AND</button>-->
+            <!--            </td>-->
+            <!--            <td>-->
+            <!--                <button>OR</button>-->
+            <!--            </td>-->
         </tr>
         <tr>
             <td>
                 <mat-form-field class="short-width">
                     <mat-label i18n>Death Date (From)</mat-label>
-                    <input matInput type="date" name="actorDeathDateFrom" [(ngModel)]="DeathDateFrom">
+                    <input matInput type="date" name="deathDateFrom" [(ngModel)]="deathDateFrom">
                 </mat-form-field>
             </td>
             <td class="short-width">
                 <mat-form-field class="short-width">
                     <mat-label i18n>Death Date (To)</mat-label>
-                    <input matInput type="date" name="actorDeathDateTo" [(ngModel)]="DeathDateTo">
+                    <input matInput type="date" name="deathDateTo" [(ngModel)]="deathDateTo">
                 </mat-form-field>
             </td>
             <!--            <td>-->
-<!--                <button>AND</button>-->
-<!--            </td>-->
-<!--            <td>-->
-<!--                <button>OR</button>-->
-<!--            </td>-->
+            <!--                <button>AND</button>-->
+            <!--            </td>-->
+            <!--            <td>-->
+            <!--                <button>OR</button>-->
+            <!--            </td>-->
         </tr>
         <tr>
             <td colspan="2">
                 <mat-form-field>
                     <mat-label i18n>Keywords</mat-label>
-                    <input matInput name="actorKeywords" [(ngModel)]="Keywords">
+                    <input matInput name="keywords" [(ngModel)]="keywords">
                 </mat-form-field>
             </td>
             <!--            <td>-->
-<!--                <button>AND</button>-->
-<!--            </td>-->
-<!--            <td>-->
-<!--                <button>OR</button>-->
-<!--            </td>-->
+            <!--                <button>AND</button>-->
+            <!--            </td>-->
+            <!--            <td>-->
+            <!--                <button>OR</button>-->
+            <!--            </td>-->
         </tr>
         <tr>
             <td colspan="2">
                 <mat-form-field>
                     <mat-label i18n>Related To</mat-label>
-                    <input matInput name="actorRelatedTo" [(ngModel)]="RelatedTo">
+                    <input matInput name="relatedTo" [(ngModel)]="relatedTo">
                 </mat-form-field>
             </td>
             <!--            <td>-->
-<!--                <button>AND</button>-->
-<!--            </td>-->
-<!--            <td>-->
-<!--                <button>OR</button>-->
-<!--            </td>-->
+            <!--                <button>AND</button>-->
+            <!--            </td>-->
+            <!--            <td>-->
+            <!--                <button>OR</button>-->
+            <!--            </td>-->
         </tr>
     </table>
+    <button class="search" mat-raised-button (click)="getActorSummary($event)" color="primary">Search</button>
 </form>
+<app-table [columns]="columns" [data]="dataSource"></app-table>

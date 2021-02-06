@@ -9,16 +9,16 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class OrgSearchPageComponent implements OnInit {
   // organization
-  public Name: any;
-  public Identifier: any;
-  public CulturalPeriod: any;
-  public Latitude: any;
-  public Longitude: any;
-  public Keywords: any;
-  public RelatedTo: any;
-  public Location: any;
-  public BuildDateFrom: any;
-  public BuildDateTo: any;
+  public name: any;
+  public identifier: any;
+  public culturalPeriod: any;
+  public latitude: any;
+  public longitude: any;
+  public keywords: any;
+  public relatedTo: any;
+  public location: any;
+  public buildDateFrom: any;
+  public buildDateTo: any;
 
   constructor(
       private service: MyService,
@@ -29,13 +29,13 @@ export class OrgSearchPageComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       // this.id = params.get('id');
-      this.getOrgSummary(this.Identifier);
+      this.getOrgSummary(this.identifier);
       // this.getAllDocById(this.id);
     });
   }
 
-  getOrgSummary(Identifier: any) {
-    this.service.getOrgSummary(Identifier)
+  getOrgSummary(identifier: any) {
+    this.service.getOrgSummary(identifier)
         .subscribe(result => {
           console.log(result);
           // this.identifiers = result.results.bindings;

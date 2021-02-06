@@ -17,7 +17,7 @@ import {HomeComponent} from './components/home/home/home.component';
 import {ActorComponent} from './components/actor/actor.component';
 import {PlaceComponent} from './components/place/place.component';
 import {OrganizationComponent} from './components/organization/organization.component';
-import {AdvancedSearchComponent} from './components/search/advanced-search.component';
+import {AdvancedSearchComponent} from './components/advancedSearch/advanced-search.component';
 import {FormsModule} from '@angular/forms';
 import {GenericComponent} from './components/event/generic/generic.component';
 import {SupportComponent} from './components/event/support/support.component';
@@ -27,6 +27,9 @@ import { ActorSearchPageComponent } from './components/actor/searchPage/actor-se
 import { EventSearchPageComponent } from './components/event/searchPage/event-search-page.component';
 import { OrgSearchPageComponent } from './components/organization/searchPage/org-search-page.component';
 import { PlaceSearchPageComponent } from './components/place/searchPage/place-search-page.component';
+import { TableComponent } from './components/view/table.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
     imports: [BrowserModule,
@@ -35,7 +38,7 @@ import { PlaceSearchPageComponent } from './components/place/searchPage/place-se
         MaterialModule,
         RoutingModule,
         BrowserAnimationsModule,
-        LayoutModule, FormsModule,
+        LayoutModule, FormsModule, MatPaginatorModule, MatPaginatorModule, MatTableModule, MatTableModule,
     ],
     providers: [MyService],
     declarations: [AppComponent,
@@ -55,7 +58,8 @@ import { PlaceSearchPageComponent } from './components/place/searchPage/place-se
         ActorSearchPageComponent,
         EventSearchPageComponent,
         OrgSearchPageComponent,
-        PlaceSearchPageComponent],
+        PlaceSearchPageComponent,
+        TableComponent],
     exports: [AppComponent],
     bootstrap: [AppComponent]
 })

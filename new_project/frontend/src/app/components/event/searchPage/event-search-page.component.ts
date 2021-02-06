@@ -9,20 +9,20 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class EventSearchPageComponent implements OnInit {
   //  event
-  public Name: any;
-  public Type: any;
-  public Location: any;
-  public Address: any;
-  public Latitude: any;
-  public Longitude: any;
-  public Keywords: any;
-  public RelatedTo: any;
-  public CulturalPeriod: any;
-  public EndDateTo: any;
-  public EndDateFrom: any;
-  public StartDateFrom: any;
-  public Identifier: any;
-  public StartDateTo: any;
+  public name: any;
+  public type: any;
+  public location: any;
+  public address: any;
+  public latitude: any;
+  public longitude: any;
+  public keywords: any;
+  public relatedTo: any;
+  public culturalPeriod: any;
+  public endDateTo: any;
+  public endDateFrom: any;
+  public startDateFrom: any;
+  public identifier: any;
+  public startDateTo: any;
 
   constructor(
       private service: MyService,
@@ -33,13 +33,13 @@ export class EventSearchPageComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       // this.id = params.get('id');
-      this.getEventSummary(this.Identifier);
+      this.getEventSummary(this.identifier);
       // this.getAllDocById(this.id);
     });
   }
 
-  getEventSummary(Identifier: any) {
-    this.service.getEventSummary(Identifier)
+  getEventSummary(identifier: any) {
+    this.service.getEventSummary(identifier)
         .subscribe(result => {
           console.log(result);
           // this.identifiers = result.results.bindings;

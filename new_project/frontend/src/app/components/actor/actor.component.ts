@@ -15,6 +15,7 @@ export class ActorComponent implements OnInit {
     public relatedPlaces: any[];
     public relatedEvents: any[];
     public relatedActors: any[];
+    public displayedColumns: any[];
 
     constructor(
         private service: MyService,
@@ -26,7 +27,24 @@ export class ActorComponent implements OnInit {
         this.relatedEvents = [];
         this.relatedActors = [];
         this.relatedPlaces = [];
+        this.displayedColumns = [{
+            id: 'position',
+            value: 'No.',
+
+        }, {
+            id: 'name',
+            value: 'Name',
+        },
+            {
+                id: 'weight',
+                value: 'Weight',
+            },
+            {
+                id: 'symbol',
+                value: 'Symbol',
+            }];
     }
+
 
     ngOnInit() {
         this.route.paramMap.subscribe(params => {

@@ -9,14 +9,14 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class PlaceSearchPageComponent implements OnInit {
   // place
-  public Name: any;
-  public Identifier: any;
-  public Location: any;
-  public AdminDivision: any;
-  public Latitude: any;
-  public Longitude: any;
-  public Keywords: any;
-  public RelatedTo: any;
+  public name: any;
+  public identifier: any;
+  public location: any;
+  public adminDivision: any;
+  public latitude: any;
+  public longitude: any;
+  public keywords: any;
+  public relatedTo: any;
 
   constructor(
       private service: MyService,
@@ -27,13 +27,13 @@ export class PlaceSearchPageComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       // this.id = params.get('id');
-      this.getPlaceSummary(this.Identifier);
+      this.getPlaceSummary(this.identifier);
       // this.getAllDocById(this.id);
     });
   }
 
-  getPlaceSummary(Identifier: any) {
-    this.service.getPlaceSummary(Identifier)
+  getPlaceSummary(identifier: any) {
+    this.service.getPlaceSummary(identifier)
         .subscribe(result => {
           console.log(result);
           // this.identifiers = result.results.bindings;
