@@ -5,6 +5,8 @@ package restservice;
     import java.util.concurrent.atomic.AtomicLong;
 
     import cclasses.ResponseClass;
+    import com.fasterxml.jackson.core.JsonProcessingException;
+    import com.fasterxml.jackson.databind.ObjectMapper;
     import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
         private final Queries queries =new Queries();
 
     @GetMapping("/doc")
-    public ResponseClass document(@RequestParam(value = "id", defaultValue = "") String uuid) {
+    public String document(@RequestParam(value = "id", defaultValue = "") String uuid) {
         Connection conn = new Connection();
         HashMap<String,Object> list = new HashMap<>();
 
@@ -34,11 +36,20 @@ import org.springframework.web.bind.annotation.RestController;
         rep = conn.obtainGeneralResponse(queries.getUuid(docid),"episaIdentifier",rep);
         rep = conn.obtainGeneralResponse(queries.getReference_codes_query(docid),"dglabIdentifier",rep);
 
-        return rep;
+        ObjectMapper mapper = new ObjectMapper();
+        String json = "";
+        try {
+            json = mapper.writeValueAsString(rep.getProperties());
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return json;
     }
 
     @GetMapping("/searchdoc")
-    public ResponseClass documentSummary(@RequestParam(value = "refcode", defaultValue = "") String refcode) {
+    public String documentSummary(@RequestParam(value = "refcode", defaultValue = "") Object rcode) {
+        String refcode = rcode.toString();
+        refcode = "\"" + refcode + "\"";
         Connection conn = new Connection();
         HashMap<String,Object> list0 = new HashMap<>() ;
         ResponseClass uuidrep = new ResponseClass(list0);
@@ -49,11 +60,18 @@ import org.springframework.web.bind.annotation.RestController;
 
         HashMap<String,Object> list = new HashMap<>() ;
         ResponseClass rep = new ResponseClass( list);
-        rep = conn.obtainGeneralResponse(queries.getTitle_query(uuid),"title",rep);
-        rep = conn.obtainGeneralResponse(queries.getUuid(uuid),"episaIdentifier",rep);
-        rep = conn.obtainGeneralResponse(queries.getReference_codes_query(uuid),"dglabIdentifier",rep);
+        rep = conn.obtainSummaryResponse(queries.getTitle_query(uuid),"title",rep);
+        rep = conn.obtainSummaryResponse(queries.getUuid(uuid),"episaIdentifier",rep);
+        rep = conn.obtainSummaryResponse(queries.getReference_codes_query(uuid),"dglabIdentifier",rep);
 
-        return rep;
+        ObjectMapper mapper = new ObjectMapper();
+        String json = "";
+        try {
+            json = mapper.writeValueAsString(rep.getProperties());
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return json;
     }
 
     @GetMapping("/person")
