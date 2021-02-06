@@ -1,0 +1,159 @@
+<div class="doc-content">
+    <mat-accordion class="example-headers-align" multi>
+        <mat-expansion-panel class="panel">
+            <mat-expansion-panel-header>
+                <mat-panel-title i18n>Goals</mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="fields" *ngFor="let title of titles">
+                <mat-form-field>
+                    <mat-label i18n>Goal</mat-label>
+                    <input matInput readonly [(ngModel)]="title.title.value">
+                </mat-form-field>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+
+    <mat-accordion class="example-headers-align" multi>
+        <mat-expansion-panel class="panel">
+            <mat-expansion-panel-header>
+                <mat-panel-title i18n>Chronology</mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="fields" *ngFor="let title of titles">
+                <mat-form-field>
+                    <mat-label i18n>Initial date</mat-label>
+                    <input matInput readonly type="date">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label i18n>Final date</mat-label>
+                    <input matInput readonly type="date">
+                </mat-form-field>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+
+    <mat-accordion class="example-headers-align" multi>
+        <mat-expansion-panel class="panel">
+            <mat-expansion-panel-header>
+                <mat-panel-title i18n>Procedures</mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="fields" *ngFor="let title of titles">
+                <mat-form-field>
+                    <mat-label i18n>type</mat-label>
+                    <input matInput readonly [(ngModel)]="title.title.value">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label i18n>Tools / Equipment</mat-label>
+                    <input matInput readonly [(ngModel)]="title.title.value">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label i18n>Products / Materials</mat-label>
+                    <input matInput readonly [(ngModel)]="title.title.value">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label i18n>Component</mat-label>
+                    <input matInput readonly [(ngModel)]="title.title.value">
+                </mat-form-field>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+
+    <mat-accordion class="example-headers-align" multi>
+        <mat-expansion-panel class="panel">
+            <mat-expansion-panel-header>
+                <mat-panel-title i18n>Related places</mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="fields" *ngFor="let title of titles">
+                <mat-form-field>
+                    <mat-label i18n>Registry identifier</mat-label>
+                    <input matInput readonly [(ngModel)]="title.title.value">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label i18n>Name</mat-label>
+                    <input matInput readonly [(ngModel)]="title.title.value">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label i18n>Latitude</mat-label>
+                    <input matInput readonly type="number">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label i18n>Longitude</mat-label>
+                    <input matInput readonly type="number">
+                </mat-form-field>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+
+    <mat-accordion class="example-headers-align" multi>
+        <mat-expansion-panel class="panel">
+            <mat-expansion-panel-header>
+                <mat-panel-title i18n>Related events</mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="fields" *ngFor="let title of titles">
+                <mat-form-field>
+                    <mat-label i18n>Identifier</mat-label>
+                    <input matInput readonly [(ngModel)]="title.title.value">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label i18n>Event Type</mat-label>
+                    <input matInput readonly [(ngModel)]="title.title.value">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label i18n>Initial date</mat-label>
+                    <input matInput readonly type="date">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label i18n>Final date</mat-label>
+                    <input matInput readonly type="date">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label i18n>Place</mat-label>
+                    <input matInput readonly [(ngModel)]="title.title.value">
+                </mat-form-field>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+
+    <mat-accordion class="example-headers-align" multi>
+        <mat-expansion-panel class="panel">
+            <mat-expansion-panel-header>
+                <mat-panel-title i18n>Related actors</mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="fields" *ngFor="let title of titles">
+                <mat-form-field>
+                    <mat-label i18n>Registry identifier</mat-label>
+                    <input matInput readonly [(ngModel)]="title.title.value">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label i18n>Name</mat-label>
+                    <input matInput readonly [(ngModel)]="title.title.value">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label i18n>Role played</mat-label>
+                    <input matInput readonly [(ngModel)]="title.title.value">
+                </mat-form-field>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+
+    <mat-accordion class="example-headers-align" multi>
+        <mat-expansion-panel class="panel">
+            <mat-expansion-panel-header>
+                <mat-panel-title i18n>Related documents</mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="fields" *ngFor="let title of titles">
+                <mat-form-field>
+                    <mat-label i18n>Identifier</mat-label>
+                    <input matInput readonly [(ngModel)]="title.title.value">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label i18n>Description level</mat-label>
+                    <input matInput readonly [(ngModel)]="title.title.value">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label i18n>Title</mat-label>
+                    <input matInput readonly [(ngModel)]="title.title.value">
+                </mat-form-field>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>

@@ -60,6 +60,22 @@
                   "maximumError": "4kb"
                 }
               ]
+            },
+            "pt": {
+              "aot": true,
+              "outputPath": "dist/under-construction-pt/",
+              "i18nFile": "src/locale/messages.pt.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "pt",
+              "i18nMissingTranslation": "error"
+            },
+            "en": {
+              "aot": true,
+              "outputPath": "dist/under-construction-en/",
+              "i18nFile": "src/locale/messages.en.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "en",
+              "i18nMissingTranslation": "error"
             }
           }
         },
@@ -71,6 +87,12 @@
           "configurations": {
             "production": {
               "browserTarget": "project:build:production"
+            },
+            "pt": {
+              "browserTarget": "project:build:pt"
+            },
+            "en": {
+              "browserTarget": "project:build:en"
             }
           }
         },
@@ -92,9 +114,11 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+
+            ]
           }
         },
         "lint": {

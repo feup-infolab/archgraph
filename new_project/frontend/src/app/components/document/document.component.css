@@ -1,0 +1,26 @@
+.example-action-buttons {
+    padding-bottom: 20px;
+}
+
+.example-headers-align .mat-expansion-panel-header-title,
+.example-headers-align .mat-expansion-panel-header-description {
+    flex-basis: 0;
+}
+.panel{
+    margin: 2em;
+    padding: 5px;
+}
+.doc-content{
+    margin-bottom: 6em;
+}
+.mat-form-field{
+    width: 30%;
+    margin-right: 2em;
+
+}
+mat-list{
+    padding-top: 0;
+}
+.mat-accordion>.mat-expansion-panel-spacing{
+    margin-top: 1em;
+}
