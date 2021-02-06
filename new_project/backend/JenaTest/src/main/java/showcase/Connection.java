@@ -19,7 +19,8 @@ public class Connection {
 
 
         try ( RDFConnectionFuseki conn = (RDFConnectionFuseki)builder.build() ) {
-            ResultSet rs = conn.query(query).execSelect();
+            QueryExecution qExec = conn.query(query) ;
+            ResultSet rs = qExec.execSelect();
             QuerySolution stmt;
             if(rs.hasNext()){
                 stmt = rs.next();
@@ -31,11 +32,14 @@ public class Connection {
                     r.putProperties(key,res.toString());
 
                 }
+                qExec.close();
+                conn.close();
             }else{
+                qExec.close();
+                conn.close();
                 return r;
             }
         }
-
 
             return r;
     }
@@ -48,7 +52,8 @@ public class Connection {
 
         try ( RDFConnectionFuseki conn = (RDFConnectionFuseki)builder.build() ) {
 
-            ResultSet rs = conn.query(query).execSelect();
+            QueryExecution qExec = conn.query(query) ;
+            ResultSet rs = qExec.execSelect();
             int i = 1;
             ArrayList<Map<String,String>> complexList = new ArrayList<>();
             QuerySolution stmt;
@@ -70,6 +75,9 @@ public class Connection {
 
                 }
                 r.addContent(key,map);
+
+                qExec.close();
+                conn.close();
                 return r;
             }
 
@@ -89,6 +97,9 @@ public class Connection {
                 complexList.add(map);
                 i++;
                 }
+
+            qExec.close();
+            conn.close();
             r.addList(key,complexList);
             }
             return r;
