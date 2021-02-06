@@ -40,7 +40,6 @@ public class Connection {
                     map.put(current,res.toString());
 
                 }
-                map.put("type","string");
                 r.addContent(key,map);
                 return r;
             }
@@ -58,7 +57,6 @@ public class Connection {
                     map.put(current, res.toString());
 
                 }
-                map.put("type","string");
                 complexList.add(map);
                 i++;
                 }

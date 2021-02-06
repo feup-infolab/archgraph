@@ -39,8 +39,7 @@ public class Queries {
     public Query getIDd(String uuid){
         return QueryFactory.create("SELECT ?description\n" +
                 "WHERE {\n" +
-                "?description <http://erlangen-crm.org/200717/has_uuid> "+ uuid +"\n" +
-                "}");
+                "?description <http://erlangen-crm.org/200717/has_uuid> \""+ uuid + "\" }");
     }
 
 
