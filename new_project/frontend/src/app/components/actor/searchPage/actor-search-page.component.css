@@ -2,21 +2,24 @@
     width: 45%;
     margin: auto;
 }
+
 form {
     padding-top: 2em;
     padding-bottom: 4em;
 
 }
-.mat-tab-group{
+
+.mat-tab-group {
     padding-left: 2em;
 
 }
 
-.mat-form-field{
+.mat-form-field {
     display: block;
     padding-right: 20px;
 }
-form > h4{
+
+form > h4 {
     text-align: center;
 }
 
@@ -28,7 +31,13 @@ form > h4:not(:first-child) {
 form > h4:first-child {
     margin: 0;
 }
-.search{
+
+.search {
     display: block;
     margin: auto;
+}
+
+form {
+    padding-top: 2em;
+    margin-bottom: 5em;
 }

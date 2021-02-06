@@ -9,11 +9,11 @@
                 </mat-form-field>
             </td>
             <!--            <td>-->
-<!--                <button>AND</button>-->
-<!--            </td>-->
-<!--            <td>-->
-<!--                <button>OR</button>-->
-<!--            </td>-->
+            <!--                <button>AND</button>-->
+            <!--            </td>-->
+            <!--            <td>-->
+            <!--                <button>OR</button>-->
+            <!--            </td>-->
         </tr>
         <tr class="elements-colspan">
 
@@ -24,12 +24,12 @@
                 </mat-form-field>
             </td>
 
-<!--            <td>-->
-<!--                <button>AND</button>-->
-<!--            </td>-->
-<!--            <td>-->
-<!--                <button>OR</button>-->
-<!--            </td>-->
+            <!--            <td>-->
+            <!--                <button>AND</button>-->
+            <!--            </td>-->
+            <!--            <td>-->
+            <!--                <button>OR</button>-->
+            <!--            </td>-->
         </tr>
         <tr>
             <td>
@@ -45,11 +45,11 @@
                 </mat-form-field>
             </td>
             <!--            <td>-->
-<!--                <button>AND</button>-->
-<!--            </td>-->
-<!--            <td>-->
-<!--                <button>OR</button>-->
-<!--            </td>-->
+            <!--                <button>AND</button>-->
+            <!--            </td>-->
+            <!--            <td>-->
+            <!--                <button>OR</button>-->
+            <!--            </td>-->
         </tr>
         <tr class="elements-colspan">
             <td colspan="2">
@@ -60,11 +60,11 @@
             </td>
 
             <!--            <td>-->
-<!--                <button>AND</button>-->
-<!--            </td>-->
-<!--            <td>-->
-<!--                <button>OR</button>-->
-<!--            </td>-->
+            <!--                <button>AND</button>-->
+            <!--            </td>-->
+            <!--            <td>-->
+            <!--                <button>OR</button>-->
+            <!--            </td>-->
         </tr>
         <tr class="elements-colspan">
 
@@ -75,11 +75,11 @@
                 </mat-form-field>
             </td>
             <!--            <td>-->
-<!--                <button>AND</button>-->
-<!--            </td>-->
-<!--            <td>-->
-<!--                <button>OR</button>-->
-<!--            </td>-->
+            <!--                <button>AND</button>-->
+            <!--            </td>-->
+            <!--            <td>-->
+            <!--                <button>OR</button>-->
+            <!--            </td>-->
         </tr>
     </table>
     <mat-divider></mat-divider>
@@ -102,11 +102,11 @@
                 </mat-form-field>
             </td>
             <!--            <td>-->
-<!--                <button>AND</button>-->
-<!--            </td>-->
-<!--            <td>-->
-<!--                <button>OR</button>-->
-<!--            </td>-->
+            <!--                <button>AND</button>-->
+            <!--            </td>-->
+            <!--            <td>-->
+            <!--                <button>OR</button>-->
+            <!--            </td>-->
         </tr>
         <tr>
             <td>
@@ -124,11 +124,11 @@
                 </mat-form-field>
             </td>
             <!--            <td>-->
-<!--                <button>AND</button>-->
-<!--            </td>-->
-<!--            <td>-->
-<!--                <button>OR</button>-->
-<!--            </td>-->
+            <!--                <button>AND</button>-->
+            <!--            </td>-->
+            <!--            <td>-->
+            <!--                <button>OR</button>-->
+            <!--            </td>-->
         </tr>
         <tr class="elements-colspan">
 
@@ -139,11 +139,11 @@
                 </mat-form-field>
             </td>
             <!--            <td>-->
-<!--                <button>AND</button>-->
-<!--            </td>-->
-<!--            <td>-->
-<!--                <button>OR</button>-->
-<!--            </td>-->
+            <!--                <button>AND</button>-->
+            <!--            </td>-->
+            <!--            <td>-->
+            <!--                <button>OR</button>-->
+            <!--            </td>-->
         </tr>
     </table>
 
@@ -167,11 +167,11 @@
                 </mat-form-field>
             </td>
             <!--            <td>-->
-<!--                <button>AND</button>-->
-<!--            </td>-->
-<!--            <td>-->
-<!--                <button>OR</button>-->
-<!--            </td>-->
+            <!--                <button>AND</button>-->
+            <!--            </td>-->
+            <!--            <td>-->
+            <!--                <button>OR</button>-->
+            <!--            </td>-->
         </tr>
         <tr class="elements-colspan">
 
@@ -182,16 +182,16 @@
                 </mat-form-field>
             </td>
             <!--            <td>-->
-<!--                <button>AND</button>-->
-<!--            </td>-->
-<!--            <td>-->
-<!--                <button>OR</button>-->
-<!--            </td>-->
+            <!--                <button>AND</button>-->
+            <!--            </td>-->
+            <!--            <td>-->
+            <!--                <button>OR</button>-->
+            <!--            </td>-->
         </tr>
     </table>
     <button class="search" mat-raised-button (click)="getDocSummary($event)" color="primary">Search</button>
 </form>
 <div *ngIf="haveResults">
-    <app-table [columns]="columns" [data]="dataSource"></app-table>
+    <app-table [columns]="columns" [data]="dataSource" [hrefTo]="'doc'"></app-table>
     <button class="search" mat-raised-button (click)="setHaveResults($event)" color="primary">Go Back</button>
 </div>
