@@ -47,7 +47,9 @@ import org.springframework.web.bind.annotation.RestController;
     }
 
     @GetMapping("/searchdoc")
-    public String documentSummary(@RequestParam(value = "refcode", defaultValue = "") String refcode) {
+    public String documentSummary(@RequestParam(value = "refcode", defaultValue = "") Object rcode) {
+        String refcode = rcode.toString();
+        refcode = "\"" + refcode + "\"";
         Connection conn = new Connection();
         HashMap<String,Object> list0 = new HashMap<>() ;
         ResponseClass uuidrep = new ResponseClass(list0);
