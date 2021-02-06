@@ -12,6 +12,35 @@ import java.util.*;
 public class Connection {
     Queries querier = new Queries();
 
+
+    public ResponseClass obtainSummaryResponse(Query query,String key,ResponseClass r){
+        RDFConnectionRemoteBuilder builder = RDFConnectionFuseki.create()
+                .destination("http://localhost:3030/name/sparql");
+
+
+        try ( RDFConnectionFuseki conn = (RDFConnectionFuseki)builder.build() ) {
+            ResultSet rs = conn.query(query).execSelect();
+            QuerySolution stmt;
+            if(rs.hasNext()){
+                stmt = rs.next();
+                Iterator<String> b = stmt.varNames();
+
+                while(b.hasNext()){
+                    String current = b.next();
+                    RDFNode res = stmt.get(current);
+                    r.putProperties(key,res.toString());
+
+                }
+            }else{
+                return r;
+            }
+        }
+
+
+            return r;
+    }
+
+
     public ResponseClass obtainGeneralResponse(Query query,String key,ResponseClass r){
         RDFConnectionRemoteBuilder builder = RDFConnectionFuseki.create()
                 .destination("http://localhost:3030/name/sparql");
