@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 
 
 @Injectable({
@@ -51,7 +51,10 @@ export class MyService {
     }
 
     getDocSummary(referenceCode: any): Observable<any> {
-        return this.http.get<any>(`${this.baseUrl}/refcode=${referenceCode}`);
+        const params = new HttpParams()
+            .set('refcode', referenceCode);
+
+        return this.http.get(`${this.baseUrl}/searchdoc`, {params});
     }
 
     getActorById(id: any): Observable<any> {

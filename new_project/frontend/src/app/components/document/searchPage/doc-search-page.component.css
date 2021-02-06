@@ -27,3 +27,7 @@ form > h4:not(:first-child) {
 form > h4:first-child {
     margin: 0;
 }
+.search{
+    display: block;
+    margin: auto;
+}
