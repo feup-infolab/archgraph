@@ -32,9 +32,13 @@ export class DocSearchPageComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       // this.id = params.get('id');
+      this.referenceCode = '111'
       this.getDocSummary(this.referenceCode);
       // this.getAllDocById(this.id);
     });
+  }
+  OnChanges(){
+    this.getDocSummary(this.referenceCode);
   }
 
   getDocSummary(referenceCode: any) {

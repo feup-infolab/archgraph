@@ -7,7 +7,7 @@ import {HttpClient} from '@angular/common/http';
     providedIn: 'root'
 })
 export class MyService {
-    baseUrl = 'http://localhost:3030/ds';
+    baseUrl = 'http://localhost:8080';
     prefixLigacao = 'prefix ligacao: <http://www.episa.inesctec.pt/ligacao#>';
     prefixDataObject = 'prefix data_object:<http://www.episa.inesctec.pt/data_object#>';
 
@@ -50,9 +50,8 @@ export class MyService {
         return true;
     }
 
-    getDocSummary(id: any): Observable<any> {
-        // @ts-ignore
-        return true;
+    getDocSummary(referenceCode: any): Observable<any> {
+        return this.http.get<any>(`${this.baseUrl}/refcode=${referenceCode}`);
     }
 
     getActorById(id: any): Observable<any> {

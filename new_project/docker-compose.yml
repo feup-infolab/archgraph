@@ -1,13 +1,10 @@
-version: '3.3'
-
+version: "3.3"
 services:
   fuseki:
     container_name: archgraph-fuseki
-    image: stain/jena-fuseki
+    image: blankdots/jena-fuseki
     environment:
-      - ADMIN_PASSWORD=pw123
-      - JVM_ARGS=-Xmx2g
-      - FUSEKI_DATASET_1=ds
+      - ADMIN_PASSWORD=admin
     ports:
       - 3030:3030
     volumes:
