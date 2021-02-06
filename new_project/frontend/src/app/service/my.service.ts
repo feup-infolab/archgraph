@@ -15,7 +15,7 @@ export class MyService {
     }
 
     fuseki(): Observable<any> {
-        return this.http.get<any>(`${this.baseUrl}/?query=SELECT ?s ?p ?o WHERE {?s ?p ?o}`);
+        return this.http.get<any>(`http://localhost:3030/?query=SELECT ?s ?p ?o WHERE {?s ?p ?o}`);
     }
 
     getSuppliedTitle(id: any): Observable<any> {
@@ -55,6 +55,11 @@ export class MyService {
             .set('refcode', referenceCode);
 
         return this.http.get(`${this.baseUrl}/searchdoc`, {params});
+
+        // const params = new HttpParams()
+        //     .set('query', 'SELECT ?s ?p ?o WHERE {?s ?p ?o}');
+        //
+        // return this.http.get(`${this.baseUrl}/`, {params});
     }
 
     getActorById(id: any): Observable<any> {

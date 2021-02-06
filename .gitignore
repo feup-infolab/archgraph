@@ -4,7 +4,7 @@
 new_project/frontend/dist
 new_project/frontend/tmp
 new_project/frontend/out-tsc
-new_project/JenaTeste/target
+new_project/backend/JenaTest/target
 old_project/frontend/dist
 old_project/frontend/tmp
 old_project/frontend/out-tsc

@@ -193,5 +193,5 @@
 </form>
 <div *ngIf="haveResults">
     <app-table [columns]="columns" [data]="dataSource"></app-table>
-
+    <button class="search" mat-raised-button (click)="setHaveResults($event)" color="primary">Go Back</button>
 </div>

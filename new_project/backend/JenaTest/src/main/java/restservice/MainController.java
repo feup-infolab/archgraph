@@ -7,6 +7,7 @@ package restservice;
     import cclasses.ResponseClass;
     import com.fasterxml.jackson.core.JsonProcessingException;
     import com.fasterxml.jackson.databind.ObjectMapper;
+    import org.springframework.web.bind.annotation.CrossOrigin;
     import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -46,6 +47,7 @@ import org.springframework.web.bind.annotation.RestController;
         return json;
     }
 
+    @CrossOrigin(origins = {"http://localhost:4201", "http://localhost:4200"})
     @GetMapping("/searchdoc")
     public String documentSummary(@RequestParam(value = "refcode", defaultValue = "") Object rcode) {
         String refcode = rcode.toString();

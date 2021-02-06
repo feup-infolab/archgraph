@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {MyService} from '../../../service/my.service';
 import {ActivatedRoute} from '@angular/router';
-import {MatTableDataSource} from "@angular/material/table";
+import {MatTableDataSource} from '@angular/material/table';
+import {element} from "protractor";
 
 @Component({
     selector: 'app-doc-search-page',
@@ -25,7 +26,7 @@ export class DocSearchPageComponent implements OnInit {
     public creationDateTo: any;
     public haveResults: boolean | undefined;
     public dataSource: any;
-    public columns: any[] = ['position', 'name', 'weight', 'symbol'];
+    public columns: any[] = ['episaIdentifier', 'title', 'dglabIdentifier', ];
 
     constructor(
         private service: MyService,
@@ -51,7 +52,16 @@ export class DocSearchPageComponent implements OnInit {
         this.service.getDocSummary(this.referenceCode)
             .subscribe(result => {
                 console.log(result);
-                this.dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+                // tslint:disable-next-line:no-shadowed-variable
+                const elements = [];
+                // tslint:disable-next-line:no-shadowed-variable
+                const element = {
+                    episaIdentifier: result.episaIdentifier,
+                    title: result.title,
+                    dglabIdentifier: result.dglabIdentifier
+                };
+                elements.push(element);
+                this.dataSource = new MatTableDataSource<Document>(elements);
                 if (this.dataSource.data.length > 0) {
                     this.haveResults = true;
                 }
@@ -74,7 +84,18 @@ export class DocSearchPageComponent implements OnInit {
     //       });
     // }
 
+    setHaveResults($event: MouseEvent) {
+        this.haveResults = false;
+
+    }
 }
+
+export interface Document {
+    episaIdentifier: string;
+    title: string;
+    dglabIdentifier: string;
+}
+
 
 export interface PeriodicElement {
     name: string;
