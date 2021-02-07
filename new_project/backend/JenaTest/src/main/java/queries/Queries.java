@@ -96,6 +96,149 @@ public class Queries {
     }
 
 
+    public Query getIdentifier(String uuid){
+        return QueryFactory.create("SELECT  ?identifier ?type \n" +
+                "WHERE {\n" +
+                uuid + " <http://erlangen-crm.org/200717/P1_is_identified_by> ?cidoc_identifier .\n" +
+                "  ?cidoc_identifier <http://www.episa.inesctec.pt/ligacao#hasValue> ?identifier_value .\n" +
+                "  ?cidoc_identifier <http://erlangen-crm.org/200717/P2_has_type> ?type.\n" +
+                "  ?identifier_value <http://www.episa.inesctec.pt/data_object#stringValue> ?identifier\n" +
+                "}");
+    }
+
+    public Query getTitle(String uuid){
+        return QueryFactory.create("SELECT  ?title ?type \n" +
+                "WHERE {\n" +
+                uuid + " <http://erlangen-crm.org/200717/P102_has_title> ?typen .\n" +
+                "  ?typen <http://www.episa.inesctec.pt/ligacao#hasValue> ?type .\n" +
+                "  ?type <http://www.episa.inesctec.pt/data_object#stringValue> ?title\n" +
+                "}");
+    }
+
+    public Query getMaterial(String uuid){
+        return QueryFactory.create("SELECT ?material ?type\n" +
+                "WHERE {\n" +
+                uuid + " <http://erlangen-crm.org/200717/has_material> ?material .\n" +
+                uuid + " <http://erlangen-crm.org/200717/has_material> ?type\n" +
+                "}");
+    }
+
+    public Query getDimension(String uuid){
+        return QueryFactory.create("SELECT ?dimension ?value ?measurementUnit ?component\n" +
+                "WHERE {\n" +
+                uuid + " <http://erlangen-crm.org/200717/has_dimension> ?dimension .\n" +
+                uuid + " <http://erlangen-crm.org/200717/has_dimension_value> ?value .\n" +
+                uuid + " <http://erlangen-crm.org/200717/has_dimension_measurement_unit> ?measurementUnit .\n" +
+                uuid + " <http://erlangen-crm.org/200717/has_dimension_component> ?component\n" +
+                "}");
+    }
+
+    public Query getQuantity(String uuid){
+        return QueryFactory.create("SELECT ?quantity ?value ?measurementUnit ?component\n" +
+                "WHERE {\n" +
+                uuid + " <http://erlangen-crm.org/200717/has_quantity> ?quantity .\n" +
+                uuid + " <http://erlangen-crm.org/200717/has_quantity_value> ?value .\n" +
+                uuid + " <http://erlangen-crm.org/200717/has_quantity_measurement_unit> ?measurementUnit .\n" +
+                uuid + " <http://erlangen-crm.org/200717/has_quantity_component> ?component\n" +
+                "}");
+    }
+
+    public Query getConservationStatus(String uuid){
+        return QueryFactory.create("SELECT ?conservationStatus ?initialDate ?finalDate \n" +
+                "WHERE {\n" +
+                uuid + " <http://erlangen-crm.org/200717/has_conservation_status> ?conservationStatus .\n" +
+                uuid + " <http://erlangen-crm.org/200717/has_conservation_status_ID> ?initialDate .\n" +
+                uuid + " <http://erlangen-crm.org/200717/has_conservation_status_FD> ?finalDate \n" +
+                "}");
+    }
+
+    public Query getLanguage(String uuid){
+        return QueryFactory.create("SELECT ?language ?identifier\n" +
+                "WHERE {\n" +
+                uuid + " <http://erlangen-crm.org/200717/has_language> ?language .\n" +
+                uuid + " <http://erlangen-crm.org/200717/has_language_identifier> ?identifier\n" +
+                "}");
+    }
+
+    public Query getWriting(String uuid){
+        return QueryFactory.create("SELECT ?writing ?identifier\n" +
+                "WHERE {\n" +
+                uuid + " <http://erlangen-crm.org/200717/has_writing> ?writing .\n" +
+                uuid + " <http://erlangen-crm.org/200717/has_writing_identifier> ?identifier\n" +
+                "}");
+    }
+
+    public Query getDocTradition(String uuid){
+        return QueryFactory.create("SELECT ?documentaryTradition\n" +
+                "WHERE {\n" +
+                uuid + " <http://erlangen-crm.org/200717/has_doc_tradition> ?documentaryTradition \n" +
+                "}");
+    }
+
+    public Query getDocTypology(String uuid){
+        return QueryFactory.create("SELECT ?documentaryTypology\n" +
+                "WHERE {\n" +
+                uuid + " <http://erlangen-crm.org/200717/has_typology> ?documentaryTypology \n" +
+                "}");
+    }
+
+    public Query getSubject(String uuid){
+        return QueryFactory.create("SELECT ?subject\n" +
+                "WHERE {\n" +
+                uuid + " <http://erlangen-crm.org/200717/has_subject> ?subject \n" +
+                "}");
+    }
+
+    public Query getAccessCondition(String uuid){
+        return QueryFactory.create("SELECT ?accessConditions ?justification\n" +
+                "WHERE {\n" +
+                uuid + " <http://erlangen-crm.org/200717/has_access_condition> ?accessConditions .\n" +
+                uuid + " <http://erlangen-crm.org/200717/has_access_condition_justification> ?justification\n" +
+                "}");
+    }
+
+    public Query getReproductionCondition(String uuid){
+        return QueryFactory.create("SELECT ?reproductionConditions ?justification\n" +
+                "WHERE {\n" +
+                uuid + " <http://erlangen-crm.org/200717/has_reproduction_condition> ?reproductionConditions .\n" +
+                uuid + " <http://erlangen-crm.org/200717/has_reproduction_condition_justification> ?justification\n" +
+                "}");
+    }
+
+    public Query getEvent(String uuid){
+        return QueryFactory.create("SELECT ?episaIdentifier ?eventType ?initialDate ?finalDate\n" +
+                "WHERE {\n" +
+                uuid + " <http://erlangen-crm.org/200717/has_related_event> ?episaIdentifier .\n" +
+                uuid + " <http://erlangen-crm.org/200717/has_related_event_type> ?eventType .\n" +
+                uuid + " <http://erlangen-crm.org/200717/has_related_event_id> ?initialDate .\n" +
+                uuid + " <http://erlangen-crm.org/200717/has_related_event_fd> ?finalDate\n" +
+                "}");
+    }
+
+    public Query getRelDoc(String uuid){
+        return QueryFactory.create("SELECT ?episaIdentifier registryIdentifier ?title ?relationtype\n" +
+                "WHERE {\n" +
+                uuid + " <http://erlangen-crm.org/200717/has_related_document> ?tdoc .\n" +
+                "?tdoc <http://erlangen-crm.org/200717/has_uuid> ?episaIdentifier .\n" +
+                "?tdoc <http://erlangen-crm.org/200717/P1_is_identified_by> ?cidoc_identifier .\n" +
+                "  ?cidoc_identifier <http://www.episa.inesctec.pt/ligacao#hasValue> ?identifier_value .\n" +
+                "  ?identifier_value <http://www.episa.inesctec.pt/data_object#stringValue> ?registryIdentifier .\n" +
+                "?tdoc <http://erlangen-crm.org/200717/P102_has_title> ?type .\n" +
+                "  ?type <http://www.episa.inesctec.pt/ligacao#hasValue> ?title_type .\n" +
+                "  ?title_type <http://www.episa.inesctec.pt/data_object#stringValue> ?title .\n" +
+                uuid + " ?relationType ?tdoc \n" +
+                "}");
+    }
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -7,7 +7,6 @@ package restservice;
     import cclasses.ResponseClass;
     import com.fasterxml.jackson.core.JsonProcessingException;
     import com.fasterxml.jackson.databind.ObjectMapper;
-    import org.springframework.web.bind.annotation.CrossOrigin;
     import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,9 +32,23 @@ import org.springframework.web.bind.annotation.RestController;
         String docid = "<" + idmap.get("description")  + ">";
 
         ResponseClass rep = new ResponseClass( list);
-        rep = conn.obtainGeneralResponse(queries.getTitle_query(docid),"title",rep);
-        rep = conn.obtainGeneralResponse(queries.getUuid(docid),"episaIdentifier",rep);
-        rep = conn.obtainGeneralResponse(queries.getReference_codes_query(docid),"dglabIdentifier",rep);
+        rep = conn.obtainSummaryResponse(queries.getUuid(docid),"episaIdentifier",rep);
+        rep = conn.obtainTotalResponse(queries.getIdentifier(docid),"identifiers",rep);
+        rep = conn.obtainTotalResponse(queries.getTitle(docid),"titles",rep);
+        rep = conn.obtainTotalResponse(queries.getMaterial(docid),"materials",rep);
+        rep = conn.obtainTotalResponse(queries.getDimension(docid),"dimensions",rep);
+        rep = conn.obtainTotalResponse(queries.getQuantity(docid),"quantities",rep);
+        rep = conn.obtainTotalResponse(queries.getConservationStatus(docid),"conservationStatus",rep);
+        rep = conn.obtainTotalResponse(queries.getLanguage(docid),"languages",rep);
+        rep = conn.obtainTotalResponse(queries.getWriting(docid),"writings",rep);
+        rep = conn.obtainTotalResponse(queries.getDocTradition(docid),"documentaryTraditions",rep);
+        rep = conn.obtainTotalResponse(queries.getDocTypology(docid),"typologies",rep);
+        rep = conn.obtainTotalResponse(queries.getSubject(docid),"subjects",rep);
+        rep = conn.obtainTotalResponse(queries.getAccessCondition(docid),"accessConditions",rep);
+        rep = conn.obtainTotalResponse(queries.getReproductionCondition(docid),"reproductionConditions",rep);
+        rep = conn.obtainTotalResponse(queries.getEvent(docid),"relatedEvents",rep);
+        rep = conn.obtainTotalResponse(queries.getRelDoc(docid),"relatedDocuments",rep);
+
 
         ObjectMapper mapper = new ObjectMapper();
         String json = "";
@@ -47,7 +60,6 @@ import org.springframework.web.bind.annotation.RestController;
         return json;
     }
 
-    @CrossOrigin(origins = {"http://localhost:4201", "http://localhost:4200"})
     @GetMapping("/searchdoc")
     public String documentSummary(@RequestParam(value = "refcode", defaultValue = "") Object rcode) {
         String refcode = rcode.toString();
