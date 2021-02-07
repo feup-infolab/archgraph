@@ -45,6 +45,40 @@ public class Connection {
     }
 
 
+    public ResponseClass obtainTotalResponse(Query query,String key,ResponseClass r){
+        RDFConnectionRemoteBuilder builder = RDFConnectionFuseki.create()
+                .destination("http://localhost:3030/name/sparql");
+
+
+        try ( RDFConnectionFuseki conn = (RDFConnectionFuseki)builder.build() ) {
+
+            QueryExecution qExec = conn.query(query) ;
+            ResultSet rs = qExec.execSelect();
+            ArrayList<Map<String,String>> complexList = new ArrayList<>();
+            QuerySolution stmt;
+
+            while (rs.hasNext()) {
+
+                stmt = rs.next();
+                Iterator<String> b = stmt.varNames();
+                HashMap<String, String> map = new HashMap<>();
+
+                while (b.hasNext()) {
+                    String current = b.next();
+                    RDFNode res = stmt.get(current);
+                    map.put(current, res.toString());
+
+                }
+                complexList.add(map);
+            }
+
+            qExec.close();
+            conn.close();
+            r.addList(key,complexList);
+        }
+        return r;
+    }
+
     public ResponseClass obtainGeneralResponse(Query query,String key,ResponseClass r){
         RDFConnectionRemoteBuilder builder = RDFConnectionFuseki.create()
                 .destination("http://localhost:3030/name/sparql");
