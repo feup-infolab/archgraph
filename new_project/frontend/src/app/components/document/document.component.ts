@@ -92,12 +92,11 @@ export class DocumentComponent implements OnInit {
           this.writings = result.writings;
 
           const elements = [];
-
           for (const relatedoc of result.relatedDocuments) {
             const element = {
               episaIdentifier: relatedoc.episaIdentifier,
               title: relatedoc.title,
-              dglabIdentifier: relatedoc.registryIdentifier
+              dglabIdentifier: relatedoc.relationType
             };
             elements.push(element);
           }

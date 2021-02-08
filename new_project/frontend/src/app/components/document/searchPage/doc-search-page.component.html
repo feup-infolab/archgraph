@@ -5,7 +5,8 @@
             <td colspan="2">
                 <mat-form-field class="short-width">
                     <mat-label i18n>Description Level</mat-label>
-                    <input matInput name="descriptionLevel" [(ngModel)]="descriptionLevel">
+                    <input matInput name="descriptionLevel" [(ngModel)]="descriptionLevel"
+                           (ngModelChange)="dataChanged($event)">
                 </mat-form-field>
             </td>
             <!--            <td>-->
@@ -20,7 +21,8 @@
             <td colspan="2">
                 <mat-form-field class="short-width">
                     <mat-label i18n>Reference Code</mat-label>
-                    <input matInput name="referenceCode" [(ngModel)]="referenceCode">
+                    <input matInput name="referenceCode" [(ngModel)]="referenceCode"
+                           (ngModelChange)="dataChanged($event)">
                 </mat-form-field>
             </td>
 
@@ -35,13 +37,15 @@
             <td>
                 <mat-form-field class="short-width">
                     <mat-label i18n>Production Dates (From)</mat-label>
-                    <input matInput type="date" name="prodDateFrom" [(ngModel)]="prodDateFrom">
+                    <input matInput type="date" name="prodDateFrom" [(ngModel)]="prodDateFrom"
+                           (ngModelChange)="dataChanged($event)">
                 </mat-form-field>
             </td>
             <td>
                 <mat-form-field class="short-width">
                     <mat-label i18n>Production Dates (To)</mat-label>
-                    <input matInput type="date" name="prodDateTo" [(ngModel)]="prodDateTo">
+                    <input matInput type="date" name="prodDateTo" [(ngModel)]="prodDateTo"
+                           (ngModelChange)="dataChanged($event)">
                 </mat-form-field>
             </td>
             <!--            <td>-->
@@ -55,7 +59,7 @@
             <td colspan="2">
                 <mat-form-field class="short-width">
                     <mat-label i18n>Keywords</mat-label>
-                    <input matInput name="keywords" [(ngModel)]="keywords">
+                    <input matInput name="keywords" [(ngModel)]="keywords" (ngModelChange)="dataChanged($event)">
                 </mat-form-field>
             </td>
 
@@ -71,7 +75,7 @@
             <td colspan="2">
                 <mat-form-field>
                     <mat-label i18n>Related To</mat-label>
-                    <input matInput name="relatedTo" [(ngModel)]="relatedTo">
+                    <input matInput name="relatedTo" [(ngModel)]="relatedTo" (ngModelChange)="dataChanged($event)">
                 </mat-form-field>
             </td>
             <!--            <td>-->
@@ -91,14 +95,14 @@
                 <mat-form-field class="short-width">
                     <mat-label i18n>Intervention Start Date (From)</mat-label>
                     <input matInput type="date" name="interventionStartDateFrom"
-                           [(ngModel)]="interventionStartDateFrom">
+                           [(ngModel)]="interventionStartDateFrom" (ngModelChange)="dataChanged($event)">
                 </mat-form-field>
             </td>
             <td>
                 <mat-form-field class="short-width">
                     <mat-label i18n>Intervention Start Date (To)</mat-label>
                     <input matInput type="date" name="interventionStartDateTo"
-                           [(ngModel)]="interventionStartDateTo">
+                           [(ngModel)]="interventionStartDateTo" (ngModelChange)="dataChanged($event)">
                 </mat-form-field>
             </td>
             <!--            <td>-->
@@ -113,14 +117,14 @@
                 <mat-form-field class="short-width">
                     <mat-label i18n>Intervention End Date (From)</mat-label>
                     <input matInput type="date" name="interventionEndDateFrom"
-                           [(ngModel)]="interventionEndDateFrom">
+                           [(ngModel)]="interventionEndDateFrom" (ngModelChange)="dataChanged($event)">
                 </mat-form-field>
             </td>
             <td>
                 <mat-form-field class="short-width">
                     <mat-label i18n>Intervention End Date (To)</mat-label>
                     <input matInput type="date" name="interventionEndDateTo"
-                           [(ngModel)]="interventionEndDateTo">
+                           [(ngModel)]="interventionEndDateTo" (ngModelChange)="dataChanged($event)">
                 </mat-form-field>
             </td>
             <!--            <td>-->
@@ -135,7 +139,7 @@
             <td colspan="2">
                 <mat-form-field>
                     <mat-label i18n>Curator's Name</mat-label>
-                    <input matInput name="curatorName" [(ngModel)]="curatorName">
+                    <input matInput name="curatorName" [(ngModel)]="curatorName" (ngModelChange)="dataChanged($event)">
                 </mat-form-field>
             </td>
             <!--            <td>-->
@@ -156,14 +160,14 @@
                 <mat-form-field class="short-width">
                     <mat-label i18n>Creation Date (From)</mat-label>
                     <input matInput type="date" name="creationDateFrom"
-                           [(ngModel)]="creationDateFrom">
+                           [(ngModel)]="creationDateFrom" (ngModelChange)="dataChanged($event)">
                 </mat-form-field>
             </td>
             <td>
                 <mat-form-field class="short-width">
                     <mat-label i18n>Intervention Start Date (To)</mat-label>
                     <input matInput type="date" name="creationDateTo"
-                           [(ngModel)]="creationDateTo">
+                           [(ngModel)]="creationDateTo" (ngModelChange)="dataChanged($event)">
                 </mat-form-field>
             </td>
             <!--            <td>-->
@@ -178,7 +182,7 @@
             <td colspan="2">
                 <mat-form-field>
                     <mat-label i18n>Curator's Name</mat-label>
-                    <input matInput name="curatorName" [(ngModel)]="curatorName">
+                    <input matInput name="curatorName" [(ngModel)]="curatorName" (ngModelChange)="dataChanged($event)">
                 </mat-form-field>
             </td>
             <!--            <td>-->
@@ -189,7 +193,9 @@
             <!--            </td>-->
         </tr>
     </table>
-    <button class="search" mat-raised-button (click)="getDocSummary()" color="primary">Search</button>
+    <button class="search" mat-raised-button [disabled]="!enabledButton" (click)="getDocSummary()" color="primary">
+        Search
+    </button>
 </form>
 <div *ngIf="haveResults">
     <app-table [columns]="columns" [data]="dataSource" [hrefTo]="'doc'"></app-table>

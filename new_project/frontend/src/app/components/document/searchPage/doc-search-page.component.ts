@@ -30,28 +30,26 @@ export class DocSearchPageComponent implements OnInit {
   public curatorName: any;
   public creationDateFrom: any;
   public creationDateTo: any;
+
   public haveResults: boolean | undefined;
   public dataSource: any;
   public columns: any[] = ['episaIdentifier', 'title', 'dglabIdentifier'];
+  public enabledButton: boolean;
+  public fieldswithValue: number;
 
   constructor(
     private service: MyService,
     private route: ActivatedRoute,
   ) {
+    this.enabledButton = false;
+    this.fieldswithValue = 0;
   }
 
   ngOnInit() {
-    // this.referenceCode = '111';
-    // this.getDocSummary(this.referenceCode);
-    // this.getAllDocById(this.id);
   }
 
-
   getDocSummary() {
-    // this.dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
-    // if (this.dataSource.data.length > 0) {
-    //     this.haveResults = true;
-    // }
+
     this.service.getDocSummary(this.referenceCode)
       .subscribe(result => {
         console.log(result);
@@ -71,5 +69,21 @@ export class DocSearchPageComponent implements OnInit {
 
   setHaveResults() {
     this.haveResults = false;
+  }
+
+  dataChanged(newObj: any) {
+    console.log(newObj);
+    if (newObj === '') {
+      this.fieldswithValue -= 1;
+    }
+    else {
+      this.fieldswithValue += 1;
+    }
+    if (this.fieldswithValue > 0 ){
+      this.enabledButton = true;
+    }else {
+      this.enabledButton = false;
+
+    }
   }
 }
