@@ -220,7 +220,7 @@ public class Queries {
                 "  ?tdoc <http://erlangen-crm.org/200717/has_uuid> ?episaIdentifier .\n" +
                 "  ?tdoc <http://erlangen-crm.org/200717/P1_is_identified_by> ?cidoc_identifier .\n" +
                 "  ?cidoc_identifier <http://www.episa.inesctec.pt/ligacao#hasValue> ?identifier_value .\n" +
-                "  ?identifier_value <http://www.episa.inesctec.pt/data_object#stringValue> ?registryIdentifier .\n" +
+                "  ?identifier_value <http://www.episa.inesctec.pt/data_object#stringValue> ?dglabIdentifier .\n" +
                 "  ?tdoc <http://erlangen-crm.org/200717/P102_has_title> ?type .\n" +
                 "  ?type <http://www.episa.inesctec.pt/ligacao#hasValue> ?title_type .\n" +
                 "  ?title_type <http://www.episa.inesctec.pt/data_object#stringValue> ?title .\n" +
