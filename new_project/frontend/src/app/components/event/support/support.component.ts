@@ -23,15 +23,8 @@ export class SupportComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       this.id = params.get('id');
       // this.getNotes(this.id);
-      this.getSuppliedTitle(this.id);
+      // this.getSuppliedTitle(this.id);
     });
   }
 
-  getSuppliedTitle(id: any) {
-    this.service.getSuppliedTitle(id)
-        .subscribe(result => {
-          console.log(result);
-          this.titles = result.results.bindings;
-        });
-  }
 }

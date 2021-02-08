@@ -15,7 +15,6 @@ export class DocumentComponent implements OnInit {
   public notes: any[];
   public languages: any[];
   public identifiers: any[];
-  private uid: any;
   public dimensions: any[];
   public descriptionLevel: string;
   public subjects: any[];
@@ -28,7 +27,7 @@ export class DocumentComponent implements OnInit {
   public writings: any[];
   public conditions: any[];
   public traditions: any[];
-  public acessConditions: any[];
+  public accessConditions: any[];
   public documentaryTraditions: any[];
   public episaIdentifier: any;
   public reprodutionConditions: any[];
@@ -56,7 +55,7 @@ export class DocumentComponent implements OnInit {
     this.writings = [];
     this.conditions = [];
     this.traditions = [];
-    this.acessConditions = [];
+    this.accessConditions = [];
     this.documentaryTraditions = [];
     this.reprodutionConditions = [];
 
@@ -64,8 +63,8 @@ export class DocumentComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
-      this.uid = params.get('uid');
-      this.getDocById(this.uid);
+      this.episaIdentifier = params.get('id');
+      this.getDocById(this.episaIdentifier);
     });
   }
 
@@ -74,7 +73,7 @@ export class DocumentComponent implements OnInit {
       .subscribe(result => {
 
           console.log(result);
-          this.acessConditions = result.accessConditions;
+          this.accessConditions = result.accessConditions;
           this.conservationStatus = result.conservationStatus;
           this.dimensions = result.dimensions;
           this.documentaryTraditions = result.documentaryTraditions;
@@ -96,7 +95,7 @@ export class DocumentComponent implements OnInit {
             const element = {
               episaIdentifier: relatedoc.episaIdentifier,
               title: relatedoc.title,
-              dglabIdentifier: relatedoc.relationType
+              dglabIdentifier: relatedoc.dglabIdentifier
             };
             elements.push(element);
           }
