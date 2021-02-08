@@ -55,6 +55,7 @@ export class DocumentComponent implements OnInit {
             this.getDocById(this.uid);
         });
     }
+
     getDocById(id: any) {
         this.service.getDocById(id)
             .subscribe(result => {
