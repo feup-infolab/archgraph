@@ -85,6 +85,7 @@ public class MainController {
         String json = "";
         try {
             json = mapper.writeValueAsString(rep.getProperties());
+            return json;
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }

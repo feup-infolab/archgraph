@@ -111,9 +111,9 @@
             <!--            </td>-->
         </tr>
     </table>
-    <button class="search" mat-raised-button (click)="getDocSummary($event)" color="primary">Search</button>
+    <button class="search" mat-raised-button (click)="getDocSummary()" color="primary">Search</button>
 </form>
 <div *ngIf="haveResults">
     <app-table [columns]="columns" [data]="dataSource" [hrefTo]="'actor'"></app-table>
-    <button class="search" mat-raised-button (click)="setHaveResults($event)" color="primary">Go Back</button>
+    <button class="search" mat-raised-button (click)="setHaveResults()" color="primary">Go Back</button>
 </div>

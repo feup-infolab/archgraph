@@ -15,9 +15,9 @@ public class Queries {
     public Query getTitle_query(String uuid) {
         return QueryFactory.create("SELECT  ?description\n" +
                 "WHERE {\n" +
-                    uuid + " <http://erlangen-crm.org/200717/P102_has_title> ?type .\n" +
-                    "  ?type <http://www.episa.inesctec.pt/ligacao#hasValue> ?title_type .\n" +
-                    "  ?title_type <http://www.episa.inesctec.pt/data_object#stringValue> ?description\n" +
+                uuid + " <http://erlangen-crm.org/200717/P102_has_title> ?type .\n" +
+                "  ?type <http://www.episa.inesctec.pt/ligacao#hasValue> ?title_type .\n" +
+                "  ?title_type <http://www.episa.inesctec.pt/data_object#stringValue> ?description\n" +
                 "}");
     }
 
@@ -104,16 +104,16 @@ public class Queries {
                 "}");
     }
 
-    public Query getTitle(String uuid){
-        return QueryFactory.create("SELECT  ?title ?typen \n" +
+    public Query getTitle(String uuid) {
+        return QueryFactory.create("SELECT  ?title ?type \n" +
                 "WHERE {\n" +
-                uuid + " <http://erlangen-crm.org/200717/P102_has_title> ?typen .\n" +
-                "  ?typen <http://www.episa.inesctec.pt/ligacao#hasValue> ?type .\n" +
-                "  ?type <http://www.episa.inesctec.pt/data_object#stringValue> ?title\n" +
+                uuid + " <http://erlangen-crm.org/200717/P102_has_title> ?type .\n" +
+                "  ?type <http://www.episa.inesctec.pt/ligacao#hasValue> ?typen .\n" +
+                "  ?typen <http://www.episa.inesctec.pt/data_object#stringValue> ?title\n" +
                 "}");
     }
 
-    public Query getMaterial(String uuid){
+    public Query getMaterial(String uuid) {
         return QueryFactory.create("SELECT ?material ?component\n" +
                 "WHERE {\n" +
                 uuid + " <http://erlangen-crm.org/200717/has_material> ?material .\n" +
@@ -213,7 +213,7 @@ public class Queries {
                 "}");
     }
 
-    public Query getRelDoc(String uuid){
+    public Query getRelDoc(String uuid) {
         return QueryFactory.create("SELECT ?episaIdentifier ?dglabIdentifier  ?title ?relationType\n" +
                 "WHERE {\n" +
                 uuid + " <http://erlangen-crm.org/200717/has_related_document> ?tdoc .\n" +
