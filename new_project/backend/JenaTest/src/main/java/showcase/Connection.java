@@ -66,8 +66,15 @@ public class Connection {
                 while (b.hasNext()) {
                     String current = b.next();
                     RDFNode res = stmt.get(current);
-                    map.put(current, res.toString());
 
+                    //TODO - MUDAR ISTO - DEMASIADO ESPECIFICO
+                    if(res.toString().contains("http://www.semanticweb.org/dmelo/ontologies/2020/7/untitled-ontology-151#ARE3SuppliedTitle")){
+                        map.put(current, "Atribuido");
+                    } else if(res.toString().contains("http://www.semanticweb.org/dmelo/ontologies/2020/7/untitled-ontology-151#ARE2FormalTitle")){
+                        map.put(current, "Formal");
+                    }else{
+                        map.put(current, res.toString());
+                    }
                 }
                 complexList.add(map);
             }

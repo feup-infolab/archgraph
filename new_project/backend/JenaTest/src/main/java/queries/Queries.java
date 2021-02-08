@@ -16,9 +16,9 @@ public class Queries {
     public Query getTitle_query(String uuid){
         return QueryFactory.create("SELECT  ?description\n" +
                 "WHERE {\n" +
-                uuid + " <http://erlangen-crm.org/200717/P102_has_title> ?type .\n" +
-                "  ?type <http://www.episa.inesctec.pt/ligacao#hasValue> ?title_type .\n" +
-                "  ?title_type <http://www.episa.inesctec.pt/data_object#stringValue> ?description\n" +
+                    uuid + " <http://erlangen-crm.org/200717/P102_has_title> ?type .\n" +
+                    "  ?type <http://www.episa.inesctec.pt/ligacao#hasValue> ?title_type .\n" +
+                    "  ?title_type <http://www.episa.inesctec.pt/data_object#stringValue> ?description\n" +
                 "}");
     }
 
@@ -107,7 +107,7 @@ public class Queries {
     }
 
     public Query getTitle(String uuid){
-        return QueryFactory.create("SELECT  ?title ?type \n" +
+        return QueryFactory.create("SELECT  ?title ?typen \n" +
                 "WHERE {\n" +
                 uuid + " <http://erlangen-crm.org/200717/P102_has_title> ?typen .\n" +
                 "  ?typen <http://www.episa.inesctec.pt/ligacao#hasValue> ?type .\n" +
@@ -116,10 +116,10 @@ public class Queries {
     }
 
     public Query getMaterial(String uuid){
-        return QueryFactory.create("SELECT ?material ?type\n" +
+        return QueryFactory.create("SELECT ?material ?component\n" +
                 "WHERE {\n" +
                 uuid + " <http://erlangen-crm.org/200717/has_material> ?material .\n" +
-                uuid + " <http://erlangen-crm.org/200717/has_material> ?type\n" +
+                uuid + " <http://erlangen-crm.org/200717/has_material> ?component\n" +
                 "}");
     }
 
@@ -216,7 +216,7 @@ public class Queries {
     }
 
     public Query getRelDoc(String uuid){
-        return QueryFactory.create("SELECT ?episaIdentifier registryIdentifier ?title ?relationtype\n" +
+        return QueryFactory.create("SELECT ?episaIdentifier ?dglabIdentifier  ?title ?relationType\n" +
                 "WHERE {\n" +
                 uuid + " <http://erlangen-crm.org/200717/has_related_document> ?tdoc .\n" +
                 "?tdoc <http://erlangen-crm.org/200717/has_uuid> ?episaIdentifier .\n" +
