@@ -1,4 +1,4 @@
-<form>
+<form *ngIf="!haveResults">
     <table class="table" cellspacing="0">
         <tr class="elements-colspan">
             <td colspan="2">
@@ -111,6 +111,9 @@
             <!--            </td>-->
         </tr>
     </table>
-    <button class="search" mat-raised-button (click)="getActorSummary($event)" color="primary">Search</button>
+    <button class="search" mat-raised-button (click)="getDocSummary($event)" color="primary">Search</button>
 </form>
-<app-table [columns]="columns" [data]="dataSource"></app-table>
+<div *ngIf="haveResults">
+    <app-table [columns]="columns" [data]="dataSource" [hrefTo]="'actor'"></app-table>
+    <button class="search" mat-raised-button (click)="setHaveResults($event)" color="primary">Go Back</button>
+</div>

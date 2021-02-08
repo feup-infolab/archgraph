@@ -13,7 +13,7 @@ export class DocumentComponent implements OnInit {
     public notes: any[];
     public languages: any[];
     public identifiers: any[];
-    private id: any;
+    private uid: any;
     public dimensions: any[];
     public descriptionLevel: string;
     public subjects: any[];
@@ -51,22 +51,12 @@ export class DocumentComponent implements OnInit {
 
     ngOnInit() {
         this.route.paramMap.subscribe(params => {
-            this.id = params.get('id');
-            // this.getNotes(this.id);
-            this.getSuppliedTitle(this.id);
-            this.getAllDocById(this.id);
+            this.uid = params.get('uid');
+            this.getDocById(this.uid);
         });
     }
 
-    getSuppliedTitle(id: any) {
-        this.service.getSuppliedTitle(id)
-            .subscribe(result => {
-                console.log(result);
-                this.titles = result.results.bindings;
-            });
-    }
-
-    getAllDocById(id: any) {
+    getDocById(id: any) {
         this.service.getDocById(id)
             .subscribe(result => {
 

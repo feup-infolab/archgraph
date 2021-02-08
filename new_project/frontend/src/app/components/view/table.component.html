@@ -1,13 +1,23 @@
 <div class="mat-elevation-z8 list-components" *ngIf="concluded">
     <table mat-table matSort [dataSource]="dataSource">
-        <ng-container matColumnDef="{{column.id}}" *ngFor="let column of displayedColumns">
+<!--        <ng-container matColumnDef="name">-->
+<!--            <th mat-header-cell *matHeaderCellDef> Name </th>-->
+<!--            <td mat-cell *matCellDef="let element"> {{displayedColumns[1].value}} </td>-->
+<!--        </ng-container>-->
+
+        <ng-container matColumnDef="{{column.id}}" *ngFor="let column of columnId">
             <td  class="td-table" *matHeaderCellDef mat-sort-header> {{column.value}}</td>
-            <td mat-cell *matCellDef="let element"> {{element[column.id]}} </td>
+            <td mat-cell *matCellDef="let element"> <a href="{{myHrefTo}}/{{element[column.id]}}">{{element[column.id]}}</a> </td>
+        </ng-container>
+
+        <ng-container matColumnDef="{{column.id}}" *ngFor="let column of otherColumns">
+            <td  class="td-table" *matHeaderCellDef mat-sort-header> {{column.value}}</td>
+            <td mat-cell *matCellDef="let element"> {{element[column.id]}}</td>
         </ng-container>
 
 
-        <tr mat-header-row *matHeaderRowDef="myColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: myColumns;"></tr>
+        <tr mat-header-row *matHeaderRowDef="columnsHeader"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnsHeader;"></tr>
     </table>
 
     <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]" showFirstLastButtons></mat-paginator>

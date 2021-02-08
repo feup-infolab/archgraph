@@ -45,9 +45,11 @@ export class MyService {
         return this.http.get<any>(`${this.baseUrl}/?query=${encodeURIComponent(query)}`);
     }
 
-    getDocById(id: any): Observable<any> {
-        // @ts-ignore
-        return true;
+    getDocById(uid: any): Observable<any> {
+        const params = new HttpParams()
+            .set('id', uid);
+
+        return this.http.get(`${this.baseUrl}/doc`, {params});
     }
 
     getDocSummary(referenceCode: any): Observable<any> {
@@ -55,11 +57,6 @@ export class MyService {
             .set('refcode', referenceCode);
 
         return this.http.get(`${this.baseUrl}/searchdoc`, {params});
-
-        // const params = new HttpParams()
-        //     .set('query', 'SELECT ?s ?p ?o WHERE {?s ?p ?o}');
-        //
-        // return this.http.get(`${this.baseUrl}/`, {params});
     }
 
     getActorById(id: any): Observable<any> {
@@ -67,9 +64,11 @@ export class MyService {
         return true;
     }
 
-    getActorSummary(id: any): Observable<any> {
-        // @ts-ignore
-        return true;
+    getActorSummary(identifier: any): Observable<any> {
+        const params = new HttpParams()
+            .set('identifier', identifier);
+
+        return this.http.get(`${this.baseUrl}/searchactor`, {params});
     }
 
     getEventById(id: any): Observable<any> {

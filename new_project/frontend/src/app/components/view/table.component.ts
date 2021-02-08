@@ -9,10 +9,12 @@ import {MatPaginator} from '@angular/material/paginator';
     styleUrls: ['./table.component.css'],
 })
 export class TableComponent implements AfterViewInit {
-    public displayedColumns: any[] | undefined;
-    public concluded: boolean | undefined;
     public dataSource: any;
-    public myColumns: any[] | undefined;
+    public columnsHeader: any[] | undefined;
+    public columnId: any[] | undefined;
+    public otherColumns: any[] | undefined;
+    public concluded: boolean | undefined;
+    public myHrefTo: any;
 
     @ViewChild(MatPaginator, {static: false})
     set paginator(value: MatPaginator) {
@@ -28,33 +30,51 @@ export class TableComponent implements AfterViewInit {
         }
     }
 
-    @Input() set columns(value: any[]) {
+    @Input()
+    set columns(value: any[]) {
         if (value) {
-            this.myColumns = value;
-            this.displayedColumns = [];
-            this.myColumns.forEach(element => {
-                const object = {
-                    id: element,
-                    value: element
-                };
-                // @ts-ignore
-                this.displayedColumns.push(object);
-            });
+            this.otherColumns = [];
+            this.columnId = [];
+            this.columnsHeader = value;
+            for (let i = 0; i < value.length; i++) {
+                if (i === 0) {
+                    const object = {
+                        id: value[i],
+                        value: value[i]
+                    };
+                    this.columnId.push(object);
+                } else {
+                    const object = {
+                        id: value[i],
+                        value: value[i]
+                    };
+                    this.otherColumns.push(object);
+                }
+            }
+
         }
     }
 
-    @Input() set data(value: any[]) {
-        if (value) {
-            this.dataSource = value;
-        }
+    @Input()
+    set data(value: any[]) {
+        this.dataSource = value;
+
+    }
+
+    @Input()
+    set hrefTo(value: any) {
+        this.myHrefTo = value;
     }
 
     ngAfterViewInit() {
+        if (this.myHrefTo === undefined || this.dataSource === undefined || this.columnsHeader === undefined) {
+            throw new Error('Attributes "hrefTo", "data" and "columns"  are required');
+
+        }
         setTimeout(() => {
             this.concluded = true;
         });
-
-
     }
+
 
 }
