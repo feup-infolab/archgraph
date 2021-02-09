@@ -23,9 +23,10 @@ public class Queries {
     }
 
     public Query getLevel_of_description_query(String uuid){
-        return QueryFactory.create("SELECT ?descriptionLevel\n" +
+        return QueryFactory.create("SELECT ?descriptionLevelString\n" +
                 "WHERE {\n" +
-                uuid + " <http://www.semanticweb.org/dmelo/ontologies/2020/7/untitled-ontology-151#ARP12_has_level_of_description> ?descriptionLevel\n" +
+                uuid + " <http://www.semanticweb.org/dmelo/ontologies/2020/7/untitled-ontology-151#ARP12_has_level_of_description> ?descriptionLevel .\n" +
+                "?descriptionLevel <http://www.w3.org/2000/01/rdf-schema#label> ?descriptionLevelString \n" +
                 "}");
     }
 
@@ -61,6 +62,22 @@ public class Queries {
                 "  ?cidoc_identifier <http://www.episa.inesctec.pt/ligacao#hasValue> ?identifier_value .\n" +
                 "  ?cidoc_identifier <http://erlangen-crm.org/200717/P2_has_type> ?type.\n" +
                 "  ?identifier_value <http://www.episa.inesctec.pt/data_object#stringValue> "+ refCode + "\n" +
+                "}");
+    }
+
+    public Query getIdFromLevelOfDescription(String level){
+        return QueryFactory.create("SELECT  ?description \n" +
+                "WHERE {\n" +
+                "?description <http://www.semanticweb.org/dmelo/ontologies/2020/7/untitled-ontology-151#ARP12_has_level_of_description> ?descriptionLevel .\n" +
+                "?descriptionLevel <http://www.w3.org/2000/01/rdf-schema#label> " + level + "\n" +
+                "}");
+    }
+
+    public Query getIdFromRelDoc(String uuid){
+        return QueryFactory.create("SELECT ?description \n" +
+                "WHERE {\n" +
+                "?description <http://erlangen-crm.org/200717/has_related_document> ?tdoc .\n" +
+                "?tdoc <http://erlangen-crm.org/200717/has_uuid> " + uuid + "\n" +
                 "}");
     }
 

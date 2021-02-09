@@ -1,7 +1,7 @@
 package restservice;
 
 
-    import java.util.HashMap;
+    import java.util.*;
     import java.util.concurrent.atomic.AtomicLong;
 
     import cclasses.RequestBodyClass;
@@ -113,10 +113,61 @@ import org.springframework.web.bind.annotation.RestController;
 
 
     @GetMapping("search")
-    public ResponseClass search(@RequestBody RequestBodyClass searchForm){
+    public ArrayList<Map> search(@RequestBody RequestBodyClass searchForm){
 
-        //TODO KEEP AT IT
-        return null;
+        String refcode = searchForm.getRefCode();
+        refcode = "\"" + refcode + "\"";
+
+        String descriptionLevel = searchForm.getDescriptionLevel();
+        descriptionLevel = "\"" + descriptionLevel + "\"";
+
+        String relatedTo = searchForm.getRelatedTo();
+        relatedTo = "\"" + relatedTo + "\"";
+
+        ArrayList<String> uuidList = new ArrayList<>();
+
+        Connection conn = new Connection();
+        HashMap<String,Object> list0 = new HashMap<>() ;
+        ResponseClass uuidrep = new ResponseClass(list0);
+        conn.obtainGeneralResponse(queries.getIdFromLevelOfDescription(descriptionLevel),"levelOfDescriptionId",uuidrep);
+
+        conn.obtainGeneralResponse(queries.getIdFromReference_codes_query(refcode),"ReferenceCodeId",uuidrep);
+
+
+        conn.obtainGeneralResponse(queries.getIdFromRelDoc(relatedTo),"RelDocId",uuidrep);
+
+        //TODO - WE NEED TO REFACTOR THIS - BAD SPAGHETTI CODE FOR THE MEETING
+
+
+        ArrayList<HashMap<String,String>> LODidmap = (ArrayList<HashMap<String,String>>) uuidrep.getProperties().get("levelOfDescriptionId");
+        for(HashMap<String,String> s : LODidmap){
+            String LODuuid = "<" + s.get("description").toString()  + ">";
+            uuidList.add(LODuuid);
+        }
+
+        HashMap<String,String > Refidmap = (HashMap<String, String>) uuidrep.getProperties().get("ReferenceCodeId");
+        String Refuuid = "<" + Refidmap.get("description")  + ">";
+
+        HashMap<String,String > RDidmap = (HashMap<String, String>) uuidrep.getProperties().get("RelDocId");
+        String RDuuid = "<" + RDidmap.get("description")  + ">";
+
+
+        uuidList.add(Refuuid);
+        uuidList.add(RDuuid);
+
+        ArrayList<Map> reparray = new ArrayList<>();
+
+        for (String s : uuidList) {
+            HashMap<String, Object> list = new HashMap<>();
+            ResponseClass rep = new ResponseClass(list);
+            rep = conn.obtainSummaryResponse(queries.getTitle_query(s), "title", rep);
+            rep = conn.obtainSummaryResponse(queries.getUuid(s), "episaIdentifier", rep);
+            rep = conn.obtainSummaryResponse(queries.getReference_codes_query(s), "dglabIdentifier", rep);
+            reparray.add(rep.getProperties());
+
+        }
+
+        return reparray;
     }
 }
 
