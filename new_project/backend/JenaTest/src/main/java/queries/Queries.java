@@ -112,7 +112,6 @@ public class Queries {
                 " }");
     }
 
-
     public Query getIdentifier(String uuid){
         return QueryFactory.create("SELECT  ?identifier ?type \n" +
                 "WHERE {\n" +
@@ -128,7 +127,7 @@ public class Queries {
                 "WHERE {\n" +
                 uuid + " <http://erlangen-crm.org/200717/P102_has_title> ?type .\n" +
                 "  ?type <http://www.episa.inesctec.pt/ligacao#hasValue> ?typen .\n" +
-                "  ?type <http://www.episa.inesctec.pt/data_object#stringValue> ?title\n" +
+                "  ?typen <http://www.episa.inesctec.pt/data_object#stringValue> ?title\n" +
                 "}");
     }
 

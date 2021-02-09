@@ -34,6 +34,7 @@ export class DocumentComponent implements OnInit {
   public haveResults: boolean | undefined;
   public dataSource: any;
   public columns: any[] = ['episaIdentifier', 'title', 'dglabIdentifier'];
+  public isExpanded: boolean | undefined;
 
   constructor(
     private service: MyService,
@@ -58,6 +59,7 @@ export class DocumentComponent implements OnInit {
     this.accessConditions = [];
     this.documentaryTraditions = [];
     this.reprodutionConditions = [];
+    this.isExpanded = true;
 
   }
 
@@ -105,5 +107,9 @@ export class DocumentComponent implements OnInit {
           }
         }
       );
+  }
+
+  setExpanded(b: boolean) {
+    this.isExpanded = b;
   }
 }
