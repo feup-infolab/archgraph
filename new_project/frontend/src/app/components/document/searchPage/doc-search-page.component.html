@@ -4,6 +4,21 @@
         <tr class="elements-colspan">
             <td colspan="2">
                 <mat-form-field class="short-width">
+                    <mat-label i18n>Title</mat-label>
+                    <input matInput name="descriptionLevel" [(ngModel)]="searchObject.title"
+                           (ngModelChange)="dataChanged($event)">
+                </mat-form-field>
+            </td>
+            <!--            <td>-->
+            <!--                <button>AND</button>-->
+            <!--            </td>-->
+            <!--            <td>-->
+            <!--                <button>OR</button>-->
+            <!--            </td>-->
+        </tr>
+        <tr class="elements-colspan">
+            <td colspan="2">
+                <mat-form-field class="short-width">
                     <mat-label i18n>Description Level</mat-label>
                     <input matInput name="descriptionLevel" [(ngModel)]="searchObject.descriptionLevel"
                            (ngModelChange)="dataChanged($event)">

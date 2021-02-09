@@ -101,6 +101,7 @@ package restservice;
         rep = conn.obtainGeneralResponse(queries.getPerson(uuid),"person",rep);
         return rep;
     }
+
     @CrossOrigin(origins = {"http://localhost:4200", "http://localhost:4201"})
     @GetMapping("/place")
     public ResponseClass place(@RequestParam(value = "id", defaultValue = "") String uuid) {
