@@ -68,17 +68,21 @@ export class DocSearchPageComponent implements OnInit {
       .subscribe(result => {
         console.log(result);
         const elements = [];
-        const element = {
-          episaIdentifier: result.episaIdentifier,
-          title: result.title,
-          dglabIdentifier: result.dglabIdentifier
-        };
-        elements.push(element);
+        // tslint:disable-next-line:prefer-for-of
+        for (let i = 0; i < result.length; i++) {
+          const element = {
+            episaIdentifier: result[i].episaIdentifier,
+            title: result[i].title,
+            dglabIdentifier: result[i].dglabIdentifier
+          };
+          elements.push(element);
+        }
         this.dataSource = new MatTableDataSource<Document>(elements);
         if (this.dataSource.data.length > 0) {
           this.haveResults = true;
         }
       });
+
   }
 
   setHaveResults() {
