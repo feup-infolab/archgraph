@@ -8,10 +8,7 @@ package restservice;
     import cclasses.ResponseClass;
     import com.fasterxml.jackson.core.JsonProcessingException;
     import com.fasterxml.jackson.databind.ObjectMapper;
-    import org.springframework.web.bind.annotation.GetMapping;
-    import org.springframework.web.bind.annotation.RequestBody;
-    import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+    import org.springframework.web.bind.annotation.*;
     import queries.Queries;
     import showcase.Connection;
 
@@ -22,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
         private final AtomicLong counter = new AtomicLong();
         private final Queries queries =new Queries();
 
+    @CrossOrigin(origins = {"http://localhost:4200", "http://localhost:4201"})
     @GetMapping("/doc")
     public String document(@RequestParam(value = "id", defaultValue = "") String uuid) {
         Connection conn = new Connection();
@@ -62,6 +60,7 @@ import org.springframework.web.bind.annotation.RestController;
         return json;
     }
 
+    @CrossOrigin(origins = {"http://localhost:4200", "http://localhost:4201"})
     @GetMapping("/searchdoc")
     public String documentSummary(@RequestParam(value = "refcode", defaultValue = "") Object rcode) {
         String refcode = rcode.toString();
@@ -84,6 +83,8 @@ import org.springframework.web.bind.annotation.RestController;
         String json = "";
         try {
             json = mapper.writeValueAsString(rep.getProperties());
+                    return json;
+
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
@@ -92,7 +93,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 
-
+    @CrossOrigin(origins = {"http://localhost:4200", "http://localhost:4201"})
     @GetMapping("/person")
     public ResponseClass person(@RequestParam(value = "id", defaultValue = "") String uuid) {
         Connection conn = new Connection();
@@ -102,6 +103,7 @@ import org.springframework.web.bind.annotation.RestController;
         return rep;
     }
 
+    @CrossOrigin(origins = {"http://localhost:4200", "http://localhost:4201"})
     @GetMapping("/place")
     public ResponseClass place(@RequestParam(value = "id", defaultValue = "") String uuid) {
         Connection conn = new Connection();
@@ -111,7 +113,7 @@ import org.springframework.web.bind.annotation.RestController;
         return rep;
     }
 
-
+    @CrossOrigin(origins = {"http://localhost:4200", "http://localhost:4201"})
     @GetMapping("search")
     public ArrayList<Map> search(@RequestBody RequestBodyClass searchForm){
 
@@ -145,15 +147,15 @@ import org.springframework.web.bind.annotation.RestController;
             uuidList.add(LODuuid);
         }
 
-        HashMap<String,String > Refidmap = (HashMap<String, String>) uuidrep.getProperties().get("ReferenceCodeId");
-        String Refuuid = "<" + Refidmap.get("description")  + ">";
-
-        HashMap<String,String > RDidmap = (HashMap<String, String>) uuidrep.getProperties().get("RelDocId");
-        String RDuuid = "<" + RDidmap.get("description")  + ">";
-
-
-        uuidList.add(Refuuid);
-        uuidList.add(RDuuid);
+//        HashMap<String,String > Refidmap = (HashMap<String, String>) uuidrep.getProperties().get("ReferenceCodeId");
+//        String Refuuid = "<" + Refidmap.get("description")  + ">";
+//
+//        HashMap<String,String > RDidmap = (HashMap<String, String>) uuidrep.getProperties().get("RelDocId");
+//        String RDuuid = "<" + RDidmap.get("description")  + ">";
+//
+//
+//        uuidList.add(Refuuid);
+//        uuidList.add(RDuuid);
 
         ArrayList<Map> reparray = new ArrayList<>();
 

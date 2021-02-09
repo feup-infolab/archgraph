@@ -6,23 +6,26 @@
 .example-headers-align .mat-expansion-panel-header-description {
     flex-basis: 0;
 }
-.panel{
+
+.panel {
     margin: 2em;
     padding: 5px;
 }
-.doc-content{
+
+.doc-content {
     margin-bottom: 6em;
 }
 
-.mat-form-field{
+.mat-form-field {
     width: 30%;
     margin-right: 2em;
 
 }
-mat-list{
+
+mat-list {
     padding-top: 0;
 }
 
-.mat-accordion>.mat-expansion-panel-spacing{
+.mat-accordion > .mat-expansion-panel-spacing {
     margin-top: 1em;
 }

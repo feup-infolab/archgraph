@@ -21,9 +21,9 @@ export class MyService {
   getDocSummary(searchObject: any): Observable<any> {
     console.log(searchObject);
     const params = new HttpParams()
-      .set('refcode', searchObject.referenceCode);
-    // .set('query', searchObject);
-    return this.http.get(`${this.baseUrl}/searchdoc`, {params});
+      // .set('refcode', searchObject.refCode);
+      .set('query', searchObject);
+    return this.http.get(`${this.baseUrl}/search`, {params});
   }
 
   getActorById(id: any): Observable<any> {

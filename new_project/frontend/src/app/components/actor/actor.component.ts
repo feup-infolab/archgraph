@@ -34,6 +34,7 @@ export class ActorComponent implements OnInit {
       this.getActorById(this.id);
     });
   }
+
   getActorById(id: any) {
     this.service.getActorById(id)
       .subscribe(result => {
