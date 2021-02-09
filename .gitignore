@@ -6,7 +6,6 @@ tmp/
 out-tsc/
 out/
 target/
-*/target/**
 env/
 volumes/
 # Only exists if Bazel was run
