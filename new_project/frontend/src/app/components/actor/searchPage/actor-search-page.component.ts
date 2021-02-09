@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {MyService} from '../../../service/my.service';
-import {ActivatedRoute} from '@angular/router';
 import {MatTableDataSource} from '@angular/material/table';
-import {Document} from "../../document/searchPage/doc-search-page.component";
 
 export interface Actor {
   episaIdentifier: string;
@@ -27,22 +25,25 @@ export class ActorSearchPageComponent implements OnInit {
   public culturalPeriod: any;
   public episaIdentifier: any;
 
-  public haveResults: boolean;
+  public haveResults: boolean | undefined;
   public dataSource: any;
-  public columns: any[] = ['position', 'name', 'weight', 'symbol'];
+  public columns: any[] = ['episaIdentifier', 'title', 'dglabIdentifier'];
+  public enabledButton: boolean;
+  public fieldswithValue: number;
 
 
   constructor(
     private service: MyService,
-    private route: ActivatedRoute,
   ) {
     this.haveResults = false;
+    this.enabledButton = false;
+    this.fieldswithValue = 0;
   }
 
   ngOnInit() {
   }
 
-  getDocSummary() {
+  getActorSummary() {
     this.service.getActorSummary(this.identifier)
       .subscribe(result => {
         console.log(result);
@@ -59,7 +60,18 @@ export class ActorSearchPageComponent implements OnInit {
         }
       });
   }
+
   setHaveResults() {
     this.haveResults = false;
+  }
+
+  dataChanged(newObj: any) {
+    console.log(newObj);
+    if (newObj === '') {
+      this.fieldswithValue -= 1;
+    } else {
+      this.fieldswithValue += 1;
+    }
+    this.enabledButton = this.fieldswithValue > 0;
   }
 }

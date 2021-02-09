@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {MyService} from '../../../service/my.service';
-import {ActivatedRoute} from '@angular/router';
 import {MatTableDataSource} from '@angular/material/table';
 
 export interface Document {
@@ -16,41 +15,54 @@ export interface Document {
   styleUrls: ['./doc-search-page.component.css']
 })
 export class DocSearchPageComponent implements OnInit {
-  // document
-  public descriptionLevel: any;
-  public referenceCode: any;
-  public keywords: any;
-  public relatedTo: any;
-  public prodDateFrom: any;
-  public prodDateTo: any;
-  public interventionStartDateFrom: any;
-  public interventionStartDateTo: any;
-  public interventionEndDateFrom: any;
-  public interventionEndDateTo: any;
-  public curatorName: any;
-  public creationDateFrom: any;
-  public creationDateTo: any;
-
   public haveResults: boolean | undefined;
   public dataSource: any;
   public columns: any[] = ['episaIdentifier', 'title', 'dglabIdentifier'];
   public enabledButton: boolean;
-  public fieldswithValue: number;
+  public fieldsWithValue: number;
+  public searchObject: {
+    descriptionLevel: any;
+    prodDateTo: any;
+    keywords: any;
+    refCode: any;
+    prodDateFrom: any;
+    relatedTo: any;
+    interventionStartDateFrom: any;
+    interventionStartDateTo: any;
+    interventionEndDateFrom: any;
+    interventionEndDateTo: any;
+    curatorName: any;
+    creationDateFrom: any;
+    creationDateTo: any;
+  };
 
   constructor(
     private service: MyService,
-    private route: ActivatedRoute,
   ) {
     this.enabledButton = false;
-    this.fieldswithValue = 0;
+    this.fieldsWithValue = 0;
+    this.searchObject = {
+      descriptionLevel: '',
+      prodDateTo: '',
+      keywords: '',
+      prodDateFrom: '',
+      relatedTo: '',
+      interventionStartDateFrom: '',
+      interventionStartDateTo: '',
+      interventionEndDateFrom: '',
+      interventionEndDateTo: '',
+      curatorName: '',
+      creationDateFrom: '',
+      creationDateTo: '',
+      refCode: '',
+    };
   }
 
   ngOnInit() {
   }
 
   getDocSummary() {
-
-    this.service.getDocSummary(this.referenceCode)
+    this.service.getDocSummary(this.searchObject)
       .subscribe(result => {
         console.log(result);
         const elements = [];
@@ -74,16 +86,10 @@ export class DocSearchPageComponent implements OnInit {
   dataChanged(newObj: any) {
     console.log(newObj);
     if (newObj === '') {
-      this.fieldswithValue -= 1;
+      this.fieldsWithValue -= 1;
+    } else {
+      this.fieldsWithValue += 1;
     }
-    else {
-      this.fieldswithValue += 1;
-    }
-    if (this.fieldswithValue > 0 ){
-      this.enabledButton = true;
-    }else {
-      this.enabledButton = false;
-
-    }
+    this.enabledButton = this.fieldsWithValue > 0;
   }
 }
