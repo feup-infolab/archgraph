@@ -81,6 +81,15 @@ public class Queries {
                 "}");
     }
 
+    public Query getIdFromTitle(String uuid){
+        return QueryFactory.create("SELECT  ?description \n" +
+                "WHERE {\n" +
+                "  ?description <http://erlangen-crm.org/200717/P102_has_title> ?type .\n" +
+                "  ?type <http://www.episa.inesctec.pt/ligacao#hasValue> ?typen .\n" +
+                "  ?typen <http://www.episa.inesctec.pt/data_object#stringValue>" + uuid + "\n" +
+                "}");
+    }
+
     public Query getPerson(String uuid){
         return QueryFactory.create("SELECT ?name\n" +
                 "WHERE {\n" +
