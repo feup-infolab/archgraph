@@ -116,13 +116,25 @@ package restservice;
     public ArrayList<Map> search(@RequestBody RequestBodyClass searchForm){
 
         String refcode = searchForm.getRefCode();
-        refcode = "\"" + refcode + "\"";
+        if(refcode != null){
+        refcode = "\"" + refcode + "\"";}
+        else{
+            refcode = "\"\"";
+        }
 
         String descriptionLevel = searchForm.getDescriptionLevel();
-        descriptionLevel = "\"" + descriptionLevel + "\"";
+        if( descriptionLevel != null){
+        descriptionLevel = "\"" + descriptionLevel + "\"";}
+        else{
+            descriptionLevel = "\"\"";
+        }
 
         String relatedTo = searchForm.getRelatedTo();
-        relatedTo = "\"" + relatedTo + "\"";
+        if(relatedTo != null){
+        relatedTo = "\"" + relatedTo + "\"";}
+        else{
+            relatedTo = "\"\"";
+        }
 
         ArrayList<String> uuidList = new ArrayList<>();
 
@@ -140,10 +152,11 @@ package restservice;
 
 
         ArrayList<HashMap<String,String>> LODidmap = (ArrayList<HashMap<String,String>>) uuidrep.getProperties().get("levelOfDescriptionId");
+        if(LODidmap != null){
         for(HashMap<String,String> s : LODidmap){
-            String LODuuid = "<" + s.get("description").toString()  + ">";
+            String LODuuid = "<" + s.get("description") + ">";
             uuidList.add(LODuuid);
-        }
+        }}
 
         HashMap<String,String > Refidmap = (HashMap<String, String>) uuidrep.getProperties().get("ReferenceCodeId");
         String Refuuid = "";
