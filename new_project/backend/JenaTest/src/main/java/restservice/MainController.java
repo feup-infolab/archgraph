@@ -19,6 +19,7 @@ package restservice;
         private final AtomicLong counter = new AtomicLong();
         private final Queries queries =new Queries();
 
+    @CrossOrigin(origins = {"http://localhost:4200", "http://localhost:4201"})
     @GetMapping("/doc")
     public String document(@RequestParam(value = "id", defaultValue = "") String uuid) {
         Connection conn = new Connection();
@@ -59,6 +60,7 @@ package restservice;
         return json;
     }
 
+    @CrossOrigin(origins = {"http://localhost:4200", "http://localhost:4201"})
     @GetMapping("/searchdoc")
     public String documentSummary(@RequestParam(value = "refcode", defaultValue = "") Object rcode) {
         String refcode = rcode.toString();
@@ -81,6 +83,7 @@ package restservice;
         String json = "";
         try {
             json = mapper.writeValueAsString(rep.getProperties());
+            return json;
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
@@ -89,7 +92,7 @@ package restservice;
 
 
 
-
+    @CrossOrigin(origins = {"http://localhost:4200", "http://localhost:4201"})
     @GetMapping("/person")
     public ResponseClass person(@RequestParam(value = "id", defaultValue = "") String uuid) {
         Connection conn = new Connection();
@@ -98,7 +101,7 @@ package restservice;
         rep = conn.obtainGeneralResponse(queries.getPerson(uuid),"person",rep);
         return rep;
     }
-
+    @CrossOrigin(origins = {"http://localhost:4200", "http://localhost:4201"})
     @GetMapping("/place")
     public ResponseClass place(@RequestParam(value = "id", defaultValue = "") String uuid) {
         Connection conn = new Connection();
@@ -108,7 +111,7 @@ package restservice;
         return rep;
     }
 
-
+    @CrossOrigin(origins = {"http://localhost:4200", "http://localhost:4201"})
     @PostMapping("search")
     public ArrayList<Map> search(@RequestBody RequestBodyClass searchForm){
 

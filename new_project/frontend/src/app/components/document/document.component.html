@@ -1,6 +1,6 @@
 <div class="doc-content">
     <mat-accordion class="example-headers-align" multi>
-        <mat-expansion-panel class="panel" *ngIf="identifiers.length !== 0">
+        <mat-expansion-panel class="panel" *ngIf="identifiers.length !== 0" [expanded]="isExpanded">
             <mat-expansion-panel-header>
                 <mat-panel-title i18n>Identifiers</mat-panel-title>
             </mat-expansion-panel-header>
@@ -16,7 +16,7 @@
             </div>
         </mat-expansion-panel>
 
-        <mat-expansion-panel class="panel" *ngIf="titles.length !== 0">
+        <mat-expansion-panel class="panel" *ngIf="titles.length !== 0" [expanded]="isExpanded">
             <mat-expansion-panel-header>
                 <mat-panel-title i18n>Titles</mat-panel-title>
             </mat-expansion-panel-header>
@@ -32,7 +32,7 @@
             </div>
         </mat-expansion-panel>
 
-        <mat-expansion-panel class="panel" *ngIf="materials.length !== 0">
+        <mat-expansion-panel class="panel" *ngIf="materials.length !== 0" [expanded]="isExpanded">
             <mat-expansion-panel-header>
                 <mat-panel-title i18n>Materials</mat-panel-title>
             </mat-expansion-panel-header>
@@ -48,7 +48,7 @@
             </div>
         </mat-expansion-panel>
 
-        <mat-expansion-panel class="panel" *ngIf="dimensions.length !== 0">
+        <mat-expansion-panel class="panel" *ngIf="dimensions.length !== 0" [expanded]="isExpanded">
             <mat-expansion-panel-header>
                 <mat-panel-title i18n>Dimensions</mat-panel-title>
             </mat-expansion-panel-header>
@@ -72,7 +72,7 @@
             </div>
         </mat-expansion-panel>
 
-        <mat-expansion-panel class="panel" *ngIf="quantities.length !== 0">
+        <mat-expansion-panel class="panel" *ngIf="quantities.length !== 0" [expanded]="isExpanded">
             <mat-expansion-panel-header>
                 <mat-panel-title i18n>Quantities</mat-panel-title>
             </mat-expansion-panel-header>
@@ -96,7 +96,7 @@
             </div>
         </mat-expansion-panel>
 
-        <mat-expansion-panel class="panel" *ngIf="conservationStatus.length !== 0">
+        <mat-expansion-panel class="panel" *ngIf="conservationStatus.length !== 0" [expanded]="isExpanded">
             <mat-expansion-panel-header>
                 <mat-panel-title i18n>Conservation status</mat-panel-title>
             </mat-expansion-panel-header>
@@ -116,7 +116,7 @@
             </div>
         </mat-expansion-panel>
 
-        <mat-expansion-panel class="panel" *ngIf="languages.length !== 0">
+        <mat-expansion-panel class="panel" *ngIf="languages.length !== 0" [expanded]="isExpanded">
             <mat-expansion-panel-header>
                 <mat-panel-title i18n>Languages</mat-panel-title>
             </mat-expansion-panel-header>
@@ -132,7 +132,7 @@
             </div>
         </mat-expansion-panel>
 
-        <mat-expansion-panel class="panel" *ngIf="writings.length !== 0">
+        <mat-expansion-panel class="panel" *ngIf="writings.length !== 0" [expanded]="isExpanded">
             <mat-expansion-panel-header>
                 <mat-panel-title i18n>Writings</mat-panel-title>
             </mat-expansion-panel-header>
@@ -148,7 +148,7 @@
             </div>
         </mat-expansion-panel>
 
-        <mat-expansion-panel class="panel" *ngIf="documentaryTraditions.length !== 0">
+        <mat-expansion-panel class="panel" *ngIf="documentaryTraditions.length !== 0" [expanded]="isExpanded">
             <mat-expansion-panel-header>
                 <mat-panel-title i18n>Documentary traditions</mat-panel-title>
             </mat-expansion-panel-header>
@@ -160,7 +160,7 @@
             </div>
         </mat-expansion-panel>
 
-        <mat-expansion-panel class="panel" *ngIf="typologies.length !== 0">
+        <mat-expansion-panel class="panel" *ngIf="typologies.length !== 0" [expanded]="isExpanded">
             <mat-expansion-panel-header>
                 <mat-panel-title i18n>Typologies</mat-panel-title>
             </mat-expansion-panel-header>
@@ -172,7 +172,7 @@
             </div>
         </mat-expansion-panel>
 
-        <mat-expansion-panel class="panel" *ngIf="subjects.length !== 0">
+        <mat-expansion-panel class="panel" *ngIf="subjects.length !== 0" [expanded]="isExpanded">
             <mat-expansion-panel-header>
                 <mat-panel-title i18n>Subjects</mat-panel-title>
             </mat-expansion-panel-header>
@@ -184,7 +184,7 @@
             </div>
         </mat-expansion-panel>
 
-        <mat-expansion-panel class="panel" *ngIf="accessConditions.length !== 0">
+        <mat-expansion-panel class="panel" *ngIf="accessConditions.length !== 0" [expanded]="isExpanded">
             <mat-expansion-panel-header>
                 <mat-panel-title i18n>Access conditions</mat-panel-title>
             </mat-expansion-panel-header>
@@ -200,7 +200,7 @@
             </div>
         </mat-expansion-panel>
 
-        <mat-expansion-panel class="panel" *ngIf="relatedDocs.length !== 0">
+        <mat-expansion-panel class="panel" *ngIf="relatedDocs.length !== 0" [expanded]="isExpanded">
             <mat-expansion-panel-header>
                 <mat-panel-title i18n>Hierarchy</mat-panel-title>
             </mat-expansion-panel-header>
@@ -218,4 +218,12 @@
         <!--            </div>-->
         <!--        </mat-expansion-panel>-->
     </mat-accordion>
+    <div class="hasButtons">
+        <button class="search" mat-raised-button (click)="setExpanded(true)" color="primary">
+            Expand All
+        </button>
+        <button class="search" mat-raised-button (click)="setExpanded(false)" color="primary">
+            Collapse All
+        </button>
+    </div>
 </div>

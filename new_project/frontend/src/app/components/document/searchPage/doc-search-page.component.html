@@ -197,7 +197,7 @@
         Search
     </button>
 </form>
-<div *ngIf="haveResults">
+<div *ngIf="haveResults" class="result">
     <app-table [columns]="columns" [data]="dataSource" [hrefTo]="'doc'"></app-table>
     <button class="search" mat-raised-button (click)="setHaveResults()" color="primary">Go Back</button>
 </div>
