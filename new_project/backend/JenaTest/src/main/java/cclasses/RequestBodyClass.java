@@ -18,12 +18,12 @@ public class RequestBodyClass {
 
 // TODO fazer Boolean.parseBoolean(prodDateFrom)? para os outros
     public RequestBodyClass(String descriptionLevel, String refCode, String prodDateFrom, String prodDateTo, String keywords, String relatedTo, String creationDateFrom, String creationDateTo, String curatorName, String interventionEndDateFrom, String interventionEndDateTo, String interventionStartDateFrom, String interventionStartDateTo) {
-        this.descriptionLevel = Boolean.parseBoolean(descriptionLevel)? descriptionLevel : "";
-        this.refCode = Boolean.parseBoolean(refCode)? refCode : "";
-        this.prodDateFrom = Boolean.parseBoolean(prodDateFrom)? prodDateFrom : "";
+        this.descriptionLevel = descriptionLevel;
+        this.refCode = refCode;
+        this.prodDateFrom = prodDateFrom;
         this.prodDateTo = prodDateTo;
         this.keywords = keywords;
-        this.relatedTo = Boolean.parseBoolean(relatedTo)? relatedTo : "";
+        this.relatedTo = relatedTo;
         this.creationDateFrom = creationDateFrom;
         this.creationDateTo = creationDateTo;
         this.curatorName = curatorName;
@@ -41,7 +41,7 @@ public class RequestBodyClass {
         this.descriptionLevel = descriptionLevel;
     }
 
-    public String getRefCode() {
+    public String   getRefCode() {
         return refCode;
     }
 
