@@ -136,6 +136,13 @@ package restservice;
             relatedTo = "\"\"";
         }
 
+        String title = searchForm.getTitle();
+        if( title != null){
+            title = "\"" + title + "\"";
+        }else{
+            title = "\"\"";
+        }
+
         ArrayList<String> uuidList = new ArrayList<>();
 
         Connection conn = new Connection();
@@ -147,6 +154,8 @@ package restservice;
 
 
         conn.obtainGeneralResponse(queries.getIdFromRelDoc(relatedTo),"RelDocId",uuidrep);
+
+        conn.obtainGeneralResponse(queries.getIdFromTitle(title),"Title",uuidrep);
 
         //TODO - WE NEED TO REFACTOR THIS - BAD SPAGHETTI CODE FOR THE MEETING
 
@@ -168,9 +177,17 @@ package restservice;
         if(RDidmap != null){
          RDuuid = "<" + RDidmap.get("description")  + ">";}
 
+        HashMap<String,String> TitleIdMap = (HashMap<String, String>) uuidrep.getProperties().get("Title");
+        String TitleId ="";
+        if(TitleIdMap != null){
+            TitleId = "<"+ TitleIdMap.get("description") + ">";
+        }
+
 
         uuidList.add(Refuuid);
         uuidList.add(RDuuid);
+        uuidList.add(TitleId);
+
 
         ArrayList<Map> reparray = new ArrayList<>();
 
