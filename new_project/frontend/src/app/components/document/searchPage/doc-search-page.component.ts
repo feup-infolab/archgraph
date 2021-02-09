@@ -21,6 +21,7 @@ export class DocSearchPageComponent implements OnInit {
   public enabledButton: boolean;
   public fieldsWithValue: number;
   public searchObject: {
+    title: any
     descriptionLevel: any;
     prodDateTo: any;
     keywords: any;
@@ -42,6 +43,7 @@ export class DocSearchPageComponent implements OnInit {
     this.enabledButton = false;
     this.fieldsWithValue = 0;
     this.searchObject = {
+      title: '',
       descriptionLevel: '',
       prodDateTo: '',
       keywords: '',
