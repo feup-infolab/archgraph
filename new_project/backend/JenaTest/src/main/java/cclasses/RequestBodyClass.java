@@ -15,9 +15,10 @@ public class RequestBodyClass {
     private String interventionEndDateTo;
     private String interventionStartDateFrom;
     private String interventionStartDateTo;
+    private String title;
 
-// TODO fazer Boolean.parseBoolean(prodDateFrom)? para os outros
-    public RequestBodyClass(String descriptionLevel, String refCode, String prodDateFrom, String prodDateTo, String keywords, String relatedTo, String creationDateFrom, String creationDateTo, String curatorName, String interventionEndDateFrom, String interventionEndDateTo, String interventionStartDateFrom, String interventionStartDateTo) {
+
+    public RequestBodyClass(String descriptionLevel, String refCode, String prodDateFrom, String prodDateTo, String keywords, String relatedTo, String creationDateFrom, String creationDateTo, String curatorName, String interventionEndDateFrom, String interventionEndDateTo, String interventionStartDateFrom, String interventionStartDateTo, String title) {
         this.descriptionLevel = descriptionLevel;
         this.refCode = refCode;
         this.prodDateFrom = prodDateFrom;
@@ -31,6 +32,7 @@ public class RequestBodyClass {
         this.interventionEndDateTo = interventionEndDateTo;
         this.interventionStartDateFrom = interventionStartDateFrom;
         this.interventionStartDateTo = interventionStartDateTo;
+        this.title = title;
     }
 
     public String getDescriptionLevel() {
@@ -135,5 +137,13 @@ public class RequestBodyClass {
 
     public void setInterventionStartDateTo(String interventionStartDateTo) {
         this.interventionStartDateTo = interventionStartDateTo;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }
