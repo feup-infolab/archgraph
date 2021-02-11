@@ -20,6 +20,8 @@ export class DocSearchPageComponent implements OnInit {
   public columns: any[] = ['episaIdentifier', 'title', 'dglabIdentifier'];
   public enabledButton: boolean;
   public fieldsWithValue: number;
+  public descriptionLevelList: any[] = ['option1', 'option2', 'option3'];
+  public formOldValue: any;
   public searchObject: {
     title: any
     descriptionLevel: any;
@@ -36,6 +38,7 @@ export class DocSearchPageComponent implements OnInit {
     creationDateFrom: any;
     creationDateTo: any;
   };
+
 
   constructor(
     private service: MyService,
@@ -90,12 +93,28 @@ export class DocSearchPageComponent implements OnInit {
   }
 
   dataChanged(newObj: any) {
-    console.log(newObj);
-    if (newObj === '') {
-      this.fieldsWithValue -= 1;
-    } else {
-      this.fieldsWithValue += 1;
+    if (this.formOldValue === '' || this.formOldValue === undefined) {
+      if (newObj !== '' || newObj !== undefined) {
+        this.fieldsWithValue += 1;
+      }
     }
+    if (this.formOldValue !== '' || this.formOldValue !== undefined) {
+      if (newObj === '' || newObj === undefined) {
+        this.fieldsWithValue -= 1;
+      }
+    }
+    //   if (optional) {
+    //     if (this.searchObject.descriptionLevel === undefined && newObj !== undefined) {
+    //       this.fieldsWithValue += 1;
+    //     } else if (this.searchObject.descriptionLevel !== undefined && newObj === undefined) {
+    //       this.fieldsWithValue -= 1;
+    //     }
+    //   } else if (newObj === '') {
+    //     this.fieldsWithValue -= 1;
+    //   } else {
+    //     this.fieldsWithValue += 1;
+    //   }
+    console.log(this.fieldsWithValue);
     this.enabledButton = this.fieldsWithValue > 0;
   }
 }

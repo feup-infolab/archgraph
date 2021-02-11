@@ -69,7 +69,7 @@ public class Connection {
 
                     //TODO - MUDAR ISTO - DEMASIADO ESPECIFICO
                     if(res.toString().contains("http://www.semanticweb.org/dmelo/ontologies/2020/7/untitled-ontology-151#ARE3SuppliedTitle")){
-                        map.put(current, "Atribuido");
+                        map.put(current, "Atribuído");
                     } else if(res.toString().contains("http://www.semanticweb.org/dmelo/ontologies/2020/7/untitled-ontology-151#ARE2FormalTitle")){
                         map.put(current, "Formal");
                     }else{
@@ -95,12 +95,13 @@ public class Connection {
 
             QueryExecution qExec = conn.query(query) ;
             ResultSet rs = qExec.execSelect();
-            int i = 1;
             ArrayList<Map<String,String>> complexList = new ArrayList<>();
             QuerySolution stmt;
             if(rs.hasNext()){
                 stmt = rs.next();
             }else{
+                qExec.close();
+                conn.close();
                 return r;
             }
 
@@ -122,6 +123,7 @@ public class Connection {
                 return r;
             }
 
+            int i;
             i = 0;
             while (rs.hasNext()) {
                 if (i != 0){
