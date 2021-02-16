@@ -255,6 +255,16 @@ public class Queries {
                 "}");
     }
 
+    public Query getAllLevelofDescription(){
+        return QueryFactory.create("SELECT ?label\n" +
+                "WHERE {\n" +
+                "  ?subject <http://www.semanticweb.org/dmelo/ontologies/2020/7/untitled-ontology-151#ARP12_has_level_of_description> ?object .\n" +
+                "  ?object \t\n" +
+                "<http://www.w3.org/2000/01/rdf-schema#label> ?label\n" +
+                "}");
+    }
+
+
 
 
 

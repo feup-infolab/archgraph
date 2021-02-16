@@ -165,6 +165,31 @@ public class Connection {
         return list;
     }
 
+    public ArrayList<String> getAllLevelsOfDesc(){
+        RDFConnectionRemoteBuilder builder = RDFConnectionFuseki.create()
+                .destination("http://localhost:3030/name/sparql");
+        ArrayList<String> list = new ArrayList<>();
+
+        try ( RDFConnectionFuseki conn = (RDFConnectionFuseki)builder.build() ) {
+            Query query = querier.getAllLevelofDescription();
+            QueryExecution qExec = conn.query(query) ;
+            ResultSet rs = qExec.execSelect();
+            while (rs.hasNext()) {
+
+                QuerySolution qs = rs.next();
+
+                if(!list.contains(qs.get("label").toString())){
+                    list.add(qs.get("label").toString());}
+
+            }
+            conn.close();
+            qExec.close();
+
+        }
+        return list;
+    }
+
+
 
 }
 
