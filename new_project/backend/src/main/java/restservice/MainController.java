@@ -208,13 +208,12 @@ package restservice;
 
     @CrossOrigin(origins = {"http://localhost:4200", "http://localhost:4201"})
     @GetMapping("/levelsdesc")
-    public HashMap<String,ArrayList<String>> levels() {
+    public ArrayList<String> levels() {
         Connection conn = new Connection();
         HashMap<String,ArrayList<String>> list = new HashMap<>() ;
         ArrayList<String> alist = new ArrayList<>();
         alist = conn.getAllLevelsOfDesc();
-        list.put("levels_of_description",alist);
-        return list;
+        return alist;
     }
 }
 
