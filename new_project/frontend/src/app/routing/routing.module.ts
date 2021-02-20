@@ -18,32 +18,32 @@ import {OrgSearchPageComponent} from '../components/organization/searchPage/org-
 import {TableComponent} from '../components/view/table.component';
 
 const routes: Routes = [
-    {path: 'home', component: HomeComponent},
-    {path: 'doc/:id', component: DocumentComponent},
-    {path: 'searchdoc', component: DocSearchPageComponent},
-    {path: 'actor/:id', component: ActorComponent},
-    {path: 'searchactor', component: ActorSearchPageComponent},
-    {path: 'event/conservation_restoration/:id', component: RestorationComponent},
-    {path: 'event/support/:id', component: SupportComponent},
-    {path: 'event/generic/:id', component: GenericComponent},
-    {path: 'searchaevent', component: EventSearchPageComponent},
-    {path: 'place/:id', component: PlaceComponent},
-    {path: 'searchplace', component: PlaceSearchPageComponent},
-    {path: 'organization/:id', component: OrganizationComponent},
-    {path: 'searchorganization', component: OrgSearchPageComponent},
-    {path: 'advancedsearch', component: AdvancedSearchComponent},
-    {path: 'table', component: TableComponent},
+  {path: 'home', component: HomeComponent},
+  {path: 'doc/:id', component: DocumentComponent},
+  {path: 'searchdoc', component: DocSearchPageComponent},
+  {path: 'actor/:id', component: ActorComponent},
+  {path: 'searchactor', component: ActorSearchPageComponent},
+  {path: 'event/conservation_restoration/:id', component: RestorationComponent},
+  {path: 'event/support/:id', component: SupportComponent},
+  {path: 'event/generic/:id', component: GenericComponent},
+  {path: 'searchaevent', component: EventSearchPageComponent},
+  {path: 'place/:id', component: PlaceComponent},
+  {path: 'searchplace', component: PlaceSearchPageComponent},
+  {path: 'organization/:id', component: OrganizationComponent},
+  {path: 'searchorganization', component: OrgSearchPageComponent},
+  {path: 'advancedsearch', component: AdvancedSearchComponent},
+  {path: 'table', component: TableComponent},
 
-    {path: '', redirectTo: '/home', pathMatch: 'full'},
+  {path: '', redirectTo: '/home', pathMatch: 'full'},
 ];
 
 @NgModule({
-    declarations: [],
-    imports: [
-        CommonModule,
-        RouterModule.forRoot(routes)
-    ],
-    exports: [RouterModule]
+  declarations: [],
+  imports: [
+    CommonModule,
+    RouterModule.forRoot(routes)
+  ],
+  exports: [RouterModule]
 })
 
 

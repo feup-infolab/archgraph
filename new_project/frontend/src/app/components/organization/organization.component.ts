@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MyService} from '../../service/my.service';
 import {ActivatedRoute} from '@angular/router';
 
@@ -12,8 +12,8 @@ export class OrganizationComponent implements OnInit {
   private id: any;
 
   constructor(
-      private service: MyService,
-      private route: ActivatedRoute,
+    private service: MyService,
+    private route: ActivatedRoute,
   ) {
     // this.titles = [];
     // this.notes = [];

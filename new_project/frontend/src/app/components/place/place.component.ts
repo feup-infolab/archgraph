@@ -15,8 +15,6 @@ export class PlaceComponent implements OnInit {
       private service: MyService,
       private route: ActivatedRoute,
   ) {
-    // this.titles = [];
-    // this.notes = [];
   }
 
   ngOnInit() {

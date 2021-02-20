@@ -1,43 +1,38 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MyService} from '../../../service/my.service';
-import {ActivatedRoute} from '@angular/router';
+import {MySearchComponent} from '../../../myComponent/mySearchComponent';
 
 @Component({
   selector: 'app-place-search-page',
   templateUrl: './place-search-page.component.html',
   styleUrls: ['./place-search-page.component.css']
 })
-export class PlaceSearchPageComponent implements OnInit {
-  // place
-  public name: any;
-  public identifier: any;
-  public location: any;
-  public adminDivision: any;
-  public latitude: any;
-  public longitude: any;
-  public keywords: any;
-  public relatedTo: any;
+export class PlaceSearchPageComponent extends MySearchComponent implements OnInit {
+  public columns: any[] = ['episaIdentifier', 'title', 'dglabIdentifier'];
 
   constructor(
-      private service: MyService,
-      private route: ActivatedRoute,
+    private service: MyService,
   ) {
-  }
-
-  ngOnInit() {
-    this.route.paramMap.subscribe(params => {
-      // this.id = params.get('id');
-      this.getPlaceSummary(this.identifier);
-      // this.getAllDocById(this.id);
+    super({
+      name: '',
+      identifier: '',
+      location: '',
+      adminDivision: '',
+      latitude: '',
+      longitude: '',
+      keywords: '',
+      relatedTo: '',
     });
   }
 
-  getPlaceSummary(identifier: any) {
-    this.service.getPlaceSummary(identifier)
-        .subscribe(result => {
-          console.log(result);
-          // this.identifiers = result.results.bindings;
-        });
+  ngOnInit() {
+  }
+
+  getPlaceSummary() {
+    this.service.getPlaceSummary(this.searchObject.identifier)
+      .subscribe(result => {
+        console.log(result);
+      });
   }
 }
 
