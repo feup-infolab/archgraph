@@ -167,6 +167,44 @@ public class Connection {
         return list;
     }
 
+    public ArrayList<String> getAllBaseUuids(){
+        RDFConnectionRemoteBuilder builder = RDFConnectionFuseki.create()
+                .destination("http://localhost:3030/name/sparql");
+        ArrayList<String> list = new ArrayList<>();
+
+        try ( RDFConnectionFuseki conn = (RDFConnectionFuseki)builder.build() ) {
+            Query query = querier.getAllUuids();
+            ResultSet rs = conn.query(query).execSelect();
+            while (rs.hasNext()) {
+
+                QuerySolution qs = rs.next();
+
+                list.add(qs.get("description").toString());
+
+            }
+        }
+        return list;
+    }
+
+    public ArrayList<String> getAllMats(){
+        RDFConnectionRemoteBuilder builder = RDFConnectionFuseki.create()
+                .destination("http://localhost:3030/name/sparql");
+        ArrayList<String> list = new ArrayList<>();
+
+        try ( RDFConnectionFuseki conn = (RDFConnectionFuseki)builder.build() ) {
+            Query query = querier.getAllMater();
+            ResultSet rs = conn.query(query).execSelect();
+            while (rs.hasNext()) {
+
+                QuerySolution qs = rs.next();
+
+                list.add(qs.get("description").toString());
+
+            }
+        }
+        return list;
+    }
+
     public ArrayList<String> getAllLevelsOfDesc(){
         RDFConnectionRemoteBuilder builder = RDFConnectionFuseki.create()
                 .destination("http://localhost:3030/name/sparql");
