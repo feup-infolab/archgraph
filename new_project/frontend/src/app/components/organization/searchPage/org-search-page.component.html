@@ -1,137 +1,175 @@
-<form>
+<form *ngIf="!haveResults">
     <table class="table" cellspacing="0">
         <tr>
             <td colspan="2">
                 <mat-form-field>
                     <mat-label i18n>Name</mat-label>
-                    <input matInput name="name" [(ngModel)]="name">
+                    <input matInput name="name"
+                           (ngModelChange)="formOldValue = searchObject.name"
+                           [(ngModel)]="searchObject.name"
+                           (ngModelChange)="dataChanged($event)">
                 </mat-form-field>
             </td>
             <!--            <td>-->
-<!--                <button>AND</button>-->
-<!--            </td>-->
-<!--            <td>-->
-<!--                <button>OR</button>-->
-<!--            </td>-->
+            <!--                <button>AND</button>-->
+            <!--            </td>-->
+            <!--            <td>-->
+            <!--                <button>OR</button>-->
+            <!--            </td>-->
         </tr>
         <tr>
             <td colspan="2">
                 <mat-form-field>
                     <mat-label i18n>Cultural Period</mat-label>
-                    <input matInput name="culturalPeriod" [(ngModel)]="culturalPeriod">
+                    <input matInput name="culturalPeriod"
+                           (ngModelChange)="formOldValue = searchObject.culturalPeriod"
+                           [(ngModel)]="searchObject.culturalPeriod"
+                           (ngModelChange)="dataChanged($event)">
                 </mat-form-field>
             </td>
             <!--            <td>-->
-<!--                <button>AND</button>-->
-<!--            </td>-->R
-<!--            <td>-->
-<!--                <button>OR</button>-->
-<!--            </td>-->
+            <!--                <button>AND</button>-->
+            <!--            </td>-->
+            <!--            <td>-->
+            <!--                <button>OR</button>-->
+            <!--            </td>-->
         </tr>
         <tr>
             <td colspan="2">
                 <mat-form-field>
                     <mat-label i18n>Identifier</mat-label>
-                    <input matInput name="identifier" [(ngModel)]="identifier">
+                    <input matInput name="identifier"
+                           (ngModelChange)="formOldValue = searchObject.identifier"
+                           [(ngModel)]="searchObject.identifier"
+                           (ngModelChange)="dataChanged($event)">
                 </mat-form-field>
             </td>
             <!--            <td>-->
-<!--                <button>AND</button>-->
-<!--            </td>-->
-<!--            <td>-->
-<!--                <button>OR</button>-->
-<!--            </td>-->
+            <!--                <button>AND</button>-->
+            <!--            </td>-->
+            <!--            <td>-->
+            <!--                <button>OR</button>-->
+            <!--            </td>-->
         </tr>
         <tr>
             <td>
                 <mat-form-field class="short-width">
                     <mat-label i18n>Build Date (From)</mat-label>
-                    <input matInput type="date" name="buildDateFrom" [(ngModel)]="buildDateFrom">
+                    <input matInput type="date" name="buildDateFrom"
+                           (ngModelChange)="formOldValue = searchObject.buildDateFrom"
+                           [(ngModel)]="searchObject.buildDateFrom"
+                           (ngModelChange)="dataChanged($event)">
                 </mat-form-field>
             </td>
             <td>
                 <mat-form-field class="short-width">
                     <mat-label i18n>Build Date (To)</mat-label>
-                    <input matInput type="date" name="buildDateTo" [(ngModel)]="buildDateTo">
+                    <input matInput type="date" name="buildDateTo"
+                           (ngModelChange)="formOldValue = searchObject.buildDateTo"
+                           [(ngModel)]="searchObject.buildDateTo"
+                           (ngModelChange)="dataChanged($event)">
                 </mat-form-field>
             </td>
             <!--            <td>-->
-<!--                <button>AND</button>-->
-<!--            </td>-->
-<!--            <td>-->
-<!--                <button>OR</button>-->
-<!--            </td>-->
+            <!--                <button>AND</button>-->
+            <!--            </td>-->
+            <!--            <td>-->
+            <!--                <button>OR</button>-->
+            <!--            </td>-->
         </tr>
         <tr>
             <td colspan="2">
                 <mat-form-field>
                     <mat-label i18n>Location</mat-label>
-                    <input matInput name="location" [(ngModel)]="location">
+                    <input matInput name="location"
+                           (ngModelChange)="formOldValue = searchObject.location"
+                           [(ngModel)]="searchObject.location"
+                           (ngModelChange)="dataChanged($event)">
                 </mat-form-field>
             </td>
             <!--            <td>-->
-<!--                <button>AND</button>-->
-<!--            </td>-->
-<!--            <td>-->
-<!--                <button>OR</button>-->
-<!--            </td>-->
+            <!--                <button>AND</button>-->
+            <!--            </td>-->
+            <!--            <td>-->
+            <!--                <button>OR</button>-->
+            <!--            </td>-->
         </tr>
         <tr>
             <td colspan="2">
                 <mat-form-field>
                     <mat-label i18n>Latitude</mat-label>
-                    <input matInput name="latitude" [(ngModel)]="latitude">
+                    <input matInput name="latitude"
+                           (ngModelChange)="formOldValue = searchObject.latitude"
+                           [(ngModel)]="searchObject.latitude"
+                           (ngModelChange)="dataChanged($event)">
                 </mat-form-field>
             </td>
             <!--            <td>-->
-<!--                <button>AND</button>-->
-<!--            </td>-->
-<!--            <td>-->
-<!--                <button>OR</button>-->
-<!--            </td>-->
+            <!--                <button>AND</button>-->
+            <!--            </td>-->
+            <!--            <td>-->
+            <!--                <button>OR</button>-->
+            <!--            </td>-->
         </tr>
         <tr>
             <td colspan="2">
                 <mat-form-field>
                     <mat-label i18n>Longitude</mat-label>
-                    <input matInput name="longitude" [(ngModel)]="longitude">
+                    <input matInput name="longitude"
+                           (ngModelChange)="formOldValue = searchObject.longitude"
+                           [(ngModel)]="searchObject.longitude"
+                           (ngModelChange)="dataChanged($event)">
                 </mat-form-field>
             </td>
             <!--            <td>-->
-<!--                <button>AND</button>-->
-<!--            </td>-->
-<!--            <td>-->
-<!--                <button>OR</button>-->
-<!--            </td>-->
+            <!--                <button>AND</button>-->
+            <!--            </td>-->
+            <!--            <td>-->
+            <!--                <button>OR</button>-->
+            <!--            </td>-->
         </tr>
         <tr>
             <td colspan="2">
                 <mat-form-field>
                     <mat-label i18n>Keywords</mat-label>
-                    <input matInput name="keywords" [(ngModel)]="keywords">
+                    <input matInput name="keywords"
+                           (ngModelChange)="formOldValue = searchObject.keywords"
+                           [(ngModel)]="searchObject.keywords"
+                           (ngModelChange)="dataChanged($event)">
                 </mat-form-field>
             </td>
             <!--            <td>-->
-<!--                <button>AND</button>-->
-<!--            </td>-->
-<!--            <td>-->
-<!--                <button>OR</button>-->
-<!--            </td>-->
+            <!--                <button>AND</button>-->
+            <!--            </td>-->
+            <!--            <td>-->
+            <!--                <button>OR</button>-->
+            <!--            </td>-->
         </tr>
         <tr>
             <td colspan="2">
                 <mat-form-field>
                     <mat-label i18n>Related To</mat-label>
-                    <input matInput name="relatedTo" [(ngModel)]="relatedTo">
+                    <input matInput name="relatedTo"
+                           (ngModelChange)="formOldValue = searchObject.relatedTo"
+                           [(ngModel)]="searchObject.relatedTo"
+                           (ngModelChange)="dataChanged($event)">
+
                 </mat-form-field>
             </td>
             <!--            <td>-->
-<!--                <button>AND</button>-->
-<!--            </td>-->
-<!--            <td>-->
-<!--                <button>OR</button>-->
-<!--            </td>-->
+            <!--                <button>AND</button>-->
+            <!--            </td>-->
+            <!--            <td>-->
+            <!--                <button>OR</button>-->
+            <!--            </td>-->
         </tr>
 
     </table>
+    <button class="search" mat-raised-button [disabled]="!enabledButton" (click)="getOrgSummary()" color="primary">
+        Search
+    </button>
 </form>
+<div *ngIf="haveResults">
+    <app-table [columns]="columns" [data]="dataSource" [hrefTo]="'actor'"></app-table>
+    <button class="search" mat-raised-button (click)="setHaveResults()" color="primary">Go Back</button>
+</div>

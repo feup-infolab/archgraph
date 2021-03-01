@@ -14,22 +14,22 @@ import java.util.UUID;
 
 public class CreateUuids {
 
-    static String personURI    = "http://erlangen-crm.org/200717/E999_Test";
-    static String fullName     = "Test Name";
+    static String personURI = "http://erlangen-crm.org/200717/E999_Test";
+    static String fullName = "Test Name";
+    static String destination_port = "http://localhost:3030/name/data";
     private static Connection con = new Connection();
-
 
 
     public static void main(String args[]) {
         ArrayList<String> namelist = con.getAllUuids();
 
         RDFConnectionRemoteBuilder builder = RDFConnectionFuseki.create()
-                .destination("http://localhost:3030/name/data");
+                .destination(destination_port);
         //.destination("http://localhost:3030/name/sparql");
 
 
-        try ( RDFConnectionFuseki conn = (RDFConnectionFuseki)builder.build() ) {
-            Model model =conn.fetch();
+        try (RDFConnectionFuseki conn = (RDFConnectionFuseki) builder.build()) {
+            Model model = conn.fetch();
 
             // create the resource
             for (String s : namelist) {
@@ -41,7 +41,6 @@ public class CreateUuids {
                 conn.put(model);
             }
             conn.commit();
-
 
 
         }

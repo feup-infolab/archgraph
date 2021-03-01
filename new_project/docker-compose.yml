@@ -10,3 +10,23 @@ services:
     volumes:
       - ./volumes/fuseki:/staging
     restart: on-failure
+    networks: 
+      - my_archgraph
+  web-service:
+    container_name: web-service
+    build: ./frontend
+    ports: 
+      - 4200:4200
+    volumes:
+      - ./volumes/web-service:/data
+    restart: on-failure
+    networks: 
+      - my_archgraph
+  server:
+    container_name: server
+    build: ./backend
+    restart: on-failure
+    networks: 
+      - my_archgraph
+networks: 
+  my_archgraph: {}
