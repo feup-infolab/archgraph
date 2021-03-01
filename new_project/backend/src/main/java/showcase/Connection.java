@@ -16,23 +16,8 @@ public class Connection {
 
 
     public ResponseClass obtainSummaryResponse(Query query, String key, ResponseClass r) {
-        System.out.println("" +
-                "" +
-                "" +
-                "" +
-                "" +
-                "" +
-                "" +
-                "" +
-                "" +
-                "" +
-                "" +
-                "" +
-                "" +
-                "aqui");
         RDFConnectionRemoteBuilder builder = RDFConnectionFuseki.create()
                 .destination(destination_port);
-
 
         try (RDFConnectionFuseki conn = (RDFConnectionFuseki) builder.build()) {
             QueryExecution qExec = conn.query(query);
@@ -60,22 +45,7 @@ public class Connection {
         return r;
     }
 
-
     public ResponseClass obtainTotalResponse(Query query, String key, ResponseClass r) {
-        System.out.println("" +
-                "" +
-                "" +
-                "" +
-                "" +
-                "" +
-                "" +
-                "" +
-                "" +
-                "" +
-                "" +
-                "" +
-                "" +
-                "aqui");
         RDFConnectionRemoteBuilder builder = RDFConnectionFuseki.create()
                 .destination(destination_port);
 
@@ -180,20 +150,6 @@ public class Connection {
     }
 
     public ArrayList<String> getAllUuids() {
-        System.out.println("" +
-                "" +
-                "" +
-                "" +
-                "" +
-                "" +
-                "" +
-                "" +
-                "" +
-                "" +
-                "" +
-                "" +
-                "" +
-                "aqui");
         RDFConnectionRemoteBuilder builder = RDFConnectionFuseki.create()
                 .destination(destination_port);
         ArrayList<String> list = new ArrayList<>();
@@ -213,20 +169,6 @@ public class Connection {
     }
 
     public ArrayList<String> getAllBaseUuids() {
-        System.out.println("" +
-                "" +
-                "" +
-                "" +
-                "" +
-                "" +
-                "" +
-                "" +
-                "" +
-                "" +
-                "" +
-                "" +
-                "" +
-                "aqui");
         RDFConnectionRemoteBuilder builder = RDFConnectionFuseki.create()
                 .destination(destination_port);
         ArrayList<String> list = new ArrayList<>();
@@ -265,20 +207,7 @@ public class Connection {
     }
 
     public ArrayList<String> getAllLevelsOfDesc() {
-        System.out.println("" +
-                "" +
-                "" +
-                "" +
-                "" +
-                "" +
-                "" +
-                "" +
-                "" +
-                "" +
-                "" +
-                "" +
-                "" +
-                "aqui");
+
         RDFConnectionRemoteBuilder builder = RDFConnectionFuseki.create()
                 .destination(destination_port);
         ArrayList<String> list = new ArrayList<>();
@@ -302,8 +231,6 @@ public class Connection {
         }
         return list;
     }
-
-
 }
 
 
