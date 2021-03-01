@@ -37,6 +37,22 @@ public class Queries {
                 "}");
     }
 
+    public Query getAllUuids(){
+        return QueryFactory.create("SELECT ?description\n" +
+                "WHERE {\n" +
+                "?a <http://erlangen-crm.org/200717/has_uuid> ?description\n" +
+                "}");
+    }
+
+    public Query getAllMater(){
+        return QueryFactory.create("SELECT ?description\n" +
+                "WHERE {\n" +
+                "?a <http://erlangen-crm.org/200717/has_material> ?description\n" +
+                "}");
+    }
+
+
+
     public Query getIDd(String uuid){
         return QueryFactory.create("SELECT ?description\n" +
                 "WHERE {\n" +
