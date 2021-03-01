@@ -5,7 +5,7 @@
     "translate": "ng xi18n --output-path src/locale",
     "ng": "ng",
     "postinstall": "ngcc",
-    "start": "ng serve",
+    "start": "ng serve --host 0.0.0.0",
     "start:pt": "ng serve --configuration=pt -- --port=4201",
     "start:en": "ng serve --configuration=en -- --port=4202",
     "build": "ng build",

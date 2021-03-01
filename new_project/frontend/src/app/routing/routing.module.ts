@@ -15,7 +15,6 @@ import {ActorSearchPageComponent} from '../components/actor/searchPage/actor-sea
 import {EventSearchPageComponent} from '../components/event/searchPage/event-search-page.component';
 import {PlaceSearchPageComponent} from '../components/place/searchPage/place-search-page.component';
 import {OrgSearchPageComponent} from '../components/organization/searchPage/org-search-page.component';
-import {TableComponent} from '../components/view/table.component';
 
 const routes: Routes = [
   {
@@ -35,7 +34,7 @@ const routes: Routes = [
   },
   {
     path: 'actor/:id', component: ActorComponent, data: {
-      title: 'Dashboard'
+      title: 'Page Actor'
     }
   },
   {

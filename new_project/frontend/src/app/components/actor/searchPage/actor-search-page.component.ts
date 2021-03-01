@@ -29,7 +29,7 @@ export interface Actor {
   styleUrls: ['./actor-search-page.component.css']
 })
 export class ActorSearchPageComponent extends MySearchComponent implements OnInit {
-  public columns: any[] = ['episaIdentifier', 'title', 'dglabIdentifier'];
+  public columns: any[] = ['episaIdentifier', 'dglabIdentifier', 'title'];
 
   constructor(
     private service: MyService,
