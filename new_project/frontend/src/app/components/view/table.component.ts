@@ -1,80 +1,80 @@
 import {AfterViewInit, Component, Input, ViewChild} from '@angular/core';
 import {MatSort} from '@angular/material/sort';
-import {MatTableDataSource} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
 
 @Component({
-    selector: 'app-table',
-    templateUrl: './table.component.html',
-    styleUrls: ['./table.component.css'],
+  selector: 'app-table',
+  templateUrl: './table.component.html',
+  styleUrls: ['./table.component.css'],
 })
 export class TableComponent implements AfterViewInit {
-    public dataSource: any;
-    public columnsHeader: any[] | undefined;
-    public columnId: any[] | undefined;
-    public otherColumns: any[] | undefined;
-    public concluded: boolean | undefined;
-    public myHrefTo: any;
+  public dataSource: any;
+  public columnsHeader: any[] | undefined;
+  public columnHref: any;
+  public otherColumns: any[] | undefined;
+  public concluded: boolean | undefined;
+  public myHrefTo: any;
 
-    @ViewChild(MatPaginator, {static: false})
-    set paginator(value: MatPaginator) {
-        if (this.dataSource) {
-            this.dataSource.paginator = value;
+  @ViewChild(MatPaginator, {static: false})
+  set paginator(value: MatPaginator) {
+    if (this.dataSource) {
+      this.dataSource.paginator = value;
+    }
+  }
+
+  @ViewChild(MatSort, {static: false})
+  set sort(value: MatSort) {
+    if (this.dataSource) {
+      this.dataSource.sort = value;
+    }
+  }
+
+  @Input()
+  set columns(value: any[]) {
+    if (value) {
+      this.otherColumns = [];
+      this.columnHref = [];
+      this.columnsHeader = [];
+      for (let i = 1; i < value.length; i++) {
+        if (i === 1) {
+          this.columnHref = {
+            id: value[i],
+            href: value[i - 1],
+            value: value[i],
+          };
+        } else {
+          const object = {
+            id: value[i],
+            value: value[i]
+          };
+          this.otherColumns.push(object);
         }
-    }
-
-    @ViewChild(MatSort, {static: false})
-    set sort(value: MatSort) {
-        if (this.dataSource) {
-            this.dataSource.sort = value;
-        }
-    }
-
-    @Input()
-    set columns(value: any[]) {
-        if (value) {
-            this.otherColumns = [];
-            this.columnId = [];
-            this.columnsHeader = value;
-            for (let i = 0; i < value.length; i++) {
-                if (i === 0) {
-                    const object = {
-                        id: value[i],
-                        value: value[i]
-                    };
-                    this.columnId.push(object);
-                } else {
-                    const object = {
-                        id: value[i],
-                        value: value[i]
-                    };
-                    this.otherColumns.push(object);
-                }
-            }
-
-        }
-    }
-
-    @Input()
-    set data(value: any[]) {
-        this.dataSource = value;
+        this.columnsHeader.push(value[i]);
+      }
 
     }
+  }
 
-    @Input()
-    set hrefTo(value: any) {
-        this.myHrefTo = value;
+  @Input()
+  set data(value: any[]) {
+    this.dataSource = value;
+
+  }
+
+  @Input()
+  set hrefTo(value: any) {
+    this.myHrefTo = value;
+  }
+
+  ngAfterViewInit() {
+    if (this.myHrefTo === undefined || this.dataSource === undefined || this.columnsHeader === undefined) {
+      throw new Error('Attributes "hrefTo", "data" and "columns"  are required');
+
     }
-
-    ngAfterViewInit() {
-        if (this.myHrefTo === undefined || this.dataSource === undefined || this.columnsHeader === undefined) {
-            throw new Error('Attributes "hrefTo", "data" and "columns"  are required');
-
-        }
-        setTimeout(() => {
-            this.concluded = true;
-        });
-    }
+    setTimeout(() => {
+      this.concluded = true;
+    });
+  }
 
 
 }

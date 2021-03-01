@@ -7,10 +7,12 @@ import org.apache.jena.rdfconnection.RDFConnectionFuseki;
 import org.apache.jena.rdfconnection.RDFConnectionRemoteBuilder;
 
 public class FillExamples {
+    static String destination_port = "http://localhost:3030/name/data";
+
 
     public static void main(String args[]) {
         RDFConnectionRemoteBuilder builder = RDFConnectionFuseki.create()
-                .destination("http://localhost:3030/name/data");
+                .destination(destination_port);
         //.destination("http://localhost:3030/name/sparql");
 
 

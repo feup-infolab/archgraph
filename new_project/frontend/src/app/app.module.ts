@@ -22,46 +22,46 @@ import {FormsModule} from '@angular/forms';
 import {GenericComponent} from './components/event/generic/generic.component';
 import {SupportComponent} from './components/event/support/support.component';
 import {RestorationComponent} from './components/event/restoration/restoration.component';
-import { DocSearchPageComponent } from './components/document/searchPage/doc-search-page.component';
-import { ActorSearchPageComponent } from './components/actor/searchPage/actor-search-page.component';
-import { EventSearchPageComponent } from './components/event/searchPage/event-search-page.component';
-import { OrgSearchPageComponent } from './components/organization/searchPage/org-search-page.component';
-import { PlaceSearchPageComponent } from './components/place/searchPage/place-search-page.component';
-import { TableComponent } from './components/view/table.component';
+import {DocSearchPageComponent} from './components/document/searchPage/doc-search-page.component';
+import {ActorSearchPageComponent} from './components/actor/searchPage/actor-search-page.component';
+import {EventSearchPageComponent} from './components/event/searchPage/event-search-page.component';
+import {OrgSearchPageComponent} from './components/organization/searchPage/org-search-page.component';
+import {PlaceSearchPageComponent} from './components/place/searchPage/place-search-page.component';
+import {TableComponent} from './components/view/table.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
-    imports: [BrowserModule,
-        RouterModule,
-        HttpClientModule,
-        MaterialModule,
-        RoutingModule,
-        BrowserAnimationsModule,
-        LayoutModule, FormsModule, MatPaginatorModule, MatPaginatorModule, MatTableModule, MatTableModule,
-    ],
-    providers: [MyService],
-    declarations: [AppComponent,
-        DocumentComponent,
-        FooterComponent,
-        HeaderComponent,
-        SidenavListComponent,
-        HomeComponent,
-        ActorComponent,
-        PlaceComponent,
-        OrganizationComponent,
-        AdvancedSearchComponent,
-        GenericComponent,
-        SupportComponent,
-        RestorationComponent,
-        DocSearchPageComponent,
-        ActorSearchPageComponent,
-        EventSearchPageComponent,
-        OrgSearchPageComponent,
-        PlaceSearchPageComponent,
-        TableComponent],
-    exports: [AppComponent],
-    bootstrap: [AppComponent]
+  imports: [BrowserModule,
+    RouterModule,
+    HttpClientModule,
+    MaterialModule,
+    RoutingModule,
+    BrowserAnimationsModule,
+    LayoutModule, FormsModule, MatPaginatorModule, MatPaginatorModule, MatTableModule, MatTableModule,
+  ],
+  providers: [MyService],
+  declarations: [AppComponent,
+    DocumentComponent,
+    FooterComponent,
+    HeaderComponent,
+    SidenavListComponent,
+    HomeComponent,
+    ActorComponent,
+    PlaceComponent,
+    OrganizationComponent,
+    AdvancedSearchComponent,
+    GenericComponent,
+    SupportComponent,
+    RestorationComponent,
+    DocSearchPageComponent,
+    ActorSearchPageComponent,
+    EventSearchPageComponent,
+    OrgSearchPageComponent,
+    PlaceSearchPageComponent,
+    TableComponent],
+  exports: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule {
 }

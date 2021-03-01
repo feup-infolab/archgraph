@@ -1,4 +1,5 @@
 package showcase;
+
 import cclasses.ResponseClass;
 import org.apache.jena.query.*;
 import org.apache.jena.rdf.model.*;
@@ -11,50 +12,49 @@ import java.util.*;
 
 public class Connection {
     Queries querier = new Queries();
+    static String destination_port = "http://localhost:3030/name/sparql";
 
 
-    public ResponseClass obtainSummaryResponse(Query query,String key,ResponseClass r){
+    public ResponseClass obtainSummaryResponse(Query query, String key, ResponseClass r) {
         RDFConnectionRemoteBuilder builder = RDFConnectionFuseki.create()
-                .destination("http://localhost:3030/name/sparql");
+                .destination(destination_port);
 
-
-        try ( RDFConnectionFuseki conn = (RDFConnectionFuseki)builder.build() ) {
-            QueryExecution qExec = conn.query(query) ;
+        try (RDFConnectionFuseki conn = (RDFConnectionFuseki) builder.build()) {
+            QueryExecution qExec = conn.query(query);
             ResultSet rs = qExec.execSelect();
             QuerySolution stmt;
-            if(rs.hasNext()){
+            if (rs.hasNext()) {
                 stmt = rs.next();
                 Iterator<String> b = stmt.varNames();
 
-                while(b.hasNext()){
+                while (b.hasNext()) {
                     String current = b.next();
                     RDFNode res = stmt.get(current);
-                    r.putProperties(key,res.toString());
+                    r.putProperties(key, res.toString());
 
                 }
                 qExec.close();
                 conn.close();
-            }else{
+            } else {
                 qExec.close();
                 conn.close();
                 return r;
             }
         }
 
-            return r;
+        return r;
     }
 
-
-    public ResponseClass obtainTotalResponse(Query query,String key,ResponseClass r){
+    public ResponseClass obtainTotalResponse(Query query, String key, ResponseClass r) {
         RDFConnectionRemoteBuilder builder = RDFConnectionFuseki.create()
-                .destination("http://localhost:3030/name/sparql");
+                .destination(destination_port);
 
 
-        try ( RDFConnectionFuseki conn = (RDFConnectionFuseki)builder.build() ) {
+        try (RDFConnectionFuseki conn = (RDFConnectionFuseki) builder.build()) {
 
-            QueryExecution qExec = conn.query(query) ;
+            QueryExecution qExec = conn.query(query);
             ResultSet rs = qExec.execSelect();
-            ArrayList<Map<String,String>> complexList = new ArrayList<>();
+            ArrayList<Map<String, String>> complexList = new ArrayList<>();
             QuerySolution stmt;
 
             while (rs.hasNext()) {
@@ -68,11 +68,11 @@ public class Connection {
                     RDFNode res = stmt.get(current);
 
                     //TODO - MUDAR ISTO - DEMASIADO ESPECIFICO
-                    if(res.toString().contains("http://www.semanticweb.org/dmelo/ontologies/2020/7/untitled-ontology-151#ARE3SuppliedTitle")){
-                        map.put(current, "Atribuido");
-                    } else if(res.toString().contains("http://www.semanticweb.org/dmelo/ontologies/2020/7/untitled-ontology-151#ARE2FormalTitle")){
+                    if (res.toString().contains("http://www.semanticweb.org/dmelo/ontologies/2020/7/untitled-ontology-151#ARE3SuppliedTitle")) {
+                        map.put(current, "Atribuído");
+                    } else if (res.toString().contains("http://www.semanticweb.org/dmelo/ontologies/2020/7/untitled-ontology-151#ARE2FormalTitle")) {
                         map.put(current, "Formal");
-                    }else{
+                    } else {
                         map.put(current, res.toString());
                     }
                 }
@@ -81,51 +81,54 @@ public class Connection {
 
             qExec.close();
             conn.close();
-            r.addList(key,complexList);
+            r.addList(key, complexList);
         }
         return r;
     }
 
-    public ResponseClass obtainGeneralResponse(Query query,String key,ResponseClass r){
+    public ResponseClass obtainGeneralResponse(Query query, String key, ResponseClass r) {
         RDFConnectionRemoteBuilder builder = RDFConnectionFuseki.create()
-                .destination("http://localhost:3030/name/sparql");
+                .destination(destination_port);
 
 
-        try ( RDFConnectionFuseki conn = (RDFConnectionFuseki)builder.build() ) {
+        try (RDFConnectionFuseki conn = (RDFConnectionFuseki) builder.build()) {
 
-            QueryExecution qExec = conn.query(query) ;
+            QueryExecution qExec = conn.query(query);
             ResultSet rs = qExec.execSelect();
-            int i = 1;
-            ArrayList<Map<String,String>> complexList = new ArrayList<>();
+            ArrayList<Map<String, String>> complexList = new ArrayList<>();
             QuerySolution stmt;
-            if(rs.hasNext()){
+            if (rs.hasNext()) {
                 stmt = rs.next();
-            }else{
+            } else {
+                qExec.close();
+                conn.close();
                 return r;
             }
 
             //TODO CLEAN INTO 2 FUNCTIONS
-            if(!rs.hasNext()){
+            if (!rs.hasNext()) {
                 Iterator<String> b = stmt.varNames();
-                HashMap<String,String> map = new HashMap<>();
+                HashMap<String, String> map = new HashMap<>();
 
-                while(b.hasNext()){
+                while (b.hasNext()) {
                     String current = b.next();
                     RDFNode res = stmt.get(current);
-                    map.put(current,res.toString());
+                    map.put(current, res.toString());
 
                 }
-                r.addContent(key,map);
+                r.addContent(key, map);
 
                 qExec.close();
                 conn.close();
                 return r;
             }
 
+            int i;
             i = 0;
             while (rs.hasNext()) {
-                if (i != 0){
-                stmt = rs.next();}
+                if (i != 0) {
+                    stmt = rs.next();
+                }
                 Iterator<String> b = stmt.varNames();
                 HashMap<String, String> map = new HashMap<>();
 
@@ -137,21 +140,21 @@ public class Connection {
                 }
                 complexList.add(map);
                 i++;
-                }
+            }
 
             qExec.close();
             conn.close();
-            r.addList(key,complexList);
-            }
-            return r;
+            r.addList(key, complexList);
+        }
+        return r;
     }
 
-    public ArrayList<String> getAllUuids(){
+    public ArrayList<String> getAllUuids() {
         RDFConnectionRemoteBuilder builder = RDFConnectionFuseki.create()
-                .destination("http://localhost:3030/name/sparql");
+                .destination(destination_port);
         ArrayList<String> list = new ArrayList<>();
 
-        try ( RDFConnectionFuseki conn = (RDFConnectionFuseki)builder.build() ) {
+        try (RDFConnectionFuseki conn = (RDFConnectionFuseki) builder.build()) {
             Query query = querier.getAllDocs();
             ResultSet rs = conn.query(query).execSelect();
             while (rs.hasNext()) {
@@ -165,12 +168,12 @@ public class Connection {
         return list;
     }
 
-    public ArrayList<String> getAllBaseUuids(){
+    public ArrayList<String> getAllBaseUuids() {
         RDFConnectionRemoteBuilder builder = RDFConnectionFuseki.create()
-                .destination("http://localhost:3030/name/sparql");
+                .destination(destination_port);
         ArrayList<String> list = new ArrayList<>();
 
-        try ( RDFConnectionFuseki conn = (RDFConnectionFuseki)builder.build() ) {
+        try (RDFConnectionFuseki conn = (RDFConnectionFuseki) builder.build()) {
             Query query = querier.getAllUuids();
             ResultSet rs = conn.query(query).execSelect();
             while (rs.hasNext()) {
@@ -184,12 +187,12 @@ public class Connection {
         return list;
     }
 
-    public ArrayList<String> getAllMats(){
+    public ArrayList<String> getAllMats() {
         RDFConnectionRemoteBuilder builder = RDFConnectionFuseki.create()
-                .destination("http://localhost:3030/name/sparql");
+                .destination(destination_port);
         ArrayList<String> list = new ArrayList<>();
 
-        try ( RDFConnectionFuseki conn = (RDFConnectionFuseki)builder.build() ) {
+        try (RDFConnectionFuseki conn = (RDFConnectionFuseki) builder.build()) {
             Query query = querier.getAllMater();
             ResultSet rs = conn.query(query).execSelect();
             while (rs.hasNext()) {
@@ -203,21 +206,23 @@ public class Connection {
         return list;
     }
 
-    public ArrayList<String> getAllLevelsOfDesc(){
+    public ArrayList<String> getAllLevelsOfDesc() {
+
         RDFConnectionRemoteBuilder builder = RDFConnectionFuseki.create()
-                .destination("http://localhost:3030/name/sparql");
+                .destination(destination_port);
         ArrayList<String> list = new ArrayList<>();
 
-        try ( RDFConnectionFuseki conn = (RDFConnectionFuseki)builder.build() ) {
+        try (RDFConnectionFuseki conn = (RDFConnectionFuseki) builder.build()) {
             Query query = querier.getAllLevelofDescription();
-            QueryExecution qExec = conn.query(query) ;
+            QueryExecution qExec = conn.query(query);
             ResultSet rs = qExec.execSelect();
             while (rs.hasNext()) {
 
                 QuerySolution qs = rs.next();
 
-                if(!list.contains(qs.get("label").toString())){
-                    list.add(qs.get("label").toString());}
+                if (!list.contains(qs.get("label").toString())) {
+                    list.add(qs.get("label").toString());
+                }
 
             }
             conn.close();
@@ -226,9 +231,6 @@ public class Connection {
         }
         return list;
     }
-
-
-
 }
 
 

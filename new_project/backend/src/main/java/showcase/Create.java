@@ -11,19 +11,19 @@ import org.apache.jena.vocabulary.VCARD;
 
 public class Create {
 
-    static String personURI    = "http://erlangen-crm.org/200717/E999_Test";
-    static String fullName     = "Test Name";
-
+    static String personURI = "http://erlangen-crm.org/200717/E999_Test";
+    static String fullName = "Test Name";
+    static String destination_port = "http://localhost:3030/name/data";
 
 
     public static void main(String args[]) {
         RDFConnectionRemoteBuilder builder = RDFConnectionFuseki.create()
-                .destination("http://localhost:3030/name/data");
+                .destination(destination_port);
         //.destination("http://localhost:3030/name/sparql");
 
 
-        try ( RDFConnectionFuseki conn = (RDFConnectionFuseki)builder.build() ) {
-            Model model =conn.fetch();
+        try (RDFConnectionFuseki conn = (RDFConnectionFuseki) builder.build()) {
+            Model model = conn.fetch();
 
             // create the resource
             Resource johnSmith = model.createResource(personURI);

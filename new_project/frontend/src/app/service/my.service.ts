@@ -28,6 +28,10 @@ export class MyService {
     return this.http.post<any>(`${this.baseUrl}/search`, searchObject);
   }
 
+  getDescriptionLevels(): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/levelsdesc`, );
+  }
+
   getActorById(id: any): Observable<any> {
     const params = new HttpParams()
       .set('id', id);

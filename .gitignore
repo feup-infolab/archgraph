@@ -41,4 +41,5 @@ typings
 # System Files
 .DS_Store
 Thumbs.db
-new_project/backend/src/pom.xml
+[core]
+      filemode = false

@@ -4,7 +4,10 @@
             <td colspan="2">
                 <mat-form-field>
                     <mat-label i18n>Name</mat-label>
-                    <input matInput name="name" [(ngModel)]="name" (ngModelChange)="dataChanged($event)">
+                    <input matInput name="name"
+                           (ngModelChange)="formOldValue = searchObject.name"
+                           [(ngModel)]="searchObject.name"
+                           (ngModelChange)="dataChanged($event)">
                 </mat-form-field>
             </td>
             <!--            <td>-->
@@ -18,7 +21,10 @@
             <td colspan="2">
                 <mat-form-field>
                     <mat-label i18n>Cultural Period</mat-label>
-                    <input matInput name="culturalPeriod" [(ngModel)]="culturalPeriod" (ngModelChange)="dataChanged($event)">
+                    <input matInput name="culturalPeriod"
+                           (ngModelChange)="formOldValue = searchObject.culturalPeriod"
+                           [(ngModel)]="searchObject.culturalPeriod"
+                           (ngModelChange)="dataChanged($event)">
                 </mat-form-field>
             </td>
             <!--            <td>-->
@@ -32,7 +38,10 @@
             <td colspan="2">
                 <mat-form-field>
                     <mat-label i18n>Identifier</mat-label>
-                    <input matInput name="identifier" [(ngModel)]="identifier" (ngModelChange)="dataChanged($event)">
+                    <input matInput name="identifier"
+                           (ngModelChange)="formOldValue = searchObject.identifier"
+                           [(ngModel)]="searchObject.identifier"
+                           (ngModelChange)="dataChanged($event)">
                 </mat-form-field>
             </td>
             <!--            <td>-->
@@ -46,13 +55,19 @@
             <td>
                 <mat-form-field class="short-width">
                     <mat-label i18n>Birth Date (From)</mat-label>
-                    <input matInput type="date" name="birthDateFrom" [(ngModel)]="birthDateFrom" (ngModelChange)="dataChanged($event)">
+                    <input matInput type="date" name="birthDateFrom"
+                           (ngModelChange)="formOldValue = searchObject.birthDateFrom"
+                           [(ngModel)]="searchObject.birthDateFrom"
+                           (ngModelChange)="dataChanged($event)">
                 </mat-form-field>
             </td>
             <td>
                 <mat-form-field class="short-width">
                     <mat-label i18n>Birth Date (To)</mat-label>
-                    <input matInput type="date" name="birthDateTo" [(ngModel)]="birthDateTo" (ngModelChange)="dataChanged($event)">
+                    <input matInput type="date" name="birthDateTo"
+                           (ngModelChange)="formOldValue = searchObject.birthDateTo"
+                           [(ngModel)]="searchObject.birthDateTo"
+                           (ngModelChange)="dataChanged($event)">
                 </mat-form-field>
             </td>
             <!--            <td>-->
@@ -66,13 +81,19 @@
             <td>
                 <mat-form-field class="short-width">
                     <mat-label i18n>Death Date (From)</mat-label>
-                    <input matInput type="date" name="deathDateFrom" [(ngModel)]="deathDateFrom" (ngModelChange)="dataChanged($event)">
+                    <input matInput type="date" name="deathDateFrom"
+                           (ngModelChange)="formOldValue = searchObject.deathDateFrom"
+                           [(ngModel)]="searchObject.deathDateFrom"
+                           (ngModelChange)="dataChanged($event)">
                 </mat-form-field>
             </td>
             <td class="short-width">
                 <mat-form-field class="short-width">
                     <mat-label i18n>Death Date (To)</mat-label>
-                    <input matInput type="date" name="deathDateTo" [(ngModel)]="deathDateTo" (ngModelChange)="dataChanged($event)">
+                    <input matInput type="date" name="deathDateTo"
+                           (ngModelChange)="formOldValue = searchObject.deathDateTo"
+                           [(ngModel)]="searchObject.deathDateTo"
+                           (ngModelChange)="dataChanged($event)">
                 </mat-form-field>
             </td>
             <!--            <td>-->
@@ -86,7 +107,10 @@
             <td colspan="2">
                 <mat-form-field>
                     <mat-label i18n>Keywords</mat-label>
-                    <input matInput name="keywords" [(ngModel)]="keywords" (ngModelChange)="dataChanged($event)">
+                    <input matInput name="keywords"
+                           (ngModelChange)="formOldValue = searchObject.keywords"
+                           [(ngModel)]="searchObject.keywords"
+                           (ngModelChange)="dataChanged($event)">
                 </mat-form-field>
             </td>
             <!--            <td>-->
@@ -100,7 +124,10 @@
             <td colspan="2">
                 <mat-form-field>
                     <mat-label i18n>Related To</mat-label>
-                    <input matInput name="relatedTo" [(ngModel)]="relatedTo" (ngModelChange)="dataChanged($event)">
+                    <input matInput name="relatedTo"
+                           (ngModelChange)="formOldValue = searchObject.relatedTo"
+                           [(ngModel)]="searchObject.relatedTo"
+                           (ngModelChange)="dataChanged($event)">
                 </mat-form-field>
             </td>
             <!--            <td>-->
