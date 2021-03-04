@@ -33,7 +33,7 @@ export interface Document {
   styleUrls: ['./doc-search-page.component.css']
 })
 export class DocSearchPageComponent extends MySearchComponent implements OnInit {
-  public columns: any[] = ['episaIdentifier', 'dglabIdentifier', 'title' ];
+  public columns: any[] = ['episaIdentifier', 'dglab Identifier', 'title'];
   public descriptionLevelList: any[] | undefined;
 
   constructor(
@@ -51,9 +51,10 @@ export class DocSearchPageComponent extends MySearchComponent implements OnInit 
         interventionStartDateTo: '',
         interventionEndDateFrom: '',
         interventionEndDateTo: '',
-        curatorName: '',
+        conservationCuratorName: '',
+        digitalCuratorName: '',
         creationDateFrom: '',
-        creationDateTo: '',
+        creationDateTo: ''
       }
     );
   }

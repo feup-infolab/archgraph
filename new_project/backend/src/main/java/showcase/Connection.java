@@ -41,7 +41,6 @@ public class Connection {
                 return r;
             }
         }
-
         return r;
     }
 
@@ -228,6 +227,9 @@ public class Connection {
             conn.close();
             qExec.close();
 
+        } catch (Exception e) {
+            System.out.print("error");
+            System.out.println(e.getMessage());
         }
         return list;
     }

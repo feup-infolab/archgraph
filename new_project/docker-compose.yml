@@ -1,15 +1,5 @@
 version: "3.3"
 services:
-  web-service:
-    container_name: web-service
-    build: ./frontend
-    ports: 
-      - 4200:4200
-    volumes:
-      - ./volumes/web-service:/data
-    restart: on-failure
-    networks: 
-      - my_archgraph
   fuseki:
     container_name: archgraph-fuseki
     image: blankdots/jena-fuseki
@@ -20,17 +10,30 @@ services:
     volumes:
       - ./volumes/fuseki:/staging
     restart: on-failure
-    networks: 
-      - my_archgraph
+    networks:
+      - frontend
+  web-service:
+    container_name: web-service
+    build: ./frontend
+    ports:
+      - 4200:4200
+    volumes:
+      - ./volumes/web-service:/data
+    restart: on-failure
+    networks:
+      - frontend
   server:
     container_name: server
     build: ./backend
-    ports: 
+    ports:
       - 8080:8080
     restart: on-failure
-    networks: 
-      - my_archgraph
-    depends_on: 
+    networks:
+      - frontend
+    depends_on:
       - "fuseki"
-networks: 
-  my_archgraph: {}
+networks:
+  frontend:
+    # Use a custom driver
+    driver: bridge
+

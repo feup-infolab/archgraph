@@ -33,9 +33,20 @@
         <mat-icon>group_add</mat-icon>
         <span class="nav-caption" i18n>Organization</span>
     </a>
-    <a mat-list-item routerLink="/advancedsearch" (click)="onSidenavClose()">
+    <a mat-list-item [matMenuTriggerFor]="searchmenu">
         <mat-icon>search</mat-icon>
         <span class="nav-caption" i18n>Advanced Search</span>
     </a>
+    <mat-menu #searchmenu="matMenu">
+        <button mat-menu-item routerLink="/advancedsearch" (click)="onSidenavClose()" i18n>
+            <mat-icon>search</mat-icon>
+            Advanced Search
+        </button>
+        <button mat-menu-item routerLink="/hierarchy" (click)="onSidenavClose()" i18n>
+            <mat-icon>explore</mat-icon>
+            Document Hierarchy
+        </button>
+
+    </mat-menu>
 </mat-nav-list>
 

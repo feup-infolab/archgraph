@@ -6,20 +6,6 @@ import {Component, OnInit} from '@angular/core';
     styleUrls: ['./advanced-search.component.css']
 })
 export class AdvancedSearchComponent implements OnInit {
-    // actor
-    public actorName: any;
-    public actorBirthDateTo: any;
-    public actorBirthDateFrom: any;
-    public actorDeathDateFrom: any;
-    public actorDeathDateTo: any;
-    public actorKeywords: any;
-    public actorRelatedTo: any;
-    public actorIdentifier: any;
-    public actorCulturalPeriod: any;
-
-
-
-
     constructor() {
     }
 
