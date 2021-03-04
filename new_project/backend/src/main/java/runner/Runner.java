@@ -13,7 +13,7 @@ public class Runner {
      private static final Queries queries = new Queries();
 
     public static void main(String[] args) {
-        org.apache.jena.query.ARQ.init();
+            org.apache.jena.query.ARQ.init();
 
         if (cn.getAllBaseUuids().size() == 0) {
             System.out.println("============================= Creating UUIDS ================================");

@@ -30,6 +30,7 @@ import {PlaceSearchPageComponent} from './components/place/searchPage/place-sear
 import {TableComponent} from './components/view/table.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableModule} from '@angular/material/table';
+import { HierarchyComponent } from './components/advancedSearch/hierarchy/hierarchy.component';
 
 @NgModule({
   imports: [BrowserModule,
@@ -59,7 +60,8 @@ import {MatTableModule} from '@angular/material/table';
     EventSearchPageComponent,
     OrgSearchPageComponent,
     PlaceSearchPageComponent,
-    TableComponent],
+    TableComponent,
+    HierarchyComponent],
   exports: [AppComponent],
   bootstrap: [AppComponent]
 })

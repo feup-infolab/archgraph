@@ -13,13 +13,10 @@ public class ResponseClass {
 
     //private final String type;
 
-    private final Map<String,Object> properties;
+    private final Map<String, Object> properties;
 
 
-
-
-
-    public ResponseClass( Map<String,Object> properties) {
+    public ResponseClass(Map<String, Object> properties) {
         //this.id = "https://example.com/arrays.schema.json";
         this.properties = properties;
 
@@ -30,21 +27,21 @@ public class ResponseClass {
     //    return id;
     //}
 
-    public Map<String,Object> getProperties() {
+    public Map<String, Object> getProperties() {
         return properties;
     }
 
     public void putProperties(String key, Object ob) {
-        this.properties.put(key,ob);
+        this.properties.put(key, ob);
     }
 
 
-    public void addContent(String key,Map<String,String> value) {
-        properties.put(key,value);
+    public void addContent(String key, Map<String, String> value) {
+        properties.put(key, value);
     }
 
-    public void addList(String key,List<Map<String,String>> value) {
-        properties.put(key,value);
+    public void addList(String key, List<Map<String, String>> value) {
+        properties.put(key, value);
     }
 
     /*public String get$schema() {
