@@ -1,7 +1,7 @@
 version: "3.3"
 services:
   fuseki:
-    container_name: archgraph-fuseki
+    container_name: fuseki
     image: blankdots/jena-fuseki
     environment:
       - ADMIN_PASSWORD=admin
@@ -11,9 +11,9 @@ services:
       - ./volumes/fuseki:/staging
     restart: on-failure
     networks:
-      - frontend
-  web-service:
-    container_name: web-service
+      - app
+  webservice:
+    container_name: webservice
     build: ./frontend
     ports:
       - 4200:4200
@@ -21,19 +21,37 @@ services:
       - ./volumes/web-service:/data
     restart: on-failure
     networks:
-      - frontend
-  server:
-    container_name: server
+      - app
+  backend:
+    container_name: backend
     build: ./backend
     ports:
       - 8080:8080
+    depends_on:
+      - fuseki
     restart: on-failure
     networks:
-      - frontend
-    depends_on:
-      - "fuseki"
+      - app
 networks:
-  frontend:
-    # Use a custom driver
-    driver: bridge
+  app: {}
 
+
+#new_project_backend ->
+#blankdots/jena-fuseki->
+#docker network connect new_project_app backend
+#docker network connect new_project_app fuseki
+#docker network connect new_project_app webservice
+#
+# docker inspect network new_project_app
+
+#docker-compose build backend
+#
+# docker stop $(docker ps -a -q)
+# docker rm $(docker ps -a -q)
+#
+#docker run -itd  --network my_network backend
+#docker run -itd  --network my_network fuseki
+#docker run -itd  --network my_network webservice
+#
+#
+#new_project_web-service -> docker run -itd --name webservice -p 4200:4200 --network my_network new_project_web-service ash

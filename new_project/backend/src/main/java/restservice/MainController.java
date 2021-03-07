@@ -12,12 +12,22 @@ import org.springframework.web.bind.annotation.*;
 import queries.Queries;
 import showcase.Connection;
 
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+
 @RestController
 public class MainController {
 
     private static final String template = "Hello, %s!";
     private final AtomicLong counter = new AtomicLong();
     private final Queries queries = new Queries();
+
+    @CrossOrigin(origins = {"http://localhost:4200", "http://localhost:4201"})
+    @RequestMapping("/")
+    public String home(){
+        return "Hello World!";
+    }
 
     @CrossOrigin(origins = {"http://localhost:4200", "http://localhost:4201"})
     @GetMapping("/doc")

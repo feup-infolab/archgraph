@@ -11,6 +11,8 @@ public class Runner {
 
     private static final Connection cn = new Connection();
      private static final Queries queries = new Queries();
+    public static final String DEFAULT_host = "http://fuseki:3030/";
+
 
     public static void main(String[] args) {
             org.apache.jena.query.ARQ.init();
