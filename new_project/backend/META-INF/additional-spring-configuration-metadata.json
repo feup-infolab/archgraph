@@ -1,0 +1,13 @@
+{
+  "properties": [
+    {
+      "name": "management.server.port",
+      "type": "java.lang.String",
+      "description": "Description for management.server.port."
+    },
+    {
+      "name": "management.server.address",
+      "type": "java.lang.String",
+      "description": "Description for management.server.address."
+    }
+  ] }

@@ -5,9 +5,11 @@ import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.rdfconnection.RDFConnectionFuseki;
 import org.apache.jena.rdfconnection.RDFConnectionRemoteBuilder;
+import runner.Runner;
 
 public class FillExamples {
-    static String destination_port = "http://localhost:3030/name/data";
+    static String destination_port = Runner.DEFAULT_host + "name/data";
+
 
 
     public static void main(String args[]) {
