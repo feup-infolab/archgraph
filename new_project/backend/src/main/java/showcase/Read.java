@@ -4,16 +4,18 @@ import org.apache.jena.rdf.model.*;
 import org.apache.jena.rdfconnection.RDFConnectionFuseki;
 import org.apache.jena.rdfconnection.RDFConnectionRemoteBuilder;
 import org.apache.jena.vocabulary.VCARD;
+import runner.Runner;
 
 public class Read {
 
     static String personURI = "http://erlangen-crm.org/200717/E999_Test";
     static String fullName = "John Smith";
+    static String destination_port = Runner.DEFAULT_host + "name/get";
+
 
     public static void main(String args[]) {
         RDFConnectionRemoteBuilder builder = RDFConnectionFuseki.create()
-                .destination("http://localhost:3030/name/get");
-        //.destination("http://localhost:3030/name/sparql");
+                .destination(destination_port);
 
 
         try (RDFConnectionFuseki conn = (RDFConnectionFuseki) builder.build()) {

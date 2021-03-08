@@ -6,14 +6,13 @@ import org.apache.jena.query.QueryFactory;
 public class Queries {
 
 
-
-    public Query getGeneral_query(){
+    public Query getGeneral_query() {
         return QueryFactory.create("SELECT * WHERE {\n" +
                 "  ?sub ?pred ?obj .\n" +
                 "}");
     }
 
-    public Query getTitle_query(String uuid){
+    public Query getTitle_query(String uuid) {
         return QueryFactory.create("SELECT ?description\n" +
                 "WHERE {\n" +
                 uuid + " <http://erlangen-crm.org/200717/P102_has_title> ?type .\n" +
@@ -22,7 +21,7 @@ public class Queries {
                 "}");
     }
 
-    public Query getLevel_of_description_query(String uuid){
+    public Query getLevel_of_description_query(String uuid) {
         return QueryFactory.create("SELECT ?descriptionLevelString\n" +
                 "WHERE {\n" +
                 uuid + " <http://www.semanticweb.org/dmelo/ontologies/2020/7/untitled-ontology-151#ARP12_has_level_of_description> ?descriptionLevel .\n" +
@@ -30,21 +29,21 @@ public class Queries {
                 "}");
     }
 
-    public Query getUuid(String uuid){
+    public Query getUuid(String uuid) {
         return QueryFactory.create("SELECT ?description\n" +
                 "WHERE {\n" +
                 uuid + " <http://erlangen-crm.org/200717/has_uuid> ?description\n" +
                 "}");
     }
 
-    public Query getAllUuids(){
+    public Query getAllUuids() {
         return QueryFactory.create("SELECT ?description\n" +
                 "WHERE {\n" +
                 "?a <http://erlangen-crm.org/200717/has_uuid> ?description\n" +
                 "}");
     }
 
-    public Query getAllMater(){
+    public Query getAllMater() {
         return QueryFactory.create("SELECT ?description\n" +
                 "WHERE {\n" +
                 "?a <http://erlangen-crm.org/200717/has_material> ?description\n" +
@@ -52,16 +51,14 @@ public class Queries {
     }
 
 
-
-    public Query getIDd(String uuid){
+    public Query getIDd(String uuid) {
         return QueryFactory.create("SELECT ?description\n" +
                 "WHERE {\n" +
-                "?description <http://erlangen-crm.org/200717/has_uuid> \""+ uuid + "\" }");
+                "?description <http://erlangen-crm.org/200717/has_uuid> \"" + uuid + "\" }");
     }
 
 
-
-    public Query getReference_codes_query(String uuid){
+    public Query getReference_codes_query(String uuid) {
         return QueryFactory.create("SELECT  ?description \n" +
                 "WHERE {\n" +
                 uuid + " <http://erlangen-crm.org/200717/P1_is_identified_by> ?cidoc_identifier .\n" +
@@ -71,17 +68,17 @@ public class Queries {
                 "}");
     }
 
-    public Query getIdFromReference_codes_query(String refCode){
+    public Query getIdFromReference_codes_query(String refCode) {
         return QueryFactory.create("SELECT  ?description \n" +
                 "WHERE {\n" +
                 "?description <http://erlangen-crm.org/200717/P1_is_identified_by> ?cidoc_identifier .\n" +
                 "  ?cidoc_identifier <http://www.episa.inesctec.pt/ligacao#hasValue> ?identifier_value .\n" +
                 "  ?cidoc_identifier <http://erlangen-crm.org/200717/P2_has_type> ?type.\n" +
-                "  ?identifier_value <http://www.episa.inesctec.pt/data_object#stringValue> "+ refCode + "\n" +
+                "  ?identifier_value <http://www.episa.inesctec.pt/data_object#stringValue> " + refCode + "\n" +
                 "}");
     }
 
-    public Query getIdFromLevelOfDescription(String level){
+    public Query getIdFromLevelOfDescription(String level) {
         return QueryFactory.create("SELECT  ?description \n" +
                 "WHERE {\n" +
                 "?description <http://www.semanticweb.org/dmelo/ontologies/2020/7/untitled-ontology-151#ARP12_has_level_of_description> ?descriptionLevel .\n" +
@@ -89,7 +86,7 @@ public class Queries {
                 "}");
     }
 
-    public Query getIdFromRelDoc(String uuid){
+    public Query getIdFromRelDoc(String uuid) {
         return QueryFactory.create("SELECT ?description \n" +
                 "WHERE {\n" +
                 "?description <http://erlangen-crm.org/200717/has_related_document> ?tdoc .\n" +
@@ -97,7 +94,7 @@ public class Queries {
                 "}");
     }
 
-    public Query getIdFromTitle(String uuid){
+    public Query getIdFromTitle(String uuid) {
         return QueryFactory.create("SELECT  ?description \n" +
                 "WHERE {\n" +
                 "  ?description <http://erlangen-crm.org/200717/P102_has_title> ?type .\n" +
@@ -106,7 +103,7 @@ public class Queries {
                 "}");
     }
 
-    public Query getPerson(String uuid){
+    public Query getPerson(String uuid) {
         return QueryFactory.create("SELECT ?name\n" +
                 "WHERE {\n" +
                 uuid + "<http://erlangen-crm.org/200717/P1_is_identified_by> ?object.\n" +
@@ -115,7 +112,7 @@ public class Queries {
                 "}");
     }
 
-    public Query getPlace(String uuid){
+    public Query getPlace(String uuid) {
         return QueryFactory.create("SELECT ?name \n" +
                 "WHERE {\n" +
                 uuid + "<http://erlangen-crm.org/200717/P1_is_identified_by> ?object.\n" +
@@ -124,20 +121,20 @@ public class Queries {
                 "}");
     }
 
-    public Query getAllDocs(){
+    public Query getAllDocs() {
         return QueryFactory.create("SELECT ?subject\n" +
                 "WHERE {\n" +
                 "  ?subject <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://erlangen-crm.org/200717/E31_Document>\n" +
                 "}");
     }
 
-    public Query insertUuid(String olduuid, String uuid){
+    public Query insertUuid(String olduuid, String uuid) {
         return QueryFactory.create("INSERT {\n" +
-                  olduuid + "<has_uuid> \""+ uuid +"\" \n" +
+                olduuid + "<has_uuid> \"" + uuid + "\" \n" +
                 " }");
     }
 
-    public Query getIdentifier(String uuid){
+    public Query getIdentifier(String uuid) {
         return QueryFactory.create("SELECT  ?identifier ?type \n" +
                 "WHERE {\n" +
                 uuid + " <http://erlangen-crm.org/200717/P1_is_identified_by> ?cidoc_identifier .\n" +
@@ -147,7 +144,7 @@ public class Queries {
                 "}");
     }
 
-    public Query getTitle(String uuid){
+    public Query getTitle(String uuid) {
         return QueryFactory.create("SELECT  ?title ?type \n" +
                 "WHERE {\n" +
                 uuid + " <http://erlangen-crm.org/200717/P102_has_title> ?type .\n" +
@@ -156,7 +153,7 @@ public class Queries {
                 "}");
     }
 
-    public Query getMaterial(String uuid){
+    public Query getMaterial(String uuid) {
         return QueryFactory.create("SELECT ?material ?component\n" +
                 "WHERE {\n" +
                 uuid + " <http://erlangen-crm.org/200717/has_material> ?material .\n" +
@@ -164,7 +161,7 @@ public class Queries {
                 "}");
     }
 
-    public Query getDimension(String uuid){
+    public Query getDimension(String uuid) {
         return QueryFactory.create("SELECT ?dimension ?value ?measurementUnit ?component\n" +
                 "WHERE {\n" +
                 uuid + " <http://erlangen-crm.org/200717/has_dimension> ?dimension .\n" +
@@ -174,7 +171,7 @@ public class Queries {
                 "}");
     }
 
-    public Query getQuantity(String uuid){
+    public Query getQuantity(String uuid) {
         return QueryFactory.create("SELECT ?quantity ?value ?measurementUnit ?component\n" +
                 "WHERE {\n" +
                 uuid + " <http://erlangen-crm.org/200717/has_quantity> ?quantity .\n" +
@@ -184,7 +181,7 @@ public class Queries {
                 "}");
     }
 
-    public Query getConservationStatus(String uuid){
+    public Query getConservationStatus(String uuid) {
         return QueryFactory.create("SELECT ?conservationStatus ?initialDate ?finalDate \n" +
                 "WHERE {\n" +
                 uuid + " <http://erlangen-crm.org/200717/has_conservation_status> ?conservationStatus .\n" +
@@ -193,7 +190,7 @@ public class Queries {
                 "}");
     }
 
-    public Query getLanguage(String uuid){
+    public Query getLanguage(String uuid) {
         return QueryFactory.create("SELECT ?language ?identifier\n" +
                 "WHERE {\n" +
                 uuid + " <http://erlangen-crm.org/200717/has_language> ?language .\n" +
@@ -201,7 +198,7 @@ public class Queries {
                 "}");
     }
 
-    public Query getWriting(String uuid){
+    public Query getWriting(String uuid) {
         return QueryFactory.create("SELECT ?writing ?identifier\n" +
                 "WHERE {\n" +
                 uuid + " <http://erlangen-crm.org/200717/has_writing> ?writing .\n" +
@@ -209,28 +206,28 @@ public class Queries {
                 "}");
     }
 
-    public Query getDocTradition(String uuid){
+    public Query getDocTradition(String uuid) {
         return QueryFactory.create("SELECT ?documentaryTradition\n" +
                 "WHERE {\n" +
                 uuid + " <http://erlangen-crm.org/200717/has_doc_tradition> ?documentaryTradition \n" +
                 "}");
     }
 
-    public Query getDocTypology(String uuid){
+    public Query getDocTypology(String uuid) {
         return QueryFactory.create("SELECT ?documentaryTypology\n" +
                 "WHERE {\n" +
                 uuid + " <http://erlangen-crm.org/200717/has_typology> ?documentaryTypology \n" +
                 "}");
     }
 
-    public Query getSubject(String uuid){
+    public Query getSubject(String uuid) {
         return QueryFactory.create("SELECT ?subject\n" +
                 "WHERE {\n" +
                 uuid + " <http://erlangen-crm.org/200717/has_subject> ?subject \n" +
                 "}");
     }
 
-    public Query getAccessCondition(String uuid){
+    public Query getAccessCondition(String uuid) {
         return QueryFactory.create("SELECT ?accessConditions ?justification\n" +
                 "WHERE {\n" +
                 uuid + " <http://erlangen-crm.org/200717/has_access_condition> ?accessConditions .\n" +
@@ -238,7 +235,7 @@ public class Queries {
                 "}");
     }
 
-    public Query getReproductionCondition(String uuid){
+    public Query getReproductionCondition(String uuid) {
         return QueryFactory.create("SELECT ?reproductionConditions ?justification\n" +
                 "WHERE {\n" +
                 uuid + " <http://erlangen-crm.org/200717/has_reproduction_condition> ?reproductionConditions .\n" +
@@ -246,7 +243,7 @@ public class Queries {
                 "}");
     }
 
-    public Query getEvent(String uuid){
+    public Query getEvent(String uuid) {
         return QueryFactory.create("SELECT ?episaIdentifier ?eventType ?initialDate ?finalDate\n" +
                 "WHERE {\n" +
                 uuid + " <http://erlangen-crm.org/200717/has_related_event> ?episaIdentifier .\n" +
@@ -256,7 +253,7 @@ public class Queries {
                 "}");
     }
 
-    public Query getRelDoc(String uuid){
+    public Query getRelDoc(String uuid) {
         return QueryFactory.create("SELECT ?episaIdentifier ?dglabIdentifier  ?title ?relationType\n" +
                 "WHERE {\n" +
                 uuid + " <http://erlangen-crm.org/200717/has_related_document> ?tdoc .\n" +
@@ -271,7 +268,7 @@ public class Queries {
                 "}");
     }
 
-    public Query getAllLevelofDescription(){
+    public Query getAllLevelofDescription() {
         return QueryFactory.create("SELECT ?label\n" +
                 "WHERE {\n" +
                 "  ?subject <http://www.semanticweb.org/dmelo/ontologies/2020/7/untitled-ontology-151#ARP12_has_level_of_description> ?object .\n" +
@@ -279,18 +276,6 @@ public class Queries {
                 "<http://www.w3.org/2000/01/rdf-schema#label> ?label\n" +
                 "}");
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

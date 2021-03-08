@@ -43,7 +43,7 @@ public class RequestBodyClass {
         this.descriptionLevel = descriptionLevel;
     }
 
-    public String   getRefCode() {
+    public String getRefCode() {
         return refCode;
     }
 

@@ -6,13 +6,15 @@ import org.apache.jena.rdf.model.*;
 import org.apache.jena.rdfconnection.RDFConnectionFuseki;
 import org.apache.jena.rdfconnection.RDFConnectionRemoteBuilder;
 import queries.Queries;
+import runner.Runner;
 
 import java.util.*;
 
 
 public class Connection {
     Queries querier = new Queries();
-    static String destination_port = "http://localhost:3030/name/sparql";
+
+    static String destination_port = Runner.DEFAULT_host + "name/sparql";
 
 
     public ResponseClass obtainSummaryResponse(Query query, String key, ResponseClass r) {
@@ -41,7 +43,6 @@ public class Connection {
                 return r;
             }
         }
-
         return r;
     }
 
@@ -228,6 +229,9 @@ public class Connection {
             conn.close();
             qExec.close();
 
+        } catch (Exception e) {
+            System.out.print("error");
+            System.out.println(e.getMessage());
         }
         return list;
     }
