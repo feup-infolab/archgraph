@@ -8,6 +8,8 @@ import cclasses.RequestBodyClass;
 import cclasses.ResponseClass;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import queries.Queries;
 import showcase.Connection;
@@ -18,21 +20,24 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class MainController {
+    @Autowired
+    private YAMLConfig myConfig;
 
-    private static final String template = "Hello, %s!";
-    private final AtomicLong counter = new AtomicLong();
+
+    //private final AtomicLong counter = new AtomicLong();
     private final Queries queries = new Queries();
 
     @CrossOrigin(origins = {"http://localhost:4200", "http://localhost:4201"})
     @RequestMapping("/")
-    public String home(){
-        return "Hello World!";
+    public String home() {
+        return "Hello World!" + myConfig.getHost();
+
     }
 
     @CrossOrigin(origins = {"http://localhost:4200", "http://localhost:4201"})
     @GetMapping("/doc")
     public String document(@RequestParam(value = "id", defaultValue = "") String uuid) {
-        Connection conn = new Connection();
+        Connection conn = new Connection("http://localhost:3030/");
         HashMap<String, Object> list = new HashMap<>();
 
         HashMap<String, Object> list0 = new HashMap<>();
@@ -75,7 +80,7 @@ public class MainController {
     public String documentSummary(@RequestParam(value = "refcode", defaultValue = "") Object rcode) {
         String refcode = rcode.toString();
         refcode = "\"" + refcode + "\"";
-        Connection conn = new Connection();
+        Connection conn = new Connection("http://localhost:3030/");
         HashMap<String, Object> list0 = new HashMap<>();
         ResponseClass uuidrep = new ResponseClass(list0);
         conn.obtainGeneralResponse(queries.getIdFromReference_codes_query(refcode), "id", uuidrep);
@@ -104,7 +109,7 @@ public class MainController {
     @CrossOrigin(origins = {"http://localhost:4200", "http://localhost:4201"})
     @GetMapping("/person")
     public ResponseClass person(@RequestParam(value = "id", defaultValue = "") String uuid) {
-        Connection conn = new Connection();
+        Connection conn = new Connection("http://localhost:3030/");
         HashMap<String, Object> list = new HashMap<>();
         ResponseClass rep = new ResponseClass(list);
         rep = conn.obtainGeneralResponse(queries.getPerson(uuid), "person", rep);
@@ -114,7 +119,7 @@ public class MainController {
     @CrossOrigin(origins = {"http://localhost:4200", "http://localhost:4201"})
     @GetMapping("/place")
     public ResponseClass place(@RequestParam(value = "id", defaultValue = "") String uuid) {
-        Connection conn = new Connection();
+        Connection conn = new Connection("http://localhost:3030/");
         HashMap<String, Object> list = new HashMap<>();
         ResponseClass rep = new ResponseClass(list);
         rep = conn.obtainGeneralResponse(queries.getPlace(uuid), "place", rep);
@@ -155,7 +160,7 @@ public class MainController {
 
         ArrayList<String> uuidList = new ArrayList<>();
 
-        Connection conn = new Connection();
+        Connection conn = new Connection("http://localhost:3030/");
         HashMap<String, Object> list0 = new HashMap<>();
         ResponseClass uuidrep = new ResponseClass(list0);
         conn.obtainGeneralResponse(queries.getIdFromLevelOfDescription(descriptionLevel), "levelOfDescriptionId", uuidrep);
@@ -221,7 +226,7 @@ public class MainController {
     @CrossOrigin(origins = {"http://localhost:4200", "http://localhost:4201"})
     @GetMapping("/levelsdesc")
     public ArrayList<String> levels() {
-        Connection conn = new Connection();
+        Connection conn = new Connection("http://localhost:3030/");
         HashMap<String, ArrayList<String>> list = new HashMap<>();
         ArrayList<String> alist = new ArrayList<>();
         alist = conn.getAllLevelsOfDesc();

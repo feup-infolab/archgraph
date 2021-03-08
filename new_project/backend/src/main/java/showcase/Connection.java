@@ -12,10 +12,14 @@ import java.util.*;
 
 
 public class Connection {
-    Queries querier = new Queries();
+    public Queries querier = new Queries();
 
-    static String destination_port = Runner.DEFAULT_host + "name/sparql";
+     public String destination_port;
+     // = Runner.DEFAULT_host + "name/sparql";
 
+    public Connection(String destination_port) {
+        this.destination_port = destination_port + "name/sparql";
+    }
 
     public ResponseClass obtainSummaryResponse(Query query, String key, ResponseClass r) {
         RDFConnectionRemoteBuilder builder = RDFConnectionFuseki.create()
@@ -171,7 +175,7 @@ public class Connection {
 
     public ArrayList<String> getAllBaseUuids() {
         RDFConnectionRemoteBuilder builder = RDFConnectionFuseki.create()
-                .destination(destination_port);
+                .destination(this.destination_port);
         ArrayList<String> list = new ArrayList<>();
 
         try (RDFConnectionFuseki conn = (RDFConnectionFuseki) builder.build()) {
