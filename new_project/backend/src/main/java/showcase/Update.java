@@ -8,10 +8,15 @@ import runner.Runner;
 public class Update {
     static String personURI = "http://erlangen-crm.org/200717/E999_Test";
     static String fullName = "John Smith";
-    static String destination_port = Runner.DEFAULT_host + "name/data";
+    public String destination_port;
+    //= Runner.DEFAULT_host + "name/data";
 
 
-    public static void main(String args[]) {
+    public Update(String destination_port) {
+        this.destination_port = destination_port + "name/data";
+    }
+
+    void update() {
         RDFConnectionRemoteBuilder builder = RDFConnectionFuseki.create()
                 .destination(destination_port);
 
@@ -49,4 +54,9 @@ public class Update {
             conn.commit();
         }
     }
+
+
+//    public static void main(String args[]) {
+//
+//    }
 }

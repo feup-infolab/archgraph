@@ -48,6 +48,8 @@ networks:
 #
 # docker stop $(docker ps -a -q)
 # docker rm $(docker ps -a -q)
+
+# docker network prune
 #
 #docker run -itd  --network my_network backend
 #docker run -itd  --network my_network fuseki

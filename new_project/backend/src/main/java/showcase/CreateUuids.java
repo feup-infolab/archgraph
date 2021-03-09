@@ -17,17 +17,20 @@ public class CreateUuids {
 
     static String personURI = "http://erlangen-crm.org/200717/E999_Test";
     static String fullName = "Test Name";
-    static String destination_port = Runner.DEFAULT_host + "name/data";
+    public String destination_port;
 
-    private static Connection con = new Connection();
+    private Connection con;
 
+    public CreateUuids(String host) {
+        this.destination_port = host + "name/data";
+        this.con = new Connection(this.destination_port);
+    }
 
-    public static void main(String args[]) {
+    public void create() {
         ArrayList<String> namelist = con.getAllUuids();
 
         RDFConnectionRemoteBuilder builder = RDFConnectionFuseki.create()
                 .destination(destination_port);
-        //.destination("http://localhost:3030/name/sparql");
 
 
         try (RDFConnectionFuseki conn = (RDFConnectionFuseki) builder.build()) {
@@ -46,5 +49,6 @@ public class CreateUuids {
 
 
         }
+
     }
 }

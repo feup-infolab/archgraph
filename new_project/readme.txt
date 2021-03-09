@@ -1,1 +1,1 @@
-docker run -d --name fuseki -p 3030:3030 -e ADMIN_PASSWORD=pw123  -e FUSEKI_DATASET_1=ds -v ./volumes/fuseki/staging stain/jena-fuseki
+docker-compose up -d
