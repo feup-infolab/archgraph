@@ -3,7 +3,6 @@ package showcase;
 import org.apache.jena.rdf.model.*;
 import org.apache.jena.rdfconnection.RDFConnectionFuseki;
 import org.apache.jena.rdfconnection.RDFConnectionRemoteBuilder;
-import runner.Runner;
 
 public class Update {
     static String personURI = "http://erlangen-crm.org/200717/E999_Test";

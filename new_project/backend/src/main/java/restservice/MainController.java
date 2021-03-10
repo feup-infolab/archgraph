@@ -16,6 +16,8 @@ import showcase.Connection;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import showcase.CreateUuids;
+import showcase.FillExamples;
 
 
 @RestController
@@ -23,8 +25,6 @@ public class MainController {
     @Autowired
     private YAMLConfig myConfig;
 
-
-    //private final AtomicLong counter = new AtomicLong();
     private final Queries queries = new Queries();
 
     @CrossOrigin(origins = {"http://localhost:4200", "http://localhost:4201"})

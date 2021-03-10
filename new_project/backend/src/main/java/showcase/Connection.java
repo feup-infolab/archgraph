@@ -6,7 +6,6 @@ import org.apache.jena.rdf.model.*;
 import org.apache.jena.rdfconnection.RDFConnectionFuseki;
 import org.apache.jena.rdfconnection.RDFConnectionRemoteBuilder;
 import queries.Queries;
-import runner.Runner;
 
 import java.util.*;
 
@@ -179,6 +178,7 @@ public class Connection {
 
         try (RDFConnectionFuseki conn = (RDFConnectionFuseki) builder.build()) {
             Query query = querier.getAllUuids();
+            System.err.println("Query: "+ query.toString());
             ResultSet rs = conn.query(query).execSelect();
             while (rs.hasNext()) {
 
@@ -188,6 +188,7 @@ public class Connection {
 
             }
         }
+        System.out.println("getAllBaseUuids_list.size(): " + list.size());
         return list;
     }
 
@@ -215,9 +216,10 @@ public class Connection {
         RDFConnectionRemoteBuilder builder = RDFConnectionFuseki.create()
                 .destination(destination_port);
         ArrayList<String> list = new ArrayList<>();
+        Query query = null;
 
         try (RDFConnectionFuseki conn = (RDFConnectionFuseki) builder.build()) {
-            Query query = querier.getAllLevelofDescription();
+            query = querier.getAllLevelofDescription();
             QueryExecution qExec = conn.query(query);
             ResultSet rs = qExec.execSelect();
             while (rs.hasNext()) {
@@ -233,8 +235,10 @@ public class Connection {
             qExec.close();
 
         } catch (Exception e) {
-            System.out.print("error");
+            System.out.println("error:");
             System.out.println(e.getMessage());
+            System.out.println("Query: "+ query.toString());
+            System.out.println("Host: " + this.destination_port);
         }
         return list;
     }

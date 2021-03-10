@@ -8,7 +8,6 @@ import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.rdfconnection.RDFConnectionFuseki;
 import org.apache.jena.rdfconnection.RDFConnectionRemoteBuilder;
 import org.apache.jena.vocabulary.VCARD;
-import runner.Runner;
 
 import java.util.ArrayList;
 import java.util.UUID;
