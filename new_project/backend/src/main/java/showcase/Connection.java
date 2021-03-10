@@ -6,7 +6,6 @@ import org.apache.jena.rdf.model.*;
 import org.apache.jena.rdfconnection.RDFConnectionFuseki;
 import org.apache.jena.rdfconnection.RDFConnectionRemoteBuilder;
 import queries.Queries;
-import runner.Runner;
 
 import java.util.*;
 
@@ -179,6 +178,7 @@ public class Connection {
 
         try (RDFConnectionFuseki conn = (RDFConnectionFuseki) builder.build()) {
             Query query = querier.getAllUuids();
+            System.err.println("Query: "+ query.toString());
             ResultSet rs = conn.query(query).execSelect();
             while (rs.hasNext()) {
 
@@ -188,6 +188,7 @@ public class Connection {
 
             }
         }
+        System.out.println("getAllBaseUuids_list.size(): " + list.size());
         return list;
     }
 
