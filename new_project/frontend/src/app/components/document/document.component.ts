@@ -33,7 +33,7 @@ export class DocumentComponent implements OnInit {
   public reprodutionConditions: any[];
   public haveResults: boolean | undefined;
   public dataSource: any;
-  public columns: any[] = ['episaIdentifier', 'dglab Identifier','title' ];
+  public columns: any[] = ['episaIdentifier', 'dglabIdentifier', 'title' ];
   public isExpanded: boolean | undefined;
 
   constructor(

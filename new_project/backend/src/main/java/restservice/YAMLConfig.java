@@ -21,14 +21,14 @@ public class YAMLConfig {
 
     @Profile("dev")
     @Bean
-    public void devDataBaseConnection(){
-        System.err.println(this.host);
+    public void devDataBaseConnection() {
+        System.out.println("my host:" + this.host);
     }
 
     @Profile("prod")
     @Bean
-    public void prodDataBaseConnection(){
-        System.err.println(host);
+    public void prodDataBaseConnection() {
+        System.out.println("my host: " + this.host);
     }
 
 }

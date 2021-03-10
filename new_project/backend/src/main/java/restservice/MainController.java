@@ -37,7 +37,7 @@ public class MainController {
     @CrossOrigin(origins = {"http://localhost:4200", "http://localhost:4201"})
     @GetMapping("/doc")
     public String document(@RequestParam(value = "id", defaultValue = "") String uuid) {
-        Connection conn = new Connection("http://localhost:3030/");
+        Connection conn = new Connection(myConfig.getHost());
         HashMap<String, Object> list = new HashMap<>();
 
         HashMap<String, Object> list0 = new HashMap<>();
@@ -80,7 +80,7 @@ public class MainController {
     public String documentSummary(@RequestParam(value = "refcode", defaultValue = "") Object rcode) {
         String refcode = rcode.toString();
         refcode = "\"" + refcode + "\"";
-        Connection conn = new Connection("http://localhost:3030/");
+        Connection conn = new Connection(myConfig.getHost());
         HashMap<String, Object> list0 = new HashMap<>();
         ResponseClass uuidrep = new ResponseClass(list0);
         conn.obtainGeneralResponse(queries.getIdFromReference_codes_query(refcode), "id", uuidrep);
@@ -109,7 +109,7 @@ public class MainController {
     @CrossOrigin(origins = {"http://localhost:4200", "http://localhost:4201"})
     @GetMapping("/person")
     public ResponseClass person(@RequestParam(value = "id", defaultValue = "") String uuid) {
-        Connection conn = new Connection("http://localhost:3030/");
+        Connection conn = new Connection(myConfig.getHost());
         HashMap<String, Object> list = new HashMap<>();
         ResponseClass rep = new ResponseClass(list);
         rep = conn.obtainGeneralResponse(queries.getPerson(uuid), "person", rep);
@@ -119,7 +119,7 @@ public class MainController {
     @CrossOrigin(origins = {"http://localhost:4200", "http://localhost:4201"})
     @GetMapping("/place")
     public ResponseClass place(@RequestParam(value = "id", defaultValue = "") String uuid) {
-        Connection conn = new Connection("http://localhost:3030/");
+        Connection conn = new Connection(myConfig.getHost());
         HashMap<String, Object> list = new HashMap<>();
         ResponseClass rep = new ResponseClass(list);
         rep = conn.obtainGeneralResponse(queries.getPlace(uuid), "place", rep);
@@ -160,7 +160,7 @@ public class MainController {
 
         ArrayList<String> uuidList = new ArrayList<>();
 
-        Connection conn = new Connection("http://localhost:3030/");
+        Connection conn = new Connection(myConfig.getHost());
         HashMap<String, Object> list0 = new HashMap<>();
         ResponseClass uuidrep = new ResponseClass(list0);
         conn.obtainGeneralResponse(queries.getIdFromLevelOfDescription(descriptionLevel), "levelOfDescriptionId", uuidrep);
@@ -226,7 +226,7 @@ public class MainController {
     @CrossOrigin(origins = {"http://localhost:4200", "http://localhost:4201"})
     @GetMapping("/levelsdesc")
     public ArrayList<String> levels() {
-        Connection conn = new Connection("http://localhost:3030/");
+        Connection conn = new Connection(myConfig.getHost());
         HashMap<String, ArrayList<String>> list = new HashMap<>();
         ArrayList<String> alist = new ArrayList<>();
         alist = conn.getAllLevelsOfDesc();
