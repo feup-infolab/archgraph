@@ -18,20 +18,20 @@ public class RestServiceApplication {
             if (args[0].equals("production")) {
                 DEFAULT_host = Fuseki_host;
             }
-            Connection cn = new Connection(DEFAULT_host);
-            System.err.println("============================= UUIDS ================================");
-
-            if (cn.getAllBaseUuids().size() == 0) {
-                System.out.println("============================= Creating UUIDS ================================");
-                CreateUuids create = new CreateUuids(DEFAULT_host);
-                create.create();
-            }
-            if (cn.getAllMats().size() == 0) {
-                System.out.println("============================= Filling Data ================================");
-                FillExamples fillExamples = new FillExamples(DEFAULT_host);
-                fillExamples.fill();
-            }
-            SpringApplication.run(RestServiceApplication.class, args);
         }
+        Connection cn = new Connection(DEFAULT_host);
+        System.err.println("============================= UUIDS ================================");
+
+        if (cn.getAllBaseUuids().size() == 0) {
+            System.out.println("============================= Creating UUIDS ================================");
+            CreateUuids create = new CreateUuids(DEFAULT_host);
+            create.create();
+        }
+        if (cn.getAllMats().size() == 0) {
+            System.out.println("============================= Filling Data ================================");
+            FillExamples fillExamples = new FillExamples(DEFAULT_host);
+            fillExamples.fill();
+        }
+        SpringApplication.run(RestServiceApplication.class, args);
     }
 }
