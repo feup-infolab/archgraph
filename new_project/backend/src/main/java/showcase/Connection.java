@@ -14,8 +14,7 @@ import java.util.*;
 public class Connection {
     public Queries querier = new Queries();
 
-     public String destination_port;
-     // = Runner.DEFAULT_host + "name/sparql";
+    public String destination_port;
 
     public Connection(String destination_port) {
         this.destination_port = destination_port + "name/sparql";

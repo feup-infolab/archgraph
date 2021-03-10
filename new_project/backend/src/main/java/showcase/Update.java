@@ -9,8 +9,6 @@ public class Update {
     static String personURI = "http://erlangen-crm.org/200717/E999_Test";
     static String fullName = "John Smith";
     public String destination_port;
-    //= Runner.DEFAULT_host + "name/data";
-
 
     public Update(String destination_port) {
         this.destination_port = destination_port + "name/data";
@@ -54,9 +52,4 @@ public class Update {
             conn.commit();
         }
     }
-
-
-//    public static void main(String args[]) {
-//
-//    }
 }

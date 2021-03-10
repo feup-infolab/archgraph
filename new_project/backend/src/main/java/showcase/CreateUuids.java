@@ -19,10 +19,11 @@ public class CreateUuids {
     static String fullName = "Test Name";
     public String destination_port;
 
-    private Connection con;
+    private final Connection con;
 
     public CreateUuids(String host) {
-        this.destination_port = host + "name/data";
+        this.destination_port = host;
+        //+ "name/data";
         this.con = new Connection(this.destination_port);
     }
 
@@ -30,7 +31,7 @@ public class CreateUuids {
         ArrayList<String> namelist = con.getAllUuids();
 
         RDFConnectionRemoteBuilder builder = RDFConnectionFuseki.create()
-                .destination(destination_port);
+                .destination(destination_port + "/name/data");
 
 
         try (RDFConnectionFuseki conn = (RDFConnectionFuseki) builder.build()) {
@@ -46,8 +47,6 @@ public class CreateUuids {
                 conn.put(model);
             }
             conn.commit();
-
-
         }
 
     }
