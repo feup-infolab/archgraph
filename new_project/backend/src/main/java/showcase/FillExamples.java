@@ -5,17 +5,18 @@ import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.rdfconnection.RDFConnectionFuseki;
 import org.apache.jena.rdfconnection.RDFConnectionRemoteBuilder;
-import runner.Runner;
 
 public class FillExamples {
-    static String destination_port = Runner.DEFAULT_host + "name/data";
+    public String destination_port;
 
 
+    public FillExamples(String destination_port) {
+        this.destination_port = destination_port + "name/data";
+    }
 
-    public static void main(String args[]) {
+    public void fill() {
         RDFConnectionRemoteBuilder builder = RDFConnectionFuseki.create()
-                .destination(destination_port);
-        //.destination("http://localhost:3030/name/sparql");
+                .destination(this.destination_port);
 
 
         try (RDFConnectionFuseki conn = (RDFConnectionFuseki) builder.build()) {
@@ -123,4 +124,9 @@ public class FillExamples {
             conn.commit();
         }
     }
+//
+//
+//    public static void main(String args[]) {
+//
+//    }
 }

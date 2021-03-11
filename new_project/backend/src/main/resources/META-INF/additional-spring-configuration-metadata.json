@@ -1,0 +1,9 @@
+{
+  "properties": [
+
+    {
+      "name": "config.host",
+      "type": "java.lang.String",
+      "description": "Description for config.host."
+    }
+  ] }

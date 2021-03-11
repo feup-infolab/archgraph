@@ -3,15 +3,17 @@ package showcase;
 import org.apache.jena.rdf.model.*;
 import org.apache.jena.rdfconnection.RDFConnectionFuseki;
 import org.apache.jena.rdfconnection.RDFConnectionRemoteBuilder;
-import runner.Runner;
 
 public class Update {
     static String personURI = "http://erlangen-crm.org/200717/E999_Test";
     static String fullName = "John Smith";
-    static String destination_port = Runner.DEFAULT_host + "name/data";
+    public String destination_port;
 
+    public Update(String destination_port) {
+        this.destination_port = destination_port + "name/data";
+    }
 
-    public static void main(String args[]) {
+    void update() {
         RDFConnectionRemoteBuilder builder = RDFConnectionFuseki.create()
                 .destination(destination_port);
 

@@ -3,20 +3,20 @@ package showcase;
 import org.apache.jena.rdf.model.*;
 import org.apache.jena.rdfconnection.RDFConnectionFuseki;
 import org.apache.jena.rdfconnection.RDFConnectionRemoteBuilder;
-import runner.Runner;
-
-import java.util.List;
-
 public class Delete {
-    static String destination_port = Runner.DEFAULT_host + "name/data";
+    public String destination_port;
 
 
     static String personURI = "http://erlangen-crm.org/200717/E999_Test";
 
-    public static void main(String args[]) {
+    public Delete(String destination_port) {
+        this.destination_port = destination_port + "name/data";
+    }
+
+    void delete() {
+
         RDFConnectionRemoteBuilder builder = RDFConnectionFuseki.create()
-                .destination(destination_port);
-        //.destination("http://localhost:3030/name/sparql");
+                .destination(this.destination_port);
 
 
         try (RDFConnectionFuseki conn = (RDFConnectionFuseki) builder.build()) {
