@@ -22,13 +22,54 @@ services:
     restart: on-failure
     networks:
       - app
-  backend:
-    container_name: backend
+  middleware:
+    container_name: middleware
     build: ./backend
     ports:
       - 8080:8080
     depends_on:
       - fuseki
+    restart: on-failure
+    networks:
+      - app
+    # postgres database
+  backendnode:
+    container_name: backendnode
+    build: ./backendnode
+    ports:
+      - 8000:8000
+    volumes:
+      - ./volumes/backendnode:/data
+    restart: on-failure
+    networks:
+      - app
+  postgres:
+    image: postgres:12.3
+    container_name: postgres
+    environment:
+      - POSTGRES_DB=admin
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_HOST_AUTH_METHOD=trust # allow all connections without a password. This is *not* recommended for prod
+    volumes:
+      - ./volumes/postgres:/data/postgres
+    ports:
+      - '5432:5432'
+    restart: on-failure
+    networks:
+      - app
+      
+ # pgadmin for managing postgis db (runs at localhost:5050)
+  # To add the above postgres server to pgadmin, use hostname as defined by docker: 'postgres'
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin
+      - PGADMIN_DEFAULT_PASSWORD=admin
+      - PGADMIN_LISTEN_PORT=5050
+    ports:
+      - '5050:5050'
     restart: on-failure
     networks:
       - app
@@ -57,3 +98,5 @@ networks:
 #
 #
 #new_project_web-service -> docker run -itd --name webservice -p 4200:4200 --network my_network new_project_web-service ash
+
+#docker run -d --name dev-postgres -e POSTGRES_PASSWORD=Pass2020! -v /postgres-data:/var/lib/postgresql/data -p 5432:5432 postgres
