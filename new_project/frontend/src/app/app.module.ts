@@ -18,7 +18,7 @@ import {ActorComponent} from './components/actor/actor.component';
 import {PlaceComponent} from './components/place/place.component';
 import {OrganizationComponent} from './components/organization/organization.component';
 import {AdvancedSearchComponent} from './components/advancedSearch/advanced-search.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {GenericComponent} from './components/event/generic/generic.component';
 import {SupportComponent} from './components/event/support/support.component';
 import {RestorationComponent} from './components/event/restoration/restoration.component';
@@ -31,6 +31,8 @@ import {TableComponent} from './components/view/table.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableModule} from '@angular/material/table';
 import { HierarchyComponent } from './components/advancedSearch/hierarchy/hierarchy.component';
+import {AlertComponent} from './components/alert/alert.component';
+import { LoginComponent } from './components/account/login/login.component';
 
 @NgModule({
   imports: [BrowserModule,
@@ -39,7 +41,7 @@ import { HierarchyComponent } from './components/advancedSearch/hierarchy/hierar
     MaterialModule,
     RoutingModule,
     BrowserAnimationsModule,
-    LayoutModule, FormsModule, MatPaginatorModule, MatPaginatorModule, MatTableModule, MatTableModule,
+    LayoutModule, FormsModule, MatPaginatorModule, MatPaginatorModule, MatTableModule, MatTableModule, ReactiveFormsModule,
   ],
   providers: [MyService],
   declarations: [AppComponent,
@@ -61,7 +63,9 @@ import { HierarchyComponent } from './components/advancedSearch/hierarchy/hierar
     OrgSearchPageComponent,
     PlaceSearchPageComponent,
     TableComponent,
-    HierarchyComponent],
+    AlertComponent,
+    HierarchyComponent,
+    LoginComponent],
   exports: [AppComponent],
   bootstrap: [AppComponent]
 })

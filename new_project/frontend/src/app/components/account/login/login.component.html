@@ -1,0 +1,27 @@
+<div class="card">
+    <h4 class="card-header">Login</h4>
+    <div class="card-body">
+        <form (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <mat-form-field>
+                    <mat-label i18n>username</mat-label>
+                    <input type="text" name=username [(ngModel)]="username"/>
+                </mat-form-field>
+
+            </div>
+            <mat-form-field>
+                <mat-label i18n>Password</mat-label>
+                <input type="password" name="password"
+                       [(ngModel)]="password">
+            </mat-form-field>
+
+            <div class="form-group">
+                <button [disabled]="loading" class="btn btn-primary" (click)="login()">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Login
+                </button>
+                <a routerLink="../register" class="btn btn-link">Register</a>
+            </div>
+        </form>
+    </div>
+</div>

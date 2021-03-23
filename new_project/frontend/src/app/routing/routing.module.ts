@@ -16,11 +16,17 @@ import {EventSearchPageComponent} from '../components/event/searchPage/event-sea
 import {PlaceSearchPageComponent} from '../components/place/searchPage/place-search-page.component';
 import {OrgSearchPageComponent} from '../components/organization/searchPage/org-search-page.component';
 import {HierarchyComponent} from '../components/advancedSearch/hierarchy/hierarchy.component';
+import {LoginComponent} from '../components/account/login/login.component';
 
 const routes: Routes = [
   {
     path: 'home', component: HomeComponent, data: {
       title: 'Archgraph-HomePage'
+    }
+  },
+  {
+    path: 'login', component: LoginComponent, data: {
+      title: 'Archgraph-Login'
     }
   },
   {

@@ -1,14 +1,24 @@
 import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import {HttpClient, HttpParams} from '@angular/common/http';
+import {Router} from '@angular/router';
+import {map} from 'rxjs/operators';
+import {User} from '../models/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MyService {
   baseUrl = 'http://localhost:8080';
+  private userSubject: BehaviorSubject<User>;
+  public user: Observable<User>;
 
-  constructor(private http: HttpClient) {
+  constructor(private router: Router,
+              private http: HttpClient
+  ) {
+    const user: any = localStorage.getItem('user');
+    this.userSubject = new BehaviorSubject<User>(JSON.parse(user));
+    this.user = this.userSubject.asObservable();
   }
 
   getDocById(id: any): Observable<any> {
@@ -29,7 +39,7 @@ export class MyService {
   }
 
   getDescriptionLevels(): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}/levelsdesc`, );
+    return this.http.get<any>(`${this.baseUrl}/levelsdesc`);
   }
 
   getActorById(id: any): Observable<any> {
