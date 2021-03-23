@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start:dev": "./node_modules/.bin/nodemon ./bin/www -w app.js -w server",
+    "start:dev": "nodemon -r dotenv/config app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "db:create": "sequelize-cli db:create",
     "db:migrate": "sequelize-cli db:migrate",
@@ -16,13 +16,16 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.15.2",
+    "crypto": "^1.0.1",
     "express": "^4.14.0",
     "morgan": "^1.7.0",
     "pg": "^6.2.4",
     "pg-hstore": "^2.3.2",
-    "sequelize": "^6.6.0"
+    "sequelize": "^6.6.1"
   },
   "devDependencies": {
+    "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "eslint": "^2.13.1",
     "eslint-config-airbnb": "^9.0.1",

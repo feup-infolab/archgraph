@@ -1,97 +1,130 @@
 const User = require('../models').User;
+const bcrypt = require('bcrypt');
 
 module.exports = {
-    create(req, res) {
+    async create(req, res) {
         console.log(req.body);
-        return User
-            .create({
-                username: req.body.username,
-                password: req.body.password,
-                firstname: req.body.firstname,
-                lastname: req.body.lastname
+        const username = req.body.username;
 
-            })
-            .then((user) => res.status(201).send(user))
-            .catch((error) => res.status(400).send(error));
+        if (!username) {
+            res.status(400).send('username is required');
+        }
+        const user = await User.findOne({where: {username: username}})
+        if (user === null) {
+            try {
+
+                const user = await User.create({
+                    username: req.body.username,
+                    password: req.body.password,
+                    firstName: req.body.firstName,
+                    lastName: req.body.lastName,
+                });
+                res.status(201).send(user)
+            } catch (e) {
+                res.status(400).send(e.message)
+            }
+        } else {
+            res.status(400).send(`There is already user with username = ${username}`)
+        }
     },
-}
-exports.nao = function (req, res) {
-    res.send('NOT IMPLEMENTED: Author list');
-};
-/*
-    list(req, res) {
-        return Todo
-            .findAll({
-                include: [{
-                    model: TodoItem,
-                    as: 'todoItems',
-                }],
+    async getById(req, res) {
+        console.log(req.params)
+        try {
+            const user = await User.findByPk(req.params.id);
+            if (!user) {
+                return res.status(404).send({
+                    message: 'User Not Found',
+                });
+            }
+            return res.status(200).send(user);
+        } catch (e) {
+            return res.status(400).send(e.message)
+        }
+
+    },
+    async getAll(req, res) {
+        try {
+            const users = await User.findAll({
                 order: [
-                    ['createdAt', 'DESC'],
-                    [{model: TodoItem, as: 'todoItems'}, 'createdAt', 'ASC'],
+                    ['id', 'ASC'],
                 ],
-            })
-            .then((todos) => res.status(200).send(todos))
-            .catch((error) => res.status(400).send(error));
-    },
+            });
+            if (!users) {
+                return res.status(404).send({
+                    message: 'User Not Found',
+                });
+            }
+            return res.status(200).send(users);
+        } catch (e) {
+            res.status(400).send(e.message)
 
-    retrieve(req, res) {
-        return Todo
-            .findById(req.params.todoId, {
-                include: [{
-                    model: TodoItem,
-                    as: 'todoItems',
-                }],
-            })
-            .then((todo) => {
-                if (!todo) {
-                    return res.status(404).send({
-                        message: 'Todo Not Found',
-                    });
-                }
-                return res.status(200).send(todo);
-            })
-            .catch((error) => res.status(400).send(error));
+        }
     },
+    async delete(req, res) {
 
-    update(req, res) {
-        return Todo
-            .findById(req.params.todoId, {
-                include: [{
-                    model: TodoItem,
-                    as: 'todoItems',
-                }],
+        try {
+            const user = await User.findByPk(req.params.id);
+            if (!user) {
+                return res.status(400).send({
+                    message: 'User Not Found',
+                });
+            }
+
+            await user.destroy();
+            return res.status(200).send({
+                message: 'Deleted',
             })
-            .then(todo => {
-                if (!todo) {
-                    return res.status(404).send({
-                        message: 'Todo Not Found',
-                    });
-                }
-                return todo
-                    .update({
-                        title: req.body.title || todo.title,
-                    })
-                    .then(() => res.status(200).send(todo))
-                    .catch((error) => res.status(400).send(error));
-            })
-            .catch((error) => res.status(400).send(error));
+        } catch (e) {
+            return res.status(400).send(e.message)
+        }
     },
+    async update(req, res) {
+        const user = await User.findByPk(req.params.id);
+        if (!user) {
+            return res.status(404).send({
+                message: 'User Not Found',
+            });
+        }
+        try {
+            await user
+                .update({
+                    firstName: req.body.firstName || user.firstName,
+                    lastName: req.body.lastName || user.lastName,
+                    updatedAt: new Date(),
+                    password: req.body.password || user.password
+                })
+            return res.status(200).send(user)
+        } catch (e) {
+            return res.status(400).send(e.message)
+        }
+    },
+    async login(req, res) {
+        console.log(req.body);
+        const username = req.body.username;
+        const password = req.body.password;
 
-    destroy(req, res) {
-        return Todo
-            .findById(req.params.todoId)
-            .then(todo => {
-                if (!todo) {
-                    return res.status(400).send({
-                        message: 'Todo Not Found',
-                    });
-                }
-                return todo
-                    .destroy()
-                    .then(() => res.status(204).send())
-                    .catch((error) => res.status(400).send(error));
-            })
-            .catch((error) => res.status(400).send(error));
-    },*/
+        if (!username || !password) {
+            return res.status(400).send('username and password are required');
+        }
+        const user = await User.findOne({where: {username: username}})
+        console.log(user)
+        if(!user){
+            return res.status(400).send('username not exists');
+        }
+        const userPassword = user.getDataValue('password')
+
+
+        bcrypt.compare(password, userPassword, function (err, isMatch) {
+            if (err) {
+                throw err
+            } else if (!isMatch) {
+                return res.send(null)
+            } else {
+                return res.send(user)
+            }
+        })
+
+    }
+}
+
 

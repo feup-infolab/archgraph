@@ -25,5 +25,4 @@ module.exports = {
         "port": 5432,
         "dialect": "postgres"
     }
-
 }

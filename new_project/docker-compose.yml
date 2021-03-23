@@ -37,7 +37,7 @@ services:
     container_name: backendnode
     build: ./backendnode
     ports:
-      - 8000:8000
+      - 8010:8010
     volumes:
       - ./volumes/backendnode:/data
     restart: on-failure
@@ -52,7 +52,11 @@ services:
       - POSTGRES_PASSWORD=admin
       - POSTGRES_HOST_AUTH_METHOD=trust # allow all connections without a password. This is *not* recommended for prod
     volumes:
-      - ./volumes/postgres:/data/postgres
+      - ./postgres.conf:/etc/postgresql/postgresql.conf
+      - ./volumes/backendnode/data:/var/lib/postgresql/data
+      - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf
+    restart: always
     ports:
       - '5432:5432'
     restart: on-failure
