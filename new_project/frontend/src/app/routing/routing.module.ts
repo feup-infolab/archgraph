@@ -30,9 +30,7 @@ const routes: Routes = [
     }
   },
   {
-    path: 'doc/:id', component: DocumentComponent, data: {
-      title: 'Page Doc'
-    }
+    path: 'doc/:id', component: DocumentComponent
   },
   {
     path: 'searchdoc', component: DocSearchPageComponent, data: {

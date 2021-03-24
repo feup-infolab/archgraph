@@ -3,6 +3,7 @@ import {MyService} from '../../service/my.service';
 import {ActivatedRoute} from '@angular/router';
 import {MatTableDataSource} from '@angular/material/table';
 import {Document} from './searchPage/doc-search-page.component';
+import { Title } from '@angular/platform-browser';
 
 
 @Component({
@@ -39,6 +40,7 @@ export class DocumentComponent implements OnInit {
   constructor(
     private service: MyService,
     private route: ActivatedRoute,
+    private titleService: Title
   ) {
     this.titles = [];
     this.notes = [];
@@ -60,14 +62,17 @@ export class DocumentComponent implements OnInit {
     this.documentaryTraditions = [];
     this.reprodutionConditions = [];
     this.isExpanded = true;
-
   }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       this.episaIdentifier = params.get('id');
       this.getDocById(this.episaIdentifier);
+      this.setDocTitle(this.episaIdentifier);
     });
+  }
+  setDocTitle(title: string) {
+    this.titleService.setTitle('Doc '  + title);
   }
 
   getDocById(id: any) {

@@ -91,6 +91,7 @@ module.exports = {
                     firstName: req.body.firstName || user.firstName,
                     lastName: req.body.lastName || user.lastName,
                     updatedAt: new Date(),
+                    createdAt: user.createdAt,
                     password: req.body.password || user.password
                 })
             return res.status(200).send(user)
@@ -107,7 +108,6 @@ module.exports = {
             return res.status(400).send('username and password are required');
         }
         const user = await User.findOne({where: {username: username}})
-        console.log(user)
         if(!user){
             return res.status(400).send('username not exists');
         }

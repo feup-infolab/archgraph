@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 import {RouterModule} from '@angular/router';
-import {BrowserModule} from '@angular/platform-browser';
+import {BrowserModule, Title} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {LayoutModule} from '@angular/cdk/layout';
 import {AppComponent} from './app.component';
@@ -43,7 +43,7 @@ import { LoginComponent } from './components/account/login/login.component';
     BrowserAnimationsModule,
     LayoutModule, FormsModule, MatPaginatorModule, MatPaginatorModule, MatTableModule, MatTableModule, ReactiveFormsModule,
   ],
-  providers: [MyService],
+  providers: [MyService, Title],
   declarations: [AppComponent,
     DocumentComponent,
     FooterComponent,
