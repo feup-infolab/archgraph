@@ -1,4 +1,4 @@
-(async () => {
+ // (async () => {
     'use strict';
 
     const fs = require('fs');
@@ -7,21 +7,7 @@
     const env = process.env.NODE_ENV || 'development';
     const config = require(__dirname + '/../config/config.js')[env];
     const db = {};
-    const client = require('pgtools');
     const Sequelize = require('sequelize');
-
-    const dbName = process.env.DB_NAME || "db";
-    try {
-        await client.createdb({
-            host: process.env.DB_HOST,
-            port: process.env.DB_PORT,
-            user: 'admin',
-            password: 'admin',
-        }, dbName);
-    } catch (e) {
-        // Deal with the fact the chain failed
-    }
-
 
     let sequelize;
     if (config.use_env_variable) {
@@ -48,6 +34,7 @@
     db.Sequelize = Sequelize;
 
     console.log("All models were synchronized successfully.");
+    sequelize.sync({force: true})
 
     module.exports = db;
-})();
+ // })();

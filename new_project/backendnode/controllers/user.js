@@ -2,6 +2,7 @@ const User = require('../models').User;
 const bcrypt = require('bcrypt');
 
 module.exports = {
+
     async create(req, res) {
         console.log(req.body);
         const username = req.body.username;

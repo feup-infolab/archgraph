@@ -52,10 +52,7 @@ services:
       - POSTGRES_PASSWORD=admin
       - POSTGRES_HOST_AUTH_METHOD=trust # allow all connections without a password. This is *not* recommended for prod
     volumes:
-      - ./postgres.conf:/etc/postgresql/postgresql.conf
       - ./volumes/postgres/data:/var/lib/postgresql/data
-      - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql
-    command: postgres -c config_file=/etc/postgresql/postgresql.conf
     restart: always
     ports:
       - '5432:5432'
