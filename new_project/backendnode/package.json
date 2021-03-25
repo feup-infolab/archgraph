@@ -4,13 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start:dev": "nodemon -r dotenv/config app.js ",
+    "start:dev": "npm run db_create:dev && nodemon -r dotenv/config app.js development",
+    "start:prod": "npm run db_create:prod && nodemon -r dotenv/config app.js production",
     "test": "echo \"Error: no test specified\" && exit 1",
     "db:migrate": "sequelize-cli db:migrate",
     "db:seeds": "sequelize-cli db:seed:all",
     "db:g:seed": "sequelize-cli seed:generate --name",
-    "db:create": "node config/createdb.js",
-    "populate": "node config/populate.js "
+    "db_create:dev": "node config/createdb.js development",
+    "db_create:prod": "node config/createdb.js production",
+
+    "populate": "node config/populate.js development "
   },
   "keywords": [],
   "author": "",
@@ -19,6 +22,7 @@
     "body-parser": "^1.15.2",
     "crypto": "^1.0.1",
     "express": "^4.14.0",
+    "if-env": "^1.0.4",
     "morgan": "^1.7.0",
     "pg": "^6.2.4",
     "pg-hstore": "^2.3.2",

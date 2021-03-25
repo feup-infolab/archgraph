@@ -8,5 +8,4 @@ EXPOSE 8010
 EXPOSE 8010/tcp
 EXPOSE 8010/udp
 
-
-CMD ["npm", "run", "start:dev"]
+CMD ["npm", "run", "start:prod"]

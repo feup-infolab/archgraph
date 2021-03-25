@@ -1,24 +1,30 @@
-(async () => {
-
-    const path = require('path');
-    const basename = path.basename(__filename);
-    const env = process.env.NODE_ENV || 'development';
-    const config = require(__dirname + '/../config/config.js')[env];
-    const db = {};
+async function populate() {
+    var env;
+    var myArgs = process.argv.slice(2);
+    if (myArgs.length > 0) {
+        env = myArgs[0]
+    } else {
+        env = "development"
+    }
+    const config = require(__dirname + '/config.js')[env];
     const Sequelize = require('sequelize');
 
     let sequelize;
-    if (config.use_env_variable) {
-        sequelize = new Sequelize(process.env[config.use_env_variable], config);
-    } else {
-        sequelize = new Sequelize(config.database, config.username, config.password, config);
-    }
-    const User = require('../models').User;
-    await User.create({
-        username: "olza",
-        password: "a",
-        firstName: "as",
-        lastName: "asas",
-    });
-})();
+    sequelize = new Sequelize(config.database, config.username, config.password, config);
+    const Users = require('../models/users')(sequelize, Sequelize);
 
+
+    try {
+        await Users.create({
+            username: 'admin',
+            password: 'admin',
+            firstName: 'admin',
+            lastName: 'admin',
+        });
+        console.log("Admin added to the database")
+    } catch (e) {
+        console.log("Admin already exists into database")
+    }
+}
+
+populate()

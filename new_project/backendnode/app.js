@@ -6,10 +6,16 @@ const cors = require('cors');
 const app = express();
 app.use(cors())
 
-
+var env;
+var myArgs = process.argv.slice(2);
+if(myArgs.length>0){
+    env = myArgs[0]
+}
+const config = require(__dirname + '/config/config.js')[env];
+console.log('host: ' + config.host)
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({extended: true})); // support encoded bodies
-const PORT = process.env.PORT
+const PORT = config.my_port
 
 const userRoutes = require('./routes/user');
 const indexRoutes = require('./routes/index');
