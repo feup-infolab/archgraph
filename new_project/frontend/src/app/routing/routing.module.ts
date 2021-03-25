@@ -16,6 +16,7 @@ import {EventSearchPageComponent} from '../components/event/searchPage/event-sea
 import {PlaceSearchPageComponent} from '../components/place/searchPage/place-search-page.component';
 import {OrgSearchPageComponent} from '../components/organization/searchPage/org-search-page.component';
 import {HierarchyComponent} from '../components/advancedSearch/hierarchy/hierarchy.component';
+import {LoginComponent} from '../components/account/login/login.component';
 
 const routes: Routes = [
   {
@@ -24,9 +25,12 @@ const routes: Routes = [
     }
   },
   {
-    path: 'doc/:id', component: DocumentComponent, data: {
-      title: 'Page Doc'
+    path: 'login', component: LoginComponent, data: {
+      title: 'Archgraph-Login'
     }
+  },
+  {
+    path: 'doc/:id', component: DocumentComponent
   },
   {
     path: 'searchdoc', component: DocSearchPageComponent, data: {
