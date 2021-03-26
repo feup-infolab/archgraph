@@ -22,6 +22,10 @@ public class RestServiceApplication {
         Connection cn = new Connection(DEFAULT_host);
         System.err.println("============================= UUIDS ================================");
 
+        System.err.println("IS THIS CHANGING?!");
+        cn.importOWL();
+
+
         if (cn.getAllBaseUuids().size() == 0) {
             System.out.println("============================= Creating UUIDS ================================");
             CreateUuids create = new CreateUuids(DEFAULT_host);
@@ -32,6 +36,9 @@ public class RestServiceApplication {
             FillExamples fillExamples = new FillExamples(DEFAULT_host);
             fillExamples.fill();
         }
+        System.err.println("===========================IS THIS CHANGING?!==========================================");
         SpringApplication.run(RestServiceApplication.class, args);
+
+
     }
 }

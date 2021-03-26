@@ -9,6 +9,7 @@ RUN mvn -f /backend/pom.xml clean package
 FROM adoptopenjdk/openjdk14:jdk-14.0.2_12
 # copy the packaged jar file into our docker image
 COPY ./target/back-end.jar /archgraph.jar
+COPY ./owls/Exemplo-25registos.owl /backend/owls/Exemplo-25registos.owl
  
 EXPOSE 8080
 EXPOSE 8080/tcp
