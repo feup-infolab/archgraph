@@ -17,6 +17,8 @@ import {PlaceSearchPageComponent} from '../components/place/searchPage/place-sea
 import {OrgSearchPageComponent} from '../components/organization/searchPage/org-search-page.component';
 import {HierarchyComponent} from '../components/advancedSearch/hierarchy/hierarchy.component';
 import {LoginComponent} from '../components/account/login/login.component';
+import {RegisterComponent} from '../components/account/register/register.component';
+import {CreateDocComponent} from '../components/document/create/create-doc.component';
 
 const routes: Routes = [
   {
@@ -30,7 +32,17 @@ const routes: Routes = [
     }
   },
   {
+    path: 'register', component: RegisterComponent, data: {
+      title: 'Archgraph-Register'
+    }
+  },
+  {
     path: 'doc/:id', component: DocumentComponent
+  },
+  {
+    path: 'createdoc', component: CreateDocComponent,  data: {
+      title: 'Archgraph-Create-Doc'
+    }
   },
   {
     path: 'searchdoc', component: DocSearchPageComponent, data: {

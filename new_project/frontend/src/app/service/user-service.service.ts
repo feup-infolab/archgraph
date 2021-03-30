@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {User} from '../models';
 import {map} from 'rxjs/operators';
-import {BehaviorSubject, Observable} from 'rxjs';
+import {BehaviorSubject, Observable, Subject} from 'rxjs';
 import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 
@@ -10,7 +10,7 @@ import {HttpClient} from '@angular/common/http';
 })
 export class UserServiceService {
   baseUrl = 'http://localhost:8010';
-  private userSubject: BehaviorSubject<User>;
+  public userSubject: BehaviorSubject<User>;
   public user: Observable<User>;
 
   constructor(private router: Router,
@@ -21,13 +21,12 @@ export class UserServiceService {
     this.user = this.userSubject.asObservable();
   }
 
-  public get userValue(): User {
-    return this.userSubject.value;
+  getObservableUser(): Observable<any> {
+    return this.userSubject.asObservable();
   }
 
-
   login(username: any, password: any) {
-    return this.http.post<any>(`${this.baseUrl}/user/login`, { username, password })
+    return this.http.post<any>(`${this.baseUrl}/user/login`, {username, password})
       .pipe(map(user => {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         localStorage.setItem('user', JSON.stringify(user));
@@ -57,19 +56,19 @@ export class UserServiceService {
   }
 
   update(id: string, params: any) {
-    return this.http.put(`${this.baseUrl}/users/${id}`, params)
-      .pipe(map(x => {
-        // update stored user if the logged in user updated their own record
-        // tslint:disable-next-line:triple-equals
-        if (id == this.userValue.id) {
-          // update local storage
-          const user = { ...this.userValue, ...params };
-          localStorage.setItem('user', JSON.stringify(user));
-
-          // publish updated user to subscribers
-          this.userSubject.next(user);
-        }
-        return x;
-      }));
+    // return this.http.put(`${this.baseUrl}/users/${id}`, params)
+    //   .pipe(map(x => {
+    //     // update stored user if the logged in user updated their own record
+    //     // tslint:disable-next-line:triple-equals
+    //     if (id == this.userValue.id) {
+    //       // update local storage
+    //       const user = {...this.userValue, ...params};
+    //       localStorage.setItem('user', JSON.stringify(user));
+    //
+    //       // publish updated user to subscribers
+    //       this.userSubject.next(user);
+    //     }
+    //     return x;
+    //   }));
   }
 }

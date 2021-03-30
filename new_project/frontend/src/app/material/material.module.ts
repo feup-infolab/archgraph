@@ -70,6 +70,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MatSortModule,
     MatTableModule,
     MatTabsModule,
+    CommonModule
   ]
 })
 export class MaterialModule { }

@@ -23,18 +23,18 @@ module.exports = (sequelize, DataTypes) => {
                 notNull: {msg: "username is required"},
             },
         },
-        firstName: {
+        firstname: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
-                notNull: {msg: "firstName is required"},
+                notNull: {msg: "firstname is required"},
             },
         },
-        lastName: {
+        lastname: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
-                notNull: {msg: "lastName is required"},
+                notNull: {msg: "lastname is required"},
             },
         },
         password: {
@@ -51,9 +51,19 @@ module.exports = (sequelize, DataTypes) => {
                 this.setDataValue('password', hash);
             },
         },
+        createdAt: {
+            allowNull: true,
+            type: DataTypes.DATE,
+            field: 'created_at'
+        },
+        updatedAt: {
+            allowNull: true,
+            type: DataTypes.DATE,
+            field: 'updated_at'
+        }
     }, {
         sequelize,
-        modelName: 'Users',
+        modelName: 'users',
     });
     return Users;
 };

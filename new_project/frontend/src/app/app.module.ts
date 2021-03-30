@@ -8,7 +8,7 @@ import {AppComponent} from './app.component';
 import {RoutingModule} from './routing/routing.module';
 
 import {MaterialModule} from './material/material.module';
-import {MyService} from './service/my.service';
+import {MyService} from './service';
 import {DocumentComponent} from './components/document/document.component';
 import {FooterComponent} from './components/home/footer/footer.component';
 import {HeaderComponent} from './components/home/header/header.component';
@@ -33,6 +33,8 @@ import {MatTableModule} from '@angular/material/table';
 import { HierarchyComponent } from './components/advancedSearch/hierarchy/hierarchy.component';
 import {AlertComponent} from './components/alert/alert.component';
 import { LoginComponent } from './components/account/login/login.component';
+import { RegisterComponent } from './components/account/register/register.component';
+import { CreateDocComponent } from './components/document/create/create-doc.component';
 
 @NgModule({
   imports: [BrowserModule,
@@ -65,7 +67,9 @@ import { LoginComponent } from './components/account/login/login.component';
     TableComponent,
     AlertComponent,
     HierarchyComponent,
-    LoginComponent],
+    LoginComponent,
+    RegisterComponent,
+    CreateDocComponent],
   exports: [AppComponent],
   bootstrap: [AppComponent]
 })

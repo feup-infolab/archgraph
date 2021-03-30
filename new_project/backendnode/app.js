@@ -36,6 +36,7 @@ app.listen(PORT, function () {
 
 
 //
-//yarn sequelize-cli model:generate --name User --attributes username:string,firstName:string,lastName:string,password:string
+//yarn sequelize-cli model:generate --name User --attributes username:string,firstname:string,lastname:string,password:string
 //yarn db:g:seed users
 //yarn db:g:migration addPassword
+//psql -h localhost -U admin -d db -p 5432 -a -f config/populate.sql

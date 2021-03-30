@@ -6,8 +6,8 @@ module.exports = {
      await queryInterface.bulkInsert('Users', [{
        username: 'admin',
        password: 'admin',
-       firstName: 'admin',
-       lastName: 'admin',
+       firstname: 'admin',
+       lastname: 'admin',
      }], {});
 
   },

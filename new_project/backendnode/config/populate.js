@@ -16,10 +16,10 @@ async function populate() {
 
     try {
         await Users.create({
-            username: 'admin',
+            username: 'admina',
             password: 'admin',
-            firstName: 'admin',
-            lastName: 'admin',
+            firstname: 'admin',
+            lastname: 'admin',
         });
         console.log("Admin added to the database")
     } catch (e) {

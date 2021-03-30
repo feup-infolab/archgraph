@@ -12,8 +12,7 @@
     "db:g:seed": "sequelize-cli seed:generate --name",
     "db_create:dev": "node config/createdb.js development",
     "db_create:prod": "node config/createdb.js production",
-
-    "populate": "node config/populate.js development "
+    "populate": "node config/populate.js development"
   },
   "keywords": [],
   "author": "",

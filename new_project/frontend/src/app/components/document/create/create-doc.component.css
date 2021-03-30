@@ -1,0 +1,45 @@
+.loginfields {
+    display: flex;
+    flex-direction: column;
+    border-style: double;
+    width: 50%;
+    margin: auto;
+    margin-bottom: 1em;
+    margin-top: 1em;
+
+
+}
+
+.title {
+    margin: auto;
+    font-size: 1.5em;
+}
+.field{
+    margin-left: 1em;
+    margin-bottom: 0.5em;
+    display: inline-block;
+    width: 40%;
+}
+.label{
+    margin-left: 1em;
+    margin-bottom: 0.5em;
+    display: inline-block;
+    width: 40%;
+}
+.form-group{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10%;
+}
+/*.alert-danger {*/
+/*    background-color: #f44336; !* Red *!*/
+/*}*/
+.alert-success {
+    background-color: #36f456;
+}
+.alert{
+    padding: 0.5em;
+    color: red;
+    /*text-align: center;*/
+}

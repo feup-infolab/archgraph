@@ -4,6 +4,7 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {map} from 'rxjs/operators';
 import {User} from '../models/user';
+import {AbstractControl} from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -94,6 +95,12 @@ export class MyService {
       // .set('identifier', searchObject.identifier);
       .set('query', searchObject);
     return this.http.get(`${this.baseUrl}/searchplace`, {params});
+  }
+
+
+  createDoc(form: any): Observable<any> {
+    console.log(form);
+    return this.http.post<any>(`${this.baseUrl}/createdoc`, form);
   }
 }
 

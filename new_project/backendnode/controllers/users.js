@@ -1,4 +1,4 @@
-const Users = require('../models').Users;
+const Users = require('../models').users;
 const bcrypt = require('bcrypt');
 
 module.exports = {
@@ -17,8 +17,8 @@ module.exports = {
                 const user = await Users.create({
                     username: req.body.username,
                     password: req.body.password,
-                    firstName: req.body.firstName,
-                    lastName: req.body.lastName,
+                    firstname: req.body.firstname,
+                    lastname: req.body.lastname,
                 });
                 res.status(201).send(user)
             } catch (e) {
@@ -89,10 +89,10 @@ module.exports = {
         try {
             await user
                 .update({
-                    firstName: req.body.firstName || user.firstName,
-                    lastName: req.body.lastName || user.lastName,
+                    firstname: req.body.firstname || user.firstname,
+                    lastname: req.body.lastname || user.lastname,
                     updatedAt: new Date(),
-                    createdAt: user.createdAt,
+                    createdat: user.createdat,
                     password: req.body.password || user.password
                 })
             return res.status(200).send(user)

@@ -12,8 +12,8 @@ services:
     restart: on-failure
     networks:
       - app
-  webservice:
-    container_name: webservice
+  webapp:
+    container_name: webapp
     build: ./frontend
     ports:
       - 4200:4200

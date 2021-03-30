@@ -1,0 +1,64 @@
+<div class="card">
+    <div class="card-body">
+        <form [formGroup]="docForm">
+            <div class="loginfields">
+                <h3 class="title">Title</h3>
+                <label class="field">Title:
+                    <input type="text" placeholder="title" formControlName="title">
+                </label>
+                <label class="field">Type:
+                    <input type="text" placeholder="type" formControlName="type">
+                </label>
+                <div *ngIf="submitted">
+                    <div *ngIf=" docForm.controls['title'].errors" class="alert alert-danger" role="alert">
+                        Please enter title
+                    </div>
+                    <div *ngIf="docForm.controls['type'].errors" class="alert alert-danger" role="alert">
+                        Please enter type
+                    </div>
+                </div>
+            </div>
+
+            <div formGroupName="materials" class="loginfields">
+                <h3 class="title">Materials</h3>
+                <label class="field">Material:
+                    <input type="text" placeholder="material" formControlName="material">
+                </label>
+
+                <label class="field">Component:
+                    <input type="text" placeholder="component" formControlName="component">
+                </label>
+            </div>
+
+            <div formGroupName="dimensions" class="loginfields">
+                <h3 class="title">Dimensions</h3>
+                <label class="field">Material:
+                    <input type="text" placeholder="dimension" formControlName="dimension">
+                </label>
+
+                <label class="field">Value:
+                    <input type="text" placeholder="value" formControlName="value">
+                </label>
+                <label class="field">Measurement Unit:
+                    <input type="text" placeholder="Measurement Unit" formControlName="measurementUnit">
+                </label>
+                <label class="field">Component:
+                    <input type="text" placeholder="component" formControlName="component">
+                </label>
+            </div>
+
+            <div class="form-group">
+                <button [disabled]="loading" class="btn btn-primary" (click)="createDoc()">
+                    <span class="spinner-border spinner-border-sm mr-1"></span>
+                    Create
+                </button>
+                <button [disabled]="loading" class="btn btn-primary" (click)="goToHome()">
+                    <span class="spinner-border spinner-border-sm mr-1"></span>
+                    Home
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+</div>
