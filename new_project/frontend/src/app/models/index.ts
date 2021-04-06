@@ -1,2 +1,2 @@
-export * from './alert';
+export * from '../_alert/alert.model';
 export * from './user';

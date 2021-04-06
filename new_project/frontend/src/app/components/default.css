@@ -1,0 +1,17 @@
+.doc-content {
+    margin-bottom: 6em;
+}
+
+.btn-mg-1em {
+    margin: 1em;
+}
+
+.mat-success {
+    background-color: green;
+    color: #fff;
+}
+
+.mat-error {
+    background-color: red;
+    color: #fff;
+}

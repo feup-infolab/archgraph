@@ -1,7 +1,16 @@
-const Users = require('../models').Users;
+const Users = require('../models').users;
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+let env;
+const myArgs = process.argv.slice(2);
+if (myArgs.length > 0) {
+    env = myArgs[0]
+}
+const config = require(__dirname + '/../config/config.js')[env];
+
 
 module.exports = {
+
 
     async create(req, res) {
         console.log(req.body);
@@ -17,8 +26,8 @@ module.exports = {
                 const user = await Users.create({
                     username: req.body.username,
                     password: req.body.password,
-                    firstName: req.body.firstName,
-                    lastName: req.body.lastName,
+                    firstname: req.body.firstname,
+                    lastname: req.body.lastname,
                 });
                 res.status(201).send(user)
             } catch (e) {
@@ -43,7 +52,7 @@ module.exports = {
         }
 
     },
-    async getAll(req, res) {
+    async getAll(req, res, next) {
         try {
             const users = await Users.findAll({
                 order: [
@@ -89,10 +98,10 @@ module.exports = {
         try {
             await user
                 .update({
-                    firstName: req.body.firstName || user.firstName,
-                    lastName: req.body.lastName || user.lastName,
+                    firstname: req.body.firstname || user.firstname,
+                    lastname: req.body.lastname || user.lastname,
                     updatedAt: new Date(),
-                    createdAt: user.createdAt,
+                    createdat: user.createdat,
                     password: req.body.password || user.password
                 })
             return res.status(200).send(user)
@@ -109,11 +118,10 @@ module.exports = {
             return res.status(400).send('username and password are required');
         }
         const user = await Users.findOne({where: {username: username}})
-        if(!user){
+        if (!user) {
             return res.status(400).send('username not exists');
         }
         const userPassword = user.getDataValue('password')
-
 
         bcrypt.compare(password, userPassword, function (err, isMatch) {
             if (err) {
@@ -121,9 +129,15 @@ module.exports = {
             } else if (!isMatch) {
                 return res.send(null)
             } else {
-                return res.send(user)
+
+                const token = jwt.sign({id: user.id}, config.secret, {
+                    expiresIn: 86400 // expires in 24 hours
+                });
+                const newUser = Object.assign(user.toJSON(), {token: token});
+
+                return res.status(200).send(newUser);
             }
         })
 
-    }
+    },
 }

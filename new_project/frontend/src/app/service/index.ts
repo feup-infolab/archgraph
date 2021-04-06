@@ -1,4 +1,4 @@
-export * from './my.service';
-export * from './alert.service';
-export * from './user-service.service';
+export * from './fuseki.service';
+export * from '../_alert/alert.service';
+export * from './user.service';
 

@@ -12,8 +12,7 @@
     "db:g:seed": "sequelize-cli seed:generate --name",
     "db_create:dev": "node config/createdb.js development",
     "db_create:prod": "node config/createdb.js production",
-
-    "populate": "node config/populate.js development "
+    "populate": "node config/populate.js development"
   },
   "keywords": [],
   "author": "",
@@ -21,8 +20,11 @@
   "dependencies": {
     "body-parser": "^1.15.2",
     "crypto": "^1.0.1",
+    "dotenv-safe": "^8.2.0",
     "express": "^4.14.0",
     "if-env": "^1.0.4",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.29.1",
     "morgan": "^1.7.0",
     "pg": "^6.2.4",
     "pg-hstore": "^2.3.2",

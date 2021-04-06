@@ -3,72 +3,66 @@ import {Router, ActivatedRoute} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {first} from 'rxjs/operators';
 
-import {UserServiceService, AlertService} from '../../../service';
+
+import {UserService} from '../../../service';
 
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css', '../../default.css']
 })
 export class LoginComponent implements OnInit {
-  public username: any;
-  public password: any;
+  public loginForm: FormGroup;
+  public loading = false;
+  public submitted = false;
+  returnUrl: string | undefined;
+  error = '';
 
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private service: UserServiceService,
+    private service: UserService,
   ) {
-    // redirect to home if already logged in
-    // if (this.service.userValue) {
-    //   this.router.navigate(['/']);
-    // }
+    this.loginForm = this.formBuilder.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required]
+    });
+    if (this.service.currentUserValue) {
+      this.router.navigate(['/']);
+    }
   }
 
-
-  loading = false;
-  submitted = false;
-  returnUrl: string | undefined;
-
-  // convenience getter for easy access to form fields
-
-
   ngOnInit() {
-
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
   }
 
-  onSubmit() {
+  get formControls() {
+    return this.loginForm.controls;
+  }
+
+  login() {
     this.submitted = true;
 
-    // reset alerts on submit
-    // this.alertService.clear();
-
     // stop here if form is invalid
-    // @ts-ignore
     if (this.loginForm.invalid) {
       return;
     }
 
     this.loading = true;
-
-  }
-
-  login() {
-    console.log(this.username + this.password);
-    this.service.login(this.username, this.password)
+    this.service.login(this.formControls.username.value, this.formControls.password.value)
       .subscribe(result => {
-          if (this.service.userValue) {
-            this.router.navigate(['/']);
-          }else {
+          if (this.service.getObservableUser()) {
             this.router.navigate(['/']);
           }
         }
       );
   }
 
+  register() {
+    this.router.navigate(['/register']);
+  }
 }
 

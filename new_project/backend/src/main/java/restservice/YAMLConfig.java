@@ -10,7 +10,6 @@ import org.springframework.context.annotation.Profile;
 public class YAMLConfig {
 
     private String host;
-
     public String getHost() {
         return host;
     }
@@ -30,5 +29,4 @@ public class YAMLConfig {
     public void prodDataBaseConnection() {
         System.out.println("my host: " + this.host);
     }
-
 }

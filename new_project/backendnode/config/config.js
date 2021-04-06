@@ -7,7 +7,8 @@ module.exports = {
         "host": '127.0.0.1',
         "port": 5432,
         "my_port": 8010,
-        "dialect": 'postgres'
+        "dialect": 'postgres',
+        "secret": 'IHaveASecurePassword'
     },
     "test": {
         "username": 'admin',
@@ -16,7 +17,8 @@ module.exports = {
         "host": '127.0.0.1',
         "port": 5432,
         "my_port": 8010,
-        "dialect": 'postgres'
+        "dialect": 'postgres',
+        "secret": 'IHaveASecurePassword'
     },
     "production": {
         "username": 'admin',
@@ -25,7 +27,7 @@ module.exports = {
         "host": 'postgres',
         "port": 5432,
         "my_port": 8010,
-        "dialect": 'postgres'
-
+        "dialect": 'postgres',
+        "secret": 'IHaveASecurePassword'
     }
 }
