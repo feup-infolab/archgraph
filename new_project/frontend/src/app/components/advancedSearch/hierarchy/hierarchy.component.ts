@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-hierarchy',
   templateUrl: './hierarchy.component.html',
-  styleUrls: ['./hierarchy.component.css']
+  styleUrls: ['./hierarchy.component.css' , '../../default.css']
 })
 export class HierarchyComponent implements OnInit {
 

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {MyService} from '../../service/my.service';
+import {FusekiService} from '../../service';
 import {ActivatedRoute} from '@angular/router';
 import {MatTableDataSource} from '@angular/material/table';
 import {Document} from './searchPage/doc-search-page.component';
@@ -9,7 +9,7 @@ import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-my',
   templateUrl: './document.component.html',
-  styleUrls: ['./document.component.css']
+  styleUrls: ['./document.component.css', '../default.css']
 })
 export class DocumentComponent implements OnInit {
   public titles: any[];
@@ -38,7 +38,7 @@ export class DocumentComponent implements OnInit {
   public isExpanded: boolean | undefined;
 
   constructor(
-    private service: MyService,
+    private service: FusekiService,
     private route: ActivatedRoute,
     private titleService: Title
   ) {

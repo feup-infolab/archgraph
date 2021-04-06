@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {RouterModule} from '@angular/router';
 import {BrowserModule, Title} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -8,7 +8,7 @@ import {AppComponent} from './app.component';
 import {RoutingModule} from './routing/routing.module';
 
 import {MaterialModule} from './material/material.module';
-import {MyService} from './service';
+import {FusekiService} from './service';
 import {DocumentComponent} from './components/document/document.component';
 import {FooterComponent} from './components/home/footer/footer.component';
 import {HeaderComponent} from './components/home/header/header.component';
@@ -30,11 +30,13 @@ import {PlaceSearchPageComponent} from './components/place/searchPage/place-sear
 import {TableComponent} from './components/view/table.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableModule} from '@angular/material/table';
-import { HierarchyComponent } from './components/advancedSearch/hierarchy/hierarchy.component';
-import {AlertComponent} from './components/alert/alert.component';
-import { LoginComponent } from './components/account/login/login.component';
-import { RegisterComponent } from './components/account/register/register.component';
-import { CreateDocComponent } from './components/document/create/create-doc.component';
+import {HierarchyComponent} from './components/advancedSearch/hierarchy/hierarchy.component';
+import {LoginComponent} from './components/account/login/login.component';
+import {RegisterComponent} from './components/account/register/register.component';
+import {CreateAndUpdateDocComponent} from './components/document/createAndUpdate/create-and-update-doc.component';
+import {ErrorInterceptor} from './_helpers/ErrorInterceptor';
+import {JwtInterceptor} from './_helpers/JwtInterceptor';
+import { AlertModule } from './_alert/alert.module';
 
 @NgModule({
   imports: [BrowserModule,
@@ -42,10 +44,14 @@ import { CreateDocComponent } from './components/document/create/create-doc.comp
     HttpClientModule,
     MaterialModule,
     RoutingModule,
+    AlertModule,
     BrowserAnimationsModule,
     LayoutModule, FormsModule, MatPaginatorModule, MatPaginatorModule, MatTableModule, MatTableModule, ReactiveFormsModule,
   ],
-  providers: [MyService, Title],
+  providers: [FusekiService, Title,
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+  ],
   declarations: [AppComponent,
     DocumentComponent,
     FooterComponent,
@@ -65,11 +71,11 @@ import { CreateDocComponent } from './components/document/create/create-doc.comp
     OrgSearchPageComponent,
     PlaceSearchPageComponent,
     TableComponent,
-    AlertComponent,
     HierarchyComponent,
     LoginComponent,
     RegisterComponent,
-    CreateDocComponent],
+    CreateAndUpdateDocComponent,
+  ],
   exports: [AppComponent],
   bootstrap: [AppComponent]
 })

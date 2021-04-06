@@ -20,6 +20,9 @@ module.exports = {
             lastname: {
                 type: Sequelize.STRING
             },
+            role: {
+                type: Sequelize.STRING
+            },
             password: {
                 type: Sequelize.STRING
             },

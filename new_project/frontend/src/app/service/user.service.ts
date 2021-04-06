@@ -8,7 +8,7 @@ import {HttpClient} from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class UserServiceService {
+export class UserService {
   baseUrl = 'http://localhost:8010';
   public userSubject: BehaviorSubject<User>;
   public user: Observable<User>;
@@ -21,6 +21,9 @@ export class UserServiceService {
     this.user = this.userSubject.asObservable();
   }
 
+  public get currentUserValue(): User {
+    return this.userSubject.value;
+  }
   getObservableUser(): Observable<any> {
     return this.userSubject.asObservable();
   }
@@ -28,7 +31,6 @@ export class UserServiceService {
   login(username: any, password: any) {
     return this.http.post<any>(`${this.baseUrl}/user/login`, {username, password})
       .pipe(map(user => {
-        // store user details and jwt token in local storage to keep user logged in between page refreshes
         localStorage.setItem('user', JSON.stringify(user));
         this.userSubject.next(user);
         return user;
@@ -36,11 +38,11 @@ export class UserServiceService {
   }
 
   logout() {
-    // remove user from local storage and set current user to null
     localStorage.removeItem('user');
     // @ts-ignore
     this.userSubject.next(null);
-    this.router.navigate(['/account/login']);
+    this.router.navigate(['/home']);
+    return;
   }
 
   register(user: User) {
@@ -71,4 +73,5 @@ export class UserServiceService {
     //     return x;
     //   }));
   }
+
 }

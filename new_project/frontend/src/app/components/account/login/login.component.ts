@@ -4,13 +4,13 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {first} from 'rxjs/operators';
 
 
-import {UserServiceService, AlertService} from '../../../service';
+import {UserService} from '../../../service';
 
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css', '../../default.css']
 })
 export class LoginComponent implements OnInit {
   public loginForm: FormGroup;
@@ -23,15 +23,15 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private service: UserServiceService,
+    private service: UserService,
   ) {
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
     });
-    // if (this.service.getObservableUser()) {
-    //   this.router.navigate(['/']);
-    // }
+    if (this.service.currentUserValue) {
+      this.router.navigate(['/']);
+    }
   }
 
   ngOnInit() {

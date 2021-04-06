@@ -1,17 +1,17 @@
 import {Component, OnInit} from '@angular/core';
-import {MyService} from '../../../service/my.service';
-import {MySearchComponent} from '../../../myComponent/mySearchComponent';
+import {FusekiService} from '../../../service';
+import {MySearchComponent} from '../../myComponent/mySearchComponent';
 
 @Component({
   selector: 'app-place-search-page',
   templateUrl: './place-search-page.component.html',
-  styleUrls: ['./place-search-page.component.css']
+  styleUrls: ['./place-search-page.component.css', '../../default.css']
 })
 export class PlaceSearchPageComponent extends MySearchComponent implements OnInit {
   public columns: any[] = ['episaIdentifier', 'title', 'dglabIdentifier'];
 
   constructor(
-    private service: MyService,
+    private service: FusekiService,
   ) {
     super({
       name: '',

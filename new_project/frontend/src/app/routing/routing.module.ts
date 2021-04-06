@@ -18,7 +18,8 @@ import {OrgSearchPageComponent} from '../components/organization/searchPage/org-
 import {HierarchyComponent} from '../components/advancedSearch/hierarchy/hierarchy.component';
 import {LoginComponent} from '../components/account/login/login.component';
 import {RegisterComponent} from '../components/account/register/register.component';
-import {CreateDocComponent} from '../components/document/create/create-doc.component';
+import {CreateAndUpdateDocComponent} from '../components/document/createAndUpdate/create-and-update-doc.component';
+import {AuthGuard} from '../_helpers/AutoGuard';
 
 const routes: Routes = [
   {
@@ -40,9 +41,14 @@ const routes: Routes = [
     path: 'doc/:id', component: DocumentComponent
   },
   {
-    path: 'createdoc', component: CreateDocComponent,  data: {
+    path: 'createdoc', component: CreateAndUpdateDocComponent, data: {
       title: 'Archgraph-Create-Doc'
-    }
+    }, canActivate: [AuthGuard]
+  },
+  {
+    path: 'updatedoc/:id', component: CreateAndUpdateDocComponent, data: {
+      title: 'Archgraph-Update-Doc'
+    }, canActivate: [AuthGuard]
   },
   {
     path: 'searchdoc', component: DocSearchPageComponent, data: {

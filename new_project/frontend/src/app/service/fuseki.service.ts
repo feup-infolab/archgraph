@@ -2,14 +2,12 @@ import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {Router} from '@angular/router';
-import {map} from 'rxjs/operators';
 import {User} from '../models/user';
-import {AbstractControl} from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
 })
-export class MyService {
+export class FusekiService {
   baseUrl = 'http://localhost:8080';
   private userSubject: BehaviorSubject<User>;
   public user: Observable<User>;
@@ -101,6 +99,10 @@ export class MyService {
   createDoc(form: any): Observable<any> {
     console.log(form);
     return this.http.post<any>(`${this.baseUrl}/createdoc`, form);
+  }
+  updateDoc(form: any): Observable<any> {
+    console.log(form);
+    return this.http.put<any>(`${this.baseUrl}/updatedoc`, form);
   }
 }
 

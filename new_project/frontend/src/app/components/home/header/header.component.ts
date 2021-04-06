@@ -1,5 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {UserServiceService} from '../../../service';
+import {AlertService, UserService} from '../../../service';
 
 @Component({
   selector: 'app-header',
@@ -11,10 +11,14 @@ export class HeaderComponent implements OnInit {
   @Output() public sidenavToggle = new EventEmitter();
   public username: any;
 
-  constructor(private userService: UserServiceService) {
+
+  constructor(private userService: UserService,
+              ) {
     this.userService.getObservableUser().subscribe(user => {
       if (user) {
         this.username = user.username;
+      } else {
+        this.username = null;
       }
     });
   }
@@ -24,5 +28,9 @@ export class HeaderComponent implements OnInit {
 
   public onToggleSidenav = () => {
     this.sidenavToggle.emit();
+  }
+
+  logout() {
+    this.userService.logout();
   }
 }

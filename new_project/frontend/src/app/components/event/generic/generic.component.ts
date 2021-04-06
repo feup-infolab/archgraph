@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {MyService} from '../../../service/my.service';
+import {FusekiService} from '../../../service';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({
     selector: 'app-generic',
     templateUrl: './generic.component.html',
-    styleUrls: ['./generic.component.css']
+    styleUrls: ['./generic.component.css' , '../../default.css']
 })
 export class GenericComponent implements OnInit {
     public identifiers: any[];
@@ -16,7 +16,7 @@ export class GenericComponent implements OnInit {
     public relatedEvents: any[];
 
     constructor(
-        private service: MyService,
+        private service: FusekiService,
         private route: ActivatedRoute,
     ) {
         this.identifiers = [];

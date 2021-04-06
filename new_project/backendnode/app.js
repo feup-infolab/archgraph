@@ -22,7 +22,6 @@ const indexRoutes = require('./routes/index');
 
 
 
-
 app.use('/', indexRoutes);
 app.use('/user', userRoutes);
 
@@ -40,3 +39,4 @@ app.listen(PORT, function () {
 //yarn db:g:seed users
 //yarn db:g:migration addPassword
 //psql -h localhost -U admin -d db -p 5432 -a -f config/populate.sql
+//yarn sequelize-cli model:generate --name usera --attributes username:string,firstname:string,lastname:string,password:string

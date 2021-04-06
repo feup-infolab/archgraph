@@ -9,11 +9,22 @@
             aria-label="Example icon-button with heart icon">
         <mat-icon>search</mat-icon>
     </button>
-    <button routerLink="/login" mat-icon-button class="example-icon favorite-icon"
-            aria-label="Example icon-button with heart icon">
-        <mat-icon>login</mat-icon>
-    </button>
-    <span >{{this.username}}</span>
+    <div *ngIf="!username">
+
+        <button routerLink="/login" mat-icon-button class="example-icon favorite-icon"
+                aria-label="Example icon-button with heart icon">
+            <mat-icon>login</mat-icon>
+        </button>
+    </div>
+    <div *ngIf="username">
+        <button mat-icon-button class="example-icon favorite-icon" (click)="logout()"
+                aria-label="Example icon-button with heart icon">
+            <mat-icon>logout</mat-icon>
+        </button>
+    </div>
+    <span>{{this.username}}</span>
 
 
 </mat-toolbar>
+
+

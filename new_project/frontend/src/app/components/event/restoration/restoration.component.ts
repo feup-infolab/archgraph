@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {MyService} from '../../../service/my.service';
+import {FusekiService} from '../../../service';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-restoration',
   templateUrl: './restoration.component.html',
-  styleUrls: ['./restoration.component.css']
+  styleUrls: ['./restoration.component.css', '../../default.css']
 })
 export class RestorationComponent implements OnInit {
   public titles: any[];
@@ -13,7 +13,7 @@ export class RestorationComponent implements OnInit {
 
 
   constructor(
-    private service: MyService,
+    private service: FusekiService,
     private route: ActivatedRoute,
   ) {
     this.titles = [];
