@@ -17,6 +17,8 @@ export class CreateAndUpdateDocComponent implements OnInit {
   public loading = false;
   public submitted = false;
   public pageCreateDoc: boolean | undefined;
+  public episaIdentifier: any;
+
   returnUrl: string | undefined;
   error = '';
   title = 'FormArray Example in Angular Reactive forms';
@@ -57,9 +59,9 @@ export class CreateAndUpdateDocComponent implements OnInit {
     this.pageCreateDoc = href.includes('create');
     if (!this.pageCreateDoc) {
       this.route.paramMap.subscribe(params => {
-        const episaIdentifier = params.get('id') || 'id';
-        this.getDocById(episaIdentifier);
-        this.setDocTitle(episaIdentifier);
+        this.episaIdentifier = params.get('id') || 'id';
+        this.getDocById(this.episaIdentifier);
+        this.setDocTitle(this.episaIdentifier);
       });
     }
 
@@ -257,7 +259,7 @@ export class CreateAndUpdateDocComponent implements OnInit {
     }
 
     this.loading = true;
-    this.service.updateDoc(this.docForm.value).subscribe(result => {
+    this.service.updateDoc(this.docForm.value, this.episaIdentifier).subscribe(result => {
         console.log(result);
       }
     );

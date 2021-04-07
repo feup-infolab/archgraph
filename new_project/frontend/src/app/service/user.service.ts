@@ -30,10 +30,10 @@ export class UserService {
 
   login(username: any, password: any) {
     return this.http.post<any>(`${this.baseUrl}/user/login`, {username, password})
-      .pipe(map(user => {
-        localStorage.setItem('user', JSON.stringify(user));
-        this.userSubject.next(user);
-        return user;
+      .pipe(map(result => {
+        localStorage.setItem('user', JSON.stringify(result.user));
+        this.userSubject.next(result.user);
+        return result;
       }));
   }
 

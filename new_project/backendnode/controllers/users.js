@@ -115,11 +115,11 @@ module.exports = {
         const password = req.body.password;
 
         if (!username || !password) {
-            return res.status(400).send('username and password are required');
+            return res.status(400).send({message: 'Username and password are required'});
         }
         const user = await Users.findOne({where: {username: username}})
         if (!user) {
-            return res.status(400).send('username not exists');
+            return res.status(400).send({message: 'Username not exists'});
         }
         const userPassword = user.getDataValue('password')
 
@@ -127,15 +127,16 @@ module.exports = {
             if (err) {
                 throw err
             } else if (!isMatch) {
-                return res.send(null)
+                return res.status(401).send({message: 'Username or password are wrong'})
             } else {
 
                 const token = jwt.sign({id: user.id}, config.secret, {
-                    expiresIn: 86400 // expires in 24 hours
+                    expiresIn: 3600 // expires in 1 hour
                 });
                 const newUser = Object.assign(user.toJSON(), {token: token});
+                const body = Object.assign({user: newUser}, {message: 'Successful login'});
 
-                return res.status(200).send(newUser);
+                return res.status(200).send(body);
             }
         })
 

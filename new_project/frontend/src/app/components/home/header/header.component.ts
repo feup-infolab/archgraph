@@ -10,10 +10,14 @@ import {AlertService, UserService} from '../../../service';
 export class HeaderComponent implements OnInit {
   @Output() public sidenavToggle = new EventEmitter();
   public username: any;
-
+  options = {
+    autoClose: true,
+    keepAfterRouteChange: false
+  };
 
   constructor(private userService: UserService,
-              ) {
+              public alertService: AlertService
+  ) {
     this.userService.getObservableUser().subscribe(user => {
       if (user) {
         this.username = user.username;
@@ -32,5 +36,6 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.userService.logout();
+    this.alertService.success('Successful logout', this.options);
   }
 }

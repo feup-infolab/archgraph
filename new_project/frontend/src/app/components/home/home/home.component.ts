@@ -10,20 +10,20 @@ import {MatDialog} from '@angular/material/dialog';
 })
 export class HomeComponent implements OnInit {
   options = {
-    autoClose: false,
+    autoClose: true,
     keepAfterRouteChange: false
   };
 
   constructor(private service: UserService,
-              public alertService: AlertService,
+              public alertService: AlertService
   ) {
   }
 
   ngOnInit(): void {
-    this.alertService.success('Success!!', this.options);
-    this.alertService.error('Error :(', this.options);
-    this.alertService.info('Some info....', this.options);
-    this.alertService.warn('Warning: ...', this.options);
+    // this.alertService.success('Success!!', this.options);
+    // this.alertService.error('Error :(', this.options);
+    // this.alertService.info('Some info....', this.options);
+    // this.alertService.warn('Warning: ...', this.options);
 
   }
 

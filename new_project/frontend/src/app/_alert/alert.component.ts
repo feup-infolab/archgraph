@@ -5,7 +5,8 @@ import {Subscription} from 'rxjs';
 import {Alert, AlertType} from './alert.model';
 import {AlertService} from './alert.service';
 
-@Component({selector: 'app-alert', templateUrl: 'alert.component.html', styleUrls: ['alert.component.css', '../components/default.css']
+@Component({
+  selector: 'app-alert', templateUrl: 'alert.component.html', styleUrls: ['alert.component.css', '../components/default.css']
 })
 
 export class AlertComponent implements OnInit, OnDestroy {
@@ -15,6 +16,8 @@ export class AlertComponent implements OnInit, OnDestroy {
   alerts: Alert[] = [];
   alertSubscription: Subscription | undefined;
   routeSubscription: Subscription | undefined;
+  public isVisible = false;
+
 
   constructor(private router: Router, public alertService: AlertService) {
   }
@@ -38,16 +41,16 @@ export class AlertComponent implements OnInit, OnDestroy {
 
         // auto close alert if required
         if (alert.autoClose) {
-          setTimeout(() => this.removeAlert(alert), 3000);
+          setTimeout(() => this.removeAlert(alert), 5000);
         }
       });
 
-    // clear alerts on location change
-    this.routeSubscription = this.router.events.subscribe(event => {
-      if (event instanceof NavigationStart) {
-        this.alertService.clear(this.id);
-      }
-    });
+    // // clear alerts on location change
+    // this.routeSubscription = this.router.events.subscribe(event => {
+    //   if (event instanceof NavigationStart) {
+    //     this.alertService.clear(this.id);
+    //   }
+    // });
   }
 
   ngOnDestroy() {
