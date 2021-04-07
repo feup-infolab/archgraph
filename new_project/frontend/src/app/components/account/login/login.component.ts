@@ -4,7 +4,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {first} from 'rxjs/operators';
 
 
-import {UserService} from '../../../service';
+import {AlertService, UserService} from '../../../service';
 
 
 @Component({
@@ -19,11 +19,17 @@ export class LoginComponent implements OnInit {
   returnUrl: string | undefined;
   error = '';
 
+  options = {
+    keepAfterRouteChange: false,
+    autoClose: true
+  };
+
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
     private service: UserService,
+    public alertService: AlertService
   ) {
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
@@ -54,6 +60,12 @@ export class LoginComponent implements OnInit {
     this.loading = true;
     this.service.login(this.formControls.username.value, this.formControls.password.value)
       .subscribe(result => {
+          console.log(result);
+          this.alertService.success(result.message, this.options);
+
+          // this.alertService.error('Error :(', this.options);
+          // this.alertService.info('Some info....', this.options);
+          // this.alertService.warn('Warning: ...', this.options);
           if (this.service.getObservableUser()) {
             this.router.navigate(['/']);
           }
