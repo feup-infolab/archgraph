@@ -5,9 +5,26 @@
     </button>
     <span>DigitArq+</span>
     <span class="example-spacer"></span>
-    <button routerLink="/advanced_search" mat-icon-button class="example-icon favorite-icon"
+    <button routerLink="/advancedsearch" mat-icon-button class="example-icon favorite-icon"
             aria-label="Example icon-button with heart icon">
         <mat-icon>search</mat-icon>
     </button>
+    <div *ngIf="!username">
+
+        <button routerLink="/login" mat-icon-button class="example-icon favorite-icon"
+                aria-label="Example icon-button with heart icon">
+            <mat-icon>login</mat-icon>
+        </button>
+    </div>
+    <div *ngIf="username">
+        <button mat-icon-button class="example-icon favorite-icon" (click)="logout()"
+                aria-label="Example icon-button with heart icon">
+            <mat-icon>logout</mat-icon>
+        </button>
+    </div>
+    <span>{{this.username}}</span>
+
 
 </mat-toolbar>
+
+

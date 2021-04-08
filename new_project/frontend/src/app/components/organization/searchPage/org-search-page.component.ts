@@ -1,18 +1,18 @@
 import {Component, OnInit} from '@angular/core';
-import {MyService} from '../../../service/my.service';
+import {FusekiService} from '../../../service/fuseki.service';
 import {ActivatedRoute} from '@angular/router';
-import {MySearchComponent} from '../../../myComponent/mySearchComponent';
+import {MySearchComponent} from '../../myComponent/mySearchComponent';
 
 @Component({
   selector: 'app-org-search-page',
   templateUrl: './org-search-page.component.html',
-  styleUrls: ['./org-search-page.component.css']
+  styleUrls: ['./org-search-page.component.css', '../../default.css']
 })
 export class OrgSearchPageComponent extends MySearchComponent implements OnInit {
   public columns: any[] = ['episaIdentifier', 'title', 'dglabIdentifier'];
 
   constructor(
-    private service: MyService,
+    private service: FusekiService,
   ) {
     super({
       name: '',

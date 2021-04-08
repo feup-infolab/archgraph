@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import {MyService} from '../../../service/my.service';
+import {Component, OnInit} from '@angular/core';
+import {FusekiService} from '../../../service/fuseki.service';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-event-search-page',
   templateUrl: './event-search-page.component.html',
-  styleUrls: ['./event-search-page.component.css']
+  styleUrls: ['./event-search-page.component.css', '../../default.css']
 })
 export class EventSearchPageComponent implements OnInit {
   //  event
@@ -25,8 +25,8 @@ export class EventSearchPageComponent implements OnInit {
   public startDateTo: any;
 
   constructor(
-      private service: MyService,
-      private route: ActivatedRoute,
+    private service: FusekiService,
+    private route: ActivatedRoute,
   ) {
   }
 
@@ -40,9 +40,9 @@ export class EventSearchPageComponent implements OnInit {
 
   getEventSummary(identifier: any) {
     this.service.getEventSummary(identifier)
-        .subscribe(result => {
-          console.log(result);
-          // this.identifiers = result.results.bindings;
-        });
+      .subscribe(result => {
+        console.log(result);
+        // this.identifiers = result.results.bindings;
+      });
   }
 }

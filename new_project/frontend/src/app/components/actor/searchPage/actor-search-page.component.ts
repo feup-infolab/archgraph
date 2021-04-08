@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {MyService} from '../../../service/my.service';
+import {FusekiService} from '../../../service/fuseki.service';
 import {MatTableDataSource} from '@angular/material/table';
-import {MySearchComponent} from '../../../myComponent/mySearchComponent';
+import {MySearchComponent} from '../../myComponent/mySearchComponent';
 
 export interface Actor {
   episaIdentifier: string;
@@ -26,13 +26,13 @@ export interface Actor {
 @Component({
   selector: 'app-actor-search-page',
   templateUrl: './actor-search-page.component.html',
-  styleUrls: ['./actor-search-page.component.css']
+  styleUrls: ['./actor-search-page.component.css', '../../default.css']
 })
 export class ActorSearchPageComponent extends MySearchComponent implements OnInit {
   public columns: any[] = ['episaIdentifier', 'dglabIdentifier', 'title'];
 
   constructor(
-    private service: MyService,
+    private service: FusekiService,
   ) {
     super({
       name: '',

@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import {MyService} from '../../../service/my.service';
+import {Component, OnInit} from '@angular/core';
+import {FusekiService} from '../../../service';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-support',
   templateUrl: './support.component.html',
-  styleUrls: ['./support.component.css']
+  styleUrls: ['./support.component.css', '../../default.css']
 })
 export class SupportComponent implements OnInit {
   public titles: any[];
@@ -13,8 +13,8 @@ export class SupportComponent implements OnInit {
 
 
   constructor(
-      private service: MyService,
-      private route: ActivatedRoute,
+    private service: FusekiService,
+    private route: ActivatedRoute,
   ) {
     this.titles = [];
   }

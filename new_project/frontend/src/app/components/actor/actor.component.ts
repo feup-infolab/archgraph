@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {MyService} from '../../service/my.service';
+import {FusekiService} from '../../service';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-actor',
   templateUrl: './actor.component.html',
-  styleUrls: ['./actor.component.css']
+  styleUrls: ['./actor.component.css', '../default.css']
 })
 export class ActorComponent implements OnInit {
   public id: any;
@@ -17,7 +17,7 @@ export class ActorComponent implements OnInit {
   public relatedActors: any[];
 
   constructor(
-    private service: MyService,
+    private service: FusekiService,
     private route: ActivatedRoute,
   ) {
     this.identifiers = [];

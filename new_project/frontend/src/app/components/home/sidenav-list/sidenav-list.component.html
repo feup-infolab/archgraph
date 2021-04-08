@@ -1,8 +1,19 @@
 <mat-nav-list>
-    <a mat-list-item routerLink="/searchdoc" (click)="onSidenavClose()">
-        <mat-icon>note</mat-icon>
+    <a mat-list-item [matMenuTriggerFor]="docMenu">
+    <mat-icon>note</mat-icon>
         <span class="nav-caption" i18n>Document</span>
     </a>
+    <mat-menu #docMenu="matMenu">
+        <button mat-menu-item routerLink="/searchdoc" (click)="onSidenavClose()" i18n>
+            <mat-icon>search</mat-icon>
+            Search Document
+        </button>
+        <button mat-menu-item routerLink="/createdoc" (click)="onSidenavClose()" i18n>
+            <mat-icon>add</mat-icon>
+            Document
+        </button>
+
+    </mat-menu>
     <a mat-list-item routerLink="/searchactor" (click)="onSidenavClose()">
         <mat-icon>person</mat-icon>
         <span class="nav-caption" i18n>Actor</span>

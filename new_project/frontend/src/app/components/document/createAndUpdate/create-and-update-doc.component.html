@@ -1,0 +1,333 @@
+<div class="card doc-content">
+    <div class="card-body">
+        <form [formGroup]="docForm">
+            <div formGroupName="titles" class="loginfields">
+                <h3 class="title">Titles</h3>
+                <div *ngFor="let title of getArrayName('titles').controls; let i=index">
+                    <div [formGroupName]="i" class="arrayField">
+                        <label class="field">Title:
+                            <input type="text" placeholder="title" formControlName="title">
+                        </label>
+                        <label class="field">Type:
+                            <input type="text" placeholder="type" formControlName="type">
+                        </label>
+                        <div class="form-group">
+                            <button (click)="removeElem('titles', i)">Remove</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button type="button" (click)="addElem('titles')">Add Title</button>
+                </div>
+            </div>
+
+            <div formGroupName="identifiers" class="loginfields">
+                <h3 class="title">Identifiers</h3>
+                <div *ngFor="let identifier of getArrayName('identifiers').controls; let i=index">
+                    <div [formGroupName]="i" class="arrayField">
+                        <label class="field">Identifier:
+                            <input type="text" placeholder="identifier" formControlName="identifier">
+                        </label>
+                        <label class="field">Type:
+                            <input type="text" placeholder="type" formControlName="type">
+                        </label>
+                        <div class="form-group">
+                            <button (click)="removeElem('identifiers', i)">Remove</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button type="button" (click)="addElem('identifiers')">Add Identifier</button>
+                </div>
+
+            </div>
+
+            <div formGroupName="materials" class="loginfields">
+                <h3 class="title">Materials</h3>
+                <div *ngFor="let material of getArrayName('materials').controls; let i=index">
+                    <div [formGroupName]="i" class="arrayField">
+                        <label class="field">Material:
+                            <input type="text" placeholder="material" formControlName="material">
+                        </label>
+                        <label class="field">Component:
+                            <input type="text" placeholder="component" formControlName="component">
+                        </label>
+                        <div class="form-group">
+                            <button (click)="removeElem('materials', i)">Remove</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button type="button" (click)="addElem('materials')">Add Materials</button>
+                </div>
+
+            </div>
+
+            <div formGroupName="dimensions" class="loginfields">
+                <h3 class="title">Dimensions</h3>
+                <div *ngFor="let dimension of getArrayName('dimensions').controls; let i=index">
+                    <div [formGroupName]="i" class="arrayField">
+
+                        <label class="field">Dimension:
+                            <input type="text" placeholder="dimension" formControlName="dimension">
+                        </label>
+                        <label class="field">Value:
+                            <input type="text" placeholder="value" formControlName="value">
+                        </label>
+                        <label class="field">Measurement Unit:
+                            <input type="text" placeholder="measurement unit" formControlName="measurementUnit">
+                        </label>
+                        <label class="field">Component:
+                            <input type="text" placeholder="component" formControlName="component">
+                        </label>
+                        <div class="form-group">
+                            <button (click)="removeElem('dimensions', i)">Remove</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button type="button" (click)="addElem('dimensions')">Add Dimensions</button>
+                </div>
+            </div>
+
+            <div formGroupName="quantities" class="loginfields">
+                <h3 class="title">Quantities</h3>
+                <div *ngFor="let quantity of getArrayName('quantities').controls; let i=index">
+                    <div [formGroupName]="i" class="arrayField">
+
+                        <label class="field">Dimension:
+                            <input type="text" placeholder="dimension" formControlName="dimension">
+                        </label>
+                        <label class="field">Value:
+                            <input type="text" placeholder="value" formControlName="value">
+                        </label>
+                        <label class="field">Measurement Unit:
+                            <input type="text" placeholder="measurement unit" formControlName="measurementUnit">
+                        </label>
+                        <label class="field">Component:
+                            <input type="text" placeholder="component" formControlName="component">
+                        </label>
+                        <div class="form-group">
+                            <button (click)="removeElem('quantities', i)">Remove</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button type="button" (click)="addElem('quantities')">Add Quantity</button>
+                </div>
+            </div>
+
+
+            <div formGroupName="conservationStates" class="loginfields">
+                <h3 class="title">Conservation States</h3>
+                <div *ngFor="let conservationStatus of getArrayName('conservationStates').controls; let i=index">
+                    <div [formGroupName]="i" class="arrayField">
+                        <label class="field">Conservation Status:
+                            <input type="text" placeholder="conservation status" formControlName="conservationStatus">
+                        </label>
+                        <label class="field">Initial Date:
+                            <input type="date" placeholder="initial date" formControlName="initialDate">
+                        </label>
+                        <label class="field">Final Date:
+                            <input type="date" placeholder="final date" formControlName="finalDate">
+                        </label>
+                        <div class="form-group">
+                            <button (click)="removeElem('conservationStates', i)">Remove</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button type="button" (click)="addElem('conservationStates')">Add Conservation States</button>
+                </div>
+
+            </div>
+
+            <div formGroupName="languages" class="loginfields">
+                <h3 class="title">Languages</h3>
+                <div *ngFor="let language of getArrayName('languages').controls; let i=index">
+                    <div [formGroupName]="i" class="arrayField">
+                        <label class="field">Languages:
+                            <input type="text" placeholder="language" formControlName="language">
+                        </label>
+                        <label class="field">Identifier:
+                            <input type="text" placeholder="identifier" formControlName="identifier">
+                        </label>
+                        <div class="form-group">
+                            <button (click)="removeElem('languages', i)">Remove</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button type="button" (click)="addElem('languages')">Add Languages</button>
+                </div>
+
+            </div>
+
+            <div formGroupName="writings" class="loginfields">
+                <h3 class="title">Writings</h3>
+                <div *ngFor="let writing of getArrayName('writings').controls; let i=index">
+                    <div [formGroupName]="i" class="arrayField">
+                        <label class="field">Writing:
+                            <input type="text" placeholder="writing" formControlName="writing">
+                        </label>
+                        <label class="field">Identifier:
+                            <input type="text" placeholder="identifier" formControlName="identifier">
+                        </label>
+                        <div class="form-group">
+                            <button (click)="removeElem('writings', i)">Remove</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button type="button" (click)="addElem('writings')">Add Writing</button>
+                </div>
+            </div>
+
+            <div formGroupName="documentaryTraditions" class="loginfields">
+                <h3 class="title">Documentary Traditions</h3>
+                <div *ngFor="let document of getArrayName('documentaryTraditions').controls; let i=index">
+                    <div [formGroupName]="i" class="arrayField">
+                        <label class="field">Conservation Status:
+                            <input type="text" placeholder="conservation status" formControlName="conservationStatus">
+                        </label>
+                        <label class="field">Initial Date:
+                            <input type="date" placeholder="initial date" formControlName="initialDate">
+                        </label>
+                        <label class="field">Final Date:
+                            <input type="date" placeholder="final date" formControlName="finalDate">
+                        </label>
+                        <div class="form-group">
+                            <button (click)="removeElem('documentaryTraditions', i)">Remove</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button type="button" (click)="addElem('documentaryTraditions')">Add Documentary Traditions</button>
+                </div>
+            </div>
+
+            <div formGroupName="typologies" class="loginfields">
+                <h3 class="title">Typologies</h3>
+                <div *ngFor="let document of getArrayName('typologies').controls; let i=index">
+                    <div [formGroupName]="i" class="arrayField">
+                        <label class="field">Documentary Typology:
+                            <input type="text" placeholder="documentary typology" formControlName="documentaryTypology">
+                        </label>
+                        <div class="form-group">
+                            <button (click)="removeElem('typologies', i)">Remove</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button type="button" (click)="addElem('typologies')">Add Typology</button>
+                </div>
+            </div>
+
+            <div formGroupName="subjects" class="loginfields">
+                <h3 class="title">Subjects</h3>
+                <div *ngFor="let subject of getArrayName('subjects').controls; let i=index">
+                    <div [formGroupName]="i" class="arrayField">
+                        <label class="field">Subject:
+                            <input type="text" placeholder="subject" formControlName="subject">
+                        </label>
+                        <div class="form-group">
+                            <button (click)="removeElem('subjects', i)">Remove</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button type="button" (click)="addElem('subjects')">Add Subject</button>
+                </div>
+            </div>
+
+            <div formGroupName="accessConditions" class="loginfields">
+                <h3 class="title">Access Conditions</h3>
+                <div *ngFor="let accessCondition of getArrayName('accessConditions').controls; let i=index">
+                    <div [formGroupName]="i" class="arrayField">
+                        <label class="field">Access Condition:
+                            <input type="text" placeholder="access condition" formControlName="accessCondition">
+                        </label>
+                        <label class="field">Justification:
+                            <input type="text" placeholder="justification" formControlName="justification">
+                        </label>
+                        <div class="form-group">
+                            <button (click)="removeElem('accessConditions', i)">Remove</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button type="button" (click)="addElem('accessConditions')">Add Access Conditions</button>
+                </div>
+            </div>
+
+            <div formGroupName="relatedDocs" class="loginfields">
+                <h3 class="title">Related Docs</h3>
+                <div *ngFor="let related of getArrayName('relatedDocs').controls; let i=index">
+                    <div [formGroupName]="i" class="arrayField">
+                        <label class="field">Record Identifier:
+                            <input type="text" placeholder="record identifier" formControlName="recordIdentifier">
+                        </label>
+                        <label class="field">Title:
+                            <input type="text" placeholder="title" formControlName="title">
+                        </label>
+                        <label class="field">Relation Type:
+                            <input type="text" placeholder="relation type" formControlName="relationType">
+                        </label>
+                        <div class="form-group">
+                            <button (click)="removeElem('relatedDocs', i)">Remove</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button type="button" (click)="addElem('relatedDocs')">Add Related Doc</button>
+                </div>
+            </div>
+
+            <div class="form-group" *ngIf="pageCreateDoc">
+
+                <button mat-flat-button [disabled]="loading" class="btn btn-primary mat-error btn-mg-1em"
+                        (click)="goToHome()">
+                    <span class="spinner-border spinner-border-sm mr-1"></span>
+                    Cancel
+                </button>
+
+                <button mat-flat-button [disabled]="loading" class="btn btn-primary mat-success btn-mg-1em"
+                        (click)="createDoc()">
+                    <span class="spinner-border spinner-border-sm mr-1"></span>
+                    Create
+                </button>
+            </div>
+            <div class="form-group" *ngIf="!pageCreateDoc">
+
+                <button mat-flat-button [disabled]="loading" class="btn btn-primary mat-error btn-mg-1em"
+                        (click)="goToHome()">
+                    <span class="spinner-border spinner-border-sm mr-1"></span>
+                    Cancel
+                </button>
+
+                <button mat-flat-button [disabled]="loading" class="btn btn-primary mat-success btn-mg-1em"
+                        (click)="updateDoc()">
+                    <span class="spinner-border spinner-border-sm mr-1"></span>
+                    Update
+                </button>
+            </div>
+    </form>
+
+</div>
+{{this.docForm.value | json}}
+</div>
+
+

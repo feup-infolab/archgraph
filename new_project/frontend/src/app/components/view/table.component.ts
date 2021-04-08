@@ -17,6 +17,7 @@ export class TableComponent implements AfterViewInit {
 
   @ViewChild(MatPaginator, {static: false})
   set paginator(value: MatPaginator) {
+
     if (this.dataSource) {
       this.dataSource.paginator = value;
     }

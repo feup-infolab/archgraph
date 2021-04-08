@@ -1,0 +1,29 @@
+<div class="card">
+    <div class="card-body">
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
+                <mat-form-field class="loginfields">
+                    <input matInput placeholder="username" formControlName='username'>
+                </mat-form-field>
+
+                <mat-form-field class="loginfields">
+                    <input matInput type="password" placeholder="password" formControlName='password'>
+                </mat-form-field>
+
+
+                <div class="form-group">
+                    <button [disabled]="loading" class="btn btn-primary" (click)="login()">
+                        <span class="spinner-border spinner-border-sm mr-1"></span>
+                        Login
+                    </button>
+                    <button [disabled]="loading" class="btn btn-primary" (click)="register()">
+                        <span class="spinner-border spinner-border-sm mr-1"></span>
+                        Register
+                    </button>
+                </div>
+
+        </form>
+
+    </div>
+</div>
+
+
