@@ -2,9 +2,9 @@ package restservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import showcase.Connection;
-import showcase.CreateUuids;
-import showcase.FillExamples;
+import operations.SPARQLOperations;
+import operations.CreateUuids;
+import operations.FillExamples;
 
 @SpringBootApplication
 public class RestServiceApplication {
@@ -19,8 +19,12 @@ public class RestServiceApplication {
                 DEFAULT_host = Fuseki_host;
             }
         }
-        Connection cn = new Connection(DEFAULT_host);
+        SPARQLOperations cn = new SPARQLOperations(DEFAULT_host);
         System.err.println("============================= UUIDS ================================");
+
+        System.err.println("IS THIS CHANGING?!");
+        cn.importOWL();
+
 
         if (cn.getAllBaseUuids().size() == 0) {
             System.out.println("============================= Creating UUIDS ================================");
@@ -32,6 +36,9 @@ public class RestServiceApplication {
             FillExamples fillExamples = new FillExamples(DEFAULT_host);
             fillExamples.fill();
         }
+        System.err.println("===========================IS THIS CHANGING?!==========================================");
         SpringApplication.run(RestServiceApplication.class, args);
+
+
     }
 }

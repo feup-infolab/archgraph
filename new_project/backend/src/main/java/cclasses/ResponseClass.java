@@ -5,27 +5,16 @@ import java.util.Map;
 
 public class ResponseClass {
 
-    //private final String id;
-
-    //private final String $schema;
-
-    //private final String description;
-
-    //private final String type;
 
     private final Map<String, Object> properties;
 
 
     public ResponseClass(Map<String, Object> properties) {
-        //this.id = "https://example.com/arrays.schema.json";
+
         this.properties = properties;
 
 
     }
-
-    //public String getId() {
-    //    return id;
-    //}
 
     public Map<String, Object> getProperties() {
         return properties;
@@ -44,15 +33,5 @@ public class ResponseClass {
         properties.put(key, value);
     }
 
-    /*public String get$schema() {
-        return $schema;
-    }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public String getType() {
-        return type;
-    }*/
 }
