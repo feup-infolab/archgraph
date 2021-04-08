@@ -1,4 +1,4 @@
-package showcase;
+package operations;
 
 import cclasses.ResponseClass;
 import org.apache.jena.query.*;
@@ -7,17 +7,16 @@ import org.apache.jena.rdfconnection.RDFConnectionFuseki;
 import org.apache.jena.rdfconnection.RDFConnectionRemoteBuilder;
 import queries.Queries;
 
-import java.io.File;
 import java.util.*;
 
 
-public class Connection {
+public class SPARQLOperations {
     public Queries querier = new Queries();
 
     public String destination_port;
     public String data_port;
 
-    public Connection(String destination_port) {
+    public SPARQLOperations(String destination_port) {
 
         this.destination_port = destination_port + "name/sparql";
         this.data_port = destination_port + "name/data";
@@ -32,7 +31,7 @@ public class Connection {
 
         try (RDFConnectionFuseki conn = (RDFConnectionFuseki) builder.build()) {
 
-            conn.load("backend/owls/Exemplo-25registos.owl");
+            //conn.load("backend/owls/Exemplo-25registos.owl");
         }
 
 
@@ -91,7 +90,6 @@ public class Connection {
                     String current = b.next();
                     RDFNode res = stmt.get(current);
 
-                    //TODO - MUDAR ISTO - DEMASIADO ESPECIFICO
                     if (res.toString().contains("http://www.semanticweb.org/dmelo/ontologies/2020/7/untitled-ontology-151#ARE3SuppliedTitle")) {
                         map.put(current, "Atribuído");
                     } else if (res.toString().contains("http://www.semanticweb.org/dmelo/ontologies/2020/7/untitled-ontology-151#ARE2FormalTitle")) {
@@ -129,7 +127,6 @@ public class Connection {
                 return r;
             }
 
-            //TODO CLEAN INTO 2 FUNCTIONS
             if (!rs.hasNext()) {
                 Iterator<String> b = stmt.varNames();
                 HashMap<String, String> map = new HashMap<>();

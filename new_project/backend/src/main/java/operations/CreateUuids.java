@@ -1,13 +1,10 @@
-package showcase;
+package operations;
 
-import org.apache.jena.query.Query;
-import org.apache.jena.query.QueryFactory;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.rdfconnection.RDFConnectionFuseki;
 import org.apache.jena.rdfconnection.RDFConnectionRemoteBuilder;
-import org.apache.jena.vocabulary.VCARD;
 
 import java.util.ArrayList;
 import java.util.UUID;
@@ -18,12 +15,12 @@ public class CreateUuids {
     static String fullName = "Test Name";
     public String destination_port;
 
-    private final Connection con;
+    private final SPARQLOperations con;
 
     public CreateUuids(String host) {
         this.destination_port = host;
         //+ "name/data";
-        this.con = new Connection(this.destination_port);
+        this.con = new SPARQLOperations(this.destination_port);
     }
 
     public void create() {

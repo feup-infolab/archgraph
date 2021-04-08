@@ -21,6 +21,15 @@ public class Queries {
                 "}");
     }
 
+    public Query insertTitle_query(String uuid) {
+        return QueryFactory.create("Insert ?description\n" +
+                "WHERE {\n" +
+                uuid + " <http://erlangen-crm.org/200717/P102_has_title> ?type .\n" +
+                "  ?type <http://www.episa.inesctec.pt/ligacao#hasValue> ?title_type .\n" +
+                "  ?title_type <http://www.episa.inesctec.pt/data_object#stringValue> ?description\n" +
+                "}");
+    }
+
     public Query getLevel_of_description_query(String uuid) {
         return QueryFactory.create("SELECT ?descriptionLevelString\n" +
                 "WHERE {\n" +
