@@ -22,7 +22,6 @@ public class RestServiceApplication {
         SPARQLOperations cn = new SPARQLOperations(DEFAULT_host);
         System.err.println("============================= UUIDS ================================");
 
-        System.err.println("IS THIS CHANGING?!");
         cn.importOWL();
 
 
