@@ -16,6 +16,10 @@ import {EventSearchPageComponent} from '../components/event/searchPage/event-sea
 import {PlaceSearchPageComponent} from '../components/place/searchPage/place-search-page.component';
 import {OrgSearchPageComponent} from '../components/organization/searchPage/org-search-page.component';
 import {HierarchyComponent} from '../components/advancedSearch/hierarchy/hierarchy.component';
+import {LoginComponent} from '../components/account/login/login.component';
+import {RegisterComponent} from '../components/account/register/register.component';
+import {CreateAndUpdateDocComponent} from '../components/document/createAndUpdate/create-and-update-doc.component';
+import {AuthGuard} from '../_helpers/AutoGuard';
 
 const routes: Routes = [
   {
@@ -24,9 +28,27 @@ const routes: Routes = [
     }
   },
   {
-    path: 'doc/:id', component: DocumentComponent, data: {
-      title: 'Page Doc'
+    path: 'login', component: LoginComponent, data: {
+      title: 'Archgraph-Login'
     }
+  },
+  {
+    path: 'register', component: RegisterComponent, data: {
+      title: 'Archgraph-Register'
+    }
+  },
+  {
+    path: 'doc/:id', component: DocumentComponent
+  },
+  {
+    path: 'createdoc', component: CreateAndUpdateDocComponent, data: {
+      title: 'Archgraph-Create-Doc'
+    }, canActivate: [AuthGuard]
+  },
+  {
+    path: 'updatedoc/:id', component: CreateAndUpdateDocComponent, data: {
+      title: 'Archgraph-Update-Doc'
+    }, canActivate: [AuthGuard]
   },
   {
     path: 'searchdoc', component: DocSearchPageComponent, data: {

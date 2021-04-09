@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import {MyService} from '../../service/my.service';
+import {FusekiService} from '../../service/fuseki.service';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-place',
   templateUrl: './place.component.html',
-  styleUrls: ['./place.component.css']
+  styleUrls: ['./place.component.css', '../default.css']
 })
 export class PlaceComponent implements OnInit {
 
   private id: any;
 
   constructor(
-      private service: MyService,
+      private service: FusekiService,
       private route: ActivatedRoute,
   ) {
   }

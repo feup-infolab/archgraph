@@ -1,0 +1,13 @@
+.loginfields{
+    display: block;
+    width: 25%;
+    margin: auto;
+
+}
+
+.form-group{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}

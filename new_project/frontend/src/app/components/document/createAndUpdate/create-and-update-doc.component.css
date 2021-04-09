@@ -1,0 +1,73 @@
+.loginfields {
+    display: flex;
+    flex-direction: column;
+    border-style: double;
+    align-content: center;
+
+    width: 50%;
+    margin: auto;
+    margin-bottom: 1em;
+    margin-top: 1em;
+    padding-bottom: 0.5em;
+}
+
+.arrayField {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    border-style: double;
+    width: 50%;
+    margin: auto;
+    margin-bottom: 1em;
+    margin-top: 1em;
+    padding: 1em;
+}
+
+
+
+.title {
+    margin: auto;
+    font-size: 1.5em;
+    padding: 1em;
+}
+label {
+    /*width: 200px !important;*/
+    width: 20%;
+
+    float: left;
+}
+
+
+.field {
+    margin-left: 1em;
+    margin-bottom: 0.5em;
+    display: inline-block;
+    width: 100%;
+}
+
+
+.form-group {
+    /*display: flex;*/
+    /*align-content: center;*/
+    /*justify-content: center;*/
+    /*padding: 0.5em;*/
+    /*margin-right: 3%;*/
+    text-align: center;
+}
+
+
+/*.alert-danger {*/
+/*    background-color: #f44336; !* Red *!*/
+/*}*/
+.alert-success {
+    background-color: #36f456;
+}
+
+.alert {
+    padding: 0.5em;
+    color: red;
+    /*text-align: center;*/
+}
+
+

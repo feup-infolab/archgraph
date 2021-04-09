@@ -19,7 +19,7 @@ describe('AdvancedSearchComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should createAndUpdate', () => {
     expect(component).toBeTruthy();
   });
 });

@@ -5,7 +5,12 @@ dist/
 tmp/
 out-tsc/
 out/
-target/
+
+!/new_project/backend/target/back-end.jar
+/new_project/backend/target/classes/
+/new_project/backend/target/generated-sources/
+/new_project/backend/target/maven-archiver/
+/new_project/backend/target/maven-status/
 env/
 volumes/
 node_modules/
