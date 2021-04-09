@@ -33,7 +33,8 @@ public class Insert {
 
 
 
-            Resource res = model.createResource(Docres);
+            Resource res = model.createResource("http://erlangen-crm.org/200717/" + UUID.randomUUID().toString(),Docres);
+
 
             Property testprop = model.createProperty("http://erlangen-crm.org/200717/", "has_uuid");
             UUID uuid = UUID.randomUUID();
