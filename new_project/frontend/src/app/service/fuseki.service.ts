@@ -98,7 +98,7 @@ export class FusekiService {
 
   createDoc(form: any): Observable<any> {
     console.log(form);
-    return this.http.post<any>(`${this.baseUrl}/createdoc`, form);
+    return this.http.post<any>(`${this.baseUrl}/insert`, form);
   }
 
   updateDoc(form: any, id: any): Observable<any> {
