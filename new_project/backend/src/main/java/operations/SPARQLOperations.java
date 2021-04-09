@@ -31,7 +31,7 @@ public class SPARQLOperations {
 
         try (RDFConnectionFuseki conn = (RDFConnectionFuseki) builder.build()) {
 
-            //conn.load("backend/owls/Exemplo-25registos.owl");
+            conn.load("backend/owls/Exemplo-25registos.owl");
         }
 
 

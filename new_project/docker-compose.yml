@@ -19,6 +19,7 @@ services:
     build: ./frontend
     ports:
       - 4200:4200
+      - 8010:8010
     volumes:
       - ./volumes/web-service:/data
     restart: on-failure
@@ -35,16 +36,16 @@ services:
     networks:
       - app
     # postgres database
-  backendnode:
-    container_name: backendnode
-    build: ./backendnode
-    ports:
-      - 8010:8010
-    volumes:
-      - ./volumes/backendnode:/data
-    restart: on-failure
-    networks:
-      - app
+#  backendnode:
+#    container_name: backendnode
+#    build: ./backendnode
+#    ports:
+#      - 8010:8010
+#    volumes:
+#      - ./volumes/backendnode:/data
+#    restart: on-failure
+#    networks:
+#      - app
   postgres:
     image: postgres:12.3
     container_name: postgres
