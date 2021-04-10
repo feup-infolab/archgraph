@@ -1,2 +1,3 @@
 para gerar o executável jar
--> mvn package
+# mvn package
+# java -jar ./target/back-end.jar

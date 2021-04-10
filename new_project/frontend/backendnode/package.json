@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start:dev": "npm run db_create:dev && nodemon -r dotenv/config app.js development",
-    "start:prod": "npm run db_create:prod && nodemon -r dotenv/config app.js production",
+    "start:dev": "nodemon -r dotenv/config app.js development",
+    "start:prod": "nodemon -r dotenv/config app.js production",
     "test": "echo \"Error: no test specified\" && exit 1",
     "db:migrate": "sequelize-cli db:migrate",
     "db:seeds": "sequelize-cli db:seed:all",

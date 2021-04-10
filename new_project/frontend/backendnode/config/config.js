@@ -3,7 +3,7 @@ module.exports = {
     "development": {
         "username": 'admin',
         "password": 'admin',
-        "database": "db",
+        "database": "postgres",
         "host": '127.0.0.1',
         "port": 5432,
         "my_port": 8010,
@@ -13,7 +13,7 @@ module.exports = {
     "test": {
         "username": 'admin',
         "password": 'admin',
-        "database": "db",
+        "database": "postgres",
         "host": '127.0.0.1',
         "port": 5432,
         "my_port": 8010,
@@ -23,7 +23,7 @@ module.exports = {
     "production": {
         "username": 'admin',
         "password": 'admin',
-        "database": "db",
+        "database": "postgres",
         "host": 'postgres',
         "port": 5432,
         "my_port": 8010,

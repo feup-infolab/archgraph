@@ -20,6 +20,6 @@ Insert into users (username, firstname, lastname,role, password) VALUES ('admin'
 
 Insert into users (username, firstname, lastname,role, password) VALUES ('user', 'user', 'user', 'user', crypt('user', gen_salt('bf')));
 
-SELECT currval(pg_get_serial_sequence('users', 'id'));
+-- SELECT currval(pg_get_serial_sequence('users', 'id'));
 
-SELECT * from users;
+-- SELECT * from users;
