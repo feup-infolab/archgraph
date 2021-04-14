@@ -10,7 +10,7 @@ services:
     ports:
       - 3030:3030
     volumes:
-      - ./volumes/sdsfuseki:/staging
+      - ./volumes/fuseki:/staging
     restart: on-failure
     networks:
       - app
@@ -51,7 +51,7 @@ services:
     ports:
       - 5432:5432
     volumes:
-      - ./volumes/postgres2:/var/lib/postgresql/data
+      - ./volumes/postgres:/var/lib/postgresql/data
       # copy the sql script to create tables
       - ./conf/init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
@@ -59,8 +59,8 @@ services:
   # pgadmin for managing postgis db (runs at localhost:5050)
   # To add the above postgres server to pgadmin, use hostname as defined by docker: 'postgres'
   pgadmin:
-    image: dpage/pgadmin4
     container_name: pgadmin
+    image: dpage/pgadmin4
     environment:
       - PGADMIN_DEFAULT_EMAIL=admin
       - PGADMIN_DEFAULT_PASSWORD=admin
