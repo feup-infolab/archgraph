@@ -10,6 +10,24 @@
     margin-top: 1em;
     padding-bottom: 0.5em;
 }
+.example-headers-align .mat-expansion-panel-header-title,
+.example-headers-align .mat-expansion-panel-header-description {
+    flex-basis: 0;
+}
+.mat-accordion>.mat-expansion-panel-spacing{
+    margin-top: 1em;
+}
+
+.hasButtons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+.search{
+    margin: 1em;
+}
+
 
 .arrayField {
     display: flex;
@@ -23,19 +41,29 @@
     margin-top: 1em;
     padding: 1em;
 }
-
-
+.panel{
+    padding: 5px;
+    width: 75%;
+    display: block;
+    margin: auto;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
 
 .title {
     margin: auto;
     font-size: 1.5em;
     padding: 1em;
 }
+
 label {
     /*width: 200px !important;*/
     width: 20%;
-
     float: left;
+}
+select{
+    max-width: 40%;
+    width: auto;
 }
 
 
@@ -45,6 +73,7 @@ label {
     display: inline-block;
     width: 100%;
 }
+
 
 
 .form-group {
@@ -69,5 +98,18 @@ label {
     color: red;
     /*text-align: center;*/
 }
+
+
+.mat-form-field{
+    width: 30%;
+    margin-right: 2em;
+
+}
+mat-list{
+    padding-top: 0;
+}
+
+
+
 
 

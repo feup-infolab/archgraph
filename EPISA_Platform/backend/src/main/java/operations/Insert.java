@@ -34,8 +34,7 @@ public class Insert {
             Resource Idres = model.getResource("http://erlangen-crm.org/200717/E42_Identifier");
 
 
-
-            Resource res = model.createResource("http://erlangen-crm.org/200717/" + UUID.randomUUID().toString(),Docres);
+            Resource res = model.createResource("http://erlangen-crm.org/200717/" + UUID.randomUUID().toString(), Docres);
 
 
             Property testprop = model.createProperty("http://erlangen-crm.org/200717/", "has_uuid");
@@ -49,8 +48,6 @@ public class Insert {
             Resource SuppliedTitlegres = model.getResource("http://www.semanticweb.org/dmelo/ontologies/2020/7/untitled-ontology-151#ARE3SuppliedTitle");
 
             Resource RefCoderes = model.getResource("http://www.semanticweb.org/dmelo/ontologies/2020/7/untitled-ontology-151#Reference_code");
-
-
 
 
             Property materialProperty = model.createProperty("http://erlangen-crm.org/200717/", "has_material");
@@ -101,142 +98,124 @@ public class Insert {
 
 
             // add the property
+            ArrayList<HashMap<String, String>> titlemaparray = mapper.get("titles");
+            ArrayList<HashMap<String, String>> identifiermaparray = mapper.get("identifiers");
+            ArrayList<HashMap<String, String>> materialmaparray = mapper.get("materials");
+            ArrayList<HashMap<String, String>> dimensionsmaparray = mapper.get("dimensions");
+            ArrayList<HashMap<String, String>> quantitiesmaparray = mapper.get("quantities");
+            ArrayList<HashMap<String, String>> conservationStatesmaparray = mapper.get("conservationStates");
+            ArrayList<HashMap<String, String>> languagesmaparray = mapper.get("languages");
+            ArrayList<HashMap<String, String>> writingsmaparray = mapper.get("writings");
+            ArrayList<HashMap<String, String>> documentaryTraditionsmaparray = mapper.get("documentaryTraditions");
+            ArrayList<HashMap<String, String>> typologiesmaparray = mapper.get("typologies");
+            ArrayList<HashMap<String, String>> subjectsmaparray = mapper.get("subjects");
+            ArrayList<HashMap<String, String>> accessConditionsmaparray = mapper.get("accessConditions");
+            ArrayList<HashMap<String, String>> relatedDocsmaparray = mapper.get("relatedDocs");
 
+            if (titlemaparray != null)
+                for (HashMap<String, String> map : titlemaparray) {
 
-            ArrayList<HashMap<String,String>> titlemaparray = mapper.get("titles");
-            ArrayList<HashMap<String,String>> identifiermaparray = mapper.get("identifiers");
-            ArrayList<HashMap<String,String>> materialmaparray = mapper.get("materials");
-            ArrayList<HashMap<String,String>> dimensionsmaparray = mapper.get("dimensions");
-            ArrayList<HashMap<String,String>> quantitiesmaparray = mapper.get("quantities");
-            ArrayList<HashMap<String,String>> conservationStatesmaparray = mapper.get("conservationStates");
-            ArrayList<HashMap<String,String>> languagesmaparray = mapper.get("languages");
-            ArrayList<HashMap<String,String>> writingsmaparray = mapper.get("writings");
-            ArrayList<HashMap<String,String>> documentaryTraditionsmaparray = mapper.get("documentaryTraditions");
-            ArrayList<HashMap<String,String>> typologiesmaparray = mapper.get("typologies");
-            ArrayList<HashMap<String,String>> subjectsmaparray = mapper.get("subjects");
-            ArrayList<HashMap<String,String>> accessConditionsmaparray = mapper.get("accessConditions");
-            ArrayList<HashMap<String,String>> relatedDocsmaparray = mapper.get("relatedDocs");
+                    Resource TitleRes = null;
+                    if (map.get("type").equals("suppliedTitle")) {
+                        TitleRes = model.createResource(SuppliedTitlegres);
+                    } else if (map.get("type").equals("formalTitle")) {
+                        TitleRes = model.createResource(FormalTitlegres);
+                    }
 
-            if(titlemaparray != null)
-            for (HashMap<String,String> map : titlemaparray)
-            {
+                    if (TitleRes != null) {
+                        Resource StringRes = model.createResource(Stringres);
 
-                Resource TitleRes = null;
-                if(map.get("type").equals("Supplied Title")){
-                    TitleRes = model.createResource(SuppliedTitlegres);
+                        TitleRes.addProperty(stringProperty, StringRes);
+                        StringRes.addProperty(stringValueProperty, map.get("title"));
+                        res.addProperty(titleProperty, TitleRes);
+                    }
                 }
-                else if(map.get("type").equals("Formal Title")){
-                    TitleRes = model.createResource(FormalTitlegres);
-                }
 
-                if(TitleRes != null){
+            if (identifiermaparray != null)
+                for (HashMap<String, String> map : identifiermaparray) {
+                    Resource IdentifierRes = model.createResource(Idres);
+
+                    if (map.get("type").equals("referenceCode")) {
+                        Resource RefCode = model.createResource(RefCoderes);
+                        IdentifierRes.addProperty(refProperty, RefCode);
+                    }
                     Resource StringRes = model.createResource(Stringres);
 
-                    TitleRes.addProperty(stringProperty, StringRes);
-                    StringRes.addProperty(stringValueProperty,map.get("title"));
-                    res.addProperty(titleProperty,TitleRes);
-                }
-            }
-
-            if(identifiermaparray != null)
-            for (HashMap<String,String> map : identifiermaparray)
-            {
-                Resource IdentifierRes = model.createResource(Idres);
-
-
-                if(map.get("type").equals("Reference Code")){
-                    Resource RefCode = model.createResource(RefCoderes);
-                    IdentifierRes.addProperty(refProperty, RefCode);
+                    IdentifierRes.addProperty(stringProperty, StringRes);
+                    StringRes.addProperty(stringValueProperty, map.get("identifier"));
+                    res.addProperty(identificationProperty, IdentifierRes);
 
                 }
-                Resource StringRes = model.createResource(Stringres);
 
-                IdentifierRes.addProperty(stringProperty, StringRes);
-                StringRes.addProperty(stringValueProperty,map.get("identifier"));
-                res.addProperty(identificationProperty,IdentifierRes);
+            if (materialmaparray != null)
+                for (HashMap<String, String> map : materialmaparray) {
+                    res.addProperty(materialProperty, map.get("material"));
+                    res.addProperty(materialPropertyType, map.get("component"));
+                }
 
-            }
+            if (dimensionsmaparray != null)
+                for (HashMap<String, String> map : dimensionsmaparray) {
+                    res.addProperty(dimensionProperty, map.get("dimension"));
+                    res.addProperty(dimensionPropertyValue, map.get("value"));
+                    res.addProperty(dimensionPropertyMU, map.get("measurementUnit"));
+                    res.addProperty(dimensionPropertyComponent, map.get("component"));
+                }
 
-            if(materialmaparray != null)
-            for (HashMap<String,String> map : materialmaparray)
-            {
-                res.addProperty(materialProperty, map.get("material"));
-                res.addProperty(materialPropertyType, map.get("component"));
-            }
+            if (quantitiesmaparray != null)
+                for (HashMap<String, String> map : quantitiesmaparray) {
+                    res.addProperty(quantityProperty, map.get("dimension"));
+                    res.addProperty(quantityPropertyValue, map.get("value"));
+                    res.addProperty(quantityPropertyMU, map.get("measurementUnit"));
+                    res.addProperty(quantityPropertyComponent, map.get("component"));
+                }
 
-            if(dimensionsmaparray != null)
-            for (HashMap<String,String> map : dimensionsmaparray)
-            {
-                res.addProperty(dimensionProperty, map.get("dimension"));
-                res.addProperty(dimensionPropertyValue, map.get("value"));
-                res.addProperty(dimensionPropertyMU, map.get("measurementUnit"));
-                res.addProperty(dimensionPropertyComponent, map.get("component"));
-            }
+            if (conservationStatesmaparray != null)
+                for (HashMap<String, String> map : conservationStatesmaparray) {
+                    res.addProperty(conservationProperty, map.get("conservationStatus"));
+                    res.addProperty(conservationIDProperty, map.get("initialDate"));
+                    res.addProperty(conservationFDProperty, map.get("finalDate"));
+                }
 
-            if(quantitiesmaparray != null)
-            for (HashMap<String,String> map : quantitiesmaparray)
-            {
-                res.addProperty(quantityProperty, map.get("dimension"));
-                res.addProperty(quantityPropertyValue, map.get("value"));
-                res.addProperty(quantityPropertyMU, map.get("measurementUnit"));
-                res.addProperty(quantityPropertyComponent, map.get("component"));
-            }
+            if (languagesmaparray != null)
+                for (HashMap<String, String> map : languagesmaparray) {
+                    res.addProperty(languageProperty, map.get("language"));
+                    res.addProperty(languageIdentifierProperty, map.get("identifier"));
+                }
 
-            if(conservationStatesmaparray != null)
-            for (HashMap<String,String> map : conservationStatesmaparray)
-            {
-                res.addProperty(conservationProperty, map.get("conservationStatus"));
-                res.addProperty(conservationIDProperty, map.get("initialDate"));
-                res.addProperty(conservationFDProperty, map.get("finalDate"));
-            }
+            if (writingsmaparray != null)
+                for (HashMap<String, String> map : writingsmaparray) {
+                    res.addProperty(writingProperty, map.get("writing"));
+                    res.addProperty(writingPropertyIdentifier, map.get("identifier"));
+                }
 
-            if(languagesmaparray != null)
-            for (HashMap<String,String> map : languagesmaparray)
-            {
-                res.addProperty(languageProperty, map.get("language"));
-                res.addProperty(languageIdentifierProperty, map.get("identifier"));
-            }
+            if (documentaryTraditionsmaparray != null)
+                for (HashMap<String, String> map : documentaryTraditionsmaparray) {
 
-            if(writingsmaparray != null)
-            for (HashMap<String,String> map : writingsmaparray)
-            {
-                res.addProperty(writingProperty, map.get("writing"));
-                res.addProperty(writingPropertyIdentifier, map.get("identifier"));
-            }
+                    res.addProperty(docProperty, map.get("documentaryTradition"));
+                }
 
-            if(documentaryTraditionsmaparray != null)
-            for (HashMap<String,String> map : documentaryTraditionsmaparray)
-            {
+            if (typologiesmaparray != null)
+                for (HashMap<String, String> map : typologiesmaparray) {
 
-                res.addProperty(docProperty, map.get("documentaryTradition"));
-            }
+                    res.addProperty(typologyProperty, map.get("documentaryTypology"));
+                }
 
-            if(typologiesmaparray != null)
-            for (HashMap<String,String> map : typologiesmaparray)
-            {
+            if (subjectsmaparray != null)
+                for (HashMap<String, String> map : subjectsmaparray) {
 
-                res.addProperty(typologyProperty, map.get("documentaryTypology"));
-            }
+                    res.addProperty(subjectProperty, map.get("subject"));
+                }
 
-            if(subjectsmaparray != null)
-            for (HashMap<String,String> map : subjectsmaparray)
-            {
+            if (accessConditionsmaparray != null)
+                for (HashMap<String, String> map : accessConditionsmaparray) {
+                    res.addProperty(accessConditionProperty, map.get("accessCondition"));
+                    res.addProperty(accessConditionJustifificationProperty, map.get("justification"));
+                }
 
-                res.addProperty(subjectProperty, map.get("subject"));
-            }
-
-            if(accessConditionsmaparray != null)
-            for (HashMap<String,String> map : accessConditionsmaparray)
-            {
-                res.addProperty(accessConditionProperty, map.get("accessCondition"));
-                res.addProperty(accessConditionJustifificationProperty, map.get("justification"));
-            }
-
-            if(relatedDocsmaparray != null)
-            for (HashMap<String,String> map : relatedDocsmaparray)
-            {
-                res.addProperty(relatedDocumentProperty, map.get("recordIdentifier"));
-            }
+            if (relatedDocsmaparray != null)
+                for (HashMap<String, String> map : relatedDocsmaparray) {
+                    res.addProperty(relatedDocumentProperty, map.get("recordIdentifier"));
+                }
 
             conn.put(model);
             conn.commit();

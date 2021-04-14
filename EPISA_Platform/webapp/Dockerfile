@@ -1,5 +1,4 @@
 FROM node:13.12
-# Create app directory
 WORKDIR /webapp
 COPY . .
 RUN npm install

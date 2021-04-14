@@ -1,333 +1,485 @@
-<div class="card doc-content">
-    <div class="card-body">
-        <form [formGroup]="docForm">
-            <div formGroupName="titles" class="loginfields">
-                <h3 class="title">Titles</h3>
-                <div *ngFor="let title of getArrayName('titles').controls; let i=index">
-                    <div [formGroupName]="i" class="arrayField">
-                        <label class="field">Title:
-                            <input type="text" placeholder="title" formControlName="title">
-                        </label>
-                        <label class="field">Type:
-                            <input type="text" placeholder="type" formControlName="type">
-                        </label>
-                        <div class="form-group">
-                            <button (click)="removeElem('titles', i)">Remove</button>
-                        </div>
+<div class="doc-content">
+    <form [formGroup]="docForm">
+        <div class="hasButtons">
+            <button class="search" mat-raised-button (click)="setExpanded(true)" color="primary">
+                Expand All
+            </button>
+            <button class="search" mat-raised-button (click)="setExpanded(false)" color="primary">
+                Collapse All
+            </button>
+        </div>
+        <mat-accordion class="example-headers-align" multi>
+            <!--            Title-->
+            <mat-expansion-panel class="panel" formGroupName="titles" [expanded]="isExpanded">
+                <mat-expansion-panel-header>
+                    <mat-panel-title i18n>Titles</mat-panel-title>
+                </mat-expansion-panel-header>
+
+                <div class="fields" *ngFor="let title of getArrayName('titles').controls; let i=index">
+                    <div [formGroupName]="i">
+                        <mat-form-field>
+                            <mat-label i18n>Title</mat-label>
+                            <input matInput placeholder="title" formControlName="title">
+                        </mat-form-field>
+
+                        <mat-form-field appearance="fill">
+                            <mat-label>Choose your title type</mat-label>
+                            <mat-select formControlName="type"> <!-- [disabled]="disableSelect.value">-->
+                                <mat-option [value]="titleType.value"
+                                            *ngFor="let titleType of myTitleTypes">{{ titleType.viewValue }}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <button class="search" mat-raised-button (click)="removeElem('titles', i)" color="primary">
+                            Remove
+                        </button>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <button type="button" (click)="addElem('titles')">Add Title</button>
+                    <button class="search" mat-raised-button (click)="addElem('titles')" color="primary">
+                        Add Title
+                    </button>
                 </div>
-            </div>
+            </mat-expansion-panel>
 
-            <div formGroupName="identifiers" class="loginfields">
-                <h3 class="title">Identifiers</h3>
-                <div *ngFor="let identifier of getArrayName('identifiers').controls; let i=index">
-                    <div [formGroupName]="i" class="arrayField">
-                        <label class="field">Identifier:
-                            <input type="text" placeholder="identifier" formControlName="identifier">
-                        </label>
-                        <label class="field">Type:
-                            <input type="text" placeholder="type" formControlName="type">
-                        </label>
-                        <div class="form-group">
-                            <button (click)="removeElem('identifiers', i)">Remove</button>
-                        </div>
+            <!--
+            Identifiers
+            -->
+            <mat-expansion-panel class="panel" formGroupName="identifiers" [expanded]="isExpanded">
+                <mat-expansion-panel-header>
+                    <mat-panel-title i18n>Identifiers</mat-panel-title>
+                </mat-expansion-panel-header>
+
+                <div class="fields" *ngFor="let identifier of getArrayName('identifiers').controls; let i=index">
+                    <div [formGroupName]="i">
+                        <mat-form-field>
+                            <mat-label i18n>Identifier</mat-label>
+                            <input matInput placeholder="identifier" formControlName="identifier">
+                        </mat-form-field>
+
+                        <mat-form-field appearance="fill">
+                            <mat-label>Choose your identifier type</mat-label>
+                            <mat-select formControlName="type"> <!-- [disabled]="disableSelect.value">-->
+                                <mat-option [value]="identifierType.value"
+                                            *ngFor="let identifierType of myIdentifierTypes">{{ identifierType.viewValue }}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <button class="search" mat-raised-button (click)="removeElem('identifiers', i)" color="primary">
+                            Remove
+                        </button>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <button type="button" (click)="addElem('identifiers')">Add Identifier</button>
+                    <button class="search" mat-raised-button (click)="addElem('identifiers')" color="primary">
+                        Add Identifier
+                    </button>
                 </div>
+            </mat-expansion-panel>
 
-            </div>
+            <!--
+Materials
+-->
+            <mat-expansion-panel class="panel" formGroupName="materials" [expanded]="isExpanded">
+                <mat-expansion-panel-header>
+                    <mat-panel-title i18n>Materials</mat-panel-title>
+                </mat-expansion-panel-header>
 
-            <div formGroupName="materials" class="loginfields">
-                <h3 class="title">Materials</h3>
-                <div *ngFor="let material of getArrayName('materials').controls; let i=index">
-                    <div [formGroupName]="i" class="arrayField">
-                        <label class="field">Material:
-                            <input type="text" placeholder="material" formControlName="material">
-                        </label>
-                        <label class="field">Component:
-                            <input type="text" placeholder="component" formControlName="component">
-                        </label>
-                        <div class="form-group">
-                            <button (click)="removeElem('materials', i)">Remove</button>
-                        </div>
+                <div class="fields" *ngFor="let material of getArrayName('materials').controls; let i=index">
+                    <div [formGroupName]="i">
+                        <mat-form-field>
+                            <mat-label i18n>Material</mat-label>
+                            <input matInput placeholder="material" formControlName="material">
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label i18n>Component</mat-label>
+                            <input matInput placeholder="component" formControlName="component">
+                        </mat-form-field>
+                        <button class="search" mat-raised-button (click)="removeElem('materials', i)" color="primary">
+                            Remove
+                        </button>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <button type="button" (click)="addElem('materials')">Add Materials</button>
+                    <button class="search" mat-raised-button (click)="addElem('materials')" color="primary">
+                        Add Material
+                    </button>
                 </div>
+            </mat-expansion-panel>
 
-            </div>
+            <!--
+Dimensions
+-->
+            <mat-expansion-panel class="panel" formGroupName="dimensions" [expanded]="isExpanded">
+                <mat-expansion-panel-header>
+                    <mat-panel-title i18n>Dimensions</mat-panel-title>
+                </mat-expansion-panel-header>
 
-            <div formGroupName="dimensions" class="loginfields">
-                <h3 class="title">Dimensions</h3>
-                <div *ngFor="let dimension of getArrayName('dimensions').controls; let i=index">
-                    <div [formGroupName]="i" class="arrayField">
+                <div class="fields" *ngFor="let dimension of getArrayName('dimensions').controls; let i=index">
+                    <div [formGroupName]="i">
+                        <mat-form-field>
+                            <mat-label i18n>Dimension</mat-label>
+                            <input matInput placeholder="dimension" formControlName="dimension">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label i18n>Value</mat-label>
+                            <input matInput placeholder="value" formControlName="value">
+                        </mat-form-field>
 
-                        <label class="field">Dimension:
-                            <input type="text" placeholder="dimension" formControlName="dimension">
-                        </label>
-                        <label class="field">Value:
-                            <input type="text" placeholder="value" formControlName="value">
-                        </label>
-                        <label class="field">Measurement Unit:
-                            <input type="text" placeholder="measurement unit" formControlName="measurementUnit">
-                        </label>
-                        <label class="field">Component:
-                            <input type="text" placeholder="component" formControlName="component">
-                        </label>
-                        <div class="form-group">
-                            <button (click)="removeElem('dimensions', i)">Remove</button>
-                        </div>
+                        <mat-form-field>
+                            <mat-label i18n>Measurement Unit</mat-label>
+                            <input matInput placeholder="measurementUnit" formControlName="measurementUnit">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label i18n>Component</mat-label>
+                            <input matInput placeholder="component" formControlName="component">
+                        </mat-form-field>
+                        <button class="search" mat-raised-button (click)="removeElem('dimensions', i)" color="primary">
+                            Remove
+                        </button>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <button type="button" (click)="addElem('dimensions')">Add Dimensions</button>
+                    <button class="search" mat-raised-button (click)="addElem('dimensions')" color="primary">
+                        Add Dimension
+                    </button>
                 </div>
-            </div>
+            </mat-expansion-panel>
 
-            <div formGroupName="quantities" class="loginfields">
-                <h3 class="title">Quantities</h3>
-                <div *ngFor="let quantity of getArrayName('quantities').controls; let i=index">
-                    <div [formGroupName]="i" class="arrayField">
+            <!--
+Quantities
+-->
+            <mat-expansion-panel class="panel" formGroupName="quantities" [expanded]="isExpanded">
+                <mat-expansion-panel-header>
+                    <mat-panel-title i18n>Quantities</mat-panel-title>
+                </mat-expansion-panel-header>
 
-                        <label class="field">Dimension:
-                            <input type="text" placeholder="dimension" formControlName="dimension">
-                        </label>
-                        <label class="field">Value:
-                            <input type="text" placeholder="value" formControlName="value">
-                        </label>
-                        <label class="field">Measurement Unit:
-                            <input type="text" placeholder="measurement unit" formControlName="measurementUnit">
-                        </label>
-                        <label class="field">Component:
-                            <input type="text" placeholder="component" formControlName="component">
-                        </label>
-                        <div class="form-group">
-                            <button (click)="removeElem('quantities', i)">Remove</button>
-                        </div>
+                <div class="fields" *ngFor="let quantity of getArrayName('quantities').controls; let i=index">
+                    <div [formGroupName]="i">
+                        <mat-form-field>
+                            <mat-label i18n>Dimension</mat-label>
+                            <input matInput placeholder="dimension" formControlName="dimension">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label i18n>Value</mat-label>
+                            <input matInput placeholder="value" formControlName="value">
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label i18n>Measurement Unit</mat-label>
+                            <input matInput placeholder="measurementUnit" formControlName="measurementUnit">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label i18n>Component</mat-label>
+                            <input matInput placeholder="component" formControlName="component">
+                        </mat-form-field>
+                        <button class="search" mat-raised-button (click)="removeElem('quantities', i)" color="primary">
+                            Remove
+                        </button>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <button type="button" (click)="addElem('quantities')">Add Quantity</button>
+                    <button class="search" mat-raised-button (click)="addElem('quantities')" color="primary">
+                        Add Quantity
+                    </button>
                 </div>
-            </div>
+            </mat-expansion-panel>
 
+            <!--
+conservationStates
+-->
+            <mat-expansion-panel class="panel" formGroupName="conservationStates" [expanded]="isExpanded">
+                <mat-expansion-panel-header>
+                    <mat-panel-title i18n>Conservation States</mat-panel-title>
+                </mat-expansion-panel-header>
 
-            <div formGroupName="conservationStates" class="loginfields">
-                <h3 class="title">Conservation States</h3>
-                <div *ngFor="let conservationStatus of getArrayName('conservationStates').controls; let i=index">
-                    <div [formGroupName]="i" class="arrayField">
-                        <label class="field">Conservation Status:
-                            <input type="text" placeholder="conservation status" formControlName="conservationStatus">
-                        </label>
-                        <label class="field">Initial Date:
-                            <input type="date" placeholder="initial date" formControlName="initialDate">
-                        </label>
-                        <label class="field">Final Date:
-                            <input type="date" placeholder="final date" formControlName="finalDate">
-                        </label>
-                        <div class="form-group">
-                            <button (click)="removeElem('conservationStates', i)">Remove</button>
-                        </div>
+                <div class="fields"
+                     *ngFor="let conservationStatus of getArrayName('conservationStates').controls; let i=index">
+                    <div [formGroupName]="i">
+                        <mat-form-field>
+                            <mat-label i18n>Conservation Status</mat-label>
+                            <input matInput placeholder="conservation status" formControlName="conservationStatus">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label i18n>Initial Date</mat-label>
+                            <input matInput type="date" formControlName="initialDate">
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label i18n>Final Date</mat-label>
+                            <input matInput type="date" formControlName="finalDate">
+                        </mat-form-field>
+
+                        <button class="search" mat-raised-button (click)="removeElem('conservationStates', i)"
+                                color="primary">
+                            Remove
+                        </button>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <button type="button" (click)="addElem('conservationStates')">Add Conservation States</button>
+                    <button class="search" mat-raised-button (click)="addElem('conservationStates')" color="primary">
+                        Add Conservation Status
+                    </button>
                 </div>
+            </mat-expansion-panel>
 
-            </div>
+            <!--
+languages
+-->
+            <mat-expansion-panel class="panel" formGroupName="languages" [expanded]="isExpanded">
+                <mat-expansion-panel-header>
+                    <mat-panel-title i18n>Languages</mat-panel-title>
+                </mat-expansion-panel-header>
 
-            <div formGroupName="languages" class="loginfields">
-                <h3 class="title">Languages</h3>
-                <div *ngFor="let language of getArrayName('languages').controls; let i=index">
-                    <div [formGroupName]="i" class="arrayField">
-                        <label class="field">Languages:
-                            <input type="text" placeholder="language" formControlName="language">
-                        </label>
-                        <label class="field">Identifier:
-                            <input type="text" placeholder="identifier" formControlName="identifier">
-                        </label>
-                        <div class="form-group">
-                            <button (click)="removeElem('languages', i)">Remove</button>
-                        </div>
+                <div class="fields" *ngFor="let language of getArrayName('languages').controls; let i=index">
+                    <div [formGroupName]="i">
+                        <mat-form-field>
+                            <mat-label i18n>Language</mat-label>
+                            <input matInput placeholder="language" formControlName="language">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label i18n>Identifier</mat-label>
+                            <input matInput placeholder="identifier" formControlName="identifier">
+                        </mat-form-field>
+
+                        <button class="search" mat-raised-button (click)="removeElem('languages', i)" color="primary">
+                            Remove
+                        </button>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <button type="button" (click)="addElem('languages')">Add Languages</button>
+                    <button class="search" mat-raised-button (click)="addElem('languages')" color="primary">
+                        Add Language
+                    </button>
                 </div>
+            </mat-expansion-panel>
 
-            </div>
+            <!--
+writings
+-->
+            <mat-expansion-panel class="panel" formGroupName="writings" [expanded]="isExpanded">
+                <mat-expansion-panel-header>
+                    <mat-panel-title i18n>Writings</mat-panel-title>
+                </mat-expansion-panel-header>
 
-            <div formGroupName="writings" class="loginfields">
-                <h3 class="title">Writings</h3>
-                <div *ngFor="let writing of getArrayName('writings').controls; let i=index">
-                    <div [formGroupName]="i" class="arrayField">
-                        <label class="field">Writing:
-                            <input type="text" placeholder="writing" formControlName="writing">
-                        </label>
-                        <label class="field">Identifier:
-                            <input type="text" placeholder="identifier" formControlName="identifier">
-                        </label>
-                        <div class="form-group">
-                            <button (click)="removeElem('writings', i)">Remove</button>
-                        </div>
+                <div class="fields" *ngFor="let writing of getArrayName('writings').controls; let i=index">
+                    <div [formGroupName]="i">
+                        <mat-form-field>
+                            <mat-label i18n>Writing</mat-label>
+                            <input matInput placeholder="writing" formControlName="writing">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label i18n>Identifier</mat-label>
+                            <input matInput placeholder="identifier" formControlName="identifier">
+                        </mat-form-field>
+
+                        <button class="search" mat-raised-button (click)="removeElem('writings', i)" color="primary">
+                            Remove
+                        </button>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <button type="button" (click)="addElem('writings')">Add Writing</button>
+                    <button class="search" mat-raised-button (click)="addElem('writings')" color="primary">
+                        Add Writing
+                    </button>
                 </div>
-            </div>
+            </mat-expansion-panel>
 
-            <div formGroupName="documentaryTraditions" class="loginfields">
-                <h3 class="title">Documentary Traditions</h3>
-                <div *ngFor="let document of getArrayName('documentaryTraditions').controls; let i=index">
-                    <div [formGroupName]="i" class="arrayField">
-                        <label class="field">Conservation Status:
-                            <input type="text" placeholder="conservation status" formControlName="conservationStatus">
-                        </label>
-                        <label class="field">Initial Date:
-                            <input type="date" placeholder="initial date" formControlName="initialDate">
-                        </label>
-                        <label class="field">Final Date:
-                            <input type="date" placeholder="final date" formControlName="finalDate">
-                        </label>
-                        <div class="form-group">
-                            <button (click)="removeElem('documentaryTraditions', i)">Remove</button>
-                        </div>
+            <!--
+Documentary Traditions
+-->
+            <mat-expansion-panel class="panel" formGroupName="documentaryTraditions" [expanded]="isExpanded">
+                <mat-expansion-panel-header>
+                    <mat-panel-title i18n>Documentary Traditions</mat-panel-title>
+                </mat-expansion-panel-header>
+
+                <div class="fields"
+                     *ngFor="let documentaryTradition of getArrayName('documentaryTraditions').controls; let i=index">
+                    <div [formGroupName]="i">
+                        <mat-form-field>
+                            <mat-label i18n>Documentary Tradition</mat-label>
+                            <input matInput placeholder="documentaryTradition" formControlName="documentaryTradition">
+                        </mat-form-field>
+
+                        <button class="search" mat-raised-button (click)="removeElem('documentaryTraditions', i)"
+                                color="primary">
+                            Remove
+                        </button>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <button type="button" (click)="addElem('documentaryTraditions')">Add Documentary Traditions</button>
+                    <button class="search" mat-raised-button (click)="addElem('documentaryTraditions')" color="primary">
+                        Add Documentary Tradition
+                    </button>
                 </div>
-            </div>
+            </mat-expansion-panel>
 
-            <div formGroupName="typologies" class="loginfields">
-                <h3 class="title">Typologies</h3>
-                <div *ngFor="let document of getArrayName('typologies').controls; let i=index">
-                    <div [formGroupName]="i" class="arrayField">
-                        <label class="field">Documentary Typology:
-                            <input type="text" placeholder="documentary typology" formControlName="documentaryTypology">
-                        </label>
-                        <div class="form-group">
-                            <button (click)="removeElem('typologies', i)">Remove</button>
-                        </div>
+
+            <!--
+Typologies
+-->
+            <mat-expansion-panel class="panel" formGroupName="typologies" [expanded]="isExpanded">
+                <mat-expansion-panel-header>
+                    <mat-panel-title i18n>Typologies</mat-panel-title>
+                </mat-expansion-panel-header>
+
+                <div class="fields" *ngFor="let typology of getArrayName('typologies').controls; let i=index">
+                    <div [formGroupName]="i">
+                        <mat-form-field>
+                            <mat-label i18n>Documentary Typology</mat-label>
+                            <input matInput placeholder="documentaryTypology" formControlName="documentaryTypology">
+                        </mat-form-field>
+
+                        <button class="search" mat-raised-button (click)="removeElem('typologies', i)" color="primary">
+                            Remove
+                        </button>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <button type="button" (click)="addElem('typologies')">Add Typology</button>
+                    <button class="search" mat-raised-button (click)="addElem('typologies')" color="primary">
+                        Add Typology
+                    </button>
                 </div>
-            </div>
+            </mat-expansion-panel>
 
-            <div formGroupName="subjects" class="loginfields">
-                <h3 class="title">Subjects</h3>
-                <div *ngFor="let subject of getArrayName('subjects').controls; let i=index">
-                    <div [formGroupName]="i" class="arrayField">
-                        <label class="field">Subject:
-                            <input type="text" placeholder="subject" formControlName="subject">
-                        </label>
-                        <div class="form-group">
-                            <button (click)="removeElem('subjects', i)">Remove</button>
-                        </div>
+            <!--
+Subjects
+-->
+            <mat-expansion-panel class="panel" formGroupName="subjects" [expanded]="isExpanded">
+                <mat-expansion-panel-header>
+                    <mat-panel-title i18n>Subjects</mat-panel-title>
+                </mat-expansion-panel-header>
+
+                <div class="fields" *ngFor="let subject of getArrayName('subjects').controls; let i=index">
+                    <div [formGroupName]="i">
+                        <mat-form-field>
+                            <mat-label i18n>Subject</mat-label>
+                            <input matInput placeholder="subject" formControlName="subject">
+                        </mat-form-field>
+
+                        <button class="search" mat-raised-button (click)="removeElem('subjects', i)" color="primary">
+                            Remove
+                        </button>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <button type="button" (click)="addElem('subjects')">Add Subject</button>
+                    <button class="search" mat-raised-button (click)="addElem('subjects')" color="primary">
+                        Add Subject
+                    </button>
                 </div>
-            </div>
+            </mat-expansion-panel>
 
-            <div formGroupName="accessConditions" class="loginfields">
-                <h3 class="title">Access Conditions</h3>
-                <div *ngFor="let accessCondition of getArrayName('accessConditions').controls; let i=index">
-                    <div [formGroupName]="i" class="arrayField">
-                        <label class="field">Access Condition:
-                            <input type="text" placeholder="access condition" formControlName="accessCondition">
-                        </label>
-                        <label class="field">Justification:
-                            <input type="text" placeholder="justification" formControlName="justification">
-                        </label>
-                        <div class="form-group">
-                            <button (click)="removeElem('accessConditions', i)">Remove</button>
-                        </div>
+            <!--
+accessConditions
+-->
+            <mat-expansion-panel class="panel" formGroupName="accessConditions" [expanded]="isExpanded">
+                <mat-expansion-panel-header>
+                    <mat-panel-title i18n>Access Conditions</mat-panel-title>
+                </mat-expansion-panel-header>
+
+                <div class="fields"
+                     *ngFor="let accessCondition of getArrayName('accessConditions').controls; let i=index">
+                    <div [formGroupName]="i">
+                        <mat-form-field>
+                            <mat-label i18n>Access Condition</mat-label>
+                            <input matInput placeholder="access condition" formControlName="accessCondition">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label i18n>Justification</mat-label>
+                            <input matInput placeholder="justification" formControlName="justification">
+                        </mat-form-field>
+
+                        <button class="search" mat-raised-button (click)="removeElem('accessConditions', i)"
+                                color="primary">
+                            Remove
+                        </button>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <button type="button" (click)="addElem('accessConditions')">Add Access Conditions</button>
+                    <button class="search" mat-raised-button (click)="addElem('accessConditions')" color="primary">
+                        Add Access Condition
+                    </button>
                 </div>
-            </div>
+            </mat-expansion-panel>
 
-            <div formGroupName="relatedDocs" class="loginfields">
-                <h3 class="title">Related Docs</h3>
-                <div *ngFor="let related of getArrayName('relatedDocs').controls; let i=index">
-                    <div [formGroupName]="i" class="arrayField">
-                        <label class="field">Record Identifier:
-                            <input type="text" placeholder="record identifier" formControlName="recordIdentifier">
-                        </label>
-                        <label class="field">Title:
-                            <input type="text" placeholder="title" formControlName="title">
-                        </label>
-                        <label class="field">Relation Type:
-                            <input type="text" placeholder="relation type" formControlName="relationType">
-                        </label>
-                        <div class="form-group">
-                            <button (click)="removeElem('relatedDocs', i)">Remove</button>
-                        </div>
+            <!--
+related Docs
+-->
+            <mat-expansion-panel class="panel" formGroupName="relatedDocs" [expanded]="isExpanded">
+                <mat-expansion-panel-header>
+                    <mat-panel-title i18n>Related Docs</mat-panel-title>
+                </mat-expansion-panel-header>
+
+                <div class="fields"
+                     *ngFor="let accessCondition of getArrayName('relatedDocs').controls; let i=index">
+                    <div [formGroupName]="i">
+                        <mat-form-field>
+                            <mat-label i18n>Access Condition</mat-label>
+                            <input matInput placeholder="access condition" formControlName="recordIdentifier">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label i18n>Title</mat-label>
+                            <input matInput placeholder="title" formControlName="title">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label i18n>Relation Type</mat-label>
+                            <input matInput placeholder="relation type" formControlName="relationType">
+                        </mat-form-field>
+
+                        <button class="search" mat-raised-button (click)="removeElem('relatedDocs', i)"
+                                color="primary">
+                            Remove
+                        </button>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <button type="button" (click)="addElem('relatedDocs')">Add Related Doc</button>
+                    <button class="search" mat-raised-button (click)="addElem('relatedDocs')" color="primary">
+                        Add Related Doc
+                    </button>
                 </div>
-            </div>
+            </mat-expansion-panel>
 
-            <div class="form-group" *ngIf="pageCreateDoc">
 
-                <button mat-flat-button [disabled]="loading" class="btn btn-primary mat-error btn-mg-1em"
-                        (click)="goToHome()">
-                    <span class="spinner-border spinner-border-sm mr-1"></span>
-                    Cancel
-                </button>
+        </mat-accordion>
 
-                <button mat-flat-button [disabled]="loading" class="btn btn-primary mat-success btn-mg-1em"
-                        (click)="createDoc()">
-                    <span class="spinner-border spinner-border-sm mr-1"></span>
-                    Create
-                </button>
-            </div>
-            <div class="form-group" *ngIf="!pageCreateDoc">
 
-                <button mat-flat-button [disabled]="loading" class="btn btn-primary mat-error btn-mg-1em"
-                        (click)="goToHome()">
-                    <span class="spinner-border spinner-border-sm mr-1"></span>
-                    Cancel
-                </button>
+        <div class="hasButtons" *ngIf="pageCreateDoc">
+            <button class="search mat-error" mat-raised-button (click)="goToHome()" color="primary">
+                Cancel
+            </button>
+            <button class="search mat-success" [disabled]="loading" mat-raised-button (click)="createDoc()"
+                    color="primary">
+                Create
+            </button>
 
-                <button mat-flat-button [disabled]="loading" class="btn btn-primary mat-success btn-mg-1em"
-                        (click)="updateDoc()">
-                    <span class="spinner-border spinner-border-sm mr-1"></span>
-                    Update
-                </button>
-            </div>
+        </div>
+        <div class="hasButtons" *ngIf="!pageCreateDoc">
+            <button class="search mat-error" mat-raised-button (click)="goToHome()" color="primary">
+                Cancel
+            </button>
+
+
+            <button class="search mat-success" [disabled]="loading" mat-raised-button (click)="updateDoc()"
+                    color="primary">
+                Update
+            </button>
+        </div>
+
     </form>
 
-</div>
-{{this.docForm.value | json}}
+    {{this.docForm.value | json}}
 </div>
 
 

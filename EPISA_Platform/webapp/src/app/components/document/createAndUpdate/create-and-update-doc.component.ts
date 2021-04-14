@@ -13,15 +13,6 @@ import {Title} from '@angular/platform-browser';
   styleUrls: ['./create-and-update-doc.component.css', '../../default.css']
 })
 export class CreateAndUpdateDocComponent implements OnInit {
-  public docForm: FormGroup;
-  public loading = false;
-  public submitted = false;
-  public pageCreateDoc: boolean | undefined;
-  public episaIdentifier: any;
-
-  returnUrl: string | undefined;
-  error = '';
-  title = 'FormArray Example in Angular Reactive forms';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -52,6 +43,22 @@ export class CreateAndUpdateDocComponent implements OnInit {
     // }
   }
 
+  public docForm: FormGroup;
+  public loading = false;
+  public submitted = false;
+  public pageCreateDoc: boolean | undefined;
+  public episaIdentifier: any;
+
+  returnUrl: string | undefined;
+  error = '';
+  title = 'FormArray Example in Angular Reactive forms';
+
+// =========End New Elems ===================
+  public myTitleTypes: any = [{value: 'formalTitle', viewValue: 'Formal Title'}, {value: 'suppliedTitle', viewValue: 'Supplied Title'}];
+  public myIdentifierTypes: any = [{value: 'referenceCode', viewValue: 'Reference Code'}];
+  public isExpanded: boolean | undefined;
+
+
   ngOnInit() {
     const href = this.router.url;
     console.log(this.router.url);
@@ -68,6 +75,7 @@ export class CreateAndUpdateDocComponent implements OnInit {
     console.log(this.pageCreateDoc);
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
+    this.isExpanded = true;
   }
 
   setDocTitle(title: string) {
@@ -75,6 +83,7 @@ export class CreateAndUpdateDocComponent implements OnInit {
   }
 
   // ========== new Elems ==================
+
   newTitle(): FormGroup {
     return this.formBuilder.group({
       title: '',
@@ -160,8 +169,6 @@ export class CreateAndUpdateDocComponent implements OnInit {
       relationType: '',
     });
   }
-
-// =========End New Elems ===================
 
   getArrayName(arrayName: string): FormArray {
     return this.docForm.get(arrayName) as FormArray;
@@ -288,8 +295,6 @@ export class CreateAndUpdateDocComponent implements OnInit {
           this.setArrayValue('languages', result.languages);
           this.setArrayValue('writings', result.writings);
           this.setArrayValue('conservationStates', result.conservationStates);
-
-
           /*
                     const elements = [];
                     for (const relatedoc of result.relatedDocuments) {
@@ -307,5 +312,7 @@ export class CreateAndUpdateDocComponent implements OnInit {
         }
       );
   }
+  setExpanded(b: boolean) {
+    this.isExpanded = b;
+  }
 }
-

@@ -24,14 +24,14 @@ public class MainController {
 
     private final Queries queries = new Queries();
 
-    @CrossOrigin(origins = {"http://localhost:4200", "http://localhost:4201"})
+    @CrossOrigin 
     @RequestMapping("/")
     public String home() {
 
-       return "my sparqlHost:" + myConfig.getSparqlHost();
+        return "my sparqlHost:" + myConfig.getSparqlHost();
     }
 
-    @CrossOrigin(origins = {"http://localhost:4200", "http://localhost:4201"})
+    @CrossOrigin 
     @GetMapping("/doc")
     public String document(@RequestParam(value = "id", defaultValue = "") String uuid) {
         SPARQLOperations conn = new SPARQLOperations(myConfig.getSparqlHost(), myConfig.getDataHost());
@@ -72,7 +72,7 @@ public class MainController {
         return json;
     }
 
-    @CrossOrigin(origins = {"http://localhost:4200", "http://localhost:4201"})
+    @CrossOrigin 
     @GetMapping("/searchdoc")
     public String documentSummary(@RequestParam(value = "refcode", defaultValue = "") Object rcode) {
         String refcode = rcode.toString();
@@ -103,7 +103,7 @@ public class MainController {
     }
 
 
-    @CrossOrigin(origins = {"http://localhost:4200", "http://localhost:4201"})
+    @CrossOrigin 
     @GetMapping("/person")
     public ResponseClass person(@RequestParam(value = "id", defaultValue = "") String uuid) {
         SPARQLOperations conn = new SPARQLOperations(myConfig.getSparqlHost(), myConfig.getDataHost());
@@ -113,7 +113,7 @@ public class MainController {
         return rep;
     }
 
-    @CrossOrigin(origins = {"http://localhost:4200", "http://localhost:4201"})
+    @CrossOrigin 
     @GetMapping("/place")
     public ResponseClass place(@RequestParam(value = "id", defaultValue = "") String uuid) {
         SPARQLOperations conn = new SPARQLOperations(myConfig.getSparqlHost(), myConfig.getDataHost());
@@ -123,7 +123,7 @@ public class MainController {
         return rep;
     }
 
-    @CrossOrigin(origins = {"http://localhost:4200", "http://localhost:4201"})
+    @CrossOrigin 
     @PostMapping("search")
     public ArrayList<Map> search(@RequestBody RequestBodyClass searchForm) {
 
@@ -216,7 +216,8 @@ public class MainController {
 
         return reparray;
     }
-    @CrossOrigin(origins = {"http://localhost:4200", "http://localhost:4201"})
+
+    @CrossOrigin 
     @PostMapping("insert")
     public ArrayList<Map> insert(@RequestBody HashMap<String, ArrayList<HashMap<String, String>>> insertForm) {
 
@@ -230,8 +231,7 @@ public class MainController {
     }
 
 
-
-        @CrossOrigin(origins = {"http://localhost:4200", "http://localhost:4201"})
+    @CrossOrigin
     @GetMapping("/levelsdesc")
     public ArrayList<String> levels() {
         SPARQLOperations conn = new SPARQLOperations(myConfig.getSparqlHost(), myConfig.getDataHost());
