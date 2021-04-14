@@ -24,7 +24,7 @@ export class DocumentComponent implements OnInit {
   public relatedDocs: any[];
   public materials: any[];
   public quantities: any[];
-  public conservationStatus: any[];
+  public conservationStates: any[];
   public writings: any[];
   public conditions: any[];
   public traditions: any[];
@@ -54,7 +54,7 @@ export class DocumentComponent implements OnInit {
     this.identifiers = [];
     this.materials = [];
     this.quantities = [];
-    this.conservationStatus = [];
+    this.conservationStates = [];
     this.writings = [];
     this.conditions = [];
     this.traditions = [];
@@ -81,7 +81,7 @@ export class DocumentComponent implements OnInit {
 
           console.log(result);
           this.accessConditions = result.accessConditions;
-          this.conservationStatus = result.conservationStatus;
+          this.conservationStates = result.conservationStates;
           this.dimensions = result.dimensions;
           this.documentaryTraditions = result.documentaryTraditions;
           this.episaIdentifier = result.episaIdentifier;

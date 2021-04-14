@@ -2,14 +2,15 @@ version: "3.3"
 services:
   fuseki:
     container_name: fuseki
-    image: blankdots/jena-fuseki
+#    image: blankdots/jena-fuseki
+    image: stain/jena-fuseki:latest
     environment:
       - ADMIN_PASSWORD=admin
       - FUSEKI_DATASET_1=name
     ports:
       - 3030:3030
     volumes:
-      - ./volumes/fuseki:/staging
+      - ./volumes/sdsfuseki:/staging
     restart: on-failure
     networks:
       - app
