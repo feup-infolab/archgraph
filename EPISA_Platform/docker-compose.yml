@@ -1,5 +1,6 @@
 version: "3.3"
 services:
+
   fuseki:
     container_name: fuseki
 #    image: blankdots/jena-fuseki
@@ -14,6 +15,7 @@ services:
     restart: on-failure
     networks:
       - app
+
   webapp:
     container_name: webapp
     build: ./webapp
@@ -35,7 +37,8 @@ services:
     restart: on-failure
     networks:
       - app
-    # postgres database
+
+  # postgres database
   postgres:
     container_name: postgres
     image: postgres:13.1
@@ -56,13 +59,14 @@ services:
       - ./conf/init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - app
+
   # pgadmin for managing postgis db (runs at localhost:5050)
   # To add the above postgres server to pgadmin, use hostname as defined by docker: 'postgres'
   pgadmin:
     container_name: pgadmin
     image: dpage/pgadmin4
     environment:
-      - PGADMIN_DEFAULT_EMAIL=admin
+      - PGADMIN_DEFAULT_EMAIL=admin@episa.inesctec.pt
       - PGADMIN_DEFAULT_PASSWORD=admin
       - PGADMIN_LISTEN_PORT=5050
     ports:
