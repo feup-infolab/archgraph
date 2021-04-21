@@ -9,38 +9,29 @@ import queries.Queries;
 
 import java.util.*;
 
-
 public class SPARQLOperations {
     public Queries querier = new Queries();
-
     public String sparqlHost;
     public String dataHost;
 
     public SPARQLOperations(String sparqlHost, String dataHost) {
-
         this.sparqlHost = sparqlHost;
         this.dataHost = dataHost;
     }
 
-    public void importOWL(){
-
-
+    public void importOWL() {
         RDFConnectionRemoteBuilder builder = RDFConnectionFuseki.create()
                 .destination(dataHost);
-
 
         try (RDFConnectionFuseki conn = (RDFConnectionFuseki) builder.build()) {
 
             conn.load("owls/Exemplo-25registos.owl");
         }
-
-
     }
 
     public ResponseClass obtainSummaryResponse(Query query, String key, ResponseClass r) {
         RDFConnectionRemoteBuilder builder = RDFConnectionFuseki.create()
                 .destination(sparqlHost);
-
 
         try (RDFConnectionFuseki conn = (RDFConnectionFuseki) builder.build()) {
 
@@ -55,7 +46,6 @@ public class SPARQLOperations {
                     String current = b.next();
                     RDFNode res = stmt.get(current);
                     r.putProperties(key, res.toString());
-
                 }
                 qExec.close();
                 conn.close();
@@ -71,7 +61,6 @@ public class SPARQLOperations {
     public ResponseClass obtainTotalResponse(Query query, String key, ResponseClass r) {
         RDFConnectionRemoteBuilder builder = RDFConnectionFuseki.create()
                 .destination(sparqlHost);
-
 
         try (RDFConnectionFuseki conn = (RDFConnectionFuseki) builder.build()) {
 
@@ -112,7 +101,6 @@ public class SPARQLOperations {
         RDFConnectionRemoteBuilder builder = RDFConnectionFuseki.create()
                 .destination(sparqlHost);
 
-
         try (RDFConnectionFuseki conn = (RDFConnectionFuseki) builder.build()) {
 
             QueryExecution qExec = conn.query(query);
@@ -144,8 +132,7 @@ public class SPARQLOperations {
                 return r;
             }
 
-            int i;
-            i = 0;
+            int i = 0;
             while (rs.hasNext()) {
                 if (i != 0) {
                     stmt = rs.next();
@@ -181,9 +168,7 @@ public class SPARQLOperations {
             while (rs.hasNext()) {
 
                 QuerySolution qs = rs.next();
-
                 list.add(qs.get("subject").toString());
-
             }
         }
         return list;
@@ -196,14 +181,12 @@ public class SPARQLOperations {
 
         try (RDFConnectionFuseki conn = (RDFConnectionFuseki) builder.build()) {
             Query query = querier.getAllUuids();
-            System.err.println("Query: "+ query.toString());
+            System.err.println("Query: " + query.toString());
             ResultSet rs = conn.query(query).execSelect();
             while (rs.hasNext()) {
 
                 QuerySolution qs = rs.next();
-
                 list.add(qs.get("description").toString());
-
             }
         }
         return list;
@@ -220,9 +203,7 @@ public class SPARQLOperations {
             while (rs.hasNext()) {
 
                 QuerySolution qs = rs.next();
-
                 list.add(qs.get("description").toString());
-
             }
         }
         return list;
@@ -246,7 +227,6 @@ public class SPARQLOperations {
                 if (!list.contains(qs.get("label").toString())) {
                     list.add(qs.get("label").toString());
                 }
-
             }
             conn.close();
             qExec.close();
@@ -254,7 +234,7 @@ public class SPARQLOperations {
         } catch (Exception e) {
             System.out.println("error:");
             System.out.println(e.getMessage());
-            System.out.println("Query: "+ query.toString());
+            System.out.println("Query: " + query.toString());
             System.out.println("sparqlHost: " + this.sparqlHost);
         }
         return list;

@@ -28,98 +28,54 @@ public class FillExamples {
             Resource res = model.getResource("http://erlangen-c<    rm.org/200717/E31_Document1");
             Resource res2 = model.getResource("http://erlangen-crm.org/200717/E31_Document113");
             Resource res3 = model.getResource("http://erlangen-crm.org/200717/E31_Document127");
-            Property materialProperty = model.createProperty("http://erlangen-crm.org/200717/", "has_material");
-            Property materialPropertyType = model.createProperty("http://erlangen-crm.org/200717/", "has_material_type");
 
-            Property dimensionProperty = model.createProperty("http://erlangen-crm.org/200717/", "has_dimension");
-            Property dimensionPropertyValue = model.createProperty("http://erlangen-crm.org/200717/", "has_dimension_value");
-            Property dimensionPropertyMU = model.createProperty("http://erlangen-crm.org/200717/", "has_dimension_measurement_unit");
-            Property dimensionPropertyComponent = model.createProperty("http://erlangen-crm.org/200717/", "has_dimension_component");
-
-
-            Property quantityProperty = model.createProperty("http://erlangen-crm.org/200717/", "has_quantity");
-            Property quantityPropertyValue = model.createProperty("http://erlangen-crm.org/200717/", "has_quantity_value");
-            Property quantityPropertyMU = model.createProperty("http://erlangen-crm.org/200717/", "has_quantity_measurement_unit");
-            Property quantityPropertyComponent = model.createProperty("http://erlangen-crm.org/200717/", "has_quantity_component");
-
-
-            Property conservationProperty = model.createProperty("http://erlangen-crm.org/200717/", "has_conservation_status");
-            Property conservationIDProperty = model.createProperty("http://erlangen-crm.org/200717/", "has_conservation_status_ID");
-            Property conservationFDProperty = model.createProperty("http://erlangen-crm.org/200717/", "has_conservation_status_FD");
-
-
-            Property languageProperty = model.createProperty("http://erlangen-crm.org/200717/", "has_language");
-            Property languageIdentifierProperty = model.createProperty("http://erlangen-crm.org/200717/", "has_language_identifier");
-
-            Property writingProperty = model.createProperty("http://erlangen-crm.org/200717/", "has_writing");
-            Property writingPropertyIdentifier = model.createProperty("http://erlangen-crm.org/200717/", "has_writing_identifier");
-
-            Property docProperty = model.createProperty("http://erlangen-crm.org/200717/", "has_doc_tradition");
-
-            Property typologyProperty = model.createProperty("http://erlangen-crm.org/200717/", "has_typology");
-
-            Property subjectProperty = model.createProperty("http://erlangen-crm.org/200717/", "has_subject");
-
-            Property accessConditionProperty = model.createProperty("http://erlangen-crm.org/200717/", "has_access_condition");
-            Property accessConditionJustifificationProperty = model.createProperty("http://erlangen-crm.org/200717/", "has_access_condition_justification");
-
-            Property reproductionConditionProperty = model.createProperty("http://erlangen-crm.org/200717/", "has_reproduction_condition");
-            Property reproductionConditionJustifificationProperty = model.createProperty("http://erlangen-crm.org/200717/", "has_reproduction_condition_justification");
-
-
-            Property relatedEventsProperty = model.createProperty("http://erlangen-crm.org/200717/", "has_related_event");
-            Property relatedEventsTypeProperty = model.createProperty("http://erlangen-crm.org/200717/", "has_related_event_type");
-            Property relatedEventsIDProperty = model.createProperty("http://erlangen-crm.org/200717/", "has_related_event_id");
-            Property relatedEventsFDProperty = model.createProperty("http://erlangen-crm.org/200717/", "has_related_event_fd");
-
-
-            Property relatedDocumentProperty = model.createProperty("http://erlangen-crm.org/200717/", "has_related_document");
-
+            Properties properties= new Properties(model);
+            properties.createProperties();
 
             // add the property
-            res.addProperty(materialProperty, "papelA3");
-            res.addProperty(materialPropertyType, "papel");
+            res.addProperty(properties.getMaterialProperty(), "papelA3");
+            res.addProperty(properties.getMaterialPropertyType(), "papel");
 
-            res.addProperty(dimensionProperty, "40m");
-            res.addProperty(dimensionPropertyValue, "40");
-            res.addProperty(dimensionPropertyMU, "meter");
-            res.addProperty(dimensionPropertyComponent, "Component");
+            res.addProperty(properties.getDimensionProperty(), "40m");
+            res.addProperty(properties.getDimensionPropertyValue(), "40");
+            res.addProperty(properties.getDimensionPropertyMU(), "meter");
+            res.addProperty(properties.getDimensionPropertyComponent(), "Component");
 
-            res.addProperty(quantityProperty, "1 Papel");
-            res.addProperty(quantityPropertyValue, "1");
-            res.addProperty(quantityPropertyMU, "Papel");
-            res.addProperty(quantityPropertyComponent, "Component");
+            res.addProperty(properties.getQuantityProperty(), "1 Papel");
+            res.addProperty(properties.getDimensionPropertyValue(), "1");
+            res.addProperty(properties.getDimensionPropertyMU(), "Papel");
+            res.addProperty(properties.getQuantityPropertyComponent(), "Component");
 
-            res.addProperty(conservationProperty, "Conservado");
-            res.addProperty(conservationIDProperty, "31/03/1990");
-            res.addProperty(conservationFDProperty, "01/02/1992");
+            res.addProperty(properties.getConservationProperty(), "Conservado");
+            res.addProperty(properties.getConservationIDProperty(), "31/03/1990");
+            res.addProperty(properties.getConservationFDProperty(), "01/02/1992");
 
-            res.addProperty(languageProperty, "Portugues");
-            res.addProperty(languageIdentifierProperty, "PT");
+            res.addProperty(properties.getLanguageProperty(), "Portugues");
+            res.addProperty(properties.getLanguageIdentifierProperty(), "PT");
 
-            res.addProperty(writingProperty, "Escrita");
-            res.addProperty(writingPropertyIdentifier, "1234");
+            res.addProperty(properties.getWritingProperty(), "Escrita");
+            res.addProperty(properties.getWritingIdentifierProperty(), "1234");
 
-            res.addProperty(docProperty, "Prosa");
+            res.addProperty(properties.getDocProperty(), "Prosa");
 
 
-            res.addProperty(typologyProperty, "Língua Analítica");
+            res.addProperty(properties.getTypologyProperty(), "Língua Analítica");
 
-            res.addProperty(subjectProperty, "Assunto do Documento");
+            res.addProperty(properties.getSubjectProperty(), "Assunto do Documento");
 
-            res.addProperty(accessConditionProperty, "Acesso Completo");
-            res.addProperty(accessConditionJustifificationProperty, "Disponivel a Todos");
+            res.addProperty(properties.getAccessConditionProperty(), "Acesso Completo");
+            res.addProperty(properties.getAccessConditionJustifificationProperty(), "Disponivel a Todos");
 
-            res.addProperty(reproductionConditionProperty, "Ilegal");
-            res.addProperty(reproductionConditionJustifificationProperty, "Unico");
+            res.addProperty(properties.getReproductionConditionProperty(), "Ilegal");
+            res.addProperty(properties.getReproductionConditionJustifificationProperty(), "Unico");
 
-            res.addProperty(relatedEventsProperty, "1235");
-            res.addProperty(relatedEventsTypeProperty, "Teste");
-            res.addProperty(relatedEventsIDProperty, "12/06/2000");
-            res.addProperty(relatedEventsFDProperty, "12/06/2001");
+            res.addProperty(properties.getRelatedEventsProperty(), "1235");
+            res.addProperty(properties.getRelatedEventsTypeProperty(), "Teste");
+            res.addProperty(properties.getRelatedEventsIDProperty(), "12/06/2000");
+            res.addProperty(properties.getRelatedEventsFDProperty(), "12/06/2001");
 
-            res.addProperty(relatedDocumentProperty, res2);
-            res.addProperty(relatedDocumentProperty, res3);
+            res.addProperty(properties.getRelatedDocumentProperty(), res2);
+            res.addProperty(properties.getRelatedDocumentProperty(), res3);
 
 
             conn.put(model);

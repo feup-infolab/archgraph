@@ -1,6 +1,5 @@
 package restservice;
 
-
 import java.util.*;
 
 import cclasses.RequestBodyClass;
@@ -24,14 +23,13 @@ public class MainController {
 
     private final Queries queries = new Queries();
 
-    @CrossOrigin 
+    @CrossOrigin
     @RequestMapping("/")
     public String home() {
-
         return "my sparqlHost:" + myConfig.getSparqlHost();
     }
 
-    @CrossOrigin 
+    @CrossOrigin
     @GetMapping("/doc")
     public String document(@RequestParam(value = "id", defaultValue = "") String uuid) {
         SPARQLOperations conn = new SPARQLOperations(myConfig.getSparqlHost(), myConfig.getDataHost());
@@ -72,7 +70,7 @@ public class MainController {
         return json;
     }
 
-    @CrossOrigin 
+    @CrossOrigin
     @GetMapping("/searchdoc")
     public String documentSummary(@RequestParam(value = "refcode", defaultValue = "") Object rcode) {
         String refcode = rcode.toString();
@@ -103,7 +101,7 @@ public class MainController {
     }
 
 
-    @CrossOrigin 
+    @CrossOrigin
     @GetMapping("/person")
     public ResponseClass person(@RequestParam(value = "id", defaultValue = "") String uuid) {
         SPARQLOperations conn = new SPARQLOperations(myConfig.getSparqlHost(), myConfig.getDataHost());
@@ -113,7 +111,7 @@ public class MainController {
         return rep;
     }
 
-    @CrossOrigin 
+    @CrossOrigin
     @GetMapping("/place")
     public ResponseClass place(@RequestParam(value = "id", defaultValue = "") String uuid) {
         SPARQLOperations conn = new SPARQLOperations(myConfig.getSparqlHost(), myConfig.getDataHost());
@@ -123,8 +121,8 @@ public class MainController {
         return rep;
     }
 
-    @CrossOrigin 
-    @PostMapping("search")
+    @CrossOrigin
+    @PostMapping("/search")
     public ArrayList<Map> search(@RequestBody RequestBodyClass searchForm) {
 
         String refcode = searchForm.getRefCode();
@@ -217,17 +215,12 @@ public class MainController {
         return reparray;
     }
 
-    @CrossOrigin 
-    @PostMapping("insert")
-    public ArrayList<Map> insert(@RequestBody HashMap<String, ArrayList<HashMap<String, String>>> insertForm) {
-
+    @CrossOrigin
+    @PostMapping("/insert")
+    public ArrayList<Map> insert(@RequestBody HashMap<String, HashMap<String, ArrayList<HashMap<String, String>>>> insertForm) {
         Insert insertclass = new Insert(myConfig.getSparqlHost(), myConfig.getDataHost());
-
         insertclass.insert(insertForm);
-
         return null;
-
-
     }
 
 
@@ -235,10 +228,7 @@ public class MainController {
     @GetMapping("/levelsdesc")
     public ArrayList<String> levels() {
         SPARQLOperations conn = new SPARQLOperations(myConfig.getSparqlHost(), myConfig.getDataHost());
-        HashMap<String, ArrayList<String>> list = new HashMap<>();
-        ArrayList<String> alist = new ArrayList<>();
-        alist = conn.getAllLevelsOfDesc();
-        return alist;
+        return conn.getAllLevelsOfDesc();
     }
 
 

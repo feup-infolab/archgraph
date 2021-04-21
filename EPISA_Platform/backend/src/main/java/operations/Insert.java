@@ -19,15 +19,18 @@ public class Insert {
     public Insert(String sparqlHost, String dataHost) {
         this.sparqlHost = sparqlHost;
         this.dataHost = dataHost;
+        System.out.println("ola");
     }
 
-    public void insert(HashMap<String, ArrayList<HashMap<String, String>>> mapper) {
+    public void insert(HashMap<String, HashMap<String, ArrayList<HashMap<String, String>>>> mapper) {
         RDFConnectionRemoteBuilder builder = RDFConnectionFuseki.create()
                 .destination(this.dataHost);
 
 
         try (RDFConnectionFuseki conn = (RDFConnectionFuseki) builder.build()) {
             Model model = conn.fetch();
+            Properties properties = new Properties(model);
+            properties.createProperties();
 
             // create the resource
             Resource Docres = model.getResource("http://erlangen-crm.org/200717/E31_Document");
@@ -37,10 +40,10 @@ public class Insert {
             Resource res = model.createResource("http://erlangen-crm.org/200717/" + UUID.randomUUID().toString(), Docres);
 
 
-            Property testprop = model.createProperty("http://erlangen-crm.org/200717/", "has_uuid");
+            Property uuindProperty = model.createProperty("http://erlangen-crm.org/200717/", "has_uuid");
             UUID uuid = UUID.randomUUID();
             String uuidAsString = uuid.toString();
-            res.addProperty(testprop, uuidAsString);
+            res.addProperty(uuindProperty, uuidAsString);
 
             Resource Stringres = model.getResource("http://www.episa.inesctec.pt/data_object#String");
 
@@ -50,67 +53,50 @@ public class Insert {
             Resource RefCoderes = model.getResource("http://www.semanticweb.org/dmelo/ontologies/2020/7/untitled-ontology-151#Reference_code");
 
 
-            Property materialProperty = model.createProperty("http://erlangen-crm.org/200717/", "has_material");
-            Property materialPropertyType = model.createProperty("http://erlangen-crm.org/200717/", "has_material_type");
+//            DOC_IDENTITY
+            HashMap<String, ArrayList<HashMap<String, String>>> DOC_IDENTITY = mapper.get("DOC_IDENTITY");
+            ArrayList<HashMap<String, String>> titlemaparray,
+                    identifiermaparray,
+                    materialmaparray,
+                    dimensionsmaparray,
+                    quantitiesmaparray;
 
-            Property dimensionProperty = model.createProperty("http://erlangen-crm.org/200717/", "has_dimension");
-            Property dimensionPropertyValue = model.createProperty("http://erlangen-crm.org/200717/", "has_dimension_value");
-            Property dimensionPropertyMU = model.createProperty("http://erlangen-crm.org/200717/", "has_dimension_measurement_unit");
-            Property dimensionPropertyComponent = model.createProperty("http://erlangen-crm.org/200717/", "has_dimension_component");
-
-
-            Property quantityProperty = model.createProperty("http://erlangen-crm.org/200717/", "has_quantity");
-            Property quantityPropertyValue = model.createProperty("http://erlangen-crm.org/200717/", "has_quantity_value");
-            Property quantityPropertyMU = model.createProperty("http://erlangen-crm.org/200717/", "has_quantity_measurement_unit");
-            Property quantityPropertyComponent = model.createProperty("http://erlangen-crm.org/200717/", "has_quantity_component");
-
-
-            Property conservationProperty = model.createProperty("http://erlangen-crm.org/200717/", "has_conservation_status");
-            Property conservationIDProperty = model.createProperty("http://erlangen-crm.org/200717/", "has_conservation_status_ID");
-            Property conservationFDProperty = model.createProperty("http://erlangen-crm.org/200717/", "has_conservation_status_FD");
+            titlemaparray = DOC_IDENTITY.get("titles");
+            identifiermaparray = DOC_IDENTITY.get("identifiers");
+            materialmaparray = DOC_IDENTITY.get("materials");
+            dimensionsmaparray = DOC_IDENTITY.get("dimensions");
+            quantitiesmaparray = DOC_IDENTITY.get("quantities");
 
 
-            Property languageProperty = model.createProperty("http://erlangen-crm.org/200717/", "has_language");
-            Property languageIdentifierProperty = model.createProperty("http://erlangen-crm.org/200717/", "has_language_identifier");
+            // DOC_CONTEXT
+            HashMap<String, ArrayList<HashMap<String, String>>> DOC_CONTEXT = mapper.get("DOC_CONTEXT");
+            ArrayList<HashMap<String, String>> subjectsmaparray,
+                    writingsmaparray,
+                    typologiesmaparray,
+                    conservationStatesmaparray,
+                    documentaryTraditionsmaparray;
 
-            Property writingProperty = model.createProperty("http://erlangen-crm.org/200717/", "has_writing");
-            Property writingPropertyIdentifier = model.createProperty("http://erlangen-crm.org/200717/", "has_writing_identifier");
-
-            Property docProperty = model.createProperty("http://erlangen-crm.org/200717/", "has_doc_tradition");
-
-            Property typologyProperty = model.createProperty("http://erlangen-crm.org/200717/", "has_typology");
-
-            Property subjectProperty = model.createProperty("http://erlangen-crm.org/200717/", "has_subject");
-
-            Property accessConditionProperty = model.createProperty("http://erlangen-crm.org/200717/", "has_access_condition");
-            Property accessConditionJustifificationProperty = model.createProperty("http://erlangen-crm.org/200717/", "has_access_condition_justification");
-
-            Property refProperty = model.createProperty("http://erlangen-crm.org/200717/", "P2_has_type");
-            Property identificationProperty = model.createProperty("http://erlangen-crm.org/200717/", "P1_is_identified_by");
-            Property titleProperty = model.createProperty("http://erlangen-crm.org/200717/", "P102_has_title");
-
-            Property stringProperty = model.createProperty("http://www.episa.inesctec.pt/", "ligacao#hasValue");
-
-            Property stringValueProperty = model.createProperty("http://www.episa.inesctec.pt/", "data_object#stringValue");
+            conservationStatesmaparray = DOC_CONTEXT.get("conservationStates");
+            writingsmaparray = DOC_CONTEXT.get("writings");
+            documentaryTraditionsmaparray = DOC_CONTEXT.get("documentaryTraditions");
+            typologiesmaparray = DOC_CONTEXT.get("typologies");
+            subjectsmaparray = DOC_CONTEXT.get("subjects");
 
 
-            Property relatedDocumentProperty = model.createProperty("http://erlangen-crm.org/200717/", "has_related_document");
+            // DOC_ACCESS_USE_CONDITIONS
+            HashMap<String, ArrayList<HashMap<String, String>>> DOC_ACCESS_USE_CONDITIONS = mapper.get("DOC_ACCESS_USE_CONDITIONS");
+            ArrayList<HashMap<String, String>> accessConditionsmaparray,
+                    languagesmaparray;
+
+            languagesmaparray = DOC_ACCESS_USE_CONDITIONS.get("languages");
+            accessConditionsmaparray = DOC_ACCESS_USE_CONDITIONS.get("accessConditions");
 
 
-            // add the property
-            ArrayList<HashMap<String, String>> titlemaparray = mapper.get("titles");
-            ArrayList<HashMap<String, String>> identifiermaparray = mapper.get("identifiers");
-            ArrayList<HashMap<String, String>> materialmaparray = mapper.get("materials");
-            ArrayList<HashMap<String, String>> dimensionsmaparray = mapper.get("dimensions");
-            ArrayList<HashMap<String, String>> quantitiesmaparray = mapper.get("quantities");
-            ArrayList<HashMap<String, String>> conservationStatesmaparray = mapper.get("conservationStates");
-            ArrayList<HashMap<String, String>> languagesmaparray = mapper.get("languages");
-            ArrayList<HashMap<String, String>> writingsmaparray = mapper.get("writings");
-            ArrayList<HashMap<String, String>> documentaryTraditionsmaparray = mapper.get("documentaryTraditions");
-            ArrayList<HashMap<String, String>> typologiesmaparray = mapper.get("typologies");
-            ArrayList<HashMap<String, String>> subjectsmaparray = mapper.get("subjects");
-            ArrayList<HashMap<String, String>> accessConditionsmaparray = mapper.get("accessConditions");
-            ArrayList<HashMap<String, String>> relatedDocsmaparray = mapper.get("relatedDocs");
+            // DOC_LINKED_DATA
+            HashMap<String, ArrayList<HashMap<String, String>>> DOC_LINKED_DATA = mapper.get("DOC_LINKED_DATA");
+            ArrayList<HashMap<String, String>> relatedDocsmaparray;
+
+            relatedDocsmaparray = DOC_LINKED_DATA.get("relatedDocs");
 
             if (titlemaparray != null)
                 for (HashMap<String, String> map : titlemaparray) {
@@ -125,9 +111,9 @@ public class Insert {
                     if (TitleRes != null) {
                         Resource StringRes = model.createResource(Stringres);
 
-                        TitleRes.addProperty(stringProperty, StringRes);
-                        StringRes.addProperty(stringValueProperty, map.get("title"));
-                        res.addProperty(titleProperty, TitleRes);
+                        TitleRes.addProperty(properties.getStringProperty(), StringRes);
+                        StringRes.addProperty(properties.getStringValueProperty(), map.get("title"));
+                        res.addProperty(properties.getTitleProperty(), TitleRes);
                     }
                 }
 
@@ -137,89 +123,91 @@ public class Insert {
 
                     if (map.get("type").equals("referenceCode")) {
                         Resource RefCode = model.createResource(RefCoderes);
-                        IdentifierRes.addProperty(refProperty, RefCode);
+                        IdentifierRes.addProperty(properties.getRefProperty(), RefCode);
                     }
                     Resource StringRes = model.createResource(Stringres);
 
-                    IdentifierRes.addProperty(stringProperty, StringRes);
-                    StringRes.addProperty(stringValueProperty, map.get("identifier"));
-                    res.addProperty(identificationProperty, IdentifierRes);
+                    IdentifierRes.addProperty(properties.getStringProperty(), StringRes);
+                    StringRes.addProperty(properties.getStringValueProperty(), map.get("identifier"));
+                    res.addProperty(properties.getIdentificationProperty(), IdentifierRes);
 
                 }
 
             if (materialmaparray != null)
                 for (HashMap<String, String> map : materialmaparray) {
-                    res.addProperty(materialProperty, map.get("material"));
-                    res.addProperty(materialPropertyType, map.get("component"));
+                    res.addProperty(properties.getMaterialProperty(), map.get("material"));
+                    res.addProperty(properties.getMaterialPropertyType(), map.get("component"));
                 }
 
             if (dimensionsmaparray != null)
                 for (HashMap<String, String> map : dimensionsmaparray) {
-                    res.addProperty(dimensionProperty, map.get("dimension"));
-                    res.addProperty(dimensionPropertyValue, map.get("value"));
-                    res.addProperty(dimensionPropertyMU, map.get("measurementUnit"));
-                    res.addProperty(dimensionPropertyComponent, map.get("component"));
+                    res.addProperty(properties.getDimensionProperty(), map.get("dimension"));
+                    res.addProperty(properties.getDimensionPropertyValue(), map.get("value"));
+                    res.addProperty(properties.getDimensionPropertyMU(), map.get("measurementUnit"));
+                    res.addProperty(properties.getDimensionPropertyComponent(), map.get("component"));
                 }
 
             if (quantitiesmaparray != null)
                 for (HashMap<String, String> map : quantitiesmaparray) {
-                    res.addProperty(quantityProperty, map.get("dimension"));
-                    res.addProperty(quantityPropertyValue, map.get("value"));
-                    res.addProperty(quantityPropertyMU, map.get("measurementUnit"));
-                    res.addProperty(quantityPropertyComponent, map.get("component"));
+                    res.addProperty(properties.getQuantityProperty(), map.get("dimension"));
+                    res.addProperty(properties.getQuantityPropertyValue(), map.get("value"));
+                    res.addProperty(properties.getQuantityPropertyMU(), map.get("measurementUnit"));
+                    res.addProperty(properties.getQuantityPropertyComponent(), map.get("component"));
                 }
 
             if (conservationStatesmaparray != null)
                 for (HashMap<String, String> map : conservationStatesmaparray) {
-                    res.addProperty(conservationProperty, map.get("conservationStatus"));
-                    res.addProperty(conservationIDProperty, map.get("initialDate"));
-                    res.addProperty(conservationFDProperty, map.get("finalDate"));
+                    res.addProperty(properties.getConservationProperty(), map.get("conservationStatus"));
+                    res.addProperty(properties.getConservationIDProperty(), map.get("initialDate"));
+                    res.addProperty(properties.getConservationFDProperty(), map.get("finalDate"));
                 }
 
             if (languagesmaparray != null)
                 for (HashMap<String, String> map : languagesmaparray) {
-                    res.addProperty(languageProperty, map.get("language"));
-                    res.addProperty(languageIdentifierProperty, map.get("identifier"));
+                    res.addProperty(properties.getLanguageProperty(), map.get("language"));
+                    res.addProperty(properties.getLanguageIdentifierProperty(), map.get("identifier"));
                 }
 
             if (writingsmaparray != null)
                 for (HashMap<String, String> map : writingsmaparray) {
-                    res.addProperty(writingProperty, map.get("writing"));
-                    res.addProperty(writingPropertyIdentifier, map.get("identifier"));
+                    res.addProperty(properties.getWritingProperty(), map.get("writing"));
+                    res.addProperty(properties.getWritingIdentifierProperty(), map.get("identifier"));
                 }
 
             if (documentaryTraditionsmaparray != null)
                 for (HashMap<String, String> map : documentaryTraditionsmaparray) {
 
-                    res.addProperty(docProperty, map.get("documentaryTradition"));
+                    res.addProperty(properties.getDocProperty(), map.get("documentaryTradition"));
                 }
 
             if (typologiesmaparray != null)
                 for (HashMap<String, String> map : typologiesmaparray) {
 
-                    res.addProperty(typologyProperty, map.get("documentaryTypology"));
+                    res.addProperty(properties.getTypologyProperty(), map.get("documentaryTypology"));
                 }
 
             if (subjectsmaparray != null)
                 for (HashMap<String, String> map : subjectsmaparray) {
 
-                    res.addProperty(subjectProperty, map.get("subject"));
+                    res.addProperty(properties.getSubjectProperty(), map.get("subject"));
                 }
 
             if (accessConditionsmaparray != null)
                 for (HashMap<String, String> map : accessConditionsmaparray) {
-                    res.addProperty(accessConditionProperty, map.get("accessCondition"));
-                    res.addProperty(accessConditionJustifificationProperty, map.get("justification"));
+                    res.addProperty(properties.getAccessConditionProperty(), map.get("accessCondition"));
+                    res.addProperty(properties.getAccessConditionJustifificationProperty(), map.get("justification"));
                 }
 
             if (relatedDocsmaparray != null)
                 for (HashMap<String, String> map : relatedDocsmaparray) {
-                    res.addProperty(relatedDocumentProperty, map.get("recordIdentifier"));
+                    res.addProperty(properties.getRelatedDocumentProperty(), map.get("recordIdentifier"));
                 }
 
             conn.put(model);
             conn.commit();
         }
+
     }
+
 
 }

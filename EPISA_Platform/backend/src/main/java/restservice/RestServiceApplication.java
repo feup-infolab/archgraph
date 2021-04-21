@@ -1,6 +1,9 @@
 package restservice;
 
 import operations.GlobalConstants;
+import org.apache.jena.fuseki.main.FusekiServer;
+import org.apache.jena.query.Dataset;
+import org.apache.jena.query.DatasetFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import operations.SPARQLOperations;
@@ -15,6 +18,8 @@ public class RestServiceApplication implements GlobalConstants {
 
 
     public static void main(String[] args) {
+
+
 
         sparqlHost = DEFAULTSparqlHost;
         dataHost = DEFAULTDataHost;
@@ -42,7 +47,5 @@ public class RestServiceApplication implements GlobalConstants {
         }
         System.err.println("===========================IS THIS CHANGING?!==========================================");
         SpringApplication.run(RestServiceApplication.class, args);
-
-
     }
 }

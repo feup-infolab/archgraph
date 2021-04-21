@@ -4,16 +4,10 @@ import java.util.List;
 import java.util.Map;
 
 public class ResponseClass {
-
-
     private final Map<String, Object> properties;
 
-
     public ResponseClass(Map<String, Object> properties) {
-
         this.properties = properties;
-
-
     }
 
     public Map<String, Object> getProperties() {
@@ -24,7 +18,6 @@ public class ResponseClass {
         this.properties.put(key, ob);
     }
 
-
     public void addContent(String key, Map<String, String> value) {
         properties.put(key, value);
     }
@@ -32,6 +25,4 @@ public class ResponseClass {
     public void addList(String key, List<Map<String, String>> value) {
         properties.put(key, value);
     }
-
-
 }
