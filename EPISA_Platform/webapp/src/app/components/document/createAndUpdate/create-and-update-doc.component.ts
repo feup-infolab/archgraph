@@ -22,21 +22,32 @@ export class CreateAndUpdateDocComponent implements OnInit {
     private titleService: Title
   ) {
 
-
     this.docForm = this.formBuilder.group({
-      titles: this.formBuilder.array([]),
-      identifiers: this.formBuilder.array([]),
-      materials: this.formBuilder.array([]),
-      dimensions: this.formBuilder.array([]),
-      quantities: this.formBuilder.array([]),
-      conservationStates: this.formBuilder.array([]),
-      languages: this.formBuilder.array([]),
-      writings: this.formBuilder.array([]),
-      documentaryTraditions: this.formBuilder.array([]),
-      typologies: this.formBuilder.array([]),
-      subjects: this.formBuilder.array([]),
-      accessConditions: this.formBuilder.array([]),
-      relatedDocs: this.formBuilder.array([]),
+      DOC_IDENTITY: this.formBuilder.group({
+        titles: this.formBuilder.array([]),
+        // descriptionLevel: this.formBuilder.control(''),
+        identifiers: this.formBuilder.array([]),
+        materials: this.formBuilder.array([]),
+        dimensions: this.formBuilder.array([]),
+        quantities: this.formBuilder.array([]),
+
+      }),
+      DOC_CONTEXT: this.formBuilder.group({
+        subjects: this.formBuilder.array([]),
+        writings: this.formBuilder.array([]),
+        typologies: this.formBuilder.array([]),
+        conservationStates: this.formBuilder.array([]),
+        documentaryTraditions: this.formBuilder.array([]),
+      }),
+
+      DOC_ACCESS_USE_CONDITIONS: this.formBuilder.group({
+        accessConditions: this.formBuilder.array([]),
+        languages: this.formBuilder.array([]),
+      }),
+
+      DOC_LINKED_DATA: this.formBuilder.group({
+        relatedDocs: this.formBuilder.array([]),
+      })
     });
     // if (this.service.getObservableUser()) {
     //   this.router.navigate(['/']);
@@ -170,21 +181,53 @@ export class CreateAndUpdateDocComponent implements OnInit {
     });
   }
 
-  getArrayName(arrayName: string): FormArray {
-    return this.docForm.get(arrayName) as FormArray;
+  // ========== ==================
+
+  getMiddleArray(arrayName: string): FormArray {
+    let middleArray;
+
+    switch (arrayName) {
+      case 'titles':
+      case 'descriptionLevel':
+      case 'identifiers':
+      case 'materials' :
+      case 'dimensions':
+      case 'quantities':
+        middleArray = 'DOC_IDENTITY';
+        break;
+      case 'subjects':
+      case 'writings':
+      case 'typologies':
+      case 'conservationStates' :
+      case 'documentaryTraditions':
+        middleArray = 'DOC_CONTEXT';
+        break;
+      case 'accessConditions' :
+      case 'languages':
+        middleArray = 'DOC_ACCESS_USE_CONDITIONS';
+        break;
+      case 'relatedDocs' :
+        middleArray = 'DOC_LINKED_DATA';
+        break;
+    }
+    // @ts-ignore
+    return this.docForm.get(middleArray) as FormArray;
+
   }
 
+  getArrayName(arrayName: string): FormArray {
+
+    return this.getMiddleArray(arrayName).get(arrayName) as FormArray;
+  }
 
   setArrayValue(arrayName: string, arrayValue: any) {
     const myArray = this.getArrayName(arrayName);
 
     while (myArray.value.length < arrayValue.length) {
       this.addElem(arrayName);
-
     }
     myArray.setValue(arrayValue);
   }
-
 
   addElem(arrayName: string) {
     let newElem;
@@ -272,11 +315,9 @@ export class CreateAndUpdateDocComponent implements OnInit {
     );
   }
 
-
   goToHome() {
     this.router.navigate(['/']);
   }
-
 
   getDocById(id: any) {
     this.service.getDocById(id)
@@ -312,6 +353,7 @@ export class CreateAndUpdateDocComponent implements OnInit {
         }
       );
   }
+
   setExpanded(b: boolean) {
     this.isExpanded = b;
   }
