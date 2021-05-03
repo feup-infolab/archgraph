@@ -1,229 +1,443 @@
 <div class="doc-content">
-    <mat-accordion class="example-headers-align" multi>
-        <mat-expansion-panel class="panel" *ngIf="identifiers.length !== 0" [expanded]="isExpanded">
-            <mat-expansion-panel-header>
-                <mat-panel-title i18n>Identifiers</mat-panel-title>
-            </mat-expansion-panel-header>
-            <div class="fields" *ngFor="let identifier of identifiers">
-                <mat-form-field>
-                    <mat-label i18n>Identifier</mat-label>
-                    <input matInput readonly [(ngModel)]="identifier.identifier">
-                </mat-form-field>
-                <mat-form-field>
-                    <mat-label i18n>Type</mat-label>
-                    <input matInput readonly [(ngModel)]="identifier.type">
-                </mat-form-field>
-            </div>
-        </mat-expansion-panel>
+    <form [formGroup]="docForm">
+        <div class="hasButtons">
+            <button class="search" mat-raised-button (click)="setExpanded(true)" color="primary">
+                Expand All
+            </button>
+            <button class="search" mat-raised-button (click)="setExpanded(false)" color="primary">
+                Collapse All
+            </button>
+        </div>
+        <mat-accordion class="example-headers-align" multi>
+            <div formGroupName="DOC_IDENTITY">
+                <!--            Title-->
+                <mat-expansion-panel class="panel" formGroupName="titles" *ngIf=" getArrayName('titles').length !== 0"
+                                     [expanded]="isExpanded">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title i18n>Titles</mat-panel-title>
+                    </mat-expansion-panel-header>
 
-        <mat-expansion-panel class="panel" *ngIf="titles.length !== 0" [expanded]="isExpanded">
-            <mat-expansion-panel-header>
-                <mat-panel-title i18n>Titles</mat-panel-title>
-            </mat-expansion-panel-header>
-            <div class="fields" *ngFor="let title of titles">
-                <mat-form-field>
-                    <mat-label i18n>Title</mat-label>
-                    <input matInput readonly [(ngModel)]="title.title">
-                </mat-form-field>
-                <mat-form-field>
-                    <mat-label i18n>Type</mat-label>
-                    <input matInput readonly [(ngModel)]="title.type">
-                </mat-form-field>
-            </div>
-        </mat-expansion-panel>
+                    <div class="fields" *ngFor="let title of getArrayName('titles').controls; let i=index">
+                        <div [formGroupName]="i">
+                            <mat-form-field>
+                                <mat-label i18n>Title</mat-label>
+                                <input matInput readonly placeholder="title" formControlName="title">
+                            </mat-form-field>
 
-        <mat-expansion-panel class="panel" *ngIf="materials.length !== 0" [expanded]="isExpanded">
-            <mat-expansion-panel-header>
-                <mat-panel-title i18n>Materials</mat-panel-title>
-            </mat-expansion-panel-header>
-            <div class="fields" *ngFor="let material of materials">
-                <mat-form-field>
-                    <mat-label i18n>Material</mat-label>
-                    <input matInput readonly [(ngModel)]="material.material">
-                </mat-form-field>
-                <mat-form-field>
-                    <mat-label i18n>Component</mat-label>
-                    <input matInput readonly [(ngModel)]="material.component">
-                </mat-form-field>
-            </div>
-        </mat-expansion-panel>
+                            <mat-form-field appearance="fill">
+                                <mat-label>Choose your title type</mat-label>
+                                <mat-select formControlName="type"> <!-- [disabled]="disableSelect.value">-->
+                                    <mat-option [value]="titleType.value"
+                                                *ngFor="let titleType of myTitleTypes">{{ titleType.viewValue }}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
 
-        <mat-expansion-panel class="panel" *ngIf="dimensions.length !== 0" [expanded]="isExpanded">
-            <mat-expansion-panel-header>
-                <mat-panel-title i18n>Dimensions</mat-panel-title>
-            </mat-expansion-panel-header>
-            <div class="fields" *ngFor="let dimension of dimensions">
-                <mat-form-field>
-                    <mat-label i18n>Dimension</mat-label>
-                    <input matInput readonly [(ngModel)]="dimension.dimension">
-                </mat-form-field>
-                <mat-form-field>
-                    <mat-label i18n>Value</mat-label>
-                    <input matInput readonly [(ngModel)]="dimension.value">
-                </mat-form-field>
-                <mat-form-field>
-                    <mat-label i18n>Measurement unit</mat-label>
-                    <input matInput readonly [(ngModel)]="dimension.measurementUnit">
-                </mat-form-field>
-                <mat-form-field>
-                    <mat-label i18n>Component</mat-label>
-                    <input matInput readonly [(ngModel)]="dimension.component">
-                </mat-form-field>
-            </div>
-        </mat-expansion-panel>
+                        </div>
+                    </div>
 
-        <mat-expansion-panel class="panel" *ngIf="quantities.length !== 0" [expanded]="isExpanded">
-            <mat-expansion-panel-header>
-                <mat-panel-title i18n>Quantities</mat-panel-title>
-            </mat-expansion-panel-header>
-            <div class="fields" *ngFor="let quantity of quantities">
-                <mat-form-field>
-                    <mat-label i18n>Quantity</mat-label>
-                    <input matInput readonly [(ngModel)]="quantity.quantity">
-                </mat-form-field>
-                <mat-form-field>
-                    <mat-label i18n>Value</mat-label>
-                    <input matInput readonly [(ngModel)]="quantity.value">
-                </mat-form-field>
-                <mat-form-field>
-                    <mat-label i18n>Measurement unit</mat-label>
-                    <input matInput readonly [(ngModel)]="quantity.measurementUnit">
-                </mat-form-field>
-                <mat-form-field>
-                    <mat-label i18n>Component</mat-label>
-                    <input matInput readonly [(ngModel)]="quantity.component">
-                </mat-form-field>
-            </div>
-        </mat-expansion-panel>
 
-        <mat-expansion-panel class="panel" *ngIf="conservationStates.length !== 0" [expanded]="isExpanded">
-            <mat-expansion-panel-header>
-                <mat-panel-title i18n>Conservation status</mat-panel-title>
-            </mat-expansion-panel-header>
-            <div class="fields" *ngFor="let conser of conservationStates">
-                <mat-form-field>
-                    <mat-label i18n>conservation status</mat-label>
-                    <input matInput readonly [(ngModel)]="conser.conservationStatus">
-                </mat-form-field>
-                <mat-form-field>
-                    <mat-label i18n>Initial date</mat-label>
-                    <input matInput type="date" readonly [(ngModel)]="conser.initialDate">
-                </mat-form-field>
-                <mat-form-field>
-                    <mat-label i18n>Final date</mat-label>
-                    <input matInput type="date" readonly [(ngModel)]="conser.finalDate">
-                </mat-form-field>
-            </div>
-        </mat-expansion-panel>
+                </mat-expansion-panel>
+                <!--
+                Identifiers
+                -->
+                <mat-expansion-panel class="panel" formGroupName="identifiers"
+                                     *ngIf=" getArrayName('identifiers').length !== 0" [expanded]="isExpanded">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title i18n>Identifiers</mat-panel-title>
+                    </mat-expansion-panel-header>
 
-        <mat-expansion-panel class="panel" *ngIf="languages.length !== 0" [expanded]="isExpanded">
-            <mat-expansion-panel-header>
-                <mat-panel-title i18n>Languages</mat-panel-title>
-            </mat-expansion-panel-header>
-            <div class="fields" *ngFor="let language of languages">
-                <mat-form-field>
-                    <mat-label i18n>Language</mat-label>
-                    <input matInput readonly [(ngModel)]="language.language">
-                </mat-form-field>
-                <mat-form-field>
-                    <mat-label i18n>Identifier</mat-label>
-                    <input matInput readonly [(ngModel)]="language.identifier">
-                </mat-form-field>
-            </div>
-        </mat-expansion-panel>
+                    <div class="fields" *ngFor="let identifier of getArrayName('identifiers').controls; let i=index">
+                        <div [formGroupName]="i">
+                            <mat-form-field>
+                                <mat-label i18n>Identifier</mat-label>
+                                <input matInput readonly placeholder="identifier" formControlName="identifier">
+                            </mat-form-field>
 
-        <mat-expansion-panel class="panel" *ngIf="writings.length !== 0" [expanded]="isExpanded">
-            <mat-expansion-panel-header>
-                <mat-panel-title i18n>Writings</mat-panel-title>
-            </mat-expansion-panel-header>
-            <div class="fields" *ngFor="let writing of writings">
-                <mat-form-field>
-                    <mat-label i18n>Writing</mat-label>
-                    <input matInput readonly [(ngModel)]="writing.writing">
-                </mat-form-field>
-                <mat-form-field>
-                    <mat-label i18n>Identifier</mat-label>
-                    <input matInput readonly [(ngModel)]="writing.identifier">
-                </mat-form-field>
-            </div>
-        </mat-expansion-panel>
+                            <mat-form-field appearance="fill">
+                                <mat-label i18n>Choose your identifier type</mat-label>
+                                <mat-select formControlName="type"> <!-- [disabled]="disableSelect.value">-->
+                                    <mat-option [value]="identifierType.value"
+                                                *ngFor="let identifierType of myIdentifierTypes">{{ identifierType.viewValue }}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
 
-        <mat-expansion-panel class="panel" *ngIf="documentaryTraditions.length !== 0" [expanded]="isExpanded">
-            <mat-expansion-panel-header>
-                <mat-panel-title i18n>Documentary traditions</mat-panel-title>
-            </mat-expansion-panel-header>
-            <div class="fields" *ngFor="let tradition of documentaryTraditions">
-                <mat-form-field>
-                    <mat-label i18n>Documentary tradition</mat-label>
-                    <input matInput readonly [(ngModel)]="tradition.documentaryTradition">
-                </mat-form-field>
-            </div>
-        </mat-expansion-panel>
+                        </div>
+                    </div>
 
-        <mat-expansion-panel class="panel" *ngIf="typologies.length !== 0" [expanded]="isExpanded">
-            <mat-expansion-panel-header>
-                <mat-panel-title i18n>Typologies</mat-panel-title>
-            </mat-expansion-panel-header>
-            <div class="fields" *ngFor="let typology of typologies">
-                <mat-form-field>
-                    <mat-label i18n>Documentary typology</mat-label>
-                    <input matInput readonly [(ngModel)]="typology.documentaryTypology">
-                </mat-form-field>
-            </div>
-        </mat-expansion-panel>
 
-        <mat-expansion-panel class="panel" *ngIf="subjects.length !== 0" [expanded]="isExpanded">
-            <mat-expansion-panel-header>
-                <mat-panel-title i18n>Subjects</mat-panel-title>
-            </mat-expansion-panel-header>
-            <div class="fields" *ngFor="let subject of subjects">
-                <mat-form-field>
-                    <mat-label i18n>Subjects</mat-label>
-                    <input matInput readonly [(ngModel)]="subject.subject">
-                </mat-form-field>
-            </div>
-        </mat-expansion-panel>
+                </mat-expansion-panel>
 
-        <mat-expansion-panel class="panel" *ngIf="accessConditions.length !== 0" [expanded]="isExpanded">
-            <mat-expansion-panel-header>
-                <mat-panel-title i18n>Access conditions</mat-panel-title>
-            </mat-expansion-panel-header>
-            <div class="fields" *ngFor="let condition of accessConditions">
-                <mat-form-field>
-                    <mat-label i18n>Access conditions</mat-label>
-                    <input matInput readonly [(ngModel)]="condition.accessConditions">
-                </mat-form-field>
-                <mat-form-field>
-                    <mat-label i18n>Justification</mat-label>
-                    <input matInput readonly [(ngModel)]="condition.justification">
-                </mat-form-field>
-            </div>
-        </mat-expansion-panel>
+                <!--
+                Materials
+                -->
+                <mat-expansion-panel class="panel" formGroupName="materials"
+                                     *ngIf=" getArrayName('materials').length !== 0" [expanded]="isExpanded">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title i18n>Materials</mat-panel-title>
+                    </mat-expansion-panel-header>
 
-        <mat-expansion-panel class="panel" *ngIf="relatedDocs.length !== 0" [expanded]="isExpanded">
-            <mat-expansion-panel-header>
-                <mat-panel-title i18n>Hierarchy</mat-panel-title>
-            </mat-expansion-panel-header>
-            <div *ngIf="haveResults">
-                <app-table [columns]="columns" [data]="dataSource" [hrefTo]="'doc'"></app-table>
-            </div>
-        </mat-expansion-panel>
+                    <div class="fields" *ngFor="let material of getArrayName('materials').controls; let i=index">
+                        <div [formGroupName]="i">
+                            <mat-form-field>
+                                <mat-label i18n>Material</mat-label>
+                                <input matInput readonly placeholder="material" formControlName="material">
+                            </mat-form-field>
 
-        <!--        <mat-expansion-panel class="panel" *ngIf="relatedEvents.length !== 0">-->
-        <!--            <mat-expansion-panel-header>-->
-        <!--                <mat-panel-title i18n>Related Events</mat-panel-title>-->
-        <!--            </mat-expansion-panel-header>-->
-        <!--            <div *ngIf="haveResults">-->
-        <!--                <app-table [columns]="columns" [data]="dataSource" [hrefTo]="'event'"></app-table>-->
-        <!--            </div>-->
-        <!--        </mat-expansion-panel>-->
-    </mat-accordion>
-    <div class="hasButtons">
-        <button class="search" mat-raised-button (click)="setExpanded(true)" color="primary">
-            Expand All
-        </button>
-        <button class="search" mat-raised-button (click)="setExpanded(false)" color="primary">
-            Collapse All
-        </button>
-    </div>
+                            <mat-form-field>
+                                <mat-label i18n>Component</mat-label>
+                                <input matInput readonly placeholder="component" formControlName="component">
+                            </mat-form-field>
+
+
+                        </div>
+                    </div>
+
+
+                </mat-expansion-panel>
+
+                <!--
+                Dimensions
+                -->
+                <mat-expansion-panel class="panel" formGroupName="dimensions"
+                                     *ngIf=" getArrayName('dimensions').length !== 0" [expanded]="isExpanded">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title i18n>Dimensions</mat-panel-title>
+                    </mat-expansion-panel-header>
+
+                    <div class="fields" *ngFor="let dimension of getArrayName('dimensions').controls; let i=index">
+                        <div [formGroupName]="i">
+                            <mat-form-field>
+                                <mat-label i18n>Dimension</mat-label>
+                                <input matInput readonly placeholder="dimension" formControlName="dimension">
+                            </mat-form-field>
+                            <mat-form-field>
+                                <mat-label i18n>Value</mat-label>
+                                <input matInput readonly placeholder="value" formControlName="value">
+                            </mat-form-field>
+
+                            <mat-form-field>
+                                <mat-label i18n>Measurement Unit</mat-label>
+                                <input matInput readonly placeholder="measurementUnit"
+                                       formControlName="measurementUnit">
+                            </mat-form-field>
+                            <mat-form-field>
+                                <mat-label i18n>Component</mat-label>
+                                <input matInput readonly placeholder="component" formControlName="component">
+                            </mat-form-field>
+
+
+                        </div>
+                    </div>
+
+
+                </mat-expansion-panel>
+
+                <!--
+                Quantities
+                -->
+                <mat-expansion-panel class="panel" formGroupName="quantities"
+                                     *ngIf=" getArrayName('quantities').length !== 0" [expanded]="isExpanded">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title i18n>Quantities</mat-panel-title>
+                    </mat-expansion-panel-header>
+
+                    <div class="fields" *ngFor="let quantity of getArrayName('quantities').controls; let i=index">
+                        <div [formGroupName]="i">
+                            <mat-form-field>
+                                <mat-label i18n>Dimension</mat-label>
+                                <input matInput readonly placeholder="dimension" formControlName="dimension">
+                            </mat-form-field>
+                            <mat-form-field>
+                                <mat-label i18n>Value</mat-label>
+                                <input matInput readonly placeholder="value" formControlName="value">
+                            </mat-form-field>
+
+                            <mat-form-field>
+                                <mat-label i18n>Measurement Unit</mat-label>
+                                <input matInput readonly placeholder="measurementUnit"
+                                       formControlName="measurementUnit">
+                            </mat-form-field>
+                            <mat-form-field>
+                                <mat-label i18n>Component</mat-label>
+                                <input matInput readonly placeholder="component" formControlName="component">
+                            </mat-form-field>
+
+
+                        </div>
+                    </div>
+
+
+                </mat-expansion-panel>
+            </div>
+
+            <div formGroupName="DOC_CONTEXT">
+                <!--
+                Subjects
+                -->
+                <mat-expansion-panel class="panel" formGroupName="subjects"
+                                     *ngIf=" getArrayName('subjects').length !== 0" [expanded]="isExpanded">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title i18n>Subjects</mat-panel-title>
+                    </mat-expansion-panel-header>
+
+                    <div class="fields" *ngFor="let subject of getArrayName('subjects').controls; let i=index">
+                        <div [formGroupName]="i">
+                            <mat-form-field>
+                                <mat-label i18n>Subject</mat-label>
+                                <input matInput readonly placeholder="subject" formControlName="subject">
+                            </mat-form-field>
+
+
+                        </div>
+                    </div>
+
+
+                </mat-expansion-panel>
+
+                <!--
+                writings
+                -->
+                <mat-expansion-panel class="panel" formGroupName="writings"
+                                     *ngIf=" getArrayName('writings').length !== 0" [expanded]="isExpanded">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title i18n>Writings</mat-panel-title>
+                    </mat-expansion-panel-header>
+
+                    <div class="fields" *ngFor="let writing of getArrayName('writings').controls; let i=index">
+                        <div [formGroupName]="i">
+                            <mat-form-field>
+                                <mat-label i18n>Writing</mat-label>
+                                <input matInput readonly placeholder="writing" formControlName="writing">
+                            </mat-form-field>
+                            <mat-form-field>
+                                <mat-label i18n>Identifier</mat-label>
+                                <input matInput readonly placeholder="identifier" formControlName="identifier">
+                            </mat-form-field>
+
+
+                        </div>
+                    </div>
+
+
+                </mat-expansion-panel>
+                <!--
+                conservationStates
+                -->
+                <mat-expansion-panel class="panel" formGroupName="conservationStates"
+                                     *ngIf=" getArrayName('conservationStates').length !== 0" [expanded]="isExpanded">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title i18n>Conservation States</mat-panel-title>
+                    </mat-expansion-panel-header>
+
+                    <div class="fields"
+                         *ngFor="let conservationStatus of getArrayName('conservationStates').controls; let i=index">
+                        <div [formGroupName]="i">
+                            <mat-form-field>
+                                <mat-label i18n>Conservation Status</mat-label>
+                                <input matInput readonly placeholder="conservation status"
+                                       formControlName="conservationStatus">
+                            </mat-form-field>
+                            <mat-form-field>
+                                <mat-label i18n>Initial Date</mat-label>
+                                <input matInput readonly type="date" formControlName="initialDate">
+                            </mat-form-field>
+
+                            <mat-form-field>
+                                <mat-label i18n>Final Date</mat-label>
+                                <input matInput readonly type="date" formControlName="finalDate">
+                            </mat-form-field>
+
+
+                        </div>
+                    </div>
+
+
+                </mat-expansion-panel>
+                <!--
+                Documentary Traditions
+                -->
+                <mat-expansion-panel class="panel" formGroupName="documentaryTraditions"
+                                     *ngIf=" getArrayName('documentaryTraditions').length !== 0"
+                                     [expanded]="isExpanded">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title i18n>Documentary Traditions</mat-panel-title>
+                    </mat-expansion-panel-header>
+
+                    <div class="fields"
+                         *ngFor="let documentaryTradition of getArrayName('documentaryTraditions').controls; let i=index">
+                        <div [formGroupName]="i">
+                            <mat-form-field>
+                                <mat-label i18n>Documentary Tradition</mat-label>
+                                <input matInput readonly placeholder="documentaryTradition"
+                                       formControlName="documentaryTradition">
+                            </mat-form-field>
+
+
+                        </div>
+                    </div>
+
+
+                </mat-expansion-panel>
+
+
+                <!--
+                Typologies
+                -->
+                <mat-expansion-panel class="panel" formGroupName="typologies"
+                                     *ngIf=" getArrayName('typologies').length !== 0" [expanded]="isExpanded">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title i18n>Typologies</mat-panel-title>
+                    </mat-expansion-panel-header>
+
+                    <div class="fields" *ngFor="let typology of getArrayName('typologies').controls; let i=index">
+                        <div [formGroupName]="i">
+                            <mat-form-field>
+                                <mat-label i18n>Documentary Typology</mat-label>
+                                <input matInput readonly placeholder="documentaryTypology"
+                                       formControlName="documentaryTypology">
+                            </mat-form-field>
+
+
+                        </div>
+                    </div>
+
+
+                </mat-expansion-panel>
+            </div>
+
+            <div formGroupName="DOC_ACCESS_USE_CONDITIONS">
+                <!--
+                languages
+                -->
+                <mat-expansion-panel class="panel" formGroupName="languages"
+                                     *ngIf=" getArrayName('languages').length !== 0" [expanded]="isExpanded">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title i18n>Languages</mat-panel-title>
+                    </mat-expansion-panel-header>
+
+                    <div class="fields" *ngFor="let language of getArrayName('languages').controls; let i=index">
+                        <div [formGroupName]="i">
+                            <mat-form-field>
+                                <mat-label i18n>Language</mat-label>
+                                <input matInput readonly placeholder="language" formControlName="language">
+                            </mat-form-field>
+                            <mat-form-field>
+                                <mat-label i18n>Identifier</mat-label>
+                                <input matInput readonly placeholder="identifier" formControlName="identifier">
+                            </mat-form-field>
+
+
+                        </div>
+                    </div>
+
+
+                </mat-expansion-panel>
+                <!--
+                accessConditions
+                -->
+                <mat-expansion-panel class="panel" formGroupName="accessConditions"
+                                     *ngIf=" getArrayName('accessConditions').length !== 0" [expanded]="isExpanded">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title i18n>Access Conditions</mat-panel-title>
+                    </mat-expansion-panel-header>
+
+                    <div class="fields"
+                         *ngFor="let accessCondition of getArrayName('accessConditions').controls; let i=index">
+                        <div [formGroupName]="i">
+                            <mat-form-field>
+                                <mat-label i18n>Access Condition</mat-label>
+                                <input matInput readonly placeholder="access condition"
+                                       formControlName="accessCondition">
+                            </mat-form-field>
+                            <mat-form-field>
+                                <mat-label i18n>Justification</mat-label>
+                                <input matInput readonly placeholder="justification" formControlName="justification">
+                            </mat-form-field>
+
+
+                        </div>
+                    </div>
+
+                </mat-expansion-panel>
+            </div>
+            <div formGroupName="DOC_LINKED_DATA">
+                <!--
+                related Docs
+                -->
+                <mat-expansion-panel class="panel" formGroupName="relatedDocs"
+                                     *ngIf=" getArrayName('relatedDocs').length !== 0" [expanded]="isExpanded">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title i18n>Related Docs</mat-panel-title>
+                    </mat-expansion-panel-header>
+
+                    <div class="fields"
+                         *ngFor="let accessCondition of getArrayName('relatedDocs').controls; let i=index">
+                        <div [formGroupName]="i">
+                            <mat-form-field>
+                                <mat-label i18n>Access Condition</mat-label>
+                                <input matInput readonly placeholder="access condition"
+                                       formControlName="recordIdentifier">
+                            </mat-form-field>
+                            <mat-form-field>
+                                <mat-label i18n>Title</mat-label>
+                                <input matInput readonly placeholder="title" formControlName="title">
+                            </mat-form-field>
+                            <mat-form-field>
+                                <mat-label i18n>Relation Type</mat-label>
+                                <input matInput readonly placeholder="relation type" formControlName="relationType">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <!--                    <mat-expansion-panel class="panel" *ngIf="getArrayName('relatedDocs').length !== 0" [expanded]="isExpanded">-->
+                    <!--                        <mat-expansion-panel-header>-->
+                    <!--                            <mat-panel-title i18n>Hierarchy</mat-panel-title>-->
+                    <!--                        </mat-expansion-panel-header>-->
+                    <!--                        <div *ngIf="haveResults">-->
+                    <!--                            <app-table [columns]="columns" [data]="dataSource" [hrefTo]="'doc'"></app-table>-->
+                    <!--                        </div>-->
+                    <!--                    </mat-expansion-panel>-->
+
+
+                </mat-expansion-panel>
+
+            </div>
+
+        </mat-accordion>
+
+
+        <div class="hasButtons" *ngIf="!pageCreateDoc">
+            <button class="search" mat-raised-button (click)="goToHome()" color="primary">
+                Go Home
+            </button>
+
+
+            <button class="search mat-success" [disabled]="loading" mat-raised-button (click)="editDoc()"
+                    color="primary">
+                Edit
+            </button>
+        </div>
+
+    </form>
+
+    {{this.docForm.value | json}}
 </div>
+
+
+<!--        <mat-expansion-panel class="panel" *ngIf="relatedDocs.length !== 0" [expanded]="isExpanded">-->
+<!--            <mat-expansion-panel-header>-->
+<!--                <mat-panel-title i18n>Hierarchy</mat-panel-title>-->
+<!--            </mat-expansion-panel-header>-->
+<!--            <div *ngIf="haveResults">-->
+<!--                <app-table [columns]="columns" [data]="dataSource" [hrefTo]="'doc'"></app-table>-->
+<!--            </div>-->
+<!--        </mat-expansion-panel>-->
+
+<!--        <mat-expansion-panel class="panel" *ngIf="relatedEvents.length !== 0">-->
+<!--            <mat-expansion-panel-header>-->
+<!--                <mat-panel-title i18n>Related Events</mat-panel-title>-->
+<!--            </mat-expansion-panel-header>-->
+<!--            <div *ngIf="haveResults">-->
+<!--                <app-table [columns]="columns" [data]="dataSource" [hrefTo]="'event'"></app-table>-->
+<!--            </div>-->
+<!--        </mat-expansion-panel>-->
+

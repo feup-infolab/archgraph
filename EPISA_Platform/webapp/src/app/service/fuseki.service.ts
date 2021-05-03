@@ -102,7 +102,8 @@ export class FusekiService {
   }
 
   updateDoc(form: any, id: any): Observable<any> {
-    console.log(form);
+    const params = new HttpParams()
+      .set('id', id);
     return this.http.put<any>(`${this.baseUrl}/updatedoc/${id}`, form);
   }
 }
