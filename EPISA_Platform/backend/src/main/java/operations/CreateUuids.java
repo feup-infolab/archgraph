@@ -13,13 +13,15 @@ public class CreateUuids {
 
     public String sparqlHost;
     public String dataHost;
+    public String updateHost;
 
     private final SPARQLOperations con;
 
-    public CreateUuids(String sparqlHost, String dataHost) {
-        this.sparqlHost = sparqlHost;
-        this.dataHost = dataHost;
-        this.con = new SPARQLOperations( sparqlHost, dataHost);
+    public CreateUuids(String defaultHost) {
+        this.sparqlHost = defaultHost + "sparql";
+        this.dataHost = defaultHost + "data";
+        this.updateHost = defaultHost + "update";
+        this.con = new SPARQLOperations(defaultHost);
     }
 
     public void create() {
@@ -35,15 +37,15 @@ public class CreateUuids {
             // create the resource
             for (String s : namelist) {
                 Resource res = model.getResource(s);
-                Property testprop = model.createProperty("http://erlangen-crm.org/200717/", "has_uuid");
+                Properties properties = new Properties(model);
+                Property testProp = properties.getHasUuid();
                 UUID uuid = UUID.randomUUID();
                 String uuidAsString = uuid.toString();
-                res.addProperty(testprop, uuidAsString);
+                res.addProperty(testProp, uuidAsString);
                 conn.put(model);
             }
             conn.commit();
         }
-
     }
 }
 

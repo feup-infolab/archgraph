@@ -39,9 +39,9 @@ public class Queries {
     }
 
     public Query getUuid(String uuid) {
-        return QueryFactory.create("SELECT ?description\n" +
+        return QueryFactory.create("SELECT ?docUuid\n" +
                 "WHERE {\n" +
-                uuid + " <http://erlangen-crm.org/200717/has_uuid> ?description\n" +
+                uuid + " <http://erlangen-crm.org/200717/has_uuid> ?docUuid\n" +
                 "}");
     }
 
@@ -61,9 +61,9 @@ public class Queries {
 
 
     public Query getIDd(String uuid) {
-        return QueryFactory.create("SELECT ?description\n" +
+        return QueryFactory.create("SELECT ?DocId\n" +
                 "WHERE {\n" +
-                "?description <http://erlangen-crm.org/200717/has_uuid> \"" + uuid + "\" }");
+                "?DocId <http://erlangen-crm.org/200717/has_uuid> \"" + uuid + "\" }");
     }
 
 
@@ -207,6 +207,15 @@ public class Queries {
                 "}");
     }
 
+    public Query getAccessCondition(String uuid) {
+        return QueryFactory.create("SELECT ?accessConditions ?justification\n" +
+                "WHERE {\n" +
+                uuid + " <http://erlangen-crm.org/200717/has_access_condition> ?accessConditions .\n" +
+                uuid + " <http://erlangen-crm.org/200717/has_access_condition_justification> ?justification\n" +
+                "}");
+    }
+
+
     public Query getWriting(String uuid) {
         return QueryFactory.create("SELECT ?writing ?identifier\n" +
                 "WHERE {\n" +
@@ -236,13 +245,6 @@ public class Queries {
                 "}");
     }
 
-    public Query getAccessCondition(String uuid) {
-        return QueryFactory.create("SELECT ?accessConditions ?justification\n" +
-                "WHERE {\n" +
-                uuid + " <http://erlangen-crm.org/200717/has_access_condition> ?accessConditions .\n" +
-                uuid + " <http://erlangen-crm.org/200717/has_access_condition_justification> ?justification\n" +
-                "}");
-    }
 
     public Query getReproductionCondition(String uuid) {
         return QueryFactory.create("SELECT ?reproductionConditions ?justification\n" +
@@ -252,7 +254,7 @@ public class Queries {
                 "}");
     }
 
-    public Query getEvent(String uuid) {
+    public Query getRelatedEvent(String uuid) {
         return QueryFactory.create("SELECT ?episaIdentifier ?eventType ?initialDate ?finalDate\n" +
                 "WHERE {\n" +
                 uuid + " <http://erlangen-crm.org/200717/has_related_event> ?episaIdentifier .\n" +
@@ -262,7 +264,7 @@ public class Queries {
                 "}");
     }
 
-    public Query getRelDoc(String uuid) {
+    public Query getRelatedDoc(String uuid) {
         return QueryFactory.create("SELECT ?episaIdentifier ?dglabIdentifier  ?title ?relationType\n" +
                 "WHERE {\n" +
                 uuid + " <http://erlangen-crm.org/200717/has_related_document> ?tdoc .\n" +
@@ -284,6 +286,27 @@ public class Queries {
                 "  ?object \t\n" +
                 "<http://www.w3.org/2000/01/rdf-schema#label> ?label\n" +
                 "}");
+    }
+
+    public String deleteDoc(String uuid, Boolean title, Boolean identifier) {
+        String query = "delete " +
+                "WHERE {\n";
+
+
+        if (title) {
+            query += uuid + " <http://erlangen-crm.org/200717/P102_has_title> ?has_title .\n" +
+                    "  ?has_title <http://www.episa.inesctec.pt/ligacao#hasValue> ?title_type .\n" +
+                    "  ?title_type <http://www.episa.inesctec.pt/data_object#stringValue> ?description.\n";
+        }
+        if (identifier) {
+            query += uuid + " <http://erlangen-crm.org/200717/P1_is_identified_by> ?cidoc_identifier .\n " +
+                    " ?cidoc_identifier <http://www.episa.inesctec.pt/ligacao#hasValue> ?identifier_value .\n " +
+                    " ?cidoc_identifier <http://erlangen-crm.org/200717/P2_has_type> ?type.\n " +
+                    " ?identifier_value <http://www.episa.inesctec.pt/data_object#stringValue>  ?refcode.\n ";
+        }
+
+        query += "}";
+        return query;
     }
 
 

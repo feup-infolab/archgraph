@@ -1,9 +1,6 @@
 package restservice;
 
 import operations.GlobalConstants;
-import org.apache.jena.fuseki.main.FusekiServer;
-import org.apache.jena.query.Dataset;
-import org.apache.jena.query.DatasetFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import operations.SPARQLOperations;
@@ -13,23 +10,20 @@ import operations.FillExamples;
 @SpringBootApplication
 public class RestServiceApplication implements GlobalConstants {
 
-    public static String sparqlHost;
-    public static String dataHost;
+    public static String myHost;
 
 
     public static void main(String[] args) {
 
 
 
-        sparqlHost = DEFAULTSparqlHost;
-        dataHost = DEFAULTDataHost;
+        myHost = DEFAULTHost;
         if (args.length > 0) {
             if (args[0].equals("production")) {
-                sparqlHost = FusekiSparqlHost;
-                dataHost = FusekiDataHost;
+                myHost = FusekiHost;
             }
         }
-        SPARQLOperations cn = new SPARQLOperations(sparqlHost, dataHost);
+        SPARQLOperations cn = new SPARQLOperations(myHost);
         System.err.println("============================= UUIDS ================================");
 
         cn.importOWL();
@@ -37,12 +31,12 @@ public class RestServiceApplication implements GlobalConstants {
 
         if (cn.getAllBaseUuids().size() == 0) {
             System.out.println("============================= Creating UUIDS ================================");
-            CreateUuids create = new CreateUuids(sparqlHost, dataHost);
+            CreateUuids create = new CreateUuids(myHost);
             create.create();
         }
         if (cn.getAllMats().size() == 0) {
             System.out.println("============================= Filling Data ================================");
-            FillExamples fillExamples = new FillExamples(sparqlHost, dataHost);
+            FillExamples fillExamples = new FillExamples(myHost);
             fillExamples.fill();
         }
         System.err.println("===========================IS THIS CHANGING?!==========================================");

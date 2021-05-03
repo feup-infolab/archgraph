@@ -28,6 +28,7 @@ services:
     restart: on-failure
     networks:
       - app
+
   middleware:
     container_name: middleware
     build: ./backend
@@ -75,6 +76,7 @@ services:
     restart: on-failure
     networks:
       - app
+
 networks:
   app: {}
 

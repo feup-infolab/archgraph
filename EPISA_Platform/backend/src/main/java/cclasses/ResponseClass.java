@@ -1,5 +1,4 @@
 package cclasses;
-
 import java.util.List;
 import java.util.Map;
 
@@ -21,6 +20,7 @@ public class ResponseClass {
     public void addContent(String key, Map<String, String> value) {
         properties.put(key, value);
     }
+
 
     public void addList(String key, List<Map<String, String>> value) {
         properties.put(key, value);
