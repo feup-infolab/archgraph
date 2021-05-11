@@ -10,11 +10,12 @@ public class Properties {
     public HashMap<String, Property> properties;
     public Model model;
     public String string200717 = "http://erlangen-crm.org/200717/";
+    public String untitledOntology = "http://www.semanticweb.org/dmelo/ontologies/2020/7/untitled-ontology-151#";
 
 
     public Properties(Model model) {
-        this.properties = new HashMap<>();
         this.model = model;
+        this.properties = new HashMap<>();
     }
 
 
@@ -43,11 +44,11 @@ public class Properties {
         return model.createProperty(string200717, "has_writing_identifier");
 
     }
+
     public Property getHasWriting() {
         return model.createProperty(string200717, "has_writing");
 
     }
-
 
 
     public Property getP102HasTitle() {
@@ -152,11 +153,16 @@ public class Properties {
     }
 
     public Property getRdfType() {
-        return model.getProperty("rdf:type");
+        return model.createProperty("rdf:type");
     }
 
     public Property getRdfsLabel() {
-        return model.getProperty("rdfs:label");
+        return model.createProperty("rdfs:label");
+    }
+
+
+    public Property getLabel() {
+        return model.createProperty("http://www.w3.org/2000/01/rdf-schema#label");
     }
 
     public Property getHasUuid() {
@@ -168,8 +174,10 @@ public class Properties {
     }
 
     public Property getStringValue() {
-        return model.getProperty("http://www.episa.inesctec.pt/data_object#stringValue");
+        return model.createProperty("http://www.episa.inesctec.pt/data_object#stringValue");
     }
 
-
+    public Property getARP12HasDescriptionLevel() {
+        return model.createProperty(untitledOntology, "ARP12_has_level_of_description");
+    }
 }

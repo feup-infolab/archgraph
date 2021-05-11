@@ -10,33 +10,35 @@ public class RequestBodyClass {
     private String relatedTo;
     private String creationDateFrom;
     private String creationDateTo;
-    private String curatorName;
     private String interventionEndDateFrom;
     private String interventionEndDateTo;
     private String interventionStartDateFrom;
     private String interventionStartDateTo;
     private String title;
+    private String conservationCuratorName;
+    private String digitalCuratorName;
 
 
-    public RequestBodyClass(String descriptionLevel, String refCode, String prodDateFrom, String prodDateTo, String keywords, String relatedTo, String creationDateFrom, String creationDateTo, String curatorName, String interventionEndDateFrom, String interventionEndDateTo, String interventionStartDateFrom, String interventionStartDateTo, String title) {
-        this.descriptionLevel = descriptionLevel;
-        this.refCode = refCode;
-        this.prodDateFrom = prodDateFrom;
-        this.prodDateTo = prodDateTo;
-        this.keywords = keywords;
-        this.relatedTo = relatedTo;
-        this.creationDateFrom = creationDateFrom;
-        this.creationDateTo = creationDateTo;
-        this.curatorName = curatorName;
-        this.interventionEndDateFrom = interventionEndDateFrom;
-        this.interventionEndDateTo = interventionEndDateTo;
-        this.interventionStartDateFrom = interventionStartDateFrom;
-        this.interventionStartDateTo = interventionStartDateTo;
-        this.title = title;
+    public RequestBodyClass(String descriptionLevel, String refCode, String prodDateFrom, String prodDateTo, String keywords, String relatedTo, String creationDateFrom, String creationDateTo, String conservationCuratorName, String digitalCuratorName, String interventionEndDateFrom, String interventionEndDateTo, String interventionStartDateFrom, String interventionStartDateTo, String title) {
+        this.descriptionLevel = this.getString(descriptionLevel);
+        this.refCode = this.getString(refCode);
+        this.prodDateFrom = this.getString(prodDateFrom);
+        this.prodDateTo = this.getString(prodDateTo);
+        this.keywords = this.getString(keywords);
+        this.relatedTo = this.getString(relatedTo);
+        this.creationDateFrom = this.getString(creationDateFrom);
+        this.conservationCuratorName = this.getString(conservationCuratorName);
+        this.digitalCuratorName = this.getString(digitalCuratorName);
+        this.creationDateTo = this.getString(creationDateTo);
+        this.interventionEndDateFrom = this.getString(interventionEndDateFrom);
+        this.interventionEndDateTo = this.getString(interventionEndDateTo);
+        this.interventionStartDateFrom = this.getString(interventionStartDateFrom);
+        this.interventionStartDateTo = this.getString(interventionStartDateTo);
+        this.title = this.getString(title);
     }
 
     public String getDescriptionLevel() {
-        return descriptionLevel;
+        return this.betweenQuotationMarks(descriptionLevel);
     }
 
     public void setDescriptionLevel(String descriptionLevel) {
@@ -44,7 +46,7 @@ public class RequestBodyClass {
     }
 
     public String getRefCode() {
-        return refCode;
+        return this.betweenQuotationMarks(refCode);
     }
 
     public void setRefCode(String refCode) {
@@ -76,7 +78,7 @@ public class RequestBodyClass {
     }
 
     public String getRelatedTo() {
-        return relatedTo;
+        return this.betweenQuotationMarks(relatedTo);
     }
 
     public void setRelatedTo(String relatedTo) {
@@ -99,12 +101,12 @@ public class RequestBodyClass {
         this.creationDateTo = creationDateTo;
     }
 
-    public String getCuratorName() {
-        return curatorName;
+    public String getDigitalCuratorName() {
+        return digitalCuratorName;
     }
 
-    public void setCuratorName(String curatorName) {
-        this.curatorName = curatorName;
+    public void setDigitalCuratorName(String digitalCuratorName) {
+        this.digitalCuratorName = digitalCuratorName;
     }
 
     public String getInterventionEndDateFrom() {
@@ -140,10 +142,34 @@ public class RequestBodyClass {
     }
 
     public String getTitle() {
-        return title;
+        return this.betweenQuotationMarks(title);
     }
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getConservationCuratorName() {
+        return conservationCuratorName;
+    }
+
+    public void setConservationCuratorName(String conservationCuratorName) {
+        this.conservationCuratorName = conservationCuratorName;
+    }
+
+    private String betweenQuotationMarks(String identifier) {
+        if (identifier != null) {
+            return "\"" + identifier + "\"";
+        } else {
+            return null;
+        }
+    }
+
+    private String getString(String identifier) {
+        if (!identifier.equals("")) {
+            return identifier;
+        } else {
+            return null;
+        }
     }
 }

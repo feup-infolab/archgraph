@@ -6,10 +6,11 @@ import org.apache.jena.rdf.model.Resource;
 
 import java.util.HashMap;
 
-public  class Resources {
+public class Resources {
     public Model model;
     public String string200717 = "http://erlangen-crm.org/200717/";
     public String untitledOntology = "http://www.semanticweb.org/dmelo/ontologies/2020/7/untitled-ontology-151#";
+    public String stringOwl = "http://www.w3.org/2002/07/owl#";
 
 
     public Resources(Model model) {
@@ -45,6 +46,11 @@ public  class Resources {
 
     }
 
+    public Resource getDescriptionLevel(String descriptionLevel) {
+        return model.getResource(untitledOntology + descriptionLevel);
+    }
 
-
+    public Resource getNamedIndividual() {
+        return model.getResource(stringOwl + "NamedIndividual");
+    }
 }

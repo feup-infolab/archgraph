@@ -41,7 +41,13 @@
                             Add Title
                         </button>
                     </div>
+                    <div *ngIf="getArrayName('titles').invalid">
+                        <span class="alert-danger message " *ngIf="getArrayName('titles').hasError('required')">
+                            Title is required
+                        </span>
+                    </div>
                 </mat-expansion-panel>
+
                 <!--
                 Identifiers
                 -->
@@ -68,13 +74,56 @@
                                     color="primary">
                                 Remove
                             </button>
+
                         </div>
+
                     </div>
 
                     <div class="form-group">
                         <button class="search" mat-raised-button (click)="addElem('identifiers')" color="primary">
                             Add Identifier
                         </button>
+                    </div>
+                    <div *ngIf="getArrayName('identifiers').invalid">
+                        <span class="alert-danger message " *ngIf="getArrayName('identifiers').hasError('required')">
+                            Identifier is required
+                        </span>
+                    </div>
+                </mat-expansion-panel>
+                <!--
+description Level
+-->
+                <mat-expansion-panel class="panel" formGroupName="descriptionLevel" [expanded]="isExpanded">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title i18n>Description Level</mat-panel-title>
+                    </mat-expansion-panel-header>
+
+                    <div class="fields"
+                         *ngFor="let descriptionLevel of getArrayName('descriptionLevel').controls; let i=index">
+                        <div [formGroupName]="i">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Choose your description Level</mat-label>
+                                <mat-select formControlName="descriptionLevel">
+                                    <mat-option [value]="item"
+                                                *ngFor="let item of descriptionLevelList">{{ item }}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <button class="search" mat-raised-button (click)="removeElem('descriptionLevel', i)"
+                                    color="primary">
+                                Remove
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-group" *ngIf=" getArrayName('descriptionLevel').length < 1">
+                        <button class="search" mat-raised-button (click)="addElem('descriptionLevel')" color="primary">
+                            Add Identifier
+                        </button>
+                    </div>
+                    <div *ngIf="getArrayName('descriptionLevel').invalid">
+                        <span class="alert-danger message " *ngIf="getArrayName('descriptionLevel').hasError('required')">
+                            Description Level is required
+                        </span>
                     </div>
                 </mat-expansion-panel>
 
@@ -243,7 +292,8 @@
                                 <input matInput placeholder="identifier" formControlName="identifier">
                             </mat-form-field>
 
-                            <button class="search" mat-raised-button (click)="removeElem('writings', i)" color="primary">
+                            <button class="search" mat-raised-button (click)="removeElem('writings', i)"
+                                    color="primary">
                                 Remove
                             </button>
                         </div>
@@ -288,7 +338,8 @@
                     </div>
 
                     <div class="form-group">
-                        <button class="search" mat-raised-button (click)="addElem('conservationStates')" color="primary">
+                        <button class="search" mat-raised-button (click)="addElem('conservationStates')"
+                                color="primary">
                             Add Conservation Status
                         </button>
                     </div>
@@ -306,7 +357,8 @@
                         <div [formGroupName]="i">
                             <mat-form-field>
                                 <mat-label i18n>Documentary Tradition</mat-label>
-                                <input matInput placeholder="documentaryTradition" formControlName="documentaryTradition">
+                                <input matInput placeholder="documentaryTradition"
+                                       formControlName="documentaryTradition">
                             </mat-form-field>
 
                             <button class="search" mat-raised-button (click)="removeElem('documentaryTraditions', i)"
@@ -317,7 +369,8 @@
                     </div>
 
                     <div class="form-group">
-                        <button class="search" mat-raised-button (click)="addElem('documentaryTraditions')" color="primary">
+                        <button class="search" mat-raised-button (click)="addElem('documentaryTraditions')"
+                                color="primary">
                             Add Documentary Tradition
                         </button>
                     </div>
@@ -339,7 +392,8 @@
                                 <input matInput placeholder="documentaryTypology" formControlName="documentaryTypology">
                             </mat-form-field>
 
-                            <button class="search" mat-raised-button (click)="removeElem('typologies', i)" color="primary">
+                            <button class="search" mat-raised-button (click)="removeElem('typologies', i)"
+                                    color="primary">
                                 Remove
                             </button>
                         </div>
@@ -373,7 +427,8 @@
                                 <input matInput placeholder="identifier" formControlName="identifier">
                             </mat-form-field>
 
-                            <button class="search" mat-raised-button (click)="removeElem('languages', i)" color="primary">
+                            <button class="search" mat-raised-button (click)="removeElem('languages', i)"
+                                    color="primary">
                                 Remove
                             </button>
                         </div>
@@ -487,7 +542,7 @@
 
     </form>
 
-    {{this.docForm.value | json}}
+    <!--    {{this.docForm.value | json}}-->
 </div>
 
 

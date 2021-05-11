@@ -17,7 +17,7 @@
                         <mat-panel-title i18n>Titles</mat-panel-title>
                     </mat-expansion-panel-header>
 
-                    <div class="fields" *ngFor="let title of getArrayName('titles').controls; let i=index">
+                    <div class="fields" *ngFor="let titles of getArrayName('titles').controls; let i=index">
                         <div [formGroupName]="i">
                             <mat-form-field>
                                 <mat-label i18n>Title</mat-label>
@@ -25,11 +25,12 @@
                             </mat-form-field>
 
                             <mat-form-field appearance="fill">
-                                <mat-label>Choose your title type</mat-label>
+                                <mat-label>Title type</mat-label>
                                 <mat-select formControlName="type"> <!-- [disabled]="disableSelect.value">-->
-                                    <mat-option [value]="titleType.value"
-                                                *ngFor="let titleType of myTitleTypes">{{ titleType.viewValue }}</mat-option>
+                                    <mat-option
+                                            [value]="titles.value.type">{{  getViewValueFromObject(titles.value.type, myTitleTypes)}}</mat-option>
                                 </mat-select>
+
                             </mat-form-field>
 
                         </div>
@@ -46,7 +47,7 @@
                         <mat-panel-title i18n>Identifiers</mat-panel-title>
                     </mat-expansion-panel-header>
 
-                    <div class="fields" *ngFor="let identifier of getArrayName('identifiers').controls; let i=index">
+                    <div class="fields" *ngFor="let identifiers of getArrayName('identifiers').controls; let i=index">
                         <div [formGroupName]="i">
                             <mat-form-field>
                                 <mat-label i18n>Identifier</mat-label>
@@ -54,16 +55,38 @@
                             </mat-form-field>
 
                             <mat-form-field appearance="fill">
-                                <mat-label i18n>Choose your identifier type</mat-label>
-                                <mat-select formControlName="type"> <!-- [disabled]="disableSelect.value">-->
-                                    <mat-option [value]="identifierType.value"
-                                                *ngFor="let identifierType of myIdentifierTypes">{{ identifierType.viewValue }}</mat-option>
+                                <mat-label i18n>Identifier type</mat-label>
+                                <mat-select formControlName="type"> <!--[disabled]="true">-->
+                                    <mat-option
+                                            [value]="identifiers.value.type">{{  getViewValueFromObject(identifiers.value.type, myIdentifierTypes)}}</mat-option>
                                 </mat-select>
+
                             </mat-form-field>
 
                         </div>
                     </div>
 
+
+                </mat-expansion-panel>
+                <!--
+Description Level
+-->
+                <mat-expansion-panel class="panel" formGroupName="descriptionLevel"
+                                     *ngIf=" getArrayName('descriptionLevel').length !== 0" [expanded]="isExpanded">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title i18n>Description Level</mat-panel-title>
+                    </mat-expansion-panel-header>
+
+                    <div class="fields"
+                         *ngFor="let identifier of getArrayName('descriptionLevel').controls; let i=index">
+                        <div [formGroupName]="i">
+                            <mat-form-field>
+                                <mat-label i18n>Description Level</mat-label>
+                                <input matInput readonly placeholder="descriptionLevel"
+                                       formControlName="descriptionLevel">
+                            </mat-form-field>
+                        </div>
+                    </div>
 
                 </mat-expansion-panel>
 

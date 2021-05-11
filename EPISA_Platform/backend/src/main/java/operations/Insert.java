@@ -41,7 +41,8 @@ public class Insert {
             Resource E31_myDoc = model.getResource(resources.getE31Document() + myUuidString);
 
             model.add(E31_myDoc, properties.getRdfType(), resources.getE31Document());
-            response.put("uuid", myUuidString);
+            model.add(E31_myDoc, properties.getRdfType(), resources.getNamedIndividual());
+
 
 //            DOC_IDENTITY
             HashMap<String, ArrayList<HashMap<String, String>>> DOC_IDENTITY = mapper.get("DOC_IDENTITY");
@@ -49,47 +50,50 @@ public class Insert {
                     identifiermaparray,
                     materialmaparray,
                     dimensionsmaparray,
-                    quantitiesmaparray;
+                    quantitiesmaparray,
+                    descriptionLevelArray;
 
             titleMapArray = DOC_IDENTITY.get("titles");
             identifiermaparray = DOC_IDENTITY.get("identifiers");
             materialmaparray = DOC_IDENTITY.get("materials");
             dimensionsmaparray = DOC_IDENTITY.get("dimensions");
             quantitiesmaparray = DOC_IDENTITY.get("quantities");
+            descriptionLevelArray = DOC_IDENTITY.get("descriptionLevel");
 
-
-            // DOC_CONTEXT
-            HashMap<String, ArrayList<HashMap<String, String>>> DOC_CONTEXT = mapper.get("DOC_CONTEXT");
-            ArrayList<HashMap<String, String>> subjectsmaparray,
-                    writingsmaparray,
-                    typologiesmaparray,
-                    conservationStatesmaparray,
-                    documentaryTraditionsmaparray;
-
-            conservationStatesmaparray = DOC_CONTEXT.get("conservationStates");
-            writingsmaparray = DOC_CONTEXT.get("writings");
-            documentaryTraditionsmaparray = DOC_CONTEXT.get("documentaryTraditions");
-            typologiesmaparray = DOC_CONTEXT.get("typologies");
-            subjectsmaparray = DOC_CONTEXT.get("subjects");
-
-
-            // DOC_ACCESS_USE_CONDITIONS
-            HashMap<String, ArrayList<HashMap<String, String>>> DOC_ACCESS_USE_CONDITIONS = mapper.get("DOC_ACCESS_USE_CONDITIONS");
-            ArrayList<HashMap<String, String>> accessConditionsmaparray,
-                    languagesmaparray;
-
-            languagesmaparray = DOC_ACCESS_USE_CONDITIONS.get("languages");
-            accessConditionsmaparray = DOC_ACCESS_USE_CONDITIONS.get("accessConditions");
-
-
-            // DOC_LINKED_DATA
-            HashMap<String, ArrayList<HashMap<String, String>>> DOC_LINKED_DATA = mapper.get("DOC_LINKED_DATA");
-            ArrayList<HashMap<String, String>> relatedDocsmaparray;
-
-            relatedDocsmaparray = DOC_LINKED_DATA.get("relatedDocs");
+//
+//            // DOC_CONTEXT
+//            HashMap<String, ArrayList<HashMap<String, String>>> DOC_CONTEXT = mapper.get("DOC_CONTEXT");
+//            ArrayList<HashMap<String, String>> subjectsmaparray,
+//                    writingsmaparray,
+//                    typologiesmaparray,
+//                    conservationStatesmaparray,
+//                    documentaryTraditionsmaparray;
+//
+//            conservationStatesmaparray = DOC_CONTEXT.get("conservationStates");
+//            writingsmaparray = DOC_CONTEXT.get("writings");
+//            documentaryTraditionsmaparray = DOC_CONTEXT.get("documentaryTraditions");
+//            typologiesmaparray = DOC_CONTEXT.get("typologies");
+//            subjectsmaparray = DOC_CONTEXT.get("subjects");
+//
+//
+//            // DOC_ACCESS_USE_CONDITIONS
+//            HashMap<String, ArrayList<HashMap<String, String>>> DOC_ACCESS_USE_CONDITIONS = mapper.get("DOC_ACCESS_USE_CONDITIONS");
+//            ArrayList<HashMap<String, String>> accessConditionsmaparray,
+//                    languagesmaparray;
+//
+//            languagesmaparray = DOC_ACCESS_USE_CONDITIONS.get("languages");
+//            accessConditionsmaparray = DOC_ACCESS_USE_CONDITIONS.get("accessConditions");
+//
+//
+//            // DOC_LINKED_DATA
+//            HashMap<String, ArrayList<HashMap<String, String>>> DOC_LINKED_DATA = mapper.get("DOC_LINKED_DATA");
+//            ArrayList<HashMap<String, String>> relatedDocsmaparray;
+//
+//            relatedDocsmaparray = DOC_LINKED_DATA.get("relatedDocs");
 
             this.insertTitles(E31_myDoc, titleMapArray);
             this.insertIdentifiers(E31_myDoc, myUuidString, identifiermaparray);
+            this.insertDescriptionLevel(E31_myDoc, descriptionLevelArray);
 
 
 //            if (materialmaparray != null) {
@@ -170,13 +174,14 @@ public class Insert {
 //                }
 
             //TODO update
-//            Resource alice = model.createResource("http://example.org/people/alice");
-//            Property name = model.createProperty("http://example.org/ontology/name");
+
+            //         Resource alice = model.createResource("http://example.org/people/alice");
+            //           Property name = model.createProperty("http://example.org/ontology/name");
 //
-//            Literal alicesName = model.createLiteral("Alice");
+            //Literal alicesName = model.createLiteral("Alice");
 //            System.out.println("Triple count before inserts: " + model.size());
 //            // Alice's name is "Alice"
-//            model.add(alice, name, alicesName);
+            //model.add(alice, name, alicesName);
 //
 //            System.out.println("Triple count after inserts: " + (model.size()));
 //            model.remove(alice, name, alicesName);
@@ -185,12 +190,21 @@ public class Insert {
 
             conn.put(model);
             conn.commit();
+            conn.close();
+
+            response.put("uuid", myUuidString);
+            response.put("message", "Document created successfully");
+            return response;
         } catch (Exception e) {
-            System.out.println("error:");
             System.out.println(e.getMessage());
-            response.put("error", e.getMessage());
+            HashMap<String, String> errorResponse = new HashMap<>();
+            if (e.getMessage() != null) {
+                errorResponse.put("error", e.getMessage());
+            } else {
+                errorResponse.put("error", "Some error occurred");
+            }
+            return errorResponse;
         }
-        return response;
     }
 
     public void insertTitles(Resource E31_myDoc, ArrayList<HashMap<String, String>> titleMapArray) {
@@ -198,17 +212,17 @@ public class Insert {
             for (HashMap<String, String> map : titleMapArray) {
                 if (map.get("type").equals("suppliedTitle")) {
                     String myTitle = resources.getARE3SuppliedTitle().toString() + UUID.randomUUID().toString();
-                    Property myTypeTytle = model.getProperty(myTitle);
-                    model.add(E31_myDoc, properties.getP102HasTitle(), myTypeTytle);
-                    model.add(myTypeTytle, properties.getRdfType(), resources.getARE3SuppliedTitle());
-                    this.insertString(myTypeTytle, map.get("title"));
+                    Property myTypeTitle = model.getProperty(myTitle);
+                    model.add(E31_myDoc, properties.getP102HasTitle(), myTypeTitle);
+                    model.add(myTypeTitle, properties.getRdfType(), resources.getARE3SuppliedTitle());
+                    this.insertString(myTypeTitle, map.get("title"));
 
                 } else if (map.get("type").equals("formalTitle")) {
                     String myTitle = resources.getARE2FormalTitle().toString() + UUID.randomUUID().toString();
-                    Property myTypeTytle = model.getProperty(myTitle);
-                    model.add(E31_myDoc, properties.getP102HasTitle(), myTypeTytle);
-                    model.add(myTypeTytle, properties.getRdfType(), resources.getARE2FormalTitle());
-                    this.insertString(myTypeTytle, map.get("title"));
+                    Property myTypeTitle = model.getProperty(myTitle);
+                    model.add(E31_myDoc, properties.getP102HasTitle(), myTypeTitle);
+                    model.add(myTypeTitle, properties.getRdfType(), resources.getARE2FormalTitle());
+                    this.insertString(myTypeTitle, map.get("title"));
                 }
             }
         }
@@ -221,6 +235,7 @@ public class Insert {
                 Property myIdentifier = model.getProperty(resources.getE42Identifier().toString(), UUID.randomUUID().toString());
                 model.add(E31_myDoc, properties.getP1IsIdentifiedBy(), myIdentifier);
                 model.add(myIdentifier, properties.getRdfType(), resources.getE42Identifier());
+                model.add(myIdentifier, properties.getRdfType(), resources.getNamedIndividual());
                 model.add(myIdentifier, properties.getP2HasType(), resources.getReferenceCode());
 
                 this.insertString(myIdentifier, map.get("identifier"));
@@ -233,5 +248,15 @@ public class Insert {
         String myString = resources.getString() + UUID.randomUUID().toString();
         model.add(myIdentifier, properties.getHasValue(), model.getProperty(myString));
         model.add(model.getResource(myString), properties.getStringValue(), identifier);
+    }
+
+    private void insertDescriptionLevel(Resource E31_myDoc, ArrayList<HashMap<String, String>> identifierMapArray) {
+        for (HashMap<String, String> map : identifierMapArray) {
+            String descriptionLevel = map.get("descriptionLevel");
+            Resource descriptionLevelResource = resources.getDescriptionLevel(descriptionLevel);
+            model.add(E31_myDoc, properties.getARP12HasDescriptionLevel(), descriptionLevelResource);
+            String[] arrOfStr = descriptionLevel.toString().split("#", 1);
+            model.add(descriptionLevelResource, properties.getLabel(), arrOfStr[0]);
+        }
     }
 }

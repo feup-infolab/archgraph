@@ -30,7 +30,7 @@ export interface Document {
 @Component({
   selector: 'app-doc-search-page',
   templateUrl: './doc-search-page.component.html',
-  styleUrls: ['./doc-search-page.component.css' , '../../default.css']
+  styleUrls: ['./doc-search-page.component.css', '../../default.css']
 })
 export class DocSearchPageComponent extends MySearchComponent implements OnInit {
   public columns: any[] = ['episaIdentifier', 'dglabIdentifier', 'title'];
@@ -87,7 +87,11 @@ export class DocSearchPageComponent extends MySearchComponent implements OnInit 
   getLevelsDescription() {
     this.service.getDescriptionLevels()
       .subscribe(result => {
-        this.descriptionLevelList = result;
+        this.descriptionLevelList = [];
+        result.forEach((item: any) => {
+          // @ts-ignore
+          this.descriptionLevelList.push(item.descriptionLevel);
+        });
       });
   }
 }

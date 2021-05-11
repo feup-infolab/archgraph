@@ -4,7 +4,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {FormArray} from '@angular/forms';
 
 
-import {FusekiService} from '../../service';
+import {AlertService, FusekiService, UserService} from '../../service';
 import {Title} from '@angular/platform-browser';
 import {MatTableDataSource} from '@angular/material/table';
 import {Document} from './searchPage/doc-search-page.component';
@@ -27,23 +27,31 @@ export class DocumentComponent implements OnInit {
   public isExpanded: boolean | undefined;
   public myTitleTypes: any = [{value: 'formalTitle', viewValue: 'Formal Title'}, {value: 'suppliedTitle', viewValue: 'Supplied Title'}];
   public myIdentifierTypes: any = [{value: 'referenceCode', viewValue: 'Reference Code'}];
+  protected options = {
+    autoClose: true,
+    keepAfterRouteChange: false
+  };
+
 
   constructor(
     protected formBuilder: FormBuilder,
     protected activatedRoute: ActivatedRoute,
     protected router: Router,
     protected service: FusekiService,
-    protected titleService: Title
+    protected titleService: Title,
+    protected alertService: AlertService
   ) {
 
     this.docForm = this.formBuilder.group({
       DOC_IDENTITY: this.formBuilder.group({
-        titles: this.formBuilder.array([]),
+        titles: this.formBuilder.array([], Validators.compose([Validators.required, Validators.minLength(1)])),
         // descriptionLevel: formBuilder.control(''),
-        identifiers: this.formBuilder.array([]),
+        identifiers: this.formBuilder.array([], Validators.compose([Validators.required, Validators.minLength(1)])),
         materials: this.formBuilder.array([]),
         dimensions: this.formBuilder.array([]),
         quantities: this.formBuilder.array([]),
+        descriptionLevel: this.formBuilder.array([], Validators.compose([Validators.required, Validators.minLength(1)])),
+
 
       }),
       DOC_CONTEXT: this.formBuilder.group({
@@ -98,10 +106,18 @@ export class DocumentComponent implements OnInit {
         this.setWebPageTitle(myTitle + this.episaIdentifier);
       });
     }
-
     // get return url from route parameters or default to '/'
     this.returnUrl = this.activatedRoute.snapshot.queryParams.returnUrl || '/';
     this.isExpanded = true;
+  }
+
+  getViewValueFromObject(key: string, myArray: any[]) {
+    let i;
+    for (i = 0; i < myArray.length; i++) {
+      if (key === myArray[i].value) {
+        return myArray[i].viewValue;
+      }
+    }
   }
 
   setWebPageTitle(myTitle: string) {
@@ -112,15 +128,15 @@ export class DocumentComponent implements OnInit {
 
   newTitle(): FormGroup {
     return this.formBuilder.group({
-      title: '',
-      type: '',
+      title: ['', Validators.required],
+      type: ['', Validators.required],
     });
   }
 
   newIdentifier(): FormGroup {
     return this.formBuilder.group({
-      identifier: '',
-      type: '',
+      identifier: ['', Validators.required],
+      type: ['', Validators.required],
     });
   }
 
@@ -196,6 +212,12 @@ export class DocumentComponent implements OnInit {
     });
   }
 
+  newDescriptionLevel(): FormGroup {
+    return this.formBuilder.group({
+      descriptionLevel: ['', Validators.required],
+    });
+  }
+
   // ========== ==================
   getMiddleArrayString(arrayName: string): string {
     let middleArray;
@@ -214,6 +236,7 @@ export class DocumentComponent implements OnInit {
       case 'typologies':
       case 'conservationStates' :
       case 'documentaryTraditions':
+
         middleArray = 'DOC_CONTEXT';
         break;
       case 'accessConditions' :
@@ -240,7 +263,7 @@ export class DocumentComponent implements OnInit {
   setArrayValue(arrayName: string, resultValue: any) {
     const myArray = this.getArrayName(arrayName);
     const myMiddleArray = this.getMiddleArrayString(arrayName);
-    console.log(resultValue[myMiddleArray][arrayName]);
+    // console.log(resultValue[myMiddleArray][arrayName]);
     const myArrayFromRequest = resultValue[myMiddleArray][arrayName];
     if (myArrayFromRequest.length > 0 && myArray.value.length === 0) {
       this.addElem(arrayName);
@@ -294,6 +317,9 @@ export class DocumentComponent implements OnInit {
       case'accessConditions':
         newElem = this.newAccessCondition();
         break;
+      case'descriptionLevel':
+        newElem = this.newDescriptionLevel();
+        break;
       case'relatedDocs':
         newElem = this.newRelatedDoc();
         break;
@@ -319,6 +345,8 @@ export class DocumentComponent implements OnInit {
           this.setArrayValue('titles', result);
           this.setArrayValue('identifiers', result);
           this.setArrayValue('accessConditions', result);
+          this.setArrayValue('descriptionLevel', result);
+
           this.setArrayValue('dimensions', result);
           this.setArrayValue('quantities', result);
           this.setArrayValue('typologies', result);
