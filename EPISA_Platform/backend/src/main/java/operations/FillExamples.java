@@ -26,7 +26,7 @@ public class FillExamples {
             Model model = conn.fetch();
 
             // create the resource
-            Resource res = model.getResource("http://erlangen-c<    rm.org/200717/E31_Document1");
+            Resource res = model.getResource("http://erlangen-crm.org/200717/E31_Document1");
             Resource res2 = model.getResource("http://erlangen-crm.org/200717/E31_Document113");
             Resource res3 = model.getResource("http://erlangen-crm.org/200717/E31_Document127");
 

@@ -20,164 +20,164 @@ public class Properties {
 
 
     public Property getHasMaterial() {
-        return model.createProperty(string200717, "has_material");
+        return model.getProperty(string200717, "has_material");
     }
 
     public Property getHasMaterialType() {
-        return model.createProperty(string200717, "has_material_type");
+        return model.getProperty(string200717, "has_material_type");
     }
 
 
     public Property getHasTypology() {
-        return model.createProperty(string200717, "has_typology");
+        return model.getProperty(string200717, "has_typology");
     }
 
     public Property getHasSubject() {
-        return model.createProperty(string200717, "has_subject");
+        return model.getProperty(string200717, "has_subject");
     }
 
     public Property getHasDocTradition() {
-        return model.createProperty(string200717, "has_doc_tradition");
+        return model.getProperty(string200717, "has_doc_tradition");
     }
 
     public Property getHasWritingIdentifier() {
-        return model.createProperty(string200717, "has_writing_identifier");
+        return model.getProperty(string200717, "has_writing_identifier");
 
     }
 
     public Property getHasWriting() {
-        return model.createProperty(string200717, "has_writing");
+        return model.getProperty(string200717, "has_writing");
 
     }
 
 
     public Property getP102HasTitle() {
-        return model.createProperty(string200717, "P102_has_title");
+        return model.getProperty(string200717, "P102_has_title");
     }
 
     public Property getP2HasType() {
-        return model.createProperty(string200717, "P2_has_type");
+        return model.getProperty(string200717, "P2_has_type");
     }
 
     public Property getP1IsIdentifiedBy() {
-        return model.createProperty(string200717, "P1_is_identified_by");
+        return model.getProperty(string200717, "P1_is_identified_by");
 
     }
 
     public Property getHasRelatedDocument() {
-        return model.createProperty(string200717, "has_related_document");
+        return model.getProperty(string200717, "has_related_document");
     }
 
     public Property getHasAccessConditionJustifification() {
-        return model.createProperty(string200717, "has_access_condition_justification");
+        return model.getProperty(string200717, "has_access_condition_justification");
     }
 
     public Property getHasAccessCondition() {
-        return model.createProperty(string200717, "has_access_condition");
+        return model.getProperty(string200717, "has_access_condition");
     }
 
     public Property getHasLanguageIdentifier() {
-        return model.createProperty(string200717, "has_language_identifier");
+        return model.getProperty(string200717, "has_language_identifier");
     }
 
     public Property getHasLanguage() {
-        return model.createProperty(string200717, "has_language");
+        return model.getProperty(string200717, "has_language");
     }
 
     public Property getHasConservationStatus() {
-        return model.createProperty(string200717, "has_conservation_status");
+        return model.getProperty(string200717, "has_conservation_status");
     }
 
     public Property getHasConservationStatusID() {
-        return model.createProperty(string200717, "has_conservation_status_ID");
+        return model.getProperty(string200717, "has_conservation_status_ID");
     }
 
     public Property getHasConservationStatusFD() {
-        return model.createProperty(string200717, "has_conservation_status_FD");
+        return model.getProperty(string200717, "has_conservation_status_FD");
     }
 
     public Property getDimension() {
-        return model.createProperty(string200717, "has_dimension");
+        return model.getProperty(string200717, "has_dimension");
     }
 
     public Property getHasDimensionValue() {
-        return model.createProperty(string200717, "has_dimension_value");
+        return model.getProperty(string200717, "has_dimension_value");
     }
 
     public Property getHasDimensionMU() {
-        return model.createProperty(string200717, "has_dimension_measurement_unit");
+        return model.getProperty(string200717, "has_dimension_measurement_unit");
     }
 
     public Property getHasDimensionComponent() {
-        return model.createProperty(string200717, "has_dimension_component");
+        return model.getProperty(string200717, "has_dimension_component");
     }
 
     public Property getHasQuantity() {
-        return model.createProperty(string200717, "has_quantity");
+        return model.getProperty(string200717, "has_quantity");
     }
 
     public Property getHasQuantityComponent() {
-        return model.createProperty(string200717, "has_quantity_component");
+        return model.getProperty(string200717, "has_quantity_component");
     }
 
     public Property getHasQuantityMU() {
-        return model.createProperty(string200717, "has_quantity_measurement_unit");
+        return model.getProperty(string200717, "has_quantity_measurement_unit");
     }
 
     public Property getHasQuantityValue() {
-        return model.createProperty(string200717, "has_quantity_value");
+        return model.getProperty(string200717, "has_quantity_value");
     }
 
     public Property getHasReproductionCondition() {
-        return model.createProperty(string200717, "has_reproduction_condition");
+        return model.getProperty(string200717, "has_reproduction_condition");
     }
 
     public Property getReproductionConditionJustifificationProperty() {
-        return model.createProperty(string200717, "has_reproduction_condition_justification");
+        return model.getProperty(string200717, "has_reproduction_condition_justification");
     }
 
     public Property getHasRelatedEvents() {
-        return model.createProperty(string200717, "has_related_event");
+        return model.getProperty(string200717, "has_related_event");
     }
 
     public Property getHasRelatedEventsType() {
-        return model.createProperty(string200717, "has_related_event_type");
+        return model.getProperty(string200717, "has_related_event_type");
     }
 
     public Property getHasRelatedEventsID() {
-        return model.createProperty(string200717, "has_related_event_id");
+        return model.getProperty(string200717, "has_related_event_id");
     }
 
     public Property getHasRelatedEventsFD() {
-        return model.createProperty(string200717, "has_related_event_fd");
+        return model.getProperty(string200717, "has_related_event_fd");
     }
 
     public Property getRdfType() {
-        return model.createProperty("rdf:type");
+        return model.getProperty("rdf:type");
     }
 
     public Property getRdfsLabel() {
-        return model.createProperty("rdfs:label");
+        return model.getProperty("rdfs:label");
     }
 
 
     public Property getLabel() {
-        return model.createProperty("http://www.w3.org/2000/01/rdf-schema#label");
+        return model.getProperty("http://www.w3.org/2000/01/rdf-schema#label");
     }
 
     public Property getHasUuid() {
-        return model.createProperty(string200717, "has_uuid");
+        return model.getProperty(string200717, "has_uuid");
     }
 
     public Property getHasValue() {
-        return model.createProperty("http://www.episa.inesctec.pt/ligacao#hasValue");
+        return model.getProperty("http://www.episa.inesctec.pt/ligacao#hasValue");
     }
 
     public Property getStringValue() {
-        return model.createProperty("http://www.episa.inesctec.pt/data_object#stringValue");
+        return model.getProperty("http://www.episa.inesctec.pt/data_object#stringValue");
     }
 
     public Property getARP12HasDescriptionLevel() {
-        return model.createProperty(untitledOntology, "ARP12_has_level_of_description");
+        return model.getProperty(untitledOntology, "ARP12_has_level_of_description");
     }
 }

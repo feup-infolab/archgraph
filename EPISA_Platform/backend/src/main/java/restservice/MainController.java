@@ -4,11 +4,11 @@ import java.util.*;
 
 import cclasses.RequestBodyClass;
 import cclasses.ResponseClass;
-import operations.Insert;
+import operations.Doc;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.configurationprocessor.json.JSONException;
-import org.springframework.boot.configurationprocessor.json.JSONObject;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import queries.Queries;
 import operations.SPARQLOperations;
 
@@ -50,7 +50,7 @@ public class MainController {
 
     @CrossOrigin
     @GetMapping("/doc")
-    public HashMap<String, HashMap<String, ArrayList<HashMap<String, String>>>> document(@RequestParam(value = "id", defaultValue = "") String uuid) throws JSONException {
+    public HashMap<String, HashMap<String, ArrayList<HashMap<String, String>>>> document(@RequestParam(value = "id", defaultValue = "") String uuid) {
         SPARQLOperations conn = new SPARQLOperations(myConfig.getMyHost());
         HashMap<String, HashMap<String, ArrayList<HashMap<String, String>>>> myHashMap = new HashMap<>();
 
@@ -69,7 +69,7 @@ public class MainController {
         return myHashMap;
     }
 
-//
+    //
 //    @CrossOrigin
 //    @GetMapping("/searchdoc")
 //    public String documentSummary(@RequestParam(value = "refcode", defaultValue = "") Object rcode) {
@@ -100,32 +100,60 @@ public class MainController {
 //        }
 //        return json;
 //    }
+    @CrossOrigin
+    @DeleteMapping("/deletedoc/{uuid}")
+    public HashMap<String, String> deleteDoc(@PathVariable String uuid) {
+        HashMap<String, String> response = new HashMap<>();
+        SPARQLOperations conn = new SPARQLOperations(myConfig.getMyHost());
+        conn.deleteDoc(uuid);
+        response.put("message", "Document deleted successfully");
+        return response;
+    }
 
     @CrossOrigin
     @PostMapping("/insert")
-    public HashMap<String, String> insert(@RequestBody HashMap<String, HashMap<String, ArrayList<HashMap<String, String>>>> insertForm) throws JSONException {
-        Insert insertClass = new Insert(myConfig.getMyHost());
-        return insertClass.insert(insertForm, false, null);
+    @ResponseBody
+    public HashMap<String, String> insert(@RequestBody HashMap<String, HashMap<String, ArrayList<HashMap<String, String>>>> insertForm) {
+        Doc doc = new Doc(myConfig.getMyHost(), insertForm);
+        //doc.saveDocFromRequest(insertForm, null);
+
+        try {
+            return doc.insert();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            if (e.getMessage() != null) {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+            } else {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Some error occurred");
+            }
+        }
     }
 
-//    @CrossOrigin
-//    @PutMapping("/updatedoc/{uuid}")
-//    public Boolean updateDoc(@PathVariable String uuid, @RequestBody HashMap<String, HashMap<String, ArrayList<HashMap<String, String>>>> insertForm) {
-//        SPARQLOperations conn = new SPARQLOperations(myConfig.getMyHost());
-//
-//        HashMap<String, Object> list0 = new HashMap<>();
-//        ResponseClass uuidrep = new ResponseClass(list0);
-//
-////        Insert insertclass = new Insert(myConfig.getMyHost());
-////        insertclass.insert(insertForm, true, uuid);
-//
-//        SPARQLOperations conn2 = new SPARQLOperations(myConfig.getMyHost());
-//
-//        conn2.deleteDoc(uuid);
-//        Insert insertclass = new Insert(myConfig.getMyHost());
-//        insertclass.insert(insertForm, false, null);
-//        return true;
-//    }
+    @CrossOrigin
+    @PutMapping("/updatedoc/{uuid}")
+    public HashMap<String, String> updateDoc(@PathVariable String uuid, @RequestBody HashMap<String, HashMap<String, ArrayList<HashMap<String, String>>>> updateForm) {
+
+        HashMap<String, String> response = new HashMap<>();
+        Doc doc = new Doc(myConfig.getMyHost(), updateForm);
+
+        try {
+            SPARQLOperations conn = new SPARQLOperations(myConfig.getMyHost());
+            String myDocId = conn.obtainARecordOfAColumn(queries.getDocId(uuid));
+            conn.deleteSomeInformationDoc(myDocId);
+
+            doc.update(myDocId, uuid);
+            response.put("message", "Document updated successfully");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+
+            if (e.getMessage() != null) {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+            } else {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Some error occurred");
+            }
+        }
+        return response;
+    }
 
     @CrossOrigin
     @GetMapping("/person")
@@ -147,7 +175,8 @@ public class MainController {
         return rep;
     }
 
-    public void addDocContext(SPARQLOperations conn, String uuid, HashMap<String, HashMap<String, ArrayList<HashMap<String, String>>>> myHashMapResult) throws JSONException {
+    public void addDocContext(SPARQLOperations conn, String
+            uuid, HashMap<String, HashMap<String, ArrayList<HashMap<String, String>>>> myHashMapResult) {
         HashMap<String, ArrayList<HashMap<String, String>>> DOC_CONTEXT = new HashMap<>();
         myHashMapResult.put("DOC_CONTEXT", DOC_CONTEXT);
 
@@ -158,7 +187,8 @@ public class MainController {
         conn.addArrayToParameter(DOC_CONTEXT, queries.getDocTradition(uuid), "documentaryTraditions");
     }
 
-    private void addDocIdentity(SPARQLOperations conn, String uuid, HashMap<String, HashMap<String, ArrayList<HashMap<String, String>>>> myHashMapResult) {
+    private void addDocIdentity(SPARQLOperations conn, String
+            uuid, HashMap<String, HashMap<String, ArrayList<HashMap<String, String>>>> myHashMapResult) {
         HashMap<String, ArrayList<HashMap<String, String>>> DOC_IDENTITY = new HashMap<>();
         myHashMapResult.put("DOC_IDENTITY", DOC_IDENTITY);
 
@@ -172,7 +202,8 @@ public class MainController {
         conn.addArrayToParameter(DOC_IDENTITY, queries.getQuantity(uuid), "quantities");
     }
 
-    private void addDocAccessUseConditions(SPARQLOperations conn, String uuid, HashMap<String, HashMap<String, ArrayList<HashMap<String, String>>>> myHashMapResult) {
+    private void addDocAccessUseConditions(SPARQLOperations conn, String
+            uuid, HashMap<String, HashMap<String, ArrayList<HashMap<String, String>>>> myHashMapResult) {
         HashMap<String, ArrayList<HashMap<String, String>>> DOC_ACCESS_USE_CONDITIONS = new HashMap<>();
         myHashMapResult.put("DOC_ACCESS_USE_CONDITIONS", DOC_ACCESS_USE_CONDITIONS);
 
@@ -180,7 +211,8 @@ public class MainController {
         conn.addArrayToParameter(DOC_ACCESS_USE_CONDITIONS, queries.getLanguage(uuid), "languages");
     }
 
-    private void addDocLinkedData(SPARQLOperations conn, String uuid, HashMap<String, HashMap<String, ArrayList<HashMap<String, String>>>> myHashMapResult) {
+    private void addDocLinkedData(SPARQLOperations conn, String
+            uuid, HashMap<String, HashMap<String, ArrayList<HashMap<String, String>>>> myHashMapResult) {
         HashMap<String, ArrayList<HashMap<String, String>>> DOC_LINKED_DATA = new HashMap<>();
         myHashMapResult.put("DOC_LINKED_DATA", DOC_LINKED_DATA);
 

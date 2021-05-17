@@ -18,13 +18,8 @@ public class Queries {
 
     }
 
-//    private void setModel(Model model) {
-//        this.properties = new Properties(model);
-//        this.resources = new Resources(model);
-//    }
-
     public Query getSummaryDoc(String refCode, String descriptionLevel, String title) {
-        String myQuery = "SELECT ?title ?episaIdentifier ?dglabIdentifier\n" +
+        String myQuery = "SELECT distinct ?title ?episaIdentifier ?dglabIdentifier\n" +
                 "WHERE {\n" +
                 "?docIdentifier <http://erlangen-crm.org/200717/P102_has_title> ?type.\n" +
                 "?type <http://www.episa.inesctec.pt/ligacao#hasValue> ?title_type.\n" +
@@ -32,16 +27,17 @@ public class Queries {
                 "?docIdentifier <http://erlangen-crm.org/200717/has_uuid> ?episaIdentifier .\n" +
                 "?docIdentifier <http://erlangen-crm.org/200717/P1_is_identified_by> ?cidoc_identifier.\n" +
                 "?cidoc_identifier <http://www.episa.inesctec.pt/ligacao#hasValue> ?identifier_value.\n" +
+                "?identifier_value <http://www.episa.inesctec.pt/data_object#stringValue> ?dglabIdentifier.\n" +
+
                 "?cidoc_identifier <http://erlangen-crm.org/200717/P2_has_type> ?p2hastype.\n" +
                 "?docIdentifier <http://www.semanticweb.org/dmelo/ontologies/2020/7/untitled-ontology-151#ARP12_has_level_of_description> ?descriptionLevel .\n" +
-                "?descriptionLevel <http://www.w3.org/2000/01/rdf-schema#label> ?descriptionLevelString .\n" +
-                "?identifier_value <http://www.episa.inesctec.pt/data_object#stringValue> ?dglabIdentifier.\n";
+                "?descriptionLevel <http://www.w3.org/2000/01/rdf-schema#label> ?descriptionLevelString .\n";
 
         if (refCode != null) {
             myQuery += "?identifier_value <http://www.episa.inesctec.pt/data_object#stringValue>" + refCode + ".\n";
         }
         if (title != null) {
-            myQuery += " FILTER regex(?title,"+ title + ", \"i\")\n";
+            myQuery += " FILTER regex(?title," + title + ", \"i\")\n";
         }
         if (descriptionLevel != null) {
             myQuery += "?descriptionLevel <http://www.w3.org/2000/01/rdf-schema#label> " + descriptionLevel + " .\n";
@@ -50,6 +46,40 @@ public class Queries {
         myQuery += "}";
         System.out.println(myQuery);
         return QueryFactory.create(myQuery);
+    }
+
+    public String deleteDoc(String uuid) {
+        String myQuery = "DELETE " +
+                "WHERE {\n" +
+                "?docIdentifier <http://erlangen-crm.org/200717/P102_has_title> ?type.\n" +
+                "?type <http://www.episa.inesctec.pt/ligacao#hasValue> ?title_type.\n" +
+                "?title_type <http://www.episa.inesctec.pt/data_object#stringValue> ?title.\n" +
+                "?docIdentifier <http://erlangen-crm.org/200717/has_uuid> \"" + uuid + "\".\n" +
+                "?docIdentifier <http://erlangen-crm.org/200717/P1_is_identified_by> ?cidoc_identifier.\n" +
+                "?cidoc_identifier <http://www.episa.inesctec.pt/ligacao#hasValue> ?identifier_value.\n" +
+                "?identifier_value <http://www.episa.inesctec.pt/data_object#stringValue> ?dglabIdentifier.\n" +
+                "?docIdentifier  <http://www.semanticweb.org/dmelo/ontologies/2020/7/untitled-ontology-151#ARP12_has_level_of_description> ?descriptionLevel .\n" +
+                "}";
+        System.out.println(myQuery);
+        return myQuery;
+    }
+
+    public String deleteSomeInformationDoc(String docId) {
+        String myQuery = "DELETE " +
+                "WHERE {\n" +
+                "<" + docId + "> <http://erlangen-crm.org/200717/P102_has_title> ?type.\n" +
+                "?type <http://www.episa.inesctec.pt/ligacao#hasValue> ?title_type.\n" +
+                "?title_type <http://www.episa.inesctec.pt/data_object#stringValue> ?title.\n" +
+
+
+                "<" + docId + "> <http://erlangen-crm.org/200717/P1_is_identified_by> ?cidoc_identifier.\n" +
+                "?cidoc_identifier <http://www.episa.inesctec.pt/ligacao#hasValue> ?identifier_value.\n" +
+                "?identifier_value <http://www.episa.inesctec.pt/data_object#stringValue> ?dglabIdentifier.\n" +
+
+                "<" + docId + "> <http://www.semanticweb.org/dmelo/ontologies/2020/7/untitled-ontology-151#ARP12_has_level_of_description> ?descriptionLevel .\n" +
+                "}";
+        System.out.println(myQuery);
+        return myQuery;
     }
 
 
@@ -72,10 +102,17 @@ public class Queries {
                 "}");
     }
 
-    public Query getUuid(String uuid) {
+    public Query getUuid(String docUuid) {
+        return QueryFactory.create("SELECT ?Uuid\n" +
+                "WHERE {\n" +
+                docUuid + " <http://erlangen-crm.org/200717/has_uuid> ?Uuid\n" +
+                "}");
+    }
+
+    public Query getDocId(String uuid) {
         return QueryFactory.create("SELECT ?docUuid\n" +
                 "WHERE {\n" +
-                uuid + " <http://erlangen-crm.org/200717/has_uuid> ?docUuid\n" +
+                "?docUuid  <http://erlangen-crm.org/200717/has_uuid> \"" + uuid + "\".\n" +
                 "}");
     }
 
@@ -146,13 +183,15 @@ public class Queries {
     }
 
     public Query getTitle(String uuid) {
-        return QueryFactory.create("SELECT ?title ?type \n" +
+        String query ="SELECT ?title ?type \n" +
                 "WHERE {\n" +
                 "?DocId <http://erlangen-crm.org/200717/has_uuid> \"" + uuid + "\".\n" +
                 "?DocId <http://erlangen-crm.org/200717/P102_has_title> ?type .\n" +
                 "?type <http://www.episa.inesctec.pt/ligacao#hasValue> ?typen .\n" +
                 "?typen <http://www.episa.inesctec.pt/data_object#stringValue> ?title\n" +
-                "}");
+                "}";
+        System.out.println(query);
+        return QueryFactory.create(query);
     }
 
 
@@ -293,23 +332,5 @@ public class Queries {
                 "?object \t\n" +
                 "<http://www.w3.org/2000/01/rdf-schema#label> ?descriptionLevel\n" +
                 "}");
-    }
-
-    public String deleteDoc(String uuid, Boolean title, Boolean identifier) {
-        String query = "delete " +
-                "WHERE {\n";
-        if (title) {
-            query += uuid + " <http://erlangen-crm.org/200717/P102_has_title> ?has_title .\n" +
-                    "  ?has_title <http://www.episa.inesctec.pt/ligacao#hasValue> ?title_type .\n" +
-                    "  ?title_type <http://www.episa.inesctec.pt/data_object#stringValue> ?description.\n";
-        }
-        if (identifier) {
-            query += uuid + " <http://erlangen-crm.org/200717/P1_is_identified_by> ?cidoc_identifier .\n " +
-                    " ?cidoc_identifier <http://www.episa.inesctec.pt/ligacao#hasValue> ?identifier_value .\n " +
-                    " ?cidoc_identifier <http://erlangen-crm.org/200717/P2_has_type> ?type.\n " +
-                    " ?identifier_value <http://www.episa.inesctec.pt/data_object#stringValue>  ?refcode.\n ";
-        }
-        query += "}";
-        return query;
     }
 }

@@ -106,5 +106,10 @@ export class FusekiService {
       .set('id', id);
     return this.http.put<any>(`${this.baseUrl}/updatedoc/${id}`, form);
   }
+  deleteDoc(id: any): Observable<any> {
+    const params = new HttpParams()
+      .set('id', id);
+    return this.http.delete<any>(`${this.baseUrl}/deletedoc/${id}`);
+  }
 }
 
