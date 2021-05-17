@@ -519,7 +519,7 @@ description Level
 
 
         <div class="hasButtons" *ngIf="pageCreateDoc">
-            <button class="search mat-error" mat-raised-button (click)="goToHome()" color="primary">
+            <button class="search mat-error" mat-raised-button (click)="goBack()" color="primary">
                 Cancel
             </button>
             <button class="search mat-success" [disabled]="loading" mat-raised-button (click)="createDoc()"
@@ -529,8 +529,11 @@ description Level
 
         </div>
         <div class="hasButtons" *ngIf="!pageCreateDoc">
-            <button class="search mat-error" mat-raised-button (click)="goToHome()" color="primary">
-                Cancel
+            <button class="search" mat-raised-button (click)="goBack()" color="primary">
+                Go Back
+            </button>
+            <button class="search mat-error" mat-raised-button (click)="deleteDoc()" color="primary">
+                Delete
             </button>
 
 

@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Location} from '@angular/common';
+
 
 import {AlertService, FusekiService} from '../../../service';
 import {Title} from '@angular/platform-browser';
@@ -21,8 +23,9 @@ export class CreateAndUpdateDocComponent extends DocumentComponent {
               protected router: Router,
               protected service: FusekiService,
               protected titleService: Title,
-              protected alertService: AlertService) {
-    super(formBuilder, activatedRoute, router, service, titleService, alertService);
+              protected alertService: AlertService,
+              protected location: Location) {
+    super(formBuilder, activatedRoute, router, service, titleService, alertService, location);
     this.getLevelsDescription();
   }
 
@@ -104,6 +107,38 @@ export class CreateAndUpdateDocComponent extends DocumentComponent {
     this.service.updateDoc(this.docForm.value, this.episaIdentifier).subscribe(result => {
         console.log(result);
         this.loading = false;
+        if (result.error) {
+          this.alertService.error(result.error, this.options);
+        } else if (result.message) {
+
+          this.alertService.success(result.message, this.options);
+          this.getDocById(this.episaIdentifier);
+        }
+      }
+    );
+  }
+
+  deleteDoc() {
+    this.submitted = true;
+    console.log(this.docForm.controls.titles);
+
+    // stop here if form is invalid
+    if (this.docForm.invalid) {
+      return;
+    }
+
+    this.loading = true;
+    this.service.deleteDoc(this.episaIdentifier).subscribe(result => {
+        console.log(result);
+        this.loading = false;
+        if (result.error) {
+
+          this.alertService.error(result.error, this.options);
+        } else if (result.message) {
+
+          this.alertService.success(result.message, this.options);
+          this.goToHome();
+        }
       }
     );
   }

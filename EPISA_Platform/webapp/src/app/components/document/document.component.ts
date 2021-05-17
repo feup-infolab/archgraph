@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {FormArray} from '@angular/forms';
+import {Location} from '@angular/common';
 
 
 import {AlertService, FusekiService, UserService} from '../../service';
@@ -20,6 +21,8 @@ export class DocumentComponent implements OnInit {
   public loading = false;
   public submitted = false;
   public pageCreateDoc: boolean | undefined;
+  public pageUpdateDoc: boolean | undefined;
+
   public episaIdentifier: any;
   public haveResults: boolean | undefined;
   public dataSource: any;
@@ -39,7 +42,8 @@ export class DocumentComponent implements OnInit {
     protected router: Router,
     protected service: FusekiService,
     protected titleService: Title,
-    protected alertService: AlertService
+    protected alertService: AlertService,
+    protected location: Location
   ) {
 
     this.docForm = this.formBuilder.group({
@@ -94,8 +98,8 @@ export class DocumentComponent implements OnInit {
       this.setWebPageTitle('Create Doc');
     } else {
       let myTitle: string;
-      this.pageCreateDoc = href.includes('update');
-      if (this.pageCreateDoc) {
+      this.pageUpdateDoc = href.includes('update');
+      if (this.pageUpdateDoc) {
         myTitle = 'Update Doc  ';
       } else {
         myTitle = 'Doc ';
@@ -372,6 +376,10 @@ export class DocumentComponent implements OnInit {
           // }
         }
       );
+  }
+
+  goBack() {
+    this.location.back();
   }
 
   goToHome() {
