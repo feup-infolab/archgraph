@@ -1,33 +1,35 @@
-package operations;
+package Model;
 
+import operations.Queries;
 import org.apache.jena.rdf.model.*;
 import org.apache.jena.rdfconnection.RDFConnectionFuseki;
 import org.apache.jena.rdfconnection.RDFConnectionRemoteBuilder;
-import queries.Queries;
+import utils.Properties;
+import utils.Resources;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
 
-public class Doc {
+public class Document {
 
     public String updateHost;
     public String sparqlHost;
     public String dataHost;
     public String defaultHost;
     public Model model;
-    public Queries queries = new Queries();
+   // public Queries queries = new Queries();
     public HashMap<String, HashMap<String, ArrayList<HashMap<String, String>>>> docContent;
 
     public Properties properties;
     public Resources resources;
 
-    public Doc(String defaultHost, HashMap<String, HashMap<String, ArrayList<HashMap<String, String>>>> mapper) {
+    public Document(String defaultHost, HashMap<String, HashMap<String, ArrayList<HashMap<String, String>>>> mapper) {
         this.sparqlHost = defaultHost + "sparql";
         this.dataHost = defaultHost + "data";
         this.updateHost = defaultHost + "update";
         this.defaultHost = defaultHost;
-        this.queries = new Queries();
+        //this.queries = new Queries();
         this.docContent = mapper;
     }
 
@@ -137,20 +139,6 @@ public class Doc {
             return response;
         }
     }
-
-    //         Resource alice = model.createResource("http://example.org/people/alice");
-    //           Property name = model.createProperty("http://example.org/ontology/name");
-//
-    //Literal alicesName = model.createLiteral("Alice");
-//            System.out.println("Triple count before inserts: " + model.size());
-//            // Alice's name is "Alice"
-    //model.add(alice, name, alicesName);
-//
-//            System.out.println("Triple count after inserts: " + (model.size()));
-//            model.remove(alice, name, alicesName);
-//
-//            System.out.println("Triple count after deletion: " + (model.size()));
-
 
     public void insertTitles(Resource E31_myDoc, ArrayList<HashMap<String, String>> titleMapArray) throws Exception {
         if (titleMapArray != null) {

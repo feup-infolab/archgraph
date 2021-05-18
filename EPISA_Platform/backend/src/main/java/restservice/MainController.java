@@ -2,14 +2,13 @@ package restservice;
 
 import java.util.*;
 
-import cclasses.RequestBodyClass;
-import cclasses.ResponseClass;
-import operations.Doc;
+import model.RequestBody;
+import model.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-import queries.Queries;
+import operations.Queries;
 import operations.SPARQLOperations;
 
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,12 +31,12 @@ public class MainController {
     @GetMapping("/levelsdesc")
     public ArrayList<HashMap<String, String>> levels() {
         SPARQLOperations conn = new SPARQLOperations(myConfig.getMyHost());
-        return conn.obtainSummaryResponse(queries.getAllLevelOfDescription());
+        return conn.executeQueryAndAddContent(queries.getAllLevelOfDescription(), null, null);
     }
 
     @CrossOrigin
     @PostMapping("/search")
-    public ArrayList<HashMap<String, String>> search(@RequestBody RequestBodyClass searchForm) {
+    public ArrayList<HashMap<String, String>> search(@org.springframework.web.bind.annotation.RequestBody RequestBody searchForm) {
         SPARQLOperations conn = new SPARQLOperations(myConfig.getMyHost());
 
         String refCode = searchForm.getRefCode();
@@ -45,7 +44,7 @@ public class MainController {
         String relatedTo = searchForm.getRelatedTo();
         String title = searchForm.getTitle();
 
-        return conn.obtainSummaryResponse(queries.getSummaryDoc(refCode, descriptionLevel, title));
+        return conn.executeQueryAndAddContent(queries.getSummaryDoc(refCode, descriptionLevel, title), null, null);
     }
 
     @CrossOrigin
@@ -113,10 +112,8 @@ public class MainController {
     @CrossOrigin
     @PostMapping("/insert")
     @ResponseBody
-    public HashMap<String, String> insert(@RequestBody HashMap<String, HashMap<String, ArrayList<HashMap<String, String>>>> insertForm) {
-        Doc doc = new Doc(myConfig.getMyHost(), insertForm);
-        //doc.saveDocFromRequest(insertForm, null);
-
+    public HashMap<String, String> insert(@org.springframework.web.bind.annotation.RequestBody HashMap<String, HashMap<String, ArrayList<HashMap<String, String>>>> insertForm) {
+        Document doc = new Document(myConfig.getMyHost(), insertForm);
         try {
             return doc.insert();
         } catch (Exception e) {
@@ -131,10 +128,10 @@ public class MainController {
 
     @CrossOrigin
     @PutMapping("/updatedoc/{uuid}")
-    public HashMap<String, String> updateDoc(@PathVariable String uuid, @RequestBody HashMap<String, HashMap<String, ArrayList<HashMap<String, String>>>> updateForm) {
+    public HashMap<String, String> updateDoc(@PathVariable String uuid, @org.springframework.web.bind.annotation.RequestBody HashMap<String, HashMap<String, ArrayList<HashMap<String, String>>>> updateForm) {
 
         HashMap<String, String> response = new HashMap<>();
-        Doc doc = new Doc(myConfig.getMyHost(), updateForm);
+        Document doc = new Document(myConfig.getMyHost(), updateForm);
 
         try {
             SPARQLOperations conn = new SPARQLOperations(myConfig.getMyHost());
@@ -155,36 +152,36 @@ public class MainController {
         return response;
     }
 
-    @CrossOrigin
-    @GetMapping("/person")
-    public ResponseClass person(@RequestParam(value = "id", defaultValue = "") String uuid) {
-        SPARQLOperations conn = new SPARQLOperations(myConfig.getMyHost());
-        HashMap<String, Object> list = new HashMap<>();
-        ResponseClass rep = new ResponseClass(list);
-        rep = conn.obtainGeneralResponse(queries.getPerson(uuid), "person", rep);
-        return rep;
-    }
+//    @CrossOrigin
+//    @GetMapping("/person")
+//    public HashMap<String, String>  person(@RequestParam(value = "id", defaultValue = "") String uuid) {
+//        SPARQLOperations conn = new SPARQLOperations(myConfig.getMyHost());
+//        HashMap<String, Object> list = new HashMap<>();
+//        ResponseClass rep = new ResponseClass(list);
+//        rep = conn.obtainGeneralResponse(queries.getPerson(uuid), "person", rep);
+//        return rep;
+//    }
 
-    @CrossOrigin
-    @GetMapping("/place")
-    public ResponseClass place(@RequestParam(value = "id", defaultValue = "") String uuid) {
-        SPARQLOperations conn = new SPARQLOperations(myConfig.getMyHost());
-        HashMap<String, Object> list = new HashMap<>();
-        ResponseClass rep = new ResponseClass(list);
-        rep = conn.obtainGeneralResponse(queries.getPlace(uuid), "place", rep);
-        return rep;
-    }
+//    @CrossOrigin
+//    @GetMapping("/place")
+//    public HashMap<String, String>  place(@RequestParam(value = "id", defaultValue = "") String uuid) {
+//        SPARQLOperations conn = new SPARQLOperations(myConfig.getMyHost());
+//        HashMap<String, Object> list = new HashMap<>();
+//        ResponseClass rep = new ResponseClass(list);
+//        rep = conn.obtainGeneralResponse(queries.getPlace(uuid), "place", rep);
+//        return rep;
+//    }
 
     public void addDocContext(SPARQLOperations conn, String
             uuid, HashMap<String, HashMap<String, ArrayList<HashMap<String, String>>>> myHashMapResult) {
         HashMap<String, ArrayList<HashMap<String, String>>> DOC_CONTEXT = new HashMap<>();
         myHashMapResult.put("DOC_CONTEXT", DOC_CONTEXT);
 
-        conn.addArrayToParameter(DOC_CONTEXT, queries.getSubject(uuid), "subjects");
-        conn.addArrayToParameter(DOC_CONTEXT, queries.getWriting(uuid), "writings");
-        conn.addArrayToParameter(DOC_CONTEXT, queries.getDocTypology(uuid), "typologies");
-        conn.addArrayToParameter(DOC_CONTEXT, queries.getConservationStatus(uuid), "conservationStates");
-        conn.addArrayToParameter(DOC_CONTEXT, queries.getDocTradition(uuid), "documentaryTraditions");
+        conn.executeQueryAndAddContent(queries.getSubject(uuid), DOC_CONTEXT, "subjects");
+        conn.executeQueryAndAddContent(queries.getWriting(uuid), DOC_CONTEXT, "writings");
+        conn.executeQueryAndAddContent(queries.getDocTypology(uuid), DOC_CONTEXT, "typologies");
+        conn.executeQueryAndAddContent(queries.getConservationStatus(uuid), DOC_CONTEXT, "conservationStates");
+        conn.executeQueryAndAddContent(queries.getDocTradition(uuid), DOC_CONTEXT, "documentaryTraditions");
     }
 
     private void addDocIdentity(SPARQLOperations conn, String
@@ -193,13 +190,13 @@ public class MainController {
         myHashMapResult.put("DOC_IDENTITY", DOC_IDENTITY);
 
         System.out.println(queries.getIdentifier(uuid));
-        conn.addArrayToParameter(DOC_IDENTITY, queries.getIdentifier(uuid), "identifiers");
-        conn.addArrayToParameter(DOC_IDENTITY, queries.getLevel_of_description_query(uuid), "descriptionLevel");
+        conn.executeQueryAndAddContent(queries.getIdentifier(uuid), DOC_IDENTITY, "identifiers");
+        conn.executeQueryAndAddContent(queries.getLevel_of_description_query(uuid), DOC_IDENTITY, "descriptionLevel");
 
-        conn.addArrayToParameter(DOC_IDENTITY, queries.getTitle(uuid), "titles");
-        conn.addArrayToParameter(DOC_IDENTITY, queries.getMaterial(uuid), "materials");
-        conn.addArrayToParameter(DOC_IDENTITY, queries.getDimension(uuid), "dimensions");
-        conn.addArrayToParameter(DOC_IDENTITY, queries.getQuantity(uuid), "quantities");
+        conn.executeQueryAndAddContent(queries.getTitle(uuid), DOC_IDENTITY, "titles");
+        conn.executeQueryAndAddContent(queries.getMaterial(uuid), DOC_IDENTITY, "materials");
+        conn.executeQueryAndAddContent(queries.getDimension(uuid), DOC_IDENTITY, "dimensions");
+        conn.executeQueryAndAddContent(queries.getQuantity(uuid), DOC_IDENTITY, "quantities");
     }
 
     private void addDocAccessUseConditions(SPARQLOperations conn, String
@@ -207,8 +204,8 @@ public class MainController {
         HashMap<String, ArrayList<HashMap<String, String>>> DOC_ACCESS_USE_CONDITIONS = new HashMap<>();
         myHashMapResult.put("DOC_ACCESS_USE_CONDITIONS", DOC_ACCESS_USE_CONDITIONS);
 
-        conn.addArrayToParameter(DOC_ACCESS_USE_CONDITIONS, queries.getAccessCondition(uuid), "accessConditions");
-        conn.addArrayToParameter(DOC_ACCESS_USE_CONDITIONS, queries.getLanguage(uuid), "languages");
+        conn.executeQueryAndAddContent(queries.getAccessCondition(uuid), DOC_ACCESS_USE_CONDITIONS, "accessConditions");
+        conn.executeQueryAndAddContent(queries.getLanguage(uuid), DOC_ACCESS_USE_CONDITIONS, "languages");
     }
 
     private void addDocLinkedData(SPARQLOperations conn, String
@@ -216,7 +213,7 @@ public class MainController {
         HashMap<String, ArrayList<HashMap<String, String>>> DOC_LINKED_DATA = new HashMap<>();
         myHashMapResult.put("DOC_LINKED_DATA", DOC_LINKED_DATA);
 
-        conn.addArrayToParameter(DOC_LINKED_DATA, queries.getRelatedDoc(uuid), "relatedDocs");
-        conn.addArrayToParameter(DOC_LINKED_DATA, queries.getRelatedEvent(uuid), "relatedEvents");
+        conn.executeQueryAndAddContent(queries.getRelatedDoc(uuid), DOC_LINKED_DATA, "relatedDocs");
+        conn.executeQueryAndAddContent(queries.getRelatedEvent(uuid), DOC_LINKED_DATA, "relatedEvents");
     }
 }

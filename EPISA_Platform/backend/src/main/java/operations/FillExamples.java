@@ -4,6 +4,7 @@ import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.rdfconnection.RDFConnectionFuseki;
 import org.apache.jena.rdfconnection.RDFConnectionRemoteBuilder;
+import utils.Properties;
 
 public class FillExamples {
     public String sparqlHost;
@@ -11,15 +12,15 @@ public class FillExamples {
     public String updateHost;
 
 
-        public FillExamples(String defaultHost) {
-            this.sparqlHost = defaultHost + "sparql";
-            this.dataHost = defaultHost + "data";
-            this.updateHost = defaultHost + "update";
-        }
+    public FillExamples(String defaultHost) {
+        this.sparqlHost = defaultHost + "sparql";
+        this.dataHost = defaultHost + "data";
+        this.updateHost = defaultHost + "update";
+    }
 
-        public void fill() {
-            RDFConnectionRemoteBuilder builder = RDFConnectionFuseki.create()
-                    .destination(dataHost);
+    public void fill() {
+        RDFConnectionRemoteBuilder builder = RDFConnectionFuseki.create()
+                .destination(dataHost);
 
 
         try (RDFConnectionFuseki conn = (RDFConnectionFuseki) builder.build()) {
@@ -30,7 +31,7 @@ public class FillExamples {
             Resource res2 = model.getResource("http://erlangen-crm.org/200717/E31_Document113");
             Resource res3 = model.getResource("http://erlangen-crm.org/200717/E31_Document127");
 
-            Properties properties= new Properties(model);
+            Properties properties = new Properties(model);
 
             // add the property
             res.addProperty(properties.getHasMaterial(), "papelA3");

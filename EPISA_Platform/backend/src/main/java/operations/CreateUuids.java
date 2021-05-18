@@ -5,6 +5,7 @@ import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.rdfconnection.RDFConnectionFuseki;
 import org.apache.jena.rdfconnection.RDFConnectionRemoteBuilder;
+import utils.Properties;
 
 import java.util.ArrayList;
 import java.util.UUID;
@@ -26,7 +27,6 @@ public class CreateUuids {
 
     public void create() {
         ArrayList<String> namelist = con.getAllUuids();
-
         RDFConnectionRemoteBuilder builder = RDFConnectionFuseki.create()
                 .destination(dataHost);
 

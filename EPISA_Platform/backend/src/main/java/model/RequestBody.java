@@ -1,6 +1,6 @@
-package cclasses;
+package model;
 
-public class RequestBodyClass {
+public class RequestBody {
 
     private String descriptionLevel;
     private String refCode;
@@ -19,7 +19,7 @@ public class RequestBodyClass {
     private String digitalCuratorName;
 
 
-    public RequestBodyClass(String descriptionLevel, String refCode, String prodDateFrom, String prodDateTo, String keywords, String relatedTo, String creationDateFrom, String creationDateTo, String conservationCuratorName, String digitalCuratorName, String interventionEndDateFrom, String interventionEndDateTo, String interventionStartDateFrom, String interventionStartDateTo, String title) {
+    public RequestBody(String descriptionLevel, String refCode, String prodDateFrom, String prodDateTo, String keywords, String relatedTo, String creationDateFrom, String creationDateTo, String conservationCuratorName, String digitalCuratorName, String interventionEndDateFrom, String interventionEndDateTo, String interventionStartDateFrom, String interventionStartDateTo, String title) {
         this.descriptionLevel = this.getString(descriptionLevel);
         this.refCode = this.getString(refCode);
         this.prodDateFrom = this.getString(prodDateFrom);

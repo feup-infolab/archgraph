@@ -1,8 +1,7 @@
-package operations;
+package utils;
 
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Property;
-import org.apache.jena.rdf.model.Resource;
 
 import java.util.HashMap;
 
@@ -18,7 +17,6 @@ public class Properties {
         this.properties = new HashMap<>();
     }
 
-
     public Property getHasMaterial() {
         return model.getProperty(string200717, "has_material");
     }
@@ -26,7 +24,6 @@ public class Properties {
     public Property getHasMaterialType() {
         return model.getProperty(string200717, "has_material_type");
     }
-
 
     public Property getHasTypology() {
         return model.getProperty(string200717, "has_typology");
@@ -42,14 +39,11 @@ public class Properties {
 
     public Property getHasWritingIdentifier() {
         return model.getProperty(string200717, "has_writing_identifier");
-
     }
 
     public Property getHasWriting() {
         return model.getProperty(string200717, "has_writing");
-
     }
-
 
     public Property getP102HasTitle() {
         return model.getProperty(string200717, "P102_has_title");
@@ -61,7 +55,6 @@ public class Properties {
 
     public Property getP1IsIdentifiedBy() {
         return model.getProperty(string200717, "P1_is_identified_by");
-
     }
 
     public Property getHasRelatedDocument() {
@@ -159,7 +152,6 @@ public class Properties {
     public Property getRdfsLabel() {
         return model.getProperty("rdfs:label");
     }
-
 
     public Property getLabel() {
         return model.getProperty("http://www.w3.org/2000/01/rdf-schema#label");

@@ -1,12 +1,7 @@
-package queries;
+package operations;
 
-import operations.Properties;
-import operations.Resources;
 import org.apache.jena.query.Query;
 import org.apache.jena.query.QueryFactory;
-import org.apache.jena.rdf.model.Model;
-
-import java.util.HashMap;
 
 public class Queries {
 //    private Resources resources;
@@ -28,7 +23,6 @@ public class Queries {
                 "?docIdentifier <http://erlangen-crm.org/200717/P1_is_identified_by> ?cidoc_identifier.\n" +
                 "?cidoc_identifier <http://www.episa.inesctec.pt/ligacao#hasValue> ?identifier_value.\n" +
                 "?identifier_value <http://www.episa.inesctec.pt/data_object#stringValue> ?dglabIdentifier.\n" +
-
                 "?cidoc_identifier <http://erlangen-crm.org/200717/P2_has_type> ?p2hastype.\n" +
                 "?docIdentifier <http://www.semanticweb.org/dmelo/ontologies/2020/7/untitled-ontology-151#ARP12_has_level_of_description> ?descriptionLevel .\n" +
                 "?descriptionLevel <http://www.w3.org/2000/01/rdf-schema#label> ?descriptionLevelString .\n";
@@ -183,7 +177,7 @@ public class Queries {
     }
 
     public Query getTitle(String uuid) {
-        String query ="SELECT ?title ?type \n" +
+        String query = "SELECT ?title ?type \n" +
                 "WHERE {\n" +
                 "?DocId <http://erlangen-crm.org/200717/has_uuid> \"" + uuid + "\".\n" +
                 "?DocId <http://erlangen-crm.org/200717/P102_has_title> ?type .\n" +
@@ -329,8 +323,7 @@ public class Queries {
         return QueryFactory.create("SELECT  DISTINCT ?descriptionLevel\n" +
                 "WHERE {\n" +
                 "?subject <http://www.semanticweb.org/dmelo/ontologies/2020/7/untitled-ontology-151#ARP12_has_level_of_description> ?object .\n" +
-                "?object \t\n" +
-                "<http://www.w3.org/2000/01/rdf-schema#label> ?descriptionLevel\n" +
+                "?object <http://www.w3.org/2000/01/rdf-schema#label> ?descriptionLevel\n" +
                 "}");
     }
 }

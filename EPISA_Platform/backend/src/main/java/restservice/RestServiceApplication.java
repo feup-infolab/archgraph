@@ -1,6 +1,6 @@
 package restservice;
 
-import operations.GlobalConstants;
+import utils.GlobalConstants;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import operations.SPARQLOperations;
@@ -9,13 +9,10 @@ import operations.FillExamples;
 
 @SpringBootApplication
 public class RestServiceApplication implements GlobalConstants {
-
     public static String myHost;
 
 
     public static void main(String[] args) {
-
-
 
         myHost = DEFAULTHost;
         if (args.length > 0) {

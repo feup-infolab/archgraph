@@ -19,8 +19,6 @@ public class YAMLConfig {
         this.myHost = myHost;
     }
 
-
-
     @Profile("dev")
     @Bean
     public void devDataBaseConnection() {
