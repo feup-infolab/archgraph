@@ -1,10 +1,14 @@
 import {Component, OnInit} from '@angular/core';
-import {FusekiService} from '../../service';
-import {ActivatedRoute} from '@angular/router';
+import {Router, ActivatedRoute} from '@angular/router';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormArray} from '@angular/forms';
+import {Location} from '@angular/common';
+
+
+import {AlertService, FusekiService, UserService} from '../../service';
+import {Title} from '@angular/platform-browser';
 import {MatTableDataSource} from '@angular/material/table';
 import {Document} from './searchPage/doc-search-page.component';
-import { Title } from '@angular/platform-browser';
-
 
 @Component({
   selector: 'app-my',
@@ -12,106 +16,378 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./document.component.css', '../default.css']
 })
 export class DocumentComponent implements OnInit {
-  public titles: any[];
-  public notes: any[];
-  public languages: any[];
-  public identifiers: any[];
-  public dimensions: any[];
-  public descriptionLevel: string;
-  public subjects: any[];
-  public typologies: any[];
-  public relatedEvents: any[];
-  public relatedDocs: any[];
-  public materials: any[];
-  public quantities: any[];
-  public conservationStates: any[];
-  public writings: any[];
-  public conditions: any[];
-  public traditions: any[];
-  public accessConditions: any[];
-  public documentaryTraditions: any[];
+
+  public docForm: FormGroup;
+  public loading = false;
+  public submitted = false;
+  public pageCreateDoc: boolean | undefined;
+  public pageUpdateDoc: boolean | undefined;
+
   public episaIdentifier: any;
-  public reprodutionConditions: any[];
   public haveResults: boolean | undefined;
   public dataSource: any;
   public columns: any[] = ['episaIdentifier', 'dglabIdentifier', 'title'];
   public isExpanded: boolean | undefined;
+  public myTitleTypes: any = [{value: 'formalTitle', viewValue: 'Formal Title'}, {value: 'suppliedTitle', viewValue: 'Supplied Title'}];
+  public myIdentifierTypes: any = [{value: 'referenceCode', viewValue: 'Reference Code'}];
+  protected options = {
+    autoClose: true,
+    keepAfterRouteChange: false
+  };
+
 
   constructor(
-    private service: FusekiService,
-    private route: ActivatedRoute,
-    private titleService: Title
+    protected formBuilder: FormBuilder,
+    protected activatedRoute: ActivatedRoute,
+    protected router: Router,
+    protected service: FusekiService,
+    protected titleService: Title,
+    protected alertService: AlertService,
+    protected location: Location
   ) {
-    this.titles = [];
-    this.notes = [];
-    this.languages = [];
-    this.dimensions = [];
-    this.subjects = [];
-    this.descriptionLevel = '';
-    this.typologies = [];
-    this.relatedEvents = [];
-    this.relatedDocs = [];
-    this.identifiers = [];
-    this.materials = [];
-    this.quantities = [];
-    this.conservationStates = [];
-    this.writings = [];
-    this.conditions = [];
-    this.traditions = [];
-    this.accessConditions = [];
-    this.documentaryTraditions = [];
-    this.reprodutionConditions = [];
+
+    this.docForm = this.formBuilder.group({
+      DOC_IDENTITY: this.formBuilder.group({
+        titles: this.formBuilder.array([], Validators.compose([Validators.required, Validators.minLength(1)])),
+        // descriptionLevel: formBuilder.control(''),
+        identifiers: this.formBuilder.array([], Validators.compose([Validators.required, Validators.minLength(1)])),
+        materials: this.formBuilder.array([]),
+        dimensions: this.formBuilder.array([]),
+        quantities: this.formBuilder.array([]),
+        descriptionLevel: this.formBuilder.array([], Validators.compose([Validators.required, Validators.minLength(1)])),
+
+
+      }),
+      DOC_CONTEXT: this.formBuilder.group({
+        subjects: this.formBuilder.array([]),
+        writings: this.formBuilder.array([]),
+        typologies: this.formBuilder.array([]),
+        conservationStates: this.formBuilder.array([]),
+        documentaryTraditions: this.formBuilder.array([]),
+      }),
+
+      DOC_ACCESS_USE_CONDITIONS: this.formBuilder.group({
+        accessConditions: this.formBuilder.array([]),
+        languages: this.formBuilder.array([]),
+      }),
+
+      DOC_LINKED_DATA: this.formBuilder.group({
+        relatedDocs: this.formBuilder.array([]),
+      })
+    });
+    // if (this.service.getObservableUser()) {
+    //   this.router.navigate(['/']);
+    // }
+  }
+
+
+  returnUrl: string | undefined;
+  error = '';
+  title = 'FormArray Example in Angular Reactive forms';
+
+// =========End New Elems ===================
+
+
+  ngOnInit() {
+    const href = this.router.url;
+    console.log(this.router.url);
+    // tslint:disable-next-line:variable-name
+
+    this.pageCreateDoc = href.includes('create');
+    if (this.pageCreateDoc) {
+      this.setWebPageTitle('Create Doc');
+    } else {
+      let myTitle: string;
+      this.pageUpdateDoc = href.includes('update');
+      if (this.pageUpdateDoc) {
+        myTitle = 'Update Doc  ';
+      } else {
+        myTitle = 'Doc ';
+      }
+      this.activatedRoute.paramMap.subscribe(params => {
+        this.episaIdentifier = params.get('id') || 'id';
+        this.getDocById(this.episaIdentifier);
+        this.setWebPageTitle(myTitle + this.episaIdentifier);
+      });
+    }
+    // get return url from route parameters or default to '/'
+    this.returnUrl = this.activatedRoute.snapshot.queryParams.returnUrl || '/';
     this.isExpanded = true;
   }
 
-  ngOnInit() {
-    this.route.paramMap.subscribe(params => {
-      this.episaIdentifier = params.get('id');
-      this.getDocById(this.episaIdentifier);
-      this.setDocTitle(this.episaIdentifier);
+  getViewValueFromObject(key: string, myArray: any[]) {
+    let i;
+    for (i = 0; i < myArray.length; i++) {
+      if (key === myArray[i].value) {
+        return myArray[i].viewValue;
+      }
+    }
+  }
+
+  setWebPageTitle(myTitle: string) {
+    this.titleService.setTitle(myTitle);
+  }
+
+  // ========== new Elems ==================
+
+  newTitle(): FormGroup {
+    return this.formBuilder.group({
+      title: ['', Validators.required],
+      type: ['', Validators.required],
     });
   }
-  setDocTitle(title: string) {
-    this.titleService.setTitle('Doc '  + title);
+
+  newIdentifier(): FormGroup {
+    return this.formBuilder.group({
+      identifier: ['', Validators.required],
+      type: ['', Validators.required],
+    });
+  }
+
+  newMaterial(): FormGroup {
+    return this.formBuilder.group({
+      material: '',
+      component: '',
+    });
+  }
+
+  newDimensionQuantity(): FormGroup {
+    return this.formBuilder.group({
+      dimension: '',
+      value: '',
+      measurementUnit: '',
+      component: ''
+    });
+  }
+
+  newConservationStatus(): FormGroup {
+    return this.formBuilder.group({
+      conservationStatus: '',
+      initialDate: '',
+      finalDate: '',
+    });
+  }
+
+  newLanguage(): FormGroup {
+    return this.formBuilder.group({
+      language: '',
+      identifier: '',
+    });
+  }
+
+  newWriting(): FormGroup {
+    return this.formBuilder.group({
+      writing: '',
+      identifier: '',
+    });
+  }
+
+  newDocumentaryTradition(): FormGroup {
+    return this.formBuilder.group({
+      documentaryTradition: '',
+    });
+  }
+
+  newTypology(): FormGroup {
+    return this.formBuilder.group({
+      documentaryTypology: '',
+    });
+  }
+
+  newSubject(): FormGroup {
+    return this.formBuilder.group({
+      subject: '',
+    });
+  }
+
+  newAccessCondition(): FormGroup {
+    return this.formBuilder.group({
+      accessCondition: '',
+      justification: '',
+
+    });
+  }
+
+  newRelatedDoc(): FormGroup {
+    return this.formBuilder.group({
+      recordIdentifier: '',
+      title: '',
+      relationType: '',
+    });
+  }
+
+  newDescriptionLevel(): FormGroup {
+    return this.formBuilder.group({
+      descriptionLevel: ['', Validators.required],
+    });
+  }
+
+  // ========== ==================
+  getMiddleArrayString(arrayName: string): string {
+    let middleArray;
+
+    switch (arrayName) {
+      case 'titles':
+      case 'descriptionLevel':
+      case 'identifiers':
+      case 'materials' :
+      case 'dimensions':
+      case 'quantities':
+        middleArray = 'DOC_IDENTITY';
+        break;
+      case 'subjects':
+      case 'writings':
+      case 'typologies':
+      case 'conservationStates' :
+      case 'documentaryTraditions':
+
+        middleArray = 'DOC_CONTEXT';
+        break;
+      case 'accessConditions' :
+      case 'languages':
+        middleArray = 'DOC_ACCESS_USE_CONDITIONS';
+        break;
+      case 'relatedDocs' :
+        middleArray = 'DOC_LINKED_DATA';
+        break;
+    }
+    // @ts-ignore
+    return middleArray;
+  }
+
+  getMiddleArray(arrayName: string): FormArray {
+    const middleArray = this.getMiddleArrayString(arrayName);
+    return this.docForm.get(middleArray) as FormArray;
+  }
+
+  getArrayName(arrayName: string): FormArray {
+    return this.getMiddleArray(arrayName).get(arrayName) as FormArray;
+  }
+
+  setArrayValue(arrayName: string, resultValue: any) {
+    const myArray = this.getArrayName(arrayName);
+    const myMiddleArray = this.getMiddleArrayString(arrayName);
+    // console.log(resultValue[myMiddleArray][arrayName]);
+    const myArrayFromRequest = resultValue[myMiddleArray][arrayName];
+    if (myArrayFromRequest.length > 0 && myArray.value.length === 0) {
+      this.addElem(arrayName);
+    }
+
+    if (myArray.value.length) {
+      while (myArray.value.length < myArrayFromRequest.length) {
+        this.addElem(arrayName);
+      }
+      myArray.setValue(myArrayFromRequest);
+    }
+
+  }
+
+  addElem(arrayName: string) {
+    let newElem;
+    switch (arrayName) {
+      case'materials':
+        newElem = this.newMaterial();
+        break;
+      case'dimensions':
+        newElem = this.newDimensionQuantity();
+        break;
+      case'identifiers':
+        newElem = this.newIdentifier();
+        break;
+      case'titles':
+        newElem = this.newTitle();
+        break;
+      case'quantities':
+        newElem = this.newDimensionQuantity();
+        break;
+      case'conservationStates':
+        newElem = this.newConservationStatus();
+        break;
+      case'languages':
+        newElem = this.newLanguage();
+        break;
+      case'writings':
+        newElem = this.newWriting();
+        break;
+      case'documentaryTraditions':
+        newElem = this.newDocumentaryTradition();
+        break;
+      case'typologies':
+        newElem = this.newTypology();
+        break;
+      case'subjects':
+        newElem = this.newSubject();
+        break;
+      case'accessConditions':
+        newElem = this.newAccessCondition();
+        break;
+      case'descriptionLevel':
+        newElem = this.newDescriptionLevel();
+        break;
+      case'relatedDocs':
+        newElem = this.newRelatedDoc();
+        break;
+
+
+    }
+    // @ts-ignore
+    this.getArrayName(arrayName).push(newElem);
+  }
+
+  removeElem(arrayName: string, i: number) {
+    const myArray = this.getArrayName(arrayName);
+    myArray.removeAt(i);
   }
 
   getDocById(id: any) {
     this.service.getDocById(id)
       .subscribe(result => {
-
           console.log(result);
-          this.accessConditions = result.accessConditions;
-          this.conservationStates = result.conservationStates;
-          this.dimensions = result.dimensions;
-          this.documentaryTraditions = result.documentaryTraditions;
-          this.episaIdentifier = result.episaIdentifier;
-          this.identifiers = result.identifiers;
-          this.languages = result.languages;
-          this.materials = result.materials;
-          this.quantities = result.quantities;
-          this.relatedDocs = result.relatedDocuments;
-          this.relatedEvents = result.relatedEvents;
-          this.reprodutionConditions = result.reprodutionConditions;
-          this.subjects = result.subjects;
-          this.titles = result.titles;
-          this.typologies = result.typologies;
-          this.writings = result.writings;
+          if (result.DOC_IDENTITY.titles != null) {
+            console.log(this.getArrayName('titles'));
+          }
+          this.setArrayValue('titles', result);
+          this.setArrayValue('identifiers', result);
+          this.setArrayValue('accessConditions', result);
+          this.setArrayValue('descriptionLevel', result);
 
-          const elements = [];
-          for (const relatedoc of result.relatedDocuments) {
-            const element = {
-              episaIdentifier: relatedoc.episaIdentifier,
-              title: relatedoc.title,
-              dglabIdentifier: relatedoc.dglabIdentifier
-            };
-            elements.push(element);
-          }
-          this.dataSource = new MatTableDataSource<Document>(elements);
-          if (this.dataSource.data.length > 0) {
-            this.haveResults = true;
-          }
+          this.setArrayValue('dimensions', result);
+          this.setArrayValue('quantities', result);
+          this.setArrayValue('typologies', result);
+          this.setArrayValue('materials', result);
+          this.setArrayValue('documentaryTraditions', result);
+          this.setArrayValue('subjects', result);
+          this.setArrayValue('relatedDocs', result);
+          this.setArrayValue('languages', result);
+          this.setArrayValue('writings', result);
+          this.setArrayValue('conservationStates', result);
+          // const elements = [];
+          // for (const relateDoc of result.relatedDocuments) {
+          //   const element = {
+          //     episaIdentifier: relateDoc.episaIdentifier,
+          //     title: relateDoc.title,
+          //     dglabIdentifier: relateDoc.dglabIdentifier
+          //   };
+          //   elements.push(element);
+          // }
+          // this.dataSource = new MatTableDataSource<Document>(elements);
+          // if (this.dataSource.data.length > 0) {
+          //   this.haveResults = true;
+          // }
         }
       );
+  }
+
+  goBack() {
+    this.location.back();
+  }
+
+  goToHome() {
+    this.router.navigate(['/']);
+  }
+
+  editDoc() {
+    this.router.navigate(['updatedoc/' + this.episaIdentifier]);
   }
 
   setExpanded(b: boolean) {

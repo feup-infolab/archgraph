@@ -74,6 +74,9 @@ select{
     width: 100%;
 }
 
+.message {
+    font-size: 1.2em;
+}
 
 
 .form-group {
@@ -91,6 +94,9 @@ select{
 /*}*/
 .alert-success {
     background-color: #36f456;
+}
+.alert-danger {
+    color: red;
 }
 
 .alert {

@@ -9,38 +9,25 @@ import org.springframework.context.annotation.Profile;
 @ConfigurationProperties("config")
 public class YAMLConfig {
 
-    private String sparqlHost;
-    private String dataHost;
+    private String myHost;
 
-    public String getSparqlHost() {
-        return sparqlHost;
+    public String getMyHost() {
+        return myHost;
     }
 
-    public String getDataHost() {
-        return dataHost;
+    public void setMyHost(String myHost) {
+        this.myHost = myHost;
     }
-
-
-    public void setSparqlHost(String sparqlHost) {
-        this.sparqlHost = sparqlHost;
-    }
-
-    public void setDataHost(String dataHost) {
-        this.dataHost = dataHost;
-    }
-
 
     @Profile("dev")
     @Bean
     public void devDataBaseConnection() {
-        System.out.println("my sparqlHost:" + this.sparqlHost);
-        System.out.println("my dataHost:" + this.dataHost);
+        System.out.println("my myHost:" + this.myHost);
     }
 
     @Profile("prod")
     @Bean
     public void prodDataBaseConnection() {
-        System.out.println("my sparqlHost:" + this.sparqlHost);
-        System.out.println("my dataHost:" + this.dataHost);
+        System.out.println("my myHost:" + this.myHost);
     }
 }

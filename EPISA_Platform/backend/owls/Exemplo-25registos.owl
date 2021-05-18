@@ -1925,6 +1925,7 @@
     <owl:NamedIndividual rdf:about="http://erlangen-crm.org/200717/E31_Document1">
         <rdf:type rdf:resource="http://erlangen-crm.org/200717/E31_Document"/>
         <erlangen-crm:P102_has_title rdf:resource="http://www.semanticweb.org/dmelo/ontologies/2020/7/untitled-ontology-151#ARE3SuppliedTitle6"/>
+        <erlangen-crm:P102_has_title rdf:resource="http://www.semanticweb.org/dmelo/ontologies/2020/7/untitled-ontology-151#ARE3SuppliedTitle6_2"/>
         <erlangen-crm:P129_is_about rdf:resource="http://erlangen-crm.org/200717/E22_Human-Made_Object366"/>
         <erlangen-crm:P129_is_about rdf:resource="http://erlangen-crm.org/200717/E22_Human-Made_Object367"/>
         <erlangen-crm:P129_is_about rdf:resource="http://erlangen-crm.org/200717/E22_Human-Made_Object368"/>
@@ -7822,6 +7823,11 @@
         <rdf:type rdf:resource="http://www.episa.inesctec.pt/data_object#String"/>
         <data_object:stringValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Juízo da Índia e Mina - Arquivo Nacional da Torre do Tombo - DigitArq</data_object:stringValue>
     </owl:NamedIndividual>
+
+        <owl:NamedIndividual rdf:about="http://www.episa.inesctec.pt/data_object#String7_2">
+            <rdf:type rdf:resource="http://www.episa.inesctec.pt/data_object#String"/>
+            <data_object:stringValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Juízo2 da Índia e Mina - Arquivo Nacional da Torre do Tombo - DigitArq</data_object:stringValue>
+        </owl:NamedIndividual>
     
 
 
@@ -8164,6 +8170,10 @@
         <rdf:type rdf:resource="http://www.semanticweb.org/dmelo/ontologies/2020/7/untitled-ontology-151#ARE3SuppliedTitle"/>
         <ligacao:hasValue rdf:resource="http://www.episa.inesctec.pt/data_object#String7"/>
     </owl:NamedIndividual>
+        <owl:NamedIndividual rdf:about="http://www.semanticweb.org/dmelo/ontologies/2020/7/untitled-ontology-151#ARE3SuppliedTitle6_2">
+            <rdf:type rdf:resource="http://www.semanticweb.org/dmelo/ontologies/2020/7/untitled-ontology-151#ARE3SuppliedTitle"/>
+            <ligacao:hasValue rdf:resource="http://www.episa.inesctec.pt/data_object#String7_2"/>
+        </owl:NamedIndividual>
     
 
 

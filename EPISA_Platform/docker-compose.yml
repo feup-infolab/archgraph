@@ -3,8 +3,9 @@ services:
 
   fuseki:
     container_name: fuseki
-#    image: blankdots/jena-fuseki
-    image: stain/jena-fuseki:latest
+    image: blankdots/jena-fuseki
+    #image: stain/jena-fuseki:latest
+    #build: ./fuseki
     environment:
       - ADMIN_PASSWORD=admin
       - FUSEKI_DATASET_1=name
@@ -27,6 +28,7 @@ services:
     restart: on-failure
     networks:
       - app
+
   middleware:
     container_name: middleware
     build: ./backend
@@ -74,6 +76,7 @@ services:
     restart: on-failure
     networks:
       - app
+
 networks:
   app: {}
 
