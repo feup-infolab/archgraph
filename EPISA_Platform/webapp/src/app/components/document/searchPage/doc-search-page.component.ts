@@ -35,6 +35,7 @@ export interface Document {
 export class DocSearchPageComponent extends MySearchComponent implements OnInit {
   public columns: any[] = ['episaIdentifier', 'dglabIdentifier', 'title'];
   public descriptionLevelList: any[] | undefined;
+  public records: any[] | undefined;
 
   constructor(
     private service: FusekiService,
@@ -68,15 +69,20 @@ export class DocSearchPageComponent extends MySearchComponent implements OnInit 
       .subscribe(result => {
         console.log(result);
         const elements = [];
+        this.records = [];
         for (const elem of result) {
           const element = {
             episaIdentifier: elem.episaIdentifier,
-            title: elem.title,
+            titles: elem.titles,
             dglabIdentifier: elem.dglabIdentifier
           };
           elements.push(element);
+          this.records.push(element);
+
         }
-        this.dataSource = new MatTableDataSource<Document>(elements);
+        // this.dataSource = new MatTableDataSource<Document>(elements);
+        this.haveResults = true;
+
         if (this.dataSource.data.length > 0) {
           this.haveResults = true;
         }

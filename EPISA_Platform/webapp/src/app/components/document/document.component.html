@@ -20,17 +20,13 @@
                     <div class="fields" *ngFor="let titles of getArrayName('titles').controls; let i=index">
                         <div [formGroupName]="i">
                             <mat-form-field>
-                                <mat-label i18n>Title</mat-label>
-                                <input matInput readonly placeholder="title" formControlName="title">
+                                <mat-label>Title type</mat-label>
+                                <input matInput readonly placeholder="type" [value]="getViewValueFromObject(titles.value.type, myTitleTypes)">
                             </mat-form-field>
 
-                            <mat-form-field appearance="fill">
-                                <mat-label>Title type</mat-label>
-                                <mat-select formControlName="type"> <!-- [disabled]="disableSelect.value">-->
-                                    <mat-option
-                                            [value]="titles.value.type">{{  getViewValueFromObject(titles.value.type, myTitleTypes)}}</mat-option>
-                                </mat-select>
-
+                            <mat-form-field>
+                                <mat-label i18n>Title</mat-label>
+                                <input matInput readonly placeholder="title" formControlName="title">
                             </mat-form-field>
 
                         </div>
@@ -50,18 +46,15 @@
                     <div class="fields" *ngFor="let identifiers of getArrayName('identifiers').controls; let i=index">
                         <div [formGroupName]="i">
                             <mat-form-field>
+                                <mat-label i18n>Identifier type</mat-label>
+                                <input matInput readonly placeholder="type" [value]="getViewValueFromObject(identifiers.value.type, myIdentifierTypes)">
+                            </mat-form-field>
+                            <mat-form-field>
                                 <mat-label i18n>Identifier</mat-label>
                                 <input matInput readonly placeholder="identifier" formControlName="identifier">
                             </mat-form-field>
 
-                            <mat-form-field appearance="fill">
-                                <mat-label i18n>Identifier type</mat-label>
-                                <mat-select formControlName="type"> <!--[disabled]="true">-->
-                                    <mat-option
-                                            [value]="identifiers.value.type">{{  getViewValueFromObject(identifiers.value.type, myIdentifierTypes)}}</mat-option>
-                                </mat-select>
 
-                            </mat-form-field>
 
                         </div>
                     </div>
@@ -440,7 +433,7 @@ Description Level
 
     </form>
 
-<!--    {{this.docForm.value | json}}-->
+    <!--    {{this.docForm.value | json}}-->
 </div>
 
 

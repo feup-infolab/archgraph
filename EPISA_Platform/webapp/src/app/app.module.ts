@@ -36,7 +36,7 @@ import {RegisterComponent} from './components/account/register/register.componen
 import {CreateAndUpdateDocComponent} from './components/document/createAndUpdate/create-and-update-doc.component';
 import {ErrorInterceptor} from './_helpers/ErrorInterceptor';
 import {JwtInterceptor} from './_helpers/JwtInterceptor';
-import { AlertModule } from './_alert/alert.module';
+import {AlertModule} from './_alert/alert.module';
 
 @NgModule({
   imports: [BrowserModule,
