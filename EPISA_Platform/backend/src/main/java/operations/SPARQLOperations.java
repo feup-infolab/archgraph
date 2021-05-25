@@ -6,6 +6,8 @@ import org.apache.jena.rdfconnection.RDFConnectionFuseki;
 import org.apache.jena.rdfconnection.RDFConnectionRemoteBuilder;
 import org.apache.jena.update.UpdateFactory;
 import org.apache.jena.update.UpdateRequest;
+import org.springframework.boot.configurationprocessor.json.JSONArray;
+import org.springframework.boot.configurationprocessor.json.JSONObject;
 
 import java.util.*;
 
@@ -30,7 +32,7 @@ public class SPARQLOperations {
         }
     }
 
-    public String obtainARecordOfAColumn(Query query) {
+    public String obtainARecordOfAColumn(Query query) throws Exception {
         RDFConnectionRemoteBuilder builder = RDFConnectionFuseki.create()
                 .destination(sparqlHost);
         String result = null;
@@ -44,12 +46,12 @@ public class SPARQLOperations {
             ResultSet rs = qExec.execSelect();
             QuerySolution stmt;
             while (rs.hasNext()) {
-                ++numberOfRows;
+                numberOfColumns++;
                 stmt = rs.next();
                 Iterator<String> b = stmt.varNames();
 
                 while (b.hasNext()) {
-                    numberOfColumns++;
+                    numberOfRows++;
                     String current = b.next();
                     RDFNode res = stmt.get(current);
                     result = res.toString();
@@ -59,9 +61,43 @@ public class SPARQLOperations {
             qExec.close();
             conn.close();
             //There are more than 1 record or there aren't records
-            if (numberOfRows != 1 & numberOfColumns != 1) {
-                return null;
+        }
+        if (numberOfRows != 1 & numberOfColumns != 1) {
+            throw new Exception("There are more than 1 record or there isn't a record");
+        }
+        return result;
+    }
+
+    public ArrayList<String> obtainAColumn(Query query) throws Exception {
+        RDFConnectionRemoteBuilder builder = RDFConnectionFuseki.create()
+                .destination(sparqlHost);
+        ArrayList<String> result = new ArrayList<>();
+
+        System.out.println(query.toString());
+        try (RDFConnectionFuseki conn = (RDFConnectionFuseki) builder.build()) {
+
+            QueryExecution qExec = conn.query(query);
+            ResultSet rs = qExec.execSelect();
+            QuerySolution stmt;
+            while (rs.hasNext()) {
+                stmt = rs.next();
+                Iterator<String> b = stmt.varNames();
+
+                int numberOfColumns = 0;
+                while (b.hasNext()) {
+                    numberOfColumns++;
+                    String current = b.next();
+                    RDFNode res = stmt.get(current);
+                    result.add(res.toString());
+                }
+                if (numberOfColumns != 1) {
+                    throw new Exception("There are more than 1 Column or there aren't records");
+                }
             }
+
+            qExec.close();
+            conn.close();
+            //There are more than 1 record or there aren't records
         }
         return result;
     }
@@ -70,7 +106,7 @@ public class SPARQLOperations {
         RDFConnectionRemoteBuilder builder = RDFConnectionFuseki.create()
                 .destination(sparqlHost);
         ArrayList<HashMap<String, String>> myArrayList = new ArrayList<>();
-        if(myObject != null && key != null ){
+        if (myObject != null && key != null) {
             myObject.put(key, myArrayList);
         }
 
@@ -105,7 +141,6 @@ public class SPARQLOperations {
             conn.close();
             qExec.close();
         }
-
         return myArrayList;
     }
 
@@ -161,31 +196,5 @@ public class SPARQLOperations {
         return list;
     }
 
-    public Boolean deleteDoc(String uuid) {
 
-        RDFConnectionRemoteBuilder builder = RDFConnectionFuseki.create().destination(updateHost);
-
-        try (RDFConnectionFuseki conn = (RDFConnectionFuseki) builder.build()) {
-            UpdateRequest request = UpdateFactory.create();
-            request.add(queries.deleteDoc(uuid));
-            conn.update(request);
-        }
-        return true;
-    }
-
-    public Boolean deleteSomeInformationDoc(String docId) {
-
-        RDFConnectionRemoteBuilder builder = RDFConnectionFuseki.create().destination(updateHost);
-
-        try (RDFConnectionFuseki conn = (RDFConnectionFuseki) builder.build()) {
-            UpdateRequest request = UpdateFactory.create();
-
-            request.add(queries.deleteSomeInformationDoc(docId));
-            System.out.println(queries.deleteSomeInformationDoc(docId));
-
-            conn.update(request);
-            conn.commit();
-        }
-        return true;
-    }
 }

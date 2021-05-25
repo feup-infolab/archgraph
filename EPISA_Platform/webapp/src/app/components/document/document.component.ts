@@ -7,8 +7,7 @@ import {Location} from '@angular/common';
 
 import {AlertService, FusekiService, UserService} from '../../service';
 import {Title} from '@angular/platform-browser';
-import {MatTableDataSource} from '@angular/material/table';
-import {Document} from './searchPage/doc-search-page.component';
+import {throwError} from 'rxjs';
 
 @Component({
   selector: 'app-my',
@@ -18,10 +17,12 @@ import {Document} from './searchPage/doc-search-page.component';
 export class DocumentComponent implements OnInit {
 
   public docForm: FormGroup;
+
   public loading = false;
   public submitted = false;
   public pageCreateDoc: boolean | undefined;
   public pageUpdateDoc: boolean | undefined;
+
 
   public episaIdentifier: any;
   public haveResults: boolean | undefined;
@@ -78,6 +79,7 @@ export class DocumentComponent implements OnInit {
     // if (this.service.getObservableUser()) {
     //   this.router.navigate(['/']);
     // }
+
   }
 
 
@@ -260,9 +262,11 @@ export class DocumentComponent implements OnInit {
     return this.docForm.get(middleArray) as FormArray;
   }
 
+
   getArrayName(arrayName: string): FormArray {
     return this.getMiddleArray(arrayName).get(arrayName) as FormArray;
   }
+
 
   setArrayValue(arrayName: string, resultValue: any) {
     const myArray = this.getArrayName(arrayName);
@@ -327,11 +331,13 @@ export class DocumentComponent implements OnInit {
       case'relatedDocs':
         newElem = this.newRelatedDoc();
         break;
-
-
+      default:
+        const message = 'There isn\'t that descriptor';
+        this.alertService.error(message, this.options);
+        return throwError(message);
     }
-    // @ts-ignore
     this.getArrayName(arrayName).push(newElem);
+    return;
   }
 
   removeElem(arrayName: string, i: number) {
@@ -339,44 +345,31 @@ export class DocumentComponent implements OnInit {
     myArray.removeAt(i);
   }
 
+  setDocValues(result: any) {
+    this.setArrayValue('titles', result);
+    this.setArrayValue('identifiers', result);
+    this.setArrayValue('accessConditions', result);
+    this.setArrayValue('descriptionLevel', result);
+    this.setArrayValue('dimensions', result);
+    this.setArrayValue('quantities', result);
+    this.setArrayValue('typologies', result);
+    this.setArrayValue('materials', result);
+    this.setArrayValue('documentaryTraditions', result);
+    this.setArrayValue('subjects', result);
+    this.setArrayValue('relatedDocs', result);
+    this.setArrayValue('languages', result);
+    this.setArrayValue('writings', result);
+    return;
+  }
+
   getDocById(id: any) {
     this.service.getDocById(id)
       .subscribe(result => {
-          console.log(result);
-          if (result.DOC_IDENTITY.titles != null) {
-            console.log(this.getArrayName('titles'));
-          }
-          this.setArrayValue('titles', result);
-          this.setArrayValue('identifiers', result);
-          this.setArrayValue('accessConditions', result);
-          this.setArrayValue('descriptionLevel', result);
-
-          this.setArrayValue('dimensions', result);
-          this.setArrayValue('quantities', result);
-          this.setArrayValue('typologies', result);
-          this.setArrayValue('materials', result);
-          this.setArrayValue('documentaryTraditions', result);
-          this.setArrayValue('subjects', result);
-          this.setArrayValue('relatedDocs', result);
-          this.setArrayValue('languages', result);
-          this.setArrayValue('writings', result);
-          this.setArrayValue('conservationStates', result);
-          // const elements = [];
-          // for (const relateDoc of result.relatedDocuments) {
-          //   const element = {
-          //     episaIdentifier: relateDoc.episaIdentifier,
-          //     title: relateDoc.title,
-          //     dglabIdentifier: relateDoc.dglabIdentifier
-          //   };
-          //   elements.push(element);
-          // }
-          // this.dataSource = new MatTableDataSource<Document>(elements);
-          // if (this.dataSource.data.length > 0) {
-          //   this.haveResults = true;
-          // }
+          this.setDocValues(result);
         }
       );
   }
+
 
   goBack() {
     this.location.back();

@@ -3,7 +3,6 @@ import {Router, ActivatedRoute} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Location} from '@angular/common';
 
-
 import {AlertService, FusekiService} from '../../../service';
 import {Title} from '@angular/platform-browser';
 import {DocumentComponent} from '../document.component';
@@ -16,7 +15,6 @@ import {DocumentComponent} from '../document.component';
 export class CreateAndUpdateDocComponent extends DocumentComponent {
 
   public descriptionLevelList: any[] | undefined;
-
 
   constructor(protected formBuilder: FormBuilder,
               protected activatedRoute: ActivatedRoute,
@@ -62,27 +60,23 @@ export class CreateAndUpdateDocComponent extends DocumentComponent {
   }
 
   createDoc() {
-    this.submitted = true;
-    console.log(this.getArrayName('titles').valid);
-    if (!this.oneElemRequired('titles')) {
-      return;
-    }
-    if (!this.oneElemRequired('identifiers')) {
-      return;
-    }
-    if (!this.oneElemRequired('descriptionLevel')) {
-      return;
-    }
+    // this.submitted = true;
 
-    this.loading = true;
+    // if (!this.oneElemRequired('titles')) {
+    //   return;
+    // }
+    // if (!this.oneElemRequired('identifiers')) {
+    //   return;
+    // }
+    // if (!this.oneElemRequired('descriptionLevel')) {
+    //   return;
+    // }
+
+    // this.loading = true;
     this.service.createDoc(this.docForm.value).subscribe(result => {
         console.log(result);
-        this.loading = false;
-        if (result.error) {
-
-          this.alertService.error(result.error, this.options);
-        } else if (result.message) {
-
+        // this.loading = false;
+        if (result.message) {
           this.alertService.success(result.message, this.options);
           this.gotoDoc(result.uuid);
         }
@@ -96,26 +90,47 @@ export class CreateAndUpdateDocComponent extends DocumentComponent {
 
   updateDoc() {
     this.submitted = true;
-    console.log(this.docForm.controls.titles);
 
     // stop here if form is invalid
     if (this.docForm.invalid) {
       return;
     }
 
-    this.loading = true;
-    this.service.updateDoc(this.docForm.value, this.episaIdentifier).subscribe(result => {
-        console.log(result);
-        this.loading = false;
-        if (result.error) {
-          this.alertService.error(result.error, this.options);
-        } else if (result.message) {
+    const myObject = {
+      DOC_IDENTITY: {},
+      DOC_CONTEXT: {},
+      DOC_ACCESS_USE_CONDITIONS: {},
+      DOC_LINKED_DATA: {}
+    };
+    if (this.getArrayName('titles').dirty) {
+      const middleArray = this.getMiddleArrayString('titles');
+      // @ts-ignore
+      myObject[middleArray].titles = this.getArrayName('titles').value;
+    }
 
-          this.alertService.success(result.message, this.options);
-          this.getDocById(this.episaIdentifier);
-        }
+    if (this.getArrayName('identifiers').dirty) {
+      const middleArray = this.getMiddleArrayString('identifiers');
+      // @ts-ignore
+      myObject[middleArray].identifiers = this.getArrayName('identifiers').value;
+    }
+
+    if (this.getArrayName('descriptionLevel').dirty) {
+      const middleArray = this.getMiddleArrayString('descriptionLevel');
+      // @ts-ignore
+      myObject[middleArray].descriptionLevel = this.getArrayName('descriptionLevel').value;
+    }
+
+    console.log(myObject);
+    this.loading = true;
+    this.service.updateDoc(myObject, this.episaIdentifier).subscribe(result => {
+      console.log(result);
+      this.loading = false;
+      if (result.message) {
+        this.alertService.success(result.message, this.options);
+
+        // this.setDocValues(result);
       }
-    );
+    });
   }
 
   deleteDoc() {
@@ -143,4 +158,3 @@ export class CreateAndUpdateDocComponent extends DocumentComponent {
     );
   }
 }
-

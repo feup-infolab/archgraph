@@ -10,11 +10,26 @@ public class Queries {
 
 
     public Queries() {
-
     }
 
-    public Query getSummaryDoc(String refCode, String descriptionLevel, String title) {
-        String myQuery = "SELECT distinct ?title ?episaIdentifier ?dglabIdentifier\n" +
+    public Query getTitles(String episaIdentifier, String dglabIdentifier) {
+        String myQuery = "SELECT distinct ?title \n" +
+                "WHERE {\n" +
+                "?docIdentifier <http://erlangen-crm.org/200717/P102_has_title> ?type.\n" +
+                "?type <http://www.episa.inesctec.pt/ligacao#hasValue> ?title_type.\n" +
+                "?title_type <http://www.episa.inesctec.pt/data_object#stringValue> ?title.\n" +
+                "?docIdentifier <http://erlangen-crm.org/200717/has_uuid> \"" + episaIdentifier + "\".\n" +
+                "?docIdentifier <http://erlangen-crm.org/200717/P1_is_identified_by> ?cidoc_identifier.\n" +
+                "?cidoc_identifier <http://www.episa.inesctec.pt/ligacao#hasValue> ?identifier_value.\n" +
+                "?identifier_value <http://www.episa.inesctec.pt/data_object#stringValue> \"" + dglabIdentifier + "\"." +
+                "}";
+        System.out.println(myQuery);
+        return QueryFactory.create(myQuery);
+    }
+
+
+    public Query getHeaderSummaryDoc(String refCode, String descriptionLevel, String title) {
+        String myQuery = "SELECT distinct ?episaIdentifier ?dglabIdentifier\n" +
                 "WHERE {\n" +
                 "?docIdentifier <http://erlangen-crm.org/200717/P102_has_title> ?type.\n" +
                 "?type <http://www.episa.inesctec.pt/ligacao#hasValue> ?title_type.\n" +
@@ -23,7 +38,6 @@ public class Queries {
                 "?docIdentifier <http://erlangen-crm.org/200717/P1_is_identified_by> ?cidoc_identifier.\n" +
                 "?cidoc_identifier <http://www.episa.inesctec.pt/ligacao#hasValue> ?identifier_value.\n" +
                 "?identifier_value <http://www.episa.inesctec.pt/data_object#stringValue> ?dglabIdentifier.\n" +
-                "?cidoc_identifier <http://erlangen-crm.org/200717/P2_has_type> ?p2hastype.\n" +
                 "?docIdentifier <http://www.semanticweb.org/dmelo/ontologies/2020/7/untitled-ontology-151#ARP12_has_level_of_description> ?descriptionLevel .\n" +
                 "?descriptionLevel <http://www.w3.org/2000/01/rdf-schema#label> ?descriptionLevelString .\n";
 
