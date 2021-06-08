@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
 
+
 public class Document {
 
     public HashMap<String, String> myHost = new HashMap<>();
@@ -22,6 +23,7 @@ public class Document {
     public String uuid;
     public String myDocId;
     public HashMap<String, HashMap<String, ArrayList<HashMap<String, String>>>> docContent;
+    public HashMap<String, String> myStatus = new HashMap<>();
 
     public Properties properties;
     public Resources resources;
@@ -39,6 +41,11 @@ public class Document {
         } else {
             this.docContent = new HashMap<>();
         }
+
+        myStatus.put("added", "added");
+        myStatus.put("deleted", "deleted");
+        myStatus.put("changed", "changed");
+        myStatus.put("notChanged", "notChanged");
     }
 
     public void setMyDocId(String myDocId) {
@@ -102,8 +109,8 @@ public class Document {
 
         RDFConnectionFuseki conn = (RDFConnectionFuseki) builder.build();
         this.model = conn.fetch();
-        this.properties = new Properties(model);
-        this.resources = new Resources(model);
+        this.properties = new Properties();
+        this.resources = new Resources();
 
         Resource E31_myDoc;
         String myUuidString;
@@ -115,9 +122,9 @@ public class Document {
         //episaIdentifier
         model.add(E31_myDoc, properties.getHasUuid(), myUuidString);
 
-        this.insertTitles(E31_myDoc);
-        this.insertIdentifiers(E31_myDoc);
-        this.insertDescriptionLevel(E31_myDoc);
+        this.insertTitles(E31_myDoc, this.getArrayName("titles"));
+        this.insertIdentifiers(E31_myDoc, this.getArrayName("identifiers"));
+        this.insertDescriptionLevel(E31_myDoc, this.getArrayName("descriptionLevel"));
 
         conn.put(model);
         conn.commit();
@@ -135,17 +142,22 @@ public class Document {
 
         RDFConnectionFuseki conn = (RDFConnectionFuseki) builder.build();
         this.model = conn.fetch();
-        this.properties = new Properties(model);
-        this.resources = new Resources(model);
+        this.properties = new Properties();
+        this.resources = new Resources();
 
         if (myDocId == null) {
             conn.close();
             throw new Exception("Document Id is null");
         } else {
             Resource E31_myDoc = model.getResource(myDocId);
-            this.insertTitles(E31_myDoc);
-            this.insertIdentifiers(E31_myDoc);
-            this.insertDescriptionLevel(E31_myDoc);
+            ArrayList<HashMap<String, String>> titlesToAdd = this.elementsToAdd(this.getArrayName("titles"));
+            this.insertTitles(E31_myDoc, titlesToAdd);
+
+            ArrayList<HashMap<String, String>> identifiersToAdd = this.elementsToAdd(this.getArrayName("identifiers"));
+            this.insertIdentifiers(E31_myDoc, identifiersToAdd);
+
+            ArrayList<HashMap<String, String>> descriptionAdd = this.elementsToAdd(this.getArrayName("descriptionLevel"));
+            this.insertDescriptionLevel(E31_myDoc, descriptionAdd);
 
             response.put("message", "Document updated successfully");
             conn.put(model);
@@ -155,70 +167,83 @@ public class Document {
         }
     }
 
-    public void insertTitles(Resource E31_myDoc) throws Exception {
-        ArrayList<HashMap<String, String>> myTitles = this.getArrayName("titles");
+    public void insertTitles(Resource E31_myDoc, ArrayList<HashMap<String, String>> myTitles) throws Exception {
+        if (myTitles != null) {
+//        if (myTitles.size() == 0) {
+//            throw new Exception("There aren't titles");
+//        }
+            for (HashMap<String, String> map : myTitles) {
+                String titleUuid = UUID.randomUUID().toString();
+                String typeTitle;
+                if (map.get("type").equals("suppliedTitle")) {
+                    typeTitle = properties.getARE3SuppliedTitle().toString();
+                } else {
+                    typeTitle = properties.getARE2FormalTitle().toString();
+                }
 
-        if (myTitles.size() == 0) {
-            throw new Exception("There aren't titles");
-        }
-        for (HashMap<String, String> map : myTitles) {
-            if (map.get("type").equals("suppliedTitle")) {
-                String myTitle = resources.getARE3SuppliedTitle().toString() + UUID.randomUUID().toString();
-                Property myTypeTitle = model.getProperty(myTitle);
+                Property myTypeTitle = model.getProperty(typeTitle + titleUuid);
+                String stringValue = properties.getTitleString() + UUID.randomUUID().toString();
+                Property StringValueProperty = model.getProperty(stringValue);
                 model.add(E31_myDoc, properties.getP102HasTitle(), myTypeTitle);
-                model.add(myTypeTitle, properties.getRdfType(), resources.getARE3SuppliedTitle());
-                this.insertString(myTypeTitle, map.get("title"));
+                model.add(myTypeTitle, properties.getHasUuid(), titleUuid);
+                model.add(myTypeTitle, properties.getRdfType(), model.getProperty(typeTitle));
+                model.add(myTypeTitle, properties.getRdfType(), properties.getNamedIndividual());
 
-            } else if (map.get("type").equals("formalTitle")) {
-                String myTitle = resources.getARE2FormalTitle().toString() + UUID.randomUUID().toString();
-                Property myTypeTitle = model.getProperty(myTitle);
-                model.add(E31_myDoc, properties.getP102HasTitle(), myTypeTitle);
-                model.add(myTypeTitle, properties.getRdfType(), resources.getARE2FormalTitle());
-                this.insertString(myTypeTitle, map.get("title"));
+                model.add(myTypeTitle, properties.getHasValue(), StringValueProperty);
+                model.add(StringValueProperty, properties.getStringValue(), map.get("title"));
+                model.add(StringValueProperty, properties.getRdfType(), properties.getNamedIndividual());
+                model.add(StringValueProperty, properties.getRdfType(), properties.getString());
             }
         }
     }
 
-    public void insertIdentifiers(Resource E31_myDoc) throws Exception {
-        ArrayList<HashMap<String, String>> myIdentifiers = this.getArrayName("identifiers");
-        if (myIdentifiers.size() == 0) {
-            throw new Exception("There aren't identifiers");
-        }
-        int referenceCodeCount = 0;
-        for (HashMap<String, String> map : myIdentifiers) {
-            Property myIdentifier = model.getProperty(resources.getE42Identifier().toString(), UUID.randomUUID().toString());
-            model.add(E31_myDoc, properties.getP1IsIdentifiedBy(), myIdentifier);
-            model.add(myIdentifier, properties.getRdfType(), resources.getE42Identifier());
-            model.add(myIdentifier, properties.getRdfType(), resources.getNamedIndividual());
-            if (map.get("type").equals("referenceCode")) {
-                model.add(myIdentifier, properties.getP2HasType(), resources.getReferenceCode());
-                referenceCodeCount++;
+    public void insertIdentifiers(Resource E31_myDoc, ArrayList<HashMap<String, String>> myIdentifiers) throws Exception {
+        if (myIdentifiers != null) {
+//            if (myIdentifiers.size() == 0) {
+//                throw new Exception("There aren't identifiers");
+//            }
+            int referenceCodeCount = 0;
+            for (HashMap<String, String> map : myIdentifiers) {
+                Property myIdentifier = model.getProperty(properties.getTitleOntology() + map.get("identifier"));
+                model.add(E31_myDoc, properties.getP1IsIdentifiedBy(), myIdentifier);
+                if (map.get("type").equals("referenceCode")) {
+                    model.add(myIdentifier, properties.getP2HasType(), resources.getReferenceCode());
+                    referenceCodeCount++;
+                }
+                String identifierUuid = UUID.randomUUID().toString();
+                model.add(myIdentifier, properties.getHasUuid(), identifierUuid);
+                model.add(myIdentifier, properties.getRdfType(), properties.getNamedIndividual());
+                model.add(myIdentifier, properties.getRdfType(), properties.getE42Identifier());
+
             }
-            this.insertString(myIdentifier, map.get("identifier"));
-        }
-        if (referenceCodeCount != 1) {
-            throw new Exception("There are more than one Reference Code or there isn't a reference code");
+//            if (referenceCodeCount != 1) {
+//                throw new Exception("There are more than one Reference Code or there isn't a reference code");
+//            }
         }
     }
 
-    private void insertString(Property myIdentifier, String identifier) {
-        String myString = resources.getString() + UUID.randomUUID().toString();
-        model.add(myIdentifier, properties.getHasValue(), model.getProperty(myString));
-        model.add(model.getResource(myString), properties.getStringValue(), identifier);
-    }
+//    private void insertString(Property property, String identifier, Property propertyType) {
+//        String uuid = UUID.randomUUID().toString();
+//        model.add(property, properties.getHasValue(), identifier);
+//        model.add(property, properties.getHasUuid(), uuid);
+//        model.add(property, properties.getRdfType(), propertyType);
+//        model.add(property, properties.getRdfType(), properties.getNamedIndividual());
+//
+//
+//    }
 
-    public void insertDescriptionLevel(Resource E31_myDoc) throws Exception {
-        ArrayList<HashMap<String, String>> myDescriptionLevel = this.getArrayName("descriptionLevel");
-
-        if (myDescriptionLevel.size() == 0) {
-            throw new Exception("There isn't description level");
-        }
-        for (HashMap<String, String> map : myDescriptionLevel) {
-            String descriptionLevel = map.get("descriptionLevel");
-            Resource descriptionLevelResource = resources.getDescriptionLevel(descriptionLevel);
-            model.add(E31_myDoc, properties.getARP12HasDescriptionLevel(), descriptionLevelResource);
-            String[] arrOfStr = descriptionLevel.toString().split("#", 1);
-            model.add(descriptionLevelResource, properties.getLabel(), arrOfStr[0]);
+    public void insertDescriptionLevel(Resource E31_myDoc, ArrayList<HashMap<String, String>> myDescriptionLevel) throws Exception {
+        if (myDescriptionLevel != null) {
+//            if (myDescriptionLevel.size() == 0) {
+//                throw new Exception("There isn't description level");
+//            }
+            for (HashMap<String, String> map : myDescriptionLevel) {
+                String descriptionLevel = map.get("descriptionLevel");
+                Property descriptionLevelResource = properties.getPropertyWithNameSpace(descriptionLevel);
+                model.add(E31_myDoc, properties.getARP12HasDescriptionLevel(), descriptionLevelResource);
+                String[] arrOfStr = descriptionLevel.toString().split("#", 1);
+                model.add(descriptionLevelResource, properties.getLabel(), arrOfStr[0]);
+            }
         }
     }
 
@@ -245,8 +270,26 @@ public class Document {
         RDFConnectionFuseki conn = (RDFConnectionFuseki) builder.build();
         UpdateRequest request = UpdateFactory.create();
 
-        request.add(queries.deleteSomeInformationDoc(myDocId));
-        System.out.println(queries.deleteSomeInformationDoc(myDocId));
+        ArrayList<String> uuidTitles = this.elementsToDelete(this.getArrayName("titles"));
+        if (uuidTitles != null) {
+            for (String titleUuid : uuidTitles) {
+                request.add(queries.deleteDocTitle(titleUuid));
+            }
+        }
+
+        ArrayList<String> uuidIdentifiers = this.elementsToDelete(this.getArrayName("identifiers"));
+        if (uuidIdentifiers != null) {
+            for (String identifierUuid : uuidIdentifiers) {
+                request.add(queries.deleteDocIdentifier(identifierUuid));
+            }
+        }
+
+        ArrayList<String> uuidDescriptionLevel = this.elementsToDelete(this.getArrayName("descriptionLevel"));
+        if (uuidDescriptionLevel != null) {
+            for (String descritor : uuidDescriptionLevel) {
+                request.add(queries.deleteDocDescriptionLevel(this.myDocId));
+            }
+        }
         conn.update(request);
 
         response = this.update();
@@ -254,6 +297,33 @@ public class Document {
         conn.commit();
         conn.close();
         return response;
+    }
+
+    private ArrayList<String> elementsToDelete(ArrayList<HashMap<String, String>> myArray) throws Exception {
+        if (myArray == null)
+            return null;
+
+        ArrayList<String> result = new ArrayList<>();
+        for (HashMap<String, String> elem : myArray) {
+            if (elem.get("status").equals(this.myStatus.get("deleted")) || elem.get("status").equals(this.myStatus.get("changed"))) {
+                result.add(elem.get("uuid"));
+            }
+        }
+        return result;
+    }
+
+    private ArrayList<HashMap<String, String>> elementsToAdd(ArrayList<HashMap<String, String>> myArray) throws
+            Exception {
+        if (myArray == null)
+            return null;
+
+        ArrayList<HashMap<String, String>> result = new ArrayList<>();
+        for (HashMap<String, String> elem : myArray) {
+            if (elem.get("status").equals(this.myStatus.get("added")) || elem.get("status").equals(this.myStatus.get("changed"))) {
+                result.add(elem);
+            }
+        }
+        return result;
     }
 
     public HashMap<String, HashMap<String, ArrayList<HashMap<String, String>>>> getDocFromDatabase(SPARQLOperations
@@ -403,8 +473,6 @@ public class Document {
 //            System.out.println("Triple count after deletion: " + (model.size()));
 
     }
-
-
 }
 
 

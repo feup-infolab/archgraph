@@ -8,6 +8,8 @@ import org.apache.jena.update.UpdateFactory;
 import org.apache.jena.update.UpdateRequest;
 import org.springframework.boot.configurationprocessor.json.JSONArray;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
+import utils.Properties;
+import utils.Resources;
 
 import java.util.*;
 
@@ -28,7 +30,7 @@ public class SPARQLOperations {
                 .destination(dataHost);
 
         try (RDFConnectionFuseki conn = (RDFConnectionFuseki) builder.build()) {
-            conn.load("owls/Exemplo-25registos.owl");
+            conn.load("owls/Exemplo-15registos.owl");
         }
     }
 
@@ -39,7 +41,6 @@ public class SPARQLOperations {
         int numberOfRows = 0;
         int numberOfColumns = 0;
 
-        System.out.println(query.toString());
         try (RDFConnectionFuseki conn = (RDFConnectionFuseki) builder.build()) {
 
             QueryExecution qExec = conn.query(query);
@@ -73,7 +74,6 @@ public class SPARQLOperations {
                 .destination(sparqlHost);
         ArrayList<String> result = new ArrayList<>();
 
-        System.out.println(query.toString());
         try (RDFConnectionFuseki conn = (RDFConnectionFuseki) builder.build()) {
 
             QueryExecution qExec = conn.query(query);
@@ -105,6 +105,9 @@ public class SPARQLOperations {
     public ArrayList<HashMap<String, String>> executeQueryAndAddContent(Query query, HashMap<String, ArrayList<HashMap<String, String>>> myObject, String key) {
         RDFConnectionRemoteBuilder builder = RDFConnectionFuseki.create()
                 .destination(sparqlHost);
+        Resources myResource = new Resources();
+        Properties myProperties = new Properties();
+
         ArrayList<HashMap<String, String>> myArrayList = new ArrayList<>();
         if (myObject != null && key != null) {
             myObject.put(key, myArrayList);
@@ -124,19 +127,30 @@ public class SPARQLOperations {
                 while (b.hasNext()) {
                     String current = b.next();
                     RDFNode res = stmt.get(current);
-
-                    if (res.toString().contains("http://www.semanticweb.org/dmelo/ontologies/2020/7/untitled-ontology-151#ARE3SuppliedTitle")) {
+                    if (res.toString().contains(myProperties.getARE3SuppliedTitle().toString())) {
                         result.put(current, "suppliedTitle");
-                    } else if (res.toString().contains("http://www.semanticweb.org/dmelo/ontologies/2020/7/untitled-ontology-151#ARE2FormalTitle")) {
+                    } else if (res.toString().contains(myProperties.getARE2FormalTitle().toString())) {
                         result.put(current, "formalTitle");
-
-                    } else if (res.toString().contains("http://www.semanticweb.org/dmelo/ontologies/2020/7/untitled-ontology-151#Reference_code")) {
-                        result.put(current, "referenceCode");
+                    } else if (current.equals("descriptionLevel")) {
+                        String[] arrayString = res.toString().split("#");
+                        if (arrayString.length == 2) {
+                            result.put(current, arrayString[1]);
+                        }
+                    } else if (myObject != null && key != null) {
+                        String[] arrayString = res.toString().split("#");
+                        if (arrayString.length == 2) {
+                            result.put(current, arrayString[1]);
+                        } else {
+                            result.put(current, res.toString());
+                        }
                     } else {
                         result.put(current, res.toString());
+
                     }
                 }
-                myArrayList.add(result);
+                if (result.size() != 0) {
+                    myArrayList.add(result);
+                }
             }
             conn.close();
             qExec.close();
@@ -150,16 +164,19 @@ public class SPARQLOperations {
         ArrayList<String> list = new ArrayList<>();
 
         try (RDFConnectionFuseki conn = (RDFConnectionFuseki) builder.build()) {
-            Query query = queries.getAllDocs();
+            Query query = queries.getAllResourcesDocs();
+
             ResultSet rs = conn.query(query).execSelect();
             while (rs.hasNext()) {
 
                 QuerySolution qs = rs.next();
                 list.add(qs.get("subject").toString());
             }
+            return list;
+
         }
-        return list;
     }
+
 
     public ArrayList<String> getAllBaseUuids() {
         RDFConnectionRemoteBuilder builder = RDFConnectionFuseki.create()
