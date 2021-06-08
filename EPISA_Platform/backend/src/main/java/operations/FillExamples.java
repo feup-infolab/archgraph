@@ -22,7 +22,6 @@ public class FillExamples {
         RDFConnectionRemoteBuilder builder = RDFConnectionFuseki.create()
                 .destination(dataHost);
 
-
         try (RDFConnectionFuseki conn = (RDFConnectionFuseki) builder.build()) {
             Model model = conn.fetch();
 
@@ -31,7 +30,7 @@ public class FillExamples {
             Resource res2 = model.getResource("http://erlangen-crm.org/200717/E31_Document113");
             Resource res3 = model.getResource("http://erlangen-crm.org/200717/E31_Document127");
 
-            Properties properties = new Properties(model);
+            Properties properties = new Properties();
 
             // add the property
             res.addProperty(properties.getHasMaterial(), "papelA3");

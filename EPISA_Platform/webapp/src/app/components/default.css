@@ -1,6 +1,31 @@
 .doc-content {
     margin-bottom: 6em;
 }
+.mg-top5{
+    margin-top: 5em;
+}
+.mg-top3{
+    margin-top: 3em;
+}
+.mg-top1{
+    margin-top: 1em;
+}
+
+.mg-left1{
+    margin-left: 1em;
+}
+.mg-left2{
+    margin-left: 2em;
+}
+.mg-left3{
+    margin-left: 3em;
+}
+.width40{
+    width: 40%;
+}
+.width50{
+    width: 50%;
+}
 
 .btn-mg-1em {
     margin: 1em;

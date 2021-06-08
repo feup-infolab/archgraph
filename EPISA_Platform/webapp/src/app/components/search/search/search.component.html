@@ -1,0 +1,26 @@
+<div class="content" role="main">
+
+    <mat-card class="mg-top3 mg-left3 width40">
+
+        <mat-card-content class="mg-top3">
+            <mat-form-field class=" mg-top5">
+                <mat-label i18n>Search Documents</mat-label>
+                <input matInput name="referenceCode" id="search-text" aria-describedby="search-text"
+                       [(ngModel)]="searchText" placeholder="Type search Terms..."
+                       autofocus>
+            </mat-form-field>
+        </mat-card-content>
+        <mat-card-actions>
+            <div class="card">
+                <button class="search mat-success" mat-raised-button (click)="search()"
+                        color="primary">
+                    search
+                </button>
+            </div>
+
+        </mat-card-actions>
+
+    </mat-card>
+
+
+</div>

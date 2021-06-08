@@ -17,12 +17,12 @@ import {HomeComponent} from './components/home/home/home.component';
 import {ActorComponent} from './components/actor/actor.component';
 import {PlaceComponent} from './components/place/place.component';
 import {OrganizationComponent} from './components/organization/organization.component';
-import {AdvancedSearchComponent} from './components/advancedSearch/advanced-search.component';
+import {AdvancedSearchComponent} from './components/search/advanced-search.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {GenericComponent} from './components/event/generic/generic.component';
 import {SupportComponent} from './components/event/support/support.component';
 import {RestorationComponent} from './components/event/restoration/restoration.component';
-import {DocSearchPageComponent} from './components/document/searchPage/doc-search-page.component';
+import {DocSearchPageComponent} from './components/document/searchPage/search/doc-search-page.component';
 import {ActorSearchPageComponent} from './components/actor/searchPage/actor-search-page.component';
 import {EventSearchPageComponent} from './components/event/searchPage/event-search-page.component';
 import {OrgSearchPageComponent} from './components/organization/searchPage/org-search-page.component';
@@ -30,13 +30,15 @@ import {PlaceSearchPageComponent} from './components/place/searchPage/place-sear
 import {TableComponent} from './components/view/table.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableModule} from '@angular/material/table';
-import {HierarchyComponent} from './components/advancedSearch/hierarchy/hierarchy.component';
+import {HierarchyComponent} from './components/search/hierarchy/hierarchy.component';
 import {LoginComponent} from './components/account/login/login.component';
 import {RegisterComponent} from './components/account/register/register.component';
 import {CreateAndUpdateDocComponent} from './components/document/createAndUpdate/create-and-update-doc.component';
 import {ErrorInterceptor} from './_helpers/ErrorInterceptor';
 import {JwtInterceptor} from './_helpers/JwtInterceptor';
 import {AlertModule} from './_alert/alert.module';
+import { SearchComponent } from './components/search/search/search.component';
+import { ResultComponent } from './components/document/searchPage/result/result.component';
 
 @NgModule({
   imports: [BrowserModule,
@@ -75,6 +77,8 @@ import {AlertModule} from './_alert/alert.module';
     LoginComponent,
     RegisterComponent,
     CreateAndUpdateDocComponent,
+    SearchComponent,
+    ResultComponent,
   ],
   exports: [AppComponent],
   bootstrap: [AppComponent]

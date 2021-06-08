@@ -25,17 +25,18 @@ export class DocumentComponent implements OnInit {
 
 
   public episaIdentifier: any;
-  public haveResults: boolean | undefined;
-  public dataSource: any;
   public columns: any[] = ['episaIdentifier', 'dglabIdentifier', 'title'];
   public isExpanded: boolean | undefined;
   public myTitleTypes: any = [{value: 'formalTitle', viewValue: 'Formal Title'}, {value: 'suppliedTitle', viewValue: 'Supplied Title'}];
+  public myStatus: any = {added: 'added', deleted: 'deleted', changed: 'changed', notChanged: 'notChanged'};
+  public docChanged = false;
+
+
   public myIdentifierTypes: any = [{value: 'referenceCode', viewValue: 'Reference Code'}];
   protected options = {
     autoClose: true,
     keepAfterRouteChange: false
   };
-
 
   constructor(
     protected formBuilder: FormBuilder,
@@ -134,6 +135,8 @@ export class DocumentComponent implements OnInit {
 
   newTitle(): FormGroup {
     return this.formBuilder.group({
+      uuid: [''],
+      status: [this.myStatus.added],
       title: ['', Validators.required],
       type: ['', Validators.required],
     });
@@ -141,6 +144,8 @@ export class DocumentComponent implements OnInit {
 
   newIdentifier(): FormGroup {
     return this.formBuilder.group({
+      uuid: [''],
+      status: [this.myStatus.added],
       identifier: ['', Validators.required],
       type: ['', Validators.required],
     });
@@ -148,6 +153,8 @@ export class DocumentComponent implements OnInit {
 
   newMaterial(): FormGroup {
     return this.formBuilder.group({
+      uuid: [''],
+      status: [this.myStatus.added],
       material: '',
       component: '',
     });
@@ -155,15 +162,17 @@ export class DocumentComponent implements OnInit {
 
   newDimensionQuantity(): FormGroup {
     return this.formBuilder.group({
-      dimension: '',
+      uuid: [''],
+      status: [this.myStatus.added],
       value: '',
       measurementUnit: '',
-      component: ''
     });
   }
 
   newConservationStatus(): FormGroup {
     return this.formBuilder.group({
+      uuid: [''],
+      status: [this.myStatus.added],
       conservationStatus: '',
       initialDate: '',
       finalDate: '',
@@ -172,6 +181,8 @@ export class DocumentComponent implements OnInit {
 
   newLanguage(): FormGroup {
     return this.formBuilder.group({
+      uuid: [''],
+      status: [this.myStatus.added],
       language: '',
       identifier: '',
     });
@@ -179,6 +190,8 @@ export class DocumentComponent implements OnInit {
 
   newWriting(): FormGroup {
     return this.formBuilder.group({
+      uuid: [''],
+      status: [this.myStatus.added],
       writing: '',
       identifier: '',
     });
@@ -186,24 +199,32 @@ export class DocumentComponent implements OnInit {
 
   newDocumentaryTradition(): FormGroup {
     return this.formBuilder.group({
+      uuid: [''],
+      status: [this.myStatus.added],
       documentaryTradition: '',
     });
   }
 
   newTypology(): FormGroup {
     return this.formBuilder.group({
+      uuid: [''],
+      status: [this.myStatus.added],
       documentaryTypology: '',
     });
   }
 
   newSubject(): FormGroup {
     return this.formBuilder.group({
+      uuid: [''],
+      status: [this.myStatus.added],
       subject: '',
     });
   }
 
   newAccessCondition(): FormGroup {
     return this.formBuilder.group({
+      uuid: [''],
+      status: [this.myStatus.added],
       accessCondition: '',
       justification: '',
 
@@ -212,6 +233,8 @@ export class DocumentComponent implements OnInit {
 
   newRelatedDoc(): FormGroup {
     return this.formBuilder.group({
+      uuid: [''],
+      status: [this.myStatus.added],
       recordIdentifier: '',
       title: '',
       relationType: '',
@@ -220,9 +243,12 @@ export class DocumentComponent implements OnInit {
 
   newDescriptionLevel(): FormGroup {
     return this.formBuilder.group({
+      uuid: [''],
+      status: [this.myStatus.added],
       descriptionLevel: ['', Validators.required],
     });
   }
+
 
   // ========== ==================
   getMiddleArrayString(arrayName: string): string {
@@ -262,7 +288,6 @@ export class DocumentComponent implements OnInit {
     return this.docForm.get(middleArray) as FormArray;
   }
 
-
   getArrayName(arrayName: string): FormArray {
     return this.getMiddleArray(arrayName).get(arrayName) as FormArray;
   }
@@ -271,7 +296,6 @@ export class DocumentComponent implements OnInit {
   setArrayValue(arrayName: string, resultValue: any) {
     const myArray = this.getArrayName(arrayName);
     const myMiddleArray = this.getMiddleArrayString(arrayName);
-    // console.log(resultValue[myMiddleArray][arrayName]);
     const myArrayFromRequest = resultValue[myMiddleArray][arrayName];
     if (myArrayFromRequest.length > 0 && myArray.value.length === 0) {
       this.addElem(arrayName);
@@ -281,7 +305,11 @@ export class DocumentComponent implements OnInit {
       while (myArray.value.length < myArrayFromRequest.length) {
         this.addElem(arrayName);
       }
-      myArray.setValue(myArrayFromRequest);
+
+      for (let i = 0; i < myArray.length; i++) {
+        const newValue = Object.assign(myArray.at(i).value, myArrayFromRequest[i], {status: 'notChanged'});
+        myArray.at(i).setValue(newValue);
+      }
     }
 
   }
@@ -342,7 +370,51 @@ export class DocumentComponent implements OnInit {
 
   removeElem(arrayName: string, i: number) {
     const myArray = this.getArrayName(arrayName);
-    myArray.removeAt(i);
+    const elem = myArray.at(i).value;
+    // myArray.at(i).disable({onlySelf: true});
+    if (elem.status === this.myStatus.added) {
+      myArray.removeAt(i);
+    } else {
+      const newValue = Object.assign(elem, {status: this.myStatus.deleted});
+      myArray.at(i).setValue(newValue);
+    }
+    this.docChanged = true;
+
+  }
+
+  ifElemDeleted(arrayName: string, index: any) {
+    return this.getArrayName(arrayName).value[index].status === this.myStatus.deleted;
+  }
+
+  onlyOneOrLessActivesElems(arrayName: string) {
+    const myArray = this.getArrayName(arrayName);
+    let elemActives = myArray.length;
+    for (let i = 0; i < myArray.length; i++) {
+      if (myArray.at(i).status === this.myStatus.deleted) {
+        elemActives--;
+      }
+    }
+    return elemActives === 1 || elemActives === 0;
+  }
+
+  // inputChanged(arrayName: string, index: any) {
+  //   console.log('ola');
+  //   const status = this.getArrayName(arrayName).value[index].status;
+  //   if (status !== this.myStatus.added) {
+  //     this.getArrayName(arrayName).value[index].status = this.myStatus.changed;
+  //     console.log(this.getArrayName(arrayName).value[index]);
+  //   }
+  // }
+
+  inputChanged(arrayName: string, index: any) {
+    console.log('ola');
+    const myArray = this.getArrayName(arrayName);
+    const elem = myArray.at(index).value;
+    if (elem.status !== this.myStatus.added) {
+      const newValue = Object.assign(elem, {status: this.myStatus.changed});
+      myArray.at(index).setValue(newValue);
+    }
+    this.docChanged = true;
   }
 
   setDocValues(result: any) {
@@ -366,10 +438,10 @@ export class DocumentComponent implements OnInit {
     this.service.getDocById(id)
       .subscribe(result => {
           this.setDocValues(result);
+          this.docChanged = false;
         }
       );
   }
-
 
   goBack() {
     this.location.back();

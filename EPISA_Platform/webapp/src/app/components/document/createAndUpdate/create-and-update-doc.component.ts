@@ -34,6 +34,7 @@ export class CreateAndUpdateDocComponent extends DocumentComponent {
 
   returnUrl: string | undefined;
   error = '';
+  changed  = false;
 
 
   getLevelsDescription() {
@@ -47,30 +48,7 @@ export class CreateAndUpdateDocComponent extends DocumentComponent {
       });
   }
 
-  oneElemRequired(arrayName: any) {
-    if (!this.getArrayName(arrayName).valid) {
-      if (this.getArrayName(arrayName).hasError('required')) {
-        this.addElem(arrayName);
-        return false;
-      }
-      return false;
-    }
-    return true;
-
-  }
-
   createDoc() {
-    // this.submitted = true;
-
-    // if (!this.oneElemRequired('titles')) {
-    //   return;
-    // }
-    // if (!this.oneElemRequired('identifiers')) {
-    //   return;
-    // }
-    // if (!this.oneElemRequired('descriptionLevel')) {
-    //   return;
-    // }
 
     // this.loading = true;
     this.service.createDoc(this.docForm.value).subscribe(result => {
@@ -96,39 +74,22 @@ export class CreateAndUpdateDocComponent extends DocumentComponent {
       return;
     }
 
-    const myObject = {
-      DOC_IDENTITY: {},
-      DOC_CONTEXT: {},
-      DOC_ACCESS_USE_CONDITIONS: {},
-      DOC_LINKED_DATA: {}
-    };
-    if (this.getArrayName('titles').dirty) {
-      const middleArray = this.getMiddleArrayString('titles');
-      // @ts-ignore
-      myObject[middleArray].titles = this.getArrayName('titles').value;
-    }
+    // const myObject = {
+    //   DOC_IDENTITY: {},
+    //   DOC_CONTEXT: {},
+    //   DOC_ACCESS_USE_CONDITIONS: {},
+    //   DOC_LINKED_DATA: {}
+    // };
 
-    if (this.getArrayName('identifiers').dirty) {
-      const middleArray = this.getMiddleArrayString('identifiers');
-      // @ts-ignore
-      myObject[middleArray].identifiers = this.getArrayName('identifiers').value;
-    }
-
-    if (this.getArrayName('descriptionLevel').dirty) {
-      const middleArray = this.getMiddleArrayString('descriptionLevel');
-      // @ts-ignore
-      myObject[middleArray].descriptionLevel = this.getArrayName('descriptionLevel').value;
-    }
-
-    console.log(myObject);
+    console.log(this.docForm);
     this.loading = true;
-    this.service.updateDoc(myObject, this.episaIdentifier).subscribe(result => {
+    this.service.updateDoc(this.docForm.getRawValue(), this.episaIdentifier).subscribe(result => {
       console.log(result);
       this.loading = false;
       if (result.message) {
         this.alertService.success(result.message, this.options);
-
-        // this.setDocValues(result);
+        console.log(result);
+        this.setDocValues(result);
       }
     });
   }

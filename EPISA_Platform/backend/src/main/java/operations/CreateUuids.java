@@ -37,7 +37,7 @@ public class CreateUuids {
             // create the resource
             for (String s : namelist) {
                 Resource res = model.getResource(s);
-                Properties properties = new Properties(model);
+                Properties properties = new Properties();
                 Property testProp = properties.getHasUuid();
                 UUID uuid = UUID.randomUUID();
                 String uuidAsString = uuid.toString();

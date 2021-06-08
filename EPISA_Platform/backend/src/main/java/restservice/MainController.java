@@ -56,7 +56,10 @@ public class MainController {
             String dglabIdentifier = myValue.get("dglabIdentifier");
 
             doc.put("episaIdentifier", episaIdentifier);
-            doc.put("dglabIdentifier", dglabIdentifier);
+            String[] dglabIdentifierSplit = dglabIdentifier.split("#");
+            if (dglabIdentifierSplit.length == 2) {
+                doc.put("dglabIdentifier", dglabIdentifierSplit[1]);
+            }
 
             ArrayList<String> titles = conn.obtainAColumn(queries.getTitles(episaIdentifier, dglabIdentifier));
             doc.put("titles", new JSONArray(titles));
@@ -72,7 +75,6 @@ public class MainController {
         Document doc = new Document(myConfig.getMyHost(), null, uuid);
 
 
-
         //        switch (arrayName) {
 //            case 'descriptionLevel':
 //                middleArray = 'DOC_IDENTITY';
@@ -83,37 +85,7 @@ public class MainController {
         return doc.getDocFromDatabase(conn);
     }
 
-    //
-//    @CrossOrigin
-//    @GetMapping("/searchdoc")
-//    public String documentSummary(@RequestParam(value = "refcode", defaultValue = "") Object rcode) {
-//        String refcode = rcode.toString();
-//        refcode = "\"" + refcode + "\"";
-//        SPARQLOperations conn = new SPARQLOperations(myConfig.getMyHost());
-//        HashMap<String, Object> list0 = new HashMap<>();
-//        ResponseClass uuidrep = new ResponseClass(list0);
-//        conn.obtainGeneralResponse(queries.getIdFromReference_codes_query(refcode), "id", uuidrep);
-//        HashMap<String, String> idmap = (HashMap<String, String>) uuidrep.getProperties().get("id");
-//        String uuid = "<" + idmap.get("description") + ">";
-//
-//
-//        HashMap<String, Object> list = new HashMap<>();
-//        ResponseClass rep = new ResponseClass(list);
-//
-//        rep = conn.obtainSummaryResponse(queries.getTitle_query(uuid), "title", rep);
-//        rep = conn.obtainSummaryResponse(queries.getUuid(uuid), "episaIdentifier", rep);
-//        rep = conn.obtainSummaryResponse(queries.getReference_codes_query(uuid), "dglabIdentifier", rep);
-//
-//        ObjectMapper mapper = new ObjectMapper();
-//        String json = "";
-//        try {
-//            json = mapper.writeValueAsString(rep.getProperties());
-//            return json;
-//        } catch (JsonProcessingException e) {
-//            e.printStackTrace();
-//        }
-//        return json;
-//    }
+    //DONE
     @CrossOrigin
     @DeleteMapping("/deletedoc/{uuid}")
     public HashMap<String, String> deleteDoc(@PathVariable String uuid) {
@@ -159,7 +131,10 @@ public class MainController {
             String myDocId = conn.obtainARecordOfAColumn(queries.getDocId(uuid));
             doc.setMyDocId(myDocId);
             JSONObject result = new JSONObject(doc.getDocContent());
+
+
             String message = doc.deleteSomeInformationAndUpdate().get("message");
+
             result.put("message", message);
 
             return result.toString();

@@ -18,7 +18,6 @@ public class RequestBody {
     private String conservationCuratorName;
     private String digitalCuratorName;
 
-
     public RequestBody(String descriptionLevel, String refCode, String prodDateFrom, String prodDateTo, String keywords, String relatedTo, String creationDateFrom, String creationDateTo, String conservationCuratorName, String digitalCuratorName, String interventionEndDateFrom, String interventionEndDateTo, String interventionStartDateFrom, String interventionStartDateTo, String title) {
         this.descriptionLevel = this.getString(descriptionLevel);
         this.refCode = this.getString(refCode);
@@ -37,8 +36,16 @@ public class RequestBody {
         this.title = this.getString(title);
     }
 
+    private String getString(String identifier) {
+        if (identifier != null) {
+            if (!identifier.equals("")) {
+                return identifier;
+            } else return null;
+        } else return null;
+    }
+
     public String getDescriptionLevel() {
-        return this.betweenQuotationMarks(descriptionLevel);
+        return descriptionLevel;
     }
 
     public void setDescriptionLevel(String descriptionLevel) {
@@ -46,7 +53,7 @@ public class RequestBody {
     }
 
     public String getRefCode() {
-        return this.betweenQuotationMarks(refCode);
+        return refCode;
     }
 
     public void setRefCode(String refCode) {
@@ -78,7 +85,7 @@ public class RequestBody {
     }
 
     public String getRelatedTo() {
-        return this.betweenQuotationMarks(relatedTo);
+        return relatedTo;
     }
 
     public void setRelatedTo(String relatedTo) {
@@ -142,7 +149,7 @@ public class RequestBody {
     }
 
     public String getTitle() {
-        return this.betweenQuotationMarks(title);
+        return title;
     }
 
     public void setTitle(String title) {
@@ -155,21 +162,5 @@ public class RequestBody {
 
     public void setConservationCuratorName(String conservationCuratorName) {
         this.conservationCuratorName = conservationCuratorName;
-    }
-
-    private String betweenQuotationMarks(String identifier) {
-        if (identifier != null) {
-            return "\"" + identifier + "\"";
-        } else {
-            return null;
-        }
-    }
-
-    private String getString(String identifier) {
-        if (!identifier.equals("")) {
-            return identifier;
-        } else {
-            return null;
-        }
     }
 }

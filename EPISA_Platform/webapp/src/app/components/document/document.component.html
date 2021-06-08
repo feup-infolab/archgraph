@@ -18,7 +18,7 @@
                     </mat-expansion-panel-header>
 
                     <div class="fields" *ngFor="let titles of getArrayName('titles').controls; let i=index">
-                        <div [formGroupName]="i">
+                        <div  [formGroupName]="i">
                             <mat-form-field>
                                 <mat-label>Title type</mat-label>
                                 <input matInput readonly placeholder="type" [value]="getViewValueFromObject(titles.value.type, myTitleTypes)">
@@ -123,10 +123,6 @@ Description Level
                     <div class="fields" *ngFor="let dimension of getArrayName('dimensions').controls; let i=index">
                         <div [formGroupName]="i">
                             <mat-form-field>
-                                <mat-label i18n>Dimension</mat-label>
-                                <input matInput readonly placeholder="dimension" formControlName="dimension">
-                            </mat-form-field>
-                            <mat-form-field>
                                 <mat-label i18n>Value</mat-label>
                                 <input matInput readonly placeholder="value" formControlName="value">
                             </mat-form-field>
@@ -136,12 +132,6 @@ Description Level
                                 <input matInput readonly placeholder="measurementUnit"
                                        formControlName="measurementUnit">
                             </mat-form-field>
-                            <mat-form-field>
-                                <mat-label i18n>Component</mat-label>
-                                <input matInput readonly placeholder="component" formControlName="component">
-                            </mat-form-field>
-
-
                         </div>
                     </div>
 
@@ -433,7 +423,7 @@ Description Level
 
     </form>
 
-    <!--    {{this.docForm.value | json}}-->
+<!--        {{this.docForm.value | json}}-->
 </div>
 
 

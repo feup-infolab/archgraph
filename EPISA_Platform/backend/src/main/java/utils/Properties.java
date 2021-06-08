@@ -1,7 +1,9 @@
 package utils;
 
 import org.apache.jena.rdf.model.Model;
+import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.rdf.model.Property;
+import org.apache.jena.rdf.model.Resource;
 
 import java.util.HashMap;
 
@@ -9,16 +11,24 @@ public class Properties {
     public HashMap<String, Property> properties;
     public Model model;
     public String string200717 = "http://erlangen-crm.org/200717/";
-    public String untitledOntology = "http://www.semanticweb.org/dmelo/ontologies/2020/7/untitled-ontology-151#";
+    public String untitledOntology = "http://www.episa.inesctec.pt/archonto/registo1-15#";
 
 
-    public Properties(Model model) {
-        this.model = model;
+    public Properties() {
+        this.model = ModelFactory.createDefaultModel();
         this.properties = new HashMap<>();
     }
 
     public Property getHasMaterial() {
         return model.getProperty(string200717, "has_material");
+    }
+
+    public Property getTitleOntology() {
+        return model.getProperty(untitledOntology);
+    }
+
+    public Property getNameSpace() {
+        return model.getProperty(string200717);
     }
 
     public Property getHasMaterialType() {
@@ -146,11 +156,7 @@ public class Properties {
     }
 
     public Property getRdfType() {
-        return model.getProperty("rdf:type");
-    }
-
-    public Property getRdfsLabel() {
-        return model.getProperty("rdfs:label");
+        return model.getProperty("http://www.w3.org/1999/02/22-rdf-syntax-ns#type");
     }
 
     public Property getLabel() {
@@ -168,8 +174,37 @@ public class Properties {
     public Property getStringValue() {
         return model.getProperty("http://www.episa.inesctec.pt/data_object#stringValue");
     }
+    public Property getString() {
+        return model.getProperty("http://www.episa.inesctec.pt/data_object#String");
+    }
 
     public Property getARP12HasDescriptionLevel() {
         return model.getProperty(untitledOntology, "ARP12_has_level_of_description");
+    }
+
+    public Property getNamedIndividual() {
+        return model.getProperty("http://www.w3.org/2002/07/owl#NamedIndividual");
+    }
+
+    public Property getE42Identifier() {
+        return model.getProperty(string200717 + "E42_Identifier");
+    }
+
+    public Property getARE3SuppliedTitle() {
+        return model.getProperty(untitledOntology + "ARE3SuppliedTitle");
+    }
+
+    public Property getARE2FormalTitle() {
+        return model.getProperty(untitledOntology + "ARE2FormalTitle");
+
+    }
+
+    public Property getTitleString() {
+        return model.getProperty(untitledOntology + "titleString");
+
+    }
+
+    public Property getPropertyWithNameSpace(String property) {
+        return model.getProperty(untitledOntology + property);
     }
 }
