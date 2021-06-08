@@ -5,21 +5,23 @@ import {DocumentComponent} from '../components/document/document.component';
 import {HomeComponent} from '../components/home/home/home.component';
 import {ActorComponent} from '../components/actor/actor.component';
 import {PlaceComponent} from '../components/place/place.component';
-import {AdvancedSearchComponent} from '../components/advancedSearch/advanced-search.component';
+import {AdvancedSearchComponent} from '../components/search/advanced-search.component';
 import {OrganizationComponent} from '../components/organization/organization.component';
 import {RestorationComponent} from '../components/event/restoration/restoration.component';
 import {SupportComponent} from '../components/event/support/support.component';
 import {GenericComponent} from '../components/event/generic/generic.component';
-import {DocSearchPageComponent} from '../components/document/searchPage/doc-search-page.component';
+import {DocSearchPageComponent} from '../components/document/searchPage/search/doc-search-page.component';
 import {ActorSearchPageComponent} from '../components/actor/searchPage/actor-search-page.component';
 import {EventSearchPageComponent} from '../components/event/searchPage/event-search-page.component';
 import {PlaceSearchPageComponent} from '../components/place/searchPage/place-search-page.component';
 import {OrgSearchPageComponent} from '../components/organization/searchPage/org-search-page.component';
-import {HierarchyComponent} from '../components/advancedSearch/hierarchy/hierarchy.component';
+import {HierarchyComponent} from '../components/search/hierarchy/hierarchy.component';
 import {LoginComponent} from '../components/account/login/login.component';
 import {RegisterComponent} from '../components/account/register/register.component';
 import {CreateAndUpdateDocComponent} from '../components/document/createAndUpdate/create-and-update-doc.component';
 import {AuthGuard} from '../_helpers/AutoGuard';
+import {SearchComponent} from '../components/search/search/search.component';
+import {ResultComponent} from '../components/document/searchPage/result/result.component';
 
 const routes: Routes = [
   {
@@ -53,6 +55,16 @@ const routes: Routes = [
   {
     path: 'searchdoc', component: DocSearchPageComponent, data: {
       title: 'Search for Doc'
+    }
+  },
+  {
+    path: 'search', component: SearchComponent, data: {
+      title: 'Search Page'
+    }
+  },
+  {
+    path: 'result', component: ResultComponent, data: {
+      title: 'Result Page'
     }
   },
   {

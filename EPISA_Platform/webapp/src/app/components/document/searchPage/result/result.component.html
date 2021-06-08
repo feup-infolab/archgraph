@@ -1,0 +1,32 @@
+<div class="doc-content">
+    <h1 class="mg-left3"> Search results</h1>
+    <div *ngFor="let record of records">
+        <mat-card class="mg-top3 mg-left3">
+            <div *ngFor="let title of record.titles">
+                <mat-card-title>
+                    <a class="row" href="/doc/{{record.episaIdentifier}}">{{title}}</a>
+                </mat-card-title>
+            </div>
+            <mat-card-content class="mg-top3">
+                <div class="rowElems">
+                    <p> Dates</p>
+                    <!--                    <p> {{record.dates}}</p>-->
+                </div>
+                <div class="rowElems">
+                    <p> Complete reference
+                    <p> {{record.dglabIdentifier}}</p>
+                </div>
+                <div class="rowElems">
+                    <a class="row" href="/doc/{{record.episaIdentifier}}">Complete record</a>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <p *ngIf="!hasResult" class="mg-left3">
+        There are no  results for this search
+    </p>
+    <br>
+    <button class="search mg-left3" mat-raised-button (click)="goBack()" color="primary">
+        Go Back
+    </button>
+</div>

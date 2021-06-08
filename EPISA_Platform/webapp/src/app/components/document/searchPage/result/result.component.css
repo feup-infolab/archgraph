@@ -1,0 +1,13 @@
+p{
+    margin-right: 1em;
+}
+mat-card-title{
+    font-size: medium;
+}
+.row{
+    text-align: left;
+}
+.rowElems{
+    display: flex;
+    width: 50%;
+}

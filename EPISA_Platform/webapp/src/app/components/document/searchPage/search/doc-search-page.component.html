@@ -244,19 +244,7 @@
             <!--            </td>-->
         </tr>
     </table>
-    <button class="search" mat-raised-button [disabled]="!enabledButton" (click)="getDocSummary()" color="primary">
+    <button class="search" mat-raised-button [disabled]="!enabledButton" (click)="getResults()" color="primary">
         Search
     </button>
 </form>
-<div *ngIf="haveResults" class="result doc-content">
-    <!--    <app-table [columns]="columns" [data]="dataSource" [hrefTo]="'doc'"></app-table>-->
-    <div class="record" *ngFor="let record of records">
-        <a href="/doc/{{record.episaIdentifier}}"><h2>{{record.episaIdentifier}}</h2></a>
-        <h2>{{record.dglabIdentifier}}</h2>
-        <div *ngFor="let title of record.titles">
-            <h3>{{title}}</h3>
-        </div>
-    </div>
-    <br>
-    <button class="search" mat-raised-button (click)="setHaveResults()" color="primary">Go Back</button>
-</div>
