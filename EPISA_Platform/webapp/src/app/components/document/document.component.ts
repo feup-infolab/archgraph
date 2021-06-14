@@ -30,7 +30,7 @@ export class DocumentComponent implements OnInit {
   public myTitleTypes: any = [{value: 'formalTitle', viewValue: 'Formal Title'}, {value: 'suppliedTitle', viewValue: 'Supplied Title'}];
   public myStatus: any = {added: 'added', deleted: 'deleted', changed: 'changed', notChanged: 'notChanged'};
   public docChanged = false;
-
+  public myTitle: any;
 
   public myIdentifierTypes: any = [{value: 'referenceCode', viewValue: 'Reference Code'}];
   protected options = {
@@ -100,17 +100,15 @@ export class DocumentComponent implements OnInit {
     if (this.pageCreateDoc) {
       this.setWebPageTitle('Create Doc');
     } else {
-      let myTitle: string;
       this.pageUpdateDoc = href.includes('update');
       if (this.pageUpdateDoc) {
-        myTitle = 'Update Doc  ';
+        this.myTitle = 'Update Doc  ';
       } else {
-        myTitle = 'Doc ';
+        this.myTitle = 'Doc ';
       }
       this.activatedRoute.paramMap.subscribe(params => {
         this.episaIdentifier = params.get('id') || 'id';
         this.getDocById(this.episaIdentifier);
-        this.setWebPageTitle(myTitle + this.episaIdentifier);
       });
     }
     // get return url from route parameters or default to '/'
@@ -386,15 +384,15 @@ export class DocumentComponent implements OnInit {
     return this.getArrayName(arrayName).value[index].status === this.myStatus.deleted;
   }
 
-  onlyOneOrLessActivesElems(arrayName: string) {
+  OneActivesElems(arrayName: string) {
     const myArray = this.getArrayName(arrayName);
     let elemActives = myArray.length;
     for (let i = 0; i < myArray.length; i++) {
-      if (myArray.at(i).status === this.myStatus.deleted) {
-        elemActives--;
+      if (myArray.at(i).value.status === this.myStatus.deleted) {
+        --elemActives;
       }
     }
-    return elemActives === 1 || elemActives === 0;
+    return elemActives >= 1;
   }
 
   // inputChanged(arrayName: string, index: any) {
@@ -407,7 +405,6 @@ export class DocumentComponent implements OnInit {
   // }
 
   inputChanged(arrayName: string, index: any) {
-    console.log('ola');
     const myArray = this.getArrayName(arrayName);
     const elem = myArray.at(index).value;
     if (elem.status !== this.myStatus.added) {
@@ -439,6 +436,13 @@ export class DocumentComponent implements OnInit {
       .subscribe(result => {
           this.setDocValues(result);
           this.docChanged = false;
+          const identifiers = this.getArrayName('identifiers');
+          if (identifiers != null) {
+            console.log(identifiers.at(0).value.identifier);
+            const referenceCode = identifiers.at(0).value.identifier;
+            this.setWebPageTitle(this.myTitle + referenceCode);
+          }
+
         }
       );
   }

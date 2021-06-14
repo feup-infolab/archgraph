@@ -216,9 +216,9 @@ public class Document {
                 model.add(myIdentifier, properties.getRdfType(), properties.getE42Identifier());
 
             }
-//            if (referenceCodeCount != 1) {
-//                throw new Exception("There are more than one Reference Code or there isn't a reference code");
-//            }
+            if (referenceCodeCount > 1) {
+                throw new Exception("There are more than one Reference Code");
+            }
         }
     }
 
