@@ -1,19 +1,4 @@
-.loginfields {
-    display: flex;
-    flex-direction: column;
-    border-style: double;
-    align-content: center;
 
-    width: 50%;
-    margin: auto;
-    margin-bottom: 1em;
-    margin-top: 1em;
-    padding-bottom: 0.5em;
-}
-.example-headers-align .mat-expansion-panel-header-title,
-.example-headers-align .mat-expansion-panel-header-description {
-    flex-basis: 0;
-}
 .mat-accordion>.mat-expansion-panel-spacing{
     margin-top: 1em;
 }
@@ -26,34 +11,6 @@
 }
 .search{
     margin: 1em;
-}
-
-
-.arrayField {
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    justify-content: center;
-    border-style: double;
-    width: 50%;
-    margin: auto;
-    margin-bottom: 1em;
-    margin-top: 1em;
-    padding: 1em;
-}
-.panel{
-    padding: 5px;
-    width: 75%;
-    display: block;
-    margin: auto;
-    margin-top: 2em;
-    margin-bottom: 2em;
-}
-
-.title {
-    margin: auto;
-    font-size: 1.5em;
-    padding: 1em;
 }
 
 label {
@@ -92,18 +49,7 @@ select{
 /*.alert-danger {*/
 /*    background-color: #f44336; !* Red *!*/
 /*}*/
-.alert-success {
-    background-color: #36f456;
-}
-.alert-danger {
-    color: red;
-}
 
-.alert {
-    padding: 0.5em;
-    color: red;
-    /*text-align: center;*/
-}
 
 
 .mat-form-field{
@@ -114,6 +60,17 @@ select{
 mat-list{
     padding-top: 0;
 }
+
+.panel{
+    padding: 5px;
+    width: 95%;
+    display: block;
+    margin: auto;
+    margin-bottom: 2em!important;
+}
+
+
+
 
 
 

@@ -25,6 +25,9 @@ export class CreateAndUpdateDocComponent extends DocumentComponent {
               protected location: Location) {
     super(formBuilder, activatedRoute, router, service, titleService, alertService, location);
     this.getLevelsDescription();
+    this.addElem('descriptionLevel');
+    this.addElem('titles');
+    this.addElem('identifiers');
   }
 
   public loading = false;
@@ -34,7 +37,7 @@ export class CreateAndUpdateDocComponent extends DocumentComponent {
 
   returnUrl: string | undefined;
   error = '';
-  changed  = false;
+  changed = false;
 
 
   getLevelsDescription() {
@@ -66,22 +69,32 @@ export class CreateAndUpdateDocComponent extends DocumentComponent {
     this.router.navigate(['doc/' + episaIdentifier]);
   }
 
+  invalidForm() {
+    // stop here if form is invalid
+    return this.docForm.invalid ||
+      this.getArrayName('titles').invalid ||
+      !this.OneActivesElems('titles') ||
+      this.getArrayName('identifiers').invalid ||
+      !this.OneActivesElems('identifiers') ||
+      this.getArrayName('descriptionLevel').invalid ||
+      !this.OneActivesElems('descriptionLevel');
+  }
+
+  resetStatusFromArray(arrayName: any) {
+    const myArray = this.getArrayName(arrayName);
+    for (let i = 0; i < myArray.length; i++) {
+      const newValue = Object.assign(myArray.at(i).value, {status: 'notChanged'});
+      myArray.at(i).setValue(newValue);
+    }
+  }
+
   updateDoc() {
     this.submitted = true;
 
-    // stop here if form is invalid
-    if (this.docForm.invalid) {
+    if (this.invalidForm()) {
       return;
     }
 
-    // const myObject = {
-    //   DOC_IDENTITY: {},
-    //   DOC_CONTEXT: {},
-    //   DOC_ACCESS_USE_CONDITIONS: {},
-    //   DOC_LINKED_DATA: {}
-    // };
-
-    console.log(this.docForm);
     this.loading = true;
     this.service.updateDoc(this.docForm.getRawValue(), this.episaIdentifier).subscribe(result => {
       console.log(result);
@@ -89,9 +102,25 @@ export class CreateAndUpdateDocComponent extends DocumentComponent {
       if (result.message) {
         this.alertService.success(result.message, this.options);
         console.log(result);
-        this.setDocValues(result);
+        this.resetStatusFromAllArrays();
       }
     });
+  }
+
+  resetStatusFromAllArrays() {
+    this.resetStatusFromArray('titles');
+    this.resetStatusFromArray('identifiers');
+    this.resetStatusFromArray('accessConditions');
+    this.resetStatusFromArray('descriptionLevel');
+    this.resetStatusFromArray('dimensions');
+    this.resetStatusFromArray('quantities');
+    this.resetStatusFromArray('typologies');
+    this.resetStatusFromArray('materials');
+    this.resetStatusFromArray('documentaryTraditions');
+    this.resetStatusFromArray('subjects');
+    this.resetStatusFromArray('relatedDocs');
+    this.resetStatusFromArray('languages');
+    this.resetStatusFromArray('writings');
   }
 
   deleteDoc() {
@@ -111,7 +140,6 @@ export class CreateAndUpdateDocComponent extends DocumentComponent {
 
           this.alertService.error(result.error, this.options);
         } else if (result.message) {
-
           this.alertService.success(result.message, this.options);
           this.goToHome();
         }
@@ -119,3 +147,5 @@ export class CreateAndUpdateDocComponent extends DocumentComponent {
     );
   }
 }
+
+

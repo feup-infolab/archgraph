@@ -1,19 +1,4 @@
-.loginfields {
-    display: flex;
-    flex-direction: column;
-    border-style: double;
-    align-content: center;
 
-    width: 50%;
-    margin: auto;
-    margin-bottom: 1em;
-    margin-top: 1em;
-    padding-bottom: 0.5em;
-}
-.example-headers-align .mat-expansion-panel-header-title,
-.example-headers-align .mat-expansion-panel-header-description {
-    flex-basis: 0;
-}
 .mat-accordion>.mat-expansion-panel-spacing{
     margin-top: 1em;
 }
@@ -41,15 +26,15 @@
     margin-top: 1em;
     padding: 1em;
 }
+
 .panel{
     padding: 5px;
-    width: 75%;
+    width: 95%;
     display: block;
     margin: auto;
-    margin-top: 2em;
-    margin-bottom: 2em;
-}
+    margin-bottom: 2em!important;
 
+}
 .title {
     margin: auto;
     font-size: 1.5em;
@@ -85,19 +70,6 @@ select{
     text-align: center;
 }
 
-
-/*.alert-danger {*/
-/*    background-color: #f44336; !* Red *!*/
-/*}*/
-.alert-success {
-    background-color: #36f456;
-}
-
-.alert {
-    padding: 0.5em;
-    color: red;
-    /*text-align: center;*/
-}
 
 
 .mat-form-field{

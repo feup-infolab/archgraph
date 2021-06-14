@@ -11,12 +11,12 @@
         <mat-accordion class="example-headers-align" multi>
             <div formGroupName="DOC_IDENTITY">
                 <!--            Title-->
-                <mat-expansion-panel class="panel" formGroupName="titles" [expanded]="isExpanded">
+                <mat-expansion-panel class=" panel" formGroupName="titles" [expanded]="isExpanded">
                     <mat-expansion-panel-header>
                         <mat-panel-title i18n>Titles</mat-panel-title>
                     </mat-expansion-panel-header>
 
-                    <div class="fields" *ngFor="let title of getArrayName('titles').controls; let i=index">
+                    <div class="arrayFields" *ngFor="let title of getArrayName('titles').controls; let i=index">
                         <div *ngIf="!ifElemDeleted('titles',i)" [formGroupName]="i">
                             <mat-form-field appearance="fill">
                                 <mat-label>Choose your title type</mat-label>
@@ -43,8 +43,9 @@
                             Add Title
                         </button>
                     </div>
-                    <div *ngIf="getArrayName('titles').invalid">
-                        <span class="alert-danger message " *ngIf="getArrayName('titles').hasError('required')">
+                    <div *ngIf="getArrayName('titles').invalid || !OneActivesElems('titles')">
+                        <span class="alert-danger message "
+                              *ngIf="getArrayName('titles').invalid || !OneActivesElems('titles')">
                             Title is required
                         </span>
                     </div>
@@ -58,7 +59,8 @@
                         <mat-panel-title i18n>Identifiers</mat-panel-title>
                     </mat-expansion-panel-header>
 
-                    <div class="fields" *ngFor="let identifier of getArrayName('identifiers').controls; let i=index">
+                    <div class="arrayFields"
+                         *ngFor="let identifier of getArrayName('identifiers').controls; let i=index">
                         <div *ngIf="!ifElemDeleted('identifiers',i)" [formGroupName]="i">
                             <mat-form-field appearance="fill">
                                 <mat-label>Choose your identifier type</mat-label>
@@ -87,11 +89,15 @@
                             Add Identifier
                         </button>
                     </div>
-                    <div *ngIf="getArrayName('identifiers').invalid">
-                        <span class="alert-danger message " *ngIf="getArrayName('identifiers').hasError('required')">
+
+
+                    <div *ngIf="getArrayName('identifiers').invalid || !OneActivesElems('identifiers')">
+                        <span class="alert-danger message "
+                              *ngIf="getArrayName('identifiers').invalid  || !OneActivesElems('identifiers')">
                             Identifier is required
                         </span>
                     </div>
+
                 </mat-expansion-panel>
                 <!--
 description Level
@@ -101,7 +107,7 @@ description Level
                         <mat-panel-title i18n>Description Level</mat-panel-title>
                     </mat-expansion-panel-header>
 
-                    <div class="fields"
+                    <div class="arrayFields"
                          *ngFor="let descriptionLevel of getArrayName('descriptionLevel').controls; let i=index">
                         <div *ngIf="!ifElemDeleted('descriptionLevel',i)" [formGroupName]="i">
                             <mat-form-field appearance="fill">
@@ -114,21 +120,21 @@ description Level
                                                 *ngFor="let item of descriptionLevelList">{{ item }}</mat-option>
                                 </mat-select>
                             </mat-form-field>
-                            <button class="search" mat-raised-button (click)="removeElem('descriptionLevel', i)"
-                                    color="primary">
-                                Remove
-                            </button>
+                            <!--                            <button class="search" mat-raised-button (click)="removeElem('descriptionLevel', i)"-->
+                            <!--                                    color="primary">-->
+                            <!--                                Remove-->
+                            <!--                            </button>-->
                         </div>
                     </div>
 
-                    <div class="form-group" *ngIf="onlyOneOrLessActivesElems('descriptionLevel')">
-                        <button class="search" mat-raised-button (click)="addElem('descriptionLevel')" color="primary">
-                            Add Identifier
-                        </button>
-                    </div>
+                    <!--                    <div class="form-group" *ngIf="onlyOneOrLessActivesElems('descriptionLevel')">-->
+                    <!--                        <button class="search" mat-raised-button (click)="addElem('descriptionLevel')" color="primary">-->
+                    <!--                            Add description Level-->
+                    <!--                        </button>-->
+                    <!--                    </div>-->
                     <div *ngIf="getArrayName('descriptionLevel').invalid">
                         <span class="alert-danger message "
-                              *ngIf="getArrayName('descriptionLevel').hasError('required')">
+                              *ngIf="getArrayName('descriptionLevel').invalid ">
                             Description Level is required
                         </span>
                     </div>
@@ -142,7 +148,7 @@ description Level
                         <mat-panel-title i18n>Materials</mat-panel-title>
                     </mat-expansion-panel-header>
 
-                    <div class="fields" *ngFor="let material of getArrayName('materials').controls; let i=index">
+                    <div class="arrayFields" *ngFor="let material of getArrayName('materials').controls; let i=index">
                         <div [formGroupName]="i">
                             <mat-form-field>
                                 <mat-label i18n>Material</mat-label>
@@ -175,7 +181,7 @@ description Level
                         <mat-panel-title i18n>Dimensions</mat-panel-title>
                     </mat-expansion-panel-header>
 
-                    <div class="fields" *ngFor="let dimension of getArrayName('dimensions').controls; let i=index">
+                    <div class="arrayFields" *ngFor="let dimension of getArrayName('dimensions').controls; let i=index">
                         <div [formGroupName]="i">
                             <mat-form-field>
                                 <mat-label i18n>Dimension</mat-label>
@@ -216,7 +222,7 @@ description Level
                         <mat-panel-title i18n>Quantities</mat-panel-title>
                     </mat-expansion-panel-header>
 
-                    <div class="fields" *ngFor="let quantity of getArrayName('quantities').controls; let i=index">
+                    <div class="arrayFields" *ngFor="let quantity of getArrayName('quantities').controls; let i=index">
                         <div [formGroupName]="i">
                             <mat-form-field>
                                 <mat-label i18n>Value</mat-label>
@@ -252,7 +258,7 @@ description Level
                                     <mat-panel-title i18n>Subjects</mat-panel-title>
                                 </mat-expansion-panel-header>
 
-                                <div class="fields" *ngFor="let subject of getArrayName('subjects').controls; let i=index">
+                                <div class="arrayFields" *ngFor="let subject of getArrayName('subjects').controls; let i=index">
                                     <div [formGroupName]="i">
                                         <mat-form-field>
                                             <mat-label i18n>Subject</mat-label>
@@ -281,7 +287,7 @@ description Level
                                     <mat-panel-title i18n>Writings</mat-panel-title>
                                 </mat-expansion-panel-header>
 
-                                <div class="fields" *ngFor="let writing of getArrayName('writings').controls; let i=index">
+                                <div class="arrayFields" *ngFor="let writing of getArrayName('writings').controls; let i=index">
                                     <div [formGroupName]="i">
                                         <mat-form-field>
                                             <mat-label i18n>Writing</mat-label>
@@ -313,7 +319,7 @@ description Level
                                     <mat-panel-title i18n>Conservation States</mat-panel-title>
                                 </mat-expansion-panel-header>
 
-                                <div class="fields"
+                                <div class="arrayFields"
                                      *ngFor="let conservationStatus of getArrayName('conservationStates').controls; let i=index">
                                     <div [formGroupName]="i">
                                         <mat-form-field>
@@ -352,7 +358,7 @@ description Level
                                     <mat-panel-title i18n>Documentary Traditions</mat-panel-title>
                                 </mat-expansion-panel-header>
 
-                                <div class="fields"
+                                <div class="arrayFields"
                                      *ngFor="let documentaryTradition of getArrayName('documentaryTraditions').controls; let i=index">
                                     <div [formGroupName]="i">
                                         <mat-form-field>
@@ -385,7 +391,7 @@ description Level
                                     <mat-panel-title i18n>Typologies</mat-panel-title>
                                 </mat-expansion-panel-header>
 
-                                <div class="fields" *ngFor="let typology of getArrayName('typologies').controls; let i=index">
+                                <div class="arrayFields" *ngFor="let typology of getArrayName('typologies').controls; let i=index">
                                     <div [formGroupName]="i">
                                         <mat-form-field>
                                             <mat-label i18n>Documentary Typology</mat-label>
@@ -416,7 +422,7 @@ description Level
                                     <mat-panel-title i18n>Languages</mat-panel-title>
                                 </mat-expansion-panel-header>
 
-                                <div class="fields" *ngFor="let language of getArrayName('languages').controls; let i=index">
+                                <div class="arrayFields" *ngFor="let language of getArrayName('languages').controls; let i=index">
                                     <div [formGroupName]="i">
                                         <mat-form-field>
                                             <mat-label i18n>Language</mat-label>
@@ -448,7 +454,7 @@ description Level
                                     <mat-panel-title i18n>Access Conditions</mat-panel-title>
                                 </mat-expansion-panel-header>
 
-                                <div class="fields"
+                                <div class="arrayFields"
                                      *ngFor="let accessCondition of getArrayName('accessConditions').controls; let i=index">
                                     <div [formGroupName]="i">
                                         <mat-form-field>
@@ -483,7 +489,7 @@ description Level
                                     <mat-panel-title i18n>Related Docs</mat-panel-title>
                                 </mat-expansion-panel-header>
 
-                                <div class="fields"
+                                <div class="arrayFields"
                                      *ngFor="let accessCondition of getArrayName('relatedDocs').controls; let i=index">
                                     <div [formGroupName]="i">
                                         <mat-form-field>
@@ -522,7 +528,7 @@ description Level
             <button class="search mat-error" mat-raised-button (click)="goBack()" color="primary">
                 Cancel
             </button>
-            <button class="search mat-success" [disabled]="loading " mat-raised-button
+            <button class="search mat-success" [disabled]="this.invalidForm()" mat-raised-button
                     (click)="createDoc()"
                     color="primary">
                 Create
@@ -538,7 +544,7 @@ description Level
             </button>
 
 
-            <button class="search mat-success" [disabled]="!docChanged && !this.docForm.dirty "
+            <button class="search mat-success" [disabled]="this.invalidForm()"
                     mat-raised-button
                     (click)="updateDoc()"
                     color="primary">

@@ -37,6 +37,15 @@
 }
 
 .mat-error {
-    background-color: red;
+    background-color: firebrick;
     color: #fff;
 }
+
+.alert-success {
+    background-color: forestgreen;
+}
+.alert-danger {
+    color: firebrick;
+}
+
+
