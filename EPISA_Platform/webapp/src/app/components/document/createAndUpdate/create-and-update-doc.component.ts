@@ -101,7 +101,6 @@ export class CreateAndUpdateDocComponent extends DocumentComponent {
       this.loading = false;
       if (result.message) {
         this.alertService.success(result.message, this.options);
-        console.log(result);
         this.resetStatusFromAllArrays();
       }
     });

@@ -32,7 +32,10 @@ export class DocumentComponent implements OnInit {
   public docChanged = false;
   public myTitle: any;
 
-  public myIdentifierTypes: any = [{value: 'referenceCode', viewValue: 'Reference Code'}];
+  public myIdentifierTypes: any = [{value: 'referenceCode', viewValue: 'Reference Code'}, {
+    value: 'physicalLocation',
+    viewValue: 'Physical Location'
+  }];
   protected options = {
     autoClose: true,
     keepAfterRouteChange: false
@@ -440,6 +443,7 @@ export class DocumentComponent implements OnInit {
           if (identifiers != null) {
             console.log(identifiers.at(0).value.identifier);
             const referenceCode = identifiers.at(0).value.identifier;
+            // TODO mudar isto pode nao ficar o codigo de referencia
             this.setWebPageTitle(this.myTitle + referenceCode);
           }
 

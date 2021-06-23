@@ -96,8 +96,6 @@ public class SPARQLOperations {
             }
 
             qExec.close();
-            conn.close();
-            //There are more than 1 record or there aren't records
         }
         return result;
     }
