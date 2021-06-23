@@ -1,5 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {AlertService, UserService} from '../../../service';
+import {Router, ActivatedRoute} from '@angular/router';
+
 
 @Component({
   selector: 'app-header',
@@ -16,7 +18,8 @@ export class HeaderComponent implements OnInit {
   };
 
   constructor(private userService: UserService,
-              public alertService: AlertService
+              public alertService: AlertService,
+              public router: Router,
   ) {
     this.userService.getObservableUser().subscribe(user => {
       if (user) {
@@ -32,10 +35,14 @@ export class HeaderComponent implements OnInit {
 
   public onToggleSidenav = () => {
     this.sidenavToggle.emit();
-  }
+  };
 
   logout() {
     this.userService.logout();
     this.alertService.success('Successful logout', this.options);
+  }
+
+  goToHome() {
+    this.router.navigate(['/']);
   }
 }

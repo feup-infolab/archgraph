@@ -23,10 +23,9 @@ public class RestServiceApplication implements GlobalConstants {
         SPARQLOperations cn = new SPARQLOperations(myHost);
         System.err.println("============================= UUIDS ================================");
 
-        cn.importOWL();
-
 
         if (cn.getAllBaseUuids().size() == 0) {
+            cn.importOWL();
             System.out.println("============================= Creating UUIDS ================================");
             CreateUuids create = new CreateUuids(myHost);
             create.create();

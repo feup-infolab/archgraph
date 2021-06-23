@@ -45,12 +45,14 @@ const routes: Routes = [
   {
     path: 'createdoc', component: CreateAndUpdateDocComponent, data: {
       title: 'Archgraph-Create-Doc'
-    }, canActivate: [AuthGuard]
+    },
+    // canActivate: [AuthGuard]
   },
   {
     path: 'updatedoc/:id', component: CreateAndUpdateDocComponent, data: {
       title: 'Archgraph-Update-Doc'
-    }, canActivate: [AuthGuard]
+    },
+    // canActivate: [AuthGuard]
   },
   {
     path: 'searchdoc', component: DocSearchPageComponent, data: {
