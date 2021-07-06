@@ -70,6 +70,10 @@ module.exports = {
 
         }
     },
+    async IsLogged(req, res) {
+        res.status(200).send({message: 'isLogged'})
+    },
+
     async delete(req, res) {
 
         try {

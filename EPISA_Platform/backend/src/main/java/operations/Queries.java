@@ -28,23 +28,30 @@ public class Queries {
     }
 
     public Query getHeaderSummaryDoc(String refCode, String descriptionLevel, String title) {
-        String myQuery = "SELECT distinct ?episaIdentifier ?dglabIdentifier\n" +
+        String myQuery = "SELECT distinct ?episaIdentifier ?dglabIdentifier ?physicalLocation\n" +
                 "WHERE {\n" +
-                "?docIdentifier <" + properties.getP102HasTitle() + "> ?type.\n" +
+                "?DocId <" + properties.getP102HasTitle() + "> ?type.\n" +
                 "?type <" + properties.getHasValue() + "> ?title_type.\n" +
                 "?title_type <" + properties.getStringValue() + "> ?title.\n" +
-                "?docIdentifier <" + properties.getHasUuid() + "> ?episaIdentifier.\n" +
-                "?docIdentifier <" + properties.getP1IsIdentifiedBy() + "> ?dglabIdentifier.\n" +
-                "?dglabIdentifier <" + properties.getP2HasType() + "> ?identifier_value.\n" +
-                "?docIdentifier <" + properties.getARP12HasDescriptionLevel() + "> ?descriptionLevel.\n";
+
+
+                "OPTIONAL \n" +
+                " { ?DocId <" + properties.getP1IsIdentifiedBy() + "> ?physicalLocationIdentifier .\n" +
+                    "?physicalLocationIdentifier <" + properties.getP2HasType() + "> <" + resources.getPhysicalLocation() + ">.\n" +
+                    "?physicalLocationIdentifier <" + properties.getStringValue() + "> ?physicalLocation.\n }" +
+
+                "?DocId <" + properties.getHasUuid() + "> ?episaIdentifier.\n" +
+                "?DocId <" + properties.getP1IsIdentifiedBy() + "> ?dglabIdentifier.\n" +
+                "?dglabIdentifier <" + properties.getP2HasType() + "> <" + resources.getReferenceCode() + ">.\n" +
+                "?DocId <" + properties.getARP12HasDescriptionLevel() + "> ?descriptionLevel.\n";
         if (refCode != null) {
-            myQuery += "?docIdentifier <" + properties.getP1IsIdentifiedBy() + "> <" + properties.getTitleOntology() + refCode + ">.\n";
+            myQuery += "?DocId <" + properties.getP1IsIdentifiedBy() + "> <" + properties.getTitleOntology() + refCode + ">.\n";
         }
         if (title != null) {
             myQuery += " FILTER regex(?title,\"" + title + "\", \"i\")\n";
         }
         if (descriptionLevel != null) {
-            myQuery += "?docIdentifier <" + properties.getARP12HasDescriptionLevel() + "> <" + properties.getPropertyWithNameSpace(descriptionLevel) + ">.\n";
+            myQuery += "?DocId <" + properties.getARP12HasDescriptionLevel() + "> <" + properties.getPropertyWithNameSpace(descriptionLevel) + ">.\n";
         }
         myQuery += "}";
         System.out.println(myQuery);
@@ -145,6 +152,8 @@ public class Queries {
                 "Union \n" +
                 "{  ?doc <" + properties.getP102HasTitle() + "> ?subject.}\n" +
                 "Union \n" +
+                " {?doc <" + properties.getP128IsCarriedBy() + "> ?subject.}\n" +
+                "Union \n" +
                 " {?doc <" + properties.getP1IsIdentifiedBy() + "> ?subject.}\n" +
                 "Union \n" +
                 " {?doc <" + properties.getARP12HasDescriptionLevel() + "> ?subject.}\n" +
@@ -158,7 +167,20 @@ public class Queries {
                 "?DocId <" + properties.getHasUuid() + "> \"" + uuid + "\".\n" +
                 "?DocId <" + properties.getP1IsIdentifiedBy() + "> ?identifier .\n" +
                 "?identifier <" + properties.getHasUuid() + "> ?uuid .\n" +
+                "?identifier <" + properties.getP2HasType() + "> <" + resources.getReferenceCode() + ">.\n" +
                 "?identifier <" + properties.getP2HasType() + "> ?type.\n" +
+                "}";
+        return QueryFactory.create(myString);
+    }
+
+    public Query getPhysicalLocation(String uuid) {
+        String myString = "SELECT  ?stringValue ?uuid\n" +
+                "WHERE {\n" +
+                "?DocId <" + properties.getHasUuid() + "> \"" + uuid + "\".\n" +
+                "?DocId <" + properties.getP1IsIdentifiedBy() + "> ?physicalLocation .\n" +
+                "?physicalLocation <" + properties.getHasUuid() + "> ?uuid .\n" +
+                "?physicalLocation <" + properties.getP2HasType() + "> <" + resources.getPhysicalLocation() + ">.\n" +
+                "?physicalLocation <" + properties.getStringValue() + "> ?stringValue.\n" +
                 "}";
         return QueryFactory.create(myString);
     }
@@ -188,15 +210,20 @@ public class Queries {
     }
 
     public Query getDimension(String uuid) {
-        return QueryFactory.create("SELECT ?dimension ?value ?measurementUnit ?component\n" +
+        String query = "SELECT ?material ?value ?measurementUnit ?uuid\n" +
                 "WHERE {\n" +
                 "?DocId <" + properties.getHasUuid() + "> \"" + uuid + "\".\n" +
-                "?DocId <" + properties.getNameSpace() + "has_dimension> ?dimension .\n" +
-                "?DocId <" + properties.getNameSpace() + "has_dimension_value> ?value .\n" +
-                "?DocId <" + properties.getNameSpace() + "has_dimension_measurement_unit> ?measurementUnit .\n" +
-                "?DocId <" + properties.getNameSpace() + "has_dimension_component> ?component\n" +
-                "}");
+                "?DocId <" + properties.getP128IsCarriedBy() + "> ?physicalObject.\n" +
+                "?physicalObject <" + properties.getHasUuid() + "> ?uuid.\n" +
+                "?physicalObject <" + properties.getP45ConsistsOf() + "> ?material.\n" +
+                "?physicalObject <" + properties.getP43HasDimension() + "> ?dimension.\n" +
+                "?dimension <" + properties.getP90HasValue() + "> ?value .\n" +
+                "?dimension <" + properties.getP91HasUnit() + "> ?measurementUnit.\n" +
+                "}";
+        System.out.println(query);
+        return QueryFactory.create(query);
     }
+
 
     public Query getQuantity(String uuid) {
         return QueryFactory.create("SELECT ?quantity ?value ?measurementUnit ?component\n" +
@@ -380,6 +407,23 @@ public class Queries {
         String myQuery = "DELETE \n" +
                 "WHERE {\n" +
                 "<" + docId + "> <" + properties.getARP12HasDescriptionLevel() + ">  ?descriptionLevel .\n" +
+                "}";
+        System.out.println(myQuery);
+        return myQuery;
+    }
+
+    public String deleteDocDimension(String physicalObjectUuid) {
+
+        String myQuery = "DELETE \n" +
+                "WHERE {\n" +
+                " ?docId <" + properties.getP128IsCarriedBy() + ">  ?physicalObject .\n" +
+                " ?physicalObject <" + properties.getHasUuid() + "> \"" + physicalObjectUuid + "\" .\n" +
+                " ?physicalObject <" + properties.getP45ConsistsOf() + ">  ?material .\n" +
+                " ?physicalObject <" + properties.getP43HasDimension() + ">  ?dimension .\n" +
+                " ?dimension <" + properties.getRdfType() + ">  ?dimensionType .\n" +
+                " ?dimension <" + properties.getP90HasValue() + ">  ?value .\n" +
+                " ?dimension <" + properties.getP91HasUnit() + ">  ?myMeasurementUnit .\n" +
+                " ?myMeasurementUnit <" + properties.getRdfType() + ">  ?myMeasurementUnitType .\n" +
                 "}";
         System.out.println(myQuery);
         return myQuery;

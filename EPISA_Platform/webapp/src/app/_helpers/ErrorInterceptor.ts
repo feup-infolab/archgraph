@@ -7,7 +7,8 @@ import {AlertService, UserService} from '../service';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
-  constructor(public alertService: AlertService
+  constructor(public alertService: AlertService,
+              public userService: UserService
   ) {
   }
 
@@ -22,8 +23,7 @@ export class ErrorInterceptor implements HttpInterceptor {
         this.alertService.error(err.error.message, this.options);
 
         // TODO descomentar isto
-        // this.authenticationService.logout();
-        // location.reload(true);
+        this.userService.logout();
       }
       const error = err.error.message || err.statusText;
       return throwError(error);

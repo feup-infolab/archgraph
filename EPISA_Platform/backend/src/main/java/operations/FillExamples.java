@@ -33,49 +33,38 @@ public class FillExamples {
             Properties properties = new Properties();
 
             // add the property
-            res.addProperty(properties.getHasMaterial(), "papelA3");
-            res.addProperty(properties.getHasMaterialType(), "papel");
-
-            res.addProperty(properties.getDimension(), "40m");
-            res.addProperty(properties.getHasDimensionValue(), "40");
-            res.addProperty(properties.getHasDimensionMU(), "meter");
-            res.addProperty(properties.getHasDimensionComponent(), "Component");
-
-            res.addProperty(properties.getHasQuantity(), "1 Papel");
-            res.addProperty(properties.getHasDimensionValue(), "1");
-            res.addProperty(properties.getHasDimensionMU(), "Papel");
-            res.addProperty(properties.getHasQuantityComponent(), "Component");
-
-            res.addProperty(properties.getHasConservationStatus(), "Conservado");
-            res.addProperty(properties.getHasConservationStatusID(), "31/03/1990");
-            res.addProperty(properties.getHasConservationStatusFD(), "01/02/1992");
-
-            res.addProperty(properties.getHasLanguage(), "Portugues");
-            res.addProperty(properties.getHasLanguageIdentifier(), "PT");
-
-            res.addProperty(properties.getHasWriting(), "Escrita");
-            res.addProperty(properties.getHasWritingIdentifier(), "1234");
-
-            res.addProperty(properties.getHasDocTradition(), "Prosa");
 
 
-            res.addProperty(properties.getHasTypology(), "Língua Analítica");
-
-            res.addProperty(properties.getHasSubject(), "Assunto do Documento");
-
-            res.addProperty(properties.getHasAccessCondition(), "Acesso Completo");
-            res.addProperty(properties.getHasAccessConditionJustifification(), "Disponivel a Todos");
-
-            res.addProperty(properties.getHasReproductionCondition(), "Ilegal");
-            res.addProperty(properties.getReproductionConditionJustifificationProperty(), "Unico");
-
-            res.addProperty(properties.getHasRelatedEvents(), "1235");
-            res.addProperty(properties.getHasRelatedEventsType(), "Teste");
-            res.addProperty(properties.getHasRelatedEventsID(), "12/06/2000");
-            res.addProperty(properties.getHasRelatedEventsFD(), "12/06/2001");
-
-            res.addProperty(properties.getHasRelatedDocument(), res2);
-            res.addProperty(properties.getHasRelatedDocument(), res3);
+//            res.addProperty(properties.getHasConservationStatus(), "Conservado");
+//            res.addProperty(properties.getHasConservationStatusID(), "31/03/1990");
+//            res.addProperty(properties.getHasConservationStatusFD(), "01/02/1992");
+//
+//            res.addProperty(properties.getHasLanguage(), "Portugues");
+//            res.addProperty(properties.getHasLanguageIdentifier(), "PT");
+//
+//            res.addProperty(properties.getHasWriting(), "Escrita");
+//            res.addProperty(properties.getHasWritingIdentifier(), "1234");
+//
+//            res.addProperty(properties.getHasDocTradition(), "Prosa");
+//
+//
+//            res.addProperty(properties.getHasTypology(), "Língua Analítica");
+//
+//            res.addProperty(properties.getHasSubject(), "Assunto do Documento");
+//
+//            res.addProperty(properties.getHasAccessCondition(), "Acesso Completo");
+//            res.addProperty(properties.getHasAccessConditionJustifification(), "Disponivel a Todos");
+//
+//            res.addProperty(properties.getHasReproductionCondition(), "Ilegal");
+//            res.addProperty(properties.getReproductionConditionJustifificationProperty(), "Unico");
+//
+//            res.addProperty(properties.getHasRelatedEvents(), "1235");
+//            res.addProperty(properties.getHasRelatedEventsType(), "Teste");
+//            res.addProperty(properties.getHasRelatedEventsID(), "12/06/2000");
+//            res.addProperty(properties.getHasRelatedEventsFD(), "12/06/2001");
+//
+//            res.addProperty(properties.getHasRelatedDocument(), res2);
+//            res.addProperty(properties.getHasRelatedDocument(), res3);
 
 
             conn.put(model);

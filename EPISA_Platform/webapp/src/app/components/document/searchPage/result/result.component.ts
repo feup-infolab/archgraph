@@ -42,7 +42,8 @@ export class ResultComponent implements OnInit {
           const element = {
             episaIdentifier: elem.episaIdentifier,
             titles: elem.titles,
-            dglabIdentifier: elem.dglabIdentifier
+            dglabIdentifier: elem.dglabIdentifier,
+            physicalLocation: elem.physicalLocation
           };
           elements.push(element);
           this.records.push(element);

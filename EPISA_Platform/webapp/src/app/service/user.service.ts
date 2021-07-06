@@ -24,6 +24,7 @@ export class UserService {
   public get currentUserValue(): User {
     return this.userSubject.value;
   }
+
   getObservableUser(): Observable<any> {
     return this.userSubject.asObservable();
   }
@@ -37,11 +38,15 @@ export class UserService {
       }));
   }
 
+  userIsLogged() {
+    return this.http.get<any>(`${this.baseUrl}/user/islogged`);
+  }
+
   logout() {
     localStorage.removeItem('user');
     // @ts-ignore
     this.userSubject.next(null);
-    this.router.navigate(['/home']);
+    this.router.navigate(['/login']);
     return;
   }
 

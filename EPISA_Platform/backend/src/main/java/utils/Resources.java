@@ -19,7 +19,6 @@ public class Resources {
     }
 
 
-
     public Resource getE31Document() {
         return model.getResource(string200717 + "E31_Document");
     }
@@ -36,8 +35,11 @@ public class Resources {
         return model.getResource(untitledOntology + "ARE1LevelofDescription");
     }
 
-
     public Resource getNamedIndividual() {
         return model.getResource(stringOwl + "NamedIndividual");
+    }
+
+    public Resource getPhysicalLocation() {
+        return model.getResource(untitledOntology + "physicalLocation");
     }
 }

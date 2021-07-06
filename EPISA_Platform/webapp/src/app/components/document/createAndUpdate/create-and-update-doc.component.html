@@ -143,35 +143,35 @@ description Level
                 <!--
                 Materials
                 -->
-                <mat-expansion-panel class="panel" formGroupName="materials" [expanded]="isExpanded">
-                    <mat-expansion-panel-header>
-                        <mat-panel-title i18n>Materials</mat-panel-title>
-                    </mat-expansion-panel-header>
+                <!--                <mat-expansion-panel class="panel" formGroupName="materials" [expanded]="isExpanded">
+                                    <mat-expansion-panel-header>
+                                        <mat-panel-title i18n>Materials</mat-panel-title>
+                                    </mat-expansion-panel-header>
 
-                    <div class="arrayFields" *ngFor="let material of getArrayName('materials').controls; let i=index">
-                        <div [formGroupName]="i">
-                            <mat-form-field>
-                                <mat-label i18n>Material</mat-label>
-                                <input matInput placeholder="material" formControlName="material">
-                            </mat-form-field>
+                                    <div class="arrayFields" *ngFor="let material of getArrayName('materials').controls; let i=index">
+                                        <div [formGroupName]="i">
+                                            <mat-form-field>
+                                                <mat-label i18n>Material</mat-label>
+                                                <input matInput placeholder="material" formControlName="material">
+                                            </mat-form-field>
 
-                            <mat-form-field>
-                                <mat-label i18n>Component</mat-label>
-                                <input matInput placeholder="component" formControlName="component">
-                            </mat-form-field>
-                            <button class="search" mat-raised-button (click)="removeElem('materials', i)"
-                                    color="primary">
-                                Remove
-                            </button>
-                        </div>
-                    </div>
+                                            <mat-form-field>
+                                                <mat-label i18n>Component</mat-label>
+                                                <input matInput placeholder="component" formControlName="component">
+                                            </mat-form-field>
+                                            <button class="search" mat-raised-button (click)="removeElem('materials', i)"
+                                                    color="primary">
+                                                Remove
+                                            </button>
+                                        </div>
+                                    </div>
 
-                    <div class="form-group">
-                        <button class="search" mat-raised-button (click)="addElem('materials')" color="primary">
-                            Add Material
-                        </button>
-                    </div>
-                </mat-expansion-panel>
+                                    <div class="form-group">
+                                        <button class="search" mat-raised-button (click)="addElem('materials')" color="primary">
+                                            Add Material
+                                        </button>
+                                    </div>
+                                </mat-expansion-panel>-->
 
                 <!--
                 Dimensions
@@ -184,21 +184,20 @@ description Level
                     <div class="arrayFields" *ngFor="let dimension of getArrayName('dimensions').controls; let i=index">
                         <div [formGroupName]="i">
                             <mat-form-field>
-                                <mat-label i18n>Dimension</mat-label>
-                                <input matInput placeholder="dimension" formControlName="dimension">
+                                <mat-label i18n>Material</mat-label>
+                                <input matInput placeholder="material" formControlName="material"
+                                       (change)="inputChanged('dimensions',i)">
                             </mat-form-field>
                             <mat-form-field>
                                 <mat-label i18n>Value</mat-label>
-                                <input matInput placeholder="value" formControlName="value">
+                                <input matInput placeholder="value" formControlName="value"
+                                       (change)="inputChanged('dimensions',i)">
                             </mat-form-field>
 
                             <mat-form-field>
                                 <mat-label i18n>Measurement Unit</mat-label>
-                                <input matInput placeholder="measurementUnit" formControlName="measurementUnit">
-                            </mat-form-field>
-                            <mat-form-field>
-                                <mat-label i18n>Component</mat-label>
-                                <input matInput placeholder="component" formControlName="component">
+                                <input matInput placeholder="measurementUnit" formControlName="measurementUnit"
+                                       (change)="inputChanged('dimensions',i)">
                             </mat-form-field>
                             <button class="search" mat-raised-button (click)="removeElem('dimensions', i)"
                                     color="primary">
@@ -217,7 +216,7 @@ description Level
                 <!--
                 Quantities
                 -->
-                <mat-expansion-panel class="panel" formGroupName="quantities" [expanded]="isExpanded">
+                <!--<mat-expansion-panel class="panel" formGroupName="quantities" [expanded]="isExpanded">
                     <mat-expansion-panel-header>
                         <mat-panel-title i18n>Quantities</mat-panel-title>
                     </mat-expansion-panel-header>
@@ -246,7 +245,7 @@ description Level
                             Add Quantity
                         </button>
                     </div>
-                </mat-expansion-panel>
+                </mat-expansion-panel>-->
             </div>
 
             <!--            <div formGroupName="DOC_CONTEXT">
