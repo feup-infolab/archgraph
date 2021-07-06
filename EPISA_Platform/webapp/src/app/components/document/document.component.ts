@@ -161,10 +161,11 @@ export class DocumentComponent implements OnInit {
     });
   }
 
-  newDimensionQuantity(): FormGroup {
+  newDimension(): FormGroup {
     return this.formBuilder.group({
       uuid: [''],
       status: [this.myStatus.added],
+      material: '',
       value: '',
       measurementUnit: '',
     });
@@ -322,7 +323,7 @@ export class DocumentComponent implements OnInit {
         newElem = this.newMaterial();
         break;
       case'dimensions':
-        newElem = this.newDimensionQuantity();
+        newElem = this.newDimension();
         break;
       case'identifiers':
         newElem = this.newIdentifier();
@@ -330,9 +331,9 @@ export class DocumentComponent implements OnInit {
       case'titles':
         newElem = this.newTitle();
         break;
-      case'quantities':
-        newElem = this.newDimensionQuantity();
-        break;
+      // case'quantities':
+      //   newElem = this.newDimension();
+      //   break;
       case'conservationStates':
         newElem = this.newConservationStatus();
         break;

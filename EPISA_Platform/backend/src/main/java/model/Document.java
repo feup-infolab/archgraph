@@ -125,6 +125,8 @@ public class Document {
         this.insertTitles(E31_myDoc, this.getArrayName("titles"));
         this.insertIdentifiers(E31_myDoc, this.getArrayName("identifiers"));
         this.insertDescriptionLevel(E31_myDoc, this.getArrayName("descriptionLevel"));
+        this.insertDimensions(E31_myDoc, this.getArrayName("dimensions"));
+
 
         conn.put(model);
         conn.commit();
@@ -158,6 +160,9 @@ public class Document {
 
             ArrayList<HashMap<String, String>> descriptionAdd = this.elementsToAdd(this.getArrayName("descriptionLevel"));
             this.insertDescriptionLevel(E31_myDoc, descriptionAdd);
+
+            ArrayList<HashMap<String, String>> dimensionAdd = this.elementsToAdd(this.getArrayName("dimensions"));
+            this.insertDimensions(E31_myDoc, dimensionAdd);
 
             response.put("message", "Document updated successfully");
             conn.put(model);
@@ -247,6 +252,42 @@ public class Document {
         }
     }
 
+
+    public void insertDimensions(Resource E31_myDoc, ArrayList<HashMap<String, String>> myDimensions) throws Exception {
+        if (myDimensions != null) {
+//            if (myDescriptionLevel.size() == 0) {
+//                throw new Exception("There isn't description level");
+//            }
+            for (HashMap<String, String> map : myDimensions) {
+                String material = map.get("material");
+                String value = map.get("value");
+                String measurementUnit = map.get("measurementUnit");
+
+                String physicalObjectUuid = UUID.randomUUID().toString();
+                Property physicalObject = model.getProperty(properties.getNameSpace() +"physicalObject" + physicalObjectUuid);
+                model.add(E31_myDoc, properties.getP128IsCarriedBy(), physicalObject);
+                model.add(physicalObject, properties.getHasUuid(), physicalObjectUuid);
+
+                model.add(physicalObject, properties.getP45ConsistsOf(), properties.getPropertyWithNameSpace(material));
+                String dimensionUuid = UUID.randomUUID().toString();
+                Property dimension = properties.getPropertyWithNameSpace("dimension" + dimensionUuid);
+
+                model.add(physicalObject, properties.getP43HasDimension(), dimension);
+
+                model.add(dimension, properties.getRdfType(), properties.getNamedIndividual());
+                model.add(dimension, properties.getRdfType(), properties.getE54Dimension());
+                model.add(dimension, properties.getP90HasValue(), value);
+
+                Property myMeasurementUnit = properties.getPropertyWithNameSpace(measurementUnit);
+                model.add(dimension, properties.getP91HasUnit(), myMeasurementUnit);
+
+                model.add(myMeasurementUnit, properties.getRdfType(), properties.getE58MeasurementUnit());
+                model.add(myMeasurementUnit, properties.getRdfType(), properties.getNamedIndividual());
+
+            }
+        }
+    }
+
     public HashMap<String, String> deleteDoc(String uuid) throws Exception {
 
         RDFConnectionRemoteBuilder builder = RDFConnectionFuseki.create().destination(myHost.get("update"));
@@ -290,6 +331,14 @@ public class Document {
                 request.add(queries.deleteDocDescriptionLevel(this.myDocId));
             }
         }
+
+        ArrayList<String> uuidDimensions = this.elementsToDelete(this.getArrayName("dimensions"));
+        if (uuidDimensions != null) {
+            for (String dimensionUuid : uuidDimensions) {
+                request.add(queries.deleteDocDimension(dimensionUuid));
+            }
+        }
+
         conn.update(request);
 
         response = this.update();
