@@ -4,12 +4,7 @@ import org.apache.jena.query.*;
 import org.apache.jena.rdf.model.*;
 import org.apache.jena.rdfconnection.RDFConnectionFuseki;
 import org.apache.jena.rdfconnection.RDFConnectionRemoteBuilder;
-import org.apache.jena.update.UpdateFactory;
-import org.apache.jena.update.UpdateRequest;
-import org.springframework.boot.configurationprocessor.json.JSONArray;
-import org.springframework.boot.configurationprocessor.json.JSONObject;
 import utils.Properties;
-import utils.Resources;
 
 import java.util.*;
 
@@ -103,7 +98,6 @@ public class SPARQLOperations {
     public ArrayList<HashMap<String, String>> executeQueryAndAddContent(Query query, HashMap<String, ArrayList<HashMap<String, String>>> myObject, String key) {
         RDFConnectionRemoteBuilder builder = RDFConnectionFuseki.create()
                 .destination(sparqlHost);
-        Resources myResource = new Resources();
         Properties myProperties = new Properties();
 
         ArrayList<HashMap<String, String>> myArrayList = new ArrayList<>();
@@ -125,7 +119,10 @@ public class SPARQLOperations {
                 while (b.hasNext()) {
                     String current = b.next();
                     RDFNode res = stmt.get(current);
-                    if (res.toString().contains(myProperties.getARE3SuppliedTitle().toString())) {
+
+                    if (current.equals(myProperties.getMyEntityUuid())) {
+                        result.put(current, res.toString());
+                    } else if (res.toString().contains(myProperties.getARE3SuppliedTitle().toString())) {
                         result.put(current, "suppliedTitle");
                     } else if (res.toString().contains(myProperties.getARE2FormalTitle().toString())) {
                         result.put(current, "formalTitle");

@@ -8,7 +8,6 @@ import org.apache.jena.rdfconnection.RDFConnectionRemoteBuilder;
 import org.apache.jena.update.UpdateFactory;
 import org.apache.jena.update.UpdateRequest;
 import utils.Properties;
-import utils.Resources;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,7 +25,6 @@ public class Document {
     public HashMap<String, String> myStatus = new HashMap<>();
 
     public Properties properties;
-    public Resources resources;
 
     public Document(String defaultHost, HashMap<String, HashMap<String, ArrayList<HashMap<String, String>>>> mapper, String uuid) {
         this.myHost.put("sparql", defaultHost + "sparql");
@@ -110,14 +108,13 @@ public class Document {
         RDFConnectionFuseki conn = (RDFConnectionFuseki) builder.build();
         this.model = conn.fetch();
         this.properties = new Properties();
-        this.resources = new Resources();
 
         Resource E31_myDoc;
         String myUuidString;
         myUuidString = UUID.randomUUID().toString();
-        E31_myDoc = model.getResource(resources.getE31Document() + myUuidString);
-        model.add(E31_myDoc, properties.getRdfType(), resources.getE31Document());
-        model.add(E31_myDoc, properties.getRdfType(), resources.getNamedIndividual());
+        E31_myDoc = model.getResource(properties.getE31Document() + myUuidString);
+        model.add(E31_myDoc, properties.getRdfType(), properties.getE31Document());
+        model.add(E31_myDoc, properties.getRdfType(), properties.getNamedIndividual());
 
         //episaIdentifier
         model.add(E31_myDoc, properties.getHasUuid(), myUuidString);
@@ -145,7 +142,6 @@ public class Document {
         RDFConnectionFuseki conn = (RDFConnectionFuseki) builder.build();
         this.model = conn.fetch();
         this.properties = new Properties();
-        this.resources = new Resources();
 
         if (myDocId == null) {
             conn.close();
@@ -190,7 +186,6 @@ public class Document {
                 String stringValue = properties.getTitleString() + UUID.randomUUID().toString();
                 Property StringValueProperty = model.getProperty(stringValue);
                 model.add(E31_myDoc, properties.getP102HasTitle(), myTypeTitle);
-                model.add(myTypeTitle, properties.getHasUuid(), titleUuid);
                 model.add(myTypeTitle, properties.getRdfType(), model.getProperty(typeTitle));
                 model.add(myTypeTitle, properties.getRdfType(), properties.getNamedIndividual());
 
@@ -212,11 +207,10 @@ public class Document {
                 Property myIdentifier = model.getProperty(properties.getTitleOntology() + map.get("identifier"));
                 model.add(E31_myDoc, properties.getP1IsIdentifiedBy(), myIdentifier);
                 if (map.get("type").equals("referenceCode")) {
-                    model.add(myIdentifier, properties.getP2HasType(), resources.getReferenceCode());
+                    model.add(myIdentifier, properties.getP2HasType(), properties.getReferenceCode());
                     referenceCodeCount++;
                 }
                 String identifierUuid = UUID.randomUUID().toString();
-                model.add(myIdentifier, properties.getHasUuid(), identifierUuid);
                 model.add(myIdentifier, properties.getRdfType(), properties.getNamedIndividual());
                 model.add(myIdentifier, properties.getRdfType(), properties.getE42Identifier());
 
@@ -230,7 +224,6 @@ public class Document {
 //    private void insertString(Property property, String identifier, Property propertyType) {
 //        String uuid = UUID.randomUUID().toString();
 //        model.add(property, properties.getHasValue(), identifier);
-//        model.add(property, properties.getHasUuid(), uuid);
 //        model.add(property, properties.getRdfType(), propertyType);
 //        model.add(property, properties.getRdfType(), properties.getNamedIndividual());
 //
@@ -266,7 +259,6 @@ public class Document {
                 String physicalObjectUuid = UUID.randomUUID().toString();
                 Property physicalObject = model.getProperty(properties.getNameSpace() +"physicalObject" + physicalObjectUuid);
                 model.add(E31_myDoc, properties.getP128IsCarriedBy(), physicalObject);
-                model.add(physicalObject, properties.getHasUuid(), physicalObjectUuid);
 
                 model.add(physicalObject, properties.getP45ConsistsOf(), properties.getPropertyWithNameSpace(material));
                 String dimensionUuid = UUID.randomUUID().toString();
@@ -340,7 +332,6 @@ public class Document {
         }
 
         conn.update(request);
-
         response = this.update();
 
         conn.commit();
@@ -355,7 +346,7 @@ public class Document {
         ArrayList<String> result = new ArrayList<>();
         for (HashMap<String, String> elem : myArray) {
             if (elem.get("status").equals(this.myStatus.get("deleted")) || elem.get("status").equals(this.myStatus.get("changed"))) {
-                result.add(elem.get("uuid"));
+                result.add(elem.get("myEntityUuid"));
             }
         }
         return result;
@@ -390,7 +381,6 @@ public class Document {
         HashMap<String, ArrayList<HashMap<String, String>>> DOC_IDENTITY = new HashMap<>();
         docContent.put("DOC_IDENTITY", DOC_IDENTITY);
 
-        System.out.println(queries.getIdentifier(uuid));
         conn.executeQueryAndAddContent(queries.getIdentifier(uuid), DOC_IDENTITY, "identifiers");
         conn.executeQueryAndAddContent(queries.getLevel_of_description_query(uuid), DOC_IDENTITY, "descriptionLevel");
 

@@ -2,26 +2,20 @@ package operations;
 
 import org.apache.jena.query.Query;
 import org.apache.jena.query.QueryFactory;
-import org.apache.jena.rdf.model.Property;
 import utils.Properties;
-import utils.Resources;
-
-import java.util.UUID;
 
 public class Queries {
-    private final Resources resources;
     private final Properties properties;
 
 
     public Queries() {
-        this.resources = new Resources();
         this.properties = new Properties();
     }
 
     public Query getAllLevelOfDescription() {
         String query = "SELECT  DISTINCT ?descriptionLevel\n" +
                 "WHERE {\n" +
-                "?descriptionLevel ?object <" + resources.getARE1LevelofDescription() + "> .\n" +
+                "?descriptionLevel ?object <" + properties.getARE1LevelOfDescription() + "> .\n" +
                 "}";
         System.out.println(query);
         return QueryFactory.create(query);
@@ -34,15 +28,14 @@ public class Queries {
                 "?type <" + properties.getHasValue() + "> ?title_type.\n" +
                 "?title_type <" + properties.getStringValue() + "> ?title.\n" +
 
-
                 "OPTIONAL \n" +
                 " { ?DocId <" + properties.getP1IsIdentifiedBy() + "> ?physicalLocationIdentifier .\n" +
-                    "?physicalLocationIdentifier <" + properties.getP2HasType() + "> <" + resources.getPhysicalLocation() + ">.\n" +
-                    "?physicalLocationIdentifier <" + properties.getStringValue() + "> ?physicalLocation.\n }" +
+                "?physicalLocationIdentifier <" + properties.getP2HasType() + "> <" + properties.getPhysicalLocation() + ">.\n" +
+                "?physicalLocationIdentifier <" + properties.getStringValue() + "> ?physicalLocation.\n }" +
 
                 "?DocId <" + properties.getHasUuid() + "> ?episaIdentifier.\n" +
                 "?DocId <" + properties.getP1IsIdentifiedBy() + "> ?dglabIdentifier.\n" +
-                "?dglabIdentifier <" + properties.getP2HasType() + "> <" + resources.getReferenceCode() + ">.\n" +
+                "?dglabIdentifier <" + properties.getP2HasType() + "> <" + properties.getReferenceCode() + ">.\n" +
                 "?DocId <" + properties.getARP12HasDescriptionLevel() + "> ?descriptionLevel.\n";
         if (refCode != null) {
             myQuery += "?DocId <" + properties.getP1IsIdentifiedBy() + "> <" + properties.getTitleOntology() + refCode + ">.\n";
@@ -61,47 +54,32 @@ public class Queries {
     public Query getTitles(String episaIdentifier, String dglabIdentifier) {
         String myQuery = "SELECT distinct ?title \n" +
                 "WHERE {\n" +
-                "?docIdentifier <" + properties.getP102HasTitle() + "> ?type.\n" +
+                "?DocId <" + properties.getP102HasTitle() + "> ?type.\n" +
                 "?type <" + properties.getHasValue() + "> ?title_type.\n" +
                 "?title_type <" + properties.getStringValue() + "> ?title.\n" +
-                "?docIdentifier <" + properties.getHasUuid() + "> \"" + episaIdentifier + "\".\n" +
-                "?docIdentifier <" + properties.getP1IsIdentifiedBy() + "> <" + dglabIdentifier + ">.\n" +
+                "?DocId <" + properties.getHasUuid() + "> \"" + episaIdentifier + "\".\n" +
+                "?DocId <" + properties.getP1IsIdentifiedBy() + "> <" + dglabIdentifier + ">.\n" +
                 "}";
         System.out.println(myQuery);
         return QueryFactory.create(myQuery);
-    }
-
-    public Query insertTitle_query(String uuid) {
-        return QueryFactory.create("Insert ?description\n" +
-                "WHERE {\n" +
-                uuid + " <" + properties.getP102HasTitle() + "> ?type .\n" +
-                "  ?type <" + properties.getHasValue() + "> ?title_type .\n" +
-                "  ?title_type <" + properties.getStringValue() + "> ?description\n" +
-                "}");
     }
 
     public Query getLevel_of_description_query(String uuid) {
-        String myQuery = "SELECT ?descriptionLevel ?uuid\n" +
+        String myQuery = "SELECT ?descriptionLevel ?" + properties.getMyEntityUuid() + "\n" +
                 "WHERE {\n" +
                 "?DocId <" + properties.getHasUuid() + "> \"" + uuid + "\".\n" +
                 "?DocId <" + properties.getARP12HasDescriptionLevel() + "> ?descriptionLevel.\n" +
-                "?descriptionLevel <" + properties.getHasUuid() + "> ?uuid .\n" +
+                "?DocId <" + properties.getARP12HasDescriptionLevel() + "> ?" + properties.getMyEntityUuid() + ".\n" +
                 "}";
         System.out.println(myQuery);
         return QueryFactory.create(myQuery);
     }
 
-    public Query getUuid(String docUuid) {
-        return QueryFactory.create("SELECT ?Uuid\n" +
-                "WHERE {\n" +
-                docUuid + " <" + properties.getHasUuid() + "> ?Uuid\n" +
-                "}");
-    }
 
     public Query getDocId(String uuid) {
-        return QueryFactory.create("SELECT ?docUuid\n" +
+        return QueryFactory.create("SELECT ?DocId\n" +
                 "WHERE {\n" +
-                "?docUuid  <" + properties.getHasUuid() + "> \"" + uuid + "\".\n" +
+                "?DocId  <" + properties.getHasUuid() + "> \"" + uuid + "\".\n" +
                 "}");
     }
 
@@ -149,50 +127,44 @@ public class Queries {
         return QueryFactory.create("SELECT distinct ?subject\n" +
                 "WHERE {\n" +
                 "{  ?subject <" + properties.getRdfType() + "> <" + properties.getNameSpace() + "E31_Document>.}\n" +
-                "Union \n" +
-                "{  ?doc <" + properties.getP102HasTitle() + "> ?subject.}\n" +
-                "Union \n" +
-                " {?doc <" + properties.getP128IsCarriedBy() + "> ?subject.}\n" +
-                "Union \n" +
-                " {?doc <" + properties.getP1IsIdentifiedBy() + "> ?subject.}\n" +
-                "Union \n" +
-                " {?doc <" + properties.getARP12HasDescriptionLevel() + "> ?subject.}\n" +
                 "}");
     }
 
-
     public Query getIdentifier(String uuid) {
-        String myString = "SELECT  ?identifier ?type ?uuid\n" +
+        String myString = "SELECT ?identifier ?type ?" + properties.getMyEntityUuid() + "\n" +
                 "WHERE {\n" +
                 "?DocId <" + properties.getHasUuid() + "> \"" + uuid + "\".\n" +
                 "?DocId <" + properties.getP1IsIdentifiedBy() + "> ?identifier .\n" +
-                "?identifier <" + properties.getHasUuid() + "> ?uuid .\n" +
-                "?identifier <" + properties.getP2HasType() + "> <" + resources.getReferenceCode() + ">.\n" +
+                "?DocId <" + properties.getP1IsIdentifiedBy() + "> ?" + properties.getMyEntityUuid() + " .\n" +
+                "?identifier <" + properties.getP2HasType() + "> <" + properties.getReferenceCode() + ">.\n" +
                 "?identifier <" + properties.getP2HasType() + "> ?type.\n" +
+                "FILTER ( ?identifier = ?" + properties.getMyEntityUuid() + "  )\n" +
                 "}";
+        System.out.println(myString);
         return QueryFactory.create(myString);
     }
 
     public Query getPhysicalLocation(String uuid) {
-        String myString = "SELECT  ?stringValue ?uuid\n" +
+        String myString = "SELECT ?stringValue ?" + properties.getMyEntityUuid() + "\n" +
                 "WHERE {\n" +
                 "?DocId <" + properties.getHasUuid() + "> \"" + uuid + "\".\n" +
                 "?DocId <" + properties.getP1IsIdentifiedBy() + "> ?physicalLocation .\n" +
-                "?physicalLocation <" + properties.getHasUuid() + "> ?uuid .\n" +
-                "?physicalLocation <" + properties.getP2HasType() + "> <" + resources.getPhysicalLocation() + ">.\n" +
+                "?DocId <" + properties.getP1IsIdentifiedBy() + "> ?" + properties.getMyEntityUuid() + " .\n" +
+                "?physicalLocation <" + properties.getP2HasType() + "> <" + properties.getPhysicalLocation() + ">.\n" +
                 "?physicalLocation <" + properties.getStringValue() + "> ?stringValue.\n" +
+                "FILTER ( ?" + properties.getMyEntityUuid() + " =  ?physicalLocation )\n" +
+
                 "}";
         return QueryFactory.create(myString);
     }
 
     public Query getTitle(String uuid) {
-        String query = "SELECT ?title ?type ?uuid\n" +
+        String query = "SELECT ?title ?type ?" + properties.getMyEntityUuid() + "\n" +
                 "WHERE {\n" +
                 "?DocId <" + properties.getHasUuid() + "> \"" + uuid + "\".\n" +
-                "?DocId <" + properties.getP102HasTitle() + "> ?mytitle .\n" +
-                "?mytitle <" + properties.getHasValue() + "> ?titleValue .\n" +
-                "?mytitle <" + properties.getHasUuid() + "> ?uuid .\n" +
-                "?mytitle <" + properties.getRdfType() + ">  ?type.\n" +
+                "?DocId <" + properties.getP102HasTitle() + "> ?" + properties.getMyEntityUuid() + " .\n" +
+                "?" + properties.getMyEntityUuid() + " <" + properties.getHasValue() + "> ?titleValue .\n" +
+                "?" + properties.getMyEntityUuid() + " <" + properties.getRdfType() + ">  ?type.\n" +
                 "?titleValue <" + properties.getStringValue() + "> ?title\n" +
                 "FILTER ( ?type !=  <" + properties.getNamedIndividual() + ">  )\n" +
                 "}";
@@ -210,13 +182,12 @@ public class Queries {
     }
 
     public Query getDimension(String uuid) {
-        String query = "SELECT ?material ?value ?measurementUnit ?uuid\n" +
+        String query = "SELECT ?material ?value ?measurementUnit ?" + properties.getMyEntityUuid() + "\n" +
                 "WHERE {\n" +
                 "?DocId <" + properties.getHasUuid() + "> \"" + uuid + "\".\n" +
-                "?DocId <" + properties.getP128IsCarriedBy() + "> ?physicalObject.\n" +
-                "?physicalObject <" + properties.getHasUuid() + "> ?uuid.\n" +
-                "?physicalObject <" + properties.getP45ConsistsOf() + "> ?material.\n" +
-                "?physicalObject <" + properties.getP43HasDimension() + "> ?dimension.\n" +
+                "?DocId <" + properties.getP128IsCarriedBy() + "> ?" + properties.getMyEntityUuid() + ".\n" +
+                "?" + properties.getMyEntityUuid() + " <" + properties.getP45ConsistsOf() + "> ?material.\n" +
+                "?" + properties.getMyEntityUuid() + " <" + properties.getP43HasDimension() + "> ?dimension.\n" +
                 "?dimension <" + properties.getP90HasValue() + "> ?value .\n" +
                 "?dimension <" + properties.getP91HasUnit() + "> ?measurementUnit.\n" +
                 "}";
@@ -264,7 +235,6 @@ public class Queries {
                 "}");
     }
 
-
     public Query getWriting(String uuid) {
         return QueryFactory.create("SELECT ?writing ?identifier\n" +
                 "WHERE {\n" +
@@ -297,7 +267,6 @@ public class Queries {
                 "?DocId <" + properties.getNameSpace() + "has_subject> ?subject \n" +
                 "}");
     }
-
 
     public Query getReproductionCondition(String uuid) {
         return QueryFactory.create("SELECT ?reproductionConditions ?justification\n" +
@@ -340,16 +309,12 @@ public class Queries {
         String myQuery = "DELETE " +
                 "WHERE {\n" +
                 "?DocId <" + properties.getHasUuid() + "> \"" + uuid + "\".\n" +
-
                 "?DocId <" + properties.getP102HasTitle() + "> ?myTitle.\n" +
-                "?myTitle <" + properties.getHasUuid() + "> ?titleUuid .\n" +
                 "?myTitle <" + properties.getRdfType() + ">  ?titleType.\n" +
                 "?myTitle <" + properties.getHasValue() + "> ?StringValueProperty .\n" +
                 "?StringValueProperty <" + properties.getStringValue() + "> ?stringValue.\n" +
                 "?StringValueProperty <" + properties.getRdfType() + "> ?type.\n" +
-
                 "?DocId <" + properties.getP1IsIdentifiedBy() + "> ?myIdentifier.\n" +
-                "?myIdentifier <" + properties.getHasUuid() + "> ?identifierUuid .\n" +
                 "?myIdentifier <" + properties.getP2HasType() + "> ?p2HasType.\n" +
                 "?myIdentifier <" + properties.getRdfType() + "> ?identifierType.\n" +
 
@@ -365,8 +330,6 @@ public class Queries {
                 "<" + docId + "> <" + properties.getP102HasTitle() + "> ?type.\n" +
                 "?type <" + properties.getHasValue() + "> ?title_type.\n" +
                 "?title_type <" + properties.getStringValue() + "> ?title.\n" +
-
-
                 "<" + docId + "> <" + properties.getP1IsIdentifiedBy() + "> ?cidoc_identifier.\n" +
                 "?cidoc_identifier <" + properties.getHasValue() + "> ?identifier_value.\n" +
                 "?identifier_value <" + properties.getStringValue() + "> ?dglabIdentifier.\n" +
@@ -377,13 +340,13 @@ public class Queries {
         return myQuery;
     }
 
+    //updated
     public String deleteDocTitle(String titleUuid) {
         String myQuery = "DELETE " +
                 "WHERE {\n" +
-                "?docId <" + properties.getP102HasTitle() + "> ?myTitle.\n" +
-                "?myTitle <" + properties.getHasUuid() + "> \"" + titleUuid + "\" .\n" +
-                "?myTitle <" + properties.getRdfType() + "> ?typeTitle.\n" +
-                "?myTitle <" + properties.getHasValue() + "> ?StringValueProperty.\n" +
+                "?docId <" + properties.getP102HasTitle() + "> <" + titleUuid + "> .\n" +
+                "<" + titleUuid + "> <" + properties.getRdfType() + "> ?typeTitle.\n" +
+                "<" + titleUuid + "> <" + properties.getHasValue() + "> ?StringValueProperty.\n" +
                 "?StringValueProperty <" + properties.getStringValue() + "> ?stringValue.\n" +
                 "?StringValueProperty <" + properties.getRdfType() + "> ?type.\n" +
                 "}";
@@ -391,13 +354,13 @@ public class Queries {
         return myQuery;
     }
 
+    //updated
     public String deleteDocIdentifier(String identifierUuid) {
         String myQuery = "DELETE " +
                 "WHERE {\n" +
-                "?docId <" + properties.getP1IsIdentifiedBy() + "> ?myIdentifier.\n" +
-                "?myIdentifier <" + properties.getHasUuid() + "> \"" + identifierUuid + "\" .\n" +
-                "?myIdentifier <" + properties.getP2HasType() + "> ?p2HasType.\n" +
-                "?myIdentifier <" + properties.getRdfType() + "> ?type.\n" +
+                "?docId <" + properties.getP1IsIdentifiedBy() + ">  <" + identifierUuid + "> .\n" +
+                "<" + identifierUuid + "> <" + properties.getP2HasType() + "> ?p2HasType.\n" +
+                "<" + identifierUuid + "> <" + properties.getRdfType() + "> ?type.\n" +
                 "}";
         System.out.println(myQuery);
         return myQuery;
@@ -412,14 +375,13 @@ public class Queries {
         return myQuery;
     }
 
+    //updated
     public String deleteDocDimension(String physicalObjectUuid) {
-
         String myQuery = "DELETE \n" +
                 "WHERE {\n" +
-                " ?docId <" + properties.getP128IsCarriedBy() + ">  ?physicalObject .\n" +
-                " ?physicalObject <" + properties.getHasUuid() + "> \"" + physicalObjectUuid + "\" .\n" +
-                " ?physicalObject <" + properties.getP45ConsistsOf() + ">  ?material .\n" +
-                " ?physicalObject <" + properties.getP43HasDimension() + ">  ?dimension .\n" +
+                " ?docId <" + properties.getP128IsCarriedBy() + ">  <" + physicalObjectUuid + "> .\n" +
+                "<" + physicalObjectUuid + "> <" + properties.getP45ConsistsOf() + ">  ?material .\n" +
+                "<" + physicalObjectUuid + "> <" + properties.getP43HasDimension() + ">  ?dimension .\n" +
                 " ?dimension <" + properties.getRdfType() + ">  ?dimensionType .\n" +
                 " ?dimension <" + properties.getP90HasValue() + ">  ?value .\n" +
                 " ?dimension <" + properties.getP91HasUnit() + ">  ?myMeasurementUnit .\n" +

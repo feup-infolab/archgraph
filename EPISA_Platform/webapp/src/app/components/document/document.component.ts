@@ -136,7 +136,7 @@ export class DocumentComponent implements OnInit {
 
   newTitle(): FormGroup {
     return this.formBuilder.group({
-      uuid: [''],
+      myEntityUuid: [''],
       status: [this.myStatus.added],
       title: ['', Validators.required],
       type: ['', Validators.required],
@@ -145,7 +145,7 @@ export class DocumentComponent implements OnInit {
 
   newIdentifier(): FormGroup {
     return this.formBuilder.group({
-      uuid: [''],
+      myEntityUuid: [''],
       status: [this.myStatus.added],
       identifier: ['', Validators.required],
       type: ['', Validators.required],
@@ -154,7 +154,7 @@ export class DocumentComponent implements OnInit {
 
   newMaterial(): FormGroup {
     return this.formBuilder.group({
-      uuid: [''],
+      myEntityUuid: [''],
       status: [this.myStatus.added],
       material: '',
       component: '',
@@ -163,7 +163,7 @@ export class DocumentComponent implements OnInit {
 
   newDimension(): FormGroup {
     return this.formBuilder.group({
-      uuid: [''],
+      myEntityUuid: [''],
       status: [this.myStatus.added],
       material: '',
       value: '',
@@ -173,7 +173,7 @@ export class DocumentComponent implements OnInit {
 
   newConservationStatus(): FormGroup {
     return this.formBuilder.group({
-      uuid: [''],
+      myEntityUuid: [''],
       status: [this.myStatus.added],
       conservationStatus: '',
       initialDate: '',
@@ -183,7 +183,7 @@ export class DocumentComponent implements OnInit {
 
   newLanguage(): FormGroup {
     return this.formBuilder.group({
-      uuid: [''],
+      myEntityUuid: [''],
       status: [this.myStatus.added],
       language: '',
       identifier: '',
@@ -192,7 +192,7 @@ export class DocumentComponent implements OnInit {
 
   newWriting(): FormGroup {
     return this.formBuilder.group({
-      uuid: [''],
+      myEntityUuid: [''],
       status: [this.myStatus.added],
       writing: '',
       identifier: '',
@@ -201,7 +201,7 @@ export class DocumentComponent implements OnInit {
 
   newDocumentaryTradition(): FormGroup {
     return this.formBuilder.group({
-      uuid: [''],
+      myEntityUuid: [''],
       status: [this.myStatus.added],
       documentaryTradition: '',
     });
@@ -209,7 +209,7 @@ export class DocumentComponent implements OnInit {
 
   newTypology(): FormGroup {
     return this.formBuilder.group({
-      uuid: [''],
+      myEntityUuid: [''],
       status: [this.myStatus.added],
       documentaryTypology: '',
     });
@@ -217,7 +217,7 @@ export class DocumentComponent implements OnInit {
 
   newSubject(): FormGroup {
     return this.formBuilder.group({
-      uuid: [''],
+      myEntityUuid: [''],
       status: [this.myStatus.added],
       subject: '',
     });
@@ -225,7 +225,7 @@ export class DocumentComponent implements OnInit {
 
   newAccessCondition(): FormGroup {
     return this.formBuilder.group({
-      uuid: [''],
+      myEntityUuid: [''],
       status: [this.myStatus.added],
       accessCondition: '',
       justification: '',
@@ -235,7 +235,7 @@ export class DocumentComponent implements OnInit {
 
   newRelatedDoc(): FormGroup {
     return this.formBuilder.group({
-      uuid: [''],
+      myEntityUuid: [''],
       status: [this.myStatus.added],
       recordIdentifier: '',
       title: '',
@@ -245,7 +245,7 @@ export class DocumentComponent implements OnInit {
 
   newDescriptionLevel(): FormGroup {
     return this.formBuilder.group({
-      uuid: [''],
+      myEntityUuid: [''],
       status: [this.myStatus.added],
       descriptionLevel: ['', Validators.required],
     });
