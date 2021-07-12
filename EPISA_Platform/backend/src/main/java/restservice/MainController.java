@@ -56,6 +56,8 @@ public class MainController {
             String dglabIdentifier = myValue.get("dglabIdentifier");
 
             doc.put("episaIdentifier", episaIdentifier);
+            doc.put("physicalLocation", myValue.get("physicalLocation"));
+
             String[] dglabIdentifierSplit = dglabIdentifier.split("#");
             if (dglabIdentifierSplit.length == 2) {
                 doc.put("dglabIdentifier", dglabIdentifierSplit[1]);

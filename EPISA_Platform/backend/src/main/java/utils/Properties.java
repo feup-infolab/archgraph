@@ -12,11 +12,16 @@ public class Properties {
     public Model model;
     public String string200717 = "http://erlangen-crm.org/200717/";
     public String untitledOntology = "http://www.episa.inesctec.pt/archonto/registo1-15#";
+    public String stringOwl = "http://www.w3.org/2002/07/owl#";
+
 
 
     public Properties() {
         this.model = ModelFactory.createDefaultModel();
         this.properties = new HashMap<>();
+    }
+    public String getMyEntityUuid() {
+        return "myEntityUuid";
     }
 
     public Property getTitleOntology() {
@@ -151,11 +156,19 @@ public class Properties {
     public Property getTitleString() {
         return model.getProperty(untitledOntology + "titleString");
     }
+    public Property getReferenceCode() {
+        return model.getProperty(untitledOntology + "referenceCode");
+    }
+
 
     public Property getE22HumanMadeObject() {
         return model.getProperty(string200717 + "E22_Human-Made_Object");
 
     }
+    public Property getE31Document() {
+        return model.getProperty(string200717 + "E31_Document");
+    }
+
 
     public Property getE54Dimension() {
         return model.getProperty(string200717 + "E54_Dimension");
@@ -201,5 +214,20 @@ public class Properties {
 
     public Property getP128IsCarriedBy() {
         return model.getProperty(string200717, "P128i_is_carried_by");
+    }
+
+
+
+    public Property getARE5IdentifierType() {
+        return model.getProperty(untitledOntology + "ARE5_identifierType");
+    }
+
+    public Property getARE1LevelOfDescription() {
+        return model.getProperty(untitledOntology + "ARE1LevelofDescription");
+    }
+
+
+    public Property getPhysicalLocation() {
+        return model.getProperty(untitledOntology + "physicalLocation");
     }
 }

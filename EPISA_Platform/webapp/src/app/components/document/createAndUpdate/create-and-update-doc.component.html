@@ -182,7 +182,7 @@ description Level
                     </mat-expansion-panel-header>
 
                     <div class="arrayFields" *ngFor="let dimension of getArrayName('dimensions').controls; let i=index">
-                        <div [formGroupName]="i">
+                        <div *ngIf="!ifElemDeleted('dimensions',i)" [formGroupName]="i">
                             <mat-form-field>
                                 <mat-label i18n>Material</mat-label>
                                 <input matInput placeholder="material" formControlName="material"
