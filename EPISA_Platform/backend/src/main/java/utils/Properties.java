@@ -13,13 +13,14 @@ public class Properties {
     public String string200717 = "http://erlangen-crm.org/200717/";
     public String untitledOntology = "http://www.episa.inesctec.pt/archonto/registo1-15#";
     public String stringOwl = "http://www.w3.org/2002/07/owl#";
-
+    public String isadOntology = "http://www.episa.inesctec.pt/isad-ontology#";
 
 
     public Properties() {
         this.model = ModelFactory.createDefaultModel();
         this.properties = new HashMap<>();
     }
+
     public String getMyEntityUuid() {
         return "myEntityUuid";
     }
@@ -156,6 +157,7 @@ public class Properties {
     public Property getTitleString() {
         return model.getProperty(untitledOntology + "titleString");
     }
+
     public Property getReferenceCode() {
         return model.getProperty(untitledOntology + "referenceCode");
     }
@@ -165,9 +167,11 @@ public class Properties {
         return model.getProperty(string200717 + "E22_Human-Made_Object");
 
     }
+
     public Property getE31Document() {
         return model.getProperty(string200717 + "E31_Document");
     }
+
 
 
     public Property getE54Dimension() {
@@ -217,7 +221,6 @@ public class Properties {
     }
 
 
-
     public Property getARE5IdentifierType() {
         return model.getProperty(untitledOntology + "ARE5_identifierType");
     }
@@ -229,5 +232,9 @@ public class Properties {
 
     public Property getPhysicalLocation() {
         return model.getProperty(untitledOntology + "physicalLocation");
+    }
+
+    public Property getPhysicalCharacteristicsTechnicalRequirements() {
+        return model.getProperty(isadOntology + "ISAD20hasPhysicalCharacteristicsTechnicalRequirements");
     }
 }

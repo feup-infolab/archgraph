@@ -76,6 +76,8 @@ public class Document {
 
             case "accessConditions":
             case "languages":
+            case "physicalLocation":
+            case "physicalCharacteristicsTechnicalRequirements":
                 middleArray = "DOC_ACCESS_USE_CONDITIONS";
                 break;
 
@@ -257,7 +259,7 @@ public class Document {
                 String measurementUnit = map.get("measurementUnit");
 
                 String physicalObjectUuid = UUID.randomUUID().toString();
-                Property physicalObject = model.getProperty(properties.getNameSpace() +"physicalObject" + physicalObjectUuid);
+                Property physicalObject = model.getProperty(properties.getNameSpace() + "physicalObject" + physicalObjectUuid);
                 model.add(E31_myDoc, properties.getP128IsCarriedBy(), physicalObject);
 
                 model.add(physicalObject, properties.getP45ConsistsOf(), properties.getPropertyWithNameSpace(material));
@@ -407,6 +409,10 @@ public class Document {
 
         conn.executeQueryAndAddContent(queries.getAccessCondition(uuid), DOC_ACCESS_USE_CONDITIONS, "accessConditions");
         conn.executeQueryAndAddContent(queries.getLanguage(uuid), DOC_ACCESS_USE_CONDITIONS, "languages");
+        conn.executeQueryAndAddContent(queries.getPhysicalLocation(uuid), DOC_ACCESS_USE_CONDITIONS, "physicalLocation");
+        conn.executeQueryAndAddContent(queries.getPhysicalCharacteristicsTechnicalRequirements(uuid), DOC_ACCESS_USE_CONDITIONS, "physicalCharacteristicsTechnicalRequirements");
+
+
     }
 
     public void addDocLinkedData(SPARQLOperations conn) {

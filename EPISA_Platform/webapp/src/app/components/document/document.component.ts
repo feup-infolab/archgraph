@@ -74,6 +74,9 @@ export class DocumentComponent implements OnInit {
       DOC_ACCESS_USE_CONDITIONS: this.formBuilder.group({
         accessConditions: this.formBuilder.array([]),
         languages: this.formBuilder.array([]),
+        physicalLocation: this.formBuilder.array([]),
+        physicalCharacteristicsTechnicalRequirements: this.formBuilder.array([]),
+
       }),
 
       DOC_LINKED_DATA: this.formBuilder.group({
@@ -243,6 +246,22 @@ export class DocumentComponent implements OnInit {
     });
   }
 
+  newPhysicalLocation(): FormGroup {
+    return this.formBuilder.group({
+      myEntityUuid: [''],
+      status: [this.myStatus.added],
+      stringValue: '',
+    });
+  }
+
+  newPhysicalCharacteristicsTechnicalRequirements(): FormGroup {
+    return this.formBuilder.group({
+      myEntityUuid: [''],
+      status: [this.myStatus.added],
+      physicalCharacteristics: '',
+    });
+  }
+
   newDescriptionLevel(): FormGroup {
     return this.formBuilder.group({
       myEntityUuid: [''],
@@ -275,6 +294,8 @@ export class DocumentComponent implements OnInit {
         break;
       case 'accessConditions' :
       case 'languages':
+      case 'physicalLocation':
+      case 'physicalCharacteristicsTechnicalRequirements':
         middleArray = 'DOC_ACCESS_USE_CONDITIONS';
         break;
       case 'relatedDocs' :
@@ -306,6 +327,9 @@ export class DocumentComponent implements OnInit {
     if (myArray.value.length) {
       while (myArray.value.length < myArrayFromRequest.length) {
         this.addElem(arrayName);
+      }
+      while (myArray.value.length > myArrayFromRequest.length) {
+        myArray.removeAt(myArray.value.length - 1);
       }
 
       for (let i = 0; i < myArray.length; i++) {
@@ -351,6 +375,12 @@ export class DocumentComponent implements OnInit {
         break;
       case'subjects':
         newElem = this.newSubject();
+        break;
+      case'physicalLocation':
+        newElem = this.newPhysicalLocation();
+        break;
+      case'physicalCharacteristicsTechnicalRequirements':
+        newElem = this.newPhysicalCharacteristicsTechnicalRequirements();
         break;
       case'accessConditions':
         newElem = this.newAccessCondition();
@@ -431,6 +461,10 @@ export class DocumentComponent implements OnInit {
     this.setArrayValue('subjects', result);
     this.setArrayValue('relatedDocs', result);
     this.setArrayValue('languages', result);
+    this.setArrayValue('physicalLocation', result);
+    this.setArrayValue('physicalCharacteristicsTechnicalRequirements', result);
+
+
     this.setArrayValue('writings', result);
     return;
   }
@@ -467,4 +501,6 @@ export class DocumentComponent implements OnInit {
   setExpanded(b: boolean) {
     this.isExpanded = b;
   }
+
+
 }

@@ -124,7 +124,7 @@ public class MainController {
 
     @CrossOrigin
     @PutMapping("/updatedoc/{uuid}")
-    public HashMap<String, String> updateDoc(@PathVariable String uuid, @org.springframework.web.bind.annotation.RequestBody HashMap<String, HashMap<String, ArrayList<HashMap<String, String>>>> updateForm) {
+    public String updateDoc(@PathVariable String uuid, @org.springframework.web.bind.annotation.RequestBody HashMap<String, HashMap<String, ArrayList<HashMap<String, String>>>> updateForm) {
 
         Document doc = new Document(myConfig.getMyHost(), updateForm, uuid);
         try {
@@ -132,10 +132,14 @@ public class MainController {
             String myDocId = conn.obtainARecordOfAColumn(queries.getDocId(uuid));
             doc.setMyDocId(myDocId);
             String message = doc.deleteSomeInformationAndUpdate().get("message");
-            HashMap<String, String> result = new HashMap<>();
-            result.put("message", message);
 
-            return result;
+            //get Doc from database
+            SPARQLOperations conn2 = new SPARQLOperations(myConfig.getMyHost());
+            Document doc2 = new Document(myConfig.getMyHost(), null, uuid);
+            JSONObject result = new JSONObject(doc2.getDocFromDatabase(conn2));
+
+            result.put("message", message);
+            return result.toString();
 
         } catch (Exception e) {
             System.out.println(e.getMessage());

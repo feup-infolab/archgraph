@@ -16,7 +16,7 @@
                     <p> Complete reference
                     <p> {{record.dglabIdentifier}}</p>
                 </div>
-                <div  class="rowElems">
+                <div *ngIf="record.physicalLocation" class="rowElems">
                     <p> Physical Location
                     <p> {{record.physicalLocation}}</p>
                 </div>

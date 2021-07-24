@@ -153,7 +153,6 @@ public class Queries {
                 "?physicalLocation <" + properties.getP2HasType() + "> <" + properties.getPhysicalLocation() + ">.\n" +
                 "?physicalLocation <" + properties.getStringValue() + "> ?stringValue.\n" +
                 "FILTER ( ?" + properties.getMyEntityUuid() + " =  ?physicalLocation )\n" +
-
                 "}";
         return QueryFactory.create(myString);
     }
@@ -178,6 +177,13 @@ public class Queries {
                 "?DocId <" + properties.getHasUuid() + "> \"" + uuid + "\".\n" +
                 "?DocId  <" + properties.getNameSpace() + "has_material> ?material .\n" +
                 "?DocId  <" + properties.getNameSpace() + "has_material> ?component\n" +
+                "}");
+    }
+    public Query getPhysicalCharacteristicsTechnicalRequirements (String uuid) {
+        return QueryFactory.create("SELECT ?physicalCharacteristics ?" + properties.getMyEntityUuid() + "\n" +
+                "WHERE {\n" +
+                "?DocId <" + properties.getHasUuid() + "> \"" + uuid + "\".\n" +
+                "?DocId  <" + properties.getPhysicalCharacteristicsTechnicalRequirements() + "> ?physicalCharacteristics .\n" +
                 "}");
     }
 

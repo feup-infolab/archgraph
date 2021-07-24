@@ -18,10 +18,11 @@
                     </mat-expansion-panel-header>
 
                     <div class="fields" *ngFor="let titles of getArrayName('titles').controls; let i=index">
-                        <div  [formGroupName]="i">
+                        <div [formGroupName]="i">
                             <mat-form-field>
                                 <mat-label>Title type</mat-label>
-                                <input matInput readonly placeholder="type" [value]="getViewValueFromObject(titles.value.type, myTitleTypes)">
+                                <input matInput readonly placeholder="type"
+                                       [value]="getViewValueFromObject(titles.value.type, myTitleTypes)">
                             </mat-form-field>
 
                             <mat-form-field>
@@ -47,13 +48,13 @@
                         <div [formGroupName]="i">
                             <mat-form-field>
                                 <mat-label i18n>Identifier type</mat-label>
-                                <input matInput readonly placeholder="type" [value]="getViewValueFromObject(identifiers.value.type, myIdentifierTypes)">
+                                <input matInput readonly placeholder="type"
+                                       [value]="getViewValueFromObject(identifiers.value.type, myIdentifierTypes)">
                             </mat-form-field>
                             <mat-form-field>
                                 <mat-label i18n>Identifier</mat-label>
                                 <input matInput readonly placeholder="identifier" formControlName="identifier">
                             </mat-form-field>
-
 
 
                         </div>
@@ -369,6 +370,50 @@ Description Level
                     </div>
 
                 </mat-expansion-panel>
+
+                <!--
+physicalLocation
+-->
+                <mat-expansion-panel class="panel" formGroupName="physicalLocation"
+                                     *ngIf=" getArrayName('physicalLocation').length !== 0" [expanded]="isExpanded">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title i18n>Physical Location</mat-panel-title>
+                    </mat-expansion-panel-header>
+
+                    <div class="fields"
+                         *ngFor="let physicalLocation of getArrayName('physicalLocation').controls; let i=index">
+                        <div [formGroupName]="i">
+                            <mat-form-field>
+                                <mat-label i18n>Physical Location</mat-label>
+                                <input matInput readonly placeholder="physicalLocation" formControlName="stringValue">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </mat-expansion-panel>
+
+
+                <!--
+    physicalCharacteristicsTechnicalRequirements
+    -->
+                <mat-expansion-panel class="panel" formGroupName="physicalCharacteristicsTechnicalRequirements"
+                                     *ngIf=" getArrayName('physicalCharacteristicsTechnicalRequirements').length !== 0"
+                                     [expanded]="isExpanded">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title i18n>Physical Characteristics AndTechnical Requirements</mat-panel-title>
+                    </mat-expansion-panel-header>
+
+                    <div class="fields"
+                         *ngFor="let physicalLocation of getArrayName('physicalCharacteristicsTechnicalRequirements').controls; let i=index">
+                        <div [formGroupName]="i">
+                            <mat-form-field>
+                                <mat-label i18n>Physical Characteristics AndTechnical Requirements</mat-label>
+                                <input matInput readonly placeholder="physicalCharacteristicsTechnicalRequirements"
+                                       formControlName="physicalCharacteristics">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </mat-expansion-panel>
+
             </div>
             <div formGroupName="DOC_LINKED_DATA">
                 <!--
@@ -412,22 +457,21 @@ Description Level
 
             </div>
 
+
+            <div class="hasButtons" *ngIf="!pageCreateDoc">
+                <button class="search" mat-raised-button (click)="goToHome()" color="primary">
+                    Go To Home
+                </button>
+                <button class="search mat-success" [disabled]="loading" mat-raised-button (click)="editDoc()"
+                        color="primary">
+                    Edit
+                </button>
+            </div>
+
         </mat-accordion>
-
-
-        <div class="hasButtons" *ngIf="!pageCreateDoc">
-            <button class="search" mat-raised-button (click)="goToHome()" color="primary">
-                Go To Home
-            </button>
-            <button class="search mat-success" [disabled]="loading" mat-raised-button (click)="editDoc()"
-                    color="primary">
-                Edit
-            </button>
-        </div>
-
     </form>
 
-<!--        {{this.docForm.value | json}}-->
+    <!--        {{this.docForm.value | json}}-->
 </div>
 
 

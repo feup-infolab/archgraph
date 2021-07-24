@@ -80,13 +80,13 @@ export class CreateAndUpdateDocComponent extends DocumentComponent {
       !this.OneActivesElems('descriptionLevel');
   }
 
-  resetStatusFromArray(arrayName: any) {
+/*  resetStatusFromArray(arrayName: any) {
     const myArray = this.getArrayName(arrayName);
     for (let i = 0; i < myArray.length; i++) {
       const newValue = Object.assign(myArray.at(i).value, {status: 'notChanged'});
       myArray.at(i).setValue(newValue);
     }
-  }
+  }*/
 
   updateDoc() {
     this.submitted = true;
@@ -98,28 +98,12 @@ export class CreateAndUpdateDocComponent extends DocumentComponent {
     this.loading = true;
     this.service.updateDoc(this.docForm.getRawValue(), this.episaIdentifier).subscribe(result => {
       console.log(result);
+      this.setDocValues(result);
       this.loading = false;
       if (result.message) {
         this.alertService.success(result.message, this.options);
-        this.resetStatusFromAllArrays();
       }
     });
-  }
-
-  resetStatusFromAllArrays() {
-    this.resetStatusFromArray('titles');
-    this.resetStatusFromArray('identifiers');
-    this.resetStatusFromArray('accessConditions');
-    this.resetStatusFromArray('descriptionLevel');
-    this.resetStatusFromArray('dimensions');
-    this.resetStatusFromArray('quantities');
-    this.resetStatusFromArray('typologies');
-    this.resetStatusFromArray('materials');
-    this.resetStatusFromArray('documentaryTraditions');
-    this.resetStatusFromArray('subjects');
-    this.resetStatusFromArray('relatedDocs');
-    this.resetStatusFromArray('languages');
-    this.resetStatusFromArray('writings');
   }
 
   deleteDoc() {
